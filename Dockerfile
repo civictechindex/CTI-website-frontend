@@ -1,17 +1,19 @@
-FROM node:latest
+# pull official base image
+FROM node:13.12.0-alpine
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-
+# set working directory
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app/
+# install app dependencies
+COPY package.json .
+COPY package-lock.json .
+RUN npm install --silent
 
-RUN npm install
+# Inform Docker that the container is listening on the specified port at runtime.
+EXPOSE 8080
 
-ADD src /usr/src/app/src
-ADD public /usr/src/app/public
+# add app
+COPY . .
 
-RUN npm build
-
-CMD ['npm', 'start']
+# start app
+CMD ["npm", "start"]
