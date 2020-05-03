@@ -3,9 +3,8 @@ import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles({
   nav: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+    position: 'relative',
+    paddingRight: '10px',
     height: '120px',
     backgroundColor: '#D8D8D8',
     fontSize: '16px',
@@ -14,9 +13,12 @@ const useStyles = createUseStyles({
       border: '1px solid red',
     },
   },
-  logoContainer: {
-    width: '240px',
-    position: 'relative',
+  flexContainer: {
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    marginLeft: '290px',
   },
   circle: {
     position: 'absolute',
@@ -24,7 +26,7 @@ const useStyles = createUseStyles({
     height: '336px',
     backgroundColor: '#F4F4F4',
     borderRadius: '100%',
-    transform: 'translate(-100px, -120px)',
+    transform: 'translate(-60px, -55px)',
   },
   linksContainer: {
     display: 'flex',
@@ -35,8 +37,17 @@ const useStyles = createUseStyles({
     margin: '10px'
   },
   search: {
-    width: '20vw',
-    height: '20px'
+    width: '222px',
+    height: '40px',
+    padding: '10px',
+    borderRadius: '22.5px',
+    border: '1px solid #C3C3C3',
+    background: '#FFFFFF url(images/search.svg) no-repeat scroll 12px 10px',
+    paddingLeft: '42px',
+    fontFamily: 'Work Sans',
+    fontSize: '16px',
+    outline: 'none',
+    boxSizing: 'border-box',
   }
 })
 
@@ -44,14 +55,14 @@ const Header = () => {
   const classes = useStyles()
   return (
     <nav className={classes.nav}>
-      <div className={classes.logoContainer}>
-        <div className={classes.circle}></div>
-      </div>
+      <div className={classes.circle}></div>
+      <div className={classes.flexContainer}>
         <a className={classes.links}>About</a>
         <a className={classes.links}>Tag Generator</a>
         <a className={classes.links}>Communicate with Us</a>
         <a className={classes.links}>Support Us</a>
-      <input className={classes.search} placeholder='Search'></input>
+        <input className={classes.search} placeholder='Search'></input>
+      </div>
     </nav>
   )
 }
