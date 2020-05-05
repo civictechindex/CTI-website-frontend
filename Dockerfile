@@ -1,16 +1,12 @@
-# pull official base image
-FROM node:13.12.0-alpine
-
-# set working directory
-COPY . /usr/src/app
+# Stage 1 - the build process
+FROM node:latest as build-deps
 WORKDIR /usr/src/app
-
-# install app dependencies
-COPY package*.json ./
-RUN npm install --silent
-
-# Inform Docker that the container is listening on the specified port at runtime.
-EXPOSE 8080
-
-# start app
-CMD ["npm", "start"]
+COPY package.json yarn.lock ./
+RUN yarn
+COPY . ./
+RUN yarn build
+# Stage 2 - the production environment
+FROM nginx:1.12-alpine
+COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
