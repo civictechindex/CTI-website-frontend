@@ -32,7 +32,8 @@ const theme = {
   primaryFontFamily: 'Work Sans',
   secondaryFontFamily: 'Space Mono',
   primaryTextColor: 'black',
-  secondaryTextColor: 'white'
+  secondaryTextColor: 'white',
+  footerBG: '#242424',
 }
 
 ReactDOM.render(
