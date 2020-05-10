@@ -28,14 +28,16 @@ const Footer = () => {
         </div>
         <div className={classes.infoContainer}>
           <p className={classes.infoHeader}>Follow Us</p>
-          <img alt='instagram logo'/>
-          <img alt='twitter logo'/>
-          <img alt='facebook logo'/>
-          <img alt='github logo'/>
+          <img className={classes.margin} src='/images/fb.svg' alt='instagram logo'/>
+          <img className={classes.margin} src='/images/fb.svg' alt='twitter logo'/>
+          <img className={classes.margin} src='/images/fb.svg' alt='facebook logo'/>
+          <img src='/images/fb.svg' alt='github logo'/>
         </div>
       </div>
-      <p className={classes.note}>The Civic Tech Index is an open-source project.</p>
-      <p className={classes.note}>You can download or contribute to the code on <a>GitHub.</a></p>
+      <div className={classes.noteContainer}>
+        <p className={classes.note}>The Civic Tech Index is an open-source project.</p>
+        <p className={classes.note}>You can download or contribute to the code on <a className={classes.link}>GitHub.</a></p>
+      </div>
     </div>
   )
 }
