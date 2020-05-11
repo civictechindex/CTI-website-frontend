@@ -34,6 +34,7 @@ const theme = {
   primaryTextColor: 'black',
   secondaryTextColor: 'white',
   footerBG: '#242424',
+  headerBG: '#F4F4F4',
 }
 
 ReactDOM.render(
