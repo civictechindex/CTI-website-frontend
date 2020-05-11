@@ -10,9 +10,6 @@ const useStyles = createUseStyles(theme => ({
     color: theme.secondaryTextColor,
     fontSize: '16px',
     paddingTop: '32px',
-    // '& *': {
-    //   border: '1px solid black'
-    // },
   },
   allInfoContainer: {
     display: 'flex',
@@ -30,6 +27,8 @@ const useStyles = createUseStyles(theme => ({
     margin: '0',
   },
   infoLink: {
+    color: theme.secondaryTextColor,
+    textDecoration: 'none',
     display: 'block',
     marginTop: '14px',
   },
@@ -45,8 +44,12 @@ const useStyles = createUseStyles(theme => ({
     margin: '4px',
   },
   link: {
+    color: theme.secondaryTextColor,
     textDecoration: 'underline',
     fontWeight: '500',
+  },
+  twitter: {
+    transform: 'translate(0, -3px)',
   },
 }))
 
