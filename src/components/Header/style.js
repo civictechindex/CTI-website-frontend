@@ -33,7 +33,7 @@ const useStyles = createUseStyles( theme => ({
   linksContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
-
+    position: 'relative',
   },
   links: {
     textDecoration: 'none',
@@ -63,20 +63,31 @@ const useStyles = createUseStyles( theme => ({
       right: '10px',
     }
   },
-  linksContainer: {
-    position: 'relative',
-  },
   subLinksContainer: {
     display: 'flex',
     flexDirection: 'column',
     position: 'absolute',
+    top: '40px',
+    left: '8px',
     width: '168px',
-    zIndex: '1000'
+    borderRadius: '4px',
+    boxShadow: '0px 4px 5px rgba(0, 0, 0, 0.2), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.14)',
+    zIndex: '1000',
+    '& $subLinks:first-child': {
+      borderRadius: '4px 4px 0 0',
+    },
+    '& $subLinks:last-child': {
+      borderRadius: '0 0 4px 4px',
+      borderBottom: 'none',
+    },
   },
   subLinks: {
     fontSize: '14px',
     textDecoration: 'none',
     color: theme.primaryTextColor,
+    padding: '10px',
+    backgroundColor: theme.backgroundColor1,
+    borderBottom: '1px solid #DEDEDE',
   },
   whiteSpace: {
     width: '100%',
