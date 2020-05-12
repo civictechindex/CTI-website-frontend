@@ -7,6 +7,7 @@ import jss from 'jss'
 import preset from 'jss-preset-default'
 import { SheetsRegistry } from 'react-jss'
 import { JssProvider } from 'react-jss'
+import { BrowserRouter } from 'react-router-dom'
 
 const setupJss = () => {
   jss.setup(preset())
@@ -41,7 +42,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <JssProvider registry={sheets}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </JssProvider>
     </ThemeProvider>
   </React.StrictMode>,
