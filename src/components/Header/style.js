@@ -7,7 +7,6 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: '#D8D8D8',
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
-    zIndex: '0',
   },
   flexContainer: {
     position: 'relative',
@@ -20,17 +19,16 @@ const useStyles = createUseStyles( theme => ({
   circle: {
     position: 'absolute',
     width: '336px',
-    height: '336px',
+    height: '180px',
+    borderRadius: '180px 180px 0 0',
     backgroundColor: theme.headerBG,
-    borderRadius: '100%',
-    transform: 'translate(-125px, -85px)',
+    transform: 'translate(-125px, -80px)',
   },
   logo: {
     position: 'absolute',
     width: '150px',
     top: '26px',
     left: '16px',
-    zIndex: '100',
   },
   linksContainer: {
     display: 'flex',
@@ -65,12 +63,25 @@ const useStyles = createUseStyles( theme => ({
       right: '10px',
     }
   },
-  whiteSpace: {
+  linksContainer: {
     position: 'relative',
+  },
+  subLinksContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'absolute',
+    width: '168px',
+    zIndex: '1000'
+  },
+  subLinks: {
+    fontSize: '14px',
+    textDecoration: 'none',
+    color: theme.primaryTextColor,
+  },
+  whiteSpace: {
     width: '100%',
     height: '50vh',
     backgroundColor: '#FFFFFF',
-    zIndex: '1000',
   }
 }))
 
