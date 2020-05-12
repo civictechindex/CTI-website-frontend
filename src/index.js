@@ -29,10 +29,12 @@ const setupJss = () => {
 const sheets = setupJss()
 
 const theme = {
-  primaryFontFamily: 'Work Sans',
-  secondaryFontFamily: 'Space Mono',
+  primaryFontFamily: 'Work Sans, san-serif',
+  secondaryFontFamily: 'Space Mono, monospace',
   primaryTextColor: 'black',
-  secondaryTextColor: 'white'
+  secondaryTextColor: 'white',
+  footerBG: '#242424',
+  headerBG: '#F4F4F4',
 }
 
 ReactDOM.render(

@@ -1,12 +1,12 @@
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles( theme => ({
   nav: {
     position: 'relative',
     height: '100px',
     backgroundColor: '#D8D8D8',
     fontSize: '16px',
-    fontFamily: 'Work Sans',
+    fontFamily: theme.primaryFontFamily,
     zIndex: '0',
   },
   flexContainer: {
@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
     position: 'absolute',
     width: '336px',
     height: '336px',
-    backgroundColor: '#F4F4F4',
+    backgroundColor: theme.headerBG,
     borderRadius: '100%',
     transform: 'translate(-125px, -85px)',
   },
@@ -38,7 +38,9 @@ const useStyles = createUseStyles({
 
   },
   links: {
-    margin: '10px'
+    textDecoration: 'none',
+    color: theme.primaryTextColor,
+    margin: '10px',
   },
   searchContainer: {
     width: '120px',
@@ -51,7 +53,7 @@ const useStyles = createUseStyles({
     border: '1px solid #C3C3C3',
     background: '#FFFFFF url(images/search.svg) no-repeat scroll 8px 5.5px',
     paddingLeft: '36px',
-    fontFamily: 'Work Sans',
+    fontFamily: theme.primaryFontFamily,
     fontSize: '16px',
     outline: 'none',
     boxSizing: 'border-box',
@@ -70,6 +72,6 @@ const useStyles = createUseStyles({
     backgroundColor: '#FFFFFF',
     zIndex: '1000',
   }
-})
+}))
 
 export default useStyles
