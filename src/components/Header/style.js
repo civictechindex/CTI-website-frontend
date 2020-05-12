@@ -34,6 +34,9 @@ const useStyles = createUseStyles( theme => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     position: 'relative',
+    '&:hover $subLinksContainer': {
+      display: 'flex',
+    },
   },
   links: {
     textDecoration: 'none',
@@ -64,27 +67,29 @@ const useStyles = createUseStyles( theme => ({
     }
   },
   subLinksContainer: {
-    display: 'flex',
+    display: 'none',
     flexDirection: 'column',
     position: 'absolute',
-    top: '40px',
+    top: '38px',
     left: '8px',
     width: '168px',
     borderRadius: '4px',
     boxShadow: '0px 4px 5px rgba(0, 0, 0, 0.2), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.14)',
     zIndex: '1000',
     '& $subLinks:first-child': {
-      borderRadius: '4px 4px 0 0',
+      borderTopLeftRadius: '4px',
+      borderTopRightRadius: '4px',
     },
     '& $subLinks:last-child': {
-      borderRadius: '0 0 4px 4px',
+      borderBottomLeftRadius: '4px',
+      borderBottomRightRadius: '4px',
       borderBottom: 'none',
     },
   },
   subLinks: {
     fontSize: '14px',
     textDecoration: 'none',
-    color: theme.primaryTextColor,
+    color: '#8F8F8F',
     padding: '10px',
     backgroundColor: theme.backgroundColor1,
     borderBottom: '1px solid #DEDEDE',

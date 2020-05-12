@@ -25,9 +25,17 @@ const Header = () => {
         </div>
         <div className={classes.linksContainer}>
           <Link to='/' className={classes.links}>Communicate with Us</Link>
+          <div className={classes.subLinksContainer}>
+            <Link to='/' className={classes.subLinks}>FAQ</Link>
+          </div>
         </div>
         <div className={classes.linksContainer}>
           <Link to='/' className={classes.links}>Support Us</Link>
+          <div className={classes.subLinksContainer}>
+            <Link to='/' className={classes.subLinks}>Donate</Link>
+            <Link to='/' className={classes.subLinks}>Share the CTI</Link>
+            <Link to='/' className={classes.subLinks}>Volunteer with Us</Link>
+          </div>
         </div>
         <div className={classes.searchContainer}>
           <input className={classes.search} placeholder='Search'></input>
