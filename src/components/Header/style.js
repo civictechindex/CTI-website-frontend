@@ -7,7 +7,6 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: '#D8D8D8',
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
-    zIndex: '0',
   },
   flexContainer: {
     position: 'relative',
@@ -20,22 +19,24 @@ const useStyles = createUseStyles( theme => ({
   circle: {
     position: 'absolute',
     width: '336px',
-    height: '336px',
+    height: '180px',
+    borderRadius: '180px 180px 0 0',
     backgroundColor: theme.headerBG,
-    borderRadius: '100%',
-    transform: 'translate(-125px, -85px)',
+    transform: 'translate(-125px, -80px)',
   },
   logo: {
     position: 'absolute',
     width: '150px',
     top: '26px',
     left: '16px',
-    zIndex: '100',
   },
   linksContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
-
+    position: 'relative',
+    '&:hover $subLinksContainer': {
+      display: 'flex',
+    },
   },
   links: {
     textDecoration: 'none',
@@ -65,12 +66,42 @@ const useStyles = createUseStyles( theme => ({
       right: '10px',
     }
   },
+  subLinksContainer: {
+    display: 'none',
+    flexDirection: 'column',
+    position: 'absolute',
+    top: '38px',
+    left: '8px',
+    width: '168px',
+    borderRadius: '4px',
+    boxShadow: '0px 4px 5px rgba(0, 0, 0, 0.2), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.14)',
+    zIndex: '1000',
+    '& $subLinks:first-child': {
+      borderTopLeftRadius: '4px',
+      borderTopRightRadius: '4px',
+    },
+    '& $subLinks:last-child': {
+      borderBottomLeftRadius: '4px',
+      borderBottomRightRadius: '4px',
+      borderBottom: 'none',
+    },
+  },
+  subLinks: {
+    fontSize: '14px',
+    textDecoration: 'none',
+    color: '#8F8F8F',
+    padding: '10px',
+    backgroundColor: theme.backgroundColor1,
+    borderBottom: '1px solid #DEDEDE',
+    '&:hover': {
+      color: theme.secondaryTextColor,
+      backgroundColor: '#C6C6C6',
+    },
+  },
   whiteSpace: {
-    position: 'relative',
     width: '100%',
     height: '50vh',
     backgroundColor: '#FFFFFF',
-    zIndex: '1000',
   }
 }))
 
