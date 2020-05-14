@@ -93,6 +93,10 @@ const useStyles = createUseStyles( theme => ({
     padding: '10px',
     backgroundColor: theme.backgroundColor1,
     borderBottom: '1px solid #DEDEDE',
+    '&:hover': {
+      color: theme.secondaryTextColor,
+      backgroundColor: '#C6C6C6',
+    },
   },
   whiteSpace: {
     width: '100%',
