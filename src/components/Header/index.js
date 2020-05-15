@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useStyles from './style.js'
+import useStyles from './styles.js'
 
 const Header = () => {
   const classes = useStyles()
