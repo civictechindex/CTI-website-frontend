@@ -42,6 +42,7 @@ const theme = {
   button2TextColor: '#979797',
   backgroundColor1: '#FFFFFF',
   backgroundColor2: '#F2F2F2',
+  backgroundColor3: '#E1E1E1',
 }
 
 ReactDOM.render(

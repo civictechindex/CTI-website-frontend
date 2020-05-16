@@ -1,6 +1,7 @@
 import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
+/**********     MAIN SECTION     **********/
   mainSection: {
     boxSizing: 'border-box',
     width: '100%',
@@ -69,6 +70,7 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: theme.button1BG,
     border: `1px solid ${theme.button1BG}`,
   },
+/**********     CTI SECTION     **********/
   ctiSection: {
     width: '100%',
     minHeight: '380px',
@@ -101,10 +103,53 @@ const useStyles = createUseStyles( theme => ({
     objectFit: 'scale-down',
     margin: '20px 20px',
   },
+/**********     EMPTY SECTION     **********/
+  emptySection: {
+    width: '100%',
+    height: '200px',
+    backgroundColor: theme.backgroundColor3,
+    textAlign: 'center',
+    '& *': {
+      fontSize: '36px',
+      paddingTop: '40px',
+      margin: '0',
+    }
+  },
+/**********     GET-STARTED SECTION     **********/
+  getStartedSection: {
+    padding: '60px 0',
+    margin: '0 10px',
+    textAlign: 'center',
+  },
+  getStartedHeading: {
+    fontFamily: theme.primaryFontFamily,
+    fontWeight: '500',
+    fontSize: '36px',
+    margin: '0', 
+    marginBottom: '30px', 
+  },
+  getStartedBtn: {
+    display: 'inline-block',
+    fontFamily: theme.primaryFontFamily,
+    fontWeight: 'bold',
+    fontSize: '16px',
+    color: theme.button1TextColor,
+    border: `1px solid ${theme.button1BG}`,
+    backgroundColor: theme.button1BG,
+    borderRadius: '22.5px',
+    width: '270px',
+    height: '45px',
+    outline: 'none',
+    cursor: 'pointer',
+  },
+/**********     MEDIA-QUERIES     **********/
   '@media (max-width: 460px)': {
     heading: {
       fontSize: '30px',
       lineHeight: '32px',
+    },
+    getStartedHeading: {
+      fontSize: '30px',
     },
     ctiHeading: {
       fontSize: '20px',

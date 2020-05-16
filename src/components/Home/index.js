@@ -42,6 +42,13 @@ const Home = () => {
         </div>
       </div>
     </section>
+    <section className={classes.emptySection}>
+      <h1>Coming Soon!</h1>
+    </section>
+    <section className={classes.getStartedSection}>
+      <h2 className={classes.getStartedHeading}>Ready to get started?</h2>
+      <button className={`${classes.getStartedBtn} ${classes.black}`}>Tag Your Project</button>
+    </section>
     </>
   )
 }
