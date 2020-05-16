@@ -42,8 +42,6 @@ const Header = () => {
         </div>
       </div>
     </nav>
-    {/* Remove. Just to see visually. */}
-    <div className={classes.whiteSpace}></div>
     </>
   )
 }

@@ -36,7 +36,12 @@ const theme = {
   secondaryTextColor: 'white',
   footerBG: '#242424',
   headerBG: '#F4F4F4',
+  button1BG: '#000000',
+  button1TextColor: 'white',
+  button2BG: '#FFFFFF',
+  button2TextColor: '#979797',
   backgroundColor1: '#FFFFFF',
+  backgroundColor2: '#F2F2F2',
 }
 
 ReactDOM.render(
