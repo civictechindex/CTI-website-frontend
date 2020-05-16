@@ -8,8 +8,8 @@ const Header = () => {
   return (
     <>
     <nav className={classes.nav}>
-      <div className={classes.circle}></div>
-      <img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/>
+      <Link to='/'><div className={classes.circle}></div></Link>
+      <Link to='/'><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/></Link>
       <div className={classes.flexContainer}>
         <div className={classes.linksContainer}>
           <Link to='/' className={classes.links}>About</Link>
