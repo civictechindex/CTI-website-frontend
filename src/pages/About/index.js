@@ -7,8 +7,10 @@ const About = () => {
   return (
     <main className={classes.main}>
       <section className={classes.headingSection}>
-        <p className={classes.url}>Home / About</p>
-        <h1 className={classes.heading}>A movement to index every open source civic tech project on Github</h1>
+        <div className={classes.headingContainer}>
+          <p className={classes.url}>Home / About</p>
+          <h1 className={classes.heading}>A movement to index every open source civic tech project on Github</h1>
+        </div>
       </section>
       <section className={classes.textSection}>
         <h2 className={classes.text}>With your help, we can create a continuously updated repository for all civic tech enthusiasts to find open source projects to model, connect with, and learn from.</h2>
