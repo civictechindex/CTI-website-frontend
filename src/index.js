@@ -8,6 +8,16 @@ import preset from 'jss-preset-default'
 import { SheetsRegistry } from 'react-jss'
 import { JssProvider } from 'react-jss'
 import { BrowserRouter } from 'react-router-dom'
+import WebFont from 'webfontloader'
+
+WebFont.load({
+  google: {
+    families: [
+      'Work Sans:400,500,700', 'sans-serif',
+      'Space Mono:400,500', 'monospace'
+    ]
+  }
+})
 
 const setupJss = () => {
   jss.setup(preset())
