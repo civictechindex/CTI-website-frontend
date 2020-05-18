@@ -1,5 +1,5 @@
 import React from 'react'
-import useStyles from './style.js'
+import useStyles from './styles.js'
 
 const Footer = () => {
   const classes = useStyles()
