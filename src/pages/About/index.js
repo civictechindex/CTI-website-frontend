@@ -18,15 +18,15 @@ const About = () => {
       <section className={classes.projectsSection}>
         <h3 className={classes.projectsHeading}>Easily search and clone projects from local and global brigades.</h3>
         <div className={classes.projectsContainer}>
-          <img className={classes.projectsImg} src='#' alt='girl coding on her computer' />
+          <img className={classes.projectsImg} src='/images/girl-coding.png' alt='girl coding on her computer' />
           <p className={classes.projectsText}>No coding experience needed to submit your project!</p>
         </div>
         <div className={classes.projectsContainer}>
-          <img className={classes.projectsImg} src='#' alt='girl coding on her computer' />
+          <img className={classes.projectsImg} src='/images/girl-and-guy-coding.png' alt='girl and guy coding' />
           <p className={classes.projectsText}>The index can be displayed and customized on any website</p>
         </div>
         <div className={classes.projectsContainer}>
-          <img className={classes.projectsImg} src='#' alt='girl coding on her computer' />
+          <img className={classes.projectsImg} src='/images/group/coding' alt='group coding' />
           <p className={classes.projectsText}>The index is owned by all who contribute to it</p>
         </div>
       </section>
