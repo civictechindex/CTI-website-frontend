@@ -12,7 +12,7 @@ const Header = () => {
       <Link to='/'><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/></Link>
       <div className={classes.flexContainer}>
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links}>About</Link>
+          <Link to='/about' className={classes.links}>About</Link>
           <div className={classes.subLinksContainer}>
             <Link to='/' className={classes.subLinks}>Overview</Link>
             <Link to='/' className={classes.subLinks}>Searching the Index</Link>

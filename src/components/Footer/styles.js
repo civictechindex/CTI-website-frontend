@@ -23,8 +23,11 @@ const useStyles = createUseStyles(theme => ({
     margin: '0 10px',
   },
   infoHeader: {
+    display: 'block',
     fontWeight: 'bold',
     margin: '0',
+    textDecoration: 'none',
+    color: theme.secondaryTextColor,
   },
   infoLink: {
     color: theme.secondaryTextColor,
