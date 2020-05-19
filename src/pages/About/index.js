@@ -18,16 +18,18 @@ const About = () => {
       <section className={classes.projectsSection}>
         <h3 className={classes.projectsHeading}>Easily search and clone projects from local and global brigades.</h3>
         <div className={classes.projectsContainer}>
-          <img className={classes.projectsImg} src='/images/girl-coding.png' alt='girl coding on her computer' />
-          <p className={classes.projectsText}>No coding experience needed to submit your project!</p>
-        </div>
-        <div className={classes.projectsContainer}>
-          <img className={classes.projectsImg} src='/images/girl-and-guy-coding.png' alt='girl and guy coding' />
-          <p className={classes.projectsText}>The index can be displayed and customized on any website</p>
-        </div>
-        <div className={classes.projectsContainer}>
-          <img className={classes.projectsImg} src='/images/group/coding' alt='group coding' />
-          <p className={classes.projectsText}>The index is owned by all who contribute to it</p>
+          <div className={classes.projectsCard}>
+            <img className={classes.projectsImg1} src='/images/girl-coding.png' alt='girl coding on her computer' />
+            <p className={classes.projectsText1}>No coding experience needed to submit your project!</p>
+          </div>
+          <div className={classes.projectsCard}>
+            <img className={classes.projectsImg2} src='/images/girl-and-guy-coding.png' alt='girl and guy coding' />
+            <p className={classes.projectsText2}>The index can be displayed and customized on any website</p>
+          </div>
+          <div className={classes.projectsCard}>
+            <img className={classes.projectsImg3} src='/images/group-coding.png' alt='group coding' />
+            <p className={classes.projectsText3}>The index is owned by all who contribute to it</p>
+          </div>
         </div>
       </section>
       <section className={classes.getStartedSection}>

@@ -6,7 +6,8 @@ const useStyles = createUseStyles( theme => ({
     color: theme.primaryTextColor,
     '& section':{
       boxSizing: 'border-box',
-      padding: '0 20px',
+      paddingLeft: '20px',
+      paddingRight: '20px',
     }
   },
 /**********     HEADING SECTION      **********/
@@ -17,7 +18,7 @@ const useStyles = createUseStyles( theme => ({
   },
   headingContainer: {
     width: 'fit-content',
-    margin: '60px 200px 0 200px',
+    margin: '60px 240px 0 240px',
   },
   heading: {
     fontSize: '36px',
@@ -40,8 +41,83 @@ const useStyles = createUseStyles( theme => ({
     fontWeight: '400',
     padding: '75px 0',
   },
+/**********     PROJCETS SECTION      **********/
+  projectsSection: {
+    backgroundColor: theme.backgroundColor2,
+  },
+  projectsHeading: {
+    fontSize: '24px',
+    lineHeight: '32px',
+    maxWidth: '470px',
+    margin: '0',
+    padding: '60px 20px'
+  },
+  projectsContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    textAlign: 'center',
+    paddingBottom: '40px',
+  },
+  projectsCard: {
+    height: '293px',
+    margin: '15px'
+  },
+  projectsImg2: {
+    transform: 'translate(0, 40px)',
+  },
+  projectsImg3: {
+    transform: 'translate(0, 10px)',
+  },
+  projectsText1: {
+    width: '270px',
+  },
+  projectsText2: {
+    width: '303px',
+    transform: 'translate(0, 42px)',
+  },
+  projectsText3: {
+    width: '270px',
+    transform: 'translate(13%, 11px)',
+  },
+/**********     GET-STARTED SECTION     **********/
+  getStartedSection: {
+    backgroundColor: theme.backgroundColor1,
+    paddingTop: '60px',
+    paddingBottom: '60px',
+    margin: '0 10px',
+    textAlign: 'center',
+    border: '1px solid red'
+  },
+  getStartedHeading: {
+    fontWeight: '500',
+    fontSize: '36px',
+    margin: '0', 
+    marginBottom: '30px', 
+  },
+  getStartedBtn: {
+    display: 'inline-block',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    color: theme.button1TextColor,
+    border: `1px solid ${theme.button1BG}`,
+    backgroundColor: theme.button1BG,
+    borderRadius: '22.5px',
+    width: '270px',
+    height: '45px',
+    outline: 'none',
+    cursor: 'pointer',
+  },
 /**********     MEDIA-QUERIES     **********/
-  '@media (max-width: 840px)': {
+  '@media (max-width: 672px)': {
+    projectsContainer: {
+      paddingBottom: '100px'
+    },
+    projectsImg3: {
+      marginTop: '45px',
+    },
+  },
+  '@media (max-width: 935px)': {
     headingContainer: {
       margin: '50px auto 0 auto'
     },
@@ -57,8 +133,17 @@ const useStyles = createUseStyles( theme => ({
     text: {
       fontSize: '20px',
       lineHeight: '28px',
-    }
-  }
+    },
+    projectsHeading: {
+      fontSize: '20px',
+      lineHeight: '28px',
+    },
+  },
+  '@media (max-width: 460px)': {
+    getStartedHeading: {
+      fontSize: '30px',
+    },
+  },
 }))
 
 export default useStyles
