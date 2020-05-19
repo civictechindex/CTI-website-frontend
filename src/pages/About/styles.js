@@ -87,7 +87,6 @@ const useStyles = createUseStyles( theme => ({
     paddingBottom: '60px',
     margin: '0 10px',
     textAlign: 'center',
-    border: '1px solid red'
   },
   getStartedHeading: {
     fontWeight: '500',
