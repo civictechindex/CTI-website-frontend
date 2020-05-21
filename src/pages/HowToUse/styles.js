@@ -6,6 +6,9 @@ const useStyles = createUseStyles( theme => ({
     width: '100%',
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
+    '& *': {
+      boxSizing: 'border-box',
+    }
   },
   projectsContainer: {
     maxWidth: '770px',
@@ -46,16 +49,34 @@ const useStyles = createUseStyles( theme => ({
     listStyle: 'none',
     counterReset: 'myCounter',
     '& li': {
+      marginLeft: '32px',
       counterIncrement: 'myCounter',
       position: 'relative',
-      marginLeft: '32px',
     },
     '& li::before': {
       content: 'counter(myCounter) ". "',
       fontFamily: theme.thirdFontFamily,
       position: 'absolute',
       left: '-32px',
-    }
+    },
+    '& textarea': {
+      width: '100%',
+      resize: 'none',
+      border: 'none',
+      outline: 'none',
+      fontSize: '18px',
+      padding: '10px 12px',
+      margin: '20px 0 25px 0 ',
+    },
+    '& textarea:nth-of-type(1)': {
+      height: '406px',
+    },
+    '& textarea:nth-of-type(2)': {
+      height: '151px',
+    },
+    '& textarea:nth-of-type(3)': {
+      height: '151px',
+    },
   },
   projectsFooter: {
     fontSize: '24px',
