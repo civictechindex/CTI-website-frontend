@@ -1,16 +1,21 @@
 import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
-  projectsSection: {
-    boxSizing: 'border-box',
-    backgroundColor: theme.backgroundColor2,
-    width: '100%',
+/**********     HOW-TO-USE PAGE     **********/
+  main: {
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
-    padding: '0 20px',
+    '& section': {
+      width: '100%',
+    },
     '& *': {
       boxSizing: 'border-box',
-    }
+    },
+  },
+/**********     PROJECTS SECTION     **********/
+  projectsSection: {
+    backgroundColor: theme.backgroundColor2,
+    padding: '0 20px',
   },
   projectsContainer: {
     maxWidth: '770px',
@@ -107,7 +112,34 @@ const useStyles = createUseStyles( theme => ({
     fontWeight: 'bold',
     textAlign: 'center',
     margin: '0',
+    paddingTop: '40px',
+    paddingBottom: '60px',
   },
+/**********     CONTACT-US SECTION     **********/
+  contactUsSection: {
+    padding: '60px 20px',
+    textAlign: 'center',
+  },
+  contactUsHeading: {
+    fontWeight: '500',
+    fontSize: '36px',
+    margin: '0', 
+    marginBottom: '30px', 
+  },
+  contactUsBtn: {
+    display: 'inline-block',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    color: theme.button1TextColor,
+    border: `1px solid ${theme.button1BG}`,
+    backgroundColor: theme.button1BG,
+    borderRadius: '22.5px',
+    width: '270px',
+    height: '45px',
+    outline: 'none',
+    cursor: 'pointer',
+  },
+/**********     MEDIA QUERIES     **********/
   '@media (max-width: 770px)': {
     imgText: {
       fontSize: '2vw',

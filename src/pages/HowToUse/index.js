@@ -39,6 +39,10 @@ const HowToUse = () => {
         <p className={classes.projectsFooter}>Don't forget to tell us when you've submitted a project or if you would like your organization added to our network!</p>
       </div>
     </section>
+    <section className={classes.contactUsSection}>
+      <h2 className={classes.contactUsHeading}>Submitted a project or still need help?</h2>
+      <button className={`${classes.contactUsBtn} ${classes.black}`}>Contact Us</button>
+    </section>
     </main>
   )
 }
