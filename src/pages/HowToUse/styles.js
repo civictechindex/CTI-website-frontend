@@ -14,7 +14,7 @@ const useStyles = createUseStyles( theme => ({
   },
 /**********     PROJECTS SECTION     **********/
   projectsSection: {
-    backgroundColor: theme.backgroundColor2,
+    backgroundColor: theme.backgroundColor5,
     padding: '0 20px',
   },
   projectsContainer: {

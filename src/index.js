@@ -56,6 +56,7 @@ const theme = {
   backgroundColor2: '#F2F2F2',
   backgroundColor3: '#E1E1E1',
   backgroundColor4: '#242424',
+  backgroundColor5: '#E9E9E9',
 }
 
 ReactDOM.render(
