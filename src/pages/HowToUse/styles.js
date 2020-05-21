@@ -2,10 +2,12 @@ import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
   projectsSection: {
+    boxSizing: 'border-box',
     backgroundColor: theme.backgroundColor2,
     width: '100%',
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
+    padding: '0 20px',
     '& *': {
       boxSizing: 'border-box',
     }
@@ -50,6 +52,7 @@ const useStyles = createUseStyles( theme => ({
     counterReset: 'myCounter',
     '& li': {
       marginLeft: '32px',
+      marginBottom: '20px',
       counterIncrement: 'myCounter',
       position: 'relative',
     },
@@ -66,7 +69,7 @@ const useStyles = createUseStyles( theme => ({
       outline: 'none',
       fontSize: '18px',
       padding: '10px 12px',
-      margin: '20px 0 25px 0 ',
+      marginBottom: '25px',
     },
     '& textarea:nth-of-type(1)': {
       height: '406px',
@@ -78,12 +81,43 @@ const useStyles = createUseStyles( theme => ({
       height: '151px',
     },
   },
+  imgContainer: {
+    position: 'relative',
+    marginBottom: '25px',
+  },
+  img: {
+    maxWidth: '100%',
+  },
+  imgText: {
+    position: 'absolute',
+    top: '-10px',
+    left: '5%',
+    color: '#0366d6',
+    fontSize: '14px',
+  },
+  black: {
+    color: 'black',
+  },
+  gray: {
+    opacity: '0.5',
+  },
   projectsFooter: {
     fontSize: '24px',
     lineHeight: '30px',
     fontWeight: 'bold',
     textAlign: 'center',
+    margin: '0',
   },
+  '@media (max-width: 770px)': {
+    imgText: {
+      fontSize: '2vw',
+    },
+  },
+  '@media (max-width: 600px)': {
+    imgText: {
+      top: '-13px',
+    },
+  }
 }))
 
 export default useStyles
