@@ -14,7 +14,8 @@ WebFont.load({
   google: {
     families: [
       'Work Sans:400,500,700', 'sans-serif',
-      'Space Mono:400,500', 'monospace'
+      'Space Mono:400,500', 'monospace',
+      'Source Code Pro:400',
     ]
   }
 })
@@ -42,6 +43,7 @@ const sheets = setupJss()
 const theme = {
   primaryFontFamily: 'Work Sans, san-serif',
   secondaryFontFamily: 'Space Mono, monospace',
+  thirdFontFamily: 'Source Code Pro, monospace',
   primaryTextColor: 'black',
   secondaryTextColor: 'white',
   footerBG: '#242424',
@@ -54,6 +56,7 @@ const theme = {
   backgroundColor2: '#F2F2F2',
   backgroundColor3: '#E1E1E1',
   backgroundColor4: '#242424',
+  backgroundColor5: '#E9E9E9',
 }
 
 ReactDOM.render(
