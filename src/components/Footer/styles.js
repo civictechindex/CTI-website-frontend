@@ -12,11 +12,26 @@ const useStyles = createUseStyles(theme => ({
     paddingTop: '32px',
   },
   allInfoContainer: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-evenly',
-    '& $infoContainer:first-child': {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+    gridTemplateRows: 'auto',
+    border: '1px solid red',
+    '& $infoContainer:nth-child(1)': {
+      gridArea: '1 / 1 / 1 / 1',
+    },
+    '& $infoContainer:nth-child(2)': {
+      gridArea: '1 / 2 / 1 / 2',
       maxWidth: '160px',
+    },
+    '& $infoContainer:nth-child(3)': {
+      gridArea: '1 / 3 / 1 / 3',
+    },
+    '& $infoContainer:nth-child(4)': {
+      gridArea: '1 /4 / 1 / 4',
+    },
+    '& $infoContainer:nth-child(5)': {
+      gridArea: '1 / 5 / 1 / 5',
+      minWidth: '190px',
     },
   },
   infoContainer: {
@@ -54,6 +69,10 @@ const useStyles = createUseStyles(theme => ({
   twitter: {
     transform: 'translate(0, -3px)',
   },
+/**********     MEDIA-QUERIES SECTION     **********/
+  '@media (max-width: 1000px)': {
+  
+  }
 }))
 
 export default useStyles
