@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useStyles from './styles.js'
 
 const Header = () => {
   const classes = useStyles()
-  
+  const [isBurgerOpen, setIsBurgerOpen] = useState(null)
+
+  useEffect(() => {
+    console.log()
+    if(isBurgerOpen) {
+      // burgerContent.current.className = `${styles.ul} ${styles.slideIn}`
+      // line1.current.id = styles.line1
+      // line2.current.id = styles.line2
+    } else {
+      // burgerContent.current.className = styles.ul
+      // line1.current.id = ''
+      // line2.current.id = ''
+    }
+    return
+  })
   return (
-    <>
     <nav className={classes.nav}>
       <Link to='/'><div className={classes.circle}></div></Link>
       <Link to='/'><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/></Link>
@@ -41,8 +54,13 @@ const Header = () => {
           <input className={classes.search} placeholder='Search'></input>
         </div>
       </div>
+      <div 
+        className={classes.burger} 
+        onClick={() => setIsBurgerOpen(bool => !bool)}>
+        <div className={classes.burgerLine}></div>
+        <div className={classes.burgerLine}></div>
+      </div>
     </nav>
-    </>
   )
 }
 

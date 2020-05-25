@@ -14,7 +14,7 @@ const useStyles = createUseStyles( theme => ({
     height: '100%',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginLeft: '210px',
+    marginLeft: '240px',
   },
   circle: {
     position: 'absolute',
@@ -22,13 +22,13 @@ const useStyles = createUseStyles( theme => ({
     height: '180px',
     borderRadius: '180px 180px 0 0',
     backgroundColor: theme.headerBG,
-    transform: 'translate(-125px, -80px)',
+    transform: 'translate(-100px, -80px)',
   },
   logo: {
     position: 'absolute',
     width: '150px',
     top: '26px',
-    left: '16px',
+    left: '30px',
   },
   linksContainer: {
     display: 'flex',
@@ -44,10 +44,10 @@ const useStyles = createUseStyles( theme => ({
     margin: '10px',
   },
   searchContainer: {
-    width: '120px',
+    width: '180px',
   },
   search: {
-    width: '120px',
+    width: '180px',
     height: '30px',
     padding: '15px',
     borderRadius: '22.5px',
@@ -102,7 +102,39 @@ const useStyles = createUseStyles( theme => ({
     width: '100%',
     height: '50vh',
     backgroundColor: '#FFFFFF',
-  }
+  },
+  burger: {
+    display: 'none',
+    position: 'relative',
+    cursor: 'pointer',
+    width: '17px',
+    height: '14px',
+    padding: '10px 15px',
+    zIndex: '500',
+    border: '1px solid red',
+    '& $burgerLine': {
+      position: 'absolute',
+      width: '22px',
+      height: '2.5px',
+      background: 'black',
+      borderRadius: '20%',
+      transition: 'all .2s ease-in-out',
+    },
+    '& $burgerLine:last-child': {
+      top: '20px',
+    },
+  },
+  '@media (max-width: 1000px)': {
+    circle: {
+      display: 'none',
+    },
+    linksContainer: {
+      display: 'none',
+    },
+    burger: {
+      display: 'block',
+    }
+  },
 }))
 
 export default useStyles
