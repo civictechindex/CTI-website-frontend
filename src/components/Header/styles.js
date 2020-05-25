@@ -98,26 +98,40 @@ const useStyles = createUseStyles( theme => ({
       backgroundColor: '#C6C6C6',
     },
   },
-  whiteSpace: {
-    width: '100%',
-    height: '50vh',
-    backgroundColor: '#FFFFFF',
-  },
+/**********     MOBILE SECTION     **********/
   mobileContainer: {
     display: 'none',
     position: 'relative',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    height: '100%'
+    height: '100%',
+    marginLeft: '220px',
+  },
+  mobileSearch: {
+    width: '8px',
+    height: '30px',
+    padding: '20px 12px',
+    borderRadius: '22.5px',
+    border: 'none',
+    background: `url(images/mobile-search.svg) no-repeat scroll 8px 5.5px`,
+    backgroundSize: '30px',
+    paddingLeft: '50px',
+    fontFamily: theme.primaryFontFamily,
+    fontSize: '16px',
+    outline: 'none',
+    boxSizing: 'border-box',
+    transition: 'width .8s',
+    '&:focus': {
+      width: '100%',
+    }
   },
   burger: {
     position: 'relative',
     cursor: 'pointer',
-    width: '17px',
-    height: '14px',
-    padding: '10px 15px',
+    minWidth: '30px',
+    height: '35px',
     zIndex: '500',
-    // border: '1px solid red',
+    marginRight: '30px',
     '& $burgerLine:nth-child(1)': {
       top: '5px',
     },
@@ -144,6 +158,7 @@ const useStyles = createUseStyles( theme => ({
   displayNone: {
     display: 'none',
   },
+/**********     MEDIA-QUERIES SECTION     **********/
   '@media (max-width: 1000px)': {
     circle: {
       display: 'none',
