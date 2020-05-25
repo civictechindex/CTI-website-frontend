@@ -21,7 +21,7 @@ const Header = () => {
           </div>
         </div>
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links}>Tag Generator</Link>
+          <Link to='/taggenerator' className={classes.links}>Tag Generator</Link>
         </div>
         <div className={classes.linksContainer}>
           <Link to='/' className={classes.links}>Communicate with Us</Link>

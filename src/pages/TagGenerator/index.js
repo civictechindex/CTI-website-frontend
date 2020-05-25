@@ -44,7 +44,6 @@ const TagGenerator = () => {
             />
             No
           </label>
-          <h2>{JSON.stringify(value)}</h2>
           {value.showComponent ? <GenerateTag /> : null}
         </div>
       </section>
