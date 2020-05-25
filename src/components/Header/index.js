@@ -29,7 +29,7 @@ const Header = () => {
           <div className={classes.subLinksContainer}>
             <Link to='/' className={classes.subLinks}>Overview</Link>
             <Link to='/' className={classes.subLinks}>Searching the Index</Link>
-            <Link to='/' className={classes.subLinks}>Adding Projects to the Index</Link>
+            <Link to='/adding-projects-to-the-index' className={classes.subLinks}>Adding Projects to the Index</Link>
             <Link to='/' className={classes.subLinks}>Index Contributors</Link>
           </div>
         </div>

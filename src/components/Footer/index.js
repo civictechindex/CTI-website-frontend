@@ -11,7 +11,7 @@ const Footer = () => {
           <Link to='/about'><p className={classes.infoHeader}>About</p></Link>
           <Link to='/' className={classes.infoLink}>Overview</Link>
           <Link to='/' className={classes.infoLink}>Searching the Index</Link>
-          <Link to='/' className={classes.infoLink}>Adding Projects to the Index</Link>
+          <Link to='/adding-projects-to-the-index' className={classes.infoLink}>Adding Projects to the Index</Link>
           <Link to='/' className={classes.infoLink}>Index Contributors</Link>
         </div>
         <div className={classes.infoContainer}>
