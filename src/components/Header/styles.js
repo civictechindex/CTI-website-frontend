@@ -103,37 +103,57 @@ const useStyles = createUseStyles( theme => ({
     height: '50vh',
     backgroundColor: '#FFFFFF',
   },
-  burger: {
+  mobileContainer: {
     display: 'none',
+    position: 'relative',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: '100%'
+  },
+  burger: {
     position: 'relative',
     cursor: 'pointer',
     width: '17px',
     height: '14px',
     padding: '10px 15px',
     zIndex: '500',
-    border: '1px solid red',
-    '& $burgerLine': {
-      position: 'absolute',
-      width: '22px',
-      height: '2.5px',
-      background: 'black',
-      borderRadius: '20%',
-      transition: 'all .2s ease-in-out',
+    // border: '1px solid red',
+    '& $burgerLine:nth-child(1)': {
+      top: '5px',
     },
-    '& $burgerLine:last-child': {
-      top: '20px',
+    '& $burgerLine:nth-child(2)': {
+      top: '15px',
     },
+    '& $burgerLine:nth-child(3)': {
+      top: '25px',
+    },
+  },
+  burgerLine: {
+    position: 'absolute',
+    width: '30px',
+    height: '4px',
+    background: 'black',
+    transition: 'all .2s ease-in-out',
+  },
+  transformLine1: {
+    transform: 'translateY(10px) rotate(135deg)',
+  },
+  transformLine3: {
+    transform: 'translateY(-10px) rotate(-135deg)',
+  },
+  displayNone: {
+    display: 'none',
   },
   '@media (max-width: 1000px)': {
     circle: {
       display: 'none',
     },
-    linksContainer: {
+    flexContainer: {
       display: 'none',
     },
-    burger: {
-      display: 'block',
-    }
+    mobileContainer: {
+      display: 'flex',
+    },
   },
 }))
 

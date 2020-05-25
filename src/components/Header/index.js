@@ -1,21 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import useStyles from './styles.js'
 
 const Header = () => {
   const classes = useStyles()
   const [isBurgerOpen, setIsBurgerOpen] = useState(null)
+  const burgerContent = useRef(null)
+  const line1 = useRef(null)
+  const line2 = useRef(null)
+  const line3 = useRef(null)
+
 
   useEffect(() => {
-    console.log()
+    console.log(classes.burgerLine.width)
     if(isBurgerOpen) {
-      // burgerContent.current.className = `${styles.ul} ${styles.slideIn}`
-      // line1.current.id = styles.line1
-      // line2.current.id = styles.line2
+      burgerContent.current.className = `${classes.burger} ${classes.transformBurger}`
+      line1.current.className = `${classes.burgerLine} ${classes.transformLine1}`
+      line2.current.className = classes.displayNone
+      line3.current.className = `${classes.burgerLine} ${classes.transformLine3}`
     } else {
-      // burgerContent.current.className = styles.ul
-      // line1.current.id = ''
-      // line2.current.id = ''
+      burgerContent.current.className = classes.burger
+      line1.current.className = classes.burgerLine
+      line2.current.className = classes.burgerLine
+      line3.current.className = classes.burgerLine
     }
     return
   })
@@ -54,11 +61,16 @@ const Header = () => {
           <input className={classes.search} placeholder='Search'></input>
         </div>
       </div>
-      <div 
-        className={classes.burger} 
-        onClick={() => setIsBurgerOpen(bool => !bool)}>
-        <div className={classes.burgerLine}></div>
-        <div className={classes.burgerLine}></div>
+      <div className={classes.mobileContainer}>
+        <input className={classes.mobileSearch} placeholder='Search'></input>
+        <div 
+          className={classes.burger} 
+          onClick={() => setIsBurgerOpen(bool => !bool)}
+          ref={burgerContent}>
+          <div className={classes.burgerLine} ref={line1}></div>
+          <div className={classes.burgerLine} ref={line2}></div>
+          <div className={classes.burgerLine} ref={line3}></div>
+        </div>
       </div>
     </nav>
   )
