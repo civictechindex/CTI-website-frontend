@@ -5,7 +5,7 @@ const Home = () => {
   const classes = useStyles()
 
   return (
-    <>
+    <div className={classes.page}>
     <section className={classes.mainSection}>
       <h1 className={classes.heading}>Join a worldwide movement to catalog every open source civic tech project.</h1>
       <div className={classes.listContainer}>
@@ -49,7 +49,7 @@ const Home = () => {
       <h2 className={classes.getStartedHeading}>Ready to get started?</h2>
       <button className={`${classes.getStartedBtn} ${classes.black}`}>Tag Your Project</button>
     </section>
-    </>
+    </div>
   )
 }
 

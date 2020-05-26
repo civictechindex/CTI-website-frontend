@@ -1,11 +1,17 @@
 import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
+  page: {
+    '& section': {
+      boxSizing: 'border-box',
+      paddingRight: '20px',
+      paddingLeft: '20px',
+    },
+  },
 /**********     MAIN SECTION     **********/
   mainSection: {
-    boxSizing: 'border-box',
     width: '100%',
-    padding: '75px 10px 50px 10px',
+    padding: '75px 0 50px 0',
     backgroundColor: theme.backgroundColor1,
   },
   heading: {
@@ -118,7 +124,6 @@ const useStyles = createUseStyles( theme => ({
 /**********     GET-STARTED SECTION     **********/
   getStartedSection: {
     padding: '60px 0',
-    margin: '0 10px',
     textAlign: 'center',
   },
   getStartedHeading: {
@@ -143,10 +148,30 @@ const useStyles = createUseStyles( theme => ({
     cursor: 'pointer',
   },
 /**********     MEDIA-QUERIES     **********/
+  '@media (max-width: 900px)': {
+    listContainer: {
+      display: 'none',
+    },
+    btnContainer: {
+      marginTop: '50px',
+    },
+  },
   '@media (max-width: 460px)': {
+    mainSection: {
+      paddingTop: '40px',
+    },
     heading: {
-      fontSize: '30px',
-      lineHeight: '32px',
+      fontSize: '21px',
+      lineHeight: '25px',
+      maxWidth: '240px',
+    },
+    btn: {
+      width: '180px',
+      height: '30px',
+      margin: '5px 20px'
+    },
+    btnContainer: {
+      marginTop: '25px',
     },
     getStartedHeading: {
       fontSize: '30px',
