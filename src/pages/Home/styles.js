@@ -81,6 +81,7 @@ const useStyles = createUseStyles( theme => ({
     width: '100%',
     minHeight: '380px',
     backgroundColor: theme.backgroundColor2,
+    padding: '0 !important',
   },
   ctiHeading: {
     fontFamily: theme.primaryFontFamily,
@@ -88,19 +89,16 @@ const useStyles = createUseStyles( theme => ({
     fontWeight: 'bold',
     color: theme.primaryTextColor,
     margin: '0',
-    padding: '0',
-    marginLeft: '52px',
+    paddingLeft: '20px',
   },
   ctiContainer: {
-    maxWidth: '900px',
+    maxWidth: '850px',
     margin: '0 auto',
-    padding: '42px 0'
+    padding: '42px 0',
   },
   ctiImgsContainer: {
     textAlign: 'center',
-    maxWidth: '900px',
-    margin: '0 auto',
-    padding: '0 20px'
+    width: '100%',
   },
   ctiImgs: {
     display: 'inline-block',
@@ -177,12 +175,14 @@ const useStyles = createUseStyles( theme => ({
       fontSize: '30px',
     },
     ctiHeading: {
-      fontSize: '20px',
+      fontSize: '21px',
+      lineHeight: '26px',
+      width: '180px',
     },
     ctiImgs: {
-      width: '34vw',
+      width: '35vw',
       height: '20vw',
-      margin: '2vw 4vw',
+      margin: '2vw 5vw',
     }
   },
 }))
