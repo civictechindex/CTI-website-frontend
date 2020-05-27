@@ -43,6 +43,9 @@ const useStyles = createUseStyles( theme => ({
     color: theme.primaryTextColor,
     margin: '10px',
   },
+  linksArrows: {
+    display: 'none',
+  },
   searchContainer: {
     width: '180px',
   },
@@ -164,7 +167,60 @@ const useStyles = createUseStyles( theme => ({
       display: 'none',
     },
     flexContainer: {
-      display: 'none',
+      position: 'absolute',
+      flexDirection: 'column',
+      top: '150px',
+      left: '-240px',
+      backgroundColor: theme.headerBG2,
+      // backgroundColor: 'lightblue',
+      width: '100%',
+      height: 'fit-content',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      alignItems: 'flex-start',
+      padding: '10px',
+      '& $searchContainer': {
+        display: 'none',
+      },
+    },
+    links: {
+      position: 'relative',
+      width: 'fit-content',
+    },
+    linksArrows: {
+      display: 'inline-block',
+      position: 'absolute',
+      top: '-1px',
+      right: '-40px',
+      transform: 'scaleY(-1)',
+      padding: '6px 12px'
+    },
+    linksContainer: {
+      flexDirection: 'column',
+    },
+    subLinksContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      position: 'static',
+      width: 'fit-content',
+      borderRadius: 'none',
+      boxShadow: 'none',
+      zIndex: '1000',
+      '& $subLinks:first-child':{
+        padding: '4px 10px 6px 20px',
+      },
+    },
+    subLinks: {
+      fontWeight: 'normal',
+      color: theme.primaryTextColor,
+      padding: '6px 10px 6px 20px',
+      backgroundColor: 'inherit',
+      border: 'none',
+      '&:hover': {
+        color: 'inherit',
+        backgroundColor: 'inherit',
+      },
     },
     mobileContainer: {
       display: 'flex',

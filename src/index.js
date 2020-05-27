@@ -48,6 +48,7 @@ const theme = {
   secondaryTextColor: 'white',
   footerBG: '#242424',
   headerBG: '#F4F4F4',
+  headerBG2: '#F8F8F8',
   button1BG: '#000000',
   button1TextColor: 'white',
   button2BG: '#FFFFFF',
