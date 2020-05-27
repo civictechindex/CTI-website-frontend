@@ -42,8 +42,30 @@ const Home = () => {
         </div>
       </div>
     </section>
-    <section className={classes.emptySection}>
-      <h1>Coming Soon!</h1>
+    <section className={classes.trendingTopicsSection}>
+      <div className={classes.trendingTopicsContainer}>
+        <h2 className={classes.trendingTopicsHeader}>How are people using the CTI?</h2>
+        <div className={classes.allTopicsContainer}>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Covid-19</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 1</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 2</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 3</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 4</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 5</p></a>
+          </div>
+        </div>
+      </div>
     </section>
     <section className={classes.getStartedSection}>
       <h2 className={classes.getStartedHeading}>Ready to get started?</h2>

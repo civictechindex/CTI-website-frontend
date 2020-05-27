@@ -2,6 +2,7 @@ import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
   page: {
+    fontFamily: theme.primaryFontFamily,
     '& section': {
       boxSizing: 'border-box',
       paddingRight: '20px',
@@ -15,7 +16,6 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: theme.backgroundColor1,
   },
   heading: {
-    fontFamily: theme.primaryFontFamily,
     fontSize: '36px',
     lineHeight: '38px',
     fontWeight: 'bold',
@@ -44,7 +44,6 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: '#000000',
   },
   listItemText: {
-    fontFamily: theme.primaryFontFamily,
     textTransform: 'uppercase',
     fontSize: '16px',
     lineHeight: '20px',
@@ -58,7 +57,6 @@ const useStyles = createUseStyles( theme => ({
   },
   btn: {
     display: 'inline-block',
-    fontFamily: theme.primaryFontFamily,
     fontWeight: 'bold',
     fontSize: '16px',
     color: theme.button2TextColor,
@@ -84,7 +82,6 @@ const useStyles = createUseStyles( theme => ({
     padding: '0 !important',
   },
   ctiHeading: {
-    fontFamily: theme.primaryFontFamily,
     fontSize: '24px',
     fontWeight: 'bold',
     color: theme.primaryTextColor,
@@ -107,17 +104,46 @@ const useStyles = createUseStyles( theme => ({
     objectFit: 'scale-down',
     margin: '20px 20px',
   },
-/**********     EMPTY SECTION     **********/
-  emptySection: {
-    width: '100%',
-    height: '200px',
+/**********     TRENDING-TOPICS SECTION     **********/
+  trendingTopicsSection: {
     backgroundColor: theme.backgroundColor3,
-    textAlign: 'center',
-    '& *': {
-      fontSize: '36px',
-      paddingTop: '40px',
-      margin: '0',
-    }
+  },
+  trendingTopicsContainer: {
+    maxWidth: '770px',
+    paddingTop: '42px',
+    margin: '0 auto',
+    border: '1px solid red'
+  },
+  trendingTopicsHeader: {
+    fontSize: '42px',
+    lineHeight: '45px',
+    margin: '0',
+  },
+  allTopicsContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  topicContainer: {
+    display: 'inline-block',
+    position: 'relative',
+    minWidth: '48%',
+    paddingTop: '18.5%',
+    marginTop: '2.5%',
+    backgroundColor: theme.backgroundColor6,
+  },
+  trendingTopicsDetails: {
+    textDecoration: 'underline',
+    cursor: 'pointer',
+    color: theme.primaryTextColor,
+    margin: '0',
+    position: 'absolute',
+    width: 'fit-content',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    fontSize: '24px',
+    fontWeight: 'bold',
   },
 /**********     GET-STARTED SECTION     **********/
   getStartedSection: {
@@ -125,7 +151,6 @@ const useStyles = createUseStyles( theme => ({
     textAlign: 'center',
   },
   getStartedHeading: {
-    fontFamily: theme.primaryFontFamily,
     fontWeight: '500',
     fontSize: '36px',
     margin: '0', 
@@ -133,7 +158,6 @@ const useStyles = createUseStyles( theme => ({
   },
   getStartedBtn: {
     display: 'inline-block',
-    fontFamily: theme.primaryFontFamily,
     fontWeight: 'bold',
     fontSize: '16px',
     color: theme.button1TextColor,
@@ -154,7 +178,15 @@ const useStyles = createUseStyles( theme => ({
       marginTop: '50px',
     },
   },
-  '@media (max-width: 460px)': {
+  '@media (max-width: 675px)': {
+    trendingTopicsHeader: {
+      fontSize: '21px',
+      lineHeight: '26px',
+      width: '260px'
+    },
+    trendingTopicsDetails: {
+      fontSize: '14px',
+    },
     mainSection: {
       paddingTop: '40px',
     },
@@ -162,17 +194,17 @@ const useStyles = createUseStyles( theme => ({
       fontSize: '21px',
       lineHeight: '25px',
       maxWidth: '240px',
+      margin: '0 auto'
     },
     btn: {
       width: '180px',
       height: '30px',
-      margin: '5px 20px'
+      margin: '5px 0',
     },
     btnContainer: {
+      margin: '0 auto',
+      width: '180px',
       marginTop: '25px',
-    },
-    getStartedHeading: {
-      fontSize: '30px',
     },
     ctiHeading: {
       fontSize: '21px',
@@ -183,7 +215,15 @@ const useStyles = createUseStyles( theme => ({
       width: '35vw',
       height: '20vw',
       margin: '2vw 5vw',
-    }
+    },
+    getStartedHeading: {
+      fontSize: '21px',
+      fontWeight: 'bold',
+    },
+    getStartedBtn: {
+      width: '180px',
+      height: '30px',
+    },
   },
 }))
 
