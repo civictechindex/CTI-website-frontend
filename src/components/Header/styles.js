@@ -4,9 +4,10 @@ const useStyles = createUseStyles( theme => ({
   nav: {
     position: 'relative',
     height: '100px',
-    backgroundColor: '#D8D8D8',
+    backgroundColor: theme.headerBG,
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
+    zIndex: '900',
   },
   flexContainer: {
     position: 'relative',
@@ -21,7 +22,7 @@ const useStyles = createUseStyles( theme => ({
     width: '336px',
     height: '180px',
     borderRadius: '180px 180px 0 0',
-    backgroundColor: theme.headerBG,
+    backgroundColor: theme.headerCircleBG,
     transform: 'translate(-100px, -80px)',
   },
   logo: {
@@ -161,24 +162,36 @@ const useStyles = createUseStyles( theme => ({
   displayNone: {
     display: 'none',
   },
+  background: {},
+  containsArrow: {},
+  showMobileNav: {},
 /**********     MEDIA-QUERIES SECTION     **********/
   '@media (max-width: 1000px)': {
+    background: {
+      position: 'absolute',
+      height: '100px',
+      width: '100%',
+      backgroundColor: theme.headerBG,
+    },
     circle: {
       display: 'none',
     },
     flexContainer: {
       position: 'absolute',
       flexDirection: 'column',
-      top: '150px',
+      justifyContent: 'flex-start',
+      bottom: '0px',
       left: '-240px',
+      transform: 'translateY(0)',
+      transition: 'transform 1s',
       backgroundColor: theme.headerBG2,
-      // backgroundColor: 'lightblue',
       width: '100%',
       height: 'fit-content',
       fontSize: '18px',
       fontWeight: 'bold',
       alignItems: 'flex-start',
-      padding: '10px',
+      padding: '30px 10px 40px 10px',
+      zIndex: '-10',
       '& $searchContainer': {
         display: 'none',
       },
@@ -187,16 +200,27 @@ const useStyles = createUseStyles( theme => ({
       position: 'relative',
       width: 'fit-content',
     },
+    containsArrow: {
+      paddingRight: '45px',
+      zIndex: '10',
+    },
     linksArrows: {
       display: 'inline-block',
       position: 'absolute',
       top: '-1px',
-      right: '-40px',
+      right: '10px',
       transform: 'scaleY(-1)',
-      padding: '6px 12px'
+      padding: '6px 0',
     },
     linksContainer: {
       flexDirection: 'column',
+      '& $links:focus > $linksArrows': {
+        transform: 'scaleY(1)',
+      },
+      '& $links:focus ~ $subLinksContainer': {
+        maxHeight: '1000px',
+        transition: 'max-height 1s ease-in-out',
+      }
     },
     subLinksContainer: {
       display: 'flex',
@@ -204,6 +228,9 @@ const useStyles = createUseStyles( theme => ({
       alignItems: 'flex-start',
       position: 'static',
       width: 'fit-content',
+      maxHeight: '0px',
+      transition: 'max-height 0s ease-in-out',
+      overflow: 'hidden',
       borderRadius: 'none',
       boxShadow: 'none',
       zIndex: '1000',
@@ -221,6 +248,10 @@ const useStyles = createUseStyles( theme => ({
         color: 'inherit',
         backgroundColor: 'inherit',
       },
+    },
+    showMobileNav:{
+      transform: 'translateY(100%)',
+      transition: 'transform 1s',
     },
     mobileContainer: {
       display: 'flex',
