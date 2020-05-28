@@ -177,9 +177,8 @@ const useStyles = createUseStyles( theme => ({
       display: 'none',
     },
     flexContainer: {
+      display: 'block',
       position: 'absolute',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
       bottom: '0px',
       left: '-240px',
       transform: 'translateY(0)',
@@ -189,7 +188,6 @@ const useStyles = createUseStyles( theme => ({
       height: 'fit-content',
       fontSize: '18px',
       fontWeight: 'bold',
-      alignItems: 'flex-start',
       padding: '30px 10px 40px 10px',
       zIndex: '-10',
       '& $searchContainer': {
@@ -198,26 +196,23 @@ const useStyles = createUseStyles( theme => ({
     },
     links: {
       position: 'relative',
+      display: 'inline-block',
       width: 'fit-content',
-    },
-    containsArrow: {
-      paddingRight: '45px',
-      zIndex: '10',
+      margin: '8px 0',
     },
     linksArrows: {
-      display: 'inline-block',
-      position: 'absolute',
-      top: '-1px',
-      right: '10px',
-      transform: 'scaleY(-1)',
-      padding: '6px 0',
+      display: 'inline',
+      width: 'fit-content',
+      transform: 'translateY(7px) scaleY(-1)',
+      padding: '8px 12px',
+      outline: 'none',
     },
     linksContainer: {
-      flexDirection: 'column',
-      '& $links:focus > $linksArrows': {
-        transform: 'scaleY(1)',
+      display: 'block',
+      '& $linksArrows:focus': {
+        transform: 'translateY(7px) scaleY(1)',
       },
-      '& $links:focus ~ $subLinksContainer': {
+      '& $linksArrows:focus ~ $subLinksContainer': {
         maxHeight: '1000px',
         transition: 'max-height 1s ease-in-out',
       }
