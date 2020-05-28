@@ -13,7 +13,6 @@ const Header = () => {
 
 
   useEffect(() => {
-    console.log(classes.burgerLine.width)
     if(isBurgerOpen) {
       nav.current.className = `${classes.flexContainer} ${classes.showMobileNav}`
       burgerContent.current.className = `${classes.burger} ${classes.transformBurger}`
@@ -36,31 +35,31 @@ const Header = () => {
       <Link to='/'><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/></Link>
       <div className={classes.flexContainer} ref={nav}>
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links}>Tag Generator</Link>
+          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Tag Generator</Link>
         </div>
         <div className={classes.linksContainer}>
-          <Link to='/about' className={classes.links}>About</Link>
+          <Link to='/about' className={classes.links} onClick={() => setIsBurgerOpen(false)}>About</Link>
           <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
           <div className={classes.subLinksContainer}>
-            <Link to='/' className={classes.subLinks}>Searching the Index</Link>
-            <Link to='/adding-projects-to-the-index' className={classes.subLinks}>Adding Projects to the Index</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Searching the Index</Link>
+            <Link to='/adding-projects-to-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Adding Projects to the Index</Link>
           </div>
         </div>
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links}>Contributors</Link>
+          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Contributors</Link>
           <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
           <div className={classes.subLinksContainer}>
-            <Link to='/' className={classes.subLinks}>Index Contributors</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Index Contributors</Link>
           </div>
         </div>
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links}>Radical Collaboration</Link>
+          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Radical Collaboration</Link>
           <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
           <div className={classes.subLinksContainer}>
-            <Link to='/' className={classes.subLinks}>Donate</Link>
-            <Link to='/' className={classes.subLinks}>Share the CTI</Link>
-            <Link to='/' className={classes.subLinks}>Volunteer with Us</Link>
-            <Link to='/' className={classes.subLinks}>FAQ</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Volunteer with Us</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
           </div>
         </div>
         <div className={classes.searchContainer}>

@@ -182,7 +182,6 @@ const useStyles = createUseStyles( theme => ({
       bottom: '0px',
       left: '-240px',
       transform: 'translateY(0)',
-      transition: 'transform 1s',
       backgroundColor: theme.headerBG2,
       width: '100%',
       height: 'fit-content',
