@@ -188,7 +188,7 @@ const useStyles = createUseStyles( theme => ({
       height: 'fit-content',
       fontSize: '18px',
       fontWeight: 'bold',
-      padding: '30px 10px 40px 10px',
+      padding: '30px 20px 40px 20px',
       zIndex: '-10',
       '& $searchContainer': {
         display: 'none',

@@ -112,7 +112,6 @@ const useStyles = createUseStyles( theme => ({
     maxWidth: '770px',
     paddingTop: '42px',
     margin: '0 auto',
-    border: '1px solid red'
   },
   trendingTopicsHeader: {
     fontSize: '42px',

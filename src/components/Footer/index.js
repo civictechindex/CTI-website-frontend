@@ -8,7 +8,7 @@ const Footer = () => {
     <div className={classes.footerContainer}>
       <div className={classes.allInfoContainer}>
         <div className={classes.infoContainer}>
-          <Link className={classes.infoHeader}>Tag Generator</Link>
+          <Link to='/' className={classes.infoHeader}>Tag Generator</Link>
         </div>
         <div className={classes.infoContainer}>
           <Link to='/about'><p className={classes.infoHeader}>About</p></Link>
@@ -18,11 +18,11 @@ const Footer = () => {
           <Link to='/' className={classes.infoLink}>Index Contributors</Link>
         </div>
         <div className={classes.infoContainer}>
-          <Link className={classes.infoHeader}>Communicate with Us</Link>
+          <Link to='/' className={classes.infoHeader}>Communicate with Us</Link>
           <Link to='/' className={classes.infoLink}>FAQ</Link>
         </div>
         <div className={classes.infoContainer}>
-          <Link className={classes.infoHeader}>Support Us</Link>
+          <Link to='/' className={classes.infoHeader}>Support Us</Link>
           <Link to='/' className={classes.infoLink}>Donate</Link>
           <Link to='/' className={classes.infoLink}>Share the CTI</Link>
           <Link to='/' className={classes.infoLink}>Volunteer with Us</Link>
