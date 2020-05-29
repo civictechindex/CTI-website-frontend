@@ -5,14 +5,17 @@ const useStyles = createUseStyles((theme) => ({
     backgroundColor: theme.backgroundColor2,
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
-    "& section": {
+    
       boxSizing: "border-box",
-    },
+    
+    width:'100%',
+    height:'auto',
+
   },
   /**********     HEADING SECTION      **********/
   headingSection: {
-    width: "100%",
-    height: "750px",
+    
+   
     marginTop: 0,
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
@@ -41,15 +44,84 @@ const useStyles = createUseStyles((theme) => ({
     lineHeight: "42px",
     marginTop: 0,
   },
+ projectSection:{
+  paddingLeft:'215px',
+  
+ },
   question: {
+    width:'770px',
+    height:'28px',
     display: "inline",
     fontWeight: 500,
     fontSize: "22px",
     lineHeight: "28px",
   },
-  label: {
-    marginLeft: "10px",
+  labelYes: {
+    marginLeft: "60px",
   },
+
+  labelNo: {
+    marginLeft: "60px",
+  },
+  textBox:{
+    width:'770px',
+    height:'52px',
+    fontSize: "16px",
+    lineHeight: "19px",
+    paddingLeft:'10px',
+  },
+
+  topicBox:{
+    width:'710px',
+    height:'52px',
+    marginTop:'16px',
+  },
+
+  addButton:{
+    height:'58px',
+    marginLeft:'15px',
+    marginTop:'15px',
+   
+  },
+
+  vector:{
+    height:'38px',
+    width:'38px',
+    
+  },
+
+  generateButton:{
+    height:'45px',
+    width:'270px',
+    backgroundColor:theme.button1BG,
+    borderRadius:'22.5px',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    lineHeight: '16px',
+    color: theme.button2BG,
+    marginTop:'41px',
+    marginLeft:'100px',
+  },
+
+flexContainer:{
+display:'flex',
+flexWrap:'wrap',
+flexDirection:'row',
+},
+
+flexTags:{
+flex:'1',
+height:'150px',
+width:'100%'
+},
+
+flexItem:{
+  display:'inline',
+  height:'396px',
+  width:'50%',
+  background: '#FFFFFF',
+}
+  
 }));
 
 export default useStyles;

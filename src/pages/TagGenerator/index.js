@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useStyles from "./styles.js";
-import GenerateTag from "./generateTag";
+import ProjectInfo from "./projectInfo";
 
 const TagGenerator = () => {
   const classes = useStyles();
@@ -18,11 +18,13 @@ const TagGenerator = () => {
           <p className={classes.url}>Home / Tag Generator</p>
           <h2 className={classes.subHeading}>Civic Tech Index</h2>
           <h1 className={classes.heading}>Tag Generator</h1>
-
+          </div>
+      </section>
+      <section className={classes.projectSection}>
           <p className={classes.question}>
             Is your project affliated with any organization?
           </p>
-          <label className={classes.label}>
+          <label className={classes.labelYes}>
             <input
               type="radio"
               value="Yes"
@@ -33,7 +35,7 @@ const TagGenerator = () => {
             />
             Yes
           </label>
-          <label className={classes.label}>
+          <label className={classes.labelNo}>
             <input
               type="radio"
               value="No"
@@ -44,9 +46,9 @@ const TagGenerator = () => {
             />
             No
           </label>
-          {value.showComponent ? <GenerateTag /> : null}
-        </div>
-      </section>
+          {value.showComponent ? <ProjectInfo /> : null}
+          
+          </section>
     </main>
   );
 };
