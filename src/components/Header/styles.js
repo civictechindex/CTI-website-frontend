@@ -44,6 +44,9 @@ const useStyles = createUseStyles( theme => ({
     color: theme.primaryTextColor,
     margin: '10px',
   },
+  linksWithArrows: {
+    cursor: 'default',
+  },
   linksArrows: {
     display: 'none',
   },
@@ -196,22 +199,29 @@ const useStyles = createUseStyles( theme => ({
     links: {
       position: 'relative',
       display: 'inline-block',
-      width: 'fit-content',
       margin: '8px 0',
+      outline: 'none',
+      '&:focus $linksArrows': {
+        transform: 'scaleY(1)',
+        top: '5px',
+      },
+    },
+    linksWithArrows: {
+      paddingRight: '35px',
     },
     linksArrows: {
       display: 'inline',
+      position: 'absolute',
+      top: '6px',
+      right: '0',
       width: 'fit-content',
-      transform: 'translateY(7px) scaleY(-1)',
-      padding: '8px 12px',
+      transform: 'scaleY(-1)',
       outline: 'none',
+      zIndex: '-1',
     },
     linksContainer: {
       display: 'block',
-      '& $linksArrows:focus': {
-        transform: 'translateY(7px) scaleY(1)',
-      },
-      '& $linksArrows:focus ~ $subLinksContainer': {
+      '& $links:focus ~ $subLinksContainer': {
         maxHeight: '1000px',
         transition: 'max-height 1s ease-in-out',
       }
@@ -228,9 +238,12 @@ const useStyles = createUseStyles( theme => ({
       borderRadius: 'none',
       boxShadow: 'none',
       zIndex: '1000',
-      '& $subLinks:first-child':{
+      '& $subLinks:first-child': {
         padding: '4px 10px 6px 20px',
       },
+      '&:hover': {
+        maxHeight: '1000px',
+      }
     },
     subLinks: {
       fontWeight: 'normal',
