@@ -47,7 +47,9 @@ const theme = {
   primaryTextColor: 'black',
   secondaryTextColor: 'white',
   footerBG: '#242424',
-  headerBG: '#F4F4F4',
+  headerBG: '#D8D8D8',
+  headerBG2: '#F8F8F8',
+  headerCircleBG: '#F4F4F4',
   button1BG: '#000000',
   button1TextColor: 'white',
   button2BG: '#FFFFFF',
@@ -57,6 +59,7 @@ const theme = {
   backgroundColor3: '#E1E1E1',
   backgroundColor4: '#242424',
   backgroundColor5: '#E9E9E9',
+  backgroundColor6: '#C4C4C4',
 }
 
 ReactDOM.render(
