@@ -4,9 +4,10 @@ const useStyles = createUseStyles( theme => ({
   nav: {
     position: 'relative',
     height: '100px',
-    backgroundColor: '#D8D8D8',
+    backgroundColor: theme.headerBG,
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
+    zIndex: '900',
   },
   flexContainer: {
     position: 'relative',
@@ -14,21 +15,21 @@ const useStyles = createUseStyles( theme => ({
     height: '100%',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginLeft: '210px',
+    marginLeft: '240px',
   },
   circle: {
     position: 'absolute',
     width: '336px',
     height: '180px',
     borderRadius: '180px 180px 0 0',
-    backgroundColor: theme.headerBG,
-    transform: 'translate(-125px, -80px)',
+    backgroundColor: theme.headerCircleBG,
+    transform: 'translate(-100px, -80px)',
   },
   logo: {
     position: 'absolute',
     width: '150px',
     top: '26px',
-    left: '16px',
+    left: '30px',
   },
   linksContainer: {
     display: 'flex',
@@ -43,11 +44,17 @@ const useStyles = createUseStyles( theme => ({
     color: theme.primaryTextColor,
     margin: '10px',
   },
+  linksWithArrows: {
+    cursor: 'default',
+  },
+  linksArrows: {
+    display: 'none',
+  },
   searchContainer: {
-    width: '120px',
+    width: '180px',
   },
   search: {
-    width: '120px',
+    width: '180px',
     height: '30px',
     padding: '15px',
     borderRadius: '22.5px',
@@ -98,11 +105,165 @@ const useStyles = createUseStyles( theme => ({
       backgroundColor: '#C6C6C6',
     },
   },
-  whiteSpace: {
-    width: '100%',
-    height: '50vh',
-    backgroundColor: '#FFFFFF',
-  }
+/**********     MOBILE SECTION     **********/
+  mobileContainer: {
+    display: 'none',
+    position: 'relative',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: '100%',
+    marginLeft: '220px',
+  },
+  mobileSearch: {
+    width: '8px',
+    height: '30px',
+    padding: '20px 12px',
+    borderRadius: '22.5px',
+    border: 'none',
+    background: `url(images/mobile-search.svg) no-repeat scroll 8px 5.5px`,
+    backgroundSize: '30px',
+    paddingLeft: '50px',
+    fontFamily: theme.primaryFontFamily,
+    fontSize: '16px',
+    outline: 'none',
+    boxSizing: 'border-box',
+    transition: 'width .8s',
+    '&:focus': {
+      width: '100%',
+    }
+  },
+  burger: {
+    position: 'relative',
+    cursor: 'pointer',
+    minWidth: '30px',
+    height: '35px',
+    zIndex: '500',
+    marginRight: '30px',
+    '& $burgerLine:nth-child(1)': {
+      top: '5px',
+    },
+    '& $burgerLine:nth-child(2)': {
+      top: '15px',
+    },
+    '& $burgerLine:nth-child(3)': {
+      top: '25px',
+    },
+  },
+  burgerLine: {
+    position: 'absolute',
+    width: '30px',
+    height: '4px',
+    background: 'black',
+    transition: 'all .2s ease-in-out',
+  },
+  transformLine1: {
+    transform: 'translateY(10px) rotate(135deg)',
+  },
+  transformLine3: {
+    transform: 'translateY(-10px) rotate(-135deg)',
+  },
+  displayNone: {
+    display: 'none',
+  },
+  background: {},
+  containsArrow: {},
+  showMobileNav: {},
+/**********     MEDIA-QUERIES SECTION     **********/
+  '@media (max-width: 1000px)': {
+    background: {
+      position: 'absolute',
+      height: '100px',
+      width: '100%',
+      backgroundColor: theme.headerBG,
+    },
+    circle: {
+      display: 'none',
+    },
+    flexContainer: {
+      display: 'block',
+      position: 'absolute',
+      bottom: '0px',
+      left: '-240px',
+      transform: 'translateY(0)',
+      backgroundColor: theme.headerBG2,
+      width: '100%',
+      height: 'fit-content',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      padding: '30px 20px 40px 20px',
+      zIndex: '-10',
+      '& $searchContainer': {
+        display: 'none',
+      },
+    },
+    links: {
+      position: 'relative',
+      display: 'inline-block',
+      margin: '8px 0',
+      outline: 'none',
+      '&:focus $linksArrows': {
+        transform: 'scaleY(1)',
+        top: '5px',
+      },
+    },
+    linksWithArrows: {
+      paddingRight: '35px',
+    },
+    linksArrows: {
+      display: 'inline',
+      position: 'absolute',
+      top: '6px',
+      right: '0',
+      width: 'fit-content',
+      transform: 'scaleY(-1)',
+      outline: 'none',
+      zIndex: '-1',
+    },
+    linksContainer: {
+      display: 'block',
+      '& $links:focus ~ $subLinksContainer': {
+        maxHeight: '1000px',
+        transition: 'max-height 1s ease-in-out',
+      }
+    },
+    subLinksContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      position: 'static',
+      width: 'fit-content',
+      maxHeight: '0px',
+      transition: 'max-height 0s ease-in-out',
+      overflow: 'hidden',
+      borderRadius: 'none',
+      boxShadow: 'none',
+      zIndex: '1000',
+      '& $subLinks:first-child': {
+        padding: '4px 10px 6px 20px',
+      },
+      '&:hover': {
+        maxHeight: '1000px',
+      }
+    },
+    subLinks: {
+      fontWeight: 'normal',
+      color: theme.primaryTextColor,
+      padding: '6px 10px 6px 20px',
+      backgroundColor: 'inherit',
+      border: 'none',
+      '&:hover': {
+        color: 'inherit',
+        backgroundColor: 'inherit',
+      },
+    },
+    showMobileNav:{
+      transform: 'translateY(100%)',
+      transition: 'transform 1s',
+    },
+    mobileContainer: {
+      display: 'flex',
+    },
+  },
 }))
 
 export default useStyles

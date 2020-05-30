@@ -5,7 +5,7 @@ const Home = () => {
   const classes = useStyles()
 
   return (
-    <>
+    <div className={classes.page}>
     <section className={classes.mainSection}>
       <h1 className={classes.heading}>Join a worldwide movement to catalog every open source civic tech project.</h1>
       <div className={classes.listContainer}>
@@ -42,14 +42,36 @@ const Home = () => {
         </div>
       </div>
     </section>
-    <section className={classes.emptySection}>
-      <h1>Coming Soon!</h1>
+    <section className={classes.trendingTopicsSection}>
+      <div className={classes.trendingTopicsContainer}>
+        <h2 className={classes.trendingTopicsHeader}>How are people using the CTI?</h2>
+        <div className={classes.allTopicsContainer}>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Covid-19</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 1</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 2</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 3</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 4</p></a>
+          </div>
+          <div className={classes.topicContainer}>
+            <a href='#'><p className={classes.trendingTopicsDetails}>Trending Topic 5</p></a>
+          </div>
+        </div>
+      </div>
     </section>
     <section className={classes.getStartedSection}>
       <h2 className={classes.getStartedHeading}>Ready to get started?</h2>
       <button className={`${classes.getStartedBtn} ${classes.black}`}>Tag Your Project</button>
     </section>
-    </>
+    </div>
   )
 }
 
