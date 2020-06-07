@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useStyles from "./styles.js";
+import ProjectOrg from "./projectOrg";
 import ProjectInfo from "./projectInfo";
 
 const TagGenerator = () => {
@@ -9,6 +10,7 @@ const TagGenerator = () => {
     option1: "",
     option2: "",
     showComponent: false,
+    showOrgComponent:false
   });
 
   return (
@@ -16,7 +18,7 @@ const TagGenerator = () => {
       <section className={classes.headingSection}>
         <div className={classes.headingContainer}>
           <p className={classes.url}>Home / Tag Generator</p>
-          <h2 className={classes.subHeading}>Civic Tech Index</h2>
+          <p className={classes.subHeading}>Civic Tech Index</p>
           <h1 className={classes.heading}>Tag Generator</h1>
         </div>
       </section>
@@ -30,22 +32,24 @@ const TagGenerator = () => {
             value="Yes"
             checked={value.option1 === "Yes"}
             onChange={() =>
-              setValue({ option1: "Yes", option2: "", showComponent: false })
+              setValue({ option1: "Yes", option2: "", showComponent: false,showOrgComponent:true })
             }
           />
           Yes
         </label>
+        
         <label className={classes.labelNo}>
           <input
             type="radio"
             value="No"
             checked={value.option2 === "No"}
             onChange={() =>
-              setValue({ option1: "", option2: "No", showComponent: true })
+              setValue({ option1: "", option2: "No", showComponent: true, showOrgComponent:false })
             }
           />
           No
         </label>
+        {value.showOrgComponent ? <ProjectOrg/> : null}
         {value.showComponent ? <ProjectInfo /> : null}
       </section>
     </main>

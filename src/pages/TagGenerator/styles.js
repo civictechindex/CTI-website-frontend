@@ -5,7 +5,6 @@ const useStyles = createUseStyles((theme) => ({
     backgroundColor: theme.backgroundColor2,
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
-
     boxSizing: "border-box",
 
     width: "100%",
@@ -16,6 +15,8 @@ const useStyles = createUseStyles((theme) => ({
     marginTop: 0,
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
+    display:'flex',
+    flexDirection:'column',
   },
   headingContainer: {
     width: "fit-content",
@@ -43,6 +44,7 @@ const useStyles = createUseStyles((theme) => ({
   },
   projectSection: {
     paddingLeft: "215px",
+ 
   },
   question: {
     width: "770px",
@@ -65,7 +67,51 @@ const useStyles = createUseStyles((theme) => ({
     fontSize: "16px",
     lineHeight: "19px",
     paddingLeft: "10px",
+    border:'none',
   },
+
+  orgTextBox: {
+    width: "770px",
+    height: "52px",
+    fontSize: "16px",
+    lineHeight: "19px",
+    paddingLeft: "10px",
+    outline:'none',
+    borderTop:'none',
+    borderRight:'none',
+    borderLeft:'none',
+    borderBottom:'1px solid #979797',
+  },
+
+  autoCompleteText:{
+    marginBottom:'15px',
+  },
+
+  autoCompleteUl:{
+    listStyle: 'none',
+    textAlign:'left',
+    padding:'0px',
+    margin:'0px',
+},
+
+autoCompleteLi:{
+  width: "770px",
+  height: "22px",
+  fontSize: "16px",
+  lineHeight: "19px",
+  paddingLeft: "10px",
+  paddingTop: "15px",
+  paddingBottom: "15px",
+  borderBottom:'1px solid #979797',
+  borderTop:'none',
+  backgroundColor: theme.backgroundColor1,
+  outline:'none',
+  '&:hover':{
+    textDecoration:'underline blue',
+    outline:'2px solid blue',
+    border:'none',
+  }
+},
 
   topicBox: {
     width: "710px",
@@ -77,11 +123,16 @@ const useStyles = createUseStyles((theme) => ({
     height: "58px",
     marginLeft: "15px",
     marginTop: "15px",
+    border:'none',
   },
 
   vector: {
     height: "38px",
     width: "38px",
+  },
+
+  buttonDiv:{
+    marginBottom:'50px',
   },
 
   generateButton: {
@@ -97,24 +148,64 @@ const useStyles = createUseStyles((theme) => ({
     marginLeft: "100px",
   },
 
+  tagDiv:{
+
+  },
+
+  tagUl:{
+    listStyle: 'none',
+    display:'flex',
+    flexDirection:'row',
+    padding:'0px',
+    margin:'0px',
+},
+
+tagLi:{
+  width: '166px',
+  height: '44px',
+  background: '#FFFFFF',
+  margin:'10px',
+  textAlign:'center',
+  paddingTop:'20px',
+},
+
+copyImg: {
+  height: "51px",
+  width: "44px",
+  margin:'10px',
+},
+
   flexContainer: {
     display: "flex",
     flexWrap: "wrap",
     flexDirection: "row",
-  },
-
-  flexTags: {
-    flex: "1",
-    height: "150px",
-    width: "100%",
+    
   },
 
   flexItem: {
     display: "inline",
     height: "396px",
-    width: "50%",
+    width: "370px",
     background: "#FFFFFF",
+    margin:'10px',
+    textAlign:'center',
   },
+
+  pHeading:{
+    fontWeight: '500',
+    fontSize: '22px',
+    lineHeight: '28px',
+    textAlign:'center',
+    marginTop:'32px',
+  },
+
+pTag:{
+  fontSize: '18px',
+  lineHeight: '21px',
+  textAlign:'center',
+  marginTop:'18px',
+}
+
 }));
 
 export default useStyles;
