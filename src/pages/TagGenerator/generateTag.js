@@ -2,7 +2,7 @@ import React from "react";
 import useStyles from "./styles.js";
 import clipboard from './CopyToClipboard.png'
 
-const GenerateTag = ({projectData }) => {
+const GenerateTag = ({projectData}) => {
   const classes = useStyles();
   const tags = projectData.tags;
   const displayTag =() => {
@@ -10,9 +10,9 @@ const GenerateTag = ({projectData }) => {
       <div className={classes.tagDiv}>
 
         <ul className={classes.tagUl}>
-          {tags.map(tag=> (
+          {tags.map((tag,idx)=> (
             <>
-            <li className={classes.tagLi} key={tag.id}>{tag}
+            <li className={classes.tagLi} key={idx}>{tag}
             </li>
             <img className={classes.copyImg} src={clipboard} alt="clipboard" />
             </>
@@ -25,12 +25,17 @@ const GenerateTag = ({projectData }) => {
     <div>
       <div className={classes.tagDiv}>
         <p>Add these topics to your repository</p>
-        <ul className={classes.tagUl}><li className={classes.tagLi}>civictechindex</li>
-        <img className={classes.copyImg} src={clipboard} alt="clipboard" />
-        
-        </ul>
         {displayTag()}
       </div>
+      <div className={classes.buttonDiv}>
+      <button
+        className={classes.generateButton}
+        
+      >
+        Add Additional Tags
+      </button>
+      <button className={classes.generateButton} >Reset</button>
+      </div> 
       <div className={classes.flexContainer}>
         <div className={classes.flexItem}>
           <p className={classes.pHeading}>Checkout our automated process</p>

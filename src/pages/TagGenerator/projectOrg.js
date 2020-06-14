@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import useStyles from "./styles.js";
 import ProjectInfo from "./projectInfo";
+import FindProject from "./findProject";
 
 
 const ProjectOrg = () => {
@@ -53,7 +54,7 @@ return(
   <p>Which Organization?</p>
   <input className={classes.orgTextBox} type="text" name="org" value = {orgName} onChange = {(e) => onTextChanged(e)} />
   {renderSuggestions()}
-  {showProjInfo ? <ProjectInfo /> : null}
+  {showProjInfo ? <FindProject /> : null}
   </div>
 );
 

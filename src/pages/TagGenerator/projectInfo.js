@@ -22,6 +22,7 @@ const ProjectInfo = () => {
     tags:[""],
   });
 
+  
   const [showGenerateTag, setShowGenerateTag] = useState(false);
 
   const clearState = () =>{
@@ -30,11 +31,11 @@ const ProjectInfo = () => {
     setShowGenerateTag(false)
   }
 
-  const updateOrg = (e) => {
-    const dataCopy = { ...projectData };
-    dataCopy.org = e.target.value;
-    setProject(dataCopy);
-  };
+  // const updateOrg = (e) => {
+  //   const dataCopy = { ...projectData };
+  //   dataCopy.org = e.target.value;
+  //   setProject(dataCopy);
+  // };
 
   const updateProjectName = (e) => {
     const dataCopy = { ...projectData };
@@ -86,6 +87,7 @@ const ProjectInfo = () => {
     console.log(projectData);
   }, [projectData]);
 
+  
   const addTag = () => {
     setProject(prevState => {
       return {

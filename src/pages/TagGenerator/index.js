@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import useStyles from "./styles.js";
 import ProjectOrg from "./projectOrg";
-import ProjectInfo from "./projectInfo";
+// import ProjectInfo from "./projectInfo";
+import FindProject from "./findProject";
 
 const TagGenerator = () => {
   const classes = useStyles();
@@ -50,7 +51,8 @@ const TagGenerator = () => {
           No
         </label>
         {value.showOrgComponent ? <ProjectOrg/> : null}
-        {value.showComponent ? <ProjectInfo /> : null}
+        {/* {value.showComponent ? <ProjectInfo /> : null} */}
+        {value.showComponent ? <FindProject /> : null}
       </section>
     </main>
   );

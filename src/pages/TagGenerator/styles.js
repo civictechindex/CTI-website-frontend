@@ -135,7 +135,12 @@ autoCompleteLi:{
     marginBottom:'50px',
   },
 
+hideButton:{
+  visibility:"hidden",
+},
+
   generateButton: {
+    
     height: "45px",
     width: "270px",
     backgroundColor: theme.button1BG,
@@ -149,13 +154,14 @@ autoCompleteLi:{
   },
 
   tagDiv:{
-
+width:"80%",
   },
 
   tagUl:{
     listStyle: 'none',
     display:'flex',
     flexDirection:'row',
+    flexWrap:"wrap",
     padding:'0px',
     margin:'0px',
 },
