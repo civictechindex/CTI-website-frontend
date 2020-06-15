@@ -44,7 +44,7 @@ const Header = () => {
           </p>
           <div className={classes.subLinksContainer}>
             <Link to='/about' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Overview</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Searching the Index</Link>
+            <Link to='/searching-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Searching the Index</Link>
             <Link to='/adding-projects-to-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Adding Projects to the Index</Link>
           </div>
         </div>
