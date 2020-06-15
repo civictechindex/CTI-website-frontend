@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import HowToUse from './pages/HowToUse'
+import Search from './pages/Search'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route exact path='/' component={Home}/>
         <Route exact path='/about' component={About}/>
         <Route exact path='/adding-projects-to-the-index' component={HowToUse}/>
+        <Route exact path='/searching-the-index' component={Search}/>
       </Switch>
       <Footer/>
     </>
