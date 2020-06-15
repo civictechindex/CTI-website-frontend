@@ -40,7 +40,7 @@ const Header = () => {
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             About
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
+            <img className={classes.linksArrows} src='/images/arrow.png' alt='arrow for about link' tabIndex='0'/>
           </p>
           <div className={classes.subLinksContainer}>
             <Link to='/about' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Overview</Link>
@@ -54,7 +54,7 @@ const Header = () => {
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             Radical Collaboration
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
+            <img className={classes.linksArrows} src='/images/arrow.png' alt='arrow for about link' tabIndex='0'/>
           </p>
           <div className={classes.subLinksContainer}>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>

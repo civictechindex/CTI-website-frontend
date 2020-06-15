@@ -14,8 +14,8 @@ const Search = () => {
 
   return (
     <div className={classes.page}>
-      <p className={classes.link}>About / Adding Projects to the Index</p>
-      <h1 className={classes.heading}>Adding Projects to the Index</h1>
+      <p className={classes.link}>About / Search</p>
+      <h1 className={classes.heading}>Search Projects</h1>
       <input className={classes.search} placeholder='Search the Civic Tech Index'></input>
       <p className={classes.results}>Showing X of X Results matching:</p>
       <p className={classes.resultsFor}>"Hack for LA"</p>
