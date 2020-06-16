@@ -53,7 +53,7 @@ const useStyles = createUseStyles( theme => ({
   },
 /**********     SELECT-OPTIONS SECTION     **********/
   selectContainer: {
-    width: '100%',
+    maxWidth: '100%',
     height: 'fit-content',
     margin: '10px 0 68px 0',
     '& $select:first-of-type': {
@@ -67,6 +67,7 @@ const useStyles = createUseStyles( theme => ({
   },
   select: {
     position: 'relative',
+    maxWidth: '200px',
     height: '39px',
     borderRadius: '8px',
     fontSize: '14px',
@@ -145,7 +146,9 @@ const useStyles = createUseStyles( theme => ({
   projectContainer: {
     position: 'relative',
     width: '100%',
-    paddingTop: '50%',
+    maxWidth: '670px',
+    height: '36vw',
+    maxHeight: '224px',
     backgroundColor: theme.backgroundColor1,
     marginBottom: '20px',
     
@@ -159,15 +162,29 @@ const useStyles = createUseStyles( theme => ({
 /**********     INDEX SECTION     **********/
   indexContainer: {
     display: 'flex',
-    width: '100%',
+    margin: '0 auto',
+    maxWidth: '466px',
     justifyContent: 'space-between',
     alignItems: 'center',
     fontSize: '24px',
     fontWeight: '500',
-    border: '1px solid red',
+    '& *': {
+      margin: '0',
+    },
+    '& p': {
+      padding: '7px 16px',
+      cursor: 'pointer',
+      border: '1px solid transparent',
+      '&:hover': {
+        border: `1px solid ${theme.backgroundColor6}`,
+      }
+    },
+    '& p:nth-of-type(4), p:nth-of-type(5)': {
+      display: 'none',
+    },
     '& img': {
-      width: '23px',
-      height: '13px',
+      width: '18px',
+      height: '12px',
     },
     '& img:first-of-type': {
       transform: 'rotate(270deg)',
@@ -175,6 +192,17 @@ const useStyles = createUseStyles( theme => ({
     '& img:last-of-type': {
       transform: 'rotate(90deg)',
     },
+  },
+  highlightNum: {
+    backgroundColor: theme.backgroundColor6
+  },
+/**********     MEDIA-QUERIES SECTION     **********/
+  '@media (min-width: 466px)': {
+    indexContainer: {
+      '& p:nth-of-type(4), p:nth-of-type(5)': {
+        display: 'block',
+      },
+    }
   },
 }))
 
