@@ -8,6 +8,9 @@ const useStyles = createUseStyles( theme => ({
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
     zIndex: '900',
+    '& *': {
+      boxSizing: 'border-box'
+    }
   },
   flexContainer: {
     position: 'relative',
