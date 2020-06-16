@@ -10,6 +10,10 @@ const useStyles = createUseStyles( theme => ({
       boxSizing: 'border-box',
     },
   },
+  content: {
+    width: '100%',
+    margin: '0 auto',
+  },
   link: {
     fontSize: '14px',
     margin: '0',
@@ -35,23 +39,35 @@ const useStyles = createUseStyles( theme => ({
     transition: 'width .8s',
   },
   results: {
-    margin: '0',
+    display: 'inline',
+    margin: '0 6px 0 0',
     fontSize: '16px',
     fontWeight: '500',
   },
   resultsFor: {
+    display: 'inline-block',
     margin: '2px 0',
     fontSize: '16px',
     fontWeight: 'bold',
     color: '#0B1BA6',
   },
 /**********     SELECT-OPTIONS SECTION     **********/
+  selectContainer: {
+    width: '100%',
+    height: 'fit-content',
+    margin: '10px 0 68px 0',
+    '& $select:first-of-type': {
+      float: 'left',
+      width: '48%',
+    },
+    '& $select:last-of-type': {
+      float: 'right',
+      width: '48%',
+    }
+  },
   select: {
-    display: 'inline-block',
-    margin: '10px 20px 20px 0',
     position: 'relative',
-    height: '38px',
-    width: '170px',
+    height: '39px',
     borderRadius: '8px',
     fontSize: '14px',
     color: theme.searchSelect,
@@ -64,7 +80,7 @@ const useStyles = createUseStyles( theme => ({
       display: 'block',
     }
   },
-  sortByCenter: {
+  centerText: {
     margin: '0',
     paddingLeft: '10px',
     position: 'absolute',
@@ -72,7 +88,7 @@ const useStyles = createUseStyles( theme => ({
     transform: 'translateY(-50%)',
     fontWeight: '500',
   },
-  sortByCorner: {
+  cornerText: {
     margin: '0',
     paddingLeft: '10px',
     position: 'absolute',
@@ -128,8 +144,8 @@ const useStyles = createUseStyles( theme => ({
 /**********     PROJECT-RESULTS SECTION     **********/
   projectContainer: {
     position: 'relative',
-    width: '328px',
-    height: '168px',
+    width: '100%',
+    paddingTop: '50%',
     backgroundColor: theme.backgroundColor1,
     marginBottom: '20px',
     
