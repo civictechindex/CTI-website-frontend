@@ -156,6 +156,26 @@ const useStyles = createUseStyles( theme => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
   },
+/**********     INDEX SECTION     **********/
+  indexContainer: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontSize: '24px',
+    fontWeight: '500',
+    border: '1px solid red',
+    '& img': {
+      width: '23px',
+      height: '13px',
+    },
+    '& img:first-of-type': {
+      transform: 'rotate(270deg)',
+    },
+    '& img:last-of-type': {
+      transform: 'rotate(90deg)',
+    },
+  },
 }))
 
 export default useStyles
