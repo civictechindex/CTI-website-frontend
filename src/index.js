@@ -52,6 +52,7 @@ const theme = {
   headerCircleBG: '#F4F4F4',
   button1BG: '#000000',
   button1TextColor: 'white',
+  buttonBorder1: '1px solid #C3C3C3',
   button2BG: '#FFFFFF',
   button2TextColor: '#979797',
   backgroundColor1: '#FFFFFF',
