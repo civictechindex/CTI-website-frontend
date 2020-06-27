@@ -11,9 +11,9 @@ const useStyles = createUseStyles( theme => ({
       boxSizing: 'border-box',
     },
   },
-  // display: {
-  //   display: 'block',
-  // },
+  display: {
+    display: 'block',
+  },
   content: {
     width: '100%',
     margin: '0 auto',

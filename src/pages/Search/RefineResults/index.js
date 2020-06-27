@@ -9,15 +9,23 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
   const openIssuesOption = useRef(null)
   const lastUpdatedOption = useRef(null)
   const createdInOption = useRef(null)
+  const progLangOptionArrow = useRef(null)
+  const projLangOptionArrow = useRef(null)
+  const affiliationOptionArrow = useRef(null)
+  const openIssuesOptionArrow = useRef(null)
+  const lastUpdatedOptionArrow = useRef(null)
+  const createdInOptionArrow = useRef(null)
 
 
   const classes = useStyles()
 
-  const toggleResultsSection = (ref) => {
-    if(ref.current.className === classes.refineResultsOptionsContainer) {
-      ref.current.className = `${classes.refineResultsOptionsContainer} ${classes.displayOption}`
+  const toggleResultsSection = (optionRef, arrowRef) => {
+    if(optionRef.current.className === classes.refineResultsOptionsContainer) {
+      optionRef.current.className = `${classes.refineResultsOptionsContainer} ${classes.closeOptionsDisplay}`
+      arrowRef.current.className = `${classes.refineResultsArrow} ${classes.flipArrow}`
     } else {
-      ref.current.className = classes.refineResultsOptionsContainer
+      optionRef.current.className = classes.refineResultsOptionsContainer
+      arrowRef.current.className = classes.refineResultsArrow
     }
   }
 
@@ -35,9 +43,9 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
         <button className={classes.refineResultsButton} onClick={() => setIsDisplay(false)}>CLOSE</button>
         <h1 className={classes.refineResultsHeading}>Refine Results</h1>
         <div className={classes.refineResultsSection}>
-          <div onClick={() => toggleResultsSection(progLangOption)} className={classes.refineResultsSubHeadingContainer}>
+          <div onClick={() => toggleResultsSection(progLangOption, progLangOptionArrow)} className={classes.refineResultsSubHeadingContainer}>
             <h3 className={classes.refineResultsSubHeading}>Programming Language(s) Used:</h3>
-            <img className={classes.refineResultsArrow} src='/images/arrow.png' alt='drop down arrow' />
+            <img className={classes.refineResultsArrow} ref={progLangOptionArrow} src='/images/arrow.png' alt='drop down arrow' />
           </div>
           <div className={classes.refineResultsOptionsContainer} ref={progLangOption}>
             <input className={classes.refineResultsSearch} placeholder='Search'/>
@@ -57,9 +65,9 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
           </div>
         </div>
         <div className={classes.refineResultsSection}>
-          <div onClick={() => toggleResultsSection(projLangOption)} className={classes.refineResultsSubHeadingContainer}>
+          <div onClick={() => toggleResultsSection(projLangOption, projLangOptionArrow)} className={classes.refineResultsSubHeadingContainer}>
             <h3 className={classes.refineResultsSubHeading}>Project Language:</h3>
-            <img className={classes.refineResultsArrow} src='/images/arrow.png' alt='drop down arrow' />
+            <img className={classes.refineResultsArrow} ref={projLangOptionArrow} src='/images/arrow.png' alt='drop down arrow' />
           </div>
           <div className={classes.refineResultsOptionsContainer} ref={projLangOption}>
             <div className={classes.refineResultsOptionContainer}>
@@ -94,9 +102,9 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
           </div>
         </div>
         <div className={classes.refineResultsSection}>
-          <div onClick={() => toggleResultsSection(affiliationOption)} className={classes.refineResultsSubHeadingContainer}>
+          <div onClick={() => toggleResultsSection(affiliationOption, affiliationOptionArrow)} className={classes.refineResultsSubHeadingContainer}>
             <h3 className={classes.refineResultsSubHeading}>Affiliation:</h3>
-            <img className={classes.refineResultsArrow} src='/images/arrow.png' alt='drop down arrow' />
+            <img className={classes.refineResultsArrow} ref={affiliationOptionArrow} src='/images/arrow.png' alt='drop down arrow' />
           </div>
           <div className={classes.refineResultsOptionsContainer} ref={affiliationOption}>
             <input className={classes.refineResultsSearch} placeholder='Search'/>
@@ -140,9 +148,9 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
           </div>
         </div>
         <div className={classes.refineResultsSection}>
-          <div onClick={() => toggleResultsSection(openIssuesOption)} className={classes.refineResultsSubHeadingContainer}>
+          <div onClick={() => toggleResultsSection(openIssuesOption, openIssuesOptionArrow)} className={classes.refineResultsSubHeadingContainer}>
             <h3 className={classes.refineResultsSubHeading}>Open Issues Count:</h3>
-            <img className={classes.refineResultsArrow} src='/images/arrow.png' alt='drop down arrow' />
+            <img className={classes.refineResultsArrow} ref={openIssuesOptionArrow} src='/images/arrow.png' alt='drop down arrow' />
           </div>
           <div className={classes.refineResultsOptionsContainer} ref={openIssuesOption}>
             <div className={classes.refineResultsOptionContainer}>
@@ -164,9 +172,9 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
           </div>
         </div>
         <div className={classes.refineResultsSection}>
-          <div onClick={() => toggleResultsSection(lastUpdatedOption)} className={classes.refineResultsSubHeadingContainer}>
+          <div onClick={() => toggleResultsSection(lastUpdatedOption, lastUpdatedOptionArrow)} className={classes.refineResultsSubHeadingContainer}>
             <h3 className={classes.refineResultsSubHeading}>Last Updated:</h3>
-            <img className={classes.refineResultsArrow} src='/images/arrow.png' alt='drop down arrow' />
+            <img className={classes.refineResultsArrow} ref={lastUpdatedOptionArrow} src='/images/arrow.png' alt='drop down arrow' />
           </div>
           <div className={classes.refineResultsOptionsContainer} ref={lastUpdatedOption}>
             <div className={classes.refineResultsOptionContainer}>
@@ -196,9 +204,9 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
           </div>
         </div>
         <div className={classes.refineResultsSection}>
-          <div onClick={() => toggleResultsSection(createdInOption)} className={classes.refineResultsSubHeadingContainer}>
+          <div onClick={() => toggleResultsSection(createdInOption, createdInOptionArrow)} className={classes.refineResultsSubHeadingContainer}>
             <h3 className={classes.refineResultsSubHeading}>Created In:</h3>
-            <img className={classes.refineResultsArrow} src='/images/arrow.png' alt='drop down arrow' />
+            <img className={classes.refineResultsArrow} ref={createdInOptionArrow} src='/images/arrow.png' alt='drop down arrow' />
           </div>
           <div className={classes.refineResultsOptionsContainer} ref={createdInOption}>
             <div className={classes.refineResultsOptionContainer}>
@@ -227,6 +235,7 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
             </div>
           </div>
         </div>
+        <button className={classes.refineResultsResetButton}>Reset Filters</button>
       </div>
     </div>
   )

@@ -4,8 +4,7 @@ const useStyles = createUseStyles( theme => ({
   /**********     REFINE-RESULTS SECTION     **********/
   refineResultsContainer: {
     position: 'relative',
-    // display: 'none',
-    display: 'block',
+    display: 'none',
     margin: '0',
     width: '100%',
     height: '100%',
@@ -42,13 +41,13 @@ const useStyles = createUseStyles( theme => ({
     fontSize: '28px',
   },
   refineResultsSubHeadingContainer: {
+    paddingRight: '20px',
     position: 'relative',
     width: '100%',
     cursor: 'pointer',
-    border: '1px solid red',
   },
   refineResultsSubHeading: {
-    margin: '0',
+    margin: '0 0 10px 0',
     fontSize: '20px',
   },
   refineResultsArrow: {
@@ -58,7 +57,7 @@ const useStyles = createUseStyles( theme => ({
   },
   refineResultsSearch: {
     display: 'block',
-    margin: '10px 0',
+    marginBottom: '10px',
     border: theme.buttonBorder1,
     borderRadius: '22.5px',
     width: '100%',
@@ -68,6 +67,12 @@ const useStyles = createUseStyles( theme => ({
     paddingLeft: '42px',
     fontSize: '16px',
     outline: 'none',
+  },
+  refineResultsOptionsContainer: {
+    overflow: 'hidden',
+    maxHeight: '1000px',
+    transition: 'max-height 0.5s ease-in',
+    marginBottom: '30px',
   },
   refineResultsOption: {
     border: '1px solid black',
@@ -82,11 +87,30 @@ const useStyles = createUseStyles( theme => ({
     textDecoration: 'underline',
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: '5px 0 30px 0'
+    margin: '5px 0 0 0',
+  },
+  refineResultsResetButton: {
+    display: 'block',
+    width: '271px',
+    height: '52px',
+    margin: '0 auto 10px auto',
+    borderRadius: '8px',
+    fontWeight: '500',
+    fontSize: '16px',
+    fontFamily: theme.primaryFontFamily,
+    backgroundColor: theme.button1BG,
+    color: theme.button1TextColor,
   },
   display: {
     display: 'block',
-  }
+  },
+  closeOptionsDisplay: {
+    maxHeight: '0px',
+    transition: 'max-height 0.2s ease-out',
+  },
+  flipArrow: {
+    transform: 'scaleY(-1)',
+  },
 }))
 
 export default useStyles
