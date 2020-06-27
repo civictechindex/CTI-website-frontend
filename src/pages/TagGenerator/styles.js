@@ -210,6 +210,11 @@ pTag:{
   lineHeight: '21px',
   textAlign:'center',
   marginTop:'18px',
+},
+
+ldiv:{
+width:'600px',
+height:'400px',
 }
 
 }));

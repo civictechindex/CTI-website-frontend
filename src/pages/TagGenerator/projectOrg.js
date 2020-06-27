@@ -4,7 +4,7 @@ import ProjectInfo from "./projectInfo";
 import FindProject from "./findProject";
 
 
-const ProjectOrg = () => {
+const ProjectOrg = ({value}) => {
 const classes = useStyles();
 
 
@@ -54,7 +54,8 @@ return(
   <p>Which Organization?</p>
   <input className={classes.orgTextBox} type="text" name="org" value = {orgName} onChange = {(e) => onTextChanged(e)} />
   {renderSuggestions()}
-  {showProjInfo ? <FindProject /> : null}
+  {/* {showProjInfo ? <FindProject /> : null} */}
+  <FindProject  value = {value}/>
   </div>
 );
 

@@ -1,0 +1,6 @@
+export default {
+  CLIENT_ID : process.env.REACT_APP_CLIENT_ID,
+  REDIRECT_URI :process.env.REACT_APP_REDIRECT_URI,
+  CLIENT_SECRET : process.env.REACT_APP_CLIENT_SECRET,
+ PROXY_URL : process.env.REACT_APP_PROXY_URL
+}

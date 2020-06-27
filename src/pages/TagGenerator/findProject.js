@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import useStyles from "./styles.js";
 import vector from "./Vector.png";
 // import GenerateTag from "./generateTag.js";
 import clipboard from "./CopyToClipboard.png";
+import config from "../../config.js"
+import { AuthContext } from "../../App";
+import Logout from "./logout"
 
-const FindProject = () => {
+const FindProject = ({value}) => {
+const client_id = config.CLIENT_ID
+const redirect_uri = config.REDIRECT_URI
+console.log(client_id,redirect_uri)
+const { state, dispatch } = useContext(AuthContext);
+  const [data, setData] = useState({ errorMessage: "", isLoading: false });
+
   const classes = useStyles();
 
   const initialState = {
@@ -31,6 +40,10 @@ const FindProject = () => {
   const [showCombinedTags, setShowCombinedTags] = useState(false);
   const [showAutoManualTags, setShowAutoManualTags] = useState(false);
   const [showCreateMoreTags, setShowCreateMoreTags] = useState(false)
+  const [automated, setAutomated] = useState(false)
+  const [owner,setOwner] =useState("")
+  const [repo,setRepo] =useState("")
+  
 
   const clearState = () => {
     setProject({ ...initialState });
@@ -66,6 +79,7 @@ const FindProject = () => {
 
   const addTag = () => {
     setProjectTags((prevState) => {
+      
       return {
         
         ptags: [...prevState.ptags, ""],
@@ -337,6 +351,8 @@ const displayCombinedTags = () => {
     );
   };
 
+  
+
   const autoManualTags =() =>{
     return(
       <div className={classes.flexContainer}>
@@ -347,8 +363,34 @@ const displayCombinedTags = () => {
           (you must have admin rights). It will add the topic tags you have
           created.
         </p>
-        <button className={classes.generateButton}>Automated</button>
+        {/* <button className={classes.generateButton} onClick = { () => setAutomated(true) }>Automated</button> */}
       </div>
+      <div>
+          
+          <span>{data.errorMessage}</span>
+          <div>
+            {data.isLoading ? (
+              <div>Loading</div>
+            ) : (
+              <>
+                {
+                  // Link to request GitHub access
+                }
+                <a
+                  className="login-link"
+                  href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=repo`}
+                  onClick={() => {
+                    setData({ ...data, errorMessage: "" });
+                  }}
+                >
+                  
+                  <span>Automated</span>
+                </a>
+              </>
+            )}
+            {state.isLoggedIn ? <Logout/> :null}
+          </div>
+        </div>
       <div className={classes.flexItem}>
         <p className={classes.pHeading}>Leran how to manually add your own tags</p>
         <p className={classes.pTag}>
@@ -363,18 +405,26 @@ const displayCombinedTags = () => {
     )
   }
 
+
+
   useEffect(() => {
+    
+      let ownerRepo= projectData.projectRepository.replace(/https*:\/\/github.com\//, '').split('/')
+      // if (!owner || !repo) throw Error(`${projectRepository} is not a valid GitHub repository URL`)
+      setOwner(ownerRepo[0])
+      setRepo(ownerRepo[1])
+    
 
     if (sendRequest) {
       setBtnClick(true);
-      let baseUrl = "https://github.com/";
-      let url = projectData.projectRepository;
-      console.log("before", url);
-      let partUrl = url.replace(baseUrl, "");
-      console.log("after", partUrl);
+      // let baseUrl = "https://github.com/";
+      // let url = projectData.projectRepository;
+      // console.log("before", url);
+      // let partUrl = url.replace(baseUrl, "");
+      // console.log("after", partUrl);
 
       // make API calls
-      fetch(`https://api.github.com/repos/${partUrl}/topics`, {
+      fetch(`https://api.github.com/repos/${owner}/${repo}/topics`, {
         method: "GET",
         headers: {
           Accept: "application/vnd.github.mercy-preview+json",
@@ -391,7 +441,50 @@ const displayCombinedTags = () => {
       setSendRequest(false);
       setShowNoTag(true);
     }
-  }, [sendRequest, projectData, topicTags]);
+
+       // After requesting Github access, Github redirects back to your app with a code parameter
+       const url = window.location.href;
+       const hasCode = url.includes("?code=");
+       console.log("&&&&&&&&&&&&$$&",hasCode);
+       // If Github API returns the code parameter
+       if (hasCode) {
+         const newUrl = url.split("?code=");
+         window.history.pushState({}, null, newUrl[0]);
+         setData({ ...data, isLoading: true });
+   
+         const requestData = {
+           client_id: state.client_id,
+           redirect_uri: state.redirect_uri,
+           client_secret: state.client_secret,
+           code: newUrl[1],
+           owner:owner,
+           repo:repo,
+           tags:projectTags.ptags
+         };
+         console.log("+++++++",requestData)
+         const proxy_url = state.proxy_url;
+   
+         // Use code parameter and other parameters to make POST request to proxy_server
+         fetch(proxy_url, {
+           method: "POST",
+           body: JSON.stringify(requestData)
+         })
+           .then(response => response.json())
+           .then(data => {
+             dispatch({
+               type: "LOGIN",
+               payload: { user: data, isLoggedIn: true }
+             });
+           })
+           .catch(error => {
+             setData({
+               isLoading: false,
+               errorMessage: "Sorry! Login failed"
+             });
+           });
+       }
+    
+  }, [sendRequest, projectData, topicTags,automated,client_id,redirect_uri,state,dispatch,data,owner,repo,projectTags]);
 
   return (
     <main className={classes.main}>
