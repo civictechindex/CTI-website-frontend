@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import TagGenerator from './pages/TagGenerator'
-import AutomatedTags from "./pages/TagGenerator/automatedTags"
+import AutoManualTags from "./pages/TagGenerator/autoManualTags"
 //import Logout from './pages/TagGenerator/logout'
 import { initialState, reducer } from "./store/reducer";
 import {TagGeneratorContextProvider} from "./context/tagGeneratorContext.js"
@@ -29,7 +29,7 @@ const App = () => {
         <Route exact path='/' component={Home}/>
         <Route exact path='/about' component={About}/>
         <Route exact path='/taggenerator' component={TagGenerator}/>
-        <Route exact path='/taggenerator/login' component={AutomatedTags}/>
+        <Route exact path='/taggenerator/login' component={AutoManualTags}/>
       </Switch>
       <Footer/>
       </TagGeneratorContextProvider> 

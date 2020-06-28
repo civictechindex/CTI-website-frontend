@@ -16,6 +16,9 @@ const AutoManualTags = () => {
   
  
   useEffect(() => {
+   window.localStorage.setItem('repo',context.repo)
+   const repo = localStorage.getItem('repo')
+
     // After requesting Github access, Github redirects back to your app with a code parameter
     const url = window.location.href;
     const hasCode = url.includes("?code=");
@@ -32,7 +35,7 @@ const AutoManualTags = () => {
         client_secret: state.client_secret,
         code: newUrl[1],
         owner:context.owner,
-        repo:context.repo,
+        repo:repo,
         tags:context.projectTags
       };
       console.log("+++++++",requestData)
@@ -76,9 +79,7 @@ const AutoManualTags = () => {
         </p>
        
         {/* <button className={classes.generateButton} onClick={() => setAutomated(true)} >Automated</button> */}
-      </div>
-      <div>
-          
+              
           <span>{data.errorMessage}</span>
           <div>
             {data.isLoading ? (

@@ -40,18 +40,14 @@ console.log(req.body)
       console.log(access_token)
       console.log(scope)
       // Request to return data of a user that has been authenticated
-      return fetch(`https://api.github.com/repos/${owner}/${repo}/topics`, {
-        method: "PUT",
-        headers: {
-          Accept: "application/vnd.github.mercy-preview+json",
-          Authorization: `token ${access_token}`
+      return fetch(`https://api.github.com/repos/${owner}/${repo}/topics`,{
+          method: "PUT",
+          headers: {
+            Accept: "application/vnd.github.mercy-preview+json",
+            Authorization: `token ${access_token}`
         },
-        // body:"{\"names\": [\"aaa\"]}"
         body:JSON.stringify(topicArray)
-      })
-      // return fetch(
-      //   `https://api.github.com/user?access_token=${access_token}&scope=${scope}&token_type=${token_type}`
-      // );
+        })
     })
     .then(response => response.json())
     .then(response => {
@@ -61,6 +57,7 @@ console.log(req.body)
     .catch(error => {
       return res.status(400).json(error);
     });
+
 });
 
 const PORT = process.env.SERVER_PORT || 5000;
