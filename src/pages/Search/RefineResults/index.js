@@ -117,23 +117,23 @@ const RefineResults = ({ isDisplay, setIsDisplay }) => {
               <label className={classes.refineResultsLabel}>Code for All</label>
             </div>
             <div className={classes.refineResultsOptionContainer}>
-              <input className={classes.refineResultsOption} type='checkbox' value='Code for America'/>
+              <input className={classes.refineResultsOption} style={{'--radius': '1'}} type='checkbox' value='Code for America'/>
               <label className={classes.refineResultsLabel}>Code for America </label>
             </div>
             <div className={classes.refineResultsOptionContainer}>
-              <input className={classes.refineResultsOption} type='checkbox' value='Open Oakland'/>
+              <input className={classes.refineResultsOption} style={{'--radius': '2'}} type='checkbox' value='Open Oakland'/>
               <label className={classes.refineResultsLabel}>Open Oakland</label>
             </div>
             <div className={classes.refineResultsOptionContainer}>
-              <input className={classes.refineResultsOption} type='checkbox' value='Hack for LA'/>
+              <input className={classes.refineResultsOption} style={{'--radius': '2'}} type='checkbox' value='Hack for LA'/>
               <label className={classes.refineResultsLabel}>Hack for LA</label>
             </div>
             <div className={classes.refineResultsOptionContainer}>
-              <input className={classes.refineResultsOption} type='checkbox' value='Code for Canada'/>
+              <input className={classes.refineResultsOption} style={{'--radius': '1'}} type='checkbox' value='Code for Canada'/>
               <label className={classes.refineResultsLabel}>Code for Canada</label>
             </div>
             <div className={classes.refineResultsOptionContainer}>
-              <input className={classes.refineResultsOption} type='checkbox' value='Code for Japan'/>
+              <input className={classes.refineResultsOption} style={{'--radius': '1'}} type='checkbox' value='Code for Japan'/>
               <label className={classes.refineResultsLabel}>Code for Japan</label>
             </div>
             <div className={classes.refineResultsOptionContainer}>

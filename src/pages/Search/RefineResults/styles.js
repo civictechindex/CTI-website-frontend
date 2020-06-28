@@ -78,6 +78,7 @@ const useStyles = createUseStyles( theme => ({
     border: '1px solid black',
     width: '23px',
     height: '23px',
+    marginLeft: 'calc(15px * var(--radius))'
   },
   refineResultsLabel: {
     display: 'inline-block',
@@ -88,6 +89,7 @@ const useStyles = createUseStyles( theme => ({
     fontWeight: 'bold',
     textAlign: 'center',
     margin: '5px 0 0 0',
+    cursor: 'pointer',
   },
   refineResultsResetButton: {
     display: 'block',
@@ -114,6 +116,7 @@ const useStyles = createUseStyles( theme => ({
 /**********     MEDIA-QUERIES SECTION     **********/
   '@media (min-width: 1000px)': {
     refineResultsContainer: { 
+      display: 'block',
       width: '265px',
       marginRight: '30px',
       padding: '0',

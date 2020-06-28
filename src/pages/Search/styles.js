@@ -2,10 +2,10 @@ import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
   page: {
-    display: 'none',
+    position: 'relative',
     backgroundColor: theme.backgroundColor5,
     fontFamily: theme.primaryFontFamily,
-    padding: '0px 20px',
+    padding: '0px 20px 30px 20px',
     outline: 'none',
     '& *': {
       boxSizing: 'border-box',
@@ -13,6 +13,12 @@ const useStyles = createUseStyles( theme => ({
   },
   display: {
     display: 'block',
+  },
+  displayNone: {
+    display: 'none',
+  },
+  noPadding: {
+    padding: '0',
   },
   content: {
     width: '100%',
@@ -218,6 +224,9 @@ const useStyles = createUseStyles( theme => ({
   refineResultsAndProjectContainer: {
     maxWidth: '970px',
     margin: '0 auto',
+  },
+  indexArrow: {
+    cursor: 'pointer',
   },
 /**********     MEDIA-QUERIES SECTION     **********/
   '@media (min-width: 466px)': {

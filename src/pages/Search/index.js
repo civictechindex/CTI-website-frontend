@@ -8,6 +8,10 @@ const Search = () => {
 
   const searchPage = useRef(null)
   const closeSortBy = useRef(null)
+  const projSection = useRef(null)
+  const topOfPage = useRef(null)
+  const indexContainer = useRef(null)
+  const projContainer = useRef(null)
   const resultsPageIndex1 = useRef(null)
   const resultsPageIndex2 = useRef(null)
   const resultsPageIndex3 = useRef(null)
@@ -21,7 +25,7 @@ const Search = () => {
     closeSortBy.current.focus()
   }
 
-  const pageIndex = idx => {
+  const doSetPageIndex = idx => {
     resetIndex()
     switch(idx) {
       case 1:
@@ -54,25 +58,35 @@ const Search = () => {
 
   useEffect(() => {
     if(displayMobileRefineResults) {
-      searchPage.current.className = classes.page
+      searchPage.current.className = `${classes.page} ${classes.noPadding}`
+      projSection.current.className = classes.displayNone
+      topOfPage.current.className = classes.displayNone
+      indexContainer.current.className = classes.displayNone
+      projContainer.current.className = ''
     } else {
-      searchPage.current.className = `${classes.page} ${classes.display}`
+      searchPage.current.className = classes.page
+      projSection.current.className = classes.projectSection
+      topOfPage.current.className = ''
+      indexContainer.current.className = classes.indexContainer
+      projContainer.current.className = classes.refineResultsAndProjectContainer
     }
   }, [displayMobileRefineResults])
 
   return (
     <>
-    <div className={`${classes.page} ${classes.display}`} ref={searchPage}>
+    <div className={classes.page} ref={searchPage}>
       <div className={classes.content}>
-        <p className={classes.link}>About / Search</p>
-        <h1 className={classes.heading}>Search Projects</h1>
-        <input className={classes.search} placeholder='Search the Civic Tech Index'/>
-        <div className={classes.refineResultsAndProjectContainer}>
+        <div ref={topOfPage}>
+          <p className={classes.link}>About / Search</p>
+          <h1 className={classes.heading}>Search Projects</h1>
+          <input className={classes.search} placeholder='Search the Civic Tech Index'/>
+        </div>
+        <div className={classes.refineResultsAndProjectContainer} ref={projContainer}>
         <RefineResults
-          isDisplay={true}
+          isDisplay={displayMobileRefineResults}
           setIsDisplay={setDisplayMobileRefineResults}
         />
-          <div className={classes.projectSection}>
+          <div className={`${classes.projectSection} ${classes.display}`} ref={projSection}>
             <div className={classes.textAndSelectContainer}>
               <div className={classes.resultsTextContainer}>
                 <p className={classes.results}>Showing X of X Results matching:</p>
@@ -119,23 +133,19 @@ const Search = () => {
             <div className={classes.projectContainer}>
               <p className={classes.project}>Project Result</p>
             </div>
-            <div className={classes.indexContainer}>
+            <div className={classes.indexContainer} ref={indexContainer}>
               <img className={`${classes.indexArrow} ${classes.leftArrow}`} src='/images/arrow.png' alt='left arrow to go back one page for displaying projects'/>
-              <p className={classes.highlightNum} ref={resultsPageIndex1} onClick={() => pageIndex(1)}>1</p>
-              <p ref={resultsPageIndex2} onClick={() => pageIndex(2)}>2</p>
-              <p ref={resultsPageIndex3} onClick={() => pageIndex(3)}>3</p>
-              <p ref={resultsPageIndex4} onClick={() => pageIndex(4)}>4</p>
-              <p ref={resultsPageIndex5} onClick={() => pageIndex(5)}>5</p>
+              <p className={classes.highlightNum} ref={resultsPageIndex1} onClick={() => doSetPageIndex(1)}>1</p>
+              <p ref={resultsPageIndex2} onClick={() => doSetPageIndex(2)}>2</p>
+              <p ref={resultsPageIndex3} onClick={() => doSetPageIndex(3)}>3</p>
+              <p ref={resultsPageIndex4} onClick={() => doSetPageIndex(4)}>4</p>
+              <p ref={resultsPageIndex5} onClick={() => doSetPageIndex(5)}>5</p>
               <img className={`${classes.indexArrow} ${classes.rightArrow}`} src='/images/arrow.png' alt='left arrow to go back one page for displaying projects'/>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <RefineResults
-      isDisplay={displayMobileRefineResults}
-      setIsDisplay={setDisplayMobileRefineResults}
-    />
     </>
   )
 }
