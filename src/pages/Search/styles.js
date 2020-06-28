@@ -212,6 +212,13 @@ const useStyles = createUseStyles( theme => ({
   highlightNum: {
     backgroundColor: theme.backgroundColor6
   },
+  refineResults: {
+    display: 'none',
+  },
+  refineResultsAndProjectContainer: {
+    maxWidth: '970px',
+    margin: '0 auto',
+  },
 /**********     MEDIA-QUERIES SECTION     **********/
   '@media (min-width: 466px)': {
     indexContainer: {
@@ -221,11 +228,23 @@ const useStyles = createUseStyles( theme => ({
     }
   },
   '@media (min-width: 1000px)': {
+    refineResultsAndProjectContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%',
+    },
+    refineResults: {
+      display: 'block',
+      '& p': {
+        fontSize: '21px'
+      }
+    },
     projectSection: {
       margin: '0',
+      minWidth: '670px',
     },
     search: {
-      maxWidth: 'none',
+      maxWidth: '970px',
     },
     textAndSelectContainer: {
       display: 'flex',

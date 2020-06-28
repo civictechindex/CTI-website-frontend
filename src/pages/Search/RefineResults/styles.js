@@ -111,6 +111,25 @@ const useStyles = createUseStyles( theme => ({
   flipArrow: {
     transform: 'scaleY(-1)',
   },
+/**********     MEDIA-QUERIES SECTION     **********/
+  '@media (min-width: 1000px)': {
+    refineResultsContainer: { 
+      width: '265px',
+      marginRight: '30px',
+      padding: '0',
+      height: 'fit-content',
+      backgroundColor: 'transparent',
+    },
+    pageContent: {
+      margin: '0',
+    },
+    refineResultsButton: {
+      display: 'none',
+    },
+    display: {
+      display: 'inline',
+    },
+  }
 }))
 
 export default useStyles
