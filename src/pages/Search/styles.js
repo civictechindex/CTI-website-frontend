@@ -25,11 +25,14 @@ const useStyles = createUseStyles( theme => ({
   },
   heading: {
     fontSize: '26px',
+    textAlign: 'center',
     margin: '30px 0',
   },
   search: {
-    marginBottom: '30px',
+    display: 'block',
+    margin: '0 auto 30px auto',
     width: '100%',
+    maxWidth: '670px',
     height: '56px',
     padding: '15px',
     borderRadius: '24px',
@@ -42,15 +45,20 @@ const useStyles = createUseStyles( theme => ({
     outline: 'none',
     transition: 'width .8s',
   },
+  textAndSelectContainer: {},
+  resultsTextContainer: {
+    display: 'block',
+    width: 'fit-content',
+  },
   results: {
-    display: 'inline',
+    display: 'inline-block',
     margin: '0 6px 0 0',
     fontSize: '16px',
     fontWeight: '500',
   },
   resultsFor: {
-    display: 'inline-block',
-    margin: '2px 0',
+    display: 'block',
+    margin: '0',
     fontSize: '16px',
     fontWeight: 'bold',
     color: '#0B1BA6',
@@ -111,10 +119,11 @@ const useStyles = createUseStyles( theme => ({
     display: 'none',
     position: 'absolute',
     top: '100%',
-    width: '170px',
+    width: '100%',
     borderRadius: '8px',
     backgroundColor: theme.backgroundColor1,
     boxShadow: '0px 4px 5px rgba(0, 0, 0, 0.2), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.14)',
+    zIndex: '1',
     '& $option': {
       borderBottom: '1px solid #D8D8D8',
       margin: '0',
@@ -146,11 +155,14 @@ const useStyles = createUseStyles( theme => ({
     top: '15px',
     right: '10px',
   },
-/**********     PROJECT-RESULTS SECTION     **********/
+/**********     PROJECT SECTION     **********/
+  projectSection: {
+    maxWidth: '670px',
+    margin: '0 auto',
+  },
   projectContainer: {
     position: 'relative',
     width: '100%',
-    maxWidth: '670px',
     height: '36vw',
     maxHeight: '224px',
     backgroundColor: theme.backgroundColor1,
@@ -208,6 +220,32 @@ const useStyles = createUseStyles( theme => ({
       },
     }
   },
+  '@media (min-width: 1000px)': {
+    projectSection: {
+      margin: '0',
+    },
+    search: {
+      maxWidth: 'none',
+    },
+    textAndSelectContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%',
+      margin: '10px 0 20px 0',
+    },
+    selectContainer: {
+      minWidth: '200px',
+      height: 'fit-content',
+      margin: '0',
+      '& $select:first-of-type': {
+        display: 'none'
+      },
+      '& $select:last-of-type': {
+        width: '100%',
+        float: 'none',
+      }
+    },
+  }
 }))
 
 export default useStyles
