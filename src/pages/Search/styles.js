@@ -254,6 +254,7 @@ const useStyles = createUseStyles( theme => ({
     },
     search: {
       maxWidth: '970px',
+      fontSize: '23px',
     },
     textAndSelectContainer: {
       display: 'flex',
@@ -273,6 +274,24 @@ const useStyles = createUseStyles( theme => ({
         float: 'none',
       }
     },
+    heading: {
+      fontSize: '42px',
+    },
+    results: {
+      fontSize: '21px',
+    },
+    resultsFor: {
+      fontSize: '21px',
+    },
+    displaySortBy: {
+      fontSize: '16px',
+    },
+    centerText: {
+      fontSize: '16px',
+    },
+    link: {
+      marginLeft: '40px',
+    }, 
   }
 }))
 

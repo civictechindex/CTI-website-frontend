@@ -73,6 +73,7 @@ const useStyles = createUseStyles( theme => ({
     maxHeight: '1000px',
     transition: 'max-height 0.5s ease-in',
     marginBottom: '30px',
+    fontSize: '16px',
   },
   refineResultsOption: {
     border: '1px solid black',
@@ -131,6 +132,18 @@ const useStyles = createUseStyles( theme => ({
     },
     display: {
       display: 'inline',
+    },
+    refineResultsSubHeading: {
+      fontSize: '24px',
+    },
+    refineResultsSearch: {
+      fontSize: '16px',
+    },
+    refineResultsLabel: {
+      fontSize: '18px',
+    },
+    viewMore: {
+      fontSize: '18px',
     },
   }
 }))

@@ -77,7 +77,7 @@ const Search = () => {
     <div className={classes.page} ref={searchPage}>
       <div className={classes.content}>
         <div ref={topOfPage}>
-          <p className={classes.link}>About / Search</p>
+          <p className={classes.link}>Home / Search</p>
           <h1 className={classes.heading}>Search Projects</h1>
           <input className={classes.search} placeholder='Search the Civic Tech Index'/>
         </div>
