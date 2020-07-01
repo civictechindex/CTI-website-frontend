@@ -20,14 +20,6 @@ const useStyles = createUseStyles( theme => ({
     alignItems: 'center',
     marginLeft: '240px',
   },
-  circle: {
-    position: 'absolute',
-    width: '336px',
-    height: '180px',
-    borderRadius: '180px 180px 0 0',
-    backgroundColor: theme.headerCircleBG,
-    transform: 'translate(-100px, -80px)',
-  },
   logo: {
     position: 'absolute',
     width: '150px',
@@ -178,9 +170,6 @@ const useStyles = createUseStyles( theme => ({
       height: '100px',
       width: '100%',
       backgroundColor: theme.headerBG,
-    },
-    circle: {
-      display: 'none',
     },
     flexContainer: {
       display: 'block',
