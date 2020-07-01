@@ -8,24 +8,22 @@ const Footer = () => {
     <div className={classes.footerContainer}>
       <div className={classes.allInfoContainer}>
         <div className={classes.infoContainer}>
-          <Link to='/' className={classes.infoHeader}>Tag Generator</Link>
+          <a className={classes.infoHeader}>Join the Index</a>
+          <Link to='/' className={classes.infoLink}>Tag Generator</Link>
         </div>
         <div className={classes.infoContainer}>
           <Link to='/about'><p className={classes.infoHeader}>About</p></Link>
-          <Link to='/' className={classes.infoLink}>Overview</Link>
-          <Link to='/searching-the-index' className={classes.infoLink}>Searching the Index</Link>
-          <Link to='/adding-projects-to-the-index' className={classes.infoLink}>Adding Projects to the Index</Link>
-          <Link to='/' className={classes.infoLink}>Index Contributors</Link>
         </div>
         <div className={classes.infoContainer}>
-          <Link to='/' className={classes.infoHeader}>Communicate with Us</Link>
-          <Link to='/' className={classes.infoLink}>FAQ</Link>
+          <Link to='/'><p className={classes.infoHeader}>Contributors</p></Link>
         </div>
         <div className={classes.infoContainer}>
-          <Link to='/' className={classes.infoHeader}>Support Us</Link>
+          <Link to='/'><p className={classes.infoHeader}>Radical Collaboration</p></Link>
+          <Link to='/' className={classes.infoLink}>How to Do It</Link>
           <Link to='/' className={classes.infoLink}>Donate</Link>
           <Link to='/' className={classes.infoLink}>Share the CTI</Link>
           <Link to='/' className={classes.infoLink}>Volunteer with Us</Link>
+          <Link to='/' className={classes.infoLink}>FAQ</Link>
         </div>
         <div className={classes.infoContainer}>
           <a className={classes.infoHeader}>Follow Us</a>
