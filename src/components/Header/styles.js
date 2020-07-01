@@ -12,19 +12,26 @@ const useStyles = createUseStyles( theme => ({
       boxSizing: 'border-box'
     }
   },
+  content: {
+    height: '100%',
+    display: 'flex',
+    margin: '0 auto',
+    padding: '0 20px',
+    maxWidth: '1000px',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   flexContainer: {
     position: 'relative',
     display: 'flex',
     height: '100%',
-    justifyContent: 'space-evenly',
+    width: '100%',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: '240px',
   },
   logo: {
-    position: 'absolute',
     width: '150px',
-    top: '26px',
-    left: '30px',
+    marginRight: '50px',
   },
   linksContainer: {
     display: 'flex',
@@ -46,10 +53,10 @@ const useStyles = createUseStyles( theme => ({
     display: 'none',
   },
   searchContainer: {
-    width: '180px',
+    width: '160px',
   },
   search: {
-    width: '180px',
+    width: '160px',
     height: '30px',
     padding: '15px',
     borderRadius: '22.5px',
@@ -62,10 +69,10 @@ const useStyles = createUseStyles( theme => ({
     boxSizing: 'border-box',
     transition: 'width .8s',
     '&:focus': {
-      width: '97%',
+      width: '100%',
       position: 'absolute',
-      top: '35px',
-      right: '10px',
+      top: '34px',
+      right: '0px',
     }
   },
   subLinksContainer: {
@@ -165,6 +172,18 @@ const useStyles = createUseStyles( theme => ({
   showMobileNav: {},
 /**********     MEDIA-QUERIES SECTION     **********/
   '@media (max-width: 1000px)': {
+    content: {
+      display: 'block',
+      position: 'absolute',
+      padding: '0',
+      height: '100%',
+      width: '100%',
+    },
+    logo: {
+      position: 'absolute',
+      top: '25px',
+      left: '20px',
+    },
     background: {
       position: 'absolute',
       height: '100px',
@@ -175,14 +194,15 @@ const useStyles = createUseStyles( theme => ({
       display: 'block',
       position: 'absolute',
       bottom: '0px',
-      left: '-240px',
+      // left: '-240px',
+      left: '0',
       transform: 'translateY(0)',
       backgroundColor: theme.headerBG2,
       width: '100%',
       height: 'fit-content',
       fontSize: '18px',
       fontWeight: 'bold',
-      padding: '30px 20px 40px 20px',
+      padding: '20px 20px 30px 20px',
       zIndex: '-10',
       '& $searchContainer': {
         display: 'none',

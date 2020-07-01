@@ -31,51 +31,53 @@ const Header = () => {
   return (
     <nav className={classes.nav}>
       <div className={classes.background}></div>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/></Link>
-      <div className={classes.flexContainer} ref={nav}>
-        <div className={classes.linksContainer}>
-          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            Join the Index
-            <img className={classes.linksArrows} src='/images/arrow.png' alt='arrow for about link' tabIndex='0'/>
-          </p>
-          <div className={classes.subLinksContainer}>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Tag Generator</Link>
+      <div className={classes.content}>
+        <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/></Link>
+        <div className={classes.flexContainer} ref={nav}>
+          <div className={classes.linksContainer}>
+            <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
+              Join the Index
+              <img className={classes.linksArrows} src='/images/arrow.png' alt='arrow for about link' tabIndex='0'/>
+            </p>
+            <div className={classes.subLinksContainer}>
+              <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Tag Generator</Link>
+            </div>
+          </div>
+          <div className={classes.linksContainer}>
+            <Link to='/about' className={classes.links} onClick={() => setIsBurgerOpen(false)}>About</Link>
+          </div>
+          <div className={classes.linksContainer}>
+            <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Contributors</Link>
+          </div>
+          <div className={classes.linksContainer}>
+            <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
+              Radical Collaboration
+              <img className={classes.linksArrows} src='/images/arrow.png' alt='arrow for about link' tabIndex='0'/>
+            </p>
+            <div className={classes.subLinksContainer}>
+              <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>How to Do It</Link>
+              <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
+              <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
+              <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Volunteer with Us</Link>
+              <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
+            </div>
+          </div>
+          <div className={classes.searchContainer}>
+            <input className={classes.search} placeholder='Search'></input>
           </div>
         </div>
-        <div className={classes.linksContainer}>
-          <Link to='/about' className={classes.links} onClick={() => setIsBurgerOpen(false)}>About</Link>
-        </div>
-        <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Contributors</Link>
-        </div>
-        <div className={classes.linksContainer}>
-          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            Radical Collaboration
-            <img className={classes.linksArrows} src='/images/arrow.png' alt='arrow for about link' tabIndex='0'/>
-          </p>
-          <div className={classes.subLinksContainer}>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>How to Do It</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Volunteer with Us</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
+      </div>
+        <div className={classes.mobileContainer}>
+          <input className={classes.mobileSearch} placeholder='Search'></input>
+          <div 
+            className={classes.burger} 
+            onClick={() => setIsBurgerOpen(bool => !bool)}
+            ref={burgerContent}>
+            <div className={classes.burgerLine} ref={line1}></div>
+            <div className={classes.burgerLine} ref={line2}></div>
+            <div className={classes.burgerLine} ref={line3}></div>
           </div>
         </div>
-        <div className={classes.searchContainer}>
-          <input className={classes.search} placeholder='Search'></input>
-        </div>
-      </div>
-      <div className={classes.mobileContainer}>
-        <input className={classes.mobileSearch} placeholder='Search'></input>
-        <div 
-          className={classes.burger} 
-          onClick={() => setIsBurgerOpen(bool => !bool)}
-          ref={burgerContent}>
-          <div className={classes.burgerLine} ref={line1}></div>
-          <div className={classes.burgerLine} ref={line2}></div>
-          <div className={classes.burgerLine} ref={line3}></div>
-        </div>
-      </div>
     </nav>
   )
 }
