@@ -5,10 +5,11 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import TagGenerator from './pages/TagGenerator'
-import AutoManualTags from "./pages/TagGenerator/autoManualTags"
+import AutomatedTags from "./pages/TagGenerator/automatedTags"
 //import Logout from './pages/TagGenerator/logout'
 import { initialState, reducer } from "./store/reducer";
 import {TagGeneratorContextProvider} from "./context/tagGeneratorContext.js"
+import {TagGeneratorContextProvider1} from "./context/tagGeneratorContextProvider1.js"
 
 export const AuthContext = createContext();
 
@@ -24,14 +25,16 @@ const App = () => {
     }}
   >
   <TagGeneratorContextProvider> 
+  <TagGeneratorContextProvider1> 
       <Header/>
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route exact path='/about' component={About}/>
         <Route exact path='/taggenerator' component={TagGenerator}/>
-        <Route exact path='/taggenerator/login' component={AutoManualTags}/>
+        <Route exact path='/taggenerator/login' component={AutomatedTags}/>
       </Switch>
       <Footer/>
+      </TagGeneratorContextProvider1> 
       </TagGeneratorContextProvider> 
       </AuthContext.Provider>
       

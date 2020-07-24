@@ -3,6 +3,12 @@ import React, { useState, useReducer } from 'react';
 //import TagGeneratorContext from "./tagGeneratorContext.js"
 
 export const TagGeneratorContext = React.createContext({
+  orgValue:{ option1: "",
+          option2: "",
+          showComponent: false,
+          showOrgComponent:false},
+  queValue:{ option1: "",
+          option2: ""},
   projectData:{projectName: "",
               projectRepository: ""},
   owner:"",
@@ -11,32 +17,62 @@ export const TagGeneratorContext = React.createContext({
   additionalTags:{atags:[""]},
   topicTags:[],
   showDisplayTag:true,
+  sendRequest:false,
+  showDisplayNewTags:false,
+  updateOrgVaue:()=>{},
+  updateQueValue:()=>{},
   updateShowDisplayTag:()=>{},
   updateProjectName: projectName => {},
   updateProjectRepository:projectRepository => {},
   validateUrl:projectRepository =>{},
   updateProjectTag:dataCopy => {},
   updateTopicTags:copytopicTags =>{},
-  addTag:()=>{}
+  addTag:()=>{},
+  updateTag:()=>{},
+  resetAdditionalTags:()=>{},
+  handleSendRequest:()=>{},
+  handleShowDisplayTags:()=>{},
+  handleShowDisplayNewTags:()=>{},
+  urlStr:'', 
+  updateUrlStr:()=>{}
 })
 
 
  export const TagGeneratorContextProvider = props => {
+
+  const [orgValue, setOrgValue] = useState({
+    option1: "",
+    option2: "",
+    showComponent: false,
+    showOrgComponent:false
+  });
+  const [queValue, setQueValue] = useState({
+    option1: "",
+    option2: "",
+   });
   const [projectData, setProject] = useState({
     projectName: "",
     projectRepository: "",
     })
-    const [owner,setOwner] =useState("")
-    const [repo,setRepo] =useState("")
-    const [showDisplayTag, setShowDispalyTag] = useState(true);
+   
+  const [owner,setOwner] =useState("")
+  const [repo,setRepo] =useState("")
+  const [showDisplayTag, setShowDisplayTag] = useState(true);
   const [projectTags,setProjectTags] = useState([])
   const [additionalTags,setAdditonalTags] = useState({atags:[""]})
   const [topicTags, setTopicTags] = useState([]);
+  const [sendRequest, setSendRequest] = useState(false);
+  const [showDisplayNewTags, setShowDisplayNewTags] = useState(false);
+  const [urlStr,setUrlStr] = useState("")
 
- const updateShowDisplayTag = () => {
-   setShowDispalyTag(false)
- }
-
+   const updateOrgValue =(option1,option2,showComponent,showOtgComponent)=>{
+    setOrgValue({ option1: option1, option2: option2, showComponent: showComponent,showOrgComponent:showOtgComponent})
+   }
+  
+   const updateQueValue =(option1,option2)=>{
+    setOrgValue({ option1: option1, option2: option2})
+   }
+  
   const updateProjectName = (e) => {
     const dataCopy = { ...projectData };
     dataCopy.projectName = e.target.value;
@@ -60,13 +96,24 @@ export const TagGeneratorContext = React.createContext({
   }
 
   const addTag = () => {
-    setProjectTags((prevState) => {
+    setAdditonalTags((prevState) => {
       return {
         
-        ptags: [...prevState.ptags, ""],
+        atags: [...prevState.atags, ""],
       };
     });
   };
+
+  const updateTag = (e, index) => {
+    const dataCopy = { ...additionalTags };
+
+    dataCopy.atags[index] = e.target.value;
+    setAdditonalTags(dataCopy);
+  };
+
+  const resetAdditionalTags = () => {
+    setAdditonalTags({ atags: [""] });
+  }
 
   const updateProjectTag = (dataCopyTags) => {
     const pt = [...projectTags]
@@ -81,9 +128,27 @@ export const TagGeneratorContext = React.createContext({
     setTopicTags(copyTopicTags)
   }
 
+   const handleSendRequest = (req) => {
+    setSendRequest(req)
+  }
+
+  const handleShowDisplayTags = (req) => {
+    setShowDisplayTag(req)
+  }
+
+  const handleShowDisplayNewTags = (req) => {
+    setShowDisplayNewTags(req)
+  }
+
+  const updateUrlStr = (str) => {
+    setUrlStr(str)
+  }
+
   return (
     <TagGeneratorContext.Provider
       value={{
+        orgValue:orgValue,
+        queValue:queValue,
         projectData:projectData,
         owner:owner,
         repo:repo,
@@ -91,13 +156,23 @@ export const TagGeneratorContext = React.createContext({
         projectTags:projectTags,
         additionalTags:additionalTags,
         topicTags:topicTags,
-        updateShowDisplayTag:updateShowDisplayTag,
+        sendRequest:sendRequest,
+        showDisplayNewTags:showDisplayNewTags,
+        updateOrgValue:updateOrgValue,
+        updateQueValue:updateQueValue,
+        addTag:addTag,
+        updateTag:updateTag,
+        resetAdditionalTags:resetAdditionalTags,
+        handleSendRequest:handleSendRequest,
+        handleShowDisplayTags:handleShowDisplayTags,
         updateProjectName:updateProjectName,
         updateProjectRepository:updateProjectRepository,
         validateUrl:validateUrl,
-        addTag:addTag,
         updateProjectTag:updateProjectTag,
-        updateTopicTags:updateTopicTags
+        updateTopicTags:updateTopicTags,
+        handleShowDisplayNewTags:handleShowDisplayNewTags,
+        urlStr:urlStr,
+        updateUrlStr:updateUrlStr
       }}
     >
       {props.children}

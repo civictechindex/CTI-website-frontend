@@ -3,8 +3,9 @@ import useStyles from "./styles.js";
 import {TagGeneratorContext} from "../../context/tagGeneratorContext.js"
 import clipboard from "./CopyToClipboard.png";
 import AutoManualTags from "./autoManualTags"
+import AddTags from "./AddTags.js";
 
-const DisplayNewTags =({projectTags,topicTags,handlePtags}) => {
+const DisplayNewTags =({projectTags,handlePtags}) => {
   
   const classes = useStyles();
   const context = useContext(TagGeneratorContext)
@@ -14,17 +15,20 @@ console.log("===",projectTags.projectTags)
   const tags1 = context.projectTags
   console.log(tags)
   console.log("context tags",tags1)
-const tTags = topicTags
+//const tTags = topicTags
 
 useEffect(()=>{
-  context.updateTopicTags(tTags)
+  //context.updateTopicTags(tTags)
   console.log(context.projectTags)
   console.log(context.topicTags)
 })
    
 const addMoreTags = () =>{
     //setShowCreateTag(true)
-    handlePtags()
+    context.resetAdditionalTags()
+    context.handleShowDisplayTags(true);
+    context.handleShowDisplayNewTags(false);
+    return(<div>{context.showDisplayTag ? <AddTags/> : null}</div>)
   }
 
   const displayAdditionalButton = () => {

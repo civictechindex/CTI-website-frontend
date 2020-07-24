@@ -39,6 +39,7 @@ console.log(req.body)
       console.log(topicArray)
       console.log(access_token)
       console.log(scope)
+      console.log(token_type)
       // Request to return data of a user that has been authenticated
       return fetch(`https://api.github.com/repos/${owner}/${repo}/topics`,{
           method: "PUT",
@@ -49,12 +50,13 @@ console.log(req.body)
         body:JSON.stringify(topicArray)
         })
     })
-    .then(response => response.json())
+    // .then(response => response.json())
     .then(response => {
-      console.log(response)
+      console.log("**********response",response)
       res.status(200).json(response);
     })
     .catch(error => {
+      console.log("####eror",error)
       return res.status(400).json(error);
     });
 

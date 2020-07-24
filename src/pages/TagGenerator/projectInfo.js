@@ -1,14 +1,15 @@
 import React, { useState,useEffect,useContext } from "react";
 import useStyles from "./styles.js";
 import {TagGeneratorContext} from "../../context/tagGeneratorContext.js"
-import AddTags from "./AddTags";
+import TagGeneratorContext1 from '../../context/tagGeneratorContext1.js'
 
 
 const ProjectInfo = () => {
   const classes = useStyles();
   const context = useContext(TagGeneratorContext)
+  const context1 = useContext(TagGeneratorContext1)
   const [btnClick, setBtnClick] = useState(false);
-  const [sendRequest, setSendRequest] = useState(false);
+  //const [sendRequest, setSendRequest] = useState(false);
 
   useEffect(() => {
     context.validateUrl(context.projectData.projectRepository)
@@ -16,11 +17,12 @@ const ProjectInfo = () => {
     console.log(context.projectData.projectRepository);
     console.log(context.owner)
     console.log(context.repo)
-  }, [context]);
+    console.log(context1);
+  }, [context,context1]);
 
   const handleButtonClick = () =>{
     setBtnClick(true);
-    setSendRequest(true)
+    context.handleSendRequest(true)
     
   }
 
@@ -28,7 +30,8 @@ const ProjectInfo = () => {
     <main className={classes.main}>
       
       <p>Project Name:</p>
-      <input className={classes.textBox} type="text" name="projectName" value={context.projectData.projectName} onChange={e => context.updateProjectName(e)}/>
+      {/* ?<input className={classes.textBox} type="text" name="projectName" value={context.projectData.projectName} onChange={e => context.updateProjectName(e)}/> */}
+      <input className={classes.textBox} type="text" name="projectName" value={context1.projectName} onChange={e => context1.updateProjectName(e)}/>
       <p>Project Repository URL:</p>
       <input className={classes.textBox} type="text" name="projectRepository" value={context.projectData.projectRepository} onChange={e => context.updateProjectRepository(e)} />
       <button
@@ -37,7 +40,7 @@ const ProjectInfo = () => {
       >
         Find Project
       </button>
-      {sendRequest ? <AddTags/> : null}
+      {/* {sendRequest ? <AddTags/> : null} */}
     </main>
   );
 };
