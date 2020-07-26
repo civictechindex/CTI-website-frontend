@@ -6,7 +6,6 @@ const useStyles = createUseStyles((theme) => ({
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
     boxSizing: "border-box",
-
     width: "100%",
     height: "auto",
   },
