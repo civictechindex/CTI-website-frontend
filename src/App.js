@@ -10,8 +10,10 @@ import AutomatedTags from "./pages/TagGenerator/automatedTags"
 import { initialState, reducer } from "./store/reducer";
 import {TagGeneratorContextProvider} from "./context/tagGeneratorContext.js"
 import {TagGeneratorContextProvider1} from "./context/tagGeneratorContextProvider1.js"
+import HowToUse from './pages/HowToUse'
 
 export const AuthContext = createContext();
+
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -32,6 +34,7 @@ const App = () => {
         <Route exact path='/about' component={About}/>
         <Route exact path='/taggenerator' component={TagGenerator}/>
         <Route exact path='/taggenerator/login' component={AutomatedTags}/>
+        <Route exact path='/adding-projects-to-the-index' component={HowToUse}/>
       </Switch>
       <Footer/>
       </TagGeneratorContextProvider1> 
