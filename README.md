@@ -35,9 +35,9 @@ To develop the site, you'll need to first clone the repository on to your comput
 
 ---
 
-### Forking and cloning the repository with proper security
+# Forking and cloning the repository with proper security
 
-#### Step 1 Become a member of the repository Team
+## Step 1 Become a member of the repository Team
 
 In the `civic-tech-index` slack channel, send your GitHub name to the project manager (or on the slack channel thread) and we'll add you as a member to the GitHub repository Team.
 
@@ -64,7 +64,7 @@ This section discusses some tips and best practices for working with Git.
 
 1. After the owner of the `CTI-website-frontend` repository approves and merges your Pull Request, your changes will be live on the website. 
 
-#### Step 2 Fork the repository
+## Step 2 Fork the repository
 
 In https://github.com/CTI-website-frontend/website, look for the fork icon in the top right. Click it and create a fork of the repository.
 
@@ -76,7 +76,7 @@ Note that this copy is on a remote server on the GitHub website and not on your 
 
 If you click the icon again, it will not create a new fork but instead give you the URL associated with your fork.
 
-#### Step 3 Clone your online repository to your local computer
+## Step 3 Clone your online repository to your local computer
 
 For git beginners, this process will create a third copy of the repository on your local desktop.
 
@@ -110,7 +110,7 @@ git remote set-url origin https://github.com/your_user_name/website.git
 git remote add upstream https://github.com/CTI-website-frontend/website.git
 ```
 
-#### Step 4: Setting up Docker
+## Step 4: Setting up Docker
 
 Docker is the recommended approach to quickly getting started with local development. (ELI5: Docker helps create a local/offline version of the CTI-website-frontend.org website on your computer so you can test out your code before submitting a pull request).
 
@@ -170,7 +170,7 @@ docker-compose up
 ```
 <br>
 
-#### Step 5: Change to a new branch
+## Step 5: Change to a new branch
 
 Create a new branch for each issue you work on. Doing all your work on topic branches leaves your repository's main branch (named `gh-pages`) unmodified and greatly simplifies keeping your fork in sync with the main project.
 
@@ -232,7 +232,7 @@ git commit -m “insert message here”
 
 Congratulations!  You are now ready to push your work to your repository. 
 
-#### Step 6 Check upstream before you push
+## Step 6 Check upstream before you push
 
 Before you push your local commits to your repository, check to see if there have been updates made in the main Hack For LA website repository. `git fetch` will check remote repositories for changes without altering your local repository.
 
@@ -240,7 +240,7 @@ Before you push your local commits to your repository, check to see if there hav
 git fetch upstream
 ```
 
-##### Step 6a No changes in the upstream repository
+### Step 6a No changes in the upstream repository
 
 If you do not see any output, there have not been any changes in the
 main CTI Front End website repository since the last time you
@@ -252,7 +252,7 @@ If you just type `git push` you will be prompted to create a new branch in your 
 git push --set-upstream origin fix-logo-width-311
 ```
 
-##### Step 6b conflicting changes in the upstream repository
+### Step 6b conflicting changes in the upstream repository
 
 When you check the upstream repository, you may see output like this:
 
@@ -315,7 +315,7 @@ git push
 ```
 If you go to your online github repository this should remove the message "This branch is x commit behind CTI-website-frontend:gh-pages".
 
-#### Incorporating changes into your topic branch
+### Incorporating changes into your topic branch
 
 To incorporate these updates from the main GitHub repository into your
 topic branch, you can 'rebase' your branch onto your updated gh-pages
@@ -335,7 +335,7 @@ git checkout fix-logo-width-311
 git merge gh-pages
 ```
 
-#### Step 7 Complete the pull request
+## Step 7 Complete the pull request
 
 ```bash
 git push --set-upstream origin fix-logo-width-311
