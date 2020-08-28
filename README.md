@@ -16,22 +16,22 @@ To develop the site, you'll need to first clone the repository on to your comput
 
 **Before you start working on an issue**
 
-6. [Switch to new issue branch before you start making changes](#step-6-change-to-a-new-branch)
+5. [Switch to new issue branch before you start making changes](#step-5-change-to-a-new-branch)
 
 
 **After you've worked on your issue and before you make a pull request:**
 
-7. [Check upstream before you push](#step-7-check-upstream-before-you-push).
+6. [Check upstream before you push](#step-6-check-upstream-before-you-push).
 
-8. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
+6a. [No changes in the upstream repo](#step-6a-no-changes-in-the-upstream-repository)
 
 **Or**
 
-9. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
+6b. [Conflicting changes in the upstream repo](#step-6b-conflicting-changes-in-the-upstream-repository) and how to resolve them
               
 **Okay. You're good to go!**        
  
-10. [Complete the pull request](#step-8-complete-the-pull-request)
+7. [Complete the pull request](#step-7-complete-the-pull-request)
 
 ---
 
@@ -39,7 +39,7 @@ To develop the site, you'll need to first clone the repository on to your comput
 
 #### Step 1 Become a member of the repository Team
 
-In the `hfla-site` slack channel, send your GitHub name to the project manager (or on the slack channel thread) and we'll add you as a member to the GitHub repository Team.
+In the `civic-tech-index` slack channel, send your GitHub name to the project manager (or on the slack channel thread) and we'll add you as a member to the GitHub repository Team.
 
 Once you have accepted the GitHub invite (comes via email or in your GitHub notifications), please do the following:
 
@@ -170,9 +170,7 @@ docker-compose up
 ```
 <br>
 
-#### Step 5: Read [CTI's Site Architecture](https://github.com/CTI-website-frontend/website/wiki/CTI's-Site-Architecture) to get acquainted with how the website is structured
-
-#### Step 6: Work on an issue using git
+#### Step 5: Change to a new branch
 
 Create a new branch for each issue you work on. Doing all your work on topic branches leaves your repository's main branch (named `gh-pages`) unmodified and greatly simplifies keeping your fork in sync with the main project.
 
@@ -234,7 +232,7 @@ git commit -m “insert message here”
 
 Congratulations!  You are now ready to push your work to your repository. 
 
-#### Step 7 Check upstream before you push
+#### Step 6 Check upstream before you push
 
 Before you push your local commits to your repository, check to see if there have been updates made in the main Hack For LA website repository. `git fetch` will check remote repositories for changes without altering your local repository.
 
@@ -242,7 +240,7 @@ Before you push your local commits to your repository, check to see if there hav
 git fetch upstream
 ```
 
-##### Step 7a No changes in the upstream repository
+##### Step 6a No changes in the upstream repository
 
 If you do not see any output, there have not been any changes in the
 main CTI Front End website repository since the last time you
@@ -254,7 +252,7 @@ If you just type `git push` you will be prompted to create a new branch in your 
 git push --set-upstream origin fix-logo-width-311
 ```
 
-##### Step 7b conflicting changes in the upstream repository
+##### Step 6b conflicting changes in the upstream repository
 
 When you check the upstream repository, you may see output like this:
 
@@ -337,7 +335,7 @@ git checkout fix-logo-width-311
 git merge gh-pages
 ```
 
-#### Step 8 Complete the pull request
+#### Step 7 Complete the pull request
 
 ```bash
 git push --set-upstream origin fix-logo-width-311
