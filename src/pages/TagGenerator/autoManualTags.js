@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import useStyles from "./styles.js";
-
 import { TagGeneratorContext } from "../../context/tagGeneratorContext.js";
 import { Redirect } from "react-router-dom";
 
@@ -37,7 +36,14 @@ context.updateUrlStr(str)
           (you must have admin rights). It will add the topic tags you have
           created.
         </p>
-       
+        {/* <a
+                className="login-link"
+                href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_uri}/?owner=${context.owner}?repo=${context.repo}${context.urlStr}&scope=public_repo repo write:org admin:org_hook admin:public_key admin:org admin:repo_hook`}
+                onClick={() => 
+                  setAutomated(true)}
+              >
+                   <span>Automated</span>
+              </a> */}
         <button className={classes.generateButton} onClick={() => setAutomated(true)} >Automated</button>
               
         </div>

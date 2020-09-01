@@ -50,8 +50,8 @@ return(
 
 return(
   <div className={classes.autoCompleteText}>
-  <p>Which Organization?</p>
-  <input className={classes.orgTextBox} type="text" name="org" value = {orgName} onChange = {(e) => onTextChanged(e)} />
+  <p className={classes.pStyle}>Which Organization?</p>
+  <input className={classes.textBox} type="text" name="org" value = {orgName} onChange = {(e) => onTextChanged(e)} />
   {renderSuggestions()}
   {showProjInfo ? <ProjectInfo /> : null}
   

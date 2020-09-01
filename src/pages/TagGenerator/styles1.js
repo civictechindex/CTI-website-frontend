@@ -39,7 +39,6 @@ const useStyles = createUseStyles((theme) => ({
     fontFamily: theme.secondaryFontFamily,
     color: theme.primaryTextColor,
     fontSize: "16px",
-    //fontStyle:"bold",
     fontWeight: "bold",
     marginBottom: 0,
     textAlign:'center',
@@ -98,6 +97,9 @@ lableYes:{
   textAlign:"center"
 },
 
+divError:{
+  color:"red",
+},
 
 '@media only screen and (min-width: 992px)': {
 main:{
@@ -106,6 +108,7 @@ main:{
   columnGap:"16px",
   paddingLeft:"190px",
   paddingRight:"190px",
+  height:"564px"
 },
 headingContainer:{
   gridColumn:"1/13",
@@ -136,13 +139,16 @@ info:{
 infoPara:{
   fontSize: "22px",
   lineHeight: "28px",
+  width:"880px",
+  height:"64px",
  },
 
-projectSection:{
-  gridColumn:"1/13",
-  gridRow: "4",
-},
+// projectSection:{
+//   gridColumn:"1/13",
+//   gridRow: "4",
+// },
 question:{
+  gridRow: "3/4",
   gridColumn: "2 / 9",
   fontSize: "22px",
   //fontWeight: "bold",
@@ -150,7 +156,7 @@ question:{
   
 },
 radioDiv:{
-  gridRow: "4",
+  gridRow: "3/4",
   gridColumn: "10 /13",
 },
 first: {

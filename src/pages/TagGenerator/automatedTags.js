@@ -3,7 +3,7 @@ import useStyles from "./styles.js";
 import { useLocation } from "react-router-dom";
 import { TagGeneratorContext } from "../../context/tagGeneratorContext.js";
 import { AuthContext } from "../../App";
-import Logout from "./logout"
+
 
 
 export default function AutomatedTags() {
@@ -52,8 +52,16 @@ export default function AutomatedTags() {
         method: "POST",
         body: JSON.stringify(requestData)
       })
-        .then(response => response.json())
+        .then(response => {
+          if (response.ok) {
+            console.log(response);
+            return response.json();
+          } else {
+            throw new Error("You should have admin rights");
+          }
+        }) 
         .then(data => {
+          console.log(data)
           dispatch({
             type: "LOGIN",
             payload: { user: data, isLoggedIn: true }
@@ -62,7 +70,7 @@ export default function AutomatedTags() {
         .catch(error => {
           setData({
             isLoading: false,
-            errorMessage: "Sorry! Login failed"
+            errorMessage: "You should have admin rights"
           });
         });
     }
@@ -84,7 +92,7 @@ export default function AutomatedTags() {
      
       {/* <button className={classes.generateButton} onClick={() => setAutomated(true)} >Automated</button> */}
             
-        <span>{data.errorMessage}</span>
+        <span>bbv{data.errorMessage}</span>
         <div>
           {data.isLoading ? (
             <div>Loading</div>
@@ -105,7 +113,7 @@ export default function AutomatedTags() {
               </a>
             </>
           )}
-          {state.isLoggedIn ? <Logout/> :null}
+          {/* {state.isLoggedIn ? <Logout/> :null} */}
         </div>
       </div>
     <div className={classes.flexItem}>

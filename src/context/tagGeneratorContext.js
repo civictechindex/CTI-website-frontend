@@ -16,6 +16,7 @@ export const TagGeneratorContext = React.createContext({
   projectTags:[],
   additionalTags:{atags:[""]},
   topicTags:[],
+  btnClick:false,
   showDisplayTag:true,
   sendRequest:false,
   showDisplayNewTags:false,
@@ -31,10 +32,13 @@ export const TagGeneratorContext = React.createContext({
   updateTag:()=>{},
   resetAdditionalTags:()=>{},
   handleSendRequest:()=>{},
+  handleBtnClick:()=>{},
   handleShowDisplayTags:()=>{},
   handleShowDisplayNewTags:()=>{},
   urlStr:'', 
-  updateUrlStr:()=>{}
+  updateUrlStr:()=>{},
+  error:'',
+  updateError:()=>{}
 })
 
 
@@ -57,6 +61,7 @@ export const TagGeneratorContext = React.createContext({
    
   const [owner,setOwner] =useState("")
   const [repo,setRepo] =useState("")
+  const [btnClick, setBtnClick] = useState(false);
   const [showDisplayTag, setShowDisplayTag] = useState(true);
   const [projectTags,setProjectTags] = useState([])
   const [additionalTags,setAdditonalTags] = useState({atags:[""]})
@@ -64,6 +69,7 @@ export const TagGeneratorContext = React.createContext({
   const [sendRequest, setSendRequest] = useState(false);
   const [showDisplayNewTags, setShowDisplayNewTags] = useState(false);
   const [urlStr,setUrlStr] = useState("")
+  const[error,setError] = useState("")
 
    const updateOrgValue =(option1,option2,showComponent,showOtgComponent)=>{
     setOrgValue({ option1: option1, option2: option2, showComponent: showComponent,showOrgComponent:showOtgComponent})
@@ -132,6 +138,10 @@ export const TagGeneratorContext = React.createContext({
     setSendRequest(req)
   }
 
+  const handleBtnClick = (btnReq) => {
+    setBtnClick(btnReq)
+  }
+
   const handleShowDisplayTags = (req) => {
     setShowDisplayTag(req)
   }
@@ -144,6 +154,10 @@ export const TagGeneratorContext = React.createContext({
     setUrlStr(str)
   }
 
+  const updateError = (er) => {
+    setError(er)
+  }
+
   return (
     <TagGeneratorContext.Provider
       value={{
@@ -152,6 +166,7 @@ export const TagGeneratorContext = React.createContext({
         projectData:projectData,
         owner:owner,
         repo:repo,
+        btnClick:btnClick,
         showDisplayTag:showDisplayTag,
         projectTags:projectTags,
         additionalTags:additionalTags,
@@ -164,6 +179,7 @@ export const TagGeneratorContext = React.createContext({
         updateTag:updateTag,
         resetAdditionalTags:resetAdditionalTags,
         handleSendRequest:handleSendRequest,
+        handleBtnClick:handleBtnClick,
         handleShowDisplayTags:handleShowDisplayTags,
         updateProjectName:updateProjectName,
         updateProjectRepository:updateProjectRepository,
@@ -172,7 +188,9 @@ export const TagGeneratorContext = React.createContext({
         updateTopicTags:updateTopicTags,
         handleShowDisplayNewTags:handleShowDisplayNewTags,
         urlStr:urlStr,
-        updateUrlStr:updateUrlStr
+        updateUrlStr:updateUrlStr,
+        error:error,
+        updateError:updateError,
       }}
     >
       {props.children}

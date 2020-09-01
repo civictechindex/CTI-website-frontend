@@ -8,7 +8,7 @@ const ProjectInfo = () => {
   const classes = useStyles();
   const context = useContext(TagGeneratorContext)
   const context1 = useContext(TagGeneratorContext1)
-  const [btnClick, setBtnClick] = useState(false);
+  //const [btnClick, setBtnClick] = useState(false);
   //const [sendRequest, setSendRequest] = useState(false);
 
   useEffect(() => {
@@ -21,27 +21,30 @@ const ProjectInfo = () => {
   }, [context,context1]);
 
   const handleButtonClick = () =>{
-    setBtnClick(true);
+    context.handleBtnClick(true);
     context.handleSendRequest(true)
-    
+    context.handleShowDisplayTags(true);
   }
 
   return (
-    <main className={classes.main}>
+    <div className={classes.projectInfo}>
       
-      <p>Project Name:</p>
+      <p className={classes.pStyle}>Project Name:</p>
       {/* ?<input className={classes.textBox} type="text" name="projectName" value={context.projectData.projectName} onChange={e => context.updateProjectName(e)}/> */}
       <input className={classes.textBox} type="text" name="projectName" value={context1.projectName} onChange={e => context1.updateProjectName(e)}/>
-      <p>Project Repository URL:</p>
+      <p className={classes.pStyle}>Project Repository URL:</p>
       <input className={classes.textBox} type="text" name="projectRepository" value={context.projectData.projectRepository} onChange={e => context.updateProjectRepository(e)} />
+      <div className={context.btnClick ? classes.hideButton: classes.divError}><span>{context.error}</span></div>
       <button
-        className={btnClick ? classes.hideButton : classes.generateButton}
+        className={context.btnClick ? classes.hideButton : classes.generateButton}
         onClick={() => handleButtonClick()}
       >
         Find Project
       </button>
+      
+      
       {/* {sendRequest ? <AddTags/> : null} */}
-    </main>
+    </div>
   );
 };
 

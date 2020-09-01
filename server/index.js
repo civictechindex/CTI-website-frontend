@@ -32,6 +32,7 @@ console.log(req.body)
     .then(response => response.text())
     .then(paramsString => {
       let params = new URLSearchParams(paramsString);
+      console.log("+++params",params)
       const access_token = params.get("access_token");
       const scope = params.get("scope");
       const token_type = params.get("token_type");
@@ -42,17 +43,20 @@ console.log(req.body)
       console.log(token_type)
       // Request to return data of a user that has been authenticated
       return fetch(`https://api.github.com/repos/${owner}/${repo}/topics`,{
-          method: "PUT",
-          headers: {
-            Accept: "application/vnd.github.mercy-preview+json",
-            Authorization: `token ${access_token}`
-        },
-        body:JSON.stringify(topicArray)
-        })
+        method: "PUT",
+        headers: {
+          Accept: "application/vnd.github.mercy-preview+json",
+          Authorization: `token ${access_token}`
+      },
+      body:JSON.stringify(topicArray)
+      })
     })
-    // .then(response => response.json())
+     .then(response =>{ 
+       console.log(response)
+       return response.json()})
     .then(response => {
       console.log("**********response",response)
+      //console.log(res.status(200).json(response))
       res.status(200).json(response);
     })
     .catch(error => {

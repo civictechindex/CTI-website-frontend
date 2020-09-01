@@ -4,17 +4,19 @@ import { TagGeneratorContext } from "../../context/tagGeneratorContext.js";
 import vector from "./Vector.png";
 //import DisplayNewTags from "./displayNewTags";
 import clipboard from "./CopyToClipboard.png";
-import AutoManualTags from "./autoManualTags"
+import AutoManualTags from "./autoManualTags";
 
 const AddTags = () => {
   const classes = useStyles();
   const context = useContext(TagGeneratorContext);
   const [topicTags, setTopicTags] = useState([]);
+  
+
   //const [showDisplayTag, setShowDisplayTag] = useState(true);
   // const [showCreateTag, setShowCreateTag] = useState(true);
   // const [showButtonDiv, setShowButtonDiv] = useState(true);
   //const [showDisplayAdditionalButton, setShowDisplayAdditionalButton] = useState(true);
- // const [showDisplayNewTags, setShowDisplayNewTags] = useState(false);
+  // const [showDisplayNewTags, setShowDisplayNewTags] = useState(false);
   //const [projectTags, setProjectTags] = useState({ ptags: [""] });
 
   useEffect(() => {
@@ -29,29 +31,27 @@ const AddTags = () => {
       }
     )
       .then((response) => {
-        return response.json();
+        if (response.ok) {
+          console.log(response);
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
       })
       .then((data) => {
-        setTopicTags(data.names)
-        //context.updateTopicTags(data.names);
         console.log(data.names);
+        setTopicTags(data.names);
+        //context.updateTopicTags(data.names);
+      })
+      .catch((error) => {
+        console.log(error);
+
+        context.updateError("Inavalid URL");
+        context.handleShowDisplayTags(false);
+        context.handleBtnClick(false);
+        context.handleSendRequest(false);
       });
   }, [context]);
-
-  // const addTag = () => {
-  //   setProjectTags((prevState) => {
-  //     return {
-  //       ptags: [...prevState.ptags, ""],
-  //     };
-  //   });
-  // };
-
-  // const updateTag = (e, index) => {
-  //   const dataCopy = { ...projectTags };
-
-  //   dataCopy.ptags[index] = e.target.value;
-  //   setProjectTags(dataCopy);
-  // };
 
   const combineTags = () => {
     // setProjectTags((prevState) => {
@@ -59,8 +59,8 @@ const AddTags = () => {
     //     ptags: ["civictechindex", ...prevState.ptags],
     //   };
     // });
-    const ttags = [...topicTags]
-    context.updateTopicTags(ttags)
+    const ttags = [...topicTags];
+    context.updateTopicTags(ttags);
     const dataCopyTags = [...context.additionalTags.atags];
     console.log(dataCopyTags);
 
@@ -72,44 +72,43 @@ const AddTags = () => {
     context.handleShowDisplayNewTags(true);
   };
 
-  const addTagQ = () =>{
-    
-  return (
-    <>
-      <section className={classes.projectSection}>
-        <p className={classes.question}>
-          Do you want to add additional topic tags to increase your project visibility?
-        </p>
-        <label className={classes.labelYes}>
-          <input
-            type="radio"
-            value="Yes"
-            checked={context.queValue.option1 === "Yes"}
-            onChange={() =>
-              //setValue({ option1: "Yes", option2: "" })
-              context.updateQueValue("yes","")
-            }
-          />
-          Yes
-        </label>
-        
-        <label className={classes.labelNo}>
-          <input
-            type="radio"
-            value="No"
-            checked={context.queValue.option2 === "No"}
-            onChange={() =>
-              //setValue({ option1: "", option2: "No", showComponent: true, showOrgComponent:false })
-              context.updateQueValue("","No")
-            }
-          />
-          No
-        </label>
-       
-      </section>
-   </>
-  );
-  }
+  const addTagQ = () => {
+    return (
+      <>
+        <section className={classes.projectSection}>
+          <p className={classes.question}>
+            Do you want to add additional topic tags to increase your project
+            visibility?
+          </p>
+          <label className={classes.labelYes}>
+            <input
+              type="radio"
+              value="Yes"
+              checked={context.queValue.option1 === "Yes"}
+              onChange={() =>
+                //setValue({ option1: "Yes", option2: "" })
+                context.updateQueValue("yes", "")
+              }
+            />
+            Yes
+          </label>
+
+          <label className={classes.labelNo}>
+            <input
+              type="radio"
+              value="No"
+              checked={context.queValue.option2 === "No"}
+              onChange={() =>
+                //setValue({ option1: "", option2: "No", showComponent: true, showOrgComponent:false })
+                context.updateQueValue("", "No")
+              }
+            />
+            No
+          </label>
+        </section>
+      </>
+    );
+  };
 
   const createTags = () => {
     //console.log(context.projectTags.ptags);
@@ -127,12 +126,11 @@ const AddTags = () => {
               value={ptag || ""}
               onChange={(e) => context.updateTag(e, idx)}
             />
-              <button onClick={() => context.addTag()}>
+            <button onClick={() => context.addTag()}>
               <img className={classes.vector} src={vector} alt="vector" />
             </button>
           </div>
         ))}
-        
       </div>
     );
   };
@@ -167,20 +165,15 @@ const AddTags = () => {
       <div
         className={context.showDisplayTag ? classes.tagDiv : classes.hideButton}
       >
-        <p>These are the topic tags present in your project.</p>
+        <p className={classes.pStyle}>These are your repository's current topic tags:</p>
         <div className={classes.tagDiv}>
           <ul className={classes.tagUl}>
             {topicTags.map((topicTag, idx) => (
-              <div hey={idx}>
+              
                 <li className={classes.tagLi} key={idx}>
                   {topicTag}
                 </li>
-                <img
-                  className={classes.copyImg}
-                  src={clipboard}
-                  alt="clipboard"
-                />
-              </div>
+    
             ))}
           </ul>
         </div>
@@ -190,26 +183,23 @@ const AddTags = () => {
   };
 
   const displayTagArray = () => {
-
-    if (topicTags.length === 0 && context.orgValue.option1 === 'Yes'){
+    if (topicTags.length === 0 && context.orgValue.option1 === "Yes") {
       return (
         <>
           {noTags()}
           {addTagQ()}
         </>
       );
-
     }
-    if (topicTags.length !== 0 && context.orgValue.option1 === 'Yes'){
+    if (topicTags.length !== 0 && context.orgValue.option1 === "Yes") {
       return (
         <>
           {presentTags()}
           {addTagQ()}
         </>
       );
-
     }
-    if (topicTags.length === 0 && context.orgValue.option1 === 'No') {
+    if (topicTags.length === 0 && context.orgValue.option1 === "No") {
       return (
         <>
           {noTags()}
@@ -228,47 +218,53 @@ const AddTags = () => {
     }
   };
 
-  const addMoreTags = () =>{
+  const addMoreTags = () => {
     //setShowCreateTag(true)
-    context.resetAdditionalTags()
+    context.resetAdditionalTags();
     context.handleShowDisplayTags(true);
     context.handleShowDisplayNewTags(false);
     // return(<div>{context.showDisplayTag ? <AddTags/> : null}</div>)
-  }
+  };
 
   const displayAdditionalButton = () => {
-    return(
-   <div className={classes.buttonDiv}>
-   <button
-     className={classes.generateButton} onClick={()=>addMoreTags()} >
-     Add Additional Tags
-   </button>
-   <button className={classes.generateButton}>Reset</button>
-   </div>
-    )
-   }
+    return (
+      <div className={classes.buttonDiv}>
+        <button
+          className={classes.generateButton}
+          onClick={() => addMoreTags()}
+        >
+          Add Additional Tags
+        </button>
+        <button className={classes.generateButton}>Reset</button>
+      </div>
+    );
+  };
 
   const displayNewTags = () => {
     return (
       <div>
-      <div className={classes.tagDiv}>
-        <p>Add these topics to your repository</p>
-        <ul className={classes.tagUl}>
-          {context.projectTags.map((tag,idx)=> (
-            <>
-            <li className={classes.tagLi} key={idx}>{tag}
-            </li>
-            <img className={classes.copyImg} src={clipboard} alt="clipboard" />
-            </>
-          ))}
-        </ul>
-      </div>
-      {displayAdditionalButton()}
-      <AutoManualTags/>
+        <div className={classes.tagDiv}>
+          <p>Add these topics to your repository</p>
+          <ul className={classes.tagUl}>
+            {context.projectTags.map((tag, idx) => (
+              <>
+                <li className={classes.tagLi} key={idx}>
+                  {tag}
+                </li>
+                <img
+                  className={classes.copyImg}
+                  src={clipboard}
+                  alt="clipboard"
+                />
+              </>
+            ))}
+          </ul>
+        </div>
+        {displayAdditionalButton()}
+        <AutoManualTags />
       </div>
     );
-
-  }
+  };
 
   // const handlePtags = () => {
   //   context.resetAdditionalTags()

@@ -62,12 +62,13 @@ const theme = {
   backgroundColor6: '#C4C4C4',
 }
 
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <JssProvider registry={sheets}>
         <BrowserRouter>
-          <App />
+        <App />
         </BrowserRouter>
       </JssProvider>
     </ThemeProvider>

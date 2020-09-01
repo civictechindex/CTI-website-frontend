@@ -1,5 +1,5 @@
 import React, { useState,useContext } from "react";
-import useStyles from "./styles1.js";
+import useStyles from "./styles.js";
 import ProjectOrg from "./projectOrg";
 import ProjectInfo from "./projectInfo";
 //import FindProject from "./findProject";
@@ -29,10 +29,10 @@ const TagGenerator = () => {
           <h1 className={classes.heading}>Tag Generator</h1>
           </div>
      <div className={classes.info} ><p className={classes.infoPara}>Join the Civic Tech Index by submitting 
-     your completed project.
-     This process takes less than one minute 
+     your completed project.</p>
+     <p className={classes.infoPara}>This process takes less than one minute 
        to complete.</p></div>
-      <section className={classes.projectSection}>
+      <div className={classes.projectSection}>
         <p className={classes.question}>
           Is your project affliated with an organization?
         </p>
@@ -47,7 +47,8 @@ const TagGenerator = () => {
               context.updateOrgValue("Yes","",false,true)
             }
           />
-          <lable className={classes.labelYes}>Yes</lable>
+          Yes
+          {/* <lable className={classes.labelYes}>Yes</lable> */}
           
        
         
@@ -62,16 +63,18 @@ const TagGenerator = () => {
               context.updateOrgValue("","No",true,false)
             }
           />
-          <label className={classes.labelYes} >
+           No
+          {/* <label className={classes.labelYes} >
           No
-        </label>
+        </label> */}
+        </div>
         </div>
         {context.orgValue.showOrgComponent ? <ProjectOrg /> : null}
          {context.orgValue.showComponent ? <ProjectInfo /> : null} 
         {/* {value.showComponent ? <FindProject /> : null} */}
         {context.sendRequest ? <AddTags/> : null}
         
-      </section>
+      
     </main>
   );
 };
