@@ -1,16 +1,16 @@
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles( theme => ({
+const useStyles = createUseStyles(theme => ({
   main: {
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
-    '& section':{
+    '& section': {
       boxSizing: 'border-box',
       paddingLeft: '20px',
       paddingRight: '20px',
     }
   },
-/**********     HEADING SECTION      **********/
+  /**********     HEADING SECTION      **********/
   headingSection: {
     width: '100%',
     height: '350px',
@@ -27,7 +27,7 @@ const useStyles = createUseStyles( theme => ({
     maxWidth: '570px',
     marginTop: '60px'
   },
-/**********     TEXT SECTION      **********/
+  /**********     TEXT SECTION      **********/
   textSection: {
     color: theme.secondaryTextColor,
     backgroundColor: theme.backgroundColor4,
@@ -41,7 +41,7 @@ const useStyles = createUseStyles( theme => ({
     fontWeight: '400',
     padding: '75px 0',
   },
-/**********     PROJCETS SECTION      **********/
+  /**********     PROJCETS SECTION      **********/
   projectsSection: {
     backgroundColor: theme.backgroundColor2,
   },
@@ -80,7 +80,7 @@ const useStyles = createUseStyles( theme => ({
     width: '270px',
     transform: 'translate(13%, 11px)',
   },
-/**********     GET-STARTED SECTION     **********/
+  /**********     GET-STARTED SECTION     **********/
   getStartedSection: {
     backgroundColor: theme.backgroundColor1,
     paddingTop: '60px',
@@ -91,8 +91,8 @@ const useStyles = createUseStyles( theme => ({
   getStartedHeading: {
     fontWeight: '500',
     fontSize: '36px',
-    margin: '0', 
-    marginBottom: '30px', 
+    margin: '0',
+    marginBottom: '30px',
   },
   getStartedBtn: {
     display: 'inline-block',
@@ -107,7 +107,7 @@ const useStyles = createUseStyles( theme => ({
     outline: 'none',
     cursor: 'pointer',
   },
-/**********     MEDIA-QUERIES     **********/
+  /**********     MEDIA-QUERIES     **********/
   '@media (max-width: 672px)': {
     projectsContainer: {
       paddingBottom: '100px'
