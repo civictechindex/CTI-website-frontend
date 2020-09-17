@@ -48,9 +48,15 @@ const Header = () => {
             <Link to='/adding-projects-to-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Adding Projects to the Index</Link>
           </div>
         </div>
+
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Contributors</Link>
+          <Link to='/contributors/all' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Contributors</Link>
+          <div className={classes.subLinksContainer}>
+            <Link to='/contributors/affiliated' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Affiliated</Link>
+            <Link to='/contributors/non-affiliated' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Non-Affiliated</Link>
+          </div>
         </div>
+        
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             Radical Collaboration
