@@ -172,7 +172,7 @@ docker-compose up
 
 ## Step 5: Change to a new branch
 
-Create a new branch for each issue you work on. Doing all your work on topic branches leaves your repository's main branch (named `master`) unmodified and greatly simplifies keeping your fork in sync with the main project.
+Create a new branch for each issue you work on. Doing all your work on topic branches leaves your repository's main branch (named `main`) unmodified and greatly simplifies keeping your fork in sync with the main project.
 
 a) Check current branch
 
@@ -182,7 +182,7 @@ The `git branch` command will let you know what branch you are in, and what bran
 git branch
 ```
 
-You will see a list of all of your branches. There will be a star (`*`) next to the branch that you are currently in. By default you should start on the `master` branch.
+You will see a list of all of your branches. There will be a star (`*`) next to the branch that you are currently in. By default you should start on the `main` branch.
 
 b) Create a new branch where you will work on your issue
 
@@ -266,12 +266,12 @@ Unpacking objects: 100% (11/11), 8.25 KiB | 402.00 KiB/s, done.
 From https://github.com/CTI-website-frontend/website
  + 770d667...14f9f46 Bonnie     -> CTI-website-frontend/Bonnie  (forced update)
  * [new branch]      bonnie     -> CTI-website-frontend/bonnie
-   5773ebe..0c86ecd  master   -> CTI-website-frontend/master
+   5773ebe..0c86ecd  main   -> CTI-website-frontend/main
 ```
 
 You can safely ignore changes in other issue branches, such as
-`bonnie` above. But if you see changes in master, as in
-`5773ebe..0c86ecd  master   -> CTI-website-frontend/master`, you should
+`bonnie` above. But if you see changes in main, as in
+`5773ebe..0c86ecd  main   -> CTI-website-frontend/main`, you should
 incorporate those changes into your repository before merging or
 rebasing your issue branch. Use the [instructions below](#incorporating-changes-from-upstream)
 to bring your fork up to date with the main repository.
@@ -280,7 +280,7 @@ to bring your fork up to date with the main repository.
 ### Incorporating changes from upstream
 
 Your fork of this repository on GitHub, and your local clone of that fork, will
-get out of sync with this (upstream) repository from time to time.  (That's what has happend when you see something like "This branch is 1 commit behind CTI-website-frontend:master" on the github website version of your CTI-website-frontend repository.)
+get out of sync with this (upstream) repository from time to time.  (That's what has happend when you see something like "This branch is 1 commit behind CTI-website-frontend:main" on the github website version of your CTI-website-frontend repository.)
 
 One way to keep your fork up to date with this repository is to follow
 these instruction: [Syncing your fork to the original repository via the browser](https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser)
@@ -289,50 +289,50 @@ You can also update your fork via the local clone of your fork, using
 these instructions. Assuming you have a local clone with remotes
 `upstream` (this repo) and `origin` (your GitHub fork of this repo):
 
-First, you will need to create a local branch which tracks upstream/master.  You will only need to do this once; you do not need to do this every time you want to incorporate upstream changes. 
+First, you will need to create a local branch which tracks upstream/main.  You will only need to do this once; you do not need to do this every time you want to incorporate upstream changes. 
 
 Run the following two commands: 
 
 ```bash
 git fetch upstream
-git checkout -b upstream-master --track upstream/master
+git checkout -b upstream-main --track upstream/main
 ```
 
-If you have already created the branch upstream-master, the following commands will incorporate upstream changes: 
+If you have already created the branch upstream-main, the following commands will incorporate upstream changes: 
 
 ```bash
-git checkout upstream-master # Move to the branch you want to merge with. 
-git pull  # This updates your tracking branch to match the master branch in this repository
-git checkout master  # Move back to your master branch
-git merge upstream-master  # Merge to bring your master current. 
+git checkout upstream-main # Move to the branch you want to merge with. 
+git pull  # This updates your tracking branch to match the main branch in this repository
+git checkout main  # Move back to your main branch
+git merge upstream-main  # Merge to bring your main current. 
 ```
-If you do all your work on topic branches (as suggested above) and keep master free of local modifications, this merge should apply cleanly.
+If you do all your work on topic branches (as suggested above) and keep main free of local modifications, this merge should apply cleanly.
 
 Then push the merge changes to your GitHub fork:  
 
 ```bash
 git push
 ```
-If you go to your online github repository this should remove the message "This branch is x commit behind CTI-website-frontend:master".
+If you go to your online github repository this should remove the message "This branch is x commit behind CTI-website-frontend:main".
 
 ### Incorporating changes into your topic branch
 
 To incorporate these updates from the main GitHub repository into your
-topic branch, you can 'rebase' your branch onto your updated master
+topic branch, you can 'rebase' your branch onto your updated main
 branch. NOTE you should only rebase if you have never pushed your
 topic branch to GitHub (or shared it with another collaborator). The name 'fix-logo-width-311' below should be replaced with the name of your branch in the following example, as usual.
 
 ```bash
 git checkout fix-logo-width-311
-git rebase master
+git rebase main
 ```
 
 If you receive warnings about conflicts, abort the rebase with `git
-rebase --abort` and instead merge master into your branch.
+rebase --abort` and instead merge main into your branch.
 
 ```bash
 git checkout fix-logo-width-311
-git merge master
+git merge main
 ```
 
 ## Step 7 Complete the pull request
