@@ -48,7 +48,14 @@ const useStyles = createUseStyles( theme => ({
     fontSize: '1vw',
     fontWeight: '500',
     padding: '15px',
+    transition: 'background-color 0.25s',
     width: '15%',
+    '&:active': {
+      boxShadow: '1px 1px 10px #333 inset ',
+    },
+    '&:hover': {
+      backgroundColor: '#00ccff',
+    },
   },
 
   notifyInput: {
@@ -56,10 +63,11 @@ const useStyles = createUseStyles( theme => ({
     border: 'none',
     borderRadius: '25px 0px 0px 25px',
     fontSize: '1vw',
+    letterSpacing: '0.5px',
     padding: '15px',
     width: '40%',
     '&:focus': {
-      boxShadow: '1px 1px 10px #333 inset',
+      boxShadow: '5px 10px 8px #888',
       outline: 'none',
     },
     '&::placeholder': {
