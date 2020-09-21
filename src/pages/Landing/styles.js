@@ -13,8 +13,29 @@ const useStyles = createUseStyles( theme => ({
     width: '60%',
   },
 
+  followAndVolunteerSection: {
+    display: 'flex',
+    fontFamily: theme.primaryFontFamily,
+    justifyContent: 'space-around',
+    margin: '30px auto',
+    textAlign: 'center',
+    width: '60%',
+  },
+
+  followContainer: {
+    backgroundColor: 'lightskyblue', // Temporary: Remove after styling
+    boxSizing: 'border-box',
+    display: 'inline-block',
+    width: '33%',
+  },
+
+  followIcons: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+
   headerSection: {
-    color: theme.primaryTextColor,
+    color: theme.primaryTextColor, // [CHANGE]: Change style based on figma recommendation
     fontFamily: theme.primaryFontFamily,
     margin: '0 auto',
     textAlign: 'center',
@@ -22,7 +43,7 @@ const useStyles = createUseStyles( theme => ({
   },
 
   landingHeader: {
-    color: 'gold',
+    color: 'gold', // [CHANGE]: Change style based on figma recommendation
     fontSize: '3vw',
   },
 
@@ -40,7 +61,7 @@ const useStyles = createUseStyles( theme => ({
   },
 
   notifyButton: {
-    backgroundColor: '#00b6e3',
+    backgroundColor: '#00b6e3', // [CHANGE]: Change style based on figma recommendation
     borderRadius: '0px 25px 25px 0px',
     color: 'white',
     cursor: 'pointer',
@@ -48,18 +69,18 @@ const useStyles = createUseStyles( theme => ({
     fontSize: '1vw',
     fontWeight: '500',
     padding: '15px',
-    transition: 'background-color 0.25s',
+    transition: 'background-color 0.25s', // [CHANGE]: Change style based on figma recommendation
     width: '15%',
     '&:active': {
-      boxShadow: '1px 1px 10px #333 inset ',
+      boxShadow: '1px 1px 10px #333 inset ', // [CHANGE]: Change style based on figma recommendation
     },
     '&:hover': {
-      backgroundColor: '#00ccff',
+      backgroundColor: '#00ccff', // [CHANGE]: Change style based on figma recommendation
     },
   },
 
   notifyInput: {
-    backgroundColor: 'lightgoldenrodyellow',
+    backgroundColor: 'lightgoldenrodyellow', // Change to white after background of body changes from white
     border: 'none',
     borderRadius: '25px 0px 0px 25px',
     fontSize: '1vw',
@@ -67,13 +88,47 @@ const useStyles = createUseStyles( theme => ({
     padding: '15px',
     width: '40%',
     '&:focus': {
-      boxShadow: '5px 10px 8px #888',
-      outline: 'none',
+      boxShadow: '5px 10px 8px #888', // [CHANGE]: Change style based on figma recommendation
+      outline: 'none', // [CHANGE]: Change style based on figma recommendation
     },
     '&::placeholder': {
       color: 'black',
       opacity: '1',
     },
+  },
+
+  twitterIcon: {
+    transform: 'translate(0, 3px)',
+  },
+
+  volunteerButton: {
+    backgroundColor: '#00b6e3', // [CHANGE]: Change style based on figma recommendation
+    borderRadius: '20px',
+    color: 'white',
+    cursor: 'pointer',
+    display: 'inline-block',
+    fontSize: '1.2vw',
+    margin: '0',
+    padding: '10px',
+    transition: 'background-color 0.25s', // [CHANGE]: Change style based on figma recommendation
+    width: '80%',
+    '&:active': {
+      boxShadow: '1px 1px 10px #333 inset ', // [CHANGE]: Change style based on figma recommendation
+    },
+    '&:hover': {
+      backgroundColor: '#00ccff', // [CHANGE]: Change style based on figma recommendation
+    },
+  },
+
+  volunteerContainer: {
+    backgroundColor: 'lightcoral', // Temporary: Remove after styling
+    display: 'inline-block',
+    width: '33%',
+  },
+
+  volunteerHeader: {
+    fontSize: '1.7vw',
+    margin: '10px 0px 20px 0px',
   },
 }));
 
