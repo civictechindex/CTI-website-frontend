@@ -19,7 +19,7 @@ const useStyles = createUseStyles( theme => ({
     display: 'flex',
     fontFamily: theme.primaryFontFamily,
     justifyContent: 'space-around',
-    margin: '30px auto',
+    margin: '50px auto',
     textAlign: 'center',
     width: '60%',
   },
@@ -45,7 +45,7 @@ const useStyles = createUseStyles( theme => ({
 
   landingContainer: {
     backgroundColor: '#004364',
-    padding: '10px 0px',
+    padding: '10px 0px', // This is needed so it hugs header and footer
   },
 
   landingHeader: {
@@ -64,6 +64,7 @@ const useStyles = createUseStyles( theme => ({
     fontFamily: theme.primaryFontFamily,
     fontSize: '1.8vw',
     fontWeight: '500',
+    marginBottom: '1.5vw',
     width: '100%',
   },
 
