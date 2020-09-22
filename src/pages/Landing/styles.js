@@ -110,7 +110,7 @@ const useStyles = createUseStyles( theme => ({
   },
 
   volunteerButton: {
-    backgroundColor: '#0CB2E7', // [CHANGE]: Change style based on figma recommendation
+    backgroundColor: '#0CB2E7',
     borderRadius: '20px',
     cursor: 'pointer',
     display: 'inline-block',
