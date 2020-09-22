@@ -94,9 +94,10 @@ const useStyles = createUseStyles( theme => ({
     fontSize: '1vw',
     letterSpacing: '0.5px',
     padding: '15px',
+  transition: 'box-shadow 0.25s',
     width: '40%',
     '&:focus': {
-      boxShadow: '5px 10px 8px #888', // [CHANGE]: Change style based on figma recommendation
+      boxShadow: '0px 0px 0px 4px #0F1D2F inset;', // [CHANGE]: Change style based on figma recommendation
       outline: 'none', // [CHANGE]: Change style based on figma recommendation
     },
     '&::placeholder': {
