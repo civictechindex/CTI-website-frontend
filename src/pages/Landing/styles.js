@@ -2,8 +2,10 @@ import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
   comingSoonHeader: {
-    fontFamily: theme.thirdFontFamily,
+    color: '#FEFEFE',
+    fontFamily: theme.primaryFontFamily,
     fontSize: '2vw',
+    fontWeight: 'normal',
     letterSpacing: '5px',
   },
 
@@ -23,8 +25,8 @@ const useStyles = createUseStyles( theme => ({
   },
 
   followContainer: {
-    backgroundColor: 'lightskyblue', // Temporary: Remove after styling
     boxSizing: 'border-box',
+    color: '#FEFEFE',
     display: 'inline-block',
     width: '33%',
   },
@@ -35,15 +37,19 @@ const useStyles = createUseStyles( theme => ({
   },
 
   headerSection: {
-    color: theme.primaryTextColor, // [CHANGE]: Change style based on figma recommendation
     fontFamily: theme.primaryFontFamily,
     margin: '0 auto',
     textAlign: 'center',
     width: '60%',
   },
 
+  landingContainer: {
+    backgroundColor: '#004364',
+    padding: '10px 0px',
+  },
+
   landingHeader: {
-    color: 'gold', // [CHANGE]: Change style based on figma recommendation
+    color: '#FFE06D',
     fontSize: '3vw',
   },
 
@@ -54,6 +60,7 @@ const useStyles = createUseStyles( theme => ({
   },
 
   notificationHeader: {
+    color: '#FEFEFE',
     fontFamily: theme.primaryFontFamily,
     fontSize: '1.8vw',
     fontWeight: '500',
@@ -61,9 +68,9 @@ const useStyles = createUseStyles( theme => ({
   },
 
   notifyButton: {
-    backgroundColor: '#00b6e3', // [CHANGE]: Change style based on figma recommendation
+    backgroundColor: '#0CB2E7',
     borderRadius: '0px 25px 25px 0px',
-    color: 'white',
+    color: '#FEFEFE',
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: '1vw',
@@ -80,7 +87,7 @@ const useStyles = createUseStyles( theme => ({
   },
 
   notifyInput: {
-    backgroundColor: 'lightgoldenrodyellow', // Change to white after background of body changes from white
+    backgroundColor: '#FEFEFE',
     border: 'none',
     borderRadius: '25px 0px 0px 25px',
     fontSize: '1vw',
@@ -102,9 +109,8 @@ const useStyles = createUseStyles( theme => ({
   },
 
   volunteerButton: {
-    backgroundColor: '#00b6e3', // [CHANGE]: Change style based on figma recommendation
+    backgroundColor: '#0CB2E7', // [CHANGE]: Change style based on figma recommendation
     borderRadius: '20px',
-    color: 'white',
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: '1.2vw',
@@ -121,7 +127,7 @@ const useStyles = createUseStyles( theme => ({
   },
 
   volunteerContainer: {
-    backgroundColor: 'lightcoral', // Temporary: Remove after styling
+    color: '#FEFEFE',
     display: 'inline-block',
     width: '33%',
   },

@@ -5,7 +5,7 @@ const Landing = () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.landingContainer}>
 
       <section className={classes.headerSection}>
         <h2 className={classes.landingHeader}>Join a worldwide movement to catalog every open source civic tech project</h2>
