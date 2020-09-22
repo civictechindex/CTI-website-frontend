@@ -91,6 +91,7 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: '#FEFEFE',
     border: 'none',
     borderRadius: '25px 0px 0px 25px',
+    fontFamily: theme.primaryFontFamily,
     fontSize: '1vw',
     letterSpacing: '0.5px',
     padding: '15px',
