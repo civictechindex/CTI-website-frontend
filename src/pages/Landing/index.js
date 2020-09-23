@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import useStyles from './styles.js';
 
 const Landing = () => {
   const classes = useStyles();
+  const [inputFieldValue, setInputValue] = useState('');
 
   return (
     <div className={classes.landingContainer}>
@@ -15,7 +16,7 @@ const Landing = () => {
         <h3 className={classes.comingSoonHeader}>COMING SOON</h3>
         <div className={classes.notificationContainer}>
           <h4 className={classes.notificationHeader}>Be the First to Know when the Civic Tech Index launches</h4>
-          <input className={classes.notifyInput} name="email" placeholder="Enter your email address" type="text"></input>
+          <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
           <div className={classes.notifyButton}>Notify Me</div>
         </div>
       </section>
