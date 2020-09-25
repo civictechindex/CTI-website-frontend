@@ -24,7 +24,7 @@ const Landing = () => {
       <section className={classes.followAndVolunteerSection}>
         <div className={classes.volunteerContainer}>
           <h4 className={classes.volunteerHeader}>Want to join the<br/>Civic Tech Index team?</h4>
-          <div className={classes.volunteerButton}>Volunteer</div>
+          <a className={classes.volunteerLink} href="https://www.hackforla.org/projects/civic-tech-index"><div className={classes.volunteerButton}>Volunteer</div></a>
         </div>
         <div className={classes.followContainer}>
           <h4 className={classes.volunteerHeader}>Follow us for<br/>launch updates</h4>

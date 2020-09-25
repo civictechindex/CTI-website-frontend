@@ -139,6 +139,10 @@ const useStyles = createUseStyles( theme => ({
     fontSize: '1.7vw',
     margin: '10px 0px 20px 0px',
   },
+
+  volunteerLink: {
+    color: 'inherit',
+  },
 }));
 
 export default useStyles;
