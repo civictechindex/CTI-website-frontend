@@ -45,6 +45,8 @@ const useStyles = createUseStyles( theme => ({
 
   landingContainer: {
     backgroundColor: '#004364',
+    backgroundImage: 'url(images/world-view.png)',
+    backgroundSize: 'cover',
     padding: '10px 0px', // This is needed so it hugs header and footer
   },
 
