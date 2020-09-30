@@ -34,6 +34,9 @@ const useStyles = createUseStyles( theme => ({
   followIcons: {
     display: 'flex',
     justifyContent: 'space-evenly',
+    '& a:hover': {
+      filter: 'invert(20%) sepia(57%) saturate(6000%) hue-rotate(182deg) brightness(114%) contrast(84%)',
+    }
   },
 
   headerSection: {
@@ -72,20 +75,22 @@ const useStyles = createUseStyles( theme => ({
 
   notifyButton: {
     backgroundColor: '#0CB2E7',
-    borderRadius: '0px 25px 25px 0px',
+    borderRadius: '25px',
     color: '#FEFEFE',
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: '1vw',
     fontWeight: '500',
+    right: '20px',
     padding: '15px',
+    position: 'relative',
     transition: 'background-color 0.25s', // [CHANGE]: Change style based on figma recommendation
     width: '15%',
     '&:active': {
       boxShadow: '1px 1px 10px #333 inset ', // [CHANGE]: Change style based on figma recommendation
     },
     '&:hover': {
-      backgroundColor: '#00ccff', // [CHANGE]: Change style based on figma recommendation
+      backgroundColor: '#0899c7', // [CHANGE]: Change style based on figma recommendation
     },
   },
 
@@ -100,7 +105,6 @@ const useStyles = createUseStyles( theme => ({
   transition: 'box-shadow 0.25s',
     width: '40%',
     '&:focus': {
-      boxShadow: '0px 0px 0px 4px #0F1D2F inset;', // [CHANGE]: Change style based on figma recommendation
       outline: 'none', // [CHANGE]: Change style based on figma recommendation
     },
     '&::placeholder': {
@@ -127,7 +131,7 @@ const useStyles = createUseStyles( theme => ({
       boxShadow: '1px 1px 10px #333 inset ', // [CHANGE]: Change style based on figma recommendation
     },
     '&:hover': {
-      backgroundColor: '#00ccff', // [CHANGE]: Change style based on figma recommendation
+      backgroundColor: '#0899c7', // [CHANGE]: Change style based on figma recommendation
     },
   },
 
