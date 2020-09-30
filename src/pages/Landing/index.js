@@ -1,9 +1,23 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import useStyles from './styles.js';
 
 const Landing = () => {
   const classes = useStyles();
   const [inputFieldValue, setInputValue] = useState('');
+  const postUserEmail = () => {
+    axios.post('INSERT_API_URL_HERE',
+      {
+        email_address: inputFieldValue,
+        notification_type: "string",
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className={classes.landingContainer}>
@@ -17,7 +31,7 @@ const Landing = () => {
         <div className={classes.notificationContainer}>
           <h4 className={classes.notificationHeader}>Be the First to Know when the Civic Tech Index launches</h4>
           <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
-          <div className={classes.notifyButton}>Notify Me</div>
+          <div className={classes.notifyButton} onClick={postUserEmail}>Notify Me</div>
         </div>
       </section>
 
