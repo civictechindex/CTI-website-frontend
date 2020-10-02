@@ -56,6 +56,7 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: '#004364',
     backgroundImage: 'url(images/world-view.png)',
     backgroundSize: 'cover',
+    minHeight: '100vh',
     padding: '10px 0px', // This is needed so it hugs header and footer
   },
 
