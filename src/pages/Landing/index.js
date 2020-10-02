@@ -5,23 +5,48 @@ import useStyles from './styles.js';
 const Landing = () => {
   const classes = useStyles();
   const [inputFieldValue, setInputValue] = useState('');
+  const [showSubmit, setSubmit] = useState('showForm');
+  const [showMessage, setMessage] = useState('');
+
+  const formSwitch = param => {
+    switch(param) {
+      case 'showForm':
+        return <div>
+          <h4 className={classes.notificationHeader}>Be the First to Know when the Civic Tech Index launches</h4>
+          <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
+          <div className={classes.notifyButton} onClick={postUserEmail}>Notify Me</div>
+        </div>;
+      case '':
+        return null;
+    }
+  }
+
+  const messageSwitch = param => {
+    switch(param) {
+      case 'success':
+        return <h4 className={classes.submitMessage}>Thanks for subscribing!<br/>We will be in touch soon.</h4>
+      case 'error':
+        return <h4 className={classes.errorMessage}>The email address you've submitted was invalid.<br/>Please check the format and resubmit.</h4>
+    }
+  }
+
   const postUserEmail = () => {
-    axios.post('INSERT_API_URL_HERE',
+    axios.post(process.env.REACT_APP_CTI_SUBSCRIBE_URL,
       {
         email_address: inputFieldValue,
         notification_type: "string",
       })
       .then((response) => {
-        console.log(response);
+        setSubmit('');
+        setMessage('success');
       })
       .catch((error) => {
-        console.log(error);
+        setMessage('error');
       });
   };
 
   return (
     <div className={classes.landingContainer}>
-
       <section className={classes.headerSection}>
         <h2 className={classes.landingHeader}>Join a worldwide movement to catalog every open source civic tech project</h2>
       </section>
@@ -29,9 +54,8 @@ const Landing = () => {
       <section className={classes.comingSoonSection}>
         <h3 className={classes.comingSoonHeader}>COMING SOON</h3>
         <div className={classes.notificationContainer}>
-          <h4 className={classes.notificationHeader}>Be the First to Know when the Civic Tech Index launches</h4>
-          <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
-          <div className={classes.notifyButton} onClick={postUserEmail}>Notify Me</div>
+          {formSwitch(showSubmit)}
+          {messageSwitch(showMessage)}
         </div>
       </section>
 

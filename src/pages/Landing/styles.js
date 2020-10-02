@@ -15,6 +15,12 @@ const useStyles = createUseStyles( theme => ({
     width: '60%',
   },
 
+  errorMessage: {
+    color: 'lightcoral',
+    fontSize: '2vw',
+    fontWeight: '500',
+  },
+
   followAndVolunteerSection: {
     display: 'flex',
     fontFamily: theme.primaryFontFamily,
@@ -111,6 +117,12 @@ const useStyles = createUseStyles( theme => ({
       color: 'black',
       opacity: '1',
     },
+  },
+
+  submitMessage: {
+    color: '#FEFEFE',
+    fontSize: '2vw',
+    fontWeight: '500',
   },
 
   twitterIcon: {
