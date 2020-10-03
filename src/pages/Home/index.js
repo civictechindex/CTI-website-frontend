@@ -1,3 +1,5 @@
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import React from 'react'
 import useStyles from './styles.js'
 
@@ -5,6 +7,8 @@ const Home = () => {
   const classes = useStyles()
 
   return (
+    <>
+    <Header />
     <div className={classes.page}>
     <section className={classes.mainSection}>
       <h1 className={classes.heading}>Join a worldwide movement to catalog every open source civic tech project.</h1>
@@ -72,6 +76,8 @@ const Home = () => {
       <button className={`${classes.getStartedBtn} ${classes.black}`}>Tag Your Project</button>
     </section>
     </div>
+    <Footer />
+    </>
   )
 }
 
