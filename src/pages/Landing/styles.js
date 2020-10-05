@@ -180,9 +180,23 @@ const useStyles = createUseStyles( theme => ({
   },
 
   '@media screen and (max-width: 700px)': {
+    comingSoonHeader: {
+      fontSize: '17px',
+      letterSpacing: '3px',
+    },
+
+    comingSoonSection: {
+      width: '90%',
+    },
+
+    errorMessage: {
+      fontSize: '3.5vw',
+    },
+
     followAndVolunteerSection: {
       flexDirection: 'column',
       margin: '30px auto',
+      width: '90%',
     },
 
     followContainer: {
@@ -197,7 +211,48 @@ const useStyles = createUseStyles( theme => ({
       },
     },
 
+    footerSection: {
+      fontSize: '12px',
+      width: '90%',
+    },
+
+    headerSection: {
+      width: '90%',
+      '& img': {
+        maxWidth: '75%',
+      }
+    },
+
+    landingHeader: {
+      fontSize: '26px',
+      width: '100%',
+    },
+
+    notificationHeader: {
+      fontSize: '13px',
+      marginBottom: '15px',
+    },
+
+    notifyButton: {
+      fontSize: '10px',
+      right: '2.5vw',
+      width: '22%',
+    },
+
+    notifyInput: {
+      fontSize: '10px',
+      left: '2.5vw',
+      padding: '15px 25px 15px 15px',
+      position: 'relative',
+      width: '50%',
+    },
+
+    submitMessage: {
+      fontSize: '3.5vw',
+    },
+
     volunteerButton: {
+      fontSize: '10px',
       width: '25%',
     },
 
@@ -205,6 +260,27 @@ const useStyles = createUseStyles( theme => ({
       display: 'block',
       marginBottom: '15px',
       width: '100%',
+    },
+
+    volunteerHeader: {
+      fontSize: '14px',
+    },
+  },
+
+  '@media screen and (max-width: 330px)': {
+    notifyButton: {
+      fontSize: '10px',
+      right: '10px',
+    },
+
+    notifyInput: {
+      fontSize: '10px',
+      left: '10px',
+      position: 'relative',
+    },
+
+    submitMessage: {
+      fontSize: '13px',
     }
   },
 }));
