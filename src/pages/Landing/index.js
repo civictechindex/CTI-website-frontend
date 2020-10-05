@@ -13,8 +13,10 @@ const Landing = () => {
       case 'showForm':
         return <div>
           <h4 className={classes.notificationHeader}>Be the First to Know when the Civic Tech Index launches</h4>
-          <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
-          <div className={classes.notifyButton} onClick={postUserEmail}>Notify Me</div>
+          <form onSubmit={postUserEmail}>
+            <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
+            <div className={classes.notifyButton} onClick={postUserEmail}>Notify Me</div>
+          </form>
         </div>;
       case '':
         return null;
@@ -32,7 +34,8 @@ const Landing = () => {
     }
   }
 
-  const postUserEmail = () => {
+  const postUserEmail = (event) => {
+    event.preventDefault();
     axios.post(process.env.REACT_APP_CTI_SUBSCRIBE_URL,
       {
         email_address: inputFieldValue,
