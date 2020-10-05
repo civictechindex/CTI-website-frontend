@@ -178,6 +178,35 @@ const useStyles = createUseStyles( theme => ({
   volunteerLink: {
     color: 'inherit',
   },
+
+  '@media screen and (max-width: 700px)': {
+    followAndVolunteerSection: {
+      flexDirection: 'column',
+      margin: '30px auto',
+    },
+
+    followContainer: {
+      display: 'block',
+      width: '100%',
+    },
+
+    followIcons: {
+      justifyContent: 'center',
+      '& a': {
+        margin: '0 5px',
+      },
+    },
+
+    volunteerButton: {
+      width: '25%',
+    },
+
+    volunteerContainer: {
+      display: 'block',
+      marginBottom: '15px',
+      width: '100%',
+    }
+  },
 }));
 
 export default useStyles;
