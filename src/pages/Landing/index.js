@@ -23,10 +23,12 @@ const Landing = () => {
 
   const messageSwitch = param => {
     switch(param) {
-      case 'success':
-        return <h4 className={classes.submitMessage}>Thanks for subscribing!<br/>We will be in touch soon.</h4>
+      case 'duplicate':
+        return <h4 className={classes.errorMessage}>That email address has already been registered with us.</h4>
       case 'error':
         return <h4 className={classes.errorMessage}>The email address you've submitted was invalid.<br/>Please check the format and resubmit.</h4>
+      case 'success':
+        return <h4 className={classes.submitMessage}>Thanks for subscribing!<br/>We will be in touch soon.</h4>
     }
   }
 
@@ -41,7 +43,11 @@ const Landing = () => {
         setMessage('success');
       })
       .catch((error) => {
-        setMessage('error');
+        if (error.response.data.email_address) {
+          setMessage('error');
+        } else {
+          setMessage('duplicate');
+        }
       });
   };
 
