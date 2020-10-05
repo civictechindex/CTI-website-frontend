@@ -45,11 +45,27 @@ const useStyles = createUseStyles( theme => ({
     }
   },
 
+  footerSection: {
+    color: "#FEFEFE",
+    fontFamily: theme.primaryFontFamily,
+    fontSize: 'calc(16px + 0.1vw)',
+    lineHeight: 'calc(16px + 0.8vw)',
+    margin: '0 auto',
+    textAlign: 'center',
+    width: '60%',
+    '& a': {
+      color: '#0CB2E7',
+    },
+  },
+
   headerSection: {
     fontFamily: theme.primaryFontFamily,
     margin: '0 auto',
     textAlign: 'center',
     width: '60%',
+    '& img': {
+      maxWidth: '100%',
+    },
   },
 
   landingContainer: {
