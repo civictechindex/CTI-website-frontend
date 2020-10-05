@@ -6,7 +6,7 @@ const useStyles = createUseStyles( theme => ({
     fontFamily: theme.primaryFontFamily,
     fontSize: '2vw',
     fontWeight: 'normal',
-    letterSpacing: '5px',
+    letterSpacing: '0.4vw',
   },
 
   comingSoonSection: {
