@@ -6,7 +6,7 @@ const useStyles = createUseStyles( theme => ({
     fontFamily: theme.primaryFontFamily,
     fontSize: '2vw',
     fontWeight: 'normal',
-    letterSpacing: '5px',
+    letterSpacing: '0.4vw',
   },
 
   comingSoonSection: {
@@ -45,11 +45,27 @@ const useStyles = createUseStyles( theme => ({
     }
   },
 
+  footerSection: {
+    color: "#FEFEFE",
+    fontFamily: theme.primaryFontFamily,
+    fontSize: 'calc(16px + 0.1vw)',
+    lineHeight: 'calc(16px + 0.8vw)',
+    margin: '0 auto',
+    textAlign: 'center',
+    width: '60%',
+    '& a': {
+      color: '#0CB2E7',
+    },
+  },
+
   headerSection: {
     fontFamily: theme.primaryFontFamily,
     margin: '0 auto',
     textAlign: 'center',
     width: '60%',
+    '& img': {
+      maxWidth: '100%',
+    },
   },
 
   landingContainer: {
@@ -82,15 +98,13 @@ const useStyles = createUseStyles( theme => ({
 
   notifyButton: {
     backgroundColor: '#0CB2E7',
-    borderRadius: '25px',
+    borderRadius: '0px 7px 7px 0px',
     color: '#FEFEFE',
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: '1vw',
     fontWeight: '500',
-    right: '20px',
     padding: '15px',
-    position: 'relative',
     transition: 'background-color 0.25s', // [CHANGE]: Change style based on figma recommendation
     width: '15%',
     '&:active': {
@@ -104,7 +118,7 @@ const useStyles = createUseStyles( theme => ({
   notifyInput: {
     backgroundColor: '#FEFEFE',
     border: 'none',
-    borderRadius: '25px 0px 0px 25px',
+    borderRadius: '7px 0px 0px 7px',
     fontFamily: theme.primaryFontFamily,
     fontSize: '1vw',
     letterSpacing: '0.5px',
@@ -132,7 +146,7 @@ const useStyles = createUseStyles( theme => ({
 
   volunteerButton: {
     backgroundColor: '#0CB2E7',
-    borderRadius: '20px',
+    borderRadius: '7px',
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: '1.2vw',
@@ -161,6 +175,108 @@ const useStyles = createUseStyles( theme => ({
 
   volunteerLink: {
     color: 'inherit',
+  },
+
+  '@media screen and (max-width: 700px)': {
+    comingSoonHeader: {
+      fontSize: '17px',
+      letterSpacing: '3px',
+    },
+
+    comingSoonSection: {
+      width: '90%',
+    },
+
+    errorMessage: {
+      fontSize: '3.5vw',
+    },
+
+    followAndVolunteerSection: {
+      flexDirection: 'column',
+      margin: '30px auto',
+      width: '90%',
+    },
+
+    followContainer: {
+      display: 'block',
+      width: '100%',
+    },
+
+    followIcons: {
+      justifyContent: 'center',
+      '& a': {
+        margin: '0 5px',
+      },
+    },
+
+    footerSection: {
+      fontSize: '12px',
+      width: '90%',
+    },
+
+    headerSection: {
+      width: '90%',
+      '& img': {
+        maxWidth: '75%',
+      }
+    },
+
+    landingHeader: {
+      fontSize: '26px',
+      width: '100%',
+    },
+
+    notificationHeader: {
+      fontSize: '13px',
+      marginBottom: '15px',
+    },
+
+    notifyButton: {
+      fontSize: '10px',
+      width: '22%',
+    },
+
+    notifyInput: {
+      fontSize: '10px',
+      padding: '15px 25px 15px 15px',
+      width: '50%',
+    },
+
+    submitMessage: {
+      fontSize: '3.5vw',
+    },
+
+    volunteerButton: {
+      fontSize: '10px',
+      width: '25%',
+    },
+
+    volunteerContainer: {
+      display: 'block',
+      marginBottom: '15px',
+      width: '100%',
+    },
+
+    volunteerHeader: {
+      fontSize: '14px',
+    },
+  },
+
+  '@media screen and (max-width: 330px)': {
+    notifyButton: {
+      fontSize: '10px',
+      right: '10px',
+    },
+
+    notifyInput: {
+      fontSize: '10px',
+      left: '10px',
+      position: 'relative',
+    },
+
+    submitMessage: {
+      fontSize: '13px',
+    }
   },
 }));
 
