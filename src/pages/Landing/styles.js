@@ -98,15 +98,13 @@ const useStyles = createUseStyles( theme => ({
 
   notifyButton: {
     backgroundColor: '#0CB2E7',
-    borderRadius: '25px',
+    borderRadius: '0px 7px 7px 0px',
     color: '#FEFEFE',
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: '1vw',
     fontWeight: '500',
-    right: '20px',
     padding: '15px',
-    position: 'relative',
     transition: 'background-color 0.25s', // [CHANGE]: Change style based on figma recommendation
     width: '15%',
     '&:active': {
@@ -120,7 +118,7 @@ const useStyles = createUseStyles( theme => ({
   notifyInput: {
     backgroundColor: '#FEFEFE',
     border: 'none',
-    borderRadius: '25px 0px 0px 25px',
+    borderRadius: '7px 0px 0px 7px',
     fontFamily: theme.primaryFontFamily,
     fontSize: '1vw',
     letterSpacing: '0.5px',
@@ -148,7 +146,7 @@ const useStyles = createUseStyles( theme => ({
 
   volunteerButton: {
     backgroundColor: '#0CB2E7',
-    borderRadius: '20px',
+    borderRadius: '7px',
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: '1.2vw',
@@ -235,15 +233,12 @@ const useStyles = createUseStyles( theme => ({
 
     notifyButton: {
       fontSize: '10px',
-      right: '2.5vw',
       width: '22%',
     },
 
     notifyInput: {
       fontSize: '10px',
-      left: '2.5vw',
       padding: '15px 25px 15px 15px',
-      position: 'relative',
       width: '50%',
     },
 
