@@ -26,7 +26,7 @@ const Header = () => {
       line2.current.className = classes.burgerLine
       line3.current.className = classes.burgerLine
     }
-    return
+    // return
   })
   return (
     <nav className={classes.nav}>

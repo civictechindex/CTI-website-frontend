@@ -3,8 +3,6 @@ import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles(theme => ({
   footerContainer: {
-    //testing without footer(sean)
-    // display: 'none',
     width: '100%',
     backgroundColor: theme.footerBG,
     fontFamily: theme.primaryFontFamily,

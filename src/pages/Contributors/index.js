@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useStyle } from './styles.js';
 import axios from 'axios'
-import {Dropdown} from '../../components/Dropdown'
+import {Dropdown} from '../../components/Dropdown/Dropdown'
 import {DropdownThumbnail} from '../../components/DropdownThumbnail'
 
 export default function Contributors({ match }) {
@@ -115,7 +115,7 @@ export default function Contributors({ match }) {
                 <div className={classes.sectionContainer}>
                     <div className={classes.unaffiliated} tabIndex='0'>
                         <h2>Unaffiliated Contributors</h2>
-                        <img className={classes.dropdownArrowClosed} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='arrow for about link'  />
+                        <img className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='arrow for about link'  />
                     </div>
                     <div className={classes.thumbnailsContainer}>
                         {unaffiliatedOpen && (unAffiliatedOrgs.length ? <UnaffiliatedOpen unAffiliatedOrgs={unAffiliatedOrgs}/> : <h1>Loading...</h1>)}
@@ -126,7 +126,7 @@ export default function Contributors({ match }) {
                 <div className={classes.sectionContainer}>
                     <div className={classes.affiliated} tabIndex='0'>
                         <h2>Affiliated Contributors</h2>
-                        <img className={classes.dropdownArrowClosed} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='arrow for about link'  />
+                        <img className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='arrow for about link'  />
                     </div>
                     <div className={classes.thumbnailsContainer}>
                         {affiliatedOpen && (affiliatedOrgs.length ?
@@ -139,7 +139,7 @@ export default function Contributors({ match }) {
             </div>
             <div className={classes.callToAction2}>
                 <h1 style={{color:'#042D5F'}}>Want to add your organization?</h1>
-                <button className={classes.button}>Contact Us</button>
+                <a href="/"><button className={classes.button}>Contact Us</button></a>
             </div>
         </>
     )

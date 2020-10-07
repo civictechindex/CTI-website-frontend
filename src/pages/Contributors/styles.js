@@ -55,7 +55,8 @@ export const useStyle = createUseStyles(theme => ({
         color: '#004364',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        fontSize: '1.3rem'
     },
     affiliatedWrapper: {
         width: '100%',
@@ -69,19 +70,18 @@ export const useStyle = createUseStyles(theme => ({
         paddingRight: '1rem',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        fontSize: '1.3rem'
     },
     hidden: {
         display: 'none'
     },
 
-    dropdownArrowClosed: {
+    vectorIcon:{
+        width:'2%',
         '&:hover': {
             cursor: 'pointer',
         }
-    },
-    dropdownArrowOpen: {
-        cursor: 'pointer',
     },
     placeholder: {
         backgroundColor: 'white',
@@ -105,6 +105,9 @@ export const useStyle = createUseStyles(theme => ({
         border:'none',
         borderRadius:'20px',
         boxShadow: '0.1rem 0.1rem 10px #e0dede ',
+        '&:hover': {
+            cursor: 'pointer',
+        }
     },
     input: {
         width: '100%',
