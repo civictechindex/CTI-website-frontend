@@ -26,11 +26,14 @@ const setupJss = () => {
   const sheetsRegistry = new SheetsRegistry()
 
   const globalStyleSheet = jss.createStyleSheet(
-    {'@global': { 
-        body: { 
+    {
+      '@global': {
+        html: {
+          boxSizing: 'border-box',
           margin: '0',
         },
-    }}
+      }
+    }
   ).attach()
 
   sheetsRegistry.add(globalStyleSheet)

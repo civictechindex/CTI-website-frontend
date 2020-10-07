@@ -50,10 +50,13 @@ const Header = () => {
         </div>
 
         <div className={classes.linksContainer}>
-          <Link to='/contributors/all' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Contributors</Link>
+        <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
+            Contributors
+            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
+          </p>
           <div className={classes.subLinksContainer}>
             <Link to='/contributors/affiliated' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Affiliated</Link>
-            <Link to='/contributors/non-affiliated' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Non-Affiliated</Link>
+            <Link to='/contributors/unaffiliated' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Unaffiliated</Link>
           </div>
         </div>
         

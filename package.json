@@ -2,11 +2,11 @@
   "name": "website",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://test-civictechindexadmin.herokuapp.com",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-jss": "^10.1.1",
