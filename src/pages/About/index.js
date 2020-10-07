@@ -1,3 +1,5 @@
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import React from 'react'
 import useStyles from './styles.js'
 
@@ -5,6 +7,8 @@ const About = () => {
   const classes = useStyles()
 
   return (
+    <>
+    <Header />
     <main className={classes.main}>
       <section className={classes.headingSection}>
         <div className={classes.headingContainer}>
@@ -37,6 +41,8 @@ const About = () => {
         <button className={`${classes.getStartedBtn} ${classes.black}`}>Tag Your Project</button>
       </section>
     </main>
+    <Footer />
+    </>
   )
 }
 

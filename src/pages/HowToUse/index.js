@@ -1,3 +1,5 @@
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import useStyles from './styles.js'
@@ -6,6 +8,8 @@ const HowToUse = () => {
   const classes = useStyles()
 
   return (
+    <>
+    <Header />
     <main className={classes.main}>
     <section className={classes.projectsSection}>
       <div className={classes.projectsContainer}>
@@ -44,6 +48,8 @@ const HowToUse = () => {
       <button className={`${classes.contactUsBtn} ${classes.black}`}>Contact Us</button>
     </section>
     </main>
+    <Footer />
+    </>
   )
 }
 
