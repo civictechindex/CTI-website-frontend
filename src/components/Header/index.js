@@ -13,7 +13,7 @@ const Header = () => {
 
 
   useEffect(() => {
-    if(isBurgerOpen) {
+    if (isBurgerOpen) {
       nav.current.className = `${classes.flexContainer} ${classes.showMobileNav}`
       burgerContent.current.className = `${classes.burger} ${classes.transformBurger}`
       line1.current.className = `${classes.burgerLine} ${classes.transformLine1}`
@@ -32,7 +32,7 @@ const Header = () => {
     <nav className={classes.nav}>
       <div className={classes.background}></div>
       <Link to='/' onClick={() => setIsBurgerOpen(false)}><div className={classes.circle}></div></Link>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo'/></Link>
+      <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo' /></Link>
       <div className={classes.flexContainer} ref={nav}>
         <div className={classes.linksContainer}>
           <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Tag Generator</Link>
@@ -40,7 +40,7 @@ const Header = () => {
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             About
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
+            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
             <Link to='/about' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Overview</Link>
@@ -54,7 +54,7 @@ const Header = () => {
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             Radical Collaboration
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
+            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
@@ -69,8 +69,8 @@ const Header = () => {
       </div>
       <div className={classes.mobileContainer}>
         <input className={classes.mobileSearch} placeholder='Search'></input>
-        <div 
-          className={classes.burger} 
+        <div
+          className={classes.burger}
           onClick={() => setIsBurgerOpen(bool => !bool)}
           ref={burgerContent}>
           <div className={classes.burgerLine} ref={line1}></div>
