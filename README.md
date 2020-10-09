@@ -1,4 +1,6 @@
-# Website
+# Civic Tech Index UI
+[![Maintainability](https://api.codeclimate.com/v1/badges/b47b965c7e14ba1c6b32/maintainability)](https://codeclimate.com/github/civictechindex/CTI-website-frontend/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b47b965c7e14ba1c6b32/test_coverage)](https://codeclimate.com/github/civictechindex/CTI-website-frontend/test_coverage)
 
 The website for the Civic Tech Index
 
