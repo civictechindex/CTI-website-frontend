@@ -26,7 +26,6 @@ const Header = () => {
       line2.current.className = classes.burgerLine
       line3.current.className = classes.burgerLine
     }
-    // return
   })
   return (
     <nav className={classes.nav}>
@@ -55,8 +54,8 @@ const Header = () => {
             <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
           </p>
           <div className={classes.subLinksContainer}>
-            <Link to='/contributors/affiliated' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Affiliated</Link>
-            <Link to='/contributors/unaffiliated' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Unaffiliated</Link>
+            <Link to='/contributors/affiliated' className={classes.subLinks} >Affiliated</Link>
+            <Link to='/contributors/unaffiliated' className={classes.subLinks} >Unaffiliated</Link>
           </div>
         </div>
         

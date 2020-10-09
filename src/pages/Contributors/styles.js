@@ -78,7 +78,7 @@ export const useStyle = createUseStyles(theme => ({
     },
 
     vectorIcon:{
-        width:'2%',
+        width:'2rem',
         '&:hover': {
             cursor: 'pointer',
         }

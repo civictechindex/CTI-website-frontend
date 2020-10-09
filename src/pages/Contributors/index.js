@@ -3,6 +3,9 @@ import { useStyle } from './styles.js';
 import axios from 'axios'
 import {Dropdown} from '../../components/Dropdown/Dropdown'
 import {DropdownThumbnail} from '../../components/DropdownThumbnail'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+
 
 export default function Contributors({ match }) {
     const affiliation = match.params.affiliation
@@ -102,6 +105,7 @@ export default function Contributors({ match }) {
 
     return (
         <>
+        <Header/>
             <div className={classes.firstSectionWrapper}>
                 <div className={classes.sectionContainer}>
                     <p className={classes.projectsLink}>Home / Contributors</p>
@@ -141,6 +145,7 @@ export default function Contributors({ match }) {
                 <h1 style={{color:'#042D5F'}}>Want to add your organization?</h1>
                 <a href="/"><button className={classes.button}>Contact Us</button></a>
             </div>
+            <Footer/>
         </>
     )
 }

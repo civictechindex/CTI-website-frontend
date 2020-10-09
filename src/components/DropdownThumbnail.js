@@ -32,7 +32,7 @@ export const DropdownThumbnail = ({ organizations }) => {
         <div style={styles.thumbnailsContainer}>
             {organizations ? organizations.map((child, indexSubchild) => {
                 return (
-                    <div index={indexSubchild} style={styles.thumbnails}>
+                    <div key={indexSubchild} style={styles.thumbnails}>
                         {
                             child.image_url ? <img src={child.image_url} style={styles.image} onError={() => console.log('error')} alt={child.name} loading='lazy'></img> : 
                             <p style={styles.imagePlaceholderText}>{child.name}</p>
