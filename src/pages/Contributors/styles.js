@@ -2,15 +2,7 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyle = createUseStyles(theme => ({
-    body: {
-        /* Hide scrollbar for IE, Edge and Firefox */
-        msOverflowStyle: 'none',  /* IE and Edge */
-        scrollbarWidth: 'none',  /* Firefox */
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        }
-    },
+    
     firstSectionWrapper: {
         width: '100%',
         background: '#004364',
@@ -77,8 +69,8 @@ export const useStyle = createUseStyles(theme => ({
         display: 'none'
     },
 
-    vectorIcon:{
-        width:'2rem',
+    vectorIcon: {
+        width: '2rem',
         '&:hover': {
             cursor: 'pointer',
         }
@@ -90,20 +82,20 @@ export const useStyle = createUseStyles(theme => ({
     callToAction2: {
         fontFamily: theme.primaryFontFamily,
         display: 'flex',
-        flexDirection: 'column', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         minHeight: '15rem',
         textAlign: 'center',
     },
     button: {
         fontFamily: theme.primaryFontFamily,
-        fontWeight:'700',
-        backgroundColor:'#0CB2E7', 
+        fontWeight: '700',
+        backgroundColor: '#0CB2E7',
         padding: '1rem 5rem',
-        color:'white', 
-        border:'none',
-        borderRadius:'20px',
+        color: 'white',
+        border: 'none',
+        borderRadius: '20px',
         boxShadow: '0.1rem 0.1rem 10px #e0dede ',
         '&:hover': {
             cursor: 'pointer',
@@ -118,7 +110,7 @@ export const useStyle = createUseStyles(theme => ({
         backgroundPositionY: 'center',
         backgroundPositionX: '10px',
         textIndent: '30px',
-        paddingLeft:'0.3rem',
+        paddingLeft: '0.3rem',
         margin: '2rem auto'
     },
 }

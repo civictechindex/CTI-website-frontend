@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useStyle } from './styles.js';
 import axios from 'axios'
 import {Dropdown} from '../../components/Dropdown/Dropdown'
@@ -36,15 +36,21 @@ export default function Contributors({ match }) {
         creatUnaffiliatedOrgs();
 
         function createAffiliatedOrgs() {
+            //iterate through the json response
             for (const org of orgs) {
+                //find orgs that are affiliated
                 if (org.parent_organization) {
+                    //check if the parent of the affiliated org is in the object
                     if (affiliated[org.parent_organization.name]) {
+                        //if YES the parent is a key in the object, then add this current org to it's value array
                         affiliated[org.parent_organization.name].push(org)
                     } else {
+                        //if NO, add the parent as a key, AND add this current org to the value array
                         affiliated[org.parent_organization.name] = [org]
                     }
                 }
             }
+
             if (orgs.length > 0) {
                 for (const property in affiliated) {
                     const affKeys = Object.keys(affiliated)
@@ -119,7 +125,7 @@ export default function Contributors({ match }) {
                 <div className={classes.sectionContainer}>
                     <div className={classes.unaffiliated} tabIndex='0'>
                         <h2>Unaffiliated Contributors</h2>
-                        <img className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='arrow for about link'  />
+                        <img className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='open for about link'  />
                     </div>
                     <div className={classes.thumbnailsContainer}>
                         {unaffiliatedOpen && (unAffiliatedOrgs.length ? <UnaffiliatedOpen unAffiliatedOrgs={unAffiliatedOrgs}/> : <h1>Loading...</h1>)}
@@ -130,7 +136,7 @@ export default function Contributors({ match }) {
                 <div className={classes.sectionContainer}>
                     <div className={classes.affiliated} tabIndex='0'>
                         <h2>Affiliated Contributors</h2>
-                        <img className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='arrow for about link'  />
+                        <img className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='open dropdown'  />
                     </div>
                     <div className={classes.thumbnailsContainer}>
                         {affiliatedOpen && (affiliatedOrgs.length ?

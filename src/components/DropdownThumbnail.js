@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export const DropdownThumbnail = ({ organizations }) => {
     const styles = {
@@ -34,11 +34,11 @@ export const DropdownThumbnail = ({ organizations }) => {
                 return (
                     <div key={indexSubchild} style={styles.thumbnails}>
                         {
-                            child.image_url ? <img src={child.image_url} style={styles.image} onError={() => console.log('error')} alt={child.name} loading='lazy'></img> : 
-                            <p style={styles.imagePlaceholderText}>{child.name}</p>
+                            child.image_url ? <a href={child.links[0].url}><img src={child.image_url} style={styles.image} onError={() => console.log('error')} alt={child.name} loading='lazy'/></a> :
+                            <a href={child.links[0].url}><p style={styles.imagePlaceholderText}>{child.name}</p></a>
                         }
                     </div>
                 )
-            }): null }
+            }) : null}
         </div>)
 }
