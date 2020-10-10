@@ -1,5 +1,131 @@
-# website
+# Civic Tech Index UI
+[![Maintainability](https://api.codeclimate.com/v1/badges/b47b965c7e14ba1c6b32/maintainability)](https://codeclimate.com/github/civictechindex/CTI-website-frontend/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b47b965c7e14ba1c6b32/test_coverage)](https://codeclimate.com/github/civictechindex/CTI-website-frontend/test_coverage)
+
 The website for the Civic Tech Index
+
+To develop the site, you'll need to first clone the repository on to your computer. For new Git users, see the [Using Git](#using-git) section below. <br><br>
+
+# OVERVIEW
+**Set up**
+1. [Join the Repo Team](#step-1-become-a-member-of-the-repository-team)
+
+2. [Using Git](#using-git) and [Fork the Repo](#step-2-fork-the-repository)
+
+3. [Clone to your local machine](#step-3-clone-your-online-repository-to-your-local-computer)
+
+4. [Set up Docker](#step-4-setting-up-docker)
+
+**Before you start working on an issue**
+
+5. [Switch to new issue branch before you start making changes](#step-5-change-to-a-new-branch)
+
+
+**After you've worked on your issue and before you make a pull request:**
+
+6. [Check upstream before you push](#step-6-check-upstream-before-you-push).
+
+6a. [No changes in the upstream repo](#step-6a-no-changes-in-the-upstream-repository)
+
+**Or**
+
+6b. [Conflicting changes in the upstream repo](#step-6b-conflicting-changes-in-the-upstream-repository) and how to resolve them
+              
+**Okay. You're good to go!**        
+ 
+7. [Complete the pull request](#step-7-complete-the-pull-request)
+
+---
+
+# Forking and cloning the repository with proper security
+
+## Step 1 Become a member of the repository Team
+
+1. In the `civic-tech-index` slack channel, post your email address to the project manager and we'll add you to the Google Drive.
+Once you've been added to the Google Drive, we will send you a link to the roster and request that you add yourself. 
+
+1. Once you've added yourself to the roster, we have verified you can edit files in the CTI Google Drive. Please notify the PM.
+
+1. Setup two factor authentication on your account https://github.com/hackforla/governance/issues/20
+
+1. We will add you as a member to the GitHub repository Team. Once you have accepted the GitHub invite (comes via email or in your GitHub notifications), please mark your membership public https://help.github.com/en/articles/publicizing-or-hiding-organization-membership#changing-the-visibility-of-your-organization-membership
+
+## Using Git
+
+This section discusses some tips and best practices for working with Git.
+
+### Making changes, committing and pushing
+
+1. Generally changes start on your local clone of your fork of this repository, in your own branch.
+
+1. Commit your changes with a comment related to the issue it addresses to your local repository.
+
+1. Push that commit(s) to your online GitHub fork.
+
+1. From the `CTI-website-frontend` repository, create a Pull Request which asks `CTI-website-frontend` to pull changes from your fork into the main repository.
+
+1. After the owner of the `CTI-website-frontend` repository approves and merges your Pull Request, your changes will be live on the website. 
+
+## Step 2 Fork the repository
+
+In https://github.com/CTI-website-frontend/website, look for the fork icon in the top right. Click it and create a fork of the repository.
+
+For git beginners, a fork is a copy of the repository that will be placed on your GitHub account url.
+
+It should create a copy here: https://github.com/your_GitHub_user_name/website, where `your_GitHub_user_name` is replaced with exactly that.
+
+Note that this copy is on a remote server on the GitHub website and not on your computer yet.
+
+If you click the icon again, it will not create a new fork but instead give you the URL associated with your fork.
+
+## Step 3 Clone your online repository to your local computer
+
+For git beginners, this process will create a third copy of the repository on your local desktop.
+
+First create a new folder on your desktop that will contain `CTI-website-frontend` projects.
+
+In your shell, navigate there then run the following commands:
+
+```bash
+git clone https://github.com/your_GitHub_user_name/website.git
+```
+
+You should now have a new folder in your `CTI-website-frontend` folder called `website`.
+
+Verify which URL your `origin` remote is pointing to:
+
+```bash
+git remote show origin
+```
+
+If you accidentally cloned the `CTI-website-frontend/website.git` then you can correct that with the following two commands: 
+
+1) Change your local copy to upload to your fork with the following:
+
+```bash
+git remote set-url origin https://github.com/your_user_name/website.git
+```
+
+2) Add another remote called `upstream` that points to the `CTI-website-frontend` version of the repository. This will allow you to incorporate changes later:
+
+```bash
+git remote add upstream https://github.com/CTI-website-frontend/website.git
+```
+
+## Step 4: Setting up Docker
+
+Docker is the recommended approach to quickly getting started with local development. (ELI5: Docker helps create a local/offline version of the CTI-website-frontend.org website on your computer so you can test out your code before submitting a pull request).
+
+There are two pre-requisites: Docker and Docker Compose.
+The recommended installation method is [Docker Desktop](https://docs.docker.com/install/) for Windows 10 64-bit,
+Mac, and Linux users. Users of unsupported operating systems may check out [Docker Toolbox](https://docs.docker.com/compose/gettingstarted/) instead.
+
+More on using Docker and the concepts of containerization:
+
+* [Get started with Docker](#docker)
+* [Get started with Docker Compose](https://docs.docker.com/compose/gettingstarted/)
+
+*Ensure you run the `docker` commands below from a shell inside the local directory containing your clone of this repository.*
 
 ### How to Run with Docker
 1) Build the image: `docker build -t [image-name] .`
