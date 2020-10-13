@@ -4,7 +4,8 @@
 
 The website for the Civic Tech Index
 
-To develop the site, you'll need to first clone the repository on to your computer. For new Git users, see the [Using Git](#using-git) section below. <br><br>
+To develop the site, you'll need to first clone the repository on to your computer. For new Git users, see the [Using Git](#using-git) section below.
+
 
 # OVERVIEW
 **Set up**
