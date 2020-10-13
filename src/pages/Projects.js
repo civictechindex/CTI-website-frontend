@@ -19,9 +19,19 @@ function calculateDaysSince(updateTime) {
     return Math.round(days / (1000 * 3600 * 24))
 }
 
-
-
-
+function renderCard(i) {
+    return <Grid item style={{ paddingTop: '10px' }}> <ProjectCard projectUrl={i.html_url}
+        organizationUrl={i.owner.html_url} organizationAvatarUrl={i.owner.avatar_url}
+        ownerName={i.owner.login}
+        projectName={i.name} projectDescription={i.description}
+        homepage={i.homepage} /* TODO: Fan out */
+        lastUpdate={calculateDaysSince(i.updated_at)}
+        issueCount={i.open_issues}
+        projectLanguage={i.language}
+        topics={i.topics}
+        watchers={i.watchers_count} stargazers={i.stargazers_count} />
+    </Grid>
+}
 
 const Projects = () => {
 
@@ -36,19 +46,7 @@ const Projects = () => {
                 params: { q: 'topic:civictechindex ' + query, sort: 'updated', order: 'desc', per_page: 100 }
             })
                 .then(res => {
-                    const items = res.data.items.map((i) => {
-                        return <Grid item style={{ paddingTop: '10px' }}> <ProjectCard projectUrl={i.html_url}
-                            organizationUrl={i.owner.html_url} organizationAvatarUrl={i.owner.avatar_url}
-                            ownerName={i.owner.login}
-                            projectName={i.name} projectDescription={i.description}
-                            homepage={i.homepage} /* TODO: Fan out */
-                            lastUpdate={calculateDaysSince(i.updated_at)}
-                            issueCount={i.open_issues}
-                            projectLanguage={i.language}
-                            topics={i.topics}
-                            watchers={i.watchers_count} stargazers={i.stargazers_count} />
-                        </Grid>
-                    })
+                    const items = res.data.items.map((i) => renderCard(i));
                     setResultCount(<Grid item>Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>"{query}"</b></Grid>)
                     setResults(items);
                 })
