@@ -4,9 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 
 const defaultStyle = {
-    align: 'center',
-    margin: '0 auto',
-    width: '70%'
+    backgroundColor: '#fffff',
 }
 
 /**
@@ -30,25 +28,27 @@ const defaultStyle = {
 export default function SearchBar(props) {
     return (
         <div align='center'>
-        <TextField
-            InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                        <SearchIcon />
-                    </InputAdornment>
-                ),
-            }}
-            value={props.query}
-            onInput={props.onInput}
-            style={defaultStyle}
-            placeholder={props.placeholder}
-            fullWidth
-            margin="normal"
-            onKeyPress={props.onKeyPress}
-            InputLabelProps={{
-                shrink: true,
-            }}
-        />
+            <TextField
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <SearchIcon />
+                        </InputAdornment>
+                    ),
+                    style: {defaultStyle}
+                }}
+                value={props.query}
+                onInput={props.onInput}
+                variant='outlined'
+                style={defaultStyle}
+                placeholder={props.placeholder}
+                fullWidth
+                margin="normal"
+                onKeyPress={props.onKeyPress}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+            />
         </div>
     );
 }

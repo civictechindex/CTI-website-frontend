@@ -5,20 +5,22 @@ import About from './pages/About'
 import HowToUse from './pages/HowToUse'
 import Contributors from './pages/Contributors'
 import Landing from './pages/Landing'
+import Projects from './pages/Projects'
 
 
 const App = () => {
-    return (
-        <>
-            <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/about' component={About} />
-                <Route exact path='/adding-projects-to-the-index' component={HowToUse} />
-                <Route exact path='/contributors/:affiliation' component={Contributors} />
-                <Route exact path='/landing' component={Landing} />
-            </Switch>
-        </>
-    )
+  return (
+    <>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route exact path='/about' component={About}/>
+        <Route exact path='/adding-projects-to-the-index' component={HowToUse}/>
+        <Route exact path='/landing' component={Landing}/>
+        <Route exact path='/contributors/:affiliation' component={Contributors} />
+        <Route exact path='/projects' component={Projects}/>
+      </Switch>
+    </>
+  )
 }
 
 export default App
