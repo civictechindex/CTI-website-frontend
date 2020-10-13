@@ -1,0 +1,23 @@
+page-title-grey-background {
+    font-family: Work Sans;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+body {
+    font-family: Work Sans;
+    font-style: normal;
+}
+
+h1 {
+    color: #004364;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0px;
+    text-align: center;
+}
