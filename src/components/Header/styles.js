@@ -4,11 +4,11 @@ const useStyles = createUseStyles( theme => ({
   nav: {
     position: 'relative',
     height: '100px',
-    backgroundColor: theme.headerBG,
+    backgroundColor: '#FFF',
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
     zIndex: '900',
-  },
+  }, 
   flexContainer: {
     position: 'relative',
     display: 'flex',
@@ -51,7 +51,26 @@ const useStyles = createUseStyles( theme => ({
     display: 'none',
   },
   searchContainer: {
-    width: '180px',
+    width: '250px',
+  },
+  black: {
+    color: theme.button1TextColor,
+    backgroundColor: theme.button1BG,
+    border: `1px solid ${theme.button1BG}`,
+  },
+  navButton: {
+    display: 'inline-block',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    color: theme.button1TextColor,
+    border: `1px solid ${theme.button1BG}`,
+    backgroundColor: theme.button1BG,
+    borderRadius: '22.5px',
+    paddingLeft: '60px',
+    paddingRight: '60px',
+    padding: '10px',
+    outline: 'none',
+    cursor: 'pointer',
   },
   search: {
     width: '180px',

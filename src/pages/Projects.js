@@ -60,7 +60,7 @@ const Projects = () => {
                 <Container maxWidth='lg' style={{ padding: '50px' }}>
                     <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
                     <Grid Container>
-                        <Grid item xs={12}><h1>Search Projects</h1></Grid>
+                        <Grid item xs={12}><h1 style={{color:'#004364'}}>Search Projects</h1></Grid>
                         <Grid item xs={12}>
                             <SearchBar value={query} onInput={e => setQuery(e.target.value)} placeholder="Search the Civic Tech Index" onKeyPress={handleSubmit} />
                         </Grid>

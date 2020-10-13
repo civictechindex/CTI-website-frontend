@@ -10,19 +10,16 @@ const Home = () => {
     <>
     <Header />
     <div className={classes.page}>
-    <section className={classes.mainSection}>
+    <section className={`${ classes.firstSectionWrapper} ${classes.mainSection}`}>
       <h1 className={classes.heading}>Join a worldwide movement to catalog every open source civic tech project.</h1>
       <div className={classes.listContainer}>
         <div className={classes.listItemContainer}>
-          <div className={classes.listItemCircle}></div>
           <p className={classes.listItemText}>Requires no coding</p>
         </div>
         <div className={classes.listItemContainer}>
-          <div className={classes.listItemCircle}></div>
           <p className={classes.listItemText}>Display a customized index on any site</p>
         </div>
         <div className={classes.listItemContainer}>
-          <div className={classes.listItemCircle}></div>
           <p className={classes.listItemText}>Index is owned by all who use it</p>
         </div>
       </div>
