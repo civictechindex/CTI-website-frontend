@@ -127,7 +127,6 @@ More on using Docker and the concepts of containerization:
 
 *Ensure you run the `docker` commands below from a shell inside the local directory containing your clone of this repository.*
 
-
 ### How to Run with Docker
 1) Build the image: `docker build -t [image-name] .`
 2) Run the image: `docker run -p [port#]:80 [image-name]`
