@@ -26,7 +26,6 @@ const Header = () => {
       line2.current.className = classes.burgerLine
       line3.current.className = classes.burgerLine
     }
-    return
   })
   return (
     <nav className={classes.nav}>
@@ -48,9 +47,18 @@ const Header = () => {
             <Link to='/adding-projects-to-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Adding Projects to the Index</Link>
           </div>
         </div>
+
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Contributors</Link>
+        <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
+            Contributors
+            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
+          </p>
+          <div className={classes.subLinksContainer}>
+            <Link to='/contributors/affiliated' className={classes.subLinks} >Affiliated</Link>
+            <Link to='/contributors/unaffiliated' className={classes.subLinks} >Unaffiliated</Link>
+          </div>
         </div>
+        
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             Radical Collaboration
