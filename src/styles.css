@@ -1,11 +1,16 @@
-page-title-grey-background {
-    font-family: Work Sans;
-    font-size: 42px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 48px;
-    letter-spacing: 0px;
-    text-align: center;
+.page-section {
+    width: 100%;
+    min-height: 40vh;
+    box-sizing: border-box;
+    padding: 75px 0 50px 0;
+}
+
+.world-background {
+    background: #004364;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/images/world-view.png');
 }
 
 body {

@@ -2,6 +2,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import React from 'react'
 import useStyles from './styles.js'
+import '../../styles.css'
 
 const Home = () => {
   const classes = useStyles()
@@ -10,7 +11,7 @@ const Home = () => {
     <>
     <Header />
     <div className={classes.page}>
-    <section className={`${ classes.firstSectionWrapper} ${classes.mainSection}`}>
+    <section className="page-section world-background">
       <h1 className={classes.heading}>Join a worldwide movement to catalog every open source civic tech project.</h1>
       <div className={classes.listContainer}>
         <div className={classes.listItemContainer}>
