@@ -4,24 +4,22 @@ import ProjectCard from '../components/ProjectCard'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar'
-
-import './styles.css'
+import '../styles.css'
 
 import axios from 'axios'
-
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 
 
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Search', href: '/projects' }]
+
+const [query, setQuery] = useState('');
+const [results, setResults] = useState('');
+const [resultCount, setResultCount] = useState('');
+
 
 const Projects = () => {
-
-    const crumbs = [{ name: 'Home', href: '/' }, { name: 'Search', href: '/projects' }]
-
-    const [query, setQuery] = useState('');
-    const [results, setResults] = useState('');
-    const [resultCount, setResultCount] = useState('');
 
     function calculateDaysSince(updateTime) {
         var days = new Date() - new Date(updateTime);
@@ -36,20 +34,16 @@ const Projects = () => {
             })
                 .then(res => {
                     const items = res.data.items.map((i) => {
-                        return <Grid item style={{ paddingTop: '10px' }}> <ProjectCard
-                            projectUrl={i.html_url}
-                            organizationUrl={i.owner.html_url}
-                            organizationAvatarUrl={i.owner.avatar_url}
+                        return <Grid item style={{ paddingTop: '10px' }}> <ProjectCard projectUrl={i.html_url}
+                            organizationUrl={i.owner.html_url} organizationAvatarUrl={i.owner.avatar_url}
                             ownerName={i.owner.login}
-                            projectName={i.name}
-                            projectDescription={i.description}
+                            projectName={i.name} projectDescription={i.description}
                             homepage={i.homepage} /* TODO: Fan out */
                             lastUpdate={calculateDaysSince(i.updated_at)}
                             issueCount={i.open_issues}
                             projectLanguage={i.language}
                             topics={i.topics}
-                            watchers={i.watchers_count}
-                            stargazers={i.stargazers_count} />
+                            watchers={i.watchers_count} stargazers={i.stargazers_count} />
                         </Grid>
                     })
                     setResultCount(<Grid item>Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>"{query}"</b></Grid>)
@@ -62,7 +56,7 @@ const Projects = () => {
         <>
             <Header />
             <div style={{ backgroundColor: '#F2F2F2' }}>
-                <Container maxWidth='lg' style={{padding:'50px'}}>
+                <Container maxWidth='lg' style={{ padding: '50px' }}>
                     <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
                     <Grid Container>
                         <Grid item xs={12}><h1>Search Projects</h1></Grid>
@@ -72,7 +66,7 @@ const Projects = () => {
                         <Grid container xs={12}>
                             <Grid item xs={12}>
                                 <Grid container={9}>
-                                    <div style={{width:'70%'}}>{resultCount}</div>
+                                    <div style={{ width: '70%' }}>{resultCount}</div>
                                     {results}
                                 </Grid>
                             </Grid>
