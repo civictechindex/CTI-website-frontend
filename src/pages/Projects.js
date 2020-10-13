@@ -14,17 +14,20 @@ import Container from '@material-ui/core/Container'
 
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Search', href: '/projects' }]
 
-const [query, setQuery] = useState('');
-const [results, setResults] = useState('');
-const [resultCount, setResultCount] = useState('');
+function calculateDaysSince(updateTime) {
+    var days = new Date() - new Date(updateTime);
+    return Math.round(days / (1000 * 3600 * 24))
+}
+
+
+
 
 
 const Projects = () => {
 
-    function calculateDaysSince(updateTime) {
-        var days = new Date() - new Date(updateTime);
-        return Math.round(days / (1000 * 3600 * 24))
-    }
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState('');
+    const [resultCount, setResultCount] = useState('');
 
     const handleSubmit = (event) => {
         if (event.key === 'Enter') {
