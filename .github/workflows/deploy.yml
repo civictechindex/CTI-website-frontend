@@ -1,0 +1,24 @@
+# This workflow will take new commits from the `main` branch and deploy to S3
+
+name: S3 Deployment
+on:
+  push:
+    branches: [ main ]
+    
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v2
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Build Project
+        run: npm install && npm run build
+      - name: Deploy S3 Bucket
+        run: aws s3 sync ./build/ s3://civic-tech-index --delete

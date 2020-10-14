@@ -1,8 +1,11 @@
-# Website
+# Civic Tech Index UI
+[![Maintainability](https://api.codeclimate.com/v1/badges/b47b965c7e14ba1c6b32/maintainability)](https://codeclimate.com/github/civictechindex/CTI-website-frontend/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b47b965c7e14ba1c6b32/test_coverage)](https://codeclimate.com/github/civictechindex/CTI-website-frontend/test_coverage)
 
 The website for the Civic Tech Index
 
-To develop the site, you'll need to first clone the repository on to your computer. For new Git users, see the [Using Git](#using-git) section below. <br><br>
+To develop the site, you'll need to first clone the repository on to your computer. For new Git users, see the [Using Git](#using-git) section below.
+
 
 # OVERVIEW
 **Set up**
@@ -124,7 +127,6 @@ More on using Docker and the concepts of containerization:
 * [Get started with Docker Compose](https://docs.docker.com/compose/gettingstarted/)
 
 *Ensure you run the `docker` commands below from a shell inside the local directory containing your clone of this repository.*
-
 
 ### How to Run with Docker
 1) Build the image: `docker build -t [image-name] .`
