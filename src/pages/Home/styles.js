@@ -1,17 +1,6 @@
 import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles( theme => ({
-  firstSectionWrapper: {
-    width: '100%',
-    background: '#004364',
-    color: '#FFE06D',
-    boxSizing: 'border-box',
-    backgroundImage: 'url(images/world-view.png)',
-    minHeight: '40vh',
-    backgroundPositionY: 'bottom',
-    backgroundSize: '100%',
-    backgroundRepeat: 'no-repeat'
-},
   page: {
     fontFamily: theme.primaryFontFamily,
     '& section': {

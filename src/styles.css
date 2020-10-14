@@ -13,6 +13,22 @@
     background-image: url('/images/world-view.png');
 }
 
+.nav-button {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
+    width: 240px;
+    padding: 10px;
+    outline: none;
+    border-radius: 22.5px;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #0CB2E7;
+    background-color: #0CB2E7;
+  }
+
 body {
     font-family: Work Sans;
     font-style: normal;
