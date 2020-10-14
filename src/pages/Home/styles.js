@@ -13,7 +13,7 @@ const useStyles = createUseStyles( theme => ({
   mainSection: {
     width: '100%',
     padding: '75px 0 50px 0',
-    backgroundColor: theme.backgroundColor1,
+    // backgroundColor: theme.backgroundColor1,
   },
   heading: {
     fontSize: '36px',
@@ -44,12 +44,13 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: '#000000',
   },
   listItemText: {
-    textTransform: 'uppercase',
     fontSize: '16px',
     lineHeight: '20px',
     fontWeight: '500',
     width: '216px',
     marginLeft: '15px',
+    textAlign:'center',
+    color: 'white'
   },
   btnContainer: {
     width: '100%',
