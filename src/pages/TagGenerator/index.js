@@ -13,7 +13,7 @@ const TagGenerator = () => {
   return (
     <>
     <Header />
-    <main className={classes.main}>
+    <main className={classes.main} style={{width: '100%', margin: '0 auto'}}>
      
         <div className={classes.headingContainer}>
           <p className={classes.url}>Home / Join the Index / Tag Generator</p>
@@ -57,11 +57,12 @@ const TagGenerator = () => {
            No
         </div>
         </div>
-        {context.orgValue.showOrgComponent ? <ProjectOrg /> : null}
-         {context.orgValue.showComponent ? <ProjectInfo /> : null} 
+        <div style={{margin: '0 auto'}}>
+        {context.orgValue.showOrgComponent ? <ProjectOrg style={{margin: '0 auto'}} /> : null}
+         {context.orgValue.showComponent ? <ProjectOrg style={{margin: '0 auto'}} />: null} 
         {/* {value.showComponent ? <FindProject /> : null} */}
-        {context.sendRequest ? <AddTags/> : null}
-        
+        {context.sendRequest ? <AddTags style={{margin: '0 auto'}}/> : null}
+        </div>
       
     </main>
     <Footer />
