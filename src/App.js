@@ -19,11 +19,11 @@ const App = () => {
           <Switch>
 
 
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={Landing} />
             <Route exact path='/about' component={About} />
             <Route exact path='/adding-projects-to-the-index' component={HowToUse} />
 
-            <Route exact path='/landing' component={Landing} />
+            <Route exact path='/home' component={Home} />
 
             <Route exact path='/taggenerator' component={TagGenerator} />
             <Route exact path='/contributors/:affiliation' component={Contributors} />

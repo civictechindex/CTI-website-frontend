@@ -33,8 +33,8 @@ const Header = () => {
   return (
     <nav className={classes.nav}>
       <div className={classes.background}></div>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><div className={classes.circle}></div></Link>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' width='150px' /></Link>
+      <Link to='/home' onClick={() => setIsBurgerOpen(false)}><div className={classes.circle}></div></Link>
+      <Link to='/home' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' width='150px' /></Link>
       <div className={classes.flexContainer} ref={nav}>
         <div className={classes.linksContainer}>
           <Link to='/taggenerator' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>

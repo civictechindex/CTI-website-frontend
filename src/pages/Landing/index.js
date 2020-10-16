@@ -38,7 +38,8 @@ const Landing = () => {
 
   const postUserEmail = (event) => {
     event.preventDefault();
-    axios.post(process.env.REACT_APP_CTI_SUBSCRIBE_URL,
+    /* TODO: This needs to be passed via build arguments */
+    axios.post('https://test-civictechindexadmin.herokuapp.com/api/subscribe/',
       {
         email_address: inputFieldValue,
         notification_type: "string",
