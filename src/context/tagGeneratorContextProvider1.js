@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 
 import TagGeneratorContext1 from './tagGeneratorContext1.js'
 import {tagGeneratorReducer,UPDATE_PROJECTNAME} from './reducer'
