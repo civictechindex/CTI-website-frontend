@@ -60,7 +60,7 @@ const Landing = () => {
   return (
     <div className={classes.landingContainer}>
       <section className={classes.headerSection}>
-        <img src="/images/cti-logo.svg" alt="civic tech index logo" />
+        <img src="/images/cti_logo_inverted.png" alt="civic tech index logo" />
         <h2 className={classes.landingHeader}>Join a worldwide movement to catalog every open source civic tech project</h2>
       </section>
 
