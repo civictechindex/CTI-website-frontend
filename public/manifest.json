@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Civic Tech Index",
+  "name": "Join a worldwide movement to catalog every open source civic tech project.",
   "icons": [
     {
       "src": "favicon.ico",
