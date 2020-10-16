@@ -37,7 +37,7 @@ const Header = () => {
       <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' width='150px' /></Link>
       <div className={classes.flexContainer} ref={nav}>
         <div className={classes.linksContainer}>
-          <Link to='/adding-projects-to-the-index' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>
+          <Link to='/taggenerator' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>
         </div>
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
