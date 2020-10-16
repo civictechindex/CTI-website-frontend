@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import useStyles from "./styles.js";
 import ProjectOrg from "./projectOrg";
-import ProjectInfo from "./projectInfo";
 import { TagGeneratorContext } from "../../context/tagGeneratorContext.js";
 import AddTags from "./AddTags";
 import Header from '../../components/Header'
