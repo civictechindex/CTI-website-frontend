@@ -38,10 +38,7 @@ export const useStyle = createUseStyles(theme => ({
         textAlign: 'center',
         margin: '1rem auto'
     },
-    unaffiliatedWrapper: {
-        width: '100%',
-    },
-    unaffiliated: {
+    affiliation: {
         paddingRight: '1rem',
         boxSizing: 'border-box',
         color: '#004364',
@@ -49,26 +46,15 @@ export const useStyle = createUseStyles(theme => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         fontSize: '1.3rem'
+    },
+    unaffiliatedWrapper: {
+        width: '100%',
     },
     affiliatedWrapper: {
         width: '100%',
         backgroundColor: '#F2F2F2',
         paddingBottom: '1rem'
     },
-    affiliated: {
-        boxSizing: 'border-box',
-        color: '#004364',
-        width: '100%',
-        paddingRight: '1rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        fontSize: '1.3rem'
-    },
-    hidden: {
-        display: 'none'
-    },
-
     vectorIcon: {
         width: '2rem',
         '&:hover': {
@@ -79,28 +65,7 @@ export const useStyle = createUseStyles(theme => ({
         backgroundColor: 'white',
         height: '90vh'
     },
-    callToAction2: {
-        fontFamily: theme.primaryFontFamily,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '15rem',
-        textAlign: 'center',
-    },
-    button: {
-        fontFamily: theme.primaryFontFamily,
-        fontWeight: '700',
-        backgroundColor: '#0CB2E7',
-        padding: '1rem 5rem',
-        color: 'white',
-        border: 'none',
-        borderRadius: '20px',
-        boxShadow: '0.1rem 0.1rem 10px #e0dede ',
-        '&:hover': {
-            cursor: 'pointer',
-        }
-    },
+    
     input: {
         width: '100%',
         borderRadius: '7px',

@@ -17,18 +17,18 @@ const defaultBreadcrumb = {
  * Navigation enabled breadcrumb.
  * 
  * You may pass an array containing an object of 
- * <NavBreadcrumb crumbs={[{name: 'Home', href='/'}]}
+ * <NavBreadcrumb crumbs={[{name: 'Home', href:'/'}]}
  * @param {Array} crumbs Array of name & href pairs.
  * @param {String} color Use color scheme
  */
 export default function NavBreadcrumb(props) {
   const crumbs = props.crumbs
 
-  const displayCrumbs = crumbs.map((i) => {
+  const displayCrumbs = crumbs.map((i, k) => {
     if (i.href !== null || i.href !== '') {
-      return <Link color="inherit" href={i.href}> {i.name}</Link>
+      return <Link key={k} color="inherit" href={i.href}> {i.name}</Link>
     } else {
-      return <Typography color="inherit">{i.name}</Typography>
+      return <Typography key={k} color="inherit">{i.name}</Typography>
     }
   });
 

@@ -43,7 +43,7 @@ export default function SearchBar(props) {
             style={defaultStyle}
             placeholder={props.placeholder}
             fullWidth
-            margin="normal"
+            margin="normal"t
             onKeyPress={props.onKeyPress}
             InputLabelProps={{
                 shrink: true,

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useStyle } from './styles.js';
 import axios from 'axios'
-import {Dropdown} from '../../components/Dropdown/Dropdown'
-import {DropdownThumbnail} from '../../components/DropdownThumbnail'
+import { Dropdown } from '../../components/Dropdown'
+import { DropdownThumbnail } from '../../components/DropdownThumbnail'
+import { BottomCallToAction } from '../../components/BottomCallToAction'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import NavBreadcrumb from '../../components/NavBreadcrumbs'
+
 
 
 export default function Contributors({ match }) {
@@ -17,10 +20,11 @@ export default function Contributors({ match }) {
     const [unAffiliatedOrgs, setUnAffiliatedOrgs] = useState([]);
     const [affiliatedOpen, setAffiliatedOpen] = useState(false);
     const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/');
+                const result = await axios.get(`${process.env.REACT_APP_ORGANIZATIONS_API}/api/organizations/`);
                 setOrgs(result.data);
             } catch (error) {
                 console.log(error)
@@ -31,21 +35,53 @@ export default function Contributors({ match }) {
 
     useEffect(() => {
         const affiliated = {};
-
         createAffiliatedOrgs();
         creatUnaffiliatedOrgs();
 
+        // githubUrlTest();
+        // function githubUrlTest() {
+        //     let gitHubIds = [];
+        //     for (const org of orgs) {
+        //         let links = org.links;
+        //         if (links) {
+        //             links.forEach(async (l) => {
+        //                 if (l.link_type === 'GitHub') {
+        //                     let orgname = l.url.split('https://github.com/')[1].split('/')[0]
+        //                     let org = orgname.replace(/\s/g, '').trim().toLowerCase();
+        //                     let baseUrl = `https://api.github.com/orgs/${org}`
+        //                     gitHubIds.push(`${l.url}, ${baseUrl}`);
+        //                     // try {
+        //                     //     let githubToken = '903b207a60fcbaed58c80fc0cb62ce0dd4a39f32'
+        //                     //     let response = await axios.get(`${baseUrl}${org}`, {
+        //                     //         headers: {
+        //                     //             'Access-Control-Allow-Origin': '*',
+        //                     //             'Authorization': `token ${githubToken}`,
+        //                     //             'Accept': 'application/vnd.github.v3+json'
+        //                     //         }
+        //                     //     })
+        //                     //     console.log(response);
+        //                     // } catch (err) {
+        //                     //     console.log(err)
+        //                     // }
+        //                 }
+        //             })
+        //         }
+        //     }
+        //     console.log(gitHubIds);
+        // }
+
         function createAffiliatedOrgs() {
+
             //iterate through the json response
             for (const org of orgs) {
                 //find orgs that are affiliated
                 if (org.parent_organization) {
                     //check if the parent of the affiliated org is in the object
                     if (affiliated[org.parent_organization.name]) {
-                        //if YES the parent is a key in the object, then add this current org to it's value array
+                        //if YES, parent is a key in the object, then add this current org to it's value array
                         affiliated[org.parent_organization.name].push(org)
                     } else {
-                        //if NO, add the parent as a key, AND add this current org to the value array
+                        //else NO, parent is not a key in the object, add the parent as a key, AND add this current org to the value array
                         affiliated[org.parent_organization.name] = [org]
                     }
                 }
@@ -84,74 +120,68 @@ export default function Contributors({ match }) {
 
     const AffiliatedOrgs = ({ affiliatedArray }) => (
         affiliatedArray.map((ary, parentIndex) => (
-
             <Dropdown
                 dropdownText={ary[0]}
                 key={parentIndex}
                 dropdownItems={ary[1]}
             >{
-                ary[1].map((organization, index)=>(
-                <Dropdown 
-                dropdownText={organization.name} 
-                key={index}
-                dropdownItems={organization.subchildren}
-                >
-                    <DropdownThumbnail organizations={organization.subchildren}/>
-                </Dropdown>
-                ))
-            }
+                    ary[1].map((organization, index) => (
+                        <Dropdown
+                            dropdownText={organization.name}
+                            key={index}
+                            dropdownItems={organization.subchildren}
+                        >
+                            <DropdownThumbnail organizations={organization.subchildren} />
+                        </Dropdown>
+                    ))
+                }
             </Dropdown>
         ))
     )
-
     const UnaffiliatedOpen = ({ unAffiliatedOrgs }) => (
-        <DropdownThumbnail organizations={unAffiliatedOrgs}/>
+        <DropdownThumbnail organizations={unAffiliatedOrgs} />
     )
-
 
     return (
         <>
-        <Header/>
+            <Header />
             <div className={classes.firstSectionWrapper}>
                 <div className={classes.sectionContainer}>
-                    <p className={classes.projectsLink}>Home / Contributors</p>
+                    <NavBreadcrumb crumbs={[{ name: 'Home', href: '/' }, { name: 'Contributors', href: '/contributors' }]} />
                     <h1 className={classes.heading}>Index Contributors</h1>
-                    <h3 style={{color: 'white', textAlign: 'center', margin: '1rem 0 0 0'}}>Insert small blurb text about / purpose of Index Contributors</h3>
+                    <h3 style={{ color: 'white', textAlign: 'center', margin: '1rem 0 0 0' }}>Insert small blurb text about / purpose of Index Contributors</h3>
                     <i className={classes.loop}></i>
                     <input className={classes.input} placeholder='Search for an organization'></input>
                 </div>
             </div>
             <div className={classes.unaffiliatedWrapper}>
                 <div className={classes.sectionContainer}>
-                    <div className={classes.unaffiliated} tabIndex='0'>
+                    <div className={classes.affiliation} tabIndex='0'>
                         <h2>Unaffiliated Contributors</h2>
-                        <img className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='open for about link'  />
+                        <img className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='open for about link' />
                     </div>
                     <div className={classes.thumbnailsContainer}>
-                        {unaffiliatedOpen && (unAffiliatedOrgs.length ? <UnaffiliatedOpen unAffiliatedOrgs={unAffiliatedOrgs}/> : <h1>Loading...</h1>)}
+                        {unaffiliatedOpen && (unAffiliatedOrgs.length ? <UnaffiliatedOpen unAffiliatedOrgs={unAffiliatedOrgs} /> : <h1>Loading...</h1>)}
                     </div>
                 </div>
             </div>
             <div className={classes.affiliatedWrapper}>
                 <div className={classes.sectionContainer}>
-                    <div className={classes.affiliated} tabIndex='0'>
+                    <div className={classes.affiliation} tabIndex='0'>
                         <h2>Affiliated Contributors</h2>
-                        <img className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='open dropdown'  />
+                        <img className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='open dropdown' />
                     </div>
                     <div className={classes.thumbnailsContainer}>
                         {affiliatedOpen && (affiliatedOrgs.length ?
                             <AffiliatedOrgs
                                 affiliatedArray={affiliatedOrgs}
-                            /> : <h1 style={{textAlign: 'center'}}>Loading...</h1>)
+                            /> : <h1 style={{ textAlign: 'center' }}>Loading...</h1>)
                         }
                     </div>
                 </div>
             </div>
-            <div className={classes.callToAction2}>
-                <h1 style={{color:'#042D5F'}}>Want to add your organization?</h1>
-                <a href="/"><button className={classes.button}>Contact Us</button></a>
-            </div>
-            <Footer/>
+            <BottomCallToAction heading={'Want to add your organization?'} buttonText={'Contact Us'} />
+            <Footer />
         </>
     )
 }
