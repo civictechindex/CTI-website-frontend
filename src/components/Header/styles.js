@@ -4,11 +4,11 @@ const useStyles = createUseStyles( theme => ({
   nav: {
     position: 'relative',
     height: '100px',
-    backgroundColor: theme.headerBG,
+    backgroundColor: '#FFF',
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
     zIndex: '900',
-  },
+  }, 
   flexContainer: {
     position: 'relative',
     display: 'flex',
@@ -51,7 +51,12 @@ const useStyles = createUseStyles( theme => ({
     display: 'none',
   },
   searchContainer: {
-    width: '180px',
+    width: '250px',
+  },
+  black: {
+    color: theme.button1TextColor,
+    backgroundColor: theme.button1BG,
+    border: `1px solid ${theme.button1BG}`,
   },
   search: {
     width: '180px',

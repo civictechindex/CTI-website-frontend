@@ -4,7 +4,8 @@
 
 The website for the Civic Tech Index
 
-To develop the site, you'll need to first clone the repository on to your computer. For new Git users, see the [Using Git](#using-git) section below. <br><br>
+To develop the site, you'll need to first clone the repository on to your computer. For new Git users, see the [Using Git](#using-git) section below.
+
 
 # OVERVIEW
 **Set up**
@@ -126,7 +127,6 @@ More on using Docker and the concepts of containerization:
 * [Get started with Docker Compose](https://docs.docker.com/compose/gettingstarted/)
 
 *Ensure you run the `docker` commands below from a shell inside the local directory containing your clone of this repository.*
-
 
 ### How to Run with Docker
 1) Build the image: `docker build -t [image-name] .`
