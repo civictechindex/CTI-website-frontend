@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import useStyles from './styles.js'
 
+import '../../styles.css'
+
+
 const Header = () => {
   const classes = useStyles()
   const [isBurgerOpen, setIsBurgerOpen] = useState(null)
@@ -30,11 +33,11 @@ const Header = () => {
   return (
     <nav className={classes.nav}>
       <div className={classes.background}></div>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><div className={classes.circle}></div></Link>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo-bw.svg' alt='civic logo' /></Link>
+      <Link to='/home' onClick={() => setIsBurgerOpen(false)}><div className={classes.circle}></div></Link>
+      <Link to='/home' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' width='150px' /></Link>
       <div className={classes.flexContainer} ref={nav}>
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Tag Generator</Link>
+          <Link to='/tag-generator' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>
         </div>
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
@@ -42,23 +45,22 @@ const Header = () => {
             <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
-            <Link to='/about' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Overview</Link>
+            <Link to='/about' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>About</Link>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Searching the Index</Link>
             <Link to='/adding-projects-to-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Adding Projects to the Index</Link>
           </div>
         </div>
 
         <div className={classes.linksContainer}>
-        <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
+          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             Contributors
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0'/>
+            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
             <Link to='/contributors/affiliated' className={classes.subLinks} >Affiliated</Link>
             <Link to='/contributors/unaffiliated' className={classes.subLinks} >Unaffiliated</Link>
           </div>
         </div>
-        
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             Radical Collaboration
@@ -72,11 +74,10 @@ const Header = () => {
           </div>
         </div>
         <div className={classes.searchContainer}>
-          <input className={classes.search} placeholder='Search'></input>
+          <Link to="/projects"><button className="nav-button">Search Projects</button></Link>
         </div>
       </div>
       <div className={classes.mobileContainer}>
-        <input className={classes.mobileSearch} placeholder='Search'></input>
         <div
           className={classes.burger}
           onClick={() => setIsBurgerOpen(bool => !bool)}
@@ -84,6 +85,7 @@ const Header = () => {
           <div className={classes.burgerLine} ref={line1}></div>
           <div className={classes.burgerLine} ref={line2}></div>
           <div className={classes.burgerLine} ref={line3}></div>
+          
         </div>
       </div>
     </nav>

@@ -35,53 +35,21 @@ export default function Contributors({ match }) {
 
     useEffect(() => {
         const affiliated = {};
+
         createAffiliatedOrgs();
         creatUnaffiliatedOrgs();
 
-        // githubUrlTest();
-        // function githubUrlTest() {
-        //     let gitHubIds = [];
-        //     for (const org of orgs) {
-        //         let links = org.links;
-        //         if (links) {
-        //             links.forEach(async (l) => {
-        //                 if (l.link_type === 'GitHub') {
-        //                     let orgname = l.url.split('https://github.com/')[1].split('/')[0]
-        //                     let org = orgname.replace(/\s/g, '').trim().toLowerCase();
-        //                     let baseUrl = `https://api.github.com/orgs/${org}`
-        //                     gitHubIds.push(`${l.url}, ${baseUrl}`);
-        //                     // try {
-        //                     //     let githubToken = '903b207a60fcbaed58c80fc0cb62ce0dd4a39f32'
-        //                     //     let response = await axios.get(`${baseUrl}${org}`, {
-        //                     //         headers: {
-        //                     //             'Access-Control-Allow-Origin': '*',
-        //                     //             'Authorization': `token ${githubToken}`,
-        //                     //             'Accept': 'application/vnd.github.v3+json'
-        //                     //         }
-        //                     //     })
-        //                     //     console.log(response);
-        //                     // } catch (err) {
-        //                     //     console.log(err)
-        //                     // }
-        //                 }
-        //             })
-        //         }
-        //     }
-        //     console.log(gitHubIds);
-        // }
-
         function createAffiliatedOrgs() {
-
             //iterate through the json response
             for (const org of orgs) {
                 //find orgs that are affiliated
                 if (org.parent_organization) {
                     //check if the parent of the affiliated org is in the object
                     if (affiliated[org.parent_organization.name]) {
-                        //if YES, parent is a key in the object, then add this current org to it's value array
+                        //if YES the parent is a key in the object, then add this current org to it's value array
                         affiliated[org.parent_organization.name].push(org)
                     } else {
-                        //else NO, parent is not a key in the object, add the parent as a key, AND add this current org to the value array
+                        //if NO, add the parent as a key, AND add this current org to the value array
                         affiliated[org.parent_organization.name] = [org]
                     }
                 }
