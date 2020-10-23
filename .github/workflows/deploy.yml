@@ -21,4 +21,4 @@ jobs:
       - name: Build Project
         run: npm install && npm run build
       - name: Deploy S3 Bucket
-        run: aws s3 sync ./build/ s3://civic-tech-index --delete
+        run: aws s3 sync ./build/ s3://civictechindex.org 

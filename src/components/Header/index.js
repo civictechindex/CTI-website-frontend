@@ -33,11 +33,11 @@ const Header = () => {
   return (
     <nav className={classes.nav}>
       <div className={classes.background}></div>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><div className={classes.circle}></div></Link>
-      <Link to='/' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' width='150px' /></Link>
+      <Link to='/home' onClick={() => setIsBurgerOpen(false)}><div className={classes.circle}></div></Link>
+      <Link to='/home' onClick={() => setIsBurgerOpen(false)}><img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' width='150px' /></Link>
       <div className={classes.flexContainer} ref={nav}>
         <div className={classes.linksContainer}>
-          <Link to='/' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>
+          <Link to='/tag-generator' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>
         </div>
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
@@ -86,7 +86,6 @@ const Header = () => {
           <div className={classes.burgerLine} ref={line1}></div>
           <div className={classes.burgerLine} ref={line2}></div>
           <div className={classes.burgerLine} ref={line3}></div>
-          <div className={classes.burgerLine}><Link to="/projects"><button className="nav-button">Search Projects</button></Link></div>
           
         </div>
       </div>

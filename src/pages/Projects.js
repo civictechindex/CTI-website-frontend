@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 
 
-const crumbs = [{ name: 'Home', href: '/' }, { name: 'Search', href: '/projects' }]
+const crumbs = [{ name: 'Home', href: '/home' }, { name: 'Search', href: '/projects' }]
 
 function calculateDaysSince(updateTime) {
     var days = new Date() - new Date(updateTime);
