@@ -6,13 +6,19 @@ import useStyles from './styles.js';
 
 const Donation = () => {
   const classes = useStyles();
-  const breadCrumbLinks = [{name: 'Home', href: '/'}];
+  const breadCrumbLinks = [
+    {name: 'Home', href: '/'},
+    {name: 'Radical Collaboration', href: '/donate#root'},
+    {name: 'Support Us', href: '/donate'},
+    {name: 'Donate', href: '/donate'},
+  ];
 
   return (
     <div>
       <Header />
       <section className={classes.titleSection}>
         <BreadCrumbs crumbs={breadCrumbLinks} />
+        <h2 className={classes.donateTitle}>Make a Donation</h2>
       </section>
     </div>
   )
