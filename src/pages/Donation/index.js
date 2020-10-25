@@ -24,11 +24,39 @@ const Donation = () => {
 
       <section className={classes.commonSection + ' ' + classes.infoSection}>
         <div className={classes.infoText}>
-          <p>The Civic Tech Index is being developed by <span>Hack For LA,</span> and
-            is currently taking donations through <span>Code For America.</span>
+
+          <p className={classes.infoDescription}>
+            The Civic Tech Index is being developed by<br />{' '}
+            <a
+              className={classes.styledLink}
+              href="https://www.hackforla.org"
+              target="_blank"
+            >
+              <span>Hack For LA,</span>
+            </a> 
+            {' '}and is currently taking donations<br /> through{' '}
+            <a
+              className={classes.styledLink}
+              href="https://www.codeforamerica.org" 
+              target="_blank"
+            >
+              <span>Code For America.</span>
+            </a>
           </p>
-          <p>1. Please follow this link to the Code For America <span>donation form</span></p>
-          <p>2. To make a donation to the Civic Tech Index, please
+
+          <p className={classes.infoSteps}>
+            1. Please follow this link to the Code For America<br /> 
+            <a
+              className={classes.styledLink}
+              href="https://www.codeforamerica.org/donate"
+              target="_blank"
+            >
+              <span className={classes.styledLink}>donation form.</span>
+            </a>
+          </p>
+
+          <p className={classes.infoSteps}>
+            2. To make a donation to the Civic Tech Index, please<br />
             select <strong>Hack For LA</strong> under the brigades listed.
           </p>
         </div>
