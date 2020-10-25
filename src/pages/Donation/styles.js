@@ -21,6 +21,7 @@ const useStyles = createUseStyles(theme => ({
   },
 
   infoGif: {
+    boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
     width: '50%',
   },
 
