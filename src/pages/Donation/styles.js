@@ -30,6 +30,7 @@ const useStyles = createUseStyles(theme => ({
   },
 
   titleSection: {
+    marginBottom: '4vw',
     '& nav': {
       padding: '25px 0px !important', // Temporary fix; remove in the future
     },
