@@ -58,6 +58,10 @@ const Donation = () => {
         <p className={classes.infoThank}>We appreciate your contribution</p>
       </section>
 
+      <section className={classes.contactSection}>
+        
+      </section>
+
       <Footer />
     </>
   )

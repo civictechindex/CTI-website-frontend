@@ -44,7 +44,9 @@ const useStyles = createUseStyles(theme => ({
   infoThank: {
     color: '#004364',
     fontFamily: theme.primaryFontFamily,
+    fontSize: '1.75vw',
     fontWeight: 'bold',
+    margin: '2.5vw',
     textAlign: 'center',
   },
 
