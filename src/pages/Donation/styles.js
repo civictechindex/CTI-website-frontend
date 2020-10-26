@@ -9,7 +9,7 @@ const useStyles = createUseStyles(theme => ({
   contactButton: {
     backgroundColor: '#0CB2E7',
     border: 'none',
-    borderRadius: '30px',
+    borderRadius: '3vw',
     color: '#FEFEFE',
     cursor: 'pointer',
     display: 'block',

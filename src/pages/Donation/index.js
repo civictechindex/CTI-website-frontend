@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Footer from '../../components/Footer/index.js';
 import Header from '../../components/Header/index.js';
 import BreadCrumbs from '../../components/NavBreadcrumbs.js';
@@ -9,7 +8,7 @@ const Donation = () => {
   const classes = useStyles();
   const breadCrumbLinks = [
     {name: 'Home', href: '/'},
-    {name: 'Radical Collaboration', href: '/donate#root'},
+    {name: 'Radical Collaboration', href: '/donate#root'}, // Update when page is built
     {name: 'Support Us', href: '/donate'},
     {name: 'Donate', href: '/donate'},
   ];
