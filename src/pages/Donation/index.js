@@ -60,7 +60,12 @@ const Donation = () => {
 
       <section className={classes.contactSection}>
         <h2 className={classes.contactHeader}>Want to support in other ways?</h2>
-        <button className={classes.contactButton}>Contact us</button>
+        <a 
+          className={classes.contactLink}
+          href="mailto:civictechindex@hackforla.org"
+        >
+          <button className={classes.contactButton}>Contact us</button>
+        </a>
       </section>
 
       <Footer />

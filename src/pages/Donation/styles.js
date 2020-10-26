@@ -16,8 +16,8 @@ const useStyles = createUseStyles(theme => ({
     fontSize: '1vw',
     fontWeight: 'bold',
     margin: '0 auto',
-    padding: '1vw 5vw',
-    transition: 'background-color 0.3s',
+    padding: '1vw 6vw',
+    transition: 'background-color 0.25s',
     '&:hover': {
       backgroundColor: '#0899C7',
     },
@@ -29,6 +29,11 @@ const useStyles = createUseStyles(theme => ({
     fontSize: '2.5vw',
     fontWeight: '500',
     margin: '0 0 1vw',
+  },
+
+  contactLink: {
+    color: 'inherit',
+    textDecoration: 'none',
   },
 
   contactSection: {
