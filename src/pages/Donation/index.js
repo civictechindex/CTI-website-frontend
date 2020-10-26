@@ -15,7 +15,7 @@ const Donation = () => {
   ];
 
   return (
-    <>
+    <div className={classes.donateContainer}>
       <Header />
 
       <section className={classes.commonSection + ' ' + classes.titleSection}>
@@ -59,11 +59,12 @@ const Donation = () => {
       </section>
 
       <section className={classes.contactSection}>
-        
+        <h2 className={classes.contactHeader}>Want to support in other ways?</h2>
+        <button className={classes.contactButton}>Contact us</button>
       </section>
 
       <Footer />
-    </>
+    </div>
   )
 }
 

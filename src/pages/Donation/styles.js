@@ -6,6 +6,40 @@ const useStyles = createUseStyles(theme => ({
     width: '80%',
   },
 
+  contactButton: {
+    backgroundColor: '#0CB2E7',
+    border: 'none',
+    borderRadius: '30px',
+    color: '#FEFEFE',
+    cursor: 'pointer',
+    display: 'block',
+    fontSize: '1vw',
+    fontWeight: 'bold',
+    margin: '0 auto',
+    padding: '1vw 5vw',
+    transition: 'background-color 0.3s',
+    '&:hover': {
+      backgroundColor: '#0899C7',
+    },
+  },
+
+  contactHeader: {
+    color: '#004364',
+    fontFamily: theme.primaryFontFamily,
+    fontSize: '2.5vw',
+    fontWeight: '500',
+    margin: '0 0 1vw',
+  },
+
+  contactSection: {
+    backgroundColor: '#FEFEFE',
+    padding: '4vw 0 5vw',
+  },
+
+  donateContainer: {
+    backgroundColor: '#F2F2F2',
+  },
+
   donateCrumbs: {
     padding: '25px 0px',
   },
