@@ -28,19 +28,9 @@ const Donation = () => {
 
           <p className={classes.infoDescription}>
             The Civic Tech Index is being developed by<br />{' '}
-            <a
-              className={classes.styledLink}
-              href="https://www.hackforla.org"
-            >
-              Hack For LA,
-            </a> 
+            <span className={classes.styledLink}>Hack For LA,</span>
             {' '}and is currently taking donations<br /> through{' '}
-            <a
-              className={classes.styledLink}
-              href="https://www.codeforamerica.org" 
-            >
-              Code For America.
-            </a>
+            <span className={classes.styledLink}>Code For America.</span>
           </p>
 
           <p className={classes.infoSteps}>

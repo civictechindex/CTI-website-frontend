@@ -44,6 +44,7 @@ const useStyles = createUseStyles(theme => ({
   styledLink: {
     color: '#0CB2E7',
     fontWeight: 'bold',
+    textDecoration: 'underline',
   },
 
   titleSection: {
