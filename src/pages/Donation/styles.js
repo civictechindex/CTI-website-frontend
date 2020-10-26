@@ -41,6 +41,13 @@ const useStyles = createUseStyles(theme => ({
     width: '50%',
   },
 
+  infoThank: {
+    color: '#004364',
+    fontFamily: theme.primaryFontFamily,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
   styledLink: {
     color: '#0CB2E7',
     fontWeight: 'bold',

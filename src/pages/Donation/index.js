@@ -54,6 +54,8 @@ const Donation = () => {
           className={classes.infoGif}
           src="./images/CTI-Donate-to-HfLA.gif"
         />
+
+        <p className={classes.infoThank}>We appreciate your contribution</p>
       </section>
 
       <Footer />
