@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Footer from '../../components/Footer/index.js';
 import Header from '../../components/Header/index.js';
 import BreadCrumbs from '../../components/NavBreadcrumbs.js';
 import React, { useState } from 'react';
@@ -58,14 +59,14 @@ const Donation = () => {
           </p>
         </div>
 
-        {/* <div className={classes.infoGif}> */}
-          <img 
-            alt="A gif demonstrating the use of the donation form"
-            className={classes.infoGif}
-            src="./images/CTI-Donate-to-HfLA.gif"
-          />
-        {/* </div> */}
+        <img 
+          alt="A gif demonstrating the use of the donation form"
+          className={classes.infoGif}
+          src="./images/CTI-Donate-to-HfLA.gif"
+        />
       </section>
+
+      <Footer />
     </>
   )
 }
