@@ -30,17 +30,15 @@ const Donation = () => {
             <a
               className={classes.styledLink}
               href="https://www.hackforla.org"
-              target="_blank"
             >
-              <span>Hack For LA,</span>
+              Hack For LA,
             </a> 
             {' '}and is currently taking donations<br /> through{' '}
             <a
               className={classes.styledLink}
               href="https://www.codeforamerica.org" 
-              target="_blank"
             >
-              <span>Code For America.</span>
+              Code For America.
             </a>
           </p>
 
@@ -49,9 +47,8 @@ const Donation = () => {
             <a
               className={classes.styledLink}
               href="https://www.codeforamerica.org/donate"
-              target="_blank"
             >
-              <span className={classes.styledLink}>donation form.</span>
+              donation form.
             </a>
           </p>
 
