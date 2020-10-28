@@ -1,7 +1,7 @@
 import Footer from '../../components/Footer/index.js';
 import Header from '../../components/Header/index.js';
 import BreadCrumbs from '../../components/NavBreadcrumbs.js';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useStyles from './styles.js';
 
 const Donation = () => {
@@ -12,6 +12,12 @@ const Donation = () => {
     {name: 'Donate', href: '/donate'},
   ];
   const classes = useStyles();
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener('resize', (event) => {
+      setWindowSize(window.innerWidth);
+    });
+  }, []);
 
   return (
     <div className={classes.donateContainer}>
@@ -61,7 +67,7 @@ const Donation = () => {
         <h2 
           className={classes.contactHeader}
         >
-          Want to support in other ways?</h2>
+          Want to support in{ windowSize <= 700 ? <br /> : null } other ways?</h2>
         <a 
           className={classes.contactLink}
           href="mailto:civictechindex@hackforla.org"
