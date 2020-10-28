@@ -55,10 +55,6 @@ const useStyles = createUseStyles(theme => ({
     fontSize: '3vw',
   },
 
-  infoDescription: {
-    fontSize: '1.5vw',
-  },
-
   infoGif: {
     boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
     width: '50%',
@@ -99,6 +95,45 @@ const useStyles = createUseStyles(theme => ({
     marginBottom: '4vw',
     '& nav': {
       padding: '25px 0px !important', // Temporary fix; remove in the future
+    },
+  },
+
+  '@media screen and (max-width: 700px)': {
+    commonSection: {
+      width: '90%',
+    },
+
+    contactButton: {
+      borderRadius: '5vw',
+      fontSize: '3vw',
+      padding: '2vw 10vw',
+    },
+
+    contactHeader: {
+      fontSize: '5.5vw',
+    },
+
+    donateTitle: {
+      fontSize: '9vw',
+    },
+
+    infoGif: {
+      width: '100%',
+    },
+    
+    infoSteps: {
+      fontSize: '3.3vw',
+    },
+
+    infoText: {
+      display: 'block',
+      fontSize: '3.8vw',
+      padding: '0',
+      width: '100%',
+    },
+
+    infoThank: {
+      fontSize: '4vw',
     },
   },
 }))
