@@ -32,14 +32,17 @@ const Donation = () => {
         <div className={classes.infoText}>
 
           <p className={classes.infoDescription}>
-            The Civic Tech Index is being developed by<br />{' '}
+            The Civic Tech Index is being developed {windowSize <= 700 ? <br /> : null}
+            by{windowSize > 700 ? <br /> : null}{' '}
             <span className={classes.styledLink}>Hack For LA,</span>
-            {' '}and is currently taking donations<br /> through{' '}
+            {' '}and is currently taking {windowSize <= 700 ? <br /> : null}
+            donations{windowSize > 700 ? <br /> : null} through{' '}
             <span className={classes.styledLink}>Code For America.</span>
           </p>
 
           <p className={classes.infoSteps}>
-            1. Please follow this link to the Code For America<br /> 
+            1. Please follow this link to the {windowSize <= 700 ? <br /> : null}
+             Code For America {windowSize > 700 ? <br /> : null}
             <a
               className={classes.styledLinkMobile + ' ' + classes.styledLink}
               href="https://www.codeforamerica.org/donate"
@@ -49,8 +52,10 @@ const Donation = () => {
           </p>
 
           <p className={classes.infoSteps}>
-            2. To make a donation to the Civic Tech Index, please<br />
-            select <strong>Hack For LA</strong> under the brigades listed.
+            2. To make a donation to the Civic Tech {windowSize <= 700 ? <br /> : null} 
+            Index, please {windowSize > 700 ? <br />  : null}
+            select <strong>Hack For LA</strong> under the
+            {windowSize <= 700 ? <br /> : null} brigades listed.
           </p>
         </div>
 
@@ -60,7 +65,7 @@ const Donation = () => {
           src="./images/CTI-Donate-to-HfLA.gif"
         />
 
-        <p className={classes.infoThank}>We appreciate your contribution</p>
+        <p className={classes.infoThank}>We appreciate your contribution.</p>
       </section>
 
       <section className={classes.contactSection}>
