@@ -108,9 +108,9 @@ const useStyles = createUseStyles(theme => ({
     },
 
     contactButton: {
-      borderRadius: '5vw',
-      fontSize: '3vw',
-      padding: '2vw 10vw',
+      borderRadius: '7vw',
+      fontSize: '4vw',
+      padding: '4vw 16vw',
     },
 
     contactHeader: {
