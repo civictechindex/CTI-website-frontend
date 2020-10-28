@@ -5,13 +5,13 @@ import React, { useState } from 'react';
 import useStyles from './styles.js';
 
 const Donation = () => {
-  const classes = useStyles();
   const breadCrumbLinks = [
     {name: 'Home', href: '/'},
     {name: 'Radical Collaboration', href: '/donate#root'}, // Update when page is built
     {name: 'Support Us', href: '/donate'},
     {name: 'Donate', href: '/donate'},
   ];
+  const classes = useStyles();
 
   return (
     <div className={classes.donateContainer}>
@@ -35,7 +35,7 @@ const Donation = () => {
           <p className={classes.infoSteps}>
             1. Please follow this link to the Code For America<br /> 
             <a
-              className={classes.styledLink}
+              className={classes.styledLinkMobile + ' ' + classes.styledLink}
               href="https://www.codeforamerica.org/donate"
             >
               donation form.
@@ -58,7 +58,10 @@ const Donation = () => {
       </section>
 
       <section className={classes.contactSection}>
-        <h2 className={classes.contactHeader}>Want to support in other ways?</h2>
+        <h2 
+          className={classes.contactHeader}
+        >
+          Want to support in other ways?</h2>
         <a 
           className={classes.contactLink}
           href="mailto:civictechindex@hackforla.org"

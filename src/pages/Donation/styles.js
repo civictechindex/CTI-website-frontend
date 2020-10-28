@@ -91,6 +91,10 @@ const useStyles = createUseStyles(theme => ({
     textDecoration: 'underline',
   },
 
+  styledLinkMobile: {
+
+  }, 
+
   titleSection: {
     marginBottom: '4vw',
     '& nav': {
@@ -111,6 +115,7 @@ const useStyles = createUseStyles(theme => ({
 
     contactHeader: {
       fontSize: '5.5vw',
+      lineHeight: '8vw',
     },
 
     donateTitle: {
@@ -128,12 +133,25 @@ const useStyles = createUseStyles(theme => ({
     infoText: {
       display: 'block',
       fontSize: '3.8vw',
+      fontWeight: 'normal',
       padding: '0',
       width: '100%',
     },
 
     infoThank: {
-      fontSize: '4vw',
+      fontSize: '5vw',
+    },
+
+    styledLink: {
+      color: 'black',
+      fontWeight: 'normal',
+      textDecoration: 'none',
+    },
+
+    styledLinkMobile: {
+      color: '#0CB2E7',
+      fontWeight: 'bold',
+      textDecoration: 'underline',
     },
   },
 }))
