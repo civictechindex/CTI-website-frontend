@@ -55,6 +55,10 @@ const useStyles = createUseStyles(theme => ({
     fontSize: '3vw',
   },
 
+  infoDescription: {
+
+  },
+
   infoGif: {
     boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
     width: '50%',
@@ -109,7 +113,7 @@ const useStyles = createUseStyles(theme => ({
 
     contactButton: {
       borderRadius: '7vw',
-      fontSize: '4vw',
+      fontSize: '3.5vw',
       padding: '4vw 16vw',
     },
 
@@ -118,8 +122,17 @@ const useStyles = createUseStyles(theme => ({
       lineHeight: '8vw',
     },
 
+    contactSection: {
+      padding: '7.5vw 0 10vw',
+    },
+
     donateTitle: {
       fontSize: '9vw',
+    },
+
+    infoDescription: {
+      fontSize: '4.5vw',
+      margin: '0 0 8vw 0',
     },
 
     infoGif: {
@@ -127,19 +140,21 @@ const useStyles = createUseStyles(theme => ({
     },
     
     infoSteps: {
-      fontSize: '3.3vw',
+      fontSize: '3.8vw',
     },
 
     infoText: {
       display: 'block',
       fontSize: '3.8vw',
       fontWeight: 'normal',
+      margin: '0 0 6vw 0',
       padding: '0',
       width: '100%',
     },
 
     infoThank: {
       fontSize: '5vw',
+      margin: '7vw 0',
     },
 
     styledLink: {
