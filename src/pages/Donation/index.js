@@ -4,13 +4,14 @@ import Header from '../../components/Header/index.js';
 import React, { useEffect, useState } from 'react';
 import useStyles from './styles.js';
 
+const breadCrumbLinks = [
+  {name: 'Home', href: '/'},
+  {name: 'Radical Collaboration', href: '/donate#root'}, // Update when page is built
+  {name: 'Support Us', href: '/donate'},
+  {name: 'Donate', href: '/donate'},
+];
+
 const Donation = () => {
-  const breadCrumbLinks = [
-    {name: 'Home', href: '/'},
-    {name: 'Radical Collaboration', href: '/donate#root'}, // Update when page is built
-    {name: 'Support Us', href: '/donate'},
-    {name: 'Donate', href: '/donate'},
-  ];
   const classes = useStyles();
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   useEffect(() => {
@@ -22,7 +23,6 @@ const Donation = () => {
   return (
     <div className={classes.donateContainer}>
       <Header />
-
       <section className={classes.commonSection + ' ' + classes.titleSection}>
       <BreadCrumbs crumbs={breadCrumbLinks} /> {/* Change left & right padding to 0 */}
         <h2 className={classes.donateTitle}>Make a Donation</h2>
@@ -30,7 +30,6 @@ const Donation = () => {
 
       <section className={classes.commonSection + ' ' + classes.infoSection}>
         <div className={classes.infoText}>
-
           <p className={classes.infoDescription}>
             The Civic Tech Index is being developed {windowSize <= 700 ? <br /> : null}
             by{windowSize > 700 ? <br /> : null}{' '}
@@ -69,18 +68,12 @@ const Donation = () => {
       </section>
 
       <section className={classes.contactSection}>
-        <h2 
-          className={classes.contactHeader}
-        >
+        <h2 className={classes.contactHeader}>
           Want to support in{ windowSize <= 700 ? <br /> : null } other ways?</h2>
-        <a 
-          className={classes.contactLink}
-          href="mailto:civictechindex@hackforla.org"
-        >
+        <a className={classes.contactLink} href="mailto:civictechindex@hackforla.org">
           <button className={classes.contactButton}>Contact us</button>
         </a>
       </section>
-
       <Footer />
     </div>
   )
