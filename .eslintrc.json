@@ -26,7 +26,7 @@
     "indent": ["warn", 2],
     "keyword-spacing": "warn",
     "max-len": ["warn", { "code": 100 }],
-    "max-lines-per-function": ["error", 25],
+    "max-lines-per-function": ["error", 50],
     "multiline-comment-style": ["warn", "starred-block"],
     "no-console": "warn",
     "no-dupe-keys": "error",
@@ -43,7 +43,10 @@
     }],
     "prefer-const": "error",
     "require-await": "error",
-    "sort-imports": ["warn", { "ignoreCase": true }],
+    "sort-imports": ["warn", { 
+      "ignoreCase": true,
+      "memberSyntaxSortOrder": ["all", "single", "multiple", "none"]
+    }],
     "sort-keys": ["warn", "asc", { "natural": true }],
     "sort-vars": ["warn", { "ignoreCase": true }],
     "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
