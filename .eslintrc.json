@@ -17,8 +17,37 @@
       "react"
   ],
   "rules": {
-    "max-len": ["error", 
-      { "code": 81 }
-    ]
+    "array-bracket-spacing": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "complexity": ["error", 5],
+    "eol-last": "error",
+    "eqeqeq": "error",
+    "func-style": ["error", "expression"],
+    "indent": ["warn", 2],
+    "keyword-spacing": "warn",
+    "max-len": ["warn", { "code": 100 }],
+    "max-lines-per-function": ["error", 25],
+    "multiline-comment-style": ["warn", "starred-block"],
+    "no-console": "warn",
+    "no-dupe-keys": "error",
+    "no-duplicate-imports": "warn",
+    "no-floating-decimal": "warn",
+    "no-trailing-spaces": "warn",
+    "no-unreachable": "warn",
+    "no-unused-vars": "warn",
+    "no-var": "error",
+    "no-whitespace-before-property": "warn",
+    "object-curly-spacing": ["warn", "always", {
+      "arraysInObjects": false,
+      "objectsInObjects": false
+    }],
+    "prefer-const": "error",
+    "require-await": "error",
+    "sort-imports": ["warn", { "ignoreCase": true }],
+    "sort-keys": ["warn", "asc", { "natural": true }],
+    "sort-vars": ["warn", { "ignoreCase": true }],
+    "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
+    "space-in-parens": "warn",
+    "yoda": ["warn", "never", { "exceptRange": true }]
   }
 }
