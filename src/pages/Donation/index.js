@@ -1,8 +1,6 @@
 import BreadCrumbs from '../../components/NavBreadcrumbs.js';
-import DesktopInfoSection from './DesktopInfoSection.js';
 import Footer from '../../components/Footer/index.js';
 import Header from '../../components/Header/index.js';
-import MobileInfoSection from './MobileInfoSection.js';
 import React, { useEffect, useState } from 'react';
 import useStyles from './styles.js';
 
@@ -29,8 +27,6 @@ const Donation = () => {
       <BreadCrumbs crumbs={breadCrumbLinks} /> {/* Change left & right padding to 0 */}
         <h2 className={classes.donateTitle}>Make a Donation</h2>
       </section>
-
-      { windowSize > 700 ? <DesktopInfoSection /> : <MobileInfoSection /> }
 
       <section className={classes.contactSection}>
         <h2 className={classes.contactHeader}>
