@@ -120,6 +120,7 @@ const useStyles = createUseStyles(theme => ({
     contactHeader: {
       fontSize: '5.5vw',
       lineHeight: '8vw',
+      margin: '0 0 3vw',
     },
 
     contactSection: {
