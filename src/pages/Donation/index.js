@@ -18,7 +18,7 @@ const Donation = () => {
     <div className={classes.donateContainer}>
       <Header />
       <section className={classes.commonSection + ' ' + classes.titleSection}>
-      <BreadCrumbs crumbs={breadCrumbLinks} /> {/* Change left & right padding to 0 */}
+      <BreadCrumbs crumbs={breadCrumbLinks} />
         <h2 className={classes.donateTitle}>Make a Donation</h2>
       </section>
 
@@ -40,12 +40,12 @@ const Donation = () => {
             </p>
 
             <p className={classes.infoSteps}>
-              2. To make a donation to the Civic Tech Index, please 
+              2. To make a donation to the Civic Tech Index, please
               select <strong>Hack For LA</strong> under the brigades listed.
             </p>
           </div>
 
-          <img 
+          <img
             alt="A gif demonstrating the use of the donation form"
             className={classes.infoGif}
             src="./images/CTI-Donate-to-HfLA.gif"/>
