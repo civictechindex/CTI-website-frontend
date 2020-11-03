@@ -34,8 +34,7 @@ const Donation = () => {
               1. Please follow this link to the Code For America{' '}
               <a
                 className={classes.styledLinkMobile + ' ' + classes.styledLink}
-                href="https://www.codeforamerica.org/donate"
-              >
+                href="https://www.codeforamerica.org/donate">
                 donation form.
               </a>
             </p>
@@ -49,8 +48,7 @@ const Donation = () => {
           <img 
             alt="A gif demonstrating the use of the donation form"
             className={classes.infoGif}
-            src="./images/CTI-Donate-to-HfLA.gif"
-          />
+            src="./images/CTI-Donate-to-HfLA.gif"/>
 
           <p className={classes.infoThank}>We appreciate your contribution.</p>
         </section>
