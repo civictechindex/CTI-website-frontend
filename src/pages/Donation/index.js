@@ -13,12 +13,6 @@ const breadCrumbLinks = [
 
 const Donation = () => {
   const classes = useStyles();
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener('resize', (event) => {
-      setWindowSize(window.innerWidth);
-    });
-  }, []);
 
   return (
     <div className={classes.donateContainer}>
