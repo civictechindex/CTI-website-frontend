@@ -1,7 +1,7 @@
 import BreadCrumbs from '../../components/NavBreadcrumbs.js';
 import Footer from '../../components/Footer/index.js';
 import Header from '../../components/Header/index.js';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useStyles from './styles.js';
 
 const breadCrumbLinks = [
