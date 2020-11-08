@@ -4,6 +4,17 @@ import React from 'react'
 import useStyles from './styles.js'
 import '../../styles.css'
 
+const sampleImageData = [
+  { alt: "Code for All", link: "/", src: "/images/code-for-all.png" },
+  { alt: "Code for America", link: "/", src: "/images/code-for-america.svg" },
+  { alt: "DemocracyLab", link: "/", src: "/images/democracy-lab.svg" },
+  { alt: "Hack for LA", link: "/", src: "/images/hack-for-la.png" },
+  { alt: "OpenOakland", link: "/", src: "/images/open-oakland.svg" },
+  { alt: "Open San Diego", link: "/", src: "/images/open-san-diego.svg" },
+  { alt: "Open Savannah", link: "/", src: "/images/open-savannah.png" },
+  { alt: "Yale OpenLab", link: "/", src: "/images/yale-openlab.svg" },
+];
+
 const sampleTopicData = [
   { detail: "Covid-19", link: "/" },
   { detail: "Trending Topic 1", link: "/" },
@@ -12,6 +23,24 @@ const sampleTopicData = [
   { detail: "Trending Topic 4", link: "/" },
   { detail: "Trending Topic 5", link: "/" },
 ];
+
+const OrgImagesList = () => {
+  const classes = useStyles()
+
+  return (
+    <div className={classes.ctiImgsContainer}>
+      {sampleImageData.map((image, index) => {
+        return <a href={image.link} key={index}>
+          <img
+            alt={image.alt}
+            className={classes.ctiImgs}
+            src={image.src}
+          />
+        </a>
+      })}
+    </div>
+  )
+}
 
 const TrendingTopics = () => {
   const classes = useStyles()
@@ -53,18 +82,7 @@ const Home = () => {
         <section className={classes.ctiSection}>
           <div className={classes.ctiContainer}>
             <h2 className={classes.ctiHeading}>Civic Tech Index is used by:</h2>
-            <div className={classes.ctiImgsContainer}>
-              <a href='/'>
-                <img className={classes.ctiImgs} src='/images/code-for-all.png' alt='Code for All' />
-              </a>
-              <a href='/'><img className={classes.ctiImgs} src='/images/democracy-lab.svg' alt='DemocracyLab' /></a>
-              <a href='/'><img className={classes.ctiImgs} src='/images/code-for-america.svg' alt='Code for America' /></a>
-              <a href='/'><img className={classes.ctiImgs} src='/images/yale-openlab.svg' alt='Yale OpenLab' /></a>
-              <a href='/'><img className={classes.ctiImgs} src='/images/open-oakland.svg' alt='OpenOakland' /></a>
-              <a href='/'><img className={classes.ctiImgs} src='/images/hack-for-la.png' alt='Hack for LA' /></a>
-              <a href='/'><img className={classes.ctiImgs} src='/images/open-savannah.png' alt='Open Savannah' /></a>
-              <a href='/'><img className={classes.ctiImgs} src='/images/open-san-diego.svg' alt='Open San Diego' /></a>
-            </div>
+            <OrgImagesList />
           </div>
         </section>
         <section className={classes.trendingTopicsSection}>
