@@ -31,12 +31,6 @@ const useStyles = createUseStyles( theme => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
-  listItemContainer: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    width: '260px',
-    margin: '10px',
-  },
   listItemCircle: {
     width: '36px',
     height: '36px',
@@ -44,17 +38,18 @@ const useStyles = createUseStyles( theme => ({
     backgroundColor: '#000000',
   },
   listItemText: {
+    alignSelf: 'center',
+    color: 'white',
     fontSize: '16px',
-    lineHeight: '20px',
     fontWeight: '500',
-    width: '216px',
-    marginLeft: '15px',
+    lineHeight: '20px',
+    margin: '2vw 2.5vw',
     textAlign:'center',
-    color: 'white'
+    width: '216px',
   },
   btnContainer: {
-    width: '100%',
     textAlign: 'center',
+    width: '100%',
   },
   btn: {
     display: 'inline-block',

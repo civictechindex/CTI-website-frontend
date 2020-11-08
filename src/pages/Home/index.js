@@ -16,15 +16,9 @@ const Home = () => {
             Join a worldwide movement to catalog every open source civic tech project.
           </h1>
           <div className={classes.listContainer}>
-            <div className={classes.listItemContainer}>
-              <p className={classes.listItemText}>Requires no coding</p>
-            </div>
-            <div className={classes.listItemContainer}>
-              <p className={classes.listItemText}>Display a customized index on any site</p>
-            </div>
-            <div className={classes.listItemContainer}>
-              <p className={classes.listItemText}>Index is owned by all who use it</p>
-            </div>
+            <p className={classes.listItemText}>Requires no coding</p>
+            <p className={classes.listItemText}>Display a customized index on any site</p>
+            <p className={classes.listItemText}>Index is owned by all who use it</p>
           </div>
           <div className={classes.btnContainer}>
             <button className={`${classes.btn} ${classes.black}`}>Tag Your Project</button>
