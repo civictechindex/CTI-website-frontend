@@ -97,7 +97,7 @@ const useStyles = createUseStyles(theme => ({
 
   styledLinkMobile: {
 
-  }, 
+  },
 
   titleSection: {
     marginBottom: '4vw',
@@ -136,7 +136,7 @@ const useStyles = createUseStyles(theme => ({
     infoGif: {
       width: '100%',
     },
-    
+
     infoSteps: {
       fontSize: '3.8vw',
     },
