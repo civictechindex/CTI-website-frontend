@@ -4,6 +4,31 @@ import React from 'react'
 import useStyles from './styles.js'
 import '../../styles.css'
 
+const sampleTopicData = [
+  { detail: "Covid-19", link: "/" },
+  { detail: "Trending Topic 1", link: "/" },
+  { detail: "Trending Topic 2", link: "/" },
+  { detail: "Trending Topic 3", link: "/" },
+  { detail: "Trending Topic 4", link: "/" },
+  { detail: "Trending Topic 5", link: "/" },
+];
+
+const TrendingTopics = () => {
+  const classes = useStyles()
+
+  return (
+    <div className={classes.allTopicsContainer}>
+      {sampleTopicData.map((topic, index) => {
+        return <div className={classes.topicContainer} key={index}>
+          <a href={topic.link}>
+            <p className={classes.trendingTopicsDetails}>{topic.detail}</p>
+          </a>
+        </div>
+      })}
+    </div>
+  )
+}
+
 const Home = () => {
   const classes = useStyles()
 
@@ -45,26 +70,7 @@ const Home = () => {
         <section className={classes.trendingTopicsSection}>
           <div className={classes.trendingTopicsContainer}>
             <h2 className={classes.trendingTopicsHeader}>How are people using the CTI?</h2>
-            <div className={classes.allTopicsContainer}>
-              <div className={classes.topicContainer}>
-                <a href='/'><p className={classes.trendingTopicsDetails}>Covid-19</p></a>
-              </div>
-              <div className={classes.topicContainer}>
-                <a href='/'><p className={classes.trendingTopicsDetails}>Trending Topic 1</p></a>
-              </div>
-              <div className={classes.topicContainer}>
-                <a href='/'><p className={classes.trendingTopicsDetails}>Trending Topic 2</p></a>
-              </div>
-              <div className={classes.topicContainer}>
-                <a href='/'><p className={classes.trendingTopicsDetails}>Trending Topic 3</p></a>
-              </div>
-              <div className={classes.topicContainer}>
-                <a href='/'><p className={classes.trendingTopicsDetails}>Trending Topic 4</p></a>
-              </div>
-              <div className={classes.topicContainer}>
-                <a href='/'><p className={classes.trendingTopicsDetails}>Trending Topic 5</p></a>
-              </div>
-            </div>
+            <TrendingTopics />
           </div>
         </section>
         <section className={classes.getStartedSection}>
