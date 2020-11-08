@@ -68,8 +68,8 @@ const Home = () => {
           </div>
         </section>
         <section className={classes.trendingTopicsSection}>
-            <h2 className={classes.trendingTopicsHeader}>How are people using the CTI?</h2>
-            <TrendingTopics />
+          <h2 className={classes.trendingTopicsHeader}>How are people using the CTI?</h2>
+          <TrendingTopics />
         </section>
         <section className={classes.getStartedSection}>
           <h2 className={classes.getStartedHeading}>Ready to get started?</h2>
