@@ -5,7 +5,7 @@ import React from 'react';
 import useStyles from './styles.js';
 
 const breadCrumbLinks = [
-  { href: '/', name: 'Home' },
+  { href: '/home', name: 'Home' },
   { href: '/donate#root', name: 'Radical Collaboration' }, // Update when page is built
   { href: '/donate', name: 'Support Us' },
   { href: '/donate', name: 'Donate' },
