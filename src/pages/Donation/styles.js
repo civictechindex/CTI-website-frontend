@@ -101,9 +101,6 @@ const useStyles = createUseStyles(theme => ({
 
   titleSection: {
     marginBottom: '4vw',
-    '& nav': {
-      padding: '25px 0px !important', // Temporary fix; remove in the future
-    },
   },
 
   '@media screen and (max-width: 700px)': {
@@ -120,6 +117,7 @@ const useStyles = createUseStyles(theme => ({
     contactHeader: {
       fontSize: '5.5vw',
       lineHeight: '8vw',
+      margin: '0 0 3vw',
     },
 
     contactSection: {
