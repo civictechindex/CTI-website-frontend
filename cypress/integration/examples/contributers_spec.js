@@ -2,7 +2,7 @@
 
 context('Actions', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000/contributors/all')
+      cy.visit('/contributors/all')
     })
   
     it('.type() - type into a DOM element', () => {
