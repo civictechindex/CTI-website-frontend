@@ -107,7 +107,7 @@ const useStyles = createUseStyles( theme => ({
   trendingTopicsHeader: {
     fontSize: '42px',
     lineHeight: '45px',
-    margin: '0',
+    margin: '0 auto',
     padding: '3vw 0 0.5vw',
   },
   allTopicsContainer: {
@@ -166,6 +166,14 @@ const useStyles = createUseStyles( theme => ({
     cursor: 'pointer',
   },
 /**********     MEDIA-QUERIES     **********/
+  '@media (min-width: 1400px)': {
+    topicContainer: {
+      margin: '1vw 1% 0',
+      padding: '5vw 22%',
+      width: '40%',
+    }
+  },
+
   '@media (max-width: 900px)': {
     listContainer: {
       display: 'none',
