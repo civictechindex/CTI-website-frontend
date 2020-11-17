@@ -25,6 +25,7 @@
     "build": "react-scripts build",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
+    "lint": "npx eslint",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
