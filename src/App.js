@@ -20,8 +20,6 @@ const App = () => {
       <TagGeneratorContextProvider>
         <TagGeneratorContextProvider1>
           <Switch>
-
-
             <Route exact path='/' component={Landing} />
             <Route exact path='/about' component={About} />
             <Route exact path='/adding-projects-to-the-index' component={HowToUse} />
