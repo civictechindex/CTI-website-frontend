@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+
 import Home from './pages/Home'
 import About from './pages/About'
 import Donation from './pages/Donation';
@@ -27,7 +28,6 @@ const App = () => {
             <Route exact path='/donate' component={Donation} />
             <Route exact path= '/tag-generator' component={TagCreator} />
             <Route exact path='/home' component={Home} />
-
             <Route exact path='/taggenerator' component={TagGenerator} />
             <Route exact path='/contributors/:affiliation' component={Contributors} />
             <Route exact path='/projects' component={Projects} />
