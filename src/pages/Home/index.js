@@ -4,10 +4,9 @@ import '../../styles.css'
 import { Header, Footer, NavButton } from '../../components'
 import { Grid, Container } from '@material-ui/core';
 
+
 import NotableUsersSection from './sections/NotableUsersSection'
 import TrendingTopicsSection from './sections/TrendingTopicsSection'
-
-
 
 const TitleSection = () => {
     return (

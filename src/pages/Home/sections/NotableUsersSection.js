@@ -1,17 +1,18 @@
 import React from 'react'
 
-import { Grid, Paper} from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 
 import NavButton from '../../../components/NavButton'
 
-const notableUsers = [{ "alt": "Code for All", "link": "#", "src": "/images/code-for-all.png" },
-    { "alt": "Code for America", "link": "#", "src": "/images/code-for-america.svg" },
-    { "alt": "DemocracyLab", "link": "#", "src": "/images/democracy-lab.svg" },
-    { "alt": "Hack for LA", "link": "#", "src": "/images/hack-for-la.png" },
-    { "alt": "OpenOakland", "link": "#", "src": "/images/open-oakland.svg" },
-    { "alt": "Open San Diego", "link": "#", "src": "/images/open-san-diego.svg" },
-    { "alt": "Open Savannah", "link": "#", "src": "/images/open-savannah.png" },
-    { "alt": "Yale OpenLab", "link": "#", "src": "/images/yale-openlab.svg" }
+const notableUsers = [
+    { alt: "Code for All", link: "#", src: "/images/code-for-all.png" },
+    { alt: "Code for America", link: "#", src: "/images/code-for-america.svg" },
+    { alt: "DemocracyLab", link: "#", src: "/images/democracy-lab.svg" },
+    { alt: "Hack for LA", link: "#", src: "/images/hack-for-la.png" },
+    { alt: "OpenOakland", link: "#", src: "/images/open-oakland.svg" },
+    { alt: "Open San Diego", link: "#", src: "/images/open-san-diego.svg" },
+    { alt: "Open Savannah", link: "#", src: "/images/open-savannah.png" },
+    { alt: "Yale OpenLab", link: "#", src: "/images/yale-openlab.svg" }
 ];
 
 const NotableUsersSection = () => {
