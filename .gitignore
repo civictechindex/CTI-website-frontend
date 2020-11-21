@@ -12,7 +12,7 @@
 
 # cypress misc
 /cypress/videos
-
+/cypress/screenshots
 
 # production
 /build
