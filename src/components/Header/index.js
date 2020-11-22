@@ -71,7 +71,7 @@ const Header = () => {
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Volunteer with Us</Link>
-            <Link to='/radicalcollaboration/faq' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
           </div>
         </div>
         <div className={classes.searchContainer}>

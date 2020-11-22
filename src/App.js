@@ -11,7 +11,6 @@ import TagCreator from './pages/TagCreator'
 import TagGenerator from './pages/TagGenerator'
 import { TagGeneratorContextProvider } from "./context/tagGeneratorContext.js"
 import { TagGeneratorContextProvider1 } from "./context/tagGeneratorContextProvider1.js"
-import FAQ from "./pages/FAQ"
 
 
 const App = () => {
@@ -28,7 +27,7 @@ const App = () => {
             <Route exact path='/donate' component={Donation} />
             <Route exact path= '/tag-generator' component={TagCreator} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/radicalcollaboration/faq' component={FAQ} />
+
             <Route exact path='/taggenerator' component={TagGenerator} />
             <Route exact path='/contributors/:affiliation' component={Contributors} />
             <Route exact path='/projects' component={Projects} />
