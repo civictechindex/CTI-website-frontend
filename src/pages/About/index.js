@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBreadcrumb from "../../components/NavBreadcrumbs";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -22,7 +22,7 @@ const About = () => {
     <>
       <Header />
       <Grid
-        Container
+        container
         direction='column'
         justify="center"
         alignItems="center"

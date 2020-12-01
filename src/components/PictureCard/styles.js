@@ -21,7 +21,7 @@ const useStyles = createUseStyles((theme) => ({
     projectsText: {
       fontSize: "18px",
       lineHeight: "24px",
-      paddingBottom: "50px",
+      //paddingBottom: "50px",
     },
   },
 
@@ -32,9 +32,9 @@ const useStyles = createUseStyles((theme) => ({
       margin: "0 auto 50px auto",
     },
 
-    projectsText: {
-      paddingBottom: "50px",
-    },
+    // projectsText: {
+    //   paddingBottom: "50px",
+    // },
   },
 }));
 
