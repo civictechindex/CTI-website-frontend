@@ -24,11 +24,11 @@ const defaultBreadcrumb = {
 export default function NavBreadcrumb(props) {
   const crumbs = props.crumbs
 
-  const displayCrumbs = crumbs.map((i) => {
+  const displayCrumbs = crumbs.map((i,idx) => {
     if (i.href !== null || i.href !== '') {
-      return <Link color="inherit" href={i.href}> {i.name}</Link>
+      return <Link color="inherit" href={i.href} key={idx}> {i.name}</Link>
     } else {
-      return <Typography color="inherit">{i.name}</Typography>
+      return <Typography color="inherit" key={idx}>{i.name}</Typography>
     }
   });
 
