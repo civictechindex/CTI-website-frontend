@@ -9,7 +9,7 @@ const useStyles = createUseStyles((theme) => ({
     paddingLeft: "20px",
   },
   headingContainer: {
-    padding: "20px",
+    padding: "0 20px 20px 20px",
   },
   heading: {
     fontSize: "21px",
@@ -26,8 +26,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 
   textContainer: {
-    paddingTop: "60px",
-    padding: "40px",
+    padding: "60px 25px 40px 25px",
   },
   text: {
     color: "#FFFFFF",
@@ -66,8 +65,11 @@ const useStyles = createUseStyles((theme) => ({
   },
   "@media (min-width: 675px)": {
     navContainer: {
-      pddingTop: "40px",
+      paddingTop: "60px",
       paddingLeft: "50px",
+    },
+    headingContainer: {
+      padding: "20px 84px 55px 84px",
     },
     heading: {
       fontSize: "28px",
@@ -79,6 +81,9 @@ const useStyles = createUseStyles((theme) => ({
       alignItems: "center",
       margin: "0 auto",
       height: "275px",
+    },
+    textContainer: {
+      paddingBottom: "80px",
     },
     text: {
       maxWidth: "500px",
