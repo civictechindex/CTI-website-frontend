@@ -1,6 +1,7 @@
 import NavBreadcrumbs from './NavBreadcrumbs'
 import NavButton from './NavButton'
 import ProjectCard from './ProjectCard'
+import PictureCard from './PictureCard'
 import Header from './Header'
 import Footer from './Footer'
 import SearchBar from './SearchBar'
@@ -11,5 +12,6 @@ export {
     ProjectCard,
     Header,
     Footer,
-    SearchBar
+    SearchBar,
+    PictureCard
 }
