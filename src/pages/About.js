@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles.css";
-
-import { Header, Footer, PictureCard, NavBreadcrumbs } from "../components";
+import { Header, Footer, PictureCard, NavBreadcrumbs} from "../components";
+import GetStartedCard from "../components/GetStartedCard"
 import { Grid, Container, Paper } from "@material-ui/core";
 
 const About = () => {
@@ -13,7 +13,9 @@ const About = () => {
   const TitleSection = () => {
     return (
       <Grid container alignItems="center" justify="center" style={{ paddingTop: '10px' }}>
+        
         <h2 align='center'>A movement to index every open source<br /> civic tech project on GitHub</h2>
+        
       </Grid>
     )
   }
@@ -32,9 +34,9 @@ const About = () => {
 
   const MarketingSection = () => {
     return (
-      <Grid container justify="center" alignItems="center" style={{ paddingTop: '55px', width: '60%', margin: 'auto' }}>
+      <Grid container justify="center" alignItems="center" >
         <Grid item>
-          <p className='white'>
+          <p className='white' style={{ padding: '55px', width: '60%', margin: 'auto' }}>
             With your help, we can create a continuously updated repository for all civic
             tech enthusiasts to find open source projects to model, connect with, and learn from.
         </p>
@@ -47,12 +49,13 @@ const About = () => {
     <>
       <Header />
       <div className='default-background' style={{ width: '100vw' }}>
-        <Container>
+        <Container style={{ padding:'0px'}}>
           <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
           <TitleSection />
           <VideoSection />
           <MarketingSection />
           <PictureCard />
+          <GetStartedCard title={"Ready to get started?"} />
         </Container>
       </div>
       <Footer />
