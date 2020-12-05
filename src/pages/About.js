@@ -2,6 +2,7 @@ import React from "react";
 import "../styles.css";
 import { Header, Footer, PictureCard, NavBreadcrumbs} from "../components";
 import GetStartedCard from "../components/GetStartedCard"
+import TitleSection from "../components/TitleSection"
 import { Grid, Container, Paper } from "@material-ui/core";
 
 const About = () => {
@@ -10,19 +11,10 @@ const About = () => {
     { name: "About", href: "/about" },
   ];
 
-  const TitleSection = () => {
-    return (
-      <Grid container alignItems="center" justify="center" style={{ paddingTop: '10px' }}>
-        
-        <h2 align='center'>A movement to index every open source<br /> civic tech project on GitHub</h2>
-        
-      </Grid>
-    )
-  }
-
+  
   const VideoSection = () => {
     return (
-      <Grid container alignItems="center" justify="center" style={{ padding: '100px', margin:'auto', height: '440px', width:'70%', backgroundColor: 'white'}}>
+      <Grid container alignItems="center" justify="center" style={{ padding: '100px', margin:'auto',  width:'70%', backgroundColor: 'white'}}>
         <Paper>
           <Grid container style={{ padding: '30px' }} justify="center">
             <img src="/images/playButton.png" alt="Video play button" />
@@ -49,14 +41,14 @@ const About = () => {
     <>
       <Header />
       <div className='default-background' style={{ width: '100vw' }}>
-        <Container style={{ padding:'0px'}}>
+        <Container>
           <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
-          <TitleSection />
+          <TitleSection title={"A movement to index every open source civic tech project on GitHub"} />
           <VideoSection />
           <MarketingSection />
-          <PictureCard />
-          <GetStartedCard title={"Ready to get started?"} />
         </Container>
+         <PictureCard />
+         <GetStartedCard title={"Ready to get started?"} />
       </div>
       <Footer />
     </>

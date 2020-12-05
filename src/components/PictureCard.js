@@ -21,7 +21,7 @@ const PictureCard = () => {
 
   return (
     <>
-      <Grid container style={{padding: '20px',width: '80%', margin: 'auto', backgroundColor: "#F2F2F2"}}>
+      <Grid container style={{padding: '20px',maxWidth: '1200px', margin: 'auto', backgroundColor: "#F2F2F2"}}>
         
         <CardItem src="/images/girlCoding.png" alt="girl coding on her computer">No coding experience needed to submit your project!</CardItem>
         <CardItem src="/images/girlandguyCoding.png" alt="girl and guy coding">Make your project more visible with GitHub’s open-source communities</CardItem>
