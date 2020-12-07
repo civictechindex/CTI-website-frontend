@@ -3,13 +3,15 @@ import "../styles.css";
 import { Header, Footer, PictureCard, NavBreadcrumbs} from "../components";
 import GetStartedCard from "../components/GetStartedCard"
 import TitleSection from "../components/TitleSection"
-import { Grid, Container, Paper } from "@material-ui/core";
+import { Grid, Container, Paper} from "@material-ui/core";
 
 const About = () => {
   const crumbs = [
     { name: "Home", href: "/home" },
     { name: "About", href: "/about" },
   ];
+
+  
 
   
   const VideoSection = () => {
@@ -27,8 +29,8 @@ const About = () => {
   const MarketingSection = () => {
     return (
       <Grid container justify="center" alignItems="center" >
-        <Grid item>
-          <p className='white' style={{ padding: '55px', width: '60%', margin: 'auto' }}>
+        <Grid item xs={12} md={8}>
+          <p className='white' style={{ padding: '55px 30px 55px 30px', margin: 'auto' }}>
             With your help, we can create a continuously updated repository for all civic
             tech enthusiasts to find open source projects to model, connect with, and learn from.
         </p>
@@ -48,7 +50,9 @@ const About = () => {
           <MarketingSection />
         </Container>
          <PictureCard />
+         <div className='getStartedCardDivStyle'>
          <GetStartedCard title={"Ready to get started?"} />
+         </div>
       </div>
       <Footer />
     </>

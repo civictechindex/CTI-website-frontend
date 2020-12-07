@@ -84,9 +84,22 @@ h5 {
 p.white {
     color: white;
     text-align: center;
+    font-size:16px
 }
 
 p.black {
     color: black;
     text-align: center;
 }
+
+@media screen and (min-width: 600px) {
+    p.white {
+        font-size: 22px;
+    }
+    }
+
+@media screen and (min-width: 900px) {
+.getStartedCardDivStyle {
+    margin-top: 50px;
+}
+}        
