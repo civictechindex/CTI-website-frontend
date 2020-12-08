@@ -30,10 +30,10 @@ const About = () => {
     return (
       <Grid container justify="center" alignItems="center" >
         <Grid item xs={12} md={8}>
-          <p className='white' style={{ padding: '55px 30px 55px 30px', margin: 'auto' }}>
+          <h3 className='white' style={{ padding: '55px 30px 55px 30px', margin: 'auto' }}>
             With your help, we can create a continuously updated repository for all civic
             tech enthusiasts to find open source projects to model, connect with, and learn from.
-        </p>
+        </h3>
         </Grid>
       </Grid>
     )
