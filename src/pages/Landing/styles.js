@@ -4,7 +4,7 @@ const useStyles = createUseStyles( theme => ({
   comingSoonHeader: {
     color: '#FEFEFE',
     fontFamily: theme.primaryFontFamily,
-    fontSize: '2vw',
+    fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: 'normal',
     letterSpacing: '0.4vw',
   },
@@ -48,7 +48,7 @@ const useStyles = createUseStyles( theme => ({
   footerSection: {
     color: "#FEFEFE",
     fontFamily: theme.primaryFontFamily,
-    fontSize: 'calc(16px + 0.1vw)',
+    fontSize: 'clamp(16px, 1vw, 20px)',
     lineHeight: 'calc(16px + 0.8vw)',
     margin: '0 auto',
     textAlign: 'center',
@@ -64,7 +64,7 @@ const useStyles = createUseStyles( theme => ({
     textAlign: 'center',
     width: '60%',
     '& img': {
-      maxWidth: '100%',
+      maxWidth: '500px',
     },
   },
 
@@ -78,7 +78,7 @@ const useStyles = createUseStyles( theme => ({
 
   landingHeader: {
     color: '#FFE06D',
-    fontSize: '3vw',
+    fontSize: 'clamp(12px, 3vw, 36px)',
   },
 
   notificationContainer: {
@@ -90,7 +90,7 @@ const useStyles = createUseStyles( theme => ({
   notificationHeader: {
     color: '#FEFEFE',
     fontFamily: theme.primaryFontFamily,
-    fontSize: '1.8vw',
+    fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: '500',
     marginBottom: '1.5vw',
     width: '100%',
@@ -102,7 +102,7 @@ const useStyles = createUseStyles( theme => ({
     color: '#FEFEFE',
     cursor: 'pointer',
     display: 'inline-block',
-    fontSize: '1vw',
+    fontSize: 'clamp(10px, 1vw, 14px)',
     fontWeight: '500',
     padding: '15px',
     transition: 'background-color 0.25s', // [CHANGE]: Change style based on figma recommendation
@@ -120,7 +120,7 @@ const useStyles = createUseStyles( theme => ({
     border: 'none',
     borderRadius: '7px 0px 0px 7px',
     fontFamily: theme.primaryFontFamily,
-    fontSize: '1vw',
+    fontSize: 'clamp(10px, 1vw, 14px)',
     letterSpacing: '0.5px',
     padding: '15px',
   transition: 'box-shadow 0.25s',
@@ -149,11 +149,11 @@ const useStyles = createUseStyles( theme => ({
     borderRadius: '7px',
     cursor: 'pointer',
     display: 'inline-block',
-    fontSize: '1.2vw',
+    fontSize: 'clamp(10px, 1.2vw, 18px)',
     margin: '0',
     padding: '10px',
     transition: 'background-color 0.25s', // [CHANGE]: Change style based on figma recommendation
-    width: '80%',
+    width: '70%',
     '&:active': {
       boxShadow: '1px 1px 10px #333 inset ', // [CHANGE]: Change style based on figma recommendation
     },
@@ -169,7 +169,7 @@ const useStyles = createUseStyles( theme => ({
   },
 
   volunteerHeader: {
-    fontSize: '1.7vw',
+    fontSize: 'clamp(12px, 1.7vw, 24px)',
     margin: '10px 0px 20px 0px',
   },
 
@@ -177,7 +177,7 @@ const useStyles = createUseStyles( theme => ({
     color: 'inherit',
   },
 
-  '@media screen and (max-width: 700px)': {
+  '@media screen and (max-width: 800px)': {
     comingSoonHeader: {
       fontSize: '17px',
       letterSpacing: '3px',
