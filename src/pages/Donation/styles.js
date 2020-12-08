@@ -13,7 +13,7 @@ const useStyles = createUseStyles(theme => ({
     color: '#FEFEFE',
     cursor: 'pointer',
     display: 'block',
-    fontSize: '1vw',
+    fontSize: 'clamp(10px, 1.5vw, 15px)',
     fontWeight: 'bold',
     margin: '0 auto',
     padding: '1vw 6vw',
@@ -26,7 +26,7 @@ const useStyles = createUseStyles(theme => ({
   contactHeader: {
     color: '#004364',
     fontFamily: theme.primaryFontFamily,
-    fontSize: '2.5vw',
+    fontSize: 'clamp(18px, 2.5vw, 34px)',
     fontWeight: '500',
     margin: '0 0 1vw',
   },
@@ -52,7 +52,7 @@ const useStyles = createUseStyles(theme => ({
   donateTitle: {
     color: '#004364',
     fontFamily: theme.primaryFontFamily,
-    fontSize: '3vw',
+    fontSize: 'clamp(16px, 3vw, 46px)',
   },
 
   infoDescription: {
@@ -61,11 +61,12 @@ const useStyles = createUseStyles(theme => ({
 
   infoGif: {
     boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
+    maxWidth: '35vw',
     width: '50%',
   },
 
   infoSteps: {
-    fontSize: '1.3vw',
+    fontSize: 'clamp(11px, 1.3vw, 25px)',
     marginTop: '2.5vw',
   },
 
@@ -73,7 +74,7 @@ const useStyles = createUseStyles(theme => ({
     boxSizing: 'border-box',
     display: 'inline-block',
     fontFamily: theme.primaryFontFamily,
-    fontSize: '1.5vw',
+    fontSize: 'clamp(12px, 1.5vw, 28px)',
     letterSpacing: '0.05vw',
     padding: '3vw 1vw 0 0',
     verticalAlign: 'top',
@@ -83,7 +84,7 @@ const useStyles = createUseStyles(theme => ({
   infoThank: {
     color: '#004364',
     fontFamily: theme.primaryFontFamily,
-    fontSize: '1.75vw',
+    fontSize: 'clamp(16px, 1.75vw, 28px)',
     fontWeight: 'bold',
     margin: '2.5vw',
     textAlign: 'center',
@@ -97,7 +98,7 @@ const useStyles = createUseStyles(theme => ({
 
   styledLinkMobile: {
 
-  },
+  }, 
 
   titleSection: {
     marginBottom: '4vw',
@@ -136,7 +137,7 @@ const useStyles = createUseStyles(theme => ({
     infoGif: {
       width: '100%',
     },
-
+    
     infoSteps: {
       fontSize: '3.8vw',
     },
