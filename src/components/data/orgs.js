@@ -20,11 +20,11 @@ const orgs = [{ name: 'democracylab', id: 5304021 },
 // { name: 'code -for-miami', id: NA },
 { name: 'cforlando', id: 5225505 },
 { name: 'codefortallahassee', id: 17890912 },
-{ name: 'code -for-tb', id: 9374504 },
+{ name: 'code-for-tb', id: 9374504 },
 { name: 'codeforatlanta', id: 5956025 },
 { name: 'opensavannah', id: 23719460 },
 { name: 'codeforhawaii', id: 6244195 },
-// { name: 'codeforboise', id: NA },
+{ name: 'codeforboise', id: 11685547 },
 { name: 'chicago', id: 838189 },
 { name: 'bmghack', id: 28742394 },
 { name: 'hackmichiana', id: 5560123 },
@@ -153,10 +153,13 @@ const orgs = [{ name: 'democracylab', id: 5304021 },
 { name: 'openknowledgebe', id: 1188392 },
 { name: 'code4moldova', id: 52112511 }
 ]
-
+//  let orgsFiltered = orgs.filter((org)=>org.name.includes('c'))
+// console.log(`orgs: ${orgs.length}, orgsFilterd: ${orgsFiltered.length}`);
 export let names = new Map();
 
 for(const org of orgs) {
     names.set(org.name, org.id);
 }
+
+
 
