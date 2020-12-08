@@ -61,3 +61,23 @@ export const ContributorThumbnail = ({ organization }) => {
     </div>
   );
 };
+
+//will be added to index.js when completed
+//   const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
+  //     const styles = {
+  //       thumbnailsContainer: {
+  //         display: "flex",
+  //       },
+  //     };
+
+  //     return (
+  //       <div style={styles.thumbnailsContainer}>
+  //         {unAffiliatedOrgs.map((organization, index) => (
+  //           <ContributorThumbnail
+  //             organization={organization}
+  //             key={index}
+  //           ></ContributorThumbnail>
+  //         ))}
+  //       </div>
+  //     );
+  //   };

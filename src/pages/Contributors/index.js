@@ -11,8 +11,6 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-// import {makestyles} from '@material-ui/core/styles';
-// import { ContributorThumbnail } from "../../components/ContributorThumbnail";
 
 export default function Contributors({ match }) {
   const affiliation = match.params.affiliation;
@@ -141,25 +139,6 @@ export default function Contributors({ match }) {
         ))}
       </Dropdown>
     ));
-
-  //   const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
-  //     const styles = {
-  //       thumbnailsContainer: {
-  //         display: "flex",
-  //       },
-  //     };
-
-  //     return (
-  //       <div style={styles.thumbnailsContainer}>
-  //         {unAffiliatedOrgs.map((organization, index) => (
-  //           <ContributorThumbnail
-  //             organization={organization}
-  //             key={index}
-  //           ></ContributorThumbnail>
-  //         ))}
-  //       </div>
-  //     );
-  //   };
 
   const UnaffiliatedOrgs = ({ unAffiliatedOrgs }) => (
     <DropdownThumbnail organizations={unAffiliatedOrgs} />
