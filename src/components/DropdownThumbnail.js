@@ -42,7 +42,7 @@ export const DropdownThumbnail = ({ organizations }) => {
             let orgUrl;
             if (child.links[0]) {
               orgUrl = child.links[0].url;
-              child.links.forEach((link) => {           
+              child.links.forEach((link) => {
                 if (link.link_type === "GitHub") {
                   let id = getOrgId(link.url);
                   imageUrl = `https://avatars0.githubusercontent.com/u/${id}?s=100&v=4`;
@@ -56,7 +56,13 @@ export const DropdownThumbnail = ({ organizations }) => {
               orgUrl = child.links[0];
             }
             return (
-              <a href={orgUrl} key={indexSubchild} style={styles.thumbnails} target='_blank' rel='noopener noreferrer'>
+              <a
+                href={orgUrl}
+                key={indexSubchild}
+                style={styles.thumbnails}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {child.image_url ? (
                   <>
                     <img
@@ -69,7 +75,7 @@ export const DropdownThumbnail = ({ organizations }) => {
                     <div style={styles.thumbnailText}>{child.name}</div>
                   </>
                 ) : (
-                    <div style={styles.thumbnailText}>{child.name}</div>
+                  <div style={styles.thumbnailText}>{child.name}</div>
                 )}
               </a>
             );

@@ -17,9 +17,9 @@ const useStyles = createUseStyles({
     backgroundColor: "white",
     borderRadius: "2px",
     padding: "0 1rem",
-    '&:nth-of-type(2)':{
-        color: 'red'
-    }
+    "&:nth-of-type(2)": {
+      color: "red",
+    },
   },
   chevron: {
     fontSize: "1.3rem",
@@ -35,7 +35,7 @@ export const Dropdown = ({
   index,
   dropdownItems,
   children,
-  hasInputValue
+  hasInputValue,
 }) => {
   const [open, setOpen] = useState(false);
   const arrow = useRef(null);
@@ -51,15 +51,18 @@ export const Dropdown = ({
   };
 
   useEffect(() => {
-      if(hasInputValue){
-          setOpen(true)
-      }
-  }, [hasInputValue])
+    if (hasInputValue) {
+      setOpen(true);
+    }
+  }, [hasInputValue]);
 
   return (
     <div key={index} className={classes.container}>
       <div className={classes.dropdown} tabIndex="0">
-  <h3>{dropdownText}  {dropdownItems?<span>({dropdownItems.length})</span>:null}</h3>
+        <h3>
+          {dropdownText}{" "}
+          {dropdownItems ? <span>({dropdownItems.length})</span> : null}
+        </h3>
         {dropdownItems ? (
           <img
             ref={arrow}

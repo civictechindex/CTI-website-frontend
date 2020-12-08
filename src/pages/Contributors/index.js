@@ -142,24 +142,24 @@ export default function Contributors({ match }) {
       </Dropdown>
     ));
 
-//   const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
-//     const styles = {
-//       thumbnailsContainer: {
-//         display: "flex",
-//       },
-//     };
+  //   const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
+  //     const styles = {
+  //       thumbnailsContainer: {
+  //         display: "flex",
+  //       },
+  //     };
 
-//     return (
-//       <div style={styles.thumbnailsContainer}>
-//         {unAffiliatedOrgs.map((organization, index) => (
-//           <ContributorThumbnail
-//             organization={organization}
-//             key={index}
-//           ></ContributorThumbnail>
-//         ))}
-//       </div>
-//     );
-//   };
+  //     return (
+  //       <div style={styles.thumbnailsContainer}>
+  //         {unAffiliatedOrgs.map((organization, index) => (
+  //           <ContributorThumbnail
+  //             organization={organization}
+  //             key={index}
+  //           ></ContributorThumbnail>
+  //         ))}
+  //       </div>
+  //     );
+  //   };
 
   const UnaffiliatedOrgs = ({ unAffiliatedOrgs }) => (
     <DropdownThumbnail organizations={unAffiliatedOrgs} />
@@ -175,7 +175,7 @@ export default function Contributors({ match }) {
               { name: "Home", href: "/" },
               { name: "Contributors", href: "/contributors" },
             ]}
-            color='white'
+            color="white"
           />
           <h1 className={classes.heading}>Index Contributors</h1>
           <h3

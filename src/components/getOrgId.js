@@ -8,7 +8,7 @@ export function getOrgId(githubUrl) {
     let id = names.get(org);
     return id;
   } else {
-    console.log(`error with github url: ${githubUrl}`)
-    return 11635254
+    console.log(`error with github url: ${githubUrl}`);
+    return 11635254;
   }
 }
