@@ -14,14 +14,10 @@ it('verify footer loading', () => {
 })
 
   it('verify title section loads', () => {
-    cy.contains('A movement to index every open source civic tech project on Github');
+    cy.contains('A movement to index');
   })
 
-  it ('verify video section loads', () => {
-    cy.find("img")
-  })
-    
-
+  
   it ('verify marketing section loads', () => {
     cy.contains('With your help')
   })
