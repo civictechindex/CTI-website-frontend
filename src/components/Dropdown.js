@@ -1,4 +1,3 @@
-// import { lightBlue } from '@material-ui/core/colors';
 import React, { useState, useRef, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 

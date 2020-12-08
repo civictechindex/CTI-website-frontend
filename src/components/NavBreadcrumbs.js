@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 
 const defaultBreadcrumb = {
   fontFamily: 'Work Sans',
-  fontSize: '14px',
+  fontSize: '3vw',
   fontWeight: '400',
   fontStyle: 'normal',
   lineHeight: '24px',
@@ -34,7 +34,7 @@ export default function NavBreadcrumb(props) {
 
   return (
     <div style={defaultBreadcrumb}>
-      <Breadcrumbs aria-label="breadcrumb" style={{color:props.color, padding: '25px'}}>
+      <Breadcrumbs aria-label="breadcrumb" style={{color:props.color, padding: '25px 0'}}>
         {displayCrumbs}
       </Breadcrumbs>
     </div>
