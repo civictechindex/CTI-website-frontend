@@ -6,6 +6,6 @@ context('Actions', () => {
   })
 
   it('.type() - type into a DOM element', () => {
-    cy.get('.heading-0-2-4').contains('A movement to index every open source civic tech project on Github');
+    cy.contains('A movement to index every open source civic tech project on Github');
   })
 })

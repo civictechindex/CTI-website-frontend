@@ -6,11 +6,11 @@ context('Actions', () => {
     })
   
     it('.type() - type into a DOM element', () => {
-        cy.get('.affiliated-0-2-9')
-        .children('.vectorIcon-0-2-11')
+        cy.get('#affiliatedDropdown')
+        .children('#dropdownIcon')
         .click({ force: true })
 
-        cy.get('.dropdown-0-2-49').contains('Code for All');
+        cy.contains('Code for All');
     })
   })
   
