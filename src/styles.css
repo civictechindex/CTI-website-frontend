@@ -8,7 +8,7 @@
 .world-background {
     background: #004364;
     background-size: 100%;
-    background-position: center;
+    background-position: center-top;
     background-repeat: no-repeat;
     background-image: url('/images/world-view.png');
 }
@@ -27,9 +27,9 @@
     color: white;
     border: 1px solid #0CB2E7;
     background-color: #0CB2E7;
-  }
+}
 
-  .search-button {
+.search-button {
     display: inline-block;
     font-weight: bold;
     font-size: 16px;
@@ -43,7 +43,7 @@
     color: white;
     border: 1px solid #0CB2E7;
     background-color: #0CB2E7;
-  }
+}
 
 body {
     font-family: Work Sans;
@@ -56,13 +56,33 @@ h1 {
     font-weight: 700;
     line-height: 48px;
     letter-spacing: 0px;
-    text-align: center;
 }
 
 h2 {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 38px;
     color: #FFE06D;
+}
+
+h5 {
+    font-family: Work Sans;
+    font-size: 24px;
+    font-style: normal;
     font-weight: 700;
-    line-height: 48px;
-    letter-spacing: 0px;
+    line-height: 30px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+p.white {
+    color: white;
+    text-align: center;
+}
+
+p.black {
+    color: black;
     text-align: center;
 }

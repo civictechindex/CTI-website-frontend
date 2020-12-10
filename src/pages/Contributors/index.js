@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useStyle } from './styles.js';
 import axios from 'axios'
-import {Dropdown} from '../../components/Dropdown/Dropdown'
+import {Dropdown} from '../../components/Dropdown'
 import {DropdownThumbnail} from '../../components/DropdownThumbnail'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -123,9 +123,9 @@ export default function Contributors({ match }) {
             </div>
             <div className={classes.unaffiliatedWrapper}>
                 <div className={classes.sectionContainer}>
-                    <div className={classes.unaffiliated} tabIndex='0'>
+                    <div id='unaffiliatedDropdown' className={classes.unaffiliated} tabIndex='0'>
                         <h2>Unaffiliated Contributors</h2>
-                        <img className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='open for about link'  />
+                        <img id ="dropdownIcon" className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='open for about link'  />
                     </div>
                     <div className={classes.thumbnailsContainer}>
                         {unaffiliatedOpen && (unAffiliatedOrgs.length ? <UnaffiliatedOpen unAffiliatedOrgs={unAffiliatedOrgs}/> : <h1>Loading...</h1>)}
@@ -134,9 +134,9 @@ export default function Contributors({ match }) {
             </div>
             <div className={classes.affiliatedWrapper}>
                 <div className={classes.sectionContainer}>
-                    <div className={classes.affiliated} tabIndex='0'>
+                    <div id='affiliatedDropdown' className={classes.affiliated} tabIndex='0'>
                         <h2>Affiliated Contributors</h2>
-                        <img className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='open dropdown'  />
+                        <img id = "dropdownIcon" className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='open dropdown'  />
                     </div>
                     <div className={classes.thumbnailsContainer}>
                         {affiliatedOpen && (affiliatedOrgs.length ?
