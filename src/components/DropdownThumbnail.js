@@ -1,62 +1,86 @@
-import React from 'react';
-import { names } from './data/orgs.js';
+import React from "react";
+import { getOrgId } from "./getOrgId.js";
 
 export const DropdownThumbnail = ({ organizations }) => {
-    const styles = {
-        thumbnailsContainer: {
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-        },
-        thumbnails: {
-            display: 'flex',
-            textAlign: 'center',
-            backgroundColor: 'white',
-            borderRadius: '2px',
-            margin: '1rem 0.5rem',
-            boxShadow: '0.1rem 0.1rem 10px #e0dede ',
-            maxWidth: '8rem'
-        },
-        image: {
-            width: '4rem',
-            height: '4rem',
-            margin: '.5rem',
-        },
-        imagePlaceholderText: {
-            color: '#004364',
-            textAlign: 'center',
-            padding: '.5rem'
-        },
-    }
+  const styles = {
+    thumbnailsContainer: {
+      boxSizing: "border-box",
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "0.7rem",
+    },
+    thumbnails: {
+      backgroundColor: "white",
+      borderRadius: "2px",
+      display: "flex",
+      textDecoration: "none",
+      flex: "1",
+      minHeight: "80px",
+      justifyContent: "center",
+    },
+    image: {
+      flex: 1,
+      maxWidth: "100px",
+      margin: ".5rem",
+    },
+    thumbnailText: {
+      display: "flex",
+      flex: 1,
+      alignItems: "center",
+      flexWrap: "wrap",
+      textAlign: "center",
+      color: "#004364",
+      padding: ".5rem",
+    },
+  };
 
-    return (
-        <div style={styles.thumbnailsContainer}>
-            {organizations ? organizations.map((child, indexSubchild) => {
-                let imageUrl;
-                let orgUrl = child.links[0].url
-                if (child.links) {
-                    child.links.forEach(child => {
-                        if (child.link_type === 'GitHub') {
-                            let orgname = child.url.split('https://github.com/')[1].split('/')[0]
-                            let org = orgname.replace(/\s/g, '').trim().toLowerCase();
-                            let id = names.get(org);
-                            imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
-                            orgUrl = child.url;
-                        } else {
-                            imageUrl = child.image_url
-                            orgUrl = child.url
-                        }
-                    })
+  return (
+    <div style={styles.thumbnailsContainer}>
+      {organizations
+        ? organizations.map((child, indexSubchild) => {
+            let imageUrl;
+            let orgUrl;
+            if (child.links[0]) {
+              orgUrl = child.links[0].url;
+              child.links.forEach((link) => {
+                if (link.link_type === "GitHub") {
+                  let id = getOrgId(link.url);
+                  imageUrl = `https://avatars0.githubusercontent.com/u/${id}?s=100&v=4`;
+                  orgUrl = link.url;
+                } else {
+                  imageUrl = child.image_url;
                 }
-                return (
-                    <div key={indexSubchild} style={styles.thumbnails}>
-                        {
-                            child.image_url ? <a href={orgUrl}><img src={imageUrl} style={styles.image} onError={() => console.log('error')} alt={child.name} loading='lazy' /></a> :
-                                <a href={orgUrl}><p style={styles.imagePlaceholderText}>{child.name}</p></a>
-                        }
-                    </div>
-                )
-            }) : null}
-        </div>)
-}
+              });
+            } else {
+              child.links[0] = "https://github.com/";
+              orgUrl = child.links[0];
+            }
+            return (
+              <a
+                href={orgUrl}
+                key={indexSubchild}
+                style={styles.thumbnails}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {child.image_url ? (
+                  <>
+                    <img
+                      src={imageUrl}
+                      style={styles.image}
+                      onError={() => console.log("error")}
+                      alt={child.name}
+                      loading="lazy"
+                    />
+                    <div style={styles.thumbnailText}>{child.name}</div>
+                  </>
+                ) : (
+                  <div style={styles.thumbnailText}>{child.name}</div>
+                )}
+              </a>
+            );
+          })
+        : null}
+    </div>
+  );
+};

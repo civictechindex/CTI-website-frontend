@@ -25,3 +25,5 @@ yarn-error.log*
 .vscode/
 
 .env*.local
+
+debug.log
