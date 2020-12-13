@@ -17,6 +17,11 @@ const useStyles = makeStyles({
     
   });
 
+  /**
+   * button color
+   * @param {*} props.variant
+   */
+
 export default function NavButton(props) {
     const classes = useStyles();
     return (

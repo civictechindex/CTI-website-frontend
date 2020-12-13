@@ -3,7 +3,7 @@ import "../styles.css";
 import { Header, Footer, PictureCard, NavBreadcrumbs} from "../components";
 import GetStartedCard from "../components/GetStartedCard"
 import TitleSection from "../components/TitleSection"
-import { Grid, Container, Paper} from "@material-ui/core";
+import { Grid, Container, Card,CardMedia} from "@material-ui/core";
 
 const About = () => {
   const crumbs = [
@@ -11,17 +11,12 @@ const About = () => {
     { name: "About", href: "/about" },
   ];
 
-  
-
-  
   const VideoSection = () => {
     return (
-      <Grid container alignItems="center" justify="center" style={{ padding: '100px', margin:'auto',  width:'70%', backgroundColor: 'white'}}>
-        <Paper>
-          <Grid container style={{ padding: '30px' }} justify="center">
-            <img src="/images/playButton.png" alt="Video play button" />
-          </Grid>
-        </Paper>
+      <Grid container alignItems="center" justify="center" style={{ margin:'auto',  width:'70%', backgroundColor: 'white'}}>
+        <Card>
+        <CardMedia component="video" image='/images/CTI V1.mp4' title='Overview of CTI' controls/>  
+        </Card>
       </Grid>
     )
   }
@@ -30,10 +25,10 @@ const About = () => {
     return (
       <Grid container justify="center" alignItems="center" >
         <Grid item xs={12} md={8}>
-          <h3 className='white' style={{ padding: '55px 30px 55px 30px', margin: 'auto' }}>
+          <p className='white' style={{ padding: '55px 30px 55px 30px', margin: 'auto' }}>
             With your help, we can create a continuously updated repository for all civic
             tech enthusiasts to find open source projects to model, connect with, and learn from.
-        </h3>
+        </p>
         </Grid>
       </Grid>
     )
