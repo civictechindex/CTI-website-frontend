@@ -53,7 +53,7 @@ const Header = () => {
 
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            Contributors
+          <Link to='/contributors/all' className={classes.links} >Contributors</Link>
             <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
@@ -61,13 +61,14 @@ const Header = () => {
             <Link to='/contributors/unaffiliated' className={classes.subLinks} >Unaffiliated</Link>
           </div>
         </div>
+
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
             Radical Collaboration
             <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
+            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link> 
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Volunteer with Us</Link>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
