@@ -68,7 +68,7 @@ export const DropdownThumbnail = ({ organizations }) => {
                     <img
                       src={imageUrl}
                       style={styles.image}
-                      onError={() => console.log("error")}
+                      onError={(e) => console.log(e,`error with ${child.name}`)}
                       alt={child.name}
                       loading="lazy"
                     />

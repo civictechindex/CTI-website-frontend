@@ -2,6 +2,7 @@ import { createUseStyles } from "react-jss";
 
 export const useStyle = createUseStyles((theme) => ({
   firstSectionWrapper: {
+      display:'grid',
     width: "100%",
     background: "#004364",
     color: "#FFE06D",
@@ -31,11 +32,8 @@ export const useStyle = createUseStyles((theme) => ({
       margin: "0",
     },
   },
-  heading: {
-    textAlign: "center",
-    margin: "1rem auto",
-  },
   affiliation: {
+      textAlign: 'center',
     paddingRight: "1rem",
     boxSizing: "border-box",
     color: "#004364",
@@ -48,9 +46,14 @@ export const useStyle = createUseStyles((theme) => ({
   },
   unaffiliatedWrapper: {
     width: "100%",
-    "& h2": {
+    paddingBottom: "1rem",
+    "& >*, & h2": {
       color: "#004364",
+      textAlign: 'center'
     },
+    display: 'flex',
+    justifyContent: 'space-between',
+    backgroundColor: '#F2F2F2'
   },
   affiliatedWrapper: {
     width: "100%",
@@ -73,4 +76,11 @@ export const useStyle = createUseStyles((theme) => ({
     borderRadius: "7px",
     backgroundColor: "white",
   },
+  contributorsContainer: {
+    boxSizing: "border-box",
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "0.7rem",
+    // alignItems: 'stretch'
+  }
 }));

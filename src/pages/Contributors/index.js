@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStyle } from "./styles.js";
 import axios from "axios";
 import { Dropdown } from "../../components/Dropdown";
-import { DropdownThumbnail } from "../../components/DropdownThumbnail";
+// import { DropdownThumbnail } from "../../components/DropdownThumbnail";
 import { BottomCallToAction } from "../../components/BottomCallToAction";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -11,7 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import {ContributorThumbnail} from '../../components/ContributorThumbnail'
+import { ContributorThumbnail } from "../../components/ContributorThumbnail";
 
 export default function Contributors({ match }) {
   const affiliation = match.params.affiliation;
@@ -84,7 +84,7 @@ export default function Contributors({ match }) {
         for (const property in affiliated) {
           //iterate through each array (values) in the object
           affiliated[property].forEach((org) => {
-            //if any of the affilliated are also in any of the value array, meaning an org has children, but is also a child
+            //if any of the affiliated are also in any of the value array, meaning an org has children, but is also a child
             if (affiliatedKeys.indexOf(org.name) !== -1) {
               //then org the org(and its children) as a subchild of an org
               org.subchildren = affiliated[org.name];
@@ -120,49 +120,69 @@ export default function Contributors({ match }) {
     }
   }, [affiliation]);
 
-    const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
-      const styles = {
-        thumbnailsContainer: {
-          display: "flex",
-        },
-      };
-
-      return (
-        <div style={styles.thumbnailsContainer}>
-          {unAffiliatedOrgs.map((organization, index) => (
-            <ContributorThumbnail
-              organization={organization}
-              key={index}
-            ></ContributorThumbnail>
-          ))}
-        </div>
-      );
+  const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
+    const styles = {
+      unaffiliatedContributor: {
+        margin: "0 0.5rem",
+        width: "100%",
+        border: "1px solid #BCBCBC",
+        borderRadius: "4px",
+      },
     };
+    return unAffiliatedOrgs.map((organization, index) => (
+      <div style={styles.unaffiliatedContributor}>
+        <ContributorThumbnail
+          organization={organization}
+          key={index}
+        ></ContributorThumbnail>
+      </div>
+    ));
+  };
 
   const AffiliatedOrgs = ({ affiliatedArray }) =>
-    affiliatedArray.map((ary, parentIndex) => (
-      <Dropdown
-        dropdownText={ary[0]}
-        key={parentIndex}
-        dropdownItems={ary[1]}
-        hasInputValue={inputValue.length}
-      >
-        {ary[1].map((organization, index) => (
-          <Dropdown
-            dropdownText={organization.name}
-            key={index}
-            dropdownItems={organization.subchildren}
-            hasInputValue={inputValue.length}
-          >
-            <DropdownThumbnail organizations={organization.subchildren} />
-          </Dropdown>
-        ))}
+    affiliatedArray.map((ary, parentIndex, ary0) => (
+        <Dropdown
+          organization={ary[0]}
+          key={parentIndex}
+          dropdownItems={ary[1]}
+          hasInputValue={inputValue.length}
+          dropdownLength={ary0.length}
+        >
+        {ary[1].map((organization, index, ary1) =>
+          organization.subchildren ? (
+            <Dropdown
+              organization={organization}
+              key={index}
+              dropdownItems={organization.subchildren}
+              hasInputValue={inputValue.length}
+              dropdownLength={ary1.length}
+            >
+              <div className={classes.contributorsContainer}>
+                {organization.subchildren ? (
+                  organization.subchildren.map((org, idx) => (
+                    <ContributorThumbnail organization={org} key={idx} />
+                  ))
+                ) : (
+                  <ContributorThumbnail organization={organization} />
+                )}
+              </div>
+            </Dropdown>
+          ) : (
+            <Dropdown
+              organization={organization}
+              key={index}
+              dropdownItems={organization.subchildren}
+              hasInputValue={inputValue.length}
+              dropdownLength={ary1.length}
+            />
+          )
+        )}
       </Dropdown>
     ));
 
-  const UnaffiliatedOrgs = ({ unAffiliatedOrgs }) => (
-    <DropdownThumbnail organizations={unAffiliatedOrgs} />
-  );
+//   const UnaffiliatedOrgs = ({ unAffiliatedOrgs }) => (
+//     <DropdownThumbnail organizations={unAffiliatedOrgs} />
+//   );
 
   return (
     <>
@@ -176,42 +196,47 @@ export default function Contributors({ match }) {
             ]}
             color="white"
           />
-          <h1 className={classes.heading}>Index Contributors</h1>
-          <h3
-            style={{
-              color: "white",
-              textAlign: "center",
-              margin: "1rem 0 0 0",
-            }}
-          >
-            Insert small blurb text about / purpose of Index Contributors
-          </h3>
-          <Autocomplete
-            id="free-solo-demo"
-            freeSolo
-            inputValue={inputValue}
-            onInputChange={(e, newValue) => setInputValue(newValue)}
-            options={orgsNames}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Search for a Contributing Organization"
-                margin="normal"
-                variant="outlined"
-                type="search"
-                size="normal"
-                InputProps={{
-                  ...params.InputProps,
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                }}
-                className={classes.input}
-              />
-            )}
-          />
+        </div>
+        <div className={classes.sectionContainer}>
+          <div style={{ margin: "auto 0" }}>
+            <h1 className={classes.heading}>Index Contributors</h1>
+            <h3
+              style={{
+                color: "white",
+                textAlign: "center",
+                margin: "1rem 0 0 0",
+              }}
+            >
+              Check out our partners who have contributed to the Civic Tech
+              Index
+            </h3>
+            <Autocomplete
+              id="free-solo-demo"
+              freeSolo
+              inputValue={inputValue}
+              onInputChange={(e, newValue) => setInputValue(newValue)}
+              options={orgsNames}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  placeholder="Search for a Contributing Organization"
+                  margin="normal"
+                  variant="outlined"
+                  type="search"
+                  size="normal"
+                  InputProps={{
+                    ...params.InputProps,
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  className={classes.input}
+                />
+              )}
+            />
+          </div>
         </div>
       </div>
       <div className={classes.unaffiliatedWrapper}>
@@ -225,10 +250,10 @@ export default function Contributors({ match }) {
               alt="open for about link"
             />
           </div>
-          <div className={classes.thumbnailsContainer}>
+          <div className={classes.unaffiliatedWrapper}>
             {unaffiliatedOpen &&
               (unAffiliatedOrgs.length ? (
-                <UnaffiliatedOrgs unAffiliatedOrgs={unAffiliatedOrgs} />
+                <UnaffiliatedOrgs2 unAffiliatedOrgs={unAffiliatedOrgs} />
               ) : inputValue.length ? (
                 <h1>No Results</h1>
               ) : (
