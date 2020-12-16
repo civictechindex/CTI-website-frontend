@@ -1,20 +1,12 @@
 import React from 'react'
 import '../../styles.css'
 
-import { Header, Footer, NavButton } from '../../components'
-import { Grid, Container } from '@material-ui/core';
-
+import { Header, Footer, NavButton, GetStartedCard, TitleSection } from '../../components'
 
 import NotableUsersSection from './sections/NotableUsersSection'
 import TrendingTopicsSection from './sections/TrendingTopicsSection'
 
-const TitleSection = () => {
-    return (
-        <Grid container alignItems="center" justify="center" style={{ paddingTop: '75px' }}>
-            <h2 align='center'>Join a worldwide movement to catalog <br />every open source civic tech project.</h2>
-        </Grid>
-    )
-}
+import { Grid, Container } from '@material-ui/core';
 
 const MarketingSection = () => {
 
@@ -49,11 +41,12 @@ const Home = () => {
             <Header />
             <div className='world-background' style={{ width: '100vw' }}>
                 <Container>
-                    <TitleSection />
+                    <TitleSection>Join a worldwide movement to catalog every open source civic tech project.</TitleSection>
                     <MarketingSection />
                     <CallToActionSection />
                     <NotableUsersSection />
                     <TrendingTopicsSection />
+                    <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/taggenerator" />
                 </Container>
             </div>
             <Footer />
