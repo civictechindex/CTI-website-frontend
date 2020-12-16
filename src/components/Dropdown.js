@@ -4,30 +4,30 @@ import { ContributorThumbnail } from "./ContributorThumbnail";
 
 const useStyles = createUseStyles({
   container: {
-    // width: "100%",
+    width: "100%",
   },
   codeForAll: {
-    '& h5':{
-        color: '#0F1D2F'
+    "& h5": {
+      color: "#0F1D2F",
     },
-  margin: "1rem auto",
-  color: "#004364",
-  boxSizing: "border-box",
-  width: "50%",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  backgroundColor: "white",
-  borderRadius: "2px",
-  paddingRight: "1rem",
-  "&:nth-of-type(2)": {
-    color: "red",
-  },
+    margin: "1rem auto",
+    color: "#004364",
+    boxSizing: "border-box",
+    width: "50%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: "2px",
+    paddingRight: "1rem",
+    "&:nth-of-type(2)": {
+      color: "red",
+    },
   },
   dropdown: {
-      '& h5':{
-          color: '#0F1D2F'
-      },
+    "& h5": {
+      color: "#0F1D2F",
+    },
     margin: "0.75rem 0",
     color: "#004364",
     boxSizing: "border-box",
@@ -43,7 +43,7 @@ const useStyles = createUseStyles({
     },
   },
   chevron: {
-      marginLeft: 'auto',
+    marginLeft: "auto",
     fontSize: "1.3rem",
     padding: "0.5rem",
     "&:hover": {
@@ -58,7 +58,7 @@ export const Dropdown = ({
   dropdownItems,
   children,
   hasInputValue,
-  dropdownLength
+  dropdownLength,
 }) => {
   const [open, setOpen] = useState(false);
   const arrow = useRef(null);
@@ -74,17 +74,31 @@ export const Dropdown = ({
   };
 
   useEffect(() => {
-
-    if (dropdownLength<3 || hasInputValue) {
-      setOpen(true);
-    }
+    //   if(typeof organization = 'string'){
+          if (dropdownLength < 3 && hasInputValue) {
+            setOpen(true);
+          }
+    //   }
   }, [hasInputValue, dropdownLength]);
 
   return (
     <div key={index} className={classes.container}>
-      <div className={typeof organization === 'string' ?classes.codeForAll: classes.dropdown} tabIndex="0">
-          <ContributorThumbnail organization={organization}/>
-          {dropdownItems ? (<h5><span>({dropdownItems.length})</span></h5>) : null}
+      <div
+        className={
+          typeof organization === "string"
+            ? classes.codeForAll
+            : classes.dropdown
+        }
+        tabIndex="0"
+      >
+        <div>
+          <ContributorThumbnail organization={organization} />
+        </div>
+        {dropdownItems ? (
+          <h5>
+            <span>({dropdownItems.length})</span>
+          </h5>
+        ) : null}
         {dropdownItems ? (
           <img
             ref={arrow}

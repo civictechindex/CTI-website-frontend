@@ -12,6 +12,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
+import { ParentContributor } from "../../components/ParentContributor";
 
 export default function Contributors({ match }) {
   const affiliation = match.params.affiliation;
@@ -123,6 +124,8 @@ export default function Contributors({ match }) {
   const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
     const styles = {
       unaffiliatedContributor: {
+        //   display: 'flex',
+        //   justifyContent: 'space-between',
         margin: "0 0.5rem",
         width: "100%",
         border: "1px solid #BCBCBC",
@@ -139,20 +142,15 @@ export default function Contributors({ match }) {
     ));
   };
 
-  const AffiliatedOrgs = ({ affiliatedArray }) =>
-    affiliatedArray.map((ary, parentIndex, ary0) => (
-        <Dropdown
-          organization={ary[0]}
-          key={parentIndex}
-          dropdownItems={ary[1]}
-          hasInputValue={inputValue.length}
-          dropdownLength={ary0.length}
-        >
-        {ary[1].map((organization, index, ary1) =>
+  const AffiliatedOrgs = ({ affiliatedArray }) => (
+    <>
+      <ParentContributor dropdownLength={affiliatedArray[0][1].length} />
+      {affiliatedArray.map((ary, parentIndex, ary0) =>
+        ary[1].map((organization, idx, ary1) =>
           organization.subchildren ? (
             <Dropdown
               organization={organization}
-              key={index}
+              key={idx}
               dropdownItems={organization.subchildren}
               hasInputValue={inputValue.length}
               dropdownLength={ary1.length}
@@ -163,26 +161,23 @@ export default function Contributors({ match }) {
                     <ContributorThumbnail organization={org} key={idx} />
                   ))
                 ) : (
-                  <ContributorThumbnail organization={organization} />
+                  <ContributorThumbnail organization={organization} key={idx}/>
                 )}
               </div>
             </Dropdown>
           ) : (
             <Dropdown
               organization={organization}
-              key={index}
+              key={idx}
               dropdownItems={organization.subchildren}
               hasInputValue={inputValue.length}
               dropdownLength={ary1.length}
             />
           )
-        )}
-      </Dropdown>
-    ));
-
-//   const UnaffiliatedOrgs = ({ unAffiliatedOrgs }) => (
-//     <DropdownThumbnail organizations={unAffiliatedOrgs} />
-//   );
+        )
+      )}
+    </>
+  );
 
   return (
     <>

@@ -4,36 +4,39 @@ import { getOrganizationLinks } from "./getOrganizationLinks.js";
 export const ContributorThumbnail = ({ organization }) => {
   const styles = {
       thumbnailWrapper:{
-          flex: '1 1 20rem'
+          display: 'flex',
+    //   flex: 'stretch'
+        minHeight: '7rem'
       },
     thumbnails: {
       backgroundColor: "white",
       display: "flex",
       textDecoration: "none",
       borderRadius: "4px",
-      minHeight: '7rem'
+      flexGrow: '1'
     },
     imageWrapper: {
-      display: "grid",
+      display: "flex",
       placeItems: "center",
       maxWidth: "6rem",
-      margin: " 0 0.5rem",
+      flexGrow: '1',
+      margin: '0.5rem'
     },
     thumbnailImage: {
       maxWidth: "100%",
       height: "auto",
     },
     textWrapper: {
-      display: "grid",
+      display: "flex",
       margin: "0 0.5rem 0 1rem",
+    flexGrow: '4',
+    alignItems: 'center'
     },
     thumbnailText: {
         fontSize: '1.3rem',
         fontWeight: 'bold',
       margin: '0',
       color: "#0F1D2F",
-      display: 'grid',
-      placeItems: 'center'
     },
   };
 
@@ -43,7 +46,7 @@ export const ContributorThumbnail = ({ organization }) => {
   }, [organization]);
 
   return thumbnailInfo.organizationUrl ? (
-    <div >
+    <div style={styles.thumbnailWrapper}>
       <a
         href={thumbnailInfo.organizationUrl}
         style={styles.thumbnails}

@@ -12,6 +12,7 @@ export const useStyle = createUseStyles((theme) => ({
     backgroundPositionY: "bottom",
     backgroundSize: "100%",
     backgroundRepeat: "no-repeat",
+    textAlign: 'center'
   },
   banner: {
     height: "20px",
@@ -24,6 +25,9 @@ export const useStyle = createUseStyles((theme) => ({
     color: "#FEFEFE",
   },
   sectionContainer: {
+      '& :nth-child':{
+        height: '20%'
+      },
     fontFamily: theme.primaryFontFamily,
     boxSizing: "border-box",
     margin: "0 auto",
@@ -47,18 +51,23 @@ export const useStyle = createUseStyles((theme) => ({
   unaffiliatedWrapper: {
     width: "100%",
     paddingBottom: "1rem",
-    "& >*, & h2": {
+    "& >*, & h2, & >h1": {
       color: "#004364",
-      textAlign: 'center'
+      textAlign: 'center',
+    //   display: 'inline'
     },
     display: 'flex',
-    justifyContent: 'space-between',
-    backgroundColor: '#F2F2F2'
+    // justifyContent: 'space-between',
+    backgroundColor: '#F2F2F2',
+    textAlign: 'center'
+    
   },
   affiliatedWrapper: {
     width: "100%",
     backgroundColor: "#004364",
     paddingBottom: "1rem",
+    textAlign: 'center'
+
   },
   chevron: {
     margin: "auto 0 auto auto",
@@ -81,6 +90,6 @@ export const useStyle = createUseStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     gap: "0.7rem",
-    // alignItems: 'stretch'
+    alignContent: 'flex-start'
   }
 }));
