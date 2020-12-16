@@ -24,9 +24,9 @@ const defaultBreadcrumb = {
 export default function NavBreadcrumb(props) {
   const crumbs = props.crumbs
 
-  const displayCrumbs = crumbs.map((i) => {
+  const displayCrumbs = crumbs.map((i,idx) => {
     if (i.href !== null || i.href !== '') {
-      return <Link color="inherit" href={i.href}> {i.name}</Link>
+      return <Link key={idx} color="inherit" href={i.href}> {i.name}</Link>
     } else {
       return <Typography color="inherit">{i.name}</Typography>
     }
@@ -34,7 +34,7 @@ export default function NavBreadcrumb(props) {
 
   return (
     <div style={defaultBreadcrumb}>
-      <Breadcrumbs aria-label="breadcrumb" style={{color:props.color, padding: '25px 0'}}>
+      <Breadcrumbs aria-label="breadcrumb" style={{color:props.color, padding: '25px'}}>
         {displayCrumbs}
       </Breadcrumbs>
     </div>
