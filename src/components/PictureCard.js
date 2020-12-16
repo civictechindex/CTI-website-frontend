@@ -22,7 +22,7 @@ export default function PictureCard(props) {
   const items = props.items;
 
   const displayCards = items.map((i, idx) => {
-    return <CardItem src={i.src} alt={i.alt}>{i.children}</CardItem>
+    return <CardItem src={i.src} alt={i.alt} key = {idx}>{i.children}</CardItem>
   });
 
   return (
