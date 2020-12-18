@@ -5,14 +5,14 @@ export const ContributorThumbnail = ({ organization }) => {
   const styles = {
       thumbnailWrapper:{
           display: 'flex',
-    //   flex: 'stretch'
-        minHeight: '7rem'
-      },
+        flex: '1 1 23%',
+    maxHeight: '6rem'
+    },
     thumbnails: {
-      backgroundColor: "white",
-      display: "flex",
-      textDecoration: "none",
-      borderRadius: "4px",
+        backgroundColor: "white",
+        display: "flex",
+        textDecoration: "none",
+        borderRadius: "4px",
       flexGrow: '1'
     },
     imageWrapper: {
@@ -20,19 +20,20 @@ export const ContributorThumbnail = ({ organization }) => {
       placeItems: "center",
       maxWidth: "6rem",
       flexGrow: '1',
-      margin: '0.5rem'
+      margin: '0.5rem 0 0.5rem 0.5rem'
     },
     thumbnailImage: {
       maxWidth: "100%",
-      height: "auto",
     },
     textWrapper: {
       display: "flex",
-      margin: "0 0.5rem 0 1rem",
-    flexGrow: '4',
-    alignItems: 'center'
+      margin: "0 0.5rem",
+    width: '75%',
+    alignItems: 'center',
+    flexGrow: '1'
     },
     thumbnailText: {
+        width: '100%',
         fontSize: '1.3rem',
         fontWeight: 'bold',
       margin: '0',
@@ -58,8 +59,8 @@ export const ContributorThumbnail = ({ organization }) => {
             <img
               src={thumbnailInfo.imageUrl}
               style={styles.thumbnailImage}
-              onError={(e) => console.log(e, `error with ${organization.name}`)}
-              alt={organization.name}
+              onError={(e) => console.log(`${e}: error with ${organization.name} image`)}
+              alt={`${organization.name} logo`}
               loading="lazy"
             />
           </div>

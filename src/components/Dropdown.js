@@ -28,6 +28,7 @@ const useStyles = createUseStyles({
     "& h5": {
       color: "#0F1D2F",
     },
+    maxHeight: '6rem',
     margin: "0.75rem 0",
     color: "#004364",
     boxSizing: "border-box",
@@ -55,7 +56,6 @@ const useStyles = createUseStyles({
 export const Dropdown = ({
   organization,
   index,
-  dropdownItems,
   children,
   hasInputValue,
   dropdownLength,
@@ -94,12 +94,12 @@ export const Dropdown = ({
         <div>
           <ContributorThumbnail organization={organization} />
         </div>
-        {dropdownItems ? (
+        {dropdownLength ? (
           <h5>
-            <span>({dropdownItems.length})</span>
+            <span>({dropdownLength})</span>
           </h5>
         ) : null}
-        {dropdownItems ? (
+        {dropdownLength ? (
           <img
             ref={arrow}
             className={classes.chevron}

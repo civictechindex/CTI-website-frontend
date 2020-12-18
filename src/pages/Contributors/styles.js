@@ -56,7 +56,7 @@ export const useStyle = createUseStyles((theme) => ({
       textAlign: 'center',
     //   display: 'inline'
     },
-    display: 'flex',
+    // display: 'flex',
     // justifyContent: 'space-between',
     backgroundColor: '#F2F2F2',
     textAlign: 'center'

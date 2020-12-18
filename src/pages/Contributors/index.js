@@ -19,10 +19,15 @@ export default function Contributors({ match }) {
 
   const classes = useStyle();
 
-  const [orgs, setOrgs] = useState([]);
-  const [orgsNames, setOrgsNames] = useState([]);
-  const [affiliatedOrgs, setAffiliatedOrgs] = useState([]);
-  const [unAffiliatedOrgs, setUnAffiliatedOrgs] = useState([]);
+  const [organizations, setOrganizations] = useState([]);
+  const [organizationNamesList, setOrganizationNamesList] = useState([]);
+  const [
+    affiliatedOrganizationsObject,
+    setAffiliatedOrganizationsObject,
+  ] = useState({});
+  const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
+    []
+  );
   const [affiliatedOpen, setAffiliatedOpen] = useState(false);
   const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -33,7 +38,7 @@ export default function Contributors({ match }) {
         const result = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/organizations/`
         );
-        setOrgs(result.data);
+        setOrganizations(result.data);
       } catch (error) {
         console.log(error);
       }
@@ -43,28 +48,30 @@ export default function Contributors({ match }) {
   }, []);
 
   useEffect(() => {
-    const affiliated = {};
-    let filteredOrgs = filterOrgs(orgs);
-    createAffiliatedOrgs();
-    createUnaffiliatedOrgs();
     setOrgNames();
 
     function setOrgNames() {
       const names = [];
-      for (const org of orgs) {
+      for (const org of organizations) {
         names.push(org.name);
       }
-      setOrgsNames(names);
+      setOrganizationNamesList(names.sort());
     }
-    function filterOrgs(orgs) {
-      return orgs.filter((org) =>
+
+    const affiliated = {};
+    let filteredOrganizationNames = filterOrganizations(organizations);
+    createAffiliatedOrganizations();
+    createUnaffiliatedOrganizations();
+
+    function filterOrganizations(organizations) {
+      return organizations.filter((org) =>
         org.name.toLowerCase().includes(inputValue.toLocaleLowerCase())
       );
     }
 
-    function createAffiliatedOrgs() {
+    function createAffiliatedOrganizations() {
       //iterate through the json response
-      for (const org of filteredOrgs) {
+      for (const org of filteredOrganizationNames) {
         //find orgs that are affiliated
         if (org.parent_organization) {
           //check if the parent of the affiliated org is in the object
@@ -77,36 +84,19 @@ export default function Contributors({ match }) {
           }
         }
       }
-      //if affiliated object has been made
-      if (filteredOrgs.length > 0) {
-        //grab the keys in the affiliated object
-        const affiliatedKeys = Object.keys(affiliated);
-        //iterate through the affiliated object
-        for (const property in affiliated) {
-          //iterate through each array (values) in the object
-          affiliated[property].forEach((org) => {
-            //if any of the affiliated are also in any of the value array, meaning an org has children, but is also a child
-            if (affiliatedKeys.indexOf(org.name) !== -1) {
-              //then org the org(and its children) as a subchild of an org
-              org.subchildren = affiliated[org.name];
-              delete affiliated[org.name];
-            }
-          });
-        }
-      }
-      setAffiliatedOrgs(Object.entries(affiliated));
+      setAffiliatedOrganizationsObject(affiliated);
     }
 
-    function createUnaffiliatedOrgs() {
+    function createUnaffiliatedOrganizations() {
       let unaffiliated = [];
-      filteredOrgs.forEach((org) => {
+      filteredOrganizationNames.forEach((org) => {
         if (!affiliated[org.name] && !org.parent_organization) {
           unaffiliated.push(org);
         }
       });
-      setUnAffiliatedOrgs(unaffiliated);
+      setUnaffiliatedOrganizations(unaffiliated);
     }
-  }, [orgs, inputValue]);
+  }, [organizations, inputValue]);
 
   useEffect(() => {
     if (affiliation === "unaffiliated") {
@@ -121,62 +111,62 @@ export default function Contributors({ match }) {
     }
   }, [affiliation]);
 
-  const UnaffiliatedOrgs2 = ({ unAffiliatedOrgs }) => {
+  const UnaffiliatedOrganizations = ({ unAffiliatedOrgs }) => {
     const styles = {
       unaffiliatedContributor: {
-        //   display: 'flex',
-        //   justifyContent: 'space-between',
+        display: "flex",
+        flexDirection: "row",
         margin: "0 0.5rem",
         width: "100%",
+        gap: "0.5rem",
+      },
+      unaffiliatedContributorThumbnails: {
         border: "1px solid #BCBCBC",
         borderRadius: "4px",
       },
     };
-    return unAffiliatedOrgs.map((organization, index) => (
+    return (
       <div style={styles.unaffiliatedContributor}>
-        <ContributorThumbnail
-          organization={organization}
-          key={index}
-        ></ContributorThumbnail>
+        {unAffiliatedOrgs.map((organization, index) => (
+          <div style={styles.unaffiliatedContributorThumbnails}>
+            <ContributorThumbnail
+              organization={organization}
+              key={index}
+            ></ContributorThumbnail>
+          </div>
+        ))}
       </div>
-    ));
+    );
   };
 
-  const AffiliatedOrgs = ({ affiliatedArray }) => (
-    <>
-      <ParentContributor dropdownLength={affiliatedArray[0][1].length} />
-      {affiliatedArray.map((ary, parentIndex, ary0) =>
-        ary[1].map((organization, idx, ary1) =>
-          organization.subchildren ? (
-            <Dropdown
-              organization={organization}
-              key={idx}
-              dropdownItems={organization.subchildren}
-              hasInputValue={inputValue.length}
-              dropdownLength={ary1.length}
-            >
-              <div className={classes.contributorsContainer}>
-                {organization.subchildren ? (
-                  organization.subchildren.map((org, idx) => (
-                    <ContributorThumbnail organization={org} key={idx} />
-                  ))
-                ) : (
-                  <ContributorThumbnail organization={organization} key={idx}/>
-                )}
+  const AffiliatedOrganizations = ({ affiliatedObject }) => (
+    <ParentContributor dropdownLength={affiliatedObject["Code for All"].length}>
+      {affiliatedObject["Code for All"].map((organization, idx, ary) => {
+        let numOfChildren = (organization) => {
+          if (affiliatedObject[organization.name]) {
+            return affiliatedObject[organization.name].length;
+          } else {
+            return 0;
+          }
+        };
+        return (
+          <Dropdown
+            organization={organization}
+            key={idx}
+            hasInputValue={inputValue.length}
+            dropdownLength={numOfChildren(organization)}
+          >
+            {affiliatedObject[organization.name] ? (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                {affiliatedObject[organization.name].map((child, idx) => (
+                  <ContributorThumbnail organization={child} key={idx} />
+                ))}
               </div>
-            </Dropdown>
-          ) : (
-            <Dropdown
-              organization={organization}
-              key={idx}
-              dropdownItems={organization.subchildren}
-              hasInputValue={inputValue.length}
-              dropdownLength={ary1.length}
-            />
-          )
-        )
-      )}
-    </>
+            ) : null}
+          </Dropdown>
+        );
+      })}
+    </ParentContributor>
   );
 
   return (
@@ -209,8 +199,8 @@ export default function Contributors({ match }) {
               id="free-solo-demo"
               freeSolo
               inputValue={inputValue}
-              onInputChange={(e, newValue) => setInputValue(newValue)}
-              options={orgsNames}
+              onInputChange={(e, newValue) => setInputValue(() => newValue)}
+              options={organizationNamesList}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -247,8 +237,10 @@ export default function Contributors({ match }) {
           </div>
           <div className={classes.unaffiliatedWrapper}>
             {unaffiliatedOpen &&
-              (unAffiliatedOrgs.length ? (
-                <UnaffiliatedOrgs2 unAffiliatedOrgs={unAffiliatedOrgs} />
+              (unaffiliatedOrganizations.length ? (
+                <UnaffiliatedOrganizations
+                  unAffiliatedOrgs={unaffiliatedOrganizations}
+                />
               ) : inputValue.length ? (
                 <h1>No Results</h1>
               ) : (
@@ -270,8 +262,10 @@ export default function Contributors({ match }) {
           </div>
           <div className={classes.thumbnailsContainer}>
             {affiliatedOpen &&
-              (affiliatedOrgs.length ? (
-                <AffiliatedOrgs affiliatedArray={affiliatedOrgs} />
+              (affiliatedOrganizationsObject["Code for All"] ? (
+                <AffiliatedOrganizations
+                  affiliatedObject={affiliatedOrganizationsObject}
+                />
               ) : inputValue.length ? (
                 <h1>No Results</h1>
               ) : (
