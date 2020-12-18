@@ -6,7 +6,7 @@ const CardItem = (props) => {
   return (
     <Grid item xs={12} lg={4}  >
       <div align='center' style={{ height: '50%' }}>
-        <img src={props.src} alt={props.alt} style={{ width: '300px', height: '220px' }} /> <p>{props.children}</p>
+        <img src={props.src} alt={props.alt} /> <p>{props.children}</p>
       </div>
     </Grid>
   )
