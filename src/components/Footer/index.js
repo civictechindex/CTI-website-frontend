@@ -8,7 +8,7 @@ const Footer = () => {
     <div className={classes.footerContainer}>
       <div className={classes.allInfoContainer}>
         <div className={classes.infoContainer}>
-          <Link to='/taggenerator' className={classes.infoHeader}>Tag Generator</Link>
+          <Link to='/tag-generator' className={classes.infoHeader}>Tag Generator</Link>
         </div>
         <div className={classes.infoContainer}>
           <Link to='/about'><p className={classes.infoHeader}>About</p></Link>
