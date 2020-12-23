@@ -25,9 +25,6 @@ export default function Contributors({ match }) {
     affiliatedOrganizationsObject,
     setAffiliatedOrganizationsObject,
   ] = useState({});
-  const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
-    []
-  );
   const [affiliatedOpen, setAffiliatedOpen] = useState(false);
   const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -48,53 +45,52 @@ export default function Contributors({ match }) {
   }, []);
 
   useEffect(() => {
-    setOrgNames();
-
-    function setOrgNames() {
-      const names = [];
-      for (const org of organizations) {
-        names.push(org.name);
-      }
-      setOrganizationNamesList(names.sort());
-    }
-
-    const affiliated = {};
-    let filteredOrganizationNames = filterOrganizations(organizations);
     createAffiliatedOrganizations();
-    createUnaffiliatedOrganizations();
-
-    function filterOrganizations(organizations) {
-      return organizations.filter((org) =>
-        org.name.toLowerCase().includes(inputValue.toLocaleLowerCase())
-      );
-    }
 
     function createAffiliatedOrganizations() {
+      const affiliated = Object.create(null);
+      affiliated["Code for All"] = [];
       //iterate through the json response
-      for (const org of filteredOrganizationNames) {
-        //find orgs that are affiliated
-        if (org.parent_organization) {
-          //check if the parent of the affiliated org is in the object
-          if (affiliated[org.parent_organization.name]) {
-            //if YES the parent is a key in the object, then add this current org to it's value array
-            affiliated[org.parent_organization.name].push(org);
-          } else {
-            //if NO, add the parent as a key, AND add this current org to the value array
-            affiliated[org.parent_organization.name] = [org];
+      const names = [];
+      for (let org of organizations) {
+          names.push(org.name);
+        //TODO: implement white space removal
+        if (
+          !inputValue ||
+          org.name.toLowerCase().includes(inputValue.toLowerCase())
+        ) {
+          if (org.id !== 2) {
+            //find orgs that are affiliated
+            if (org.parent_organization) {
+              //check if the parent of the affiliated org is in the object
+              if (affiliated[org.parent_organization.name]) {
+                //if YES the parent is a key in the object, then add this current org to it's value array
+                affiliated[org.parent_organization.name].push(org);
+                if (org.parent_organization.name === "Code for All") {
+                  affiliated[org.name] = [];
+                }
+              } else {
+                  affiliated["Code for All"].push(
+                      (organizations[org.parent_organization.id-1])
+                      );
+                      //if NO, add the parent as a key, AND add this current org to the value array
+                affiliated[org.parent_organization.name] = [org];
+              }
+            } else {
+              if (affiliated["unaffiliated"]) {
+                //if YES the parent is a key in the object, then add this current org to it's value array
+                affiliated["unaffiliated"].push(org);
+              } else {
+                //if NO, add the parent as a key, AND add this current org to the value array
+                affiliated["unaffiliated"] = [org];
+              }
+            }
           }
         }
       }
       setAffiliatedOrganizationsObject(affiliated);
-    }
+      setOrganizationNamesList(names.sort());
 
-    function createUnaffiliatedOrganizations() {
-      let unaffiliated = [];
-      filteredOrganizationNames.forEach((org) => {
-        if (!affiliated[org.name] && !org.parent_organization) {
-          unaffiliated.push(org);
-        }
-      });
-      setUnaffiliatedOrganizations(unaffiliated);
     }
   }, [organizations, inputValue]);
 
@@ -141,7 +137,7 @@ export default function Contributors({ match }) {
 
   const AffiliatedOrganizations = ({ affiliatedObject }) => (
     <ParentContributor dropdownLength={affiliatedObject["Code for All"].length}>
-      {affiliatedObject["Code for All"].map((organization, idx, ary) => {
+      {affiliatedObject["Code for All"].map((organization, idx) => {
         let numOfChildren = (organization) => {
           if (affiliatedObject[organization.name]) {
             return affiliatedObject[organization.name].length;
@@ -237,9 +233,11 @@ export default function Contributors({ match }) {
           </div>
           <div className={classes.unaffiliatedWrapper}>
             {unaffiliatedOpen &&
-              (unaffiliatedOrganizations.length ? (
+              (affiliatedOrganizationsObject["unaffiliated"] ? (
                 <UnaffiliatedOrganizations
-                  unAffiliatedOrgs={unaffiliatedOrganizations}
+                  unAffiliatedOrgs={
+                    affiliatedOrganizationsObject["unaffiliated"]
+                  }
                 />
               ) : inputValue.length ? (
                 <h1>No Results</h1>

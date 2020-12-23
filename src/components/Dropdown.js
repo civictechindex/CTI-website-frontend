@@ -74,11 +74,9 @@ export const Dropdown = ({
   };
 
   useEffect(() => {
-    //   if(typeof organization = 'string'){
           if (dropdownLength < 3 && hasInputValue) {
             setOpen(true);
           }
-    //   }
   }, [hasInputValue, dropdownLength]);
 
   return (
