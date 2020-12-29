@@ -58,7 +58,7 @@ const About = () => {
           <MarketingSection />
         </Container>
         <PictureCard items={pictureMarketingPoints} />
-        <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/taggenerator" />
+        <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/tag-generator" />
       </div>
       <Footer />
     </>
