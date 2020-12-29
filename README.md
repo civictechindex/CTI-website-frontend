@@ -67,53 +67,27 @@ This section discusses some tips and best practices for working with Git.
 
 1. After the owner of the `CTI-website-frontend` repository approves and merges your Pull Request, your changes will be live on the website. 
 
-## Step 2 Fork the repository
 
-In https://github.com/CTI-website-frontend/website, look for the fork icon in the top right. Click it and create a fork of the repository.
+## Step 2 Clone your online repository to your local computer
 
-For git beginners, a fork is a copy of the repository that will be placed on your GitHub account url.
-
-It should create a copy here: https://github.com/your_GitHub_user_name/website, where `your_GitHub_user_name` is replaced with exactly that.
-
-Note that this copy is on a remote server on the GitHub website and not on your computer yet.
-
-If you click the icon again, it will not create a new fork but instead give you the URL associated with your fork.
-
-## Step 3 Clone your online repository to your local computer
-
-For git beginners, this process will create a third copy of the repository on your local desktop.
+For git beginners, this process will create a third copy of the repository on your local desktop. Be sure to get write access from a PM of the civictechindex group.
 
 First create a new folder on your desktop that will contain `CTI-website-frontend` projects.
 
 In your shell, navigate there then run the following commands:
 
 ```bash
-git clone https://github.com/your_GitHub_user_name/website.git
+git clone https://github.com/civictechindex/CTI-website-frontend.git
 ```
 
-You should now have a new folder in your `CTI-website-frontend` folder called `website`.
+You should now have a new folder called `CTI-website-frontend`.
 
-Verify which URL your `origin` remote is pointing to:
 
 ```bash
 git remote show origin
 ```
 
-If you accidentally cloned the `CTI-website-frontend/website.git` then you can correct that with the following two commands: 
-
-1) Change your local copy to upload to your fork with the following:
-
-```bash
-git remote set-url origin https://github.com/your_user_name/website.git
-```
-
-2) Add another remote called `upstream` that points to the `CTI-website-frontend` version of the repository. This will allow you to incorporate changes later:
-
-```bash
-git remote add upstream https://github.com/CTI-website-frontend/website.git
-```
-
-## Step 4: Setting up Docker
+## Step 3: Setting up Docker (COMING SOON)
 
 Docker is the recommended approach to quickly getting started with local development. (ELI5: Docker helps create a local/offline version of the CTI-website-frontend.org website on your computer so you can test out your code before submitting a pull request).
 
