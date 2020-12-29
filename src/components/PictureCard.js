@@ -4,10 +4,9 @@ import { Grid } from "@material-ui/core";
 
 const CardItem = (props) => {
   return (
-    <Grid item xs={12} lg={4}  >
-      <div align='center' style={{ height: '50%' }}>
-        <img src={props.src} alt={props.alt} style={{ width: '300px', height: '220px' }} /> <p>{props.children}</p>
-      </div>
+    <Grid item xs={12} lg={4} style={{margin:'auto'}} align='center' >
+        <img src={props.src} alt={props.alt} />
+         <p style={{padding:'0 30px 0 30px'}}>{props.children}</p> 
     </Grid>
   )
 }
@@ -27,7 +26,7 @@ export default function PictureCard(props) {
 
   return (
     <>
-      <Grid container style={{ padding: '20px', maxWidth: '1200px', margin: 'auto', backgroundColor: "#F2F2F2" }}>
+      <Grid container style={{ padding:'20px 0 20px 0', maxWidth: '1200px', margin: 'auto', backgroundColor: "#F2F2F2" }}>
         {displayCards}
       </Grid>
     </>
