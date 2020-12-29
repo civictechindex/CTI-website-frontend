@@ -29,9 +29,9 @@ const Footer = () => {
         </div>
         <div className={classes.infoContainer}>
           <a href='/' className={classes.infoHeader}>Follow Us</a>
-          <a href='/'><img className={classes.margin} src='/images/insta-logo.svg' alt='instagram logo'/></a>
-          <a href='/'><img className={`${classes.margin} ${classes.twitter}`} src='/images/twitter-logo.svg' alt='twitter logo'/></a>
-          <a href='/'><img className={classes.margin} src='/images/fb-logo.svg' alt='facebook logo'/></a>
+          <a href='https://www.instagram.com/civictechindex'><img className={classes.margin} src='/images/insta-logo.svg' alt='instagram logo'/></a>
+          <a href='https://twitter.com/civictechindex'><img className={`${classes.margin} ${classes.twitter}`} src='/images/twitter-logo.svg' alt='twitter logo'/></a>
+          <a href='https://www.facebook.com/civictechindex'><img className={classes.margin} src='/images/fb-logo.svg' alt='facebook logo'/></a>
           <a href='https://github.com/civictechindex'><img src='/images/github-logo.svg' alt='github logo'/></a>
         </div>
       </div>
