@@ -21,7 +21,7 @@ const About = () => {
   const pictureMarketingPoints = [
     { src: "/images/girlCoding.png", alt: "girl coding on her computer", children: "No coding experience needed to submit your project!" },
     { src: "/images/girlandguyCoding.png", alt: "girl and guy coding", children: "Make your project more visible with GitHub’s open-source communities" },
-    { src: "/images/groupCodingColor.png", alt: "group coding", children: "The Index is owned by all who contribute to it" }
+    { src: "/images/groupCoding.png", alt: "group coding", children: "The Index is owned by all who contribute to it" }
   ];
 
   const VideoSection = () => {
