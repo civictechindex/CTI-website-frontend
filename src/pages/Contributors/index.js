@@ -53,7 +53,7 @@ export default function Contributors({ match }) {
       //iterate through the json response
       const names = [];
       for (let org of organizations) {
-          names.push(org.name);
+        names.push(org.name);
         //TODO: implement white space removal
         if (
           !inputValue ||
@@ -70,10 +70,10 @@ export default function Contributors({ match }) {
                   affiliated[org.name] = [];
                 }
               } else {
-                  affiliated["Code for All"].push(
-                      (organizations[org.parent_organization.id-1])
-                      );
-                      //if NO, add the parent as a key, AND add this current org to the value array
+                affiliated["Code for All"].push(
+                  organizations[org.parent_organization.id - 1]
+                );
+                //if NO, add the parent as a key, AND add this current org to the value array
                 affiliated[org.parent_organization.name] = [org];
               }
             } else {
@@ -90,7 +90,6 @@ export default function Contributors({ match }) {
       }
       setAffiliatedOrganizationsObject(affiliated);
       setOrganizationNamesList(names.sort());
-
     }
   }, [organizations, inputValue]);
 
@@ -112,13 +111,17 @@ export default function Contributors({ match }) {
       unaffiliatedContributor: {
         display: "flex",
         flexDirection: "row",
-        margin: "0 0.5rem",
-        width: "100%",
         gap: "0.5rem",
       },
       unaffiliatedContributorThumbnails: {
+          "& p":{
+              fontSize: "1.3rem",
+            fontWeight: "bold",
+            color: "#004364",
+          },
         border: "1px solid #BCBCBC",
         borderRadius: "4px",
+        flex: "1 1 23%",
       },
     };
     return (
@@ -146,20 +149,25 @@ export default function Contributors({ match }) {
           }
         };
         return (
-          <Dropdown
-            organization={organization}
-            key={idx}
-            hasInputValue={inputValue.length}
-            dropdownLength={numOfChildren(organization)}
-          >
-            {affiliatedObject[organization.name] ? (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                {affiliatedObject[organization.name].map((child, idx) => (
-                  <ContributorThumbnail organization={child} key={idx} />
-                ))}
-              </div>
-            ) : null}
-          </Dropdown>
+          <div style={{ display: "flex", flexDirection: "column", margin: '0.5rem 0' }}>
+            <Dropdown
+              organization={organization}
+              key={idx}
+              hasInputValue={inputValue.length}
+              dropdownLength={numOfChildren(organization)}
+              isOpen={affiliatedObject["Code for All"].length<2? true:false}
+            >
+              {affiliatedObject[organization.name] ? (
+                <div
+                  style={{ display: "flex", flexWrap: "wrap", margin: '1rem 0', justifyContent: 'space-between', gap: '0.4rem'}}
+                >
+                  {affiliatedObject[organization.name].map((child, idx) => (
+                    <ContributorThumbnail organization={child} key={idx} />
+                  ))}
+                </div>
+              ) : null}
+            </Dropdown>
+          </div>
         );
       })}
     </ParentContributor>
@@ -179,13 +187,13 @@ export default function Contributors({ match }) {
           />
         </div>
         <div className={classes.sectionContainer}>
-          <div style={{ margin: "auto 0" }}>
-            <h1 className={classes.heading}>Index Contributors</h1>
+          <div style={{ display: "grid", placeItems: "center" }}>
+            <h1 style={{ marginBottom: 0 }}>Index Contributors</h1>
             <h3
               style={{
                 color: "white",
                 textAlign: "center",
-                margin: "1rem 0 0 0",
+                margin: "3rem 0 ",
               }}
             >
               Check out our partners who have contributed to the Civic Tech
@@ -197,23 +205,24 @@ export default function Contributors({ match }) {
               inputValue={inputValue}
               onInputChange={(e, newValue) => setInputValue(() => newValue)}
               options={organizationNamesList}
+              className={classes.input}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   placeholder="Search for a Contributing Organization"
-                  margin="normal"
+                  //   margin="normal"
                   variant="outlined"
-                  type="search"
-                  size="normal"
+                //   type="search"
+                //   size="normal"
                   InputProps={{
                     ...params.InputProps,
+                    type: 'search',
                     startAdornment: (
                       <InputAdornment position="start">
                         <SearchIcon />
                       </InputAdornment>
                     ),
                   }}
-                  className={classes.input}
                 />
               )}
             />
@@ -222,14 +231,8 @@ export default function Contributors({ match }) {
       </div>
       <div className={classes.unaffiliatedWrapper}>
         <div className={classes.sectionContainer}>
-          <div className={classes.affiliation} tabIndex="0">
+          <div className={classes.affiliation}>
             <h2>Unaffiliated Contributors</h2>
-            <img
-              className={classes.chevron}
-              onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)}
-              src="/images/Chevron.png"
-              alt="open for about link"
-            />
           </div>
           <div className={classes.unaffiliatedWrapper}>
             {unaffiliatedOpen &&
@@ -249,18 +252,12 @@ export default function Contributors({ match }) {
       </div>
       <div className={classes.affiliatedWrapper}>
         <div className={classes.sectionContainer}>
-          <div className={classes.affiliation} tabIndex="0">
+          <div className={classes.affiliation}>
             <h2>Affiliated Contributors</h2>
-            <img
-              className={classes.chevron}
-              onClick={() => setAffiliatedOpen(!affiliatedOpen)}
-              src="/images/Chevron.png"
-              alt="open for about link"
-            />
           </div>
           <div className={classes.thumbnailsContainer}>
             {affiliatedOpen &&
-              (affiliatedOrganizationsObject["Code for All"] ? (
+              (affiliatedOrganizationsObject["Code for All"].length ? (
                 <AffiliatedOrganizations
                   affiliatedObject={affiliatedOrganizationsObject}
                 />

@@ -3,41 +3,62 @@ import { getOrganizationLinks } from "./getOrganizationLinks.js";
 
 export const ContributorThumbnail = ({ organization }) => {
   const styles = {
-      thumbnailWrapper:{
-          display: 'flex',
-        flex: '1 1 23%',
-    maxHeight: '6rem'
+    thumbnailWrapper: {
+      display: "flex",
+      flex: "0 0 24%",
+      //   margin: "0.2rem 0",
+      //   padding: '0.5rem'
+      // padding: '0.5rem'
     },
     thumbnails: {
-        backgroundColor: "white",
-        display: "flex",
-        textDecoration: "none",
-        borderRadius: "4px",
-      flexGrow: '1'
+      backgroundColor: "white",
+      display: "flex",
+      textDecoration: "none",
+      borderRadius: "4px",
+      flexGrow: "1",
+      //   margin: '0.3rem 0.5rem',
+      // justifyContent: 'center'
     },
     imageWrapper: {
-      display: "flex",
+      display: "grid",
       placeItems: "center",
-      maxWidth: "6rem",
-      flexGrow: '1',
-      margin: '0.5rem 0 0.5rem 0.5rem'
+      //   maxWidth: "29%",
+      //   flex: "1 1 30%",
+      //   margin: "0.5rem 0 0.5rem 0.5rem",
+      padding: "0.5rem",
     },
     thumbnailImage: {
-      maxWidth: "100%",
+      width: "100%",
+      maxWidth: "6rem",
     },
     textWrapper: {
       display: "flex",
-      margin: "0 0.5rem",
-    width: '75%',
-    alignItems: 'center',
-    flexGrow: '1'
+      alignItems: "center",
+      //   marginLeft: "0.5rem",
+      flex: "3 1 75%",
+    },
+    textWrapperWithoutImage: {
+      display: "grid",
+      placeItems: "center",
+      //   marginLeft: "0.5rem",
+      // flex: "1 1 100%",
+      width: "100%",
     },
     thumbnailText: {
-        width: '100%',
-        fontSize: '1.3rem',
-        fontWeight: 'bold',
-      margin: '0',
-      color: "#0F1D2F",
+      // width: "75%",
+      //   width: "100%",111
+      //   margin: "0",
+      //   color: "#0F1D2F",
+      //   padding: '0 0.5rem'
+    },
+    thumbnailTextWithoutImage: {
+      display: "flex",
+      alignItems: "center",
+      padding: "0 0.5rem",
+
+      //   margin: "0 0.5rem",
+      //   width: "75%",
+      //   flex: "3 1 75%",
     },
   };
 
@@ -59,18 +80,28 @@ export const ContributorThumbnail = ({ organization }) => {
             <img
               src={thumbnailInfo.imageUrl}
               style={styles.thumbnailImage}
-              onError={(e) => console.log(`${e}: error with ${organization.name} image`)}
+              onError={(e) =>
+                console.log(`${e}: error with ${organization.name} image`)
+              }
               alt={`${organization.name} logo`}
               loading="lazy"
             />
           </div>
         ) : null}
-        <div style={styles.textWrapper}>
-          <p style={styles.thumbnailText}>
-            {organization.name ? organization.name : organization}
-          </p>
+        <div style={styles.textWrapperWithoutImage}>
+          {thumbnailInfo.imageUrl ? (
+            <p style={styles.thumbnailText}>
+              {organization.name ? organization.name : organization}
+            </p>
+          ) : (
+            <p style={styles.thumbnailTextWithoutImage}>
+              {organization.name ? organization.name : organization}
+            </p>
+          )}
         </div>
       </a>
     </div>
-  ) : null;
+  ) : (
+    <div style={styles.thumbnailWrapper}>No Data</div>
+  );
 };

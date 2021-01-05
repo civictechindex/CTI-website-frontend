@@ -2,13 +2,12 @@ import { createUseStyles } from "react-jss";
 
 export const useStyle = createUseStyles((theme) => ({
   firstSectionWrapper: {
-      display:'grid',
     width: "100%",
     background: "#004364",
     color: "#FFE06D",
     boxSizing: "border-box",
     backgroundImage: 'url("/images/CTI-Contributors-BG-1.png")',
-    minHeight: "60vh",
+    minHeight: "57vh",
     backgroundPositionY: "bottom",
     backgroundSize: "100%",
     backgroundRepeat: "no-repeat",
@@ -81,7 +80,7 @@ export const useStyle = createUseStyles((theme) => ({
   },
 
   input: {
-    width: "100%",
+    width: "80%",
     borderRadius: "7px",
     backgroundColor: "white",
   },

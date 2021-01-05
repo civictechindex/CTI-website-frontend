@@ -7,11 +7,11 @@ const useStyles = createUseStyles({
     width: "100%",
   },
   codeForAll: {
-    "& h5": {
-      color: "#0F1D2F",
+    "& h4": {
+        color: "#004364",
     },
+    color: "#0F1D2F",
     margin: "1rem auto",
-    color: "#004364",
     boxSizing: "border-box",
     width: "50%",
     display: "flex",
@@ -27,9 +27,15 @@ const useStyles = createUseStyles({
   dropdown: {
     "& h5": {
       color: "#0F1D2F",
+      margin: '0'
     },
-    maxHeight: '6rem',
-    margin: "0.75rem 0",
+    "& p": {
+        color: "#0F1D2F",
+        fontSize: '1.3rem',
+        fontWeight: 'bold',
+      },
+    minHeight: '6rem',
+    // margin: "0.75rem 0",
     color: "#004364",
     boxSizing: "border-box",
     width: "100%",
@@ -55,12 +61,12 @@ const useStyles = createUseStyles({
 
 export const Dropdown = ({
   organization,
-  index,
   children,
   hasInputValue,
   dropdownLength,
+  isOpen
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(isOpen);
   const arrow = useRef(null);
   const classes = useStyles();
 
@@ -73,21 +79,20 @@ export const Dropdown = ({
     setOpen((c) => !c);
   };
 
-  useEffect(() => {
-          if (dropdownLength < 3 && hasInputValue) {
-            setOpen(true);
-          }
-  }, [hasInputValue, dropdownLength]);
+//   useEffect(() => {
+//           if (dropdownLength < 3 && hasInputValue) {
+//             setOpen(true);
+//           }
+//   }, [hasInputValue, dropdownLength]);
 
   return (
-    <div key={index} className={classes.container}>
+    <div  className={classes.container}>
       <div
         className={
           typeof organization === "string"
             ? classes.codeForAll
             : classes.dropdown
         }
-        tabIndex="0"
       >
         <div>
           <ContributorThumbnail organization={organization} />

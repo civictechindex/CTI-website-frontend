@@ -37,10 +37,10 @@ export const ParentContributor = ({ dropdownLength, children }) => {
       fontSize: "1.3rem",
       fontWeight: "bold",
       margin: "0",
-      color: "#0F1D2F",
+      color: "#004364",
     },
     dropdownLength: {
-      color: "#0F1D2F",
+      color: "#004364",
     },
   };
 
