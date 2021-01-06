@@ -1,21 +1,19 @@
-
 import React from 'react';
 
-
 export default React.createContext({
+  additionalTags:{atags:[""]},
+  addTag:()=>{}
+  owner:"",
   projectName: "",
   projectRepository: "",
-  owner:"",
-  repo:"",
   projectTags:[],
-  additionalTags:{atags:[""]},
-  topicTags:[],
+  repo:"",
   showDisplayTag:true,
-  updateShowDisplayTag:()=>{},
+  topicTags:[],
   updateProjectName: projectName => {},
   updateProjectRepository:projectRepository => {},
-  validateUrl:projectRepository =>{},
   updateProjectTag:dataCopy => {},
+  updateShowDisplayTag:()=>{},
   updateTopicTags:copytopicTags =>{},
-  addTag:()=>{}
+  validateUrl:projectRepository =>{},
 })
