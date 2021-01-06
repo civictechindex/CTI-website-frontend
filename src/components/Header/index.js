@@ -1,9 +1,7 @@
+import '../../styles.css'
+import useStyles from './styles.js'
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import useStyles from './styles.js'
-
-import '../../styles.css'
-
 
 const Header = () => {
   const classes = useStyles()

@@ -1,11 +1,10 @@
-import React from 'react';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import CardContent from '@material-ui/core/CardContent';
-
-import Grid from '@material-ui/core/Grid';
 import githubColorDictionary from './data/gh-colors.json'
+import Grid from '@material-ui/core/Grid';
+import React from 'react';
 
 const issueStyles = {
   fontSize: '13px',
@@ -13,7 +12,7 @@ const issueStyles = {
   fontWeight: '400'
 }
 
-function renderLanguageChip(language) {
+const renderLanguageChip = (language) => {
   return <Chip
     size="small"
     style={{ backgroundColor: '#F1F1F1' }}
@@ -22,7 +21,7 @@ function renderLanguageChip(language) {
       style={{ color: githubColorDictionary[language] }} />} />
 }
 
-function renderTopicTags(topics) {
+const renderTopicTags = (topics) => {
   return topics.map((i) => {
     return <Chip
       size="small"
@@ -33,7 +32,7 @@ function renderTopicTags(topics) {
 
 /**
  * 
- * @param {*} props 
+ * @param {*} props
  */
 export default function ProjectCard(props) {
   return (

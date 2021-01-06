@@ -69,7 +69,7 @@ This section discusses some tips and best practices for working with Git.
 
 ## Step 2 Fork the repository
 
-In https://github.com/CTI-website-frontend/website, look for the fork icon in the top right. Click it and create a fork of the repository.
+In https://github.com/civictechindex/CTI-website-frontend, look for the fork icon in the top right. Click it and create a fork of the repository.
 
 For git beginners, a fork is a copy of the repository that will be placed on your GitHub account url.
 
