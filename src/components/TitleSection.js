@@ -1,17 +1,17 @@
 import React from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Typography } from "@material-ui/core";
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+const theme = createMuiTheme(); // (was let, now const per ESLint 1/3/2021)
 theme.typography.h2 = {
-  fontSize: '28px',
-  margin: 'auto',
   '@media (min-width:675px)': {
     fontSize: '28px',
   },
   '@media (min-width:900px)': {
     fontSize: '36px',
   },
+  fontSize: '28px',
+  margin: 'auto',
 };
 
 /**
@@ -31,4 +31,3 @@ export default function GetStartedCard(props) {
     </Grid>
   )
 };
-

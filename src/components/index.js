@@ -9,13 +9,13 @@ import SearchBar from './SearchBar'
 import TitleSection from './TitleSection'
 
 export {
-    Footer,
-    GetStartedCard,
-    Header,
-    NavBreadcrumbs,
-    NavButton,
-    PictureCard,
-    ProjectCard,
-    SearchBar,
-    TitleSection
+  Footer,
+  GetStartedCard,
+  Header,
+  NavBreadcrumbs,
+  NavButton,
+  PictureCard,
+  ProjectCard,
+  SearchBar,
+  TitleSection,
 }
