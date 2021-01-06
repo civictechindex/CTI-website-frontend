@@ -24,7 +24,7 @@ jobs:
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.7.4
         env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          CC_TEST_REPORTER_ID: f005d141fc577a07c6e32bc71609eb6a52815e2a3c0ae4aa6d359ba447442cc0
         with:
           coverageCommand: npm run cypress:run
           coverageLocations: |

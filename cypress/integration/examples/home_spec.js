@@ -28,5 +28,9 @@ context('Actions', () => {
     it ('verify trending topics loads', () => {
         cy.contains('How are people using the CTI?')
     })
+
+    it('verify get started card loads', () => {
+        cy.contains('Ready to get started?')
+      })
 })
   

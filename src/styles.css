@@ -5,6 +5,10 @@
     padding: 75px 0 50px 0;
 }
 
+.default-background {
+    background: #004364;
+}
+
 .world-background {
     background: #004364;
     background-size: 100%;
@@ -23,7 +27,6 @@
     padding: 10px;
     outline: none;
     border-radius: 22.5px;
-    cursor: pointer;
     color: white;
     border: 1px solid #0CB2E7;
     background-color: #0CB2E7;
@@ -39,7 +42,6 @@
     padding: 10px;
     outline: none;
     border-radius: 22.5px;
-    cursor: pointer;
     color: white;
     border: 1px solid #0CB2E7;
     background-color: #0CB2E7;
@@ -62,7 +64,7 @@ h2 {
     font-family: Work Sans;
     font-style: normal;
     font-weight: bold;
-    font-size: 36px;
+    font-size: 28px;
     line-height: 38px;
     color: #FFE06D;
 }
@@ -80,9 +82,22 @@ h5 {
 p.white {
     color: white;
     text-align: center;
+    font-size:16px
 }
 
 p.black {
     color: black;
     text-align: center;
 }
+
+@media screen and (min-width: 600px) {
+    p.white {
+        font-size: 22px;
+    }
+    }
+
+@media screen and (min-width: 900px) {
+.getStartedCardDivStyle {
+    margin-top: 50px;
+}
+}        

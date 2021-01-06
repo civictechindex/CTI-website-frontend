@@ -53,10 +53,6 @@ export const useStyle = createUseStyles((theme) => ({
     "& >*, & h2, & >h1": {
       color: "#004364",
       textAlign: 'center',
-    //   display: 'inline'
-    },
-    // display: 'flex',
-    // justifyContent: 'space-between',
     backgroundColor: '#F2F2F2',
     textAlign: 'center'
     
