@@ -54,5 +54,10 @@
     "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
     "space-in-parens": "warn",
     "yoda": ["warn", "never", { "exceptRange": true }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
