@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import useStyles from './styles.js'
 
-const classes = useStyles()
-
 const SocialSection = () => {
+
+  const classes = useStyles()
+
   return (
     <div className={classes.infoContainer}>
       <a href='/' className={classes.infoHeader}>Follow Us</a>
@@ -26,6 +27,8 @@ const SocialSection = () => {
 }
 
 const Footer = () => {
+
+  const classes = useStyles()
 
   return (
     <div className={classes.footerContainer}>
