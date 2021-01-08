@@ -66,11 +66,11 @@ This section discusses some tips and best practices for working with Git.
 
 ## Step 2 Fork the repository
 
-In https://github.com/CTI-website-frontend/website, look for the fork icon in the top right. Click it and create a fork of the repository.
+In <https://github.com/civictechindex/CTI-website-frontend>, look for the fork icon in the top right. Click it and create a fork of the repository.
 
 For git beginners, a fork is a copy of the repository that will be placed on your GitHub account url.
 
-It should create a copy here: https://github.com/your_GitHub_user_name/website, where `your_GitHub_user_name` is replaced with exactly that.
+It should create a copy here: <https://github.com/your_GitHub_user_name/CTI-website-frontend>, where `your_GitHub_user_name` is replaced with exactly that.
 
 Note that this copy is on a remote server on the GitHub website and not on your computer yet.
 
@@ -85,10 +85,10 @@ First create a new folder on your desktop that will contain `CTI-website-fronten
 In your shell, navigate there then run the following commands:
 
 ```bash
-git clone https://github.com/your_GitHub_user_name/website.git
+git clone https://github.com/your_GitHub_user_name/CTI-website-frontend.git
 ```
 
-You should now have a new folder in your `CTI-website-frontend` folder called `website`.
+You should now have a new folder called `CTI-website-frontend`.
 
 Verify which URL your `origin` remote is pointing to:
 
@@ -96,23 +96,23 @@ Verify which URL your `origin` remote is pointing to:
 git remote show origin
 ```
 
-If you accidentally cloned the `CTI-website-frontend/website.git` then you can correct that with the following two commands: 
+If you accidentally cloned the `civictechindex/CTI-website-frontend.git` then you can correct that with the following two commands:
 
 1) Change your local copy to upload to your fork with the following:
 
 ```bash
-git remote set-url origin https://github.com/your_user_name/website.git
+git remote set-url origin https://github.com/your_GitHub_user_name/CTI-website-frontend.git
 ```
 
 2) Add another remote called `upstream` that points to the `CTI-website-frontend` version of the repository. This will allow you to incorporate changes later:
 
 ```bash
-git remote add upstream https://github.com/CTI-website-frontend/website.git
+git remote add upstream https://github.com/civictechindex/CTI-website-frontend.git
 ```
 
 ## Step 4: Setting up Docker
 
-Docker is the recommended approach to quickly getting started with local development. (ELI5: Docker helps create a local/offline version of the CTI-website-frontend.org website on your computer so you can test out your code before submitting a pull request).
+Docker is the recommended approach to quickly getting started with local development. (Docker helps create a local/offline version of the `CTI-website-frontend` website on your computer so you can test out your code before submitting a pull request.)
 
 The recommended installation method is [Docker Desktop](https://docs.docker.com/install/) for Windows 10 64-bit and Mac. Linux users may check out [Docker Engine](https://docs.docker.com/engine/install/) instead.
 
@@ -194,7 +194,7 @@ Congratulations!  You are now ready to push your work to your repository.
 
 ## Step 6 Check upstream before you push
 
-Before you push your local commits to your repository, check to see if there have been updates made in the main Hack For LA website repository. `git fetch` will check remote repositories for changes without altering your local repository.
+Before you push your local commits to your repository, check to see if there have been updates made in the main Civic Tech Index website repository. `git fetch` will check remote repositories for changes without altering your local repository.
 
 ```bash
 git fetch upstream
@@ -301,10 +301,10 @@ git merge main
 git push --set-upstream origin fix-logo-width-311
 ```
 
-Now create a new pull request to ask for your updates to be incorporated into the live web site. 
-Go to https://github.com/CTI-website-frontend/website/pulls and click on "New pull request". 
+Now create a new pull request to ask for your updates to be incorporated into the live web site.
+Go to <https://github.com/civictechindex/CTI-website-frontend/pulls> and click on "New pull request".
 Please rename your pull request something descriptive i.e. "building a project card for civic opportunity project".
-Also, since your changes are not in the CTI-website-frontend/website repostory, you need to click the "compare across forks" link in the
+Also, since your changes are not in the civictechindex/CTI-website-frontend repostory, you need to click the "compare across forks" link in the
 first paragraph to make you repository and your new branch available. Review the changes that will be included in the pull
 request and, if it fixes a specific issue, include `Fixes #140` in the pull request message so the issue will be closed automatically once
 your pull request is accepted and merged.
