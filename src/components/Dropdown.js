@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
   },
   codeForAll: {
     "& h4": {
-        color: "#004364",
+      color: "#004364",
     },
     color: "#0F1D2F",
     margin: "1rem auto",
@@ -27,14 +27,14 @@ const useStyles = createUseStyles({
   dropdown: {
     "& h5": {
       color: "#0F1D2F",
-      margin: '0'
+      margin: "0",
     },
     "& p": {
-        color: "#0F1D2F",
-        fontSize: '1.25rem',
-        fontWeight: 'bold',
-      },
-    minHeight: '6rem',
+      color: "#0F1D2F",
+      fontSize: "1.25rem",
+      fontWeight: "bold",
+    },
+    minHeight: "6rem",
     margin: "0.75rem 0",
     color: "#004364",
     boxSizing: "border-box",
@@ -47,12 +47,10 @@ const useStyles = createUseStyles({
     paddingRight: "1rem",
   },
   chevron: {
-    marginLeft: "auto",
+    cursor: "pointer",
     fontSize: "1.3rem",
+    marginLeft: "auto",
     padding: "0.5rem",
-    "&:hover": {
-      cursor: "pointer",
-    },
   },
 });
 
@@ -61,7 +59,7 @@ export const Dropdown = ({
   children,
   hasInputValue,
   dropdownLength,
-  isOpen
+  isOpen,
 }) => {
   const [open, setOpen] = useState(isOpen);
   const arrow = useRef(null);
@@ -76,7 +74,7 @@ export const Dropdown = ({
     setOpen((c) => !c);
   };
   return (
-    <div  className={classes.container}>
+    <div className={classes.container}>
       <div
         className={
           typeof organization === "string"
