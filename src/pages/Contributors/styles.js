@@ -49,20 +49,48 @@ export const useStyle = createUseStyles((theme) => ({
   },
   unaffiliatedWrapper: {
     width: "100%",
-    paddingBottom: "1rem",
-    "& >*, & h2, & >h1": {
-      color: "#004364",
-      textAlign: 'center',
+    padding: "1rem 0",
     backgroundColor: '#F2F2F2',
-    textAlign: 'center'
-    
+    '& *':{color: "#004364"},
+    " & h2": {
+        fontSize: '2.25rem',
+      margin: 0,
   },
+  '& p':{
+      fontWeight: 'bold',
+      fontSize: '1.5rem'
+  }
+},
+unaffiliatedThumbnailsWrapper: {
+    display: "flex",
+        flexDirection: "row",
+        gap: "0.5rem",
+},
+unaffiliatedThumbnails:{
+    border: "1px solid #BCBCBC",
+    borderRadius: "4px",
+    flex: "1 1 23%",
+    "& p": {
+        fontSize: "1.5rem",
+        fontWeight: "bold",
+        color: "#004364",
+      },
+},
   affiliatedWrapper: {
     width: "100%",
     backgroundColor: "#004364",
-    paddingBottom: "1rem",
-    textAlign: 'center'
-
+    padding: "1rem 0",
+    textAlign: 'center',
+    '& h2':{
+        padding: '1rem 0',
+        margin: 0,
+        fontSize: '2.25rem'
+    },
+},
+affiliatedOrgsContainer:{
+      '&h2, & h3': {
+          color: '#FFE06D'
+      }
   },
   chevron: {
     margin: "auto 0 auto auto",
@@ -86,5 +114,10 @@ export const useStyle = createUseStyles((theme) => ({
     flexWrap: "wrap",
     gap: "0.7rem",
     alignContent: 'flex-start'
-  }
+  },
+  loaders:{
+    fontSize: '2rem',
+    textAlign: 'center',
+      marginBottom: 0,
+}
 }));

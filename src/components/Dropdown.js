@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import { ContributorThumbnail } from "./ContributorThumbnail";
 
@@ -31,10 +31,11 @@ const useStyles = createUseStyles({
     },
     "& p": {
         color: "#0F1D2F",
-        fontSize: '1.3rem',
+        fontSize: '1.25rem',
         fontWeight: 'bold',
       },
     minHeight: '6rem',
+    margin: "0.75rem 0",
     color: "#004364",
     boxSizing: "border-box",
     width: "100%",
@@ -44,21 +45,21 @@ const useStyles = createUseStyles({
     backgroundColor: "white",
     borderRadius: "2px",
     paddingRight: "1rem",
-    "&:nth-of-type(2)": {
-      color: "red",
-    },
   },
   chevron: {
     marginLeft: "auto",
     fontSize: "1.3rem",
     padding: "0.5rem",
+    "&:hover": {
       cursor: "pointer",
+    },
   },
 });
 
 export const Dropdown = ({
   organization,
   children,
+  hasInputValue,
   dropdownLength,
   isOpen
 }) => {
@@ -74,7 +75,6 @@ export const Dropdown = ({
     }
     setOpen((c) => !c);
   };
-
   return (
     <div  className={classes.container}>
       <div

@@ -54,12 +54,13 @@ export default function Contributors({ match }) {
       const names = [];
       for (let org of organizations) {
         names.push(org.name);
-        //TODO: implement white space removal
+        let orgName = org.name.toLowerCase().replace(/\s/g, "");
+        let input = inputValue.toLowerCase().replace(/\s/g, "");
         if (
-          !inputValue ||
-          org.name.toLowerCase().includes(inputValue.toLowerCase())
+          (!inputValue ||
+          org.name.toLowerCase().includes(inputValue.toLowerCase()))
+          && (org.id !== 2)
         ) {
-          if (org.id !== 2) {
             //find orgs that are affiliated
             if (org.parent_organization) {
               //check if the parent of the affiliated org is in the object
@@ -85,7 +86,7 @@ export default function Contributors({ match }) {
                 affiliated["unaffiliated"] = [org];
               }
             }
-          }
+          
         }
       }
       setAffiliatedOrganizationsObject(affiliated);
@@ -107,27 +108,10 @@ export default function Contributors({ match }) {
   }, [affiliation]);
 
   const UnaffiliatedOrganizations = ({ unAffiliatedOrgs }) => {
-    const styles = {
-      unaffiliatedContributor: {
-        display: "flex",
-        flexDirection: "row",
-        gap: "0.5rem",
-      },
-      unaffiliatedContributorThumbnails: {
-          "& p":{
-              fontSize: "1.3rem",
-            fontWeight: "bold",
-            color: "#004364",
-          },
-        border: "1px solid #BCBCBC",
-        borderRadius: "4px",
-        flex: "1 1 23%",
-      },
-    };
     return (
-      <div style={styles.unaffiliatedContributor}>
+      <div className={classes.unaffiliatedThumbnailsWrapper}>
         {unAffiliatedOrgs.map((organization, index) => (
-          <div style={styles.unaffiliatedContributorThumbnails}>
+          <div className={classes.unaffiliatedThumbnails}>
             <ContributorThumbnail
               organization={organization}
               key={index}
@@ -138,40 +122,54 @@ export default function Contributors({ match }) {
     );
   };
 
-  const AffiliatedOrganizations = ({ affiliatedObject }) => (
-    <ParentContributor dropdownLength={affiliatedObject["Code for All"].length}>
-      {affiliatedObject["Code for All"].map((organization, idx) => {
-        let numOfChildren = (organization) => {
-          if (affiliatedObject[organization.name]) {
-            return affiliatedObject[organization.name].length;
-          } else {
-            return 0;
-          }
-        };
-        return (
-          <div style={{ display: "flex", flexDirection: "column", margin: '0.5rem 0' }}>
-            <Dropdown
-              organization={organization}
-              key={idx}
-              hasInputValue={inputValue.length}
-              dropdownLength={numOfChildren(organization)}
-              isOpen={affiliatedObject["Code for All"].length<2? true:false}
-            >
-              {affiliatedObject[organization.name] ? (
-                <div
-                  style={{ display: "flex", flexWrap: "wrap", margin: '1rem 0', justifyContent: 'space-between', gap: '0.4rem'}}
-                >
-                  {affiliatedObject[organization.name].map((child, idx) => (
-                    <ContributorThumbnail organization={child} key={idx} />
-                  ))}
-                </div>
-              ) : null}
-            </Dropdown>
-          </div>
-        );
-      })}
-    </ParentContributor>
-  );
+  const AffiliatedOrganizations = ({ affiliatedObject }) => {
+    let numOfChildren = (organization) => {
+      if (affiliatedObject[organization.name]) {
+        return affiliatedObject[organization.name].length;
+      } else {
+        return 0;
+      }
+    };
+    return (
+        Object.keys(affiliatedObject)[0]?(
+      <ParentContributor
+        dropdownLength={affiliatedObject['Code for All'].length}
+        isOpen={ true }
+      >
+        {affiliatedObject["Code for All"].map((organization, idx) => {
+          return (
+            <div>
+              <Dropdown
+                organization={organization}
+                key={idx}
+                hasInputValue={inputValue.length}
+                dropdownLength={numOfChildren(organization)}
+                isOpen={
+                  affiliatedObject["Code for All"].length < 3 ? true : false
+                }
+              >
+                {affiliatedObject[organization.name] ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      margin: "1rem 0",
+                      justifyContent: "space-between",
+                      gap: "0.4rem",
+                    }}
+                  >
+                    {affiliatedObject[organization.name].map((child, idx) => (
+                      <ContributorThumbnail organization={child} key={idx} />
+                    ))}
+                  </div>
+                ) : null}
+              </Dropdown>
+            </div>
+          );
+        })}
+      </ParentContributor>):null
+    );
+  };
 
   return (
     <>
@@ -210,13 +208,10 @@ export default function Contributors({ match }) {
                 <TextField
                   {...params}
                   placeholder="Search for a Contributing Organization"
-                  //   margin="normal"
                   variant="outlined"
-                //   type="search"
-                //   size="normal"
                   InputProps={{
                     ...params.InputProps,
-                    type: 'search',
+                    type: "search",
                     startAdornment: (
                       <InputAdornment position="start">
                         <SearchIcon />
@@ -243,9 +238,9 @@ export default function Contributors({ match }) {
                   }
                 />
               ) : inputValue.length ? (
-                <h1>No Results</h1>
+                <h3 className={classes.loaders}>No Results</h3>
               ) : (
-                <h1>Loading...</h1>
+                <h3 className={classes.loaders}>Loading...</h3>
               ))}
           </div>
         </div>
@@ -255,16 +250,16 @@ export default function Contributors({ match }) {
           <div className={classes.affiliation}>
             <h2>Affiliated Contributors</h2>
           </div>
-          <div className={classes.thumbnailsContainer}>
+          <div className={classes.affiliatedOrgsContainer}>
             {affiliatedOpen &&
               (affiliatedOrganizationsObject["Code for All"].length ? (
                 <AffiliatedOrganizations
                   affiliatedObject={affiliatedOrganizationsObject}
                 />
               ) : inputValue.length ? (
-                <h1>No Results</h1>
+                <h3 className={classes.loader}>No Results</h3>
               ) : (
-                <h1>Loading...</h1>
+                <h3 className={classes.loader}>Loading...</h3>
               ))}
           </div>
         </div>

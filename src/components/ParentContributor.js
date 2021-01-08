@@ -10,7 +10,7 @@ export const ParentContributor = ({ dropdownLength, children }) => {
       borderRadius: "4px",
       backgroundColor: "white",
       color: "#0F1D2F",
-      margin: "auto",
+      margin: "1rem auto",
     },
     thumbnails: {
       display: "flex",
@@ -34,7 +34,7 @@ export const ParentContributor = ({ dropdownLength, children }) => {
       alignItems: "center",
     },
     thumbnailText: {
-      fontSize: "1.3rem",
+      fontSize: "1.5rem",
       fontWeight: "bold",
       margin: "0",
       color: "#004364",

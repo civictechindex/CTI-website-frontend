@@ -28,7 +28,7 @@ export default function NavBreadcrumb(props) {
     if (i.href !== null || i.href !== '') {
       return <Link key={idx} color="inherit" href={i.href}> {i.name}</Link>
     } else {
-      return <Typography key={k} color="inherit">{i.name}</Typography>
+      return <Typography key={idx} color="inherit">{i.name}</Typography>
     }
   });
 
