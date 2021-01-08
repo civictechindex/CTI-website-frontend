@@ -1,21 +1,21 @@
 {
   "env": {
-      "browser": true
+    "browser": true
   },
   "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "react-app"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "react-app"
   ],
   "parserOptions": {
-      "ecmaFeatures": {
-          "jsx": true
-      },
-      "ecmaVersion": 7,
-      "sourceType": "module"
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 7,
+    "sourceType": "module"
   },
   "plugins": [
-      "react"
+    "react"
   ],
   "rules": {
     "array-bracket-spacing": "warn",
@@ -45,7 +45,7 @@
     "prefer-const": "error",
     "react/prop-types": "off",
     "require-await": "error",
-    "sort-imports": ["warn", { 
+    "sort-imports": ["warn", {
       "ignoreCase": true,
       "memberSyntaxSortOrder": ["all", "single", "multiple", "none"]
     }],
