@@ -7,6 +7,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.20.0",
+    "eslint-plugin-react": "^7.22.0",
     "material-ui-chip-input": "^2.0.0-beta.2",
     "npx": "^10.2.2",
     "react": "^16.13.1",
@@ -42,13 +43,13 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^6.6.0",
     "@babel/preset-react": "^7.12.5",
     "@cypress/code-coverage": "^3.8.3",
     "@cypress/instrument-cra": "^1.4.0",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cypress": "^5.5.0",
+    "eslint": "^6.8.0",
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0"
   }

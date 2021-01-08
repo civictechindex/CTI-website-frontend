@@ -42,6 +42,7 @@
       "objectsInObjects": false
     }],
     "prefer-const": "error",
+    "react/prop-types": "off",
     "require-await": "error",
     "sort-imports": ["warn", { 
       "ignoreCase": true,
