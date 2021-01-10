@@ -44,7 +44,7 @@
     "prefer-const": "error",
     "react/prop-types": "off",
     "require-await": "error",
-    "sort-imports": ["warn", { 
+    "sort-imports": ["warn", {
       "ignoreCase": true,
       "memberSyntaxSortOrder": ["all", "single", "multiple", "none"]
     }],
