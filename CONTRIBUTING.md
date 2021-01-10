@@ -21,17 +21,19 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 **After you've worked on your issue and before you make a pull request:**
 
-6. [Check upstream before you push](#step-6-check-upstream-before-you-push).
+6. [Code quality](#code-quality)
 
-6a. [No changes in the upstream repo](#step-6a-no-changes-in-the-upstream-repository)
+7. [Check upstream before you push](#step-7-check-upstream-before-you-push).
+
+7a. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
 
 **Or**
 
-6b. [Conflicting changes in the upstream repo](#step-6b-conflicting-changes-in-the-upstream-repository) and how to resolve them
-              
-**Okay. You're good to go!**        
- 
-7. [Complete the pull request](#step-7-complete-the-pull-request)
+7b. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
+
+**Okay. You're good to go!**
+
+8. [Complete the pull request](#step-8-complete-the-pull-request)
 
 ---
 
@@ -229,9 +231,29 @@ To commit your changes with a message, run:
 git commit -m “insert message here”
 ```
 
-Congratulations!  You are now ready to push your work to your repository. 
+Congratulations!  You are now ready to push your work to your repository.
 
-## Step 6 Check upstream before you push
+## Step 6 Code Quality
+
+We use ESLint and Code Climate to improve code quality. ESLint works on your local machine before you submit your PR, while Code Climate is part of the CI/CD process on GitHub after you submit.
+
+### ESLint
+
+ESLint is included in the repo when you run `npm install`. We use the `eslint` and `eslint-plugin-react` packages. The exact settings can be found in `.eslintr.json`. **Be sure to lint your code before pushing to GitHub.**
+
+To lint the entire repo, run `npm run lint`
+
+To lint a single file, run `npx eslint path/to/file.js`
+
+To see if ESLint can automatically fix errors for you in that file, run `npx eslint --fix path/to/file.js`
+
+Eliminate errors and warnings before submitting your PR. (If that can't be done for some reason, please explain why in the PR.)
+
+### ESLint and Your Development Environment
+
+Most editors, including Visual Studio Code, can show the linting errors and warnings to you while you edit. Once you have installed the repo, just make sure you have installed the [ESLint Extention](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) as well. (Similar tools exist for most other code editors.)
+
+## Step 7 Check upstream before you push
 
 Before you push your local commits to your repository, check to see if there have been updates made in the main Hack For LA website repository. `git fetch` will check remote repositories for changes without altering your local repository.
 
@@ -239,19 +261,19 @@ Before you push your local commits to your repository, check to see if there hav
 git fetch upstream
 ```
 
-### Step 6a No changes in the upstream repository
+### Step 7a No changes in the upstream repository
 
 If you do not see any output, there have not been any changes in the
 main CTI Front End website repository since the last time you
 checked. So it is safe to push your local commits to your fork.
 
-If you just type `git push` you will be prompted to create a new branch in your GitHub repository. The more complete command below will create a new branch on your copy of the website repository, and then push your local branch there. The name at the end of this command should be the same as the name of the local branch that you created back in step 6, as in the example below:  
+If you just type `git push` you will be prompted to create a new branch in your GitHub repository. The more complete command below will create a new branch on your copy of the website repository, and then push your local branch there. The name at the end of this command should be the same as the name of the local branch that you created back in step 7, as in the example below:
 
 ```bash
 git push --set-upstream origin fix-logo-width-311
 ```
 
-### Step 6b conflicting changes in the upstream repository
+### Step 7b conflicting changes in the upstream repository
 
 When you check the upstream repository, you may see output like this:
 
@@ -334,7 +356,7 @@ git checkout fix-logo-width-311
 git merge main
 ```
 
-## Step 7 Complete the pull request
+## Step 8 Complete the pull request
 
 ```bash
 git push --set-upstream origin fix-logo-width-311
