@@ -21,17 +21,19 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 **After you've worked on your issue and before you make a pull request:**
 
-6. [Check upstream before you push](#step-6-check-upstream-before-you-push).
+6. [Code quality](#code-quality)
 
-6a. [No changes in the upstream repo](#step-6a-no-changes-in-the-upstream-repository)
+7. [Check upstream before you push](#step-7-check-upstream-before-you-push).
+
+7a. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
 
 **Or**
 
-6b. [Conflicting changes in the upstream repo](#step-6b-conflicting-changes-in-the-upstream-repository) and how to resolve them
-              
-**Okay. You're good to go!**        
- 
-7. [Complete the pull request](#step-7-complete-the-pull-request)
+7b. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
+
+**Okay. You're good to go!**
+
+8. [Complete the pull request](#step-8-complete-the-pull-request)
 
 ---
 
@@ -66,11 +68,11 @@ This section discusses some tips and best practices for working with Git.
 
 ## Step 2 Fork the repository
 
-In https://github.com/CTI-website-frontend/website, look for the fork icon in the top right. Click it and create a fork of the repository.
+In <https://github.com/civictechindex/CTI-website-frontend>, look for the fork icon in the top right. Click it and create a fork of the repository.
 
 For git beginners, a fork is a copy of the repository that will be placed on your GitHub account url.
 
-It should create a copy here: https://github.com/your_GitHub_user_name/website, where `your_GitHub_user_name` is replaced with exactly that.
+It should create a copy here: <https://github.com/your_GitHub_user_name/CTI-website-frontend>, where `your_GitHub_user_name` is replaced with exactly that.
 
 Note that this copy is on a remote server on the GitHub website and not on your computer yet.
 
@@ -85,10 +87,10 @@ First create a new folder on your desktop that will contain `CTI-website-fronten
 In your shell, navigate there then run the following commands:
 
 ```bash
-git clone https://github.com/your_GitHub_user_name/website.git
+git clone https://github.com/your_GitHub_user_name/CTI-website-frontend.git
 ```
 
-You should now have a new folder in your `CTI-website-frontend` folder called `website`.
+You should now have a new folder called `CTI-website-frontend`.
 
 Verify which URL your `origin` remote is pointing to:
 
@@ -96,32 +98,27 @@ Verify which URL your `origin` remote is pointing to:
 git remote show origin
 ```
 
-If you accidentally cloned the `CTI-website-frontend/website.git` then you can correct that with the following two commands: 
+If you accidentally cloned the `civictechindex/CTI-website-frontend.git` then you can correct that with the following two commands:
 
 1) Change your local copy to upload to your fork with the following:
 
 ```bash
-git remote set-url origin https://github.com/your_user_name/website.git
+git remote set-url origin https://github.com/your_GitHub_user_name/CTI-website-frontend.git
 ```
 
 2) Add another remote called `upstream` that points to the `CTI-website-frontend` version of the repository. This will allow you to incorporate changes later:
 
 ```bash
-git remote add upstream https://github.com/CTI-website-frontend/website.git
+git remote add upstream https://github.com/civictechindex/CTI-website-frontend.git
 ```
 
 ## Step 4: Setting up Docker
 
-Docker is the recommended approach to quickly getting started with local development. (ELI5: Docker helps create a local/offline version of the CTI-website-frontend.org website on your computer so you can test out your code before submitting a pull request).
+Docker is the recommended approach to quickly getting started with local development. (Docker helps create a local/offline version of the `CTI-website-frontend` website on your computer so you can test out your code before submitting a pull request.)
 
-There are two pre-requisites: Docker and Docker Compose.
-The recommended installation method is [Docker Desktop](https://docs.docker.com/install/) for Windows 10 64-bit,
-Mac, and Linux users. Users of unsupported operating systems may check out [Docker Toolbox](https://docs.docker.com/compose/gettingstarted/) instead.
+The recommended installation method is [Docker Desktop](https://docs.docker.com/install/) for Windows 10 64-bit and Mac. Linux users may check out [Docker Engine](https://docs.docker.com/engine/install/) instead.
 
-More on using Docker and the concepts of containerization:
-
-* [Get started with Docker](#docker)
-* [Get started with Docker Compose](https://docs.docker.com/compose/gettingstarted/)
+More on using Docker and the concepts of containerization: [Docker overview](https://docs.docker.com/get-started/overview/)
 
 *Ensure you run the `docker` commands below from a shell inside the local directory containing your clone of this repository.*
 
@@ -134,40 +131,6 @@ More on using Docker and the concepts of containerization:
 `docker build -t webmasterimage .`
 `docker run -p 80:80 webmasterimage`
 In browser go to localhost:80*
-
-### Build and serve the website locally
-
-This command starts a jekyll server locally. The server watches for changes to
-the source files and rebuilds and refreshes the site automatically in your browser.
-
-```bash
-docker-compose up
-```
-
-Now browse to http://localhost:4000
-
-### Tear down
-
-To stop and completely remove the jekyll server (i.e. the running Docker container):
-
-*(do this anytime Docker or jekyll configuration or other repository settings change)*
-
-```bash
-docker-compose down
-```
-
-To stop the server, but not destroy it (often sufficient for day-to-day work):
-
-```bash
-docker-compose stop
-```
-
-Bring the same server back up later with:
-
-```bash
-docker-compose up
-```
-<br>
 
 ## Step 5: Change to a new branch
 
@@ -229,29 +192,49 @@ To commit your changes with a message, run:
 git commit -m “insert message here”
 ```
 
-Congratulations!  You are now ready to push your work to your repository. 
+Congratulations!  You are now ready to push your work to your repository.
 
-## Step 6 Check upstream before you push
+## Step 6 Code Quality
 
-Before you push your local commits to your repository, check to see if there have been updates made in the main Hack For LA website repository. `git fetch` will check remote repositories for changes without altering your local repository.
+We use ESLint and Code Climate to improve code quality. ESLint works on your local machine before you submit your PR, while Code Climate is part of the CI/CD process on GitHub after you submit.
+
+### ESLint
+
+ESLint is included in the repo when you run `npm install`. We use the `eslint` and `eslint-plugin-react` packages. The exact settings can be found in `.eslintr.json`. **Be sure to lint your code before pushing to GitHub.**
+
+To lint the entire repo, run `npm run lint`
+
+To lint a single file, run `npx eslint path/to/file.js`
+
+To see if ESLint can automatically fix errors for you in that file, run `npx eslint --fix path/to/file.js`
+
+Eliminate errors and warnings before submitting your PR. (If that can't be done for some reason, please explain why in the PR.)
+
+### ESLint and Your Development Environment
+
+Most editors, including Visual Studio Code, can show the linting errors and warnings to you while you edit. Once you have installed the repo, just make sure you have installed the [ESLint Extention](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) as well. (Similar tools exist for most other code editors.)
+
+## Step 7 Check upstream before you push
+
+Before you push your local commits to your repository, check to see if there have been updates made in the main Civic Tech Index website repository. `git fetch` will check remote repositories for changes without altering your local repository.
 
 ```bash
 git fetch upstream
 ```
 
-### Step 6a No changes in the upstream repository
+### Step 7a No changes in the upstream repository
 
 If you do not see any output, there have not been any changes in the
 main CTI Front End website repository since the last time you
 checked. So it is safe to push your local commits to your fork.
 
-If you just type `git push` you will be prompted to create a new branch in your GitHub repository. The more complete command below will create a new branch on your copy of the website repository, and then push your local branch there. The name at the end of this command should be the same as the name of the local branch that you created back in step 6, as in the example below:  
+If you just type `git push` you will be prompted to create a new branch in your GitHub repository. The more complete command below will create a new branch on your copy of the website repository, and then push your local branch there. The name at the end of this command should be the same as the name of the local branch that you created back in step 7, as in the example below:
 
 ```bash
 git push --set-upstream origin fix-logo-width-311
 ```
 
-### Step 6b conflicting changes in the upstream repository
+### Step 7b conflicting changes in the upstream repository
 
 When you check the upstream repository, you may see output like this:
 
@@ -334,16 +317,16 @@ git checkout fix-logo-width-311
 git merge main
 ```
 
-## Step 7 Complete the pull request
+## Step 8 Complete the pull request
 
 ```bash
 git push --set-upstream origin fix-logo-width-311
 ```
 
-Now create a new pull request to ask for your updates to be incorporated into the live web site. 
-Go to https://github.com/CTI-website-frontend/website/pulls and click on "New pull request". 
+Now create a new pull request to ask for your updates to be incorporated into the live web site.
+Go to <https://github.com/civictechindex/CTI-website-frontend/pulls> and click on "New pull request".
 Please rename your pull request something descriptive i.e. "building a project card for civic opportunity project".
-Also, since your changes are not in the CTI-website-frontend/website repostory, you need to click the "compare across forks" link in the
+Also, since your changes are not in the civictechindex/CTI-website-frontend repostory, you need to click the "compare across forks" link in the
 first paragraph to make you repository and your new branch available. Review the changes that will be included in the pull
 request and, if it fixes a specific issue, include `Fixes #140` in the pull request message so the issue will be closed automatically once
 your pull request is accepted and merged.
@@ -368,7 +351,6 @@ The Civic Tech Index project is separated into two repositories in GitHub, [CTI-
 
 - [Github Guides](https://guides.github.com/) 
 - [docker](https://docs.docker.com/get-started/)
-- [dockercompose](https://docs.docker.com/compose/gettingstarted/)
 - [dockerdesktop](https://docs.docker.com/install/)
 
 
