@@ -129,10 +129,11 @@ More on using Docker and the concepts of containerization: [Docker overview](htt
 2) Run the image: `docker run -p [port#]:80 [image-name]`
 3) Open in browser: "localhost:[port#]"
 
-*_Example_:
-`docker build -t webmasterimage .`
-`docker run -p 80:80 webmasterimage`
-In browser go to localhost:80*
+Example:
+
+`docker build -t webmasterimage .`\
+`docker run -p 80:80 webmasterimage`\
+In browser go to [localhost:80](localhost:80)
 
 ## Step 5: Change to a new branch
 
