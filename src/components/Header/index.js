@@ -37,16 +37,9 @@ const Header = () => {
         <div className={classes.linksContainer}>
           <Link to='/tag-generator' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>
         </div>
+
         <div className={classes.linksContainer}>
-          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            About
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
-          </p>
-          <div className={classes.subLinksContainer}>
-            <Link to='/about' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>About</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Searching the Index</Link>
-            <Link to='/adding-projects-to-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Adding Projects to the Index</Link>
-          </div>
+          <Link to='/about' className={classes.links} onClick={() => setIsBurgerOpen(false)}>About</Link>
         </div>
 
         <div className={classes.linksContainer}>
