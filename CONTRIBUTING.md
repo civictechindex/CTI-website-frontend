@@ -117,7 +117,7 @@ git remote add upstream https://github.com/civictechindex/CTI-website-frontend.g
 
 Docker is the recommended approach to quickly getting started with local development. (Docker helps create a local/offline version of the `CTI-website-frontend` website on your computer so you can test out your code before submitting a pull request.)
 
-The recommended installation method is [Docker Desktop](https://docs.docker.com/install/) for Windows 10 64-bit and Mac. Linux users may check out [Docker Engine](https://docs.docker.com/engine/install/) instead.
+The recommended installation method is [Docker Desktop](https://docs.docker.com/get-docker/) for Windows 10 64-bit and Mac. Linux users may check out [Docker Engine](https://docs.docker.com/engine/install/) instead.
 
 More on using Docker and the concepts of containerization: [Docker overview](https://docs.docker.com/get-started/overview/)
 
@@ -349,14 +349,13 @@ The Civic Tech Index project is separated into two repositories in GitHub, [CTI-
 
 ### Supported Platforms
 
-- [dockertoolbox](https://docs.docker.com/toolbox/overview/)
-- [react](https://reactjs.org/)
-- [hooks](https://reactjs.org/docs/hooks-overview.html)
+- [React](https://reactjs.org/)
+- [React - Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html)
 
 ### Tutorials
 
-- [Github Guides](https://guides.github.com/)
-- [docker](https://docs.docker.com/get-started/)
-- [dockerdesktop](https://docs.docker.com/install/)
+- [GitHub Guides](https://guides.github.com/)
+- [Docker - Orientation and setup](https://docs.docker.com/get-started/)
+- [Docker Desktop](https://docs.docker.com/install/)
 
 [Back to Top](#overview)
