@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import { Link } from 'react-router-dom'
 import React from 'react'
 import useStyles from './styles.js'
@@ -57,9 +59,8 @@ const Footer = () => {
       </div>
       <div className={classes.noteContainer}>
         <p className={classes.note}>The Civic Tech Index is an open-source project.</p>
-        <p className={classes.note}>You can download or contribute to the code on&nbsp;
-          <a href='https://github.com/civictechindex' className={classes.link}>GitHub.</a></p>
-        <p className={classes.note}><a href="#" className={classes.link}>View Attributions</a></p>
+        <p className={classes.note}>You can download or contribute to the code on <a href='https://github.com/civictechindex' className={classes.link}>GitHub</a>.</p>
+        <p className={classes.note}><a href="/" className={classes.link}>View Attributions</a></p>
       </div>
     </div>
   )
