@@ -20,7 +20,7 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 5. [Switch to new issue branch before you start making changes](#step-5-change-to-a-new-branch)
 
-**After you've worked on your issue and before you make a pull request:**
+**After you've worked on your issue and before you make a pull request (PR):**
 
 6. [Code quality](#code-quality)
 
@@ -63,9 +63,9 @@ This section discusses some tips and best practices for working with Git.
 
 1. Push that commit(s) to your online GitHub fork.
 
-1. From the `CTI-website-frontend` repository, create a Pull Request which asks `CTI-website-frontend` to pull changes from your fork into the main repository.
+1. From the `CTI-website-frontend` repository, create a pull request (PR) which asks `CTI-website-frontend` to pull changes from your fork into the main repository.
 
-1. After the owner of the `CTI-website-frontend` repository approves and merges your Pull Request, your changes will be live on the website.
+1. After the owner of the `CTI-website-frontend` repository approves and merges your pull request, your changes will be live on the website.
 
 ## Step 2: Fork the repository
 
