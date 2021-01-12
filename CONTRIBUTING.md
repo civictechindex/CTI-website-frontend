@@ -26,11 +26,11 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 7. [Check upstream before you push](#step-7-check-upstream-before-you-push).
 
-7a. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
+    a. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
 
-**Or**
+    **Or**
 
-7b. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
+    b. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
 
 **Okay. You're good to go!**
 
