@@ -206,15 +206,15 @@ We use ESLint and Code Climate to improve code quality. ESLint works on your loc
 
 ### ESLint
 
-ESLint is included in the repo when you run `npm install`. We use the `eslint` and `eslint-plugin-react` packages. The exact settings can be found in `.eslintr.json`. **Be sure to lint your code before pushing to GitHub.**
+ESLint is included in the repo when you run `npm install`. We use the `eslint` and `eslint-plugin-react` packages. The exact settings can be found in the `.eslintrc.json` file.
 
-To lint the entire repo, run `npm run lint`
+To lint the entire repo, run `npm run lint` from the command line.
 
 To lint a single file, run `npx eslint path/to/file.js`
 
-To see if ESLint can automatically fix errors for you in that file, run `npx eslint --fix path/to/file.js`
+To see if ESLint can automatically fix warnings and errors for you in that file, run `npx eslint --fix path/to/file.js`
 
-Eliminate errors and warnings before submitting your PR. (If that can't be done for some reason, please explain why in the PR.)
+**Be sure to lint your code before pushing changes to GitHub.** Eliminate errors and warnings before submitting your PR. If that can't be done for some reason, please explain why in the PR.)
 
 ### ESLint and Your Development Environment
 
