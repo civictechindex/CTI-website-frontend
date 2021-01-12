@@ -220,6 +220,10 @@ Eliminate errors and warnings before submitting your PR. (If that can't be done 
 
 Most editors, including Visual Studio Code, can show the linting errors and warnings to you while you edit. Once you have installed the repo, just make sure you have installed the [ESLint Extention](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) as well. (Similar tools exist for most other code editors.)
 
+### Code Climate
+
+Code Climate is triggered by submitting a pull request. You don't have to do anything else beyond submitting the PR. ESLint warnings and errors include issues that would flag warnings in Code Climate, so resolving ESlint issues before submitting PRs will frequently avoid Code Climate errors.
+
 ## Step 7: Check upstream before you push
 
 Before you push your local commits to your repository, check to see if there have been updates made in the main Civic Tech Index website repository. `git fetch` will check remote repositories for changes without altering your local repository.
