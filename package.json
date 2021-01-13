@@ -8,7 +8,6 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.21.1",
     "material-ui-chip-input": "^2.0.0-beta.2",
-    "npx": "^10.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-jss": "^10.1.1",
@@ -22,7 +21,8 @@
     "build": "react-scripts build",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
-    "lint": "npx eslint",
+    "lint": "eslint 'src/**/*.js'",
+    "lint:fix": "eslint --fix 'src/**/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
