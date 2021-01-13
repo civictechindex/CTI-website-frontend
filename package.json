@@ -45,7 +45,7 @@
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cypress": "^5.5.0",
-    "eslint": "^7.17.0",
+    "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.22.0",
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0"
