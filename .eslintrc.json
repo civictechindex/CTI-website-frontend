@@ -8,6 +8,15 @@
     "plugin:react/recommended",
     "react-app"
   ],
+  "overrides": [
+    {
+      "files": [
+        "styles.js"
+      ],
+      "rules": {
+        "sort-keys": "off"
+      }
+    }
   ],
   "parserOptions": {
       "ecmaFeatures": {
