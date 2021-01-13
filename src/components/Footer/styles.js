@@ -56,13 +56,13 @@ const useStyles = createUseStyles(theme => ({
   noteContainer: {
     marginTop: '55px',
     '& $note:last-child': {
-      paddingBottom: '30px'
-    }
+      paddingBottom: '30px',
+    },
   },
   note: {
     textAlign: 'center',
     margin: '0',
-    paddingBottom: '10px'
+    paddingBottom: '10px',
   },
   link: {
     color: theme.secondaryTextColor,
@@ -72,7 +72,7 @@ const useStyles = createUseStyles(theme => ({
   twitter: {
     transform: 'translate(0, -3px)',
   },
-/**********     MEDIA-QUERIES SECTION     **********/
+  /** ********     MEDIA-QUERIES SECTION     **********/
   '@media (max-width: 1000px)': {
     footerContainer: {
       fontSize: '14px',
@@ -107,7 +107,7 @@ const useStyles = createUseStyles(theme => ({
         gridArea: '1 / 1 / 1 / 1',
       },
     },
-  }
+  },
 }))
 
 export default useStyles
