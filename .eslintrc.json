@@ -8,6 +8,16 @@
     "plugin:react/recommended",
     "react-app"
   ],
+  "overrides": [
+    {
+      "files": [
+        "styles.js"
+      ],
+      "rules": {
+        "sort-keys": "off"
+      }
+    }
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -27,9 +37,9 @@
     "func-style": ["error", "expression"],
     "indent": ["warn", 2],
     "keyword-spacing": "warn",
-    "max-len": ["warn", { 
+    "max-len": ["warn", {
       "code": 180,
-      "ignoreStrings": true 
+      "ignoreStrings": true
     }],
     "max-lines-per-function": ["error", 50],
     "multiline-comment-style": ["warn", "starred-block"],
