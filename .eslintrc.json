@@ -27,7 +27,10 @@
     "func-style": ["error", "expression"],
     "indent": ["warn", 2],
     "keyword-spacing": "warn",
-    "max-len": ["warn", { "code": 100 }],
+    "max-len": ["warn", { 
+      "code": 180,
+      "ignoreStrings": true 
+    }],
     "max-lines-per-function": ["error", 50],
     "multiline-comment-style": ["warn", "starred-block"],
     "no-console": "warn",
@@ -47,8 +50,7 @@
     "react/prop-types": "off",
     "require-await": "error",
     "sort-imports": ["warn", {
-      "ignoreCase": true,
-      "memberSyntaxSortOrder": ["all", "single", "multiple", "none"]
+      "ignoreCase": true
     }],
     "sort-keys": ["warn", "asc", { "natural": true }],
     "sort-vars": ["warn", { "ignoreCase": true }],
