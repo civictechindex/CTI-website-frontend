@@ -1,17 +1,16 @@
 {
   "env": {
-      "browser": true
+      "browser": true,
+      "es6": true ,
+      "node": true
   },
   "extends": [
       "eslint:recommended",
       "plugin:react/recommended"
   ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-      "ecmaFeatures": {
-          "jsx": true
-      },
-      "ecmaVersion": 7,
-      "sourceType": "module"
+    "sourceType": "module"
   },
   "plugins": [
       "react"
@@ -43,14 +42,15 @@
     }],
     "prefer-const": "error",
     "require-await": "error",
-    "sort-imports": ["warn", { 
+    "sort-imports": [0, { 
       "ignoreCase": true,
       "memberSyntaxSortOrder": ["all", "single", "multiple", "none"]
     }],
-    "sort-keys": ["warn", "asc", { "natural": true }],
-    "sort-vars": ["warn", { "ignoreCase": true }],
+    "sort-keys": [0, "asc", { "natural": true }],
+    "sort-vars": [0, { "ignoreCase": true }],
     "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
     "space-in-parens": "warn",
-    "yoda": ["warn", "never", { "exceptRange": true }]
+    "yoda": ["warn", "never", { "exceptRange": true }],
+    "react/prop-types": [0]
   }
 }

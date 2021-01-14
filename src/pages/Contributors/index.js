@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyle } from "./styles.js";
 import axios from "axios";
-import { Dropdown } from "../../components/Dropdown";
-// import { DropdownThumbnail } from "../../components/DropdownThumbnail";
 import { BottomCallToAction } from "../../components/BottomCallToAction";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -11,8 +9,9 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import { ContributorThumbnail } from "../../components/ContributorThumbnail";
-import { ParentContributor } from "../../components/ParentContributor";
+import { DropdownArrow } from "../../components/DropdownArrow.js";
+import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
+import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
 
 export default function Contributors({ match }) {
   const affiliation = match.params.affiliation;
@@ -31,67 +30,67 @@ export default function Contributors({ match }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const result = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/organizations/`
-        );
-        setOrganizations(result.data);
-      } catch (error) {
-        console.log(error);
-      }
+      const result = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/organizations/`
+      );
+      const sorted = result.data.sort((a, b) => a.id - b.id);
+      setOrganizations(sorted);
     };
 
     fetchData();
   }, []);
 
   useEffect(() => {
-    createAffiliatedOrganizations();
-
-    function createAffiliatedOrganizations() {
+    const createAffiliatedOrganizations = () => {
+      const input = inputValue.toLowerCase().replace(/\s/g, "");
       const affiliated = Object.create(null);
-      affiliated["Code for All"] = [];
-      //iterate through the json response
+      // iterate through the json response
       const names = [];
-      for (let org of organizations) {
+      const addToAffiliated = (organization) => {
+        if (!affiliated["Code for All"]) {
+          affiliated["Code for All"] = [];
+        }
+        // check if the parent of the affiliated org is in the object
+        if (!affiliated[organization.parent_organization.name]) {
+          // if YES the parent is a key in the object, then add this current org to it's value array
+          affiliated["Code for All"].push(
+            organizations[organization.parent_organization.id - 1]
+          );
+          // if NO, add the parent as a key, AND add this current org to the value array
+          affiliated[organization.parent_organization.name] = [organization];
+        } else {
+          affiliated[organization.parent_organization.name].push(organization);
+          if (organization.parent_organization.name === "Code for All") {
+            affiliated[organization.name] = [];
+          }
+        }
+      };
+      const addToUnaffiliated = (organization) => {
+        if (affiliated["unaffiliated"]) {
+          // if YES the parent is a key in the object, then add this current org to it's value array
+          affiliated["unaffiliated"].push(organization);
+        } else {
+          // if NO, add the parent as a key, AND add this current org to the value array
+          affiliated["unaffiliated"] = [organization];
+        }
+      };
+      for (const org of organizations) {
         names.push(org.name);
-        let orgName = org.name.toLowerCase().replace(/\s/g, "");
-        let input = inputValue.toLowerCase().replace(/\s/g, "");
-        if (
-          (!inputValue ||
-          org.name.toLowerCase().includes(inputValue.toLowerCase()))
-          && (org.id !== 2)
-        ) {
-            //find orgs that are affiliated
-            if (org.parent_organization) {
-              //check if the parent of the affiliated org is in the object
-              if (affiliated[org.parent_organization.name]) {
-                //if YES the parent is a key in the object, then add this current org to it's value array
-                affiliated[org.parent_organization.name].push(org);
-                if (org.parent_organization.name === "Code for All") {
-                  affiliated[org.name] = [];
-                }
-              } else {
-                affiliated["Code for All"].push(
-                  organizations[org.parent_organization.id - 1]
-                );
-                //if NO, add the parent as a key, AND add this current org to the value array
-                affiliated[org.parent_organization.name] = [org];
-              }
-            } else {
-              if (affiliated["unaffiliated"]) {
-                //if YES the parent is a key in the object, then add this current org to it's value array
-                affiliated["unaffiliated"].push(org);
-              } else {
-                //if NO, add the parent as a key, AND add this current org to the value array
-                affiliated["unaffiliated"] = [org];
-              }
-            }
-          
+        const orgName = org.name.toLowerCase().replace(/\s/g, "");
+        if ((!inputValue || orgName.includes(input)) && org.id !== 2) {
+          // find orgs that are affiliated
+          if (org.parent_organization) {
+            addToAffiliated(org);
+          } else {
+            addToUnaffiliated(org);
+          }
         }
       }
+
       setAffiliatedOrganizationsObject(affiliated);
       setOrganizationNamesList(names.sort());
-    }
+    };
+    createAffiliatedOrganizations();
   }, [organizations, inputValue]);
 
   useEffect(() => {
@@ -107,70 +106,6 @@ export default function Contributors({ match }) {
     }
   }, [affiliation]);
 
-  const UnaffiliatedOrganizations = ({ unAffiliatedOrgs }) => {
-    return (
-      <div className={classes.unaffiliatedThumbnailsWrapper}>
-        {unAffiliatedOrgs.map((organization, index) => (
-          <div className={classes.unaffiliatedThumbnails}>
-            <ContributorThumbnail
-              organization={organization}
-              key={index}
-            ></ContributorThumbnail>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  const AffiliatedOrganizations = ({ affiliatedObject }) => {
-    let numOfChildren = (organization) => {
-      if (affiliatedObject[organization.name]) {
-        return affiliatedObject[organization.name].length;
-      } else {
-        return 0;
-      }
-    };
-    return (
-        Object.keys(affiliatedObject)[0]?(
-      <ParentContributor
-        dropdownLength={affiliatedObject['Code for All'].length}
-        isOpen={ true }
-      >
-        {affiliatedObject["Code for All"].map((organization, idx) => {
-          return (
-            <div>
-              <Dropdown
-                organization={organization}
-                key={idx}
-                hasInputValue={inputValue.length}
-                dropdownLength={numOfChildren(organization)}
-                isOpen={
-                  affiliatedObject["Code for All"].length < 3 ? true : false
-                }
-              >
-                {affiliatedObject[organization.name] ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      margin: "1rem 0",
-                      justifyContent: "space-between",
-                      gap: "0.4rem",
-                    }}
-                  >
-                    {affiliatedObject[organization.name].map((child, idx) => (
-                      <ContributorThumbnail organization={child} key={idx} />
-                    ))}
-                  </div>
-                ) : null}
-              </Dropdown>
-            </div>
-          );
-        })}
-      </ParentContributor>):null
-    );
-  };
-
   return (
     <>
       <Header />
@@ -185,63 +120,31 @@ export default function Contributors({ match }) {
           />
         </div>
         <div className={classes.sectionContainer}>
-          <div style={{ display: "grid", placeItems: "center" }}>
-            <h1 style={{ marginBottom: 0 }}>Index Contributors</h1>
-            <h3
-              style={{
-                color: "white",
-                textAlign: "center",
-                margin: "3rem 0 ",
-              }}
-            >
-              Check out our partners who have contributed to the Civic Tech
-              Index
-            </h3>
-            <Autocomplete
-              id="free-solo-demo"
-              freeSolo
-              inputValue={inputValue}
-              onInputChange={(e, newValue) => setInputValue(() => newValue)}
-              options={organizationNamesList}
-              className={classes.input}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder="Search for a Contributing Organization"
-                  variant="outlined"
-                  InputProps={{
-                    ...params.InputProps,
-                    type: "search",
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              )}
-            />
-          </div>
+          <TopCallToAction
+            heading="Index Contributors"
+            tagline="Check out our partners who have contributed to the Civic Tech Index"
+            options={organizationNamesList}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            inputPlaceholder="Search for an organization"
+          />
         </div>
       </div>
       <div className={classes.unaffiliatedWrapper}>
         <div className={classes.sectionContainer}>
           <div className={classes.affiliation}>
             <h2>Unaffiliated Contributors</h2>
+            <DropdownArrow setOpenFunction={setUnaffiliatedOpen} />
           </div>
-          <div className={classes.unaffiliatedWrapper}>
-            {unaffiliatedOpen &&
-              (affiliatedOrganizationsObject["unaffiliated"] ? (
-                <UnaffiliatedOrganizations
-                  unAffiliatedOrgs={
-                    affiliatedOrganizationsObject["unaffiliated"]
-                  }
-                />
-              ) : inputValue.length ? (
-                <h3 className={classes.loaders}>No Results</h3>
-              ) : (
-                <h3 className={classes.loaders}>Loading...</h3>
-              ))}
+          <div>
+            {unaffiliatedOpen && (
+              <Affiliation
+                organizations={affiliatedOrganizationsObject["unaffiliated"]}
+                inputValue={inputValue}
+                classes={classes}
+                affiliation="unaffiliated"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -249,18 +152,17 @@ export default function Contributors({ match }) {
         <div className={classes.sectionContainer}>
           <div className={classes.affiliation}>
             <h2>Affiliated Contributors</h2>
+            <DropdownArrow setOpenFunction={setAffiliatedOpen} />
           </div>
           <div className={classes.affiliatedOrgsContainer}>
-            {affiliatedOpen &&
-              (affiliatedOrganizationsObject["Code for All"].length ? (
-                <AffiliatedOrganizations
-                  affiliatedObject={affiliatedOrganizationsObject}
-                />
-              ) : inputValue.length ? (
-                <h3 className={classes.loader}>No Results</h3>
-              ) : (
-                <h3 className={classes.loader}>Loading...</h3>
-              ))}
+            {affiliatedOpen && (
+              <Affiliation
+                organizations={affiliatedOrganizationsObject}
+                inputValue={inputValue}
+                classes={classes}
+                affiliation="affiliated"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -272,3 +174,67 @@ export default function Contributors({ match }) {
     </>
   );
 }
+
+const Affiliation = ({ organizations, inputValue, classes, affiliation }) => {
+  if (!organizations && !inputValue) {
+    return <h3 className={classes.loaders}>Loading...</h3>;
+  } else if (!organizations && inputValue) {
+    return <h3 className={classes.loaders}>No Results</h3>;
+  } else {
+    if (affiliation === "unaffiliated") {
+      return <UnaffiliatedOrganizations unAffiliatedOrgs={organizations} />;
+    } else {
+      return <AffiliatedOrganizations affiliatedObject={organizations} />;
+    }
+  }
+};
+
+const TopCallToAction = ({
+  heading,
+  tagline,
+  input,
+  options,
+  inputPlaceholder,
+  setInputValue,
+}) => {
+  const classes = useStyle();
+  return (
+    <div style={{ display: "grid", placeItems: "center" }}>
+      <h1 style={{ marginBottom: 0 }}>{heading}</h1>
+      <p
+        style={{
+          color: "white",
+          textAlign: "center",
+          margin: "3rem 0 ",
+          fontSize: "1.5rem",
+        }}
+      >
+        {tagline}
+      </p>
+      <Autocomplete
+        id="free-solo"
+        freeSolo
+        inputValue={input}
+        onInputChange={(e, newValue) => setInputValue(() => newValue)}
+        options={options}
+        className={classes.input}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder={inputPlaceholder}
+            variant="outlined"
+            InputProps={{
+              ...params.InputProps,
+              type: "search",
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
+      />
+    </div>
+  );
+};

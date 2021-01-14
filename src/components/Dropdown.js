@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import { ContributorThumbnail } from "./ContributorThumbnail";
+import { DropdownArrow } from "./DropdownArrow";
 
 const useStyles = createUseStyles({
   container: {
@@ -25,10 +26,6 @@ const useStyles = createUseStyles({
     },
   },
   dropdown: {
-    "& h5": {
-      color: "#0F1D2F",
-      margin: "0",
-    },
     "& p": {
       color: "#0F1D2F",
       fontSize: "1.25rem",
@@ -57,22 +54,16 @@ const useStyles = createUseStyles({
 export const Dropdown = ({
   organization,
   children,
-  hasInputValue,
   dropdownLength,
   isOpen,
 }) => {
-  const [open, setOpen] = useState(isOpen);
-  const arrow = useRef(null);
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
-
-  const handleClick = () => {
-    if (!arrow.current.style.transform) {
-      arrow.current.style.transform = "rotate(180deg)";
-    } else {
-      arrow.current.style.transform = "";
+  useEffect(() => {
+    if (isOpen) {
+      setOpen(isOpen);
     }
-    setOpen((c) => !c);
-  };
+  }, [isOpen]);
   return (
     <div className={classes.container}>
       <div
@@ -86,19 +77,11 @@ export const Dropdown = ({
           <ContributorThumbnail organization={organization} />
         </div>
         {dropdownLength ? (
-          <h5>
+          <p>
             <span>({dropdownLength})</span>
-          </h5>
+          </p>
         ) : null}
-        {dropdownLength ? (
-          <img
-            ref={arrow}
-            className={classes.chevron}
-            onClick={handleClick}
-            src="/images/Chevron.png"
-            alt="dropdown chevron"
-          />
-        ) : null}
+        {dropdownLength ? <DropdownArrow setOpenFunction={setOpen} /> : null}
       </div>
       {open && children}
     </div>

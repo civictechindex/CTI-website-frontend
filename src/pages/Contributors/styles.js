@@ -9,9 +9,12 @@ export const useStyle = createUseStyles((theme) => ({
     backgroundImage: 'url("/images/CTI-Contributors-BG-1.png")',
     minHeight: "57vh",
     backgroundPositionY: "bottom",
-    backgroundSize: "100%",
+    backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    textAlign: 'center'
+    textAlign: "center",
+    "& h1": {
+      fontSize: "3rem",
+    },
   },
   banner: {
     height: "20px",
@@ -24,9 +27,6 @@ export const useStyle = createUseStyles((theme) => ({
     color: "#FEFEFE",
   },
   sectionContainer: {
-      '& :nth-child':{
-        height: '20%'
-      },
     fontFamily: theme.primaryFontFamily,
     boxSizing: "border-box",
     margin: "0 auto",
@@ -36,12 +36,12 @@ export const useStyle = createUseStyles((theme) => ({
     },
   },
   affiliation: {
-      textAlign: 'center',
+    textAlign: "center",
     paddingRight: "1rem",
     boxSizing: "border-box",
     color: "#004364",
     display: "flex",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     fontSize: "1.3rem",
     "& h2": {
       width: "100%",
@@ -49,48 +49,57 @@ export const useStyle = createUseStyles((theme) => ({
   },
   unaffiliatedWrapper: {
     width: "100%",
+    textAlign: "center",
+    backgroundColor: "#F2F2F2",
     padding: "1rem 0",
-    backgroundColor: '#F2F2F2',
-    '& *':{color: "#004364"},
+    "& *": { color: "#004364" },
     " & h2": {
-        fontSize: '2.25rem',
+      fontSize: "2.25rem",
       margin: 0,
+    },
+    "& p": {
+      fontWeight: "bold",
+      fontSize: "1.5rem",
+    },
   },
-  '& p':{
-      fontWeight: 'bold',
-      fontSize: '1.5rem'
-  }
-},
-unaffiliatedThumbnailsWrapper: {
-    display: "flex",
-        flexDirection: "row",
-        gap: "0.5rem",
-},
-unaffiliatedThumbnails:{
+  unaffiliatedThumbnailsWrapper: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill,minmax(49%, 1fr))",
+    gap: "0.5rem",
+    padding: "1rem 0",
+  },
+  unaffiliatedThumbnails: {
     border: "1px solid #BCBCBC",
     borderRadius: "4px",
     flex: "1 1 23%",
     "& p": {
-        fontSize: "1.5rem",
-        fontWeight: "bold",
-        color: "#004364",
-      },
-},
+      fontSize: "1.5rem",
+      fontWeight: "bold",
+      color: "#004364",
+    },
+  },
   affiliatedWrapper: {
     width: "100%",
     backgroundColor: "#004364",
     padding: "1rem 0",
-    textAlign: 'center',
-    '& h2':{
-        padding: '1rem 0',
-        margin: 0,
-        fontSize: '2.25rem'
+    textAlign: "center",
+    "& h2": {
+      //   padding: "1rem 0",
+      margin: 0,
+      fontSize: "2.25rem",
     },
-},
-affiliatedOrgsContainer:{
-      '&h2, & h3': {
-          color: '#FFE06D'
-      }
+  },
+  affiliatedThumbnailsWrapper: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill,minmax(23%, 1fr))",
+    margin: "1rem 0",
+    columnGap: "1rem",
+    rowGap: "0.5rem",
+  },
+  affiliatedOrgsContainer: {
+    "&h2, & h3": {
+      color: "#FFE06D",
+    },
   },
   chevron: {
     margin: "auto 0 auto auto",
@@ -104,20 +113,103 @@ affiliatedOrgsContainer:{
   },
 
   input: {
-    width: "80%",
+    width: "85%",
     borderRadius: "7px",
     backgroundColor: "white",
+    fontSize: "1.5rem",
   },
   contributorsContainer: {
     boxSizing: "border-box",
     display: "flex",
     flexWrap: "wrap",
     gap: "0.7rem",
-    alignContent: 'flex-start'
+    alignContent: "flex-start",
   },
-  loaders:{
-    fontSize: '2rem',
-    textAlign: 'center',
-      marginBottom: 0,
-}
+  loaders: {
+    fontSize: "2rem",
+    textAlign: "center",
+    marginBottom: 0,
+  },
+  thumbnailWrapper: {
+    minHeight: "5rem",
+  },
+  thumbnails: {
+    color: "black",
+    backgroundColor: "white",
+    display: "flex",
+    textDecoration: "none",
+    borderRadius: "4px",
+    flexGrow: "1",
+  },
+  imageWrapper: {
+    display: "grid",
+    placeItems: "center",
+    padding: "0.5rem",
+  },
+  thumbnailImage: {
+    width: "100%",
+    maxWidth: "5rem",
+  },
+  textWrapper: {
+    display: "flex",
+    alignItems: "center",
+    flex: "3 1 75%",
+    minHeight: "6rem",
+  },
+  thumbnailText: {
+    display: "flex",
+    alignItems: "center",
+    minHeight: "6rem",
+  },
+  textWrapperWithoutImage: {
+    display: "grid",
+    placeItems: "center",
+    width: "100%",
+  },
+  thumbnailTextWithoutImage: {
+    display: "flex",
+    alignItems: "center",
+    padding: "0 0.5rem",
+    minHeight: "6rem",
+  },
+
+  codeForAllThumbnailWrapper: {
+    display: "flex",
+    flexGrow: "1",
+    width: "50%",
+    borderRadius: "4px",
+    backgroundColor: "white",
+    color: "#0F1D2F",
+    margin: "1rem auto",
+  },
+  codeForAllThumbnails: {
+    display: "flex",
+    textDecoration: "none",
+  },
+  codeForAllImageWrapper: {
+    display: "flex",
+    placeItems: "center",
+    maxWidth: "6rem",
+    margin: " 0 0.5rem",
+    flexGrow: "1",
+  },
+  codeForAllThumbnailImage: {
+    maxWidth: "100%",
+    height: "auto",
+  },
+  codeForAllTextWrapper: {
+    display: "flex",
+    margin: "0 0.5rem 0 1rem",
+    flexGrow: "1",
+    alignItems: "center",
+  },
+  codeForAllThumbnailText: {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    margin: "0",
+    color: "#004364",
+  },
+  dropdownLength: {
+    color: "#004364",
+  },
 }));

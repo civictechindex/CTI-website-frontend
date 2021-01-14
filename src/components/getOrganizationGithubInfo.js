@@ -2,14 +2,16 @@ import { getOrgId } from "./getOrgId.js";
 
 export const getOrganizationGithubInfo = (organization) => {
   const githubInfo = {};
-  //   let imageUrl;
-  //   let orgUrl;
+  /*
+   *   let imageUrl;
+   *   let orgUrl;
+   */
   if (organization.links) {
     // orgUrl = child.links[0].url;
     organization.links.forEach((link) => {
       if (link.link_type === "GitHub") {
-        let id = getOrgId(link.url);
-        let imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
+        const id = getOrgId(link.url);
+        const imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
         // let orgUrl = child.url;
         githubInfo.imageUrl = imageUrl;
         githubInfo.organizationGithubUrl = link.url;

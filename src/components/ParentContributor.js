@@ -1,62 +1,23 @@
 import React from "react";
 // import logo from '../../public/images/Brigade-Photo.png'
+import { useStyle } from "../pages/Contributors/styles";
 
 export const ParentContributor = ({ dropdownLength, children }) => {
-  const styles = {
-    thumbnailWrapper: {
-      display: "flex",
-      flexGrow: "1",
-      width: "50%",
-      borderRadius: "4px",
-      backgroundColor: "white",
-      color: "#0F1D2F",
-      margin: "1rem auto",
-    },
-    thumbnails: {
-      display: "flex",
-      textDecoration: "none",
-    },
-    imageWrapper: {
-      display: "flex",
-      placeItems: "center",
-      maxWidth: "6rem",
-      margin: " 0 0.5rem",
-      flexGrow: "1",
-    },
-    thumbnailImage: {
-      maxWidth: "100%",
-      height: "auto",
-    },
-    textWrapper: {
-      display: "flex",
-      margin: "0 0.5rem 0 1rem",
-      flexGrow: "1",
-      alignItems: "center",
-    },
-    thumbnailText: {
-      fontSize: "1.5rem",
-      fontWeight: "bold",
-      margin: "0",
-      color: "#004364",
-    },
-    dropdownLength: {
-      color: "#004364",
-    },
-  };
+  const classes = useStyle();
 
   return (
     <>
-      <div style={styles.thumbnailWrapper}>
+      <div className={classes.codeForAllThumbnailWrapper}>
         <a
           href={"https://codeforall.org"}
-          style={styles.thumbnails}
+          className={classes.codeForAllThumbnails}
           target="_blank"
           rel="noreferrer noopener"
         >
-          <div style={styles.imageWrapper}>
+          <div className={classes.codeForAllImageWrapper}>
             <img
               src={"https://codeforall.org/assets/images/homepage/logo.png"}
-              style={styles.thumbnailImage}
+              className={classes.codeForAllThumbnailImage}
               onError={(e) =>
                 console.log(
                   e,
@@ -67,11 +28,11 @@ export const ParentContributor = ({ dropdownLength, children }) => {
               loading="lazy"
             />
           </div>
-          <div style={styles.textWrapper}>
-            <p style={styles.thumbnailText}>Code For All</p>
+          <div className={classes.codeForAllTextWrapper}>
+            <p className={classes.codeForAllThumbnailText}>Code For All</p>
           </div>
         </a>
-        <h5 style={styles.dropdownLength}>
+        <h5 className={classes.dropdownLength}>
           <span>({dropdownLength})</span>
         </h5>
       </div>
