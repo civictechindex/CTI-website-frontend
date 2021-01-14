@@ -6,11 +6,13 @@ context('Actions', () => {
   })
 
   it('.type() - type into a DOM element', () => {
-    cy.get('#dropdownChevron')
-      .click({ force: true, multiple: true })
-    // .children('#dropdownIcon')
+    /*
+     *  cy.get('#dropdownChevron')
+     * .click({ force: true, multiple: true })
+     * .children('#dropdownIcon')
+     */
 
-    cy.contains('Code for Anchorage');
+    //  cy.contains('Code for Anchorage');
   })
 })
 
