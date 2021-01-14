@@ -3,9 +3,9 @@ import React from "react";
 
 const CardItem = (props) => {
   return (
-    <Grid item xs={12} lg={4} style={{margin:'auto'}} align='center' >
+    <Grid item xs={12} lg={4} style={{ margin:'auto' }} align='center' >
       <img src={props.src} alt={props.alt} />
-      <p style={{padding:'0 30px 0 30px' }}>{props.children}</p>
+      <p style={{ padding:'0 30px 0 30px' }}>{props.children}</p>
     </Grid>
   )
 }

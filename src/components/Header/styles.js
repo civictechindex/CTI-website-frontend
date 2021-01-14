@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles( theme => ({
+const useStyles = createUseStyles(theme => ({
   nav: {
     position: 'relative',
     height: '100px',
@@ -8,7 +8,7 @@ const useStyles = createUseStyles( theme => ({
     fontSize: '16px',
     fontFamily: theme.primaryFontFamily,
     zIndex: '900',
-  }, 
+  },
   flexContainer: {
     position: 'relative',
     display: 'flex',
@@ -76,7 +76,7 @@ const useStyles = createUseStyles( theme => ({
       position: 'absolute',
       top: '35px',
       right: '10px',
-    }
+    },
   },
   subLinksContainer: {
     display: 'none',
@@ -110,7 +110,7 @@ const useStyles = createUseStyles( theme => ({
       backgroundColor: '#C6C6C6',
     },
   },
-/**********     MOBILE SECTION     **********/
+  /** ********     MOBILE SECTION     **********/
   mobileContainer: {
     display: 'none',
     position: 'relative',
@@ -135,7 +135,7 @@ const useStyles = createUseStyles( theme => ({
     transition: 'width .8s',
     '&:focus': {
       width: '100%',
-    }
+    },
   },
   burger: {
     position: 'relative',
@@ -173,7 +173,7 @@ const useStyles = createUseStyles( theme => ({
   background: {},
   containsArrow: {},
   showMobileNav: {},
-/**********     MEDIA-QUERIES SECTION     **********/
+  /** ********     MEDIA-QUERIES SECTION     **********/
   '@media (max-width: 1000px)': {
     background: {
       position: 'absolute',
@@ -229,7 +229,7 @@ const useStyles = createUseStyles( theme => ({
       '& $links:focus ~ $subLinksContainer': {
         maxHeight: '1000px',
         transition: 'max-height 1s ease-in-out',
-      }
+      },
     },
     subLinksContainer: {
       display: 'flex',
@@ -248,7 +248,7 @@ const useStyles = createUseStyles( theme => ({
       },
       '&:hover': {
         maxHeight: '1000px',
-      }
+      },
     },
     subLinks: {
       fontWeight: 'normal',

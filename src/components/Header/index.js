@@ -1,6 +1,6 @@
 import '../../styles.css'
 import useStyles from './styles.js'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
@@ -77,7 +77,7 @@ const Header = () => {
           <div className={classes.burgerLine} ref={line1}></div>
           <div className={classes.burgerLine} ref={line2}></div>
           <div className={classes.burgerLine} ref={line3}></div>
-          
+
         </div>
       </div>
     </nav>

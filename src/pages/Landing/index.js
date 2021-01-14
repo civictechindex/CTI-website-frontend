@@ -11,29 +11,29 @@ const Landing = () => {
 
   const formSwitch = param => {
     switch (param) {
-      case 'showForm':
-        return <div>
-          <h4 className={classes.notificationHeader}>Be the First to Know when the Civic Tech Index launches</h4>
-          <form onSubmit={postUserEmail}>
-            <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
-            <div className={classes.notifyButton} onClick={postUserEmail}>Notify Me</div>
-          </form>
-        </div>;
-      default:
-        return null;
+    case 'showForm':
+      return <div>
+        <h4 className={classes.notificationHeader}>Be the First to Know when the Civic Tech Index launches</h4>
+        <form onSubmit={postUserEmail}>
+          <input className={classes.notifyInput} onChange={(event) => setInputValue(event.target.value)} name="email" placeholder="Enter your email address" type="text"></input>
+          <div className={classes.notifyButton} onClick={postUserEmail}>Notify Me</div>
+        </form>
+      </div>;
+    default:
+      return null;
     }
   }
 
   const messageSwitch = param => {
     switch (param) {
-      case 'duplicate':
-        return <h4 className={classes.errorMessage}>That email address has already been registered with us.</h4>
-      case 'error':
-        return <h4 className={classes.errorMessage}>The email address you've submitted was invalid.<br />Please check the format and resubmit.</h4>
-      case 'success':
-        return <h4 className={classes.submitMessage}>Thanks for subscribing!<br />We will be in touch soon.</h4>
-      default:
-        return null;
+    case 'duplicate':
+      return <h4 className={classes.errorMessage}>That email address has already been registered with us.</h4>
+    case 'error':
+      return <h4 className={classes.errorMessage}>The email address you've submitted was invalid.<br />Please check the format and resubmit.</h4>
+    case 'success':
+      return <h4 className={classes.submitMessage}>Thanks for subscribing!<br />We will be in touch soon.</h4>
+    default:
+      return null;
     }
   }
 

@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles( theme => ({
-/**********     HOW-TO-USE PAGE     **********/
+const useStyles = createUseStyles(theme => ({
+/** ********     HOW-TO-USE PAGE     **********/
   main: {
     fontFamily: theme.primaryFontFamily,
     color: theme.primaryTextColor,
@@ -12,7 +12,7 @@ const useStyles = createUseStyles( theme => ({
       boxSizing: 'border-box',
     },
   },
-/**********     PROJECTS SECTION     **********/
+  /** ********     PROJECTS SECTION     **********/
   projectsSection: {
     backgroundColor: theme.backgroundColor5,
     padding: '0 20px',
@@ -115,7 +115,7 @@ const useStyles = createUseStyles( theme => ({
     paddingTop: '40px',
     paddingBottom: '60px',
   },
-/**********     CONTACT-US SECTION     **********/
+  /** ********     CONTACT-US SECTION     **********/
   contactUsSection: {
     padding: '60px 20px',
     textAlign: 'center',
@@ -123,8 +123,8 @@ const useStyles = createUseStyles( theme => ({
   contactUsHeading: {
     fontWeight: '500',
     fontSize: '36px',
-    margin: '0', 
-    marginBottom: '30px', 
+    margin: '0',
+    marginBottom: '30px',
   },
   contactUsBtn: {
     display: 'inline-block',
@@ -139,7 +139,7 @@ const useStyles = createUseStyles( theme => ({
     outline: 'none',
     cursor: 'pointer',
   },
-/**********     MEDIA QUERIES     **********/
+  /** ********     MEDIA QUERIES     **********/
   '@media (max-width: 770px)': {
     imgText: {
       fontSize: '2vw',
@@ -149,7 +149,7 @@ const useStyles = createUseStyles( theme => ({
     imgText: {
       top: '-13px',
     },
-  }
+  },
 }))
 
 export default useStyles

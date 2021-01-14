@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles( theme => ({
+const useStyles = createUseStyles(theme => ({
   comingSoonHeader: {
     color: '#FEFEFE',
     fontFamily: theme.primaryFontFamily,
@@ -42,7 +42,7 @@ const useStyles = createUseStyles( theme => ({
     justifyContent: 'space-evenly',
     '& a:hover': {
       filter: 'invert(20%) sepia(57%) saturate(6000%) hue-rotate(182deg) brightness(114%) contrast(84%)',
-    }
+    },
   },
 
   footerSection: {
@@ -123,7 +123,7 @@ const useStyles = createUseStyles( theme => ({
     fontSize: 'clamp(10px, 1vw, 14px)',
     letterSpacing: '0.5px',
     padding: '15px',
-  transition: 'box-shadow 0.25s',
+    transition: 'box-shadow 0.25s',
     width: '40%',
     '&:focus': {
       outline: 'none', // [CHANGE]: Change style based on figma recommendation
@@ -218,7 +218,7 @@ const useStyles = createUseStyles( theme => ({
       width: '90%',
       '& img': {
         maxWidth: '75%',
-      }
+      },
     },
 
     landingHeader: {
@@ -276,7 +276,7 @@ const useStyles = createUseStyles( theme => ({
 
     submitMessage: {
       fontSize: '13px',
-    }
+    },
   },
 }));
 

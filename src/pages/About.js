@@ -2,15 +2,15 @@ import React from "react";
 import "../styles.css";
 
 import {
-  Header,
   Footer,
   GetStartedCard,
-  PictureCard,
+  Header,
   NavBreadcrumbs,
-  TitleSection
+  PictureCard,
+  TitleSection,
 } from "../components";
 
-import { Grid, Container, Card, CardMedia } from "@material-ui/core";
+import { Card, CardMedia, Container, Grid } from "@material-ui/core";
 
 const About = () => {
   const crumbs = [
@@ -21,7 +21,7 @@ const About = () => {
   const pictureMarketingPoints = [
     { src: "/images/girlCoding.png", alt: "girl coding on her computer", children: "No coding experience needed to submit your project!" },
     { src: "/images/girlandguyCoding.png", alt: "girl and guy coding", children: "Make your project more visible with GitHub’s open-source communities" },
-    { src: "/images/groupCoding.png", alt: "group coding", children: "The Index is owned by all who contribute to it" }
+    { src: "/images/groupCoding.png", alt: "group coding", children: "The Index is owned by all who contribute to it" },
   ];
 
   const VideoSection = () => {
@@ -41,7 +41,7 @@ const About = () => {
           <p className='white' style={{ padding: '55px 30px 55px 30px', margin: 'auto' }}>
             With your help, we can create a continuously updated repository for all civic
             tech enthusiasts to find open source projects to model, connect with, and learn from.
-        </p>
+          </p>
         </Grid>
       </Grid>
     )

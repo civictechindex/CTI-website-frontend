@@ -26,7 +26,7 @@ export default function NavButton(props) {
   return (
     <>
       <Link to={props.href}>
-        <button className={classes.buttonStyles} style={props.variant === 'blue' ? {backgroundColor: '#0CB2E7' } : {backgroundColor: '#FEFEFE',color: '#6D6E74' }}>
+        <button className={classes.buttonStyles} style={props.variant === 'blue' ? { backgroundColor: '#0CB2E7' } : { backgroundColor: '#FEFEFE',color: '#6D6E74' }}>
           {props.children}
         </button>
       </Link>
