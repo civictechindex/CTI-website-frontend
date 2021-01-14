@@ -34,7 +34,7 @@ export default function NavBreadcrumb(props) {
 
   return (
     <div style={defaultBreadcrumb}>
-      <Breadcrumbs aria-label="breadcrumb" style={{color:props.color, padding: '25px'}}>
+      <Breadcrumbs aria-label="breadcrumb" style={{ color:props.color, padding: '25px' }}>
         {displayCrumbs}
       </Breadcrumbs>
     </div>

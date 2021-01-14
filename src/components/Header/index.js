@@ -1,6 +1,6 @@
 import '../../styles.css'
 import useStyles from './styles.js'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
@@ -37,16 +37,9 @@ const Header = () => {
         <div className={classes.linksContainer}>
           <Link to='/tag-generator' className={classes.links} onClick={() => setIsBurgerOpen(false)}>Join the Index</Link>
         </div>
+
         <div className={classes.linksContainer}>
-          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            About
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
-          </p>
-          <div className={classes.subLinksContainer}>
-            <Link to='/about' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>About</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Searching the Index</Link>
-            <Link to='/adding-projects-to-the-index' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Adding Projects to the Index</Link>
-          </div>
+          <Link to='/about' className={classes.links} onClick={() => setIsBurgerOpen(false)}>About</Link>
         </div>
 
         <div className={classes.linksContainer}>
@@ -84,7 +77,7 @@ const Header = () => {
           <div className={classes.burgerLine} ref={line1}></div>
           <div className={classes.burgerLine} ref={line2}></div>
           <div className={classes.burgerLine} ref={line3}></div>
-          
+
         </div>
       </div>
     </nav>
