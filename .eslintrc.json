@@ -59,9 +59,6 @@
     "prefer-const": "error",
     "react/prop-types": "off",
     "require-await": "error",
-    "sort-imports": ["warn", {
-      "ignoreCase": true
-    }],
     "sort-keys": ["warn", "asc", { "natural": true }],
     "sort-vars": ["warn", { "ignoreCase": true }],
     "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
