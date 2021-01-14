@@ -1,116 +1,215 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles } from "react-jss";
 
-export const useStyle = createUseStyles(theme => ({
-
+export const useStyle = createUseStyles((theme) => ({
   firstSectionWrapper: {
-    width: '100%',
-    background: '#004364',
-    color: '#FFE06D',
-    boxSizing: 'border-box',
+    width: "100%",
+    background: "#004364",
+    color: "#FFE06D",
+    boxSizing: "border-box",
     backgroundImage: 'url("/images/CTI-Contributors-BG-1.png")',
-    minHeight: '40vh',
-    backgroundPositionY: 'bottom',
-    backgroundSize: '100%',
-    backgroundRepeat: 'no-repeat',
-
+    minHeight: "57vh",
+    backgroundPositionY: "bottom",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    textAlign: "center",
+    "& h1": {
+      fontSize: "3rem",
+    },
   },
   banner: {
-    height: '20px',
-    width: '100px',
+    height: "20px",
+    width: "100px",
   },
   projectsLink: {
-    margin: '0',
-    paddingTop: '70px',
-    fontSize: '14px',
-    color: '#FEFEFE',
+    margin: "0",
+    paddingTop: "70px",
+    fontSize: "14px",
+    color: "#FEFEFE",
   },
   sectionContainer: {
     fontFamily: theme.primaryFontFamily,
-    boxSizing: 'border-box',
-    margin: '0 auto',
-    width: '70%',
-    '& p': {
-      margin: '0',
+    boxSizing: "border-box",
+    margin: "0 auto",
+    width: "70%",
+    "& p": {
+      margin: "0",
     },
   },
-  heading: {
-    textAlign: 'center',
-    margin: '1rem auto',
+  affiliation: {
+    textAlign: "center",
+    paddingRight: "1rem",
+    boxSizing: "border-box",
+    color: "#004364",
+    display: "flex",
+    // justifyContent: "space-between",
+    fontSize: "1.3rem",
+    "& h2": {
+      width: "100%",
+    },
   },
   unaffiliatedWrapper: {
-    width: '100%',
+    width: "100%",
+    textAlign: "center",
+    backgroundColor: "#F2F2F2",
+    padding: "1rem 0",
+    "& *": { color: "#004364" },
+    " & h2": {
+      fontSize: "2.25rem",
+      margin: 0,
+    },
+    "& p": {
+      fontWeight: "bold",
+      fontSize: "1.5rem",
+    },
   },
-  unaffiliated: {
-    paddingRight: '1rem',
-    boxSizing: 'border-box',
-    color: '#004364',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: '1.3rem',
+  unaffiliatedThumbnailsWrapper: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill,minmax(49%, 1fr))",
+    gap: "0.5rem",
+    padding: "1rem 0",
+  },
+  unaffiliatedThumbnails: {
+    border: "1px solid #BCBCBC",
+    borderRadius: "4px",
+    flex: "1 1 23%",
+    "& p": {
+      fontSize: "1.5rem",
+      fontWeight: "bold",
+      color: "#004364",
+    },
   },
   affiliatedWrapper: {
-    width: '100%',
-    backgroundColor: '#F2F2F2',
-    paddingBottom: '1rem',
+    width: "100%",
+    backgroundColor: "#004364",
+    padding: "1rem 0",
+    textAlign: "center",
+    "& h2": {
+      //   padding: "1rem 0",
+      margin: 0,
+      fontSize: "2.25rem",
+    },
   },
-  affiliated: {
-    boxSizing: 'border-box',
-    color: '#004364',
-    width: '100%',
-    paddingRight: '1rem',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: '1.3rem',
+  affiliatedThumbnailsWrapper: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill,minmax(23%, 1fr))",
+    margin: "1rem 0",
+    columnGap: "1rem",
+    rowGap: "0.5rem",
   },
-  hidden: {
-    display: 'none',
+  affiliatedOrgsContainer: {
+    "&h2, & h3": {
+      color: "#FFE06D",
+    },
   },
-
-  vectorIcon: {
-    width: '2rem',
-    '&:hover': {
-      cursor: 'pointer',
+  chevron: {
+    margin: "auto 0 auto auto",
+    "&:hover": {
+      cursor: "pointer",
     },
   },
   placeholder: {
-    backgroundColor: 'white',
-    height: '90vh',
+    backgroundColor: "white",
+    height: "90vh",
   },
-  callToAction2: {
-    fontFamily: theme.primaryFontFamily,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '15rem',
-    textAlign: 'center',
-  },
-  button: {
-    fontFamily: theme.primaryFontFamily,
-    fontWeight: '700',
-    backgroundColor: '#0CB2E7',
-    padding: '1rem 5rem',
-    color: 'white',
-    border: 'none',
-    borderRadius: '20px',
-    boxShadow: '0.1rem 0.1rem 10px #e0dede ',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
+
   input: {
-    width: '100%',
-    borderRadius: '7px',
-    height: '5vh',
-    backgroundImage: 'url("/images/search.svg")',
-    backgroundRepeat: 'no-repeat',
-    backgroundPositionY: 'center',
-    backgroundPositionX: '10px',
-    textIndent: '30px',
-    paddingLeft: '0.3rem',
-    margin: '2rem auto',
+    width: "85%",
+    borderRadius: "7px",
+    backgroundColor: "white",
+    fontSize: "1.5rem",
   },
-}
-))
+  contributorsContainer: {
+    boxSizing: "border-box",
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "0.7rem",
+    alignContent: "flex-start",
+  },
+  loaders: {
+    fontSize: "2rem",
+    textAlign: "center",
+    marginBottom: 0,
+  },
+  thumbnailWrapper: {
+    minHeight: "5rem",
+  },
+  thumbnails: {
+    color: "black",
+    backgroundColor: "white",
+    display: "flex",
+    textDecoration: "none",
+    borderRadius: "4px",
+    flexGrow: "1",
+  },
+  imageWrapper: {
+    display: "grid",
+    placeItems: "center",
+    padding: "0.5rem",
+  },
+  thumbnailImage: {
+    width: "100%",
+    maxWidth: "5rem",
+  },
+  textWrapper: {
+    display: "flex",
+    alignItems: "center",
+    flex: "3 1 75%",
+    minHeight: "6rem",
+  },
+  thumbnailText: {
+    display: "flex",
+    alignItems: "center",
+    minHeight: "6rem",
+  },
+  textWrapperWithoutImage: {
+    display: "grid",
+    placeItems: "center",
+    width: "100%",
+  },
+  thumbnailTextWithoutImage: {
+    display: "flex",
+    alignItems: "center",
+    padding: "0 0.5rem",
+    minHeight: "6rem",
+  },
+
+  codeForAllThumbnailWrapper: {
+    display: "flex",
+    flexGrow: "1",
+    width: "50%",
+    borderRadius: "4px",
+    backgroundColor: "white",
+    color: "#0F1D2F",
+    margin: "1rem auto",
+  },
+  codeForAllThumbnails: {
+    display: "flex",
+    textDecoration: "none",
+  },
+  codeForAllImageWrapper: {
+    display: "flex",
+    placeItems: "center",
+    maxWidth: "6rem",
+    margin: " 0 0.5rem",
+    flexGrow: "1",
+  },
+  codeForAllThumbnailImage: {
+    maxWidth: "100%",
+    height: "auto",
+  },
+  codeForAllTextWrapper: {
+    display: "flex",
+    margin: "0 0.5rem 0 1rem",
+    flexGrow: "1",
+    alignItems: "center",
+  },
+  codeForAllThumbnailText: {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    margin: "0",
+    color: "#004364",
+  },
+  dropdownLength: {
+    color: "#004364",
+  },
+}));

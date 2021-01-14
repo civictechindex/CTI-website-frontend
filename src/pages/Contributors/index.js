@@ -1,157 +1,240 @@
-import React, { useState, useEffect } from 'react'
-import { useStyle } from './styles.js';
-import axios from 'axios'
-import {Dropdown} from '../../components/Dropdown'
-import {DropdownThumbnail} from '../../components/DropdownThumbnail'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-
+import React, { useEffect, useState } from "react";
+import { useStyle } from "./styles.js";
+import axios from "axios";
+import { BottomCallToAction } from "../../components/BottomCallToAction";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import NavBreadcrumb from "../../components/NavBreadcrumbs";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
+import { DropdownArrow } from "../../components/DropdownArrow.js";
+import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
+import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
 
 export default function Contributors({ match }) {
-    const affiliation = match.params.affiliation
+  const affiliation = match.params.affiliation;
 
-    const classes = useStyle();
+  const classes = useStyle();
 
-    const [orgs, setOrgs] = useState([]);
-    const [affiliatedOrgs, setAffiliatedOrgs] = useState([]);
-    const [unAffiliatedOrgs, setUnAffiliatedOrgs] = useState([]);
-    const [affiliatedOpen, setAffiliatedOpen] = useState(false);
-    const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const result = await axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/');
-                setOrgs(result.data);
-            } catch (error) {
-                console.log(error)
-            }
+  const [organizations, setOrganizations] = useState([]);
+  const [organizationNamesList, setOrganizationNamesList] = useState([]);
+  const [
+    affiliatedOrganizationsObject,
+    setAffiliatedOrganizationsObject,
+  ] = useState({});
+  const [affiliatedOpen, setAffiliatedOpen] = useState(false);
+  const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/organizations/`
+      );
+      const sorted = result.data.sort((a, b) => a.id - b.id);
+      setOrganizations(sorted);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const createAffiliatedOrganizations = () => {
+      const input = inputValue.toLowerCase().replace(/\s/g, "");
+      const affiliated = Object.create(null);
+      // iterate through the json response
+      const names = [];
+      const addToAffiliated = (organization) => {
+        if (!affiliated["Code for All"]) {
+          affiliated["Code for All"] = [];
         }
-        fetchData();
-    }, [affiliation]);
-
-    useEffect(() => {
-        const affiliated = {};
-
-        createAffiliatedOrgs();
-        creatUnaffiliatedOrgs();
-
-        function createAffiliatedOrgs() {
-            //iterate through the json response
-            for (const org of orgs) {
-                //find orgs that are affiliated
-                if (org.parent_organization) {
-                    //check if the parent of the affiliated org is in the object
-                    if (affiliated[org.parent_organization.name]) {
-                        //if YES the parent is a key in the object, then add this current org to it's value array
-                        affiliated[org.parent_organization.name].push(org)
-                    } else {
-                        //if NO, add the parent as a key, AND add this current org to the value array
-                        affiliated[org.parent_organization.name] = [org]
-                    }
-                }
-            }
-
-            if (orgs.length > 0) {
-                for (const property in affiliated) {
-                    const affKeys = Object.keys(affiliated)
-                    affiliated[property].forEach(org => {
-                        if (affKeys.indexOf(org.name) !== -1) {
-                            org.subchildren = affiliated[org.name];
-                            delete affiliated[org.name];
-                        }
-                    })
-                }
-            }
-            setAffiliatedOrgs(Object.entries(affiliated));
+        // check if the parent of the affiliated org is in the object
+        if (!affiliated[organization.parent_organization.name]) {
+          // if YES the parent is a key in the object, then add this current org to it's value array
+          affiliated["Code for All"].push(
+            organizations[organization.parent_organization.id - 1]
+          );
+          // if NO, add the parent as a key, AND add this current org to the value array
+          affiliated[organization.parent_organization.name] = [organization];
+        } else {
+          affiliated[organization.parent_organization.name].push(organization);
+          if (organization.parent_organization.name === "Code for All") {
+            affiliated[organization.name] = [];
+          }
         }
-
-        function creatUnaffiliatedOrgs() {
-            let unaffiliated = [];
-            orgs.forEach((org) => {
-                if ((!affiliated[org.name]) && (!org.parent_organization)) {
-                    unaffiliated.push(org)
-                }
-            });
-            setUnAffiliatedOrgs(unaffiliated);
+      };
+      const addToUnaffiliated = (organization) => {
+        if (affiliated["unaffiliated"]) {
+          // if YES the parent is a key in the object, then add this current org to it's value array
+          affiliated["unaffiliated"].push(organization);
+        } else {
+          // if NO, add the parent as a key, AND add this current org to the value array
+          affiliated["unaffiliated"] = [organization];
         }
-
-        if (affiliation === 'unaffiliated') {
-            setUnaffiliatedOpen(true);
-        } else if (affiliation === 'affiliated') {
-            setAffiliatedOpen(true);
+      };
+      for (const org of organizations) {
+        names.push(org.name);
+        const orgName = org.name.toLowerCase().replace(/\s/g, "");
+        if ((!inputValue || orgName.includes(input)) && org.id !== 2) {
+          // find orgs that are affiliated
+          if (org.parent_organization) {
+            addToAffiliated(org);
+          } else {
+            addToUnaffiliated(org);
+          }
         }
-    }, [orgs, affiliation]);
+      }
 
-    const AffiliatedOrgs = ({ affiliatedArray }) => (
-        affiliatedArray.map((ary, parentIndex) => (
+      setAffiliatedOrganizationsObject(affiliated);
+      setOrganizationNamesList(names.sort());
+    };
+    createAffiliatedOrganizations();
+  }, [organizations, inputValue]);
 
-            <Dropdown
-                dropdownText={ary[0]}
-                key={parentIndex}
-                dropdownItems={ary[1]}
-            >{
-                ary[1].map((organization, index)=>(
-                <Dropdown 
-                dropdownText={organization.name} 
-                key={index}
-                dropdownItems={organization.subchildren}
-                >
-                    <DropdownThumbnail organizations={organization.subchildren}/>
-                </Dropdown>
-                ))
-            }
-            </Dropdown>
-        ))
-    )
+  useEffect(() => {
+    if (affiliation === "unaffiliated") {
+      setUnaffiliatedOpen(true);
+      setAffiliatedOpen(false);
+    } else if (affiliation === "affiliated") {
+      setAffiliatedOpen(true);
+      setUnaffiliatedOpen(false);
+    } else {
+      setAffiliatedOpen(true);
+      setUnaffiliatedOpen(true);
+    }
+  }, [affiliation]);
 
-    const UnaffiliatedOpen = ({ unAffiliatedOrgs }) => (
-        <DropdownThumbnail organizations={unAffiliatedOrgs}/>
-    )
-
-
-    return (
-        <>
-        <Header/>
-            <div className={classes.firstSectionWrapper}>
-                <div className={classes.sectionContainer}>
-                    <p className={classes.projectsLink}>Home / Contributors</p>
-                    <h1 className={classes.heading}>Index Contributors</h1>
-                    <h3 style={{color: 'white', textAlign: 'center', margin: '1rem 0 0 0'}}>Insert small blurb text about / purpose of Index Contributors</h3>
-                    <i className={classes.loop}></i>
-                    <input className={classes.input} placeholder='Search for an organization'></input>
-                </div>
-            </div>
-            <div className={classes.unaffiliatedWrapper}>
-                <div className={classes.sectionContainer}>
-                    <div id='unaffiliatedDropdown' className={classes.unaffiliated} tabIndex='0'>
-                        <h2>Unaffiliated Contributors</h2>
-                        <img id ="dropdownIcon" className={classes.vectorIcon} onClick={() => setUnaffiliatedOpen(!unaffiliatedOpen)} src='/images/Vector.png' alt='open for about link'  />
-                    </div>
-                    <div className={classes.thumbnailsContainer}>
-                        {unaffiliatedOpen && (unAffiliatedOrgs.length ? <UnaffiliatedOpen unAffiliatedOrgs={unAffiliatedOrgs}/> : <h1>Loading...</h1>)}
-                    </div>
-                </div>
-            </div>
-            <div className={classes.affiliatedWrapper}>
-                <div className={classes.sectionContainer}>
-                    <div id='affiliatedDropdown' className={classes.affiliated} tabIndex='0'>
-                        <h2>Affiliated Contributors</h2>
-                        <img id = "dropdownIcon" className={classes.vectorIcon} onClick={() => setAffiliatedOpen(!affiliatedOpen)} src='/images/Vector.png' alt='open dropdown'  />
-                    </div>
-                    <div className={classes.thumbnailsContainer}>
-                        {affiliatedOpen && (affiliatedOrgs.length ?
-                            <AffiliatedOrgs
-                                affiliatedArray={affiliatedOrgs}
-                            /> : <h1 style={{textAlign: 'center'}}>Loading...</h1>)
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className={classes.callToAction2}>
-                <h1 style={{color:'#042D5F'}}>Want to add your organization?</h1>
-                <a href="/"><button className={classes.button}>Contact Us</button></a>
-            </div>
-            <Footer/>
-        </>
-    )
+  return (
+    <>
+      <Header />
+      <div className={classes.firstSectionWrapper}>
+        <div className={classes.sectionContainer}>
+          <NavBreadcrumb
+            crumbs={[
+              { name: "Home", href: "/" },
+              { name: "Contributors", href: "/contributors" },
+            ]}
+            color="white"
+          />
+        </div>
+        <div className={classes.sectionContainer}>
+          <TopCallToAction
+            heading="Index Contributors"
+            tagline="Check out our partners who have contributed to the Civic Tech Index"
+            options={organizationNamesList}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            inputPlaceholder="Search for an organization"
+          />
+        </div>
+      </div>
+      <div className={classes.unaffiliatedWrapper}>
+        <div className={classes.sectionContainer}>
+          <div className={classes.affiliation}>
+            <h2>Unaffiliated Contributors</h2>
+            <DropdownArrow setOpenFunction={setUnaffiliatedOpen} />
+          </div>
+          <div>
+            {unaffiliatedOpen && (
+              <Affiliation
+                organizations={affiliatedOrganizationsObject["unaffiliated"]}
+                inputValue={inputValue}
+                classes={classes}
+                affiliation="unaffiliated"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+      <div className={classes.affiliatedWrapper}>
+        <div className={classes.sectionContainer}>
+          <div className={classes.affiliation}>
+            <h2>Affiliated Contributors</h2>
+            <DropdownArrow setOpenFunction={setAffiliatedOpen} />
+          </div>
+          <div className={classes.affiliatedOrgsContainer}>
+            {affiliatedOpen && (
+              <Affiliation
+                organizations={affiliatedOrganizationsObject}
+                inputValue={inputValue}
+                classes={classes}
+                affiliation="affiliated"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+      <BottomCallToAction
+        heading={"Want to add your organization?"}
+        buttonText={"Contact Us"}
+      />
+      <Footer />
+    </>
+  );
 }
+
+const Affiliation = ({ organizations, inputValue, classes, affiliation }) => {
+  if (!organizations && !inputValue) {
+    return <h3 className={classes.loaders}>Loading...</h3>;
+  } else if (!organizations && inputValue) {
+    return <h3 className={classes.loaders}>No Results</h3>;
+  } else {
+    if (affiliation === "unaffiliated") {
+      return <UnaffiliatedOrganizations unAffiliatedOrgs={organizations} />;
+    } else {
+      return <AffiliatedOrganizations affiliatedObject={organizations} />;
+    }
+  }
+};
+
+const TopCallToAction = ({
+  heading,
+  tagline,
+  input,
+  options,
+  inputPlaceholder,
+  setInputValue,
+}) => {
+  const classes = useStyle();
+  return (
+    <div style={{ display: "grid", placeItems: "center" }}>
+      <h1 style={{ marginBottom: 0 }}>{heading}</h1>
+      <p
+        style={{
+          color: "white",
+          textAlign: "center",
+          margin: "3rem 0 ",
+          fontSize: "1.5rem",
+        }}
+      >
+        {tagline}
+      </p>
+      <Autocomplete
+        id="free-solo"
+        freeSolo
+        inputValue={input}
+        onInputChange={(e, newValue) => setInputValue(() => newValue)}
+        options={options}
+        className={classes.input}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder={inputPlaceholder}
+            variant="outlined"
+            InputProps={{
+              ...params.InputProps,
+              type: "search",
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
+      />
+    </div>
+  );
+};

@@ -22,7 +22,7 @@
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
     "lint": "eslint 'src/**/*.js'",
-    "lint:fix": "eslint --fix 'src/**/*.js'",
+    "lint:fix": "eslint --fix src/**/*.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

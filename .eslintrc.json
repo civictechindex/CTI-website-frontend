@@ -1,73 +1,73 @@
 {
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "react-app"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "styles.js"
-      ],
-      "rules": {
-        "sort-keys": "off"
-      }
-    }
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 7,
-    "sourceType": "module"
-  },
-  "plugins": [
-    "react"
-  ],
-  "rules": {
-    "array-bracket-spacing": "warn",
-    "comma-dangle": ["warn", "always-multiline"],
-    "complexity": ["error", 5],
-    "eol-last": "error",
-    "eqeqeq": "error",
-    "func-style": ["error", "expression"],
-    "indent": ["warn", 2],
-    "keyword-spacing": "warn",
-    "max-len": ["warn", {
-      "code": 180,
-      "ignoreStrings": true
-    }],
-    "max-lines-per-function": ["error", 50],
-    "multiline-comment-style": ["warn", "starred-block"],
-    "no-console": "warn",
-    "no-dupe-keys": "error",
-    "no-duplicate-imports": "warn",
-    "no-floating-decimal": "warn",
-    "no-trailing-spaces": "warn",
-    "no-unreachable": "warn",
-    "no-unused-vars": "warn",
-    "no-var": "error",
-    "no-whitespace-before-property": "warn",
-    "object-curly-spacing": ["warn", "always", {
-      "arraysInObjects": false,
-      "objectsInObjects": false
-    }],
-    "prefer-const": "error",
-    "react/prop-types": "off",
-    "require-await": "error",
-    "sort-keys": ["warn", "asc", { "natural": true }],
-    "sort-vars": ["warn", { "ignoreCase": true }],
-    "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
-    "space-in-parens": "warn",
-    "yoda": ["warn", "never", { "exceptRange": true }]
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  }
-}
+   "env": {
+     "browser": true,
+     "node": true
+   },
+   "extends": [
+     "eslint:recommended",
+     "plugin:react/recommended",
+     "react-app"
+   ],
+   "overrides": [
+     {
+       "files": [
+         "styles.js"
+       ],
+       "rules": {
+         "sort-keys": "off"
+       }
+     }
+   ],
+   "parserOptions": {
+     "ecmaFeatures": {
+       "jsx": true
+     },
+     "ecmaVersion": 7,
+     "sourceType": "module"
+   },
+   "plugins": [
+     "react"
+   ],
+   "rules": {
+     "array-bracket-spacing": "warn",
+     "comma-dangle": ["warn", "always-multiline"],
+     "complexity": ["error", 5],
+     "eol-last": "error",
+     "eqeqeq": "error",
+     "func-style": ["error", "expression"],
+     "indent": ["warn", 2],
+     "keyword-spacing": "warn",
+     "max-len": ["warn", {
+       "code": 180,
+       "ignoreStrings": true
+     }],
+     "max-lines-per-function": ["error", 50],
+     "multiline-comment-style": ["warn", "starred-block"],
+     "no-console": "warn",
+     "no-dupe-keys": "error",
+     "no-duplicate-imports": "warn",
+     "no-floating-decimal": "warn",
+     "no-trailing-spaces": "warn",
+     "no-unreachable": "warn",
+     "no-unused-vars": "warn",
+     "no-var": "error",
+     "no-whitespace-before-property": "warn",
+     "object-curly-spacing": ["warn", "always", {
+       "arraysInObjects": false,
+       "objectsInObjects": false
+     }],
+     "prefer-const": "error",
+     "react/prop-types": "off",
+     "require-await": "error",
+     "sort-keys": ["warn", "asc", { "natural": true }],
+     "sort-vars": ["warn", { "ignoreCase": true }],
+     "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
+     "space-in-parens": "warn",
+     "yoda": ["warn", "never", { "exceptRange": true }]
+   },
+   "settings": {
+     "react": {
+       "version": "detect"
+     }
+   }
+ }

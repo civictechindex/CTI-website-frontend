@@ -44,7 +44,7 @@ const Header = () => {
 
         <div className={classes.linksContainer}>
           <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            Contributors
+            <Link to='/contributors/all' className={classes.links} >Contributors</Link>
             <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
