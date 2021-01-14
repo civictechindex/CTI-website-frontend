@@ -21,6 +21,7 @@ export const DropdownArrow = ({ setOpenFunction }) => {
 
   return (
     <img
+      id = "dropdownChevron"
       ref={arrow}
       style={styles.chevron}
       onClick={()=>handleClick(setOpenFunction)}
