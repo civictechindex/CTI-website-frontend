@@ -25,7 +25,7 @@ export default function NavBreadcrumb(props) {
   const crumbs = props.crumbs
 
   const displayCrumbs = crumbs.map((i,idx) => {
-    if (i.href !== null || i.href !== '') {
+    if (i.href) {
       return <Link key={idx} color="inherit" href={i.href}> {i.name}</Link>
     } else {
       return <Typography key={idx} color="inherit">{i.name}</Typography>
