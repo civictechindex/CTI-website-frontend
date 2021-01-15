@@ -1,5 +1,3 @@
-// / <reference types="cypress" />
-
 context('Actions', () => {
   beforeEach(() => {
     cy.visit('/contributors/all')
