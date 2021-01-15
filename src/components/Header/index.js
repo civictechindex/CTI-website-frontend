@@ -1,5 +1,6 @@
 import '../../styles.css'
 import useStyles from './styles.js'
+import NavButton from '../NavButton';
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -66,7 +67,7 @@ const Header = () => {
           </div>
         </div>
         <div className={classes.searchContainer}>
-          <Link to="/projects"><button className="nav-button">Search Projects</button></Link>
+          <NavButton href='/about' variant="blue">Search Projects</NavButton>
         </div>
       </div>
       <div className={classes.mobileContainer}>

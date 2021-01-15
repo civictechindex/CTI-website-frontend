@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     height: '48px',
     padding:'16px',
     width: '256px',
+    cursor: 'pointer',
   },
 });
 
