@@ -17,10 +17,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-dev": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
+    "start-coverage": "react-scripts -r @cypress/instrument-cra start",
+    "lint:cypress": "eslint 'cypress/**/*.js'",
     "lint": "eslint 'src/**/*.js'",
     "lint:fix": "eslint --fix src/**/*.js",
     "test": "react-scripts test",
