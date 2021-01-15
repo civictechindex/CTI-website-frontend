@@ -1,20 +1,23 @@
-context('Actions', () => {
-  beforeEach(() => {
+describe('About Page', () => {
+  before(() => {
     cy.visit('/about')
   })
 
-  it('verify header loading', () => {
+  beforeEach(() => {
+    // cy.visit('/about')
+  })
+
+  it('verify header loads', () => {
     cy.contains("Join the Index")
   })
 
-  it('verify footer loading', () => {
+  it('verify footer loads', () => {
     cy.contains('The Civic Tech Index is an open-source project.')
   })
 
   it('verify title section loads', () => {
     cy.contains('A movement to index');
   })
-
 
   it('verify marketing section loads', () => {
     cy.contains('With your help')
