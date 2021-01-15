@@ -1,3 +1,6 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable complexity */
+
 import React, { useState } from 'react';
 import NavBreadcrumb from '../components/NavBreadcrumbs'
 import Header from '../components/Header'
@@ -17,11 +20,47 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment'
 
+const TopicTag = (props) => {
+  return props.children.map((i, value) => {
+    return <Chip key={i}
+      size="small"
+      style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }}
+      label={value}
+      icon={<AssignmentTurnedInIcon />} />
+  })
+}
+
+const setTopics = (tagsToAdd, currentTags) => {
+
+  return (
+    <>
+      <Grid>
+        <p>These are your repository’s current topic tags:</p>
+        <TopicTag>{currentTags}</TopicTag>
+      </Grid>
+      <Grid>
+        <p>Add these topic tags to your repository:</p>
+        {tagsToAdd.length === 0 ? <p color='dark-green'>You have already added all the necessary topic tags</p> : <TopicTag>{tagsToAdd}</TopicTag>}
+      </Grid>
+      <Grid style={{ paddingTop: '30px' }}><h3>How to add your tags to your project’s repository</h3><p>We recommend having your project’s repository open in another browser for ease of convenience.</p></Grid>
+      <Grid>
+        <p>1. Navigate to your project’s repository in another browser to add your generated tags.</p>
+      </Grid>
+      <Grid container xs={12}>
+        <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
+        <Grid item xs={6} sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
+        <Grid item xs={6} sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
+        <Grid item xs={6} sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
+        <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
+        <Grid item xs={6} sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
+      </Grid>
+    </>)
+
+}
 
 const TagCreator = () => {
 
   const crumbs = [{ name: 'Home', href: '/home' }, { name: 'Tag Generator', href: '/taggenerator' }]
-
 
   const [value, setValue] = useState('');
   const [orgName, setOrgName] = useState('');
@@ -33,17 +72,9 @@ const TagCreator = () => {
     setValue(event.target.value)
   }
 
-  function renderTopicTags(topics) {
-    return topics.map((i) => {
-      return <Chip
-        size="small"
-        style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }}
-        label={i}
-        icon={<AssignmentTurnedInIcon />} />
-    })
-  }
-
   const tagsToAdd = []
+
+  setTopics(tagsToAdd, res.data.names)
 
   const handleSubmit = (event) => {
     axios.get('https://api.github.com/repos/' + repositoryUrl + '/topics', {
@@ -65,57 +96,6 @@ const TagCreator = () => {
           tagsToAdd(null)
         }
 
-        setTopics(
-          <>
-            <Grid>
-              <p>These are your repository’s current topic tags:</p>
-              {renderTopicTags(res.data.names)}
-            </Grid>
-            <Grid>
-              <p>Add these topic tags to your repository:</p>
-              {tagsToAdd.length === 0 ? <p color='dark-green'>You have already added all the necessary topic tags</p> : renderTopicTags(tagsToAdd)}
-            </Grid>
-            <Grid style={{ paddingTop:'30px' }}><h3>How to add your tags to your project’s repository</h3><p>We recommend having your project’s repository open in another browser for ease of convenience.</p></Grid>
-            <Grid>
-              <p>1. Navigate to your project’s repository in another browser to add your generated tags.</p>
-            </Grid>
-            <Grid container xs={12}>
-              <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
-              <Grid item xs={6}  sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
-              <Grid item xs={6}  sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
-              <Grid item xs={6}  sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
-              <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
-              <Grid item xs={6}  sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
-            </Grid>
-            {/* <Grid style={{ paddingTop: '30px' }}>
-                            Do you want to add more tags specific to your project's subject area to increase visibility?
-                        </Grid>
-                        <Grid item sm={2} xs={2}>
-                            <Radio
-                                checked={tagValue === 'addTags'}
-                                onChange={handleTagChange}
-                                value="addTags"
-                                name="addTags"
-                                inputProps={{ 'aria-label': 'addTags' }}
-                            /> Yes
-                            </Grid>
-                        <Grid item sm={2} xs={2}>
-
-                            <Radio
-                                checked={tagValue === 'noTags'}
-                                onChange={handleTagChange}
-                                value="noTags"
-                                name="noTags"
-                                inputProps={{ 'aria-label': 'noTags' }}
-                            /> No
-                        </Grid>
-                        <Grid>
-                            <ChipInput
-                                defaultValue={['civictechindex', 'bar']}
-                                onChange={(chips) => handleChipChange(chips)}
-                            />
-                        </Grid> */}
-          </>)
       }).catch(e => {
         setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
       })
