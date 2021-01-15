@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Chip, Grid } from '@material-ui/core';
+import { Chip, createMuiTheme, Grid, ThemeProvider } from '@material-ui/core';
 
 const topicData = [
   { detail: "Covid-19", link: "#" },
@@ -11,10 +11,18 @@ const topicData = [
   { detail: "Trending Topic 5", link: "#" },
 ];
 
+const theme = createMuiTheme({
+  overrides: {
+    MuiChip: {
+      root: {
+        cursor: 'pointer',
+      },
+    },
+  },
+});
+
 const TrendingTopicsSection = () => {
-
   const TrendingTopicList = () => {
-
     return (
       topicData.map((topic, key) => {
         return <TrendingTopicChip key={key} href={topic.link}>{topic.detail}</TrendingTopicChip>
@@ -23,7 +31,13 @@ const TrendingTopicsSection = () => {
   }
 
   const TrendingTopicChip = (props) => {
-    return <span><a href={props.href}><Chip style={{ margin: 5 }} label={props.children} /></a></span>
+    return (
+      <ThemeProvider theme={theme}>
+        <a href={props.href}>
+          <Chip style={{ margin: 5 }} label={props.children} cursor="cursor" />
+        </a>
+      </ThemeProvider>
+    )
   }
 
   return (
