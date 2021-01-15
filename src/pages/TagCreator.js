@@ -38,6 +38,7 @@ const TagCreator = () => {
       return <Chip
         size="small"
         style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }}
+        data-cy='topic-tag'
         label={i}
         icon={<AssignmentTurnedInIcon />} />
     })
@@ -67,7 +68,7 @@ const TagCreator = () => {
 
         setTopics(
           <>
-            <Grid>
+            <Grid data-cy='current-tags'>
               <p>These are your repository’s current topic tags:</p>
               {renderTopicTags(res.data.names)}
             </Grid>
@@ -144,6 +145,7 @@ const TagCreator = () => {
               <Grid item sm={2} xs={2}>
                 <Radio
                   checked={value === 'affiliated'}
+                  data-cy='radio-affiliated'
                   onChange={handleChange}
                   value="affiliated"
                   name="affiliated"
@@ -153,6 +155,7 @@ const TagCreator = () => {
               <Grid item sm={2} xs={2}>
                 <Radio
                   checked={value === 'unaffiliated'}
+                  data-cy='radio-unaffiliated'
                   onChange={handleChange}
                   value="unaffiliated"
                   name="unaffiliated"
@@ -160,7 +163,11 @@ const TagCreator = () => {
                 /> No
               </Grid>
             </Grid>
-            <Grid container id="organizationTrue" style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
+            <Grid
+              container
+              id='container-affiliated'
+              style={{ display: value === 'affiliated' ? 'block' : 'none' }}
+            >
               <Grid item xs={12} sm={12}>
                 <p>Which Organization?</p>
                 <Autocomplete
@@ -175,9 +182,18 @@ const TagCreator = () => {
               <Grid item xs={12} sm={12}>
                 <p>Project Repository URL</p>
                 <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-                  startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-                }} />
+                <TextField
+                  id='repository-url-affiliated'
+                  onKeyPress={handleEnter}
+                  value={repositoryUrl}
+                  onInput={e => setRepositoryUrl(e.target.value)}
+                  variant="outlined"
+                  placeholder="hackforla/example"
+                  style={{ width: '100%' }}
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
+                  }}
+                />
               </Grid>
               <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
                 {topicSearchError}
@@ -186,13 +202,26 @@ const TagCreator = () => {
               <Grid>{topics}</Grid>
             </Grid>
 
-            <Grid container style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
+            <Grid
+              container
+              id='container-unaffiliated'
+              style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}
+            >
               <Grid item xs={12} sm={12}>
                 <p>Project Repository URL</p>
                 <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-                  startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-                }} />
+                <TextField
+                  id='repository-url-unaffiliated'
+                  onKeyPress={handleEnter}
+                  value={repositoryUrl}
+                  onInput={e => setRepositoryUrl(e.target.value)}
+                  variant="outlined"
+                  placeholder="hackforla/example"
+                  style={{ width: '100%' }}
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
+                  }}
+                />
               </Grid>
               <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
                 {topicSearchError}
