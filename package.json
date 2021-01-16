@@ -17,10 +17,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-dev": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
-    "cypress:run": "cypress run",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run:report": "cypress run && nyc report --reporter=lcov",
+    "cypress:ci": "start-server-and-test start http://localhost:3000 cypress:run",
+    "cypress:ci:report": "start-server-and-test start-coverage http://localhost:3000 cypress:run:report",
+    "coverage:report": "nyc report --reporter=lcov",
+    "start-coverage": "react-scripts -r @cypress/instrument-cra start",
+    "lint:cypress": "eslint 'cypress/**/*.js'",
     "lint": "eslint 'src/**/*.js'",
     "lint:fix": "eslint --fix src/**/*.js",
     "test": "react-scripts test",
@@ -49,6 +54,7 @@
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-react": "^7.22.0",
     "istanbul-lib-coverage": "^3.0.0",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "start-server-and-test": "^1.11.7"
   }
 }
