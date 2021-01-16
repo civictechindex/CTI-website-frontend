@@ -1,3 +1,6 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable complexity */
+
 import React, { useState } from 'react';
 import NavBreadcrumb from '../components/NavBreadcrumbs'
 import Header from '../components/Header'
@@ -20,7 +23,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 
 const TagCreator = () => {
 
-  const crumbs = [{ name: 'Home', href: '/home' }, { name: 'Tag Generator', href: '/taggenerator' }]
+  const crumbs = [{ href: '/home', name: 'Home' }, { href: '/taggenerator', name: 'Tag Generator' }]
 
 
   const [value, setValue] = useState('');
@@ -33,9 +36,10 @@ const TagCreator = () => {
     setValue(event.target.value)
   }
 
-  function renderTopicTags(topics) {
+  const renderTopicTags = (topics) => {
     return topics.map((i) => {
       return <Chip
+        key={i}
         size="small"
         style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }}
         data-cy='topic-tag'
@@ -83,7 +87,7 @@ const TagCreator = () => {
             <Grid container xs={12}>
               <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
               <Grid item xs={6}  sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
-              <Grid item xs={6}  sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
+              <Grid item xs={6} sm={6}>3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.</Grid>
               <Grid item xs={6}  sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
               <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
               <Grid item xs={6}  sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
@@ -136,7 +140,7 @@ const TagCreator = () => {
           <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
           <Grid Container>
             <Grid item xs={12}><h1 style={{ color: '#004364' }}>Civic Tech Index</h1></Grid>
-            <Grid item xs={12}><h2 style={{ color: '#004364', alignContent: 'center' }}>Tag Generator</h2>
+            <Grid item xs={12}><h2 style={{ alignContent: 'center', color: '#004364' }}>Tag Generator</h2>
               <p style={{ textAlign: 'center' }}>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</p>
             </Grid>
             <Grid container style={{ paddingTop: '30px' }}>
@@ -195,7 +199,7 @@ const TagCreator = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
+              <Grid item xs={12} sm={12} style={{ margin: '0 auto', padding: '20px', width: '100%' }}>
                 {topicSearchError}
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
               </Grid>
@@ -223,7 +227,7 @@ const TagCreator = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
+              <Grid item xs={12} sm={12} style={{ margin: '0 auto', padding: '20px', width: '100%' }}>
                 {topicSearchError}
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
               </Grid>
