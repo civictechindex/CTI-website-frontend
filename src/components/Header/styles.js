@@ -45,7 +45,7 @@ const useStyles = createUseStyles(theme => ({
     margin: '10px',
   },
   linksWithArrows: {
-    cursor: 'default',
+    cursor: 'pointer',
   },
   linksArrows: {
     display: 'none',
