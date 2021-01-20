@@ -1,5 +1,9 @@
 /* eslint-disable sort-keys */
 
+const BLUEBLACK = '#0F1D2F'
+const WHITE = '#FFFFFF'
+const YELLOW = '#FFE06D'
+
 const theme = {
   overrides: {
     MuiCssBaseline: {
@@ -17,10 +21,18 @@ const theme = {
       margin: '5px',
     },
   },
+  palette: {
+    primary: {
+      main: BLUEBLACK,
+    },
+    secondary: {
+      main: YELLOW,
+    },
+  },
   typography: {
     fontFamily: 'Work Sans, sans-serif',
     h1: {
-      color: '#FFE06D',
+      color: YELLOW,
       fontSize: '42px',
       fontWeight: '700',
       letterSpacing: '0px',
@@ -29,7 +41,7 @@ const theme = {
       marginTop: '0.825em',
     },
     h2: {
-      color: '#FFE06D',
+      color: YELLOW,
       fontFamily: 'Work Sans',
       fontStyle: 'normal',
       fontWeight: 'bold',
@@ -39,7 +51,7 @@ const theme = {
       marginTop: '0.825em',
     },
     h5: {
-      color: '#FFFFFF',
+      color: WHITE,
       fontFamily: 'Work Sans',
       fontSize: '24px',
       fontStyle: 'normal',
