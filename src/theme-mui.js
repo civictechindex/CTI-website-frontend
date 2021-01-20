@@ -11,6 +11,12 @@ const theme = {
       },
     },
   },
+  MuiChip: {
+    root: {
+      cursor: 'pointer',
+      margin: '5px',
+    },
+  },
   typography: {
     fontFamily: 'Work Sans, sans-serif',
     h1: {
