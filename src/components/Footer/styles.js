@@ -1,12 +1,11 @@
-import { createUseStyles } from 'react-jss'
+import { makeStyles } from '@material-ui/core/styles'
 
-
-const useStyles = createUseStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   footerContainer: {
     width: '100%',
-    backgroundColor: theme.footerBG,
-    fontFamily: theme.primaryFontFamily,
-    color: theme.secondaryTextColor,
+    backgroundColor: theme.palette.grey[900],
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.common.white,
     fontSize: '16px',
     padding: '32px 20px 0 20px',
     boxSizing: 'border-box',
@@ -41,10 +40,10 @@ const useStyles = createUseStyles(theme => ({
     fontWeight: 'bold',
     margin: '0',
     textDecoration: 'none',
-    color: theme.secondaryTextColor,
+    color: theme.palette.common.white,
   },
   infoLink: {
-    color: theme.secondaryTextColor,
+    color: theme.palette.common.white,
     textDecoration: 'none',
     display: 'block',
     marginTop: '14px',
@@ -65,7 +64,7 @@ const useStyles = createUseStyles(theme => ({
     paddingBottom: '10px',
   },
   link: {
-    color: theme.secondaryTextColor,
+    color: theme.palette.common.white,
     textDecoration: 'underline',
     fontWeight: '500',
   },

@@ -1,10 +1,10 @@
-import { createUseStyles } from 'react-jss'
+import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = makeStyles(theme => ({
 /** ********     HOW-TO-USE PAGE     **********/
   main: {
-    fontFamily: theme.primaryFontFamily,
-    color: theme.primaryTextColor,
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.common.black,
     '& section': {
       width: '100%',
     },
@@ -14,7 +14,7 @@ const useStyles = createUseStyles(theme => ({
   },
   /** ********     PROJECTS SECTION     **********/
   projectsSection: {
-    backgroundColor: theme.backgroundColor5,
+    backgroundColor: theme.palette.grey[200],
     padding: '0 20px',
   },
   projectsContainer: {
@@ -42,7 +42,7 @@ const useStyles = createUseStyles(theme => ({
     margin: '0',
   },
   link: {
-    color: theme.primaryTextColor,
+    color: theme.palette.common.black,
     fontWeight: 'bold',
   },
   bold: {
@@ -63,7 +63,7 @@ const useStyles = createUseStyles(theme => ({
     },
     '& li::before': {
       content: 'counter(myCounter) ". "',
-      fontFamily: theme.thirdFontFamily,
+      fontFamily: theme.typography.thirdFontFamily.fontFamily,
       position: 'absolute',
       left: '-32px',
     },
@@ -130,9 +130,9 @@ const useStyles = createUseStyles(theme => ({
     display: 'inline-block',
     fontWeight: 'bold',
     fontSize: '16px',
-    color: theme.button1TextColor,
-    border: `1px solid ${theme.button1BG}`,
-    backgroundColor: theme.button1BG,
+    color: theme.palette.common.white,
+    border: `1px solid ${theme.palette.info.main}`,
+    backgroundColor: theme.palette.info.main,
     borderRadius: '22.5px',
     width: '270px',
     height: '45px',

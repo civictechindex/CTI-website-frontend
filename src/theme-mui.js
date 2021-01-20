@@ -1,6 +1,12 @@
 /* eslint-disable sort-keys */
 
+const BLACK = '#000000'
 const BLUEBLACK = '#0F1D2F'
+const CYAN = '#0CB2E7'
+const GREY100 = '#F4F4F4' // MUI default grey 100 is #f5f5f5
+const GREY200 = '#E9E9E9' // MUI default grey 200 is #eeeeee
+const GREY300 = '#D8D8D8' // MUI default grey 300 is #e0e0e0
+const GREY900 = '#242424' // MUI default grey 900 is #212121
 const WHITE = '#FFFFFF'
 const YELLOW = '#FFE06D'
 
@@ -28,9 +34,25 @@ const theme = {
     secondary: {
       main: YELLOW,
     },
+    info: {
+      main: CYAN,
+    },
+    grey: {
+      100: GREY100,
+      200: GREY200,
+      300: GREY300,
+      900: GREY900,
+    },
+    text: {
+      primary: BLACK,
+      secondary: WHITE,
+    },
   },
   typography: {
     fontFamily: 'Work Sans, sans-serif',
+    thirdFontFamily: {
+      fontFamily: 'Source Code Pro, monospace',
+    },
     h1: {
       color: YELLOW,
       fontSize: '42px',
