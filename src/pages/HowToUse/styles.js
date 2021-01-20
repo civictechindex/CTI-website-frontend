@@ -115,30 +115,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '40px',
     paddingBottom: '60px',
   },
-  /** ********     CONTACT-US SECTION     **********/
-  contactUsSection: {
-    padding: '60px 20px',
-    textAlign: 'center',
-  },
-  contactUsHeading: {
-    fontWeight: '500',
-    fontSize: '36px',
-    margin: '0',
-    marginBottom: '30px',
-  },
-  contactUsBtn: {
-    display: 'inline-block',
-    fontWeight: 'bold',
-    fontSize: '16px',
-    color: theme.palette.common.white,
-    border: `1px solid ${theme.palette.info.main}`,
-    backgroundColor: theme.palette.info.main,
-    borderRadius: '22.5px',
-    width: '270px',
-    height: '45px',
-    outline: 'none',
-    cursor: 'pointer',
-  },
   /** ********     MEDIA QUERIES     **********/
   '@media (max-width: 770px)': {
     imgText: {

@@ -6,41 +6,6 @@ const useStyles = makeStyles(theme => ({
     width: '80%',
   },
 
-  contactButton: {
-    backgroundColor: '#0CB2E7',
-    border: 'none',
-    borderRadius: '3vw',
-    color: '#FEFEFE',
-    cursor: 'pointer',
-    display: 'block',
-    fontSize: 'clamp(10px, 1.5vw, 15px)',
-    fontWeight: 'bold',
-    margin: '0 auto',
-    padding: '1vw 6vw',
-    transition: 'background-color 0.25s',
-    '&:hover': {
-      backgroundColor: '#0899C7',
-    },
-  },
-
-  contactHeader: {
-    color: '#004364',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: 'clamp(18px, 2.5vw, 34px)',
-    fontWeight: '500',
-    margin: '0 0 1vw',
-  },
-
-  contactLink: {
-    color: 'inherit',
-    textDecoration: 'none',
-  },
-
-  contactSection: {
-    backgroundColor: '#FEFEFE',
-    padding: '4vw 0 5vw',
-  },
-
   donateContainer: {
     backgroundColor: '#F2F2F2',
   },
