@@ -2,109 +2,55 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   footerContainer: {
-    width: '100%',
     backgroundColor: theme.palette.grey[900],
+    color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
-    color: theme.palette.common.white,
-    fontSize: '16px',
-    padding: '32px 20px 0 20px',
-    boxSizing: 'border-box',
-  },
-  allInfoContainer: {
-    display: 'grid',
-    gridTemplateColumns: '.8fr 1fr 1fr 1fr 1fr',
-    justifyItems: 'center',
-    '& $infoContainer:nth-child(1)': {
-      gridArea: '1 / 1 / 1 / 1',
-    },
-    '& $infoContainer:nth-child(2)': {
-      gridArea: '1 / 2 / 1 / 2',
-      maxWidth: '160px',
-    },
-    '& $infoContainer:nth-child(3)': {
-      gridArea: '1 / 3 / 1 / 3',
-    },
-    '& $infoContainer:nth-child(4)': {
-      gridArea: '1 / 4 / 1 / 4',
-    },
-    '& $infoContainer:nth-child(5)': {
-      gridArea: '1 / 5 / 1 / 5',
-      minWidth: '190px',
-    },
-  },
-  infoContainer: {
-    margin: '0',
-  },
-  infoHeader: {
-    display: 'block',
-    fontWeight: 'bold',
-    margin: '0',
-    textDecoration: 'none',
-    color: theme.palette.common.white,
-  },
-  infoLink: {
-    color: theme.palette.common.white,
-    textDecoration: 'none',
-    display: 'block',
-    marginTop: '14px',
-  },
-  margin: {
-    marginRight: '20px',
-    marginTop: '14px',
-  },
-  noteContainer: {
-    marginTop: '55px',
-    '& $note:last-child': {
-      paddingBottom: '30px',
-    },
-  },
-  note: {
-    textAlign: 'center',
-    margin: '0',
-    paddingBottom: '10px',
-  },
-  link: {
-    color: theme.palette.common.white,
-    textDecoration: 'underline',
-    fontWeight: '500',
-  },
-  twitter: {
-    transform: 'translate(0, -3px)',
-  },
-  /** ********     MEDIA-QUERIES SECTION     **********/
-  '@media (max-width: 1000px)': {
-    footerContainer: {
+    paddingTop: '32px',
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       lineHeight: '18px',
     },
-    note: {
-      fontSize: '12px',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '16px',
     },
-    allInfoContainer: {
-      gridTemplateColumns: '1fr 1fr',
-      gridTemplateRows: '115px 230px auto',
-      justifyItems: 'center',
-      '& $infoContainer:nth-child(odd)': {
-        width: '190px',
+    // info header links
+    '& a:nth-child(1)': {
+      fontWeight: 'bold',
+      marginTop: 0,
+    },
+    // info links
+    '& a': {
+      color: theme.palette.common.white,
+      display: 'block',
+      marginTop: '14px',
+      textDecoration: 'none',
+    },
+  },
+  noteContainer: {
+    marginTop: '55px',
+    textAlign: 'center',
+    '& a': {
+      display: 'inline',
+      textDecoration: 'underline',
+    },
+    '& p': {
+      margin: 0,
+      paddingBottom: '10px',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '12px',
       },
-      '& $infoContainer:nth-child(even)': {
-        width: '140px',
+      [theme.breakpoints.up('md')]: {
+        fontSize: '16px',
       },
-      '& $infoContainer:nth-child(1)': {
-        gridArea: '2 / 1 / 2 / 1',
-      },
-      '& $infoContainer:nth-child(2)': {
-        gridArea: '2 / 2 / 2 / 2',
-      },
-      '& $infoContainer:nth-child(3)': {
-        gridArea: '3 / 1 / 3 / 1',
-      },
-      '& $infoContainer:nth-child(4)': {
-        gridArea: '3 / 2 / 3 / 2',
-      },
-      '& $infoContainer:nth-child(5)': {
-        gridArea: '1 / 1 / 1 / 1',
-      },
+    },
+    '& p:last-child': {
+      paddingBottom: '30px',
+    },
+  },
+  socialContainer: {
+    // Twitter logo
+    '& div:nth-child(3) a img': {
+      transform: 'translate(0, 3px)',
     },
   },
 }))
