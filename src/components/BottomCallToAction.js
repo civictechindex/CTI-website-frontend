@@ -24,9 +24,7 @@ export const BottomCallToAction = ({ heading, buttonText }) => {
       border: 'none',
       borderRadius: '20px',
       boxShadow: '0.1rem 0.1rem 10px #e0dede ',
-      '&:hover': {
-        cursor: 'pointer',
-      },
+      cursor: 'pointer',
     },
   }
   return (

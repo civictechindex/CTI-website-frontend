@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     borderRadius: '24px',
     boxShadow: '4px 4px 12px 4px rgba(4, 45, 95, 0.08)',
     color: 'white',
+    cursor: 'pointer',
     fontFamily: 'Work Sans, san-serif',
     fontWeight: '700',
     height: '48px',
