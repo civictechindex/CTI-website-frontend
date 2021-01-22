@@ -23,7 +23,7 @@ const SocialSection = () => {
         </a>
       </Grid>
       <Grid item xs={6} sm={3}>
-        <aside href='https://www.facebook.com/civictechindex'>
+        <a href='https://www.facebook.com/civictechindex'>
           <img src='/images/fb-logo.svg' alt='Facebook logo' />
         </aside>
       </Grid>
