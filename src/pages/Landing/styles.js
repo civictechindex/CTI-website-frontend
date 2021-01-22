@@ -1,9 +1,9 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { createUseStyles } from 'react-jss'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = createUseStyles(theme => ({
   comingSoonHeader: {
     color: '#FEFEFE',
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: 'normal',
     letterSpacing: '0.4vw',
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 
   followAndVolunteerSection: {
     display: 'flex',
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     justifyContent: 'space-around',
     margin: '50px auto',
     textAlign: 'center',
@@ -46,8 +46,8 @@ const useStyles = makeStyles(theme => ({
   },
 
   footerSection: {
-    color: '#FEFEFE',
-    fontFamily: theme.typography.fontFamily,
+    color: "#FEFEFE",
+    fontFamily: theme.primaryFontFamily,
     fontSize: 'clamp(16px, 1vw, 20px)',
     lineHeight: 'calc(16px + 0.8vw)',
     margin: '0 auto',
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   headerSection: {
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     margin: '0 auto',
     textAlign: 'center',
     width: '60%',
@@ -82,14 +82,14 @@ const useStyles = makeStyles(theme => ({
   },
 
   notificationContainer: {
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     margin: '0 auto',
     textAlign: 'center',
   },
 
   notificationHeader: {
     color: '#FEFEFE',
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: '500',
     marginBottom: '1.5vw',
@@ -119,7 +119,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#FEFEFE',
     border: 'none',
     borderRadius: '7px 0px 0px 7px',
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     fontSize: 'clamp(10px, 1vw, 14px)',
     letterSpacing: '0.5px',
     padding: '15px',

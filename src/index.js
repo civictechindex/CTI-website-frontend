@@ -2,19 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import { ThemeProvider as RjssThemeProvider } from 'react-jss'
+import { ThemeProvider } from 'react-jss'
 import jss from 'jss'
 import preset from 'jss-preset-default'
 import { SheetsRegistry } from 'react-jss'
 import { JssProvider } from 'react-jss'
 import { BrowserRouter } from 'react-router-dom'
 import WebFont from 'webfontloader'
-
-import { createMuiTheme, ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import themeMui from './theme-mui'
-
-const theme = createMuiTheme(themeMui)
 
 WebFont.load({
   google: {
@@ -48,7 +42,7 @@ const setupJss = () => {
 
 const sheets = setupJss()
 
-const themeR = {
+const theme = {
   primaryFontFamily: 'Work Sans, san-serif',
   secondaryFontFamily: 'Space Mono, monospace',
   thirdFontFamily: 'Source Code Pro, monospace',
@@ -72,16 +66,13 @@ const themeR = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <RjssThemeProvider theme={themeR}>
-        <JssProvider registry={sheets}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </JssProvider>
-      </RjssThemeProvider>
-    </MuiThemeProvider>
+    <ThemeProvider theme={theme}>
+      <JssProvider registry={sheets}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </JssProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )

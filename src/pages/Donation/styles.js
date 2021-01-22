@@ -1,9 +1,44 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { createUseStyles } from 'react-jss';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = createUseStyles(theme => ({
   commonSection: {
     margin: '0 auto',
     width: '80%',
+  },
+
+  contactButton: {
+    backgroundColor: '#0CB2E7',
+    border: 'none',
+    borderRadius: '3vw',
+    color: '#FEFEFE',
+    cursor: 'pointer',
+    display: 'block',
+    fontSize: 'clamp(10px, 1.5vw, 15px)',
+    fontWeight: 'bold',
+    margin: '0 auto',
+    padding: '1vw 6vw',
+    transition: 'background-color 0.25s',
+    '&:hover': {
+      backgroundColor: '#0899C7',
+    },
+  },
+
+  contactHeader: {
+    color: '#004364',
+    fontFamily: theme.primaryFontFamily,
+    fontSize: 'clamp(18px, 2.5vw, 34px)',
+    fontWeight: '500',
+    margin: '0 0 1vw',
+  },
+
+  contactLink: {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+
+  contactSection: {
+    backgroundColor: '#FEFEFE',
+    padding: '4vw 0 5vw',
   },
 
   donateContainer: {
@@ -16,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 
   donateTitle: {
     color: '#004364',
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     fontSize: 'clamp(16px, 3vw, 46px)',
   },
 
@@ -38,7 +73,7 @@ const useStyles = makeStyles(theme => ({
   infoText: {
     boxSizing: 'border-box',
     display: 'inline-block',
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     fontSize: 'clamp(12px, 1.5vw, 28px)',
     letterSpacing: '0.05vw',
     padding: '3vw 1vw 0 0',
@@ -48,7 +83,7 @@ const useStyles = makeStyles(theme => ({
 
   infoThank: {
     color: '#004364',
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.primaryFontFamily,
     fontSize: 'clamp(16px, 1.75vw, 28px)',
     fontWeight: 'bold',
     margin: '2.5vw',
@@ -135,4 +170,4 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default useStyles
+export default useStyles;

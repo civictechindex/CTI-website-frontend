@@ -1,10 +1,10 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { createUseStyles } from 'react-jss'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = createUseStyles(theme => ({
 /** ********     HOW-TO-USE PAGE     **********/
   main: {
-    fontFamily: theme.typography.fontFamily,
-    color: theme.palette.common.black,
+    fontFamily: theme.primaryFontFamily,
+    color: theme.primaryTextColor,
     '& section': {
       width: '100%',
     },
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
   /** ********     PROJECTS SECTION     **********/
   projectsSection: {
-    backgroundColor: theme.palette.grey[200],
+    backgroundColor: theme.backgroundColor5,
     padding: '0 20px',
   },
   projectsContainer: {
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0',
   },
   link: {
-    color: theme.palette.common.black,
+    color: theme.primaryTextColor,
     fontWeight: 'bold',
   },
   bold: {
@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& li::before': {
       content: 'counter(myCounter) ". "',
-      fontFamily: theme.typography.thirdFontFamily.fontFamily,
+      fontFamily: theme.thirdFontFamily,
       position: 'absolute',
       left: '-32px',
     },
@@ -114,6 +114,30 @@ const useStyles = makeStyles(theme => ({
     margin: '0',
     paddingTop: '40px',
     paddingBottom: '60px',
+  },
+  /** ********     CONTACT-US SECTION     **********/
+  contactUsSection: {
+    padding: '60px 20px',
+    textAlign: 'center',
+  },
+  contactUsHeading: {
+    fontWeight: '500',
+    fontSize: '36px',
+    margin: '0',
+    marginBottom: '30px',
+  },
+  contactUsBtn: {
+    display: 'inline-block',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    color: theme.button1TextColor,
+    border: `1px solid ${theme.button1BG}`,
+    backgroundColor: theme.button1BG,
+    borderRadius: '22.5px',
+    width: '270px',
+    height: '45px',
+    outline: 'none',
+    cursor: 'pointer',
   },
   /** ********     MEDIA QUERIES     **********/
   '@media (max-width: 770px)': {
