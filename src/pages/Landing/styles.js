@@ -1,9 +1,9 @@
-import { createUseStyles } from 'react-jss'
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   comingSoonHeader: {
     color: '#FEFEFE',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: 'normal',
     letterSpacing: '0.4vw',
@@ -23,7 +23,7 @@ const useStyles = createUseStyles(theme => ({
 
   followAndVolunteerSection: {
     display: 'flex',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     justifyContent: 'space-around',
     margin: '50px auto',
     textAlign: 'center',
@@ -46,8 +46,8 @@ const useStyles = createUseStyles(theme => ({
   },
 
   footerSection: {
-    color: "#FEFEFE",
-    fontFamily: theme.primaryFontFamily,
+    color: '#FEFEFE',
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(16px, 1vw, 20px)',
     lineHeight: 'calc(16px + 0.8vw)',
     margin: '0 auto',
@@ -59,7 +59,7 @@ const useStyles = createUseStyles(theme => ({
   },
 
   headerSection: {
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     margin: '0 auto',
     textAlign: 'center',
     width: '60%',
@@ -82,14 +82,14 @@ const useStyles = createUseStyles(theme => ({
   },
 
   notificationContainer: {
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     margin: '0 auto',
     textAlign: 'center',
   },
 
   notificationHeader: {
     color: '#FEFEFE',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: '500',
     marginBottom: '1.5vw',
@@ -119,7 +119,7 @@ const useStyles = createUseStyles(theme => ({
     backgroundColor: '#FEFEFE',
     border: 'none',
     borderRadius: '7px 0px 0px 7px',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(10px, 1vw, 14px)',
     letterSpacing: '0.5px',
     padding: '15px',

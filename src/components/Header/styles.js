@@ -1,12 +1,12 @@
-import { createUseStyles } from 'react-jss'
+import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   nav: {
     position: 'relative',
     height: '100px',
     backgroundColor: '#FFF',
     fontSize: '16px',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     zIndex: '900',
   },
   flexContainer: {
@@ -22,7 +22,7 @@ const useStyles = createUseStyles(theme => ({
     width: '336px',
     height: '180px',
     borderRadius: '180px 180px 0 0',
-    backgroundColor: theme.headerCircleBG,
+    backgroundColor: theme.palette.grey[100],
     transform: 'translate(-100px, -80px)',
   },
   logo: {
@@ -41,7 +41,7 @@ const useStyles = createUseStyles(theme => ({
   },
   links: {
     textDecoration: 'none',
-    color: theme.primaryTextColor,
+    color: theme.palette.common.black,
     margin: '10px',
   },
   linksWithArrows: {
@@ -55,8 +55,8 @@ const useStyles = createUseStyles(theme => ({
   },
   black: {
     color: theme.button1TextColor,
-    backgroundColor: theme.button1BG,
-    border: `1px solid ${theme.button1BG}`,
+    backgroundColor: theme.palette.info.main,
+    border: `1px solid ${theme.palette.info.main}`,
   },
   search: {
     width: '180px',
@@ -66,7 +66,7 @@ const useStyles = createUseStyles(theme => ({
     border: '1px solid #C3C3C3',
     background: '#FFFFFF url(images/search.svg) no-repeat scroll 8px 5.5px',
     paddingLeft: '36px',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '16px',
     outline: 'none',
     boxSizing: 'border-box',
@@ -103,10 +103,10 @@ const useStyles = createUseStyles(theme => ({
     textDecoration: 'none',
     color: '#8F8F8F',
     padding: '10px',
-    backgroundColor: theme.backgroundColor1,
+    backgroundColor: theme.palette.common.white,
     borderBottom: '1px solid #DEDEDE',
     '&:hover': {
-      color: theme.secondaryTextColor,
+      color: theme.palette.common.white,
       backgroundColor: '#C6C6C6',
     },
   },
@@ -128,7 +128,7 @@ const useStyles = createUseStyles(theme => ({
     background: `url(images/mobile-search.svg) no-repeat scroll 8px 5.5px`,
     backgroundSize: '30px',
     paddingLeft: '50px',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '16px',
     outline: 'none',
     boxSizing: 'border-box',
@@ -179,7 +179,7 @@ const useStyles = createUseStyles(theme => ({
       position: 'absolute',
       height: '100px',
       width: '100%',
-      backgroundColor: theme.headerBG,
+      backgroundColor: theme.palette.grey[300],
     },
     circle: {
       display: 'none',
@@ -190,7 +190,7 @@ const useStyles = createUseStyles(theme => ({
       bottom: '0px',
       left: '-240px',
       transform: 'translateY(0)',
-      backgroundColor: theme.headerBG2,
+      backgroundColor: theme.palette.grey[100],
       width: '100%',
       height: 'fit-content',
       fontSize: '18px',
@@ -252,7 +252,7 @@ const useStyles = createUseStyles(theme => ({
     },
     subLinks: {
       fontWeight: 'normal',
-      color: theme.primaryTextColor,
+      color: theme.palette.common.black,
       padding: '6px 10px 6px 20px',
       backgroundColor: 'inherit',
       border: 'none',
