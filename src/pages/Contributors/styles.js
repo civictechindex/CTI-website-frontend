@@ -24,7 +24,7 @@ export const useStyle = makeStyles((theme) => ({
     margin: '0',
     paddingTop: '70px',
     fontSize: '14px',
-    color: '#FEFEFE',
+    color: theme.palette.text.secondary,
   },
   sectionContainer: {
     fontFamily: theme.typography.fontFamily,
@@ -39,7 +39,7 @@ export const useStyle = makeStyles((theme) => ({
     textAlign: 'center',
     paddingRight: '1rem',
     boxSizing: 'border-box',
-    color: '#004364',
+    color: theme.palette.secondary.dark,
     display: 'flex',
     // justifyContent: 'space-between',
     fontSize: '1.3rem',
@@ -50,9 +50,9 @@ export const useStyle = makeStyles((theme) => ({
   unaffiliatedWrapper: {
     width: '100%',
     textAlign: 'center',
-    backgroundColor: '#F2F2F2',
+    backgroundColor: theme.palette.grey[100],
     padding: '1rem 0',
-    '& *': { color: '#004364' },
+    '& *': { color: theme.palette.secondary.dark },
     ' & h2': {
       fontSize: '2.25rem',
       margin: 0,
@@ -75,12 +75,12 @@ export const useStyle = makeStyles((theme) => ({
     '& p': {
       fontSize: '1.5rem',
       fontWeight: 'bold',
-      color: '#004364',
+      color: theme.palette.secondary.dark,
     },
   },
   affiliatedWrapper: {
     width: '100%',
-    backgroundColor: '#004364',
+    backgroundColor: theme.palette.background.primary,
     padding: '1rem 0',
     textAlign: 'center',
     '& h2': {
@@ -98,7 +98,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   affiliatedOrgsContainer: {
     '&h2, & h3': {
-      color: '#FFE06D',
+      color: theme.palette.warning.main,
     },
   },
   chevron: {
@@ -108,14 +108,14 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
   placeholder: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.default,
     height: '90vh',
   },
 
   input: {
     width: '85%',
     borderRadius: '7px',
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.default,
     fontSize: '1.5rem',
   },
   contributorsContainer: {
@@ -134,8 +134,8 @@ export const useStyle = makeStyles((theme) => ({
     minHeight: '5rem',
   },
   thumbnails: {
-    color: 'black',
-    backgroundColor: 'white',
+    color: theme.palette.common.black,
+    backgroundColor: theme.palette.background.default,
     display: 'flex',
     textDecoration: 'none',
     borderRadius: '4px',
@@ -178,8 +178,8 @@ export const useStyle = makeStyles((theme) => ({
     flexGrow: '1',
     width: '50%',
     borderRadius: '4px',
-    backgroundColor: 'white',
-    color: '#0F1D2F',
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.secondary.dark.contrastText,
     margin: '1rem auto',
   },
   codeForAllThumbnails: {
@@ -207,9 +207,12 @@ export const useStyle = makeStyles((theme) => ({
     fontSize: '1.5rem',
     fontWeight: 'bold',
     margin: '0',
-    color: '#004364',
+    color: theme.palette.secondary.dark,
   },
   dropdownLength: {
-    color: '#004364',
+    color: theme.palette.secondary.dark,
+  },
+  contributorsTagline: {
+    margin: theme.spacing(4, 0),
   },
 }))
