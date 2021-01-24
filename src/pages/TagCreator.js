@@ -175,7 +175,7 @@ const TagCreator = () => {
               <Grid item xs={12} sm={12}>
                 <p>Project Repository URL</p>
                 <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} placeholder="hackforla/example" InputProps={{
                   startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
                 }} />
               </Grid>
@@ -190,7 +190,7 @@ const TagCreator = () => {
               <Grid item xs={12} sm={12}>
                 <p>Project Repository URL</p>
                 <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} placeholder="hackforla/example" InputProps={{
                   startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
                 }} />
               </Grid>
