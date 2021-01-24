@@ -1,0 +1,14 @@
+{
+  "overrides": [
+    {
+      "files": [
+        "*.js"
+      ],
+      "rules": {
+        "comma-dangle": "off",
+        "max-lines-per-function": "off",
+        "sort-keys": "off"
+      }
+    }
+  ]
+}
