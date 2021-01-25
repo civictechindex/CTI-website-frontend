@@ -1,7 +1,11 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable complexity */
+/* eslint-disable sort-keys */
+
 import React, { useEffect, useState } from "react";
 import { useStyle } from "./styles.js";
 import axios from "axios";
-import { BottomCallToAction } from "../../components/BottomCallToAction";
+import BottomCallToAction from "../../components/BottomCallToAction";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import NavBreadcrumb from "../../components/NavBreadcrumbs";
@@ -167,8 +171,9 @@ export default function Contributors({ match }) {
         </div>
       </div>
       <BottomCallToAction
-        heading={"Want to add your organization?"}
-        buttonText={"Contact Us"}
+        heading="Want to add your organization?"
+        buttonHref="mailto:civictechindex@hackforla.org"
+        buttonText="Contact Us"
       />
       <Footer />
     </>

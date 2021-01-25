@@ -4,22 +4,22 @@ describe('Contributors Page', () => {
   })
 
   it('wait for affiliated orgs to load', () => {
-    cy.get('[class^=affiliatedOrgsContainer]').within(() => {
-      cy.get('[class^=container]').should('have.length', 24)
+    cy.get('[class*=affiliatedOrgsContainer]').within(() => {
+      cy.get('[class*=container]').should('have.length', 24)
     })
   })
 
   it('load thumbnail wrappers (whatever that is)', () => {
-    cy.get('[class^=thumbnailWrapper]').should('have.length', 26)
+    cy.get('[class*=thumbnailWrapper]').should('have.length', 26)
   })
 
   it('expands Code for America', () => {
-    cy.get('[href*=codeforamerica]').parents('[class^=dropdown]').within(() => {
+    cy.get('[href*=codeforamerica]').parents('[class*=dropdown]').within(() => {
       cy.get('#dropdownChevron').click()
     })
-    cy.get('[href*=codeforamerica]').parents('[class^=container]').within(() => {
+    cy.get('[href*=codeforamerica]').parents('[class*=container]').within(() => {
       cy.contains('Code for Anchorage');
-      cy.get('[class^=thumbnailWrapper]').should('have.length', 86)
+      cy.get('[class*=thumbnailWrapper]').should('have.length', 86)
     })
   })
 })

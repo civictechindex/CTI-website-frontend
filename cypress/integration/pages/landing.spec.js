@@ -15,7 +15,7 @@ describe('Landing Page', () => {
 
   it('does not capture a registered email address', () => {
     cy.get('input').type(TEST_EMAIL)
-    cy.get('[class^=notifyButton]').click()
+    cy.get('[class*=notifyButton]').click()
     cy.contains('That email address has already been registered with us.')
   })
 })

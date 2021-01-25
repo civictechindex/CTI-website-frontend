@@ -1,33 +1,43 @@
-import React from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { Grid, Typography } from "@material-ui/core";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { Grid, Typography } from '@material-ui/core'
 
-const theme = createMuiTheme(); // (was let, now const per ESLint 1/3/2021)
-theme.typography.h2 = {
-  '@media (min-width:675px)': {
-    fontSize: '28px',
+const useStyles = makeStyles((theme) => ({
+  titleStyle: {
+    color: (props) => {
+      if (props.textVariant === 'black') {
+        return theme.palette.primary.main
+      } else {
+        return theme.palette.secondary.main
+      }
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '36px',
+    },
+    textAlign: 'center',
   },
-  '@media (min-width:900px)': {
-    fontSize: '36px',
-  },
-  fontSize: '28px',
-  margin: 'auto',
-};
+}))
 
 /**
- * Getting Started Call to Action typically right abouve the footer.
+ * Getting Started Call to Action typically right above the footer.
  * @param {*} props.children
  * @param {*} props.textVariant
  */
-export default function GetStartedCard(props) {
+const TitleSection = (props) => {
+  const classes = useStyles(props)
   const title = props.children
+
   return (
-    <Grid item xs={12} md={7} style={{ padding: '30px 30px', margin: 'auto' }}>
-      <ThemeProvider theme={theme}>
-        <Typography variant="h2" align='center' style={props.textVariant === 'black' ? { color: '#0F1D2F' } : { color: '#FFE06D' }}>
+    <Grid container>
+      <Grid item xs={1} md={2} />
+      <Grid item xs={10} md={8}>
+        <Typography variant='h2' className={classes.titleStyle}>
           {title}
         </Typography>
-      </ThemeProvider>
+      </Grid>
+      <Grid item xs={1} md={2} />
     </Grid>
   )
 }
+
+export default TitleSection

@@ -1,7 +1,10 @@
+import React from 'react';
+
+import BottomCallToAction from '../../components/BottomCallToAction';
 import BreadCrumbs from '../../components/NavBreadcrumbs.js';
 import Footer from '../../components/Footer/index.js';
 import Header from '../../components/Header/index.js';
-import React from 'react';
+
 import useStyles from './styles.js';
 
 const breadCrumbLinks = [
@@ -33,7 +36,7 @@ const Donation = () => {
             1. Please follow this link to the Code For America{' '}
             <a
               className={classes.styledLinkMobile + ' ' + classes.styledLink}
-              href="https://www.codeforamerica.org/donate">
+              href='https://www.codeforamerica.org/donate'>
               donation form.
             </a>
           </p>
@@ -45,18 +48,16 @@ const Donation = () => {
         </div>
 
         <img
-          alt="A gif demonstrating the use of the donation form"
+          alt='A gif demonstrating the use of the donation form'
           className={classes.infoGif}
-          src="./images/CTI-Donate-to-HfLA.gif"/>
+          src='./images/CTI-Donate-to-HfLA.gif' />
         <p className={classes.infoThank}>We appreciate your contribution.</p>
       </section>
-
-      <section className={classes.contactSection}>
-        <h2 className={classes.contactHeader}>Want to support in other ways?</h2>
-        <a className={classes.contactLink} href="mailto:civictechindex@hackforla.org">
-          <button className={classes.contactButton}>Contact us</button>
-        </a>
-      </section>
+      <BottomCallToAction
+        heading='Want to support in other ways?'
+        buttonHref='mailto:civictechindex@hackforla.org'
+        buttonText='Contact Us'
+      />
       <Footer />
     </div>
   )
