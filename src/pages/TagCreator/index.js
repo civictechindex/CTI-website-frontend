@@ -3,13 +3,14 @@ import NavBreadcrumb from '../../components/NavBreadcrumbs'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import '../../styles.css'
-import Radio from '@material-ui/core/Radio';
+
 import orgs from './orgs.json'
 
 import axios from 'axios'
 
 import { Chip } from '@material-ui/core'
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
@@ -30,29 +31,28 @@ const TitleSection = () => {
   )
 }
 
-const AffiliationQuestionSection = ({ value }, { handleChange }) => {
+const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repositoryUrl, setRepositoryUrl }) => {
   return (
-    <Grid container style={{ paddingTop: '30px' }}>
-      <Grid item xs={8} sm={8}>Are you affiliated with an organization?</Grid>
-      <Grid item sm={2} xs={2}>
-        <Radio
-          checked={value === 'affiliated'}
-          onChange={handleChange}
-          value="affiliated"
-          name="affiliated"
-          inputProps={{ 'aria-label': 'true' }}
-        /> Yes
+    <>
+      <Grid item xs={12} sm={12}>
+        <p>Which Organization?</p>
+        <Autocomplete
+          id="organization"
+          options={orgs}
+          onChange={(e, v) => setOrgName(v)}
+          getOptionLabel={(option) => option}
+          style={{ width: '100%' }}
+          renderInput={(params) => <TextField {...params} variant="outlined" />}
+        />
       </Grid>
-      <Grid item sm={2} xs={2}>
-        <Radio
-          checked={value === 'unaffiliated'}
-          onChange={handleChange}
-          value="unaffiliated"
-          name="unaffiliated"
-          inputProps={{ 'aria-label': 'false' }}
-        /> No
+      <Grid item xs={12} sm={12}>
+        <p>Project Repository URL</p>
+        <p style={{ fontSize: '10px' }}></p>
+        <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+          startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
+        }} />
       </Grid>
-    </Grid>
+    </>
   )
 }
 
@@ -126,7 +126,7 @@ const TagCreator = () => {
           tagsToAdd(null)
         }
 
-        setTopics(
+        const TopicTagSection = () => {
           <>
             <Grid>
               <p>These are your repository’s current topic tags:</p>
@@ -148,7 +148,11 @@ const TagCreator = () => {
               <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
               <Grid item xs={6} sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
             </Grid>
-          </>)
+          </>
+        }
+
+        setTopics(<TopicTagSection/>
+          )
       }).catch(e => {
         setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
       })
@@ -168,48 +172,11 @@ const TagCreator = () => {
           <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
           <TitleSection/>
           <Grid Container>
-            {/* <AffiliationQuestionSection value={value} onChange={handleChange} /> */}
-            <Grid container style={{ paddingTop: '30px' }}>
-              <Grid item xs={8} sm={8}>Are you affiliated with an organization?</Grid>
-              <Grid item sm={2} xs={2}>
-                <Radio
-                  checked={value === 'affiliated'}
-                  onChange={handleChange}
-                  value="affiliated"
-                  name="affiliated"
-                  inputProps={{ 'aria-label': 'true' }}
-                /> Yes
-              </Grid>
-              <Grid item sm={2} xs={2}>
-                <Radio
-                  checked={value === 'unaffiliated'}
-                  onChange={handleChange}
-                  value="unaffiliated"
-                  name="unaffiliated"
-                  inputProps={{ 'aria-label': 'false' }}
-                /> No
-              </Grid>
-            </Grid>
+            <AffiliationQuestionSection value={value} handleChange={handleChange} />
             <Grid container id="organizationTrue" style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
-              <Grid item xs={12} sm={12}>
-                <p>Which Organization?</p>
-                <Autocomplete
-                  id="organization"
-                  options={orgs}
-                  onChange={(e, v) => setOrgName(v)}
-                  getOptionLabel={(option) => option}
-                  style={{ width: '100%' }}
-                  renderInput={(params) => <TextField {...params} variant="outlined" />}
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <p>Project Repository URL</p>
-                <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-                  startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-                }} />
-              </Grid>
+              <OrganizationSelectorSection orgs= {orgs} setOrgName = {setOrgName} handleEnter = {handleEnter} setRepositoryUrl = {setRepositoryUrl} />
               <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
+              // 
                 {topicSearchError}
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
               </Grid>
