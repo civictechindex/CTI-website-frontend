@@ -126,7 +126,7 @@ const TagCreator = () => {
           tagsToAdd(null)
         }
 
-        const TopicTagSection = () => {
+        setTopics(
           <>
             <Grid>
               <p>These are your repository’s current topic tags:</p>
@@ -148,12 +148,10 @@ const TagCreator = () => {
               <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
               <Grid item xs={6} sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
             </Grid>
-          </>
-        }
-
-        setTopics(<TopicTagSection/>
-          )
+          </>)
       }).catch(e => {
+        // This should store the error state.
+        // Component should check for error state and resolve the correct response.
         setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
       })
   }
