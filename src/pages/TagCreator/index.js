@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import NavBreadcrumb from '../components/NavBreadcrumbs'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import '../styles.css'
+import NavBreadcrumb from '../../components/NavBreadcrumbs'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import '../../styles.css'
 import Radio from '@material-ui/core/Radio';
-import orgs from '../components/data/orgs.json'
+import orgs from './orgs.json'
 
 import axios from 'axios'
 
@@ -18,7 +18,68 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment'
 
 
+const TitleSection = () => {
+  return (
+    <Grid Container>
+      {/* TODO: Use Typography component with MUI Styles */}
+      <Grid item xs={12}><h1 style={{ color: '#004364' }}>Civic Tech Index</h1></Grid>
+      <Grid item xs={12}><h2 style={{ alignContent: 'center', color: '#004364' }}>Tag Generator</h2>
+        <p style={{ textAlign: 'center' }}>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</p>
+      </Grid>
+    </Grid>
+  )
+}
+
+const AffiliationQuestionSection = ({ value }, { handleChange }) => {
+  return (
+    <Grid container style={{ paddingTop: '30px' }}>
+      <Grid item xs={8} sm={8}>Are you affiliated with an organization?</Grid>
+      <Grid item sm={2} xs={2}>
+        <Radio
+          checked={value === 'affiliated'}
+          onChange={handleChange}
+          value="affiliated"
+          name="affiliated"
+          inputProps={{ 'aria-label': 'true' }}
+        /> Yes
+      </Grid>
+      <Grid item sm={2} xs={2}>
+        <Radio
+          checked={value === 'unaffiliated'}
+          onChange={handleChange}
+          value="unaffiliated"
+          name="unaffiliated"
+          inputProps={{ 'aria-label': 'false' }}
+        /> No
+      </Grid>
+    </Grid>
+  )
+}
+
+
 const TagCreator = () => {
+
+
+  /*
+   * AffiliationQuestion
+   * OrganizationSelector
+   * RepositoryQuestion
+   * Find Button
+   */
+
+
+  /*
+   * TagGeneratorResultComponent
+   * Affiliated Organization
+   * Project Repository URL
+   * TopicTagsSection
+   * TopicCips
+   */
+
+
+
+
+
 
   const crumbs = [{ name: 'Home', href: '/home' }, { name: 'Tag Generator', href: '/taggenerator' }]
 
@@ -81,40 +142,12 @@ const TagCreator = () => {
             </Grid>
             <Grid container xs={12}>
               <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
-              <Grid item xs={6}  sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
-              <Grid item xs={6}  sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
-              <Grid item xs={6}  sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
+              <Grid item xs={6} sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
+              <Grid item xs={6} sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
+              <Grid item xs={6} sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
               <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
-              <Grid item xs={6}  sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
+              <Grid item xs={6} sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
             </Grid>
-            {/* <Grid style={{ paddingTop: '30px' }}>
-                            Do you want to add more tags specific to your project's subject area to increase visibility?
-                        </Grid>
-                        <Grid item sm={2} xs={2}>
-                            <Radio
-                                checked={tagValue === 'addTags'}
-                                onChange={handleTagChange}
-                                value="addTags"
-                                name="addTags"
-                                inputProps={{ 'aria-label': 'addTags' }}
-                            /> Yes
-                            </Grid>
-                        <Grid item sm={2} xs={2}>
-
-                            <Radio
-                                checked={tagValue === 'noTags'}
-                                onChange={handleTagChange}
-                                value="noTags"
-                                name="noTags"
-                                inputProps={{ 'aria-label': 'noTags' }}
-                            /> No
-                        </Grid>
-                        <Grid>
-                            <ChipInput
-                                defaultValue={['civictechindex', 'bar']}
-                                onChange={(chips) => handleChipChange(chips)}
-                            />
-                        </Grid> */}
           </>)
       }).catch(e => {
         setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
@@ -133,13 +166,10 @@ const TagCreator = () => {
       <div style={{ backgroundColor: '#F2F2F2' }}>
         <Container maxWidth='lg' style={{ padding: '50px' }}>
           <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
+          <TitleSection/>
           <Grid Container>
-            <Grid item xs={12}><h1 style={{ color: '#004364' }}>Civic Tech Index</h1></Grid>
-            <Grid item xs={12}><h2 style={{ color: '#004364', alignContent: 'center' }}>Tag Generator</h2>
-              <p style={{ textAlign: 'center' }}>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</p>
-            </Grid>
+            {/* <AffiliationQuestionSection value={value} onChange={handleChange} /> */}
             <Grid container style={{ paddingTop: '30px' }}>
-
               <Grid item xs={8} sm={8}>Are you affiliated with an organization?</Grid>
               <Grid item sm={2} xs={2}>
                 <Radio
