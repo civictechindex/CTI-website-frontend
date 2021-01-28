@@ -23,12 +23,11 @@ const defaultStyle = {
 
 
 export default function Faq({ match }) {
-  const radicalcollaboration = match.params.radicalcollaboration
-
+ 
   const crumbs = [
     { name: "Home", href: "/home" },
     { name: "Radical Collaboration", href: "/radicalcollaboration" },
-    { name: "FAQ", href: "radicalcollaboration/faq" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   const [query, setQuery] = useState('');
