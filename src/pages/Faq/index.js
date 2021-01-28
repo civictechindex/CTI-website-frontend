@@ -22,7 +22,6 @@ const defaultStyle = {
 }
 
 
-// eslint-disable-next-line max-lines-per-function
 export default function Faq({ match }) {
   const radicalcollaboration = match.params.radicalcollaboration
 

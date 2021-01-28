@@ -1,16 +1,16 @@
 /* eslint-disable sort-keys */
 import { useEffect,useReducer } from 'react';
 
+// PREVENTS RERENDER FLICKERING AS USER TYPES IN SEARCH
+const sleep = (ms) => {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 
-
-// eslint-disable-next-line max-lines-per-function
 const useSearchFaq = (url) => {
-
   const initialState = {
     status: 'idle',
     data: [],
   };
-
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
     case 'FETCHEDSEARCH':
@@ -22,22 +22,15 @@ const useSearchFaq = (url) => {
     }
   }, initialState);
 
-  // PREVENTS RERENDER FLICKERING AS USER TYPES IN SEARCH
-  const sleep = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms))
-  }
-
   useEffect(() => {
     let currentQuery = true
     const controller = new AbortController()
-
     if (!url) {
       const fetchFaqs = async function () {
         const fullResponse = await fetch('http://test-civictechindexadmin.herokuapp.com/api/faqs/');
         const responseJson = await fullResponse.json();
         dispatch({ type: 'FETCHEDFAQ', payload: responseJson });
       }
-
       fetchFaqs();
     }
     else {
@@ -53,15 +46,12 @@ const useSearchFaq = (url) => {
         }
       }
       loadSearchResults()
-
     }
     return () => {
       currentQuery = false
       controller.abort()
     }
-
   }, [url]);
-
   return state
 };
 
