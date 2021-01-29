@@ -50,7 +50,7 @@ const TagCreator = () => {
       headers: { Accept: "application/vnd.github.mercy-preview+json" },
     })
       .then(res => {
-        setTopicSearchError()
+        setTopicSearchError('')
         document.getElementById('submitButton').style.display = 'none'
 
 
@@ -117,7 +117,7 @@ const TagCreator = () => {
                         </Grid> */}
           </>)
       }).catch(e => {
-        setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
+        setTopicSearchError('Cannot find repository. Please check the name and try again')
       })
   }
 
@@ -175,7 +175,7 @@ const TagCreator = () => {
               <Grid item xs={12} sm={12}>
                 <p>Project Repository URL</p>
                 <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+                <TextField error={topicSearchError.length > 0} helperText={topicSearchError} id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} placeholder="hackforla/example" InputProps={{
                   startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
                 }} />
               </Grid>
@@ -190,12 +190,11 @@ const TagCreator = () => {
               <Grid item xs={12} sm={12}>
                 <p>Project Repository URL</p>
                 <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+                <TextField error={topicSearchError.length > 0} helperText={topicSearchError} id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} placeholder="hackforla/example" InputProps={{
                   startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
                 }} />
               </Grid>
               <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
-                {topicSearchError}
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
               </Grid>
               <Grid>{topics}</Grid>
