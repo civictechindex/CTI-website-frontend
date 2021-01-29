@@ -42,7 +42,7 @@
        "code": 180,
        "ignoreStrings": true
      }],
-     "max-lines-per-function": ["error", 50],
+     "max-lines-per-function": ["error", 100],
      "multiline-comment-style": ["warn", "starred-block"],
      "no-console": "warn",
      "no-dupe-keys": "error",
@@ -60,7 +60,6 @@
      "prefer-const": "error",
      "react/prop-types": "off",
      "require-await": "error",
-     "sort-keys": ["warn", "asc", { "natural": true }],
      "sort-vars": ["warn", { "ignoreCase": true }],
      "spaced-comment": ["warn", "always", { "exceptions": ["*"] }],
      "space-in-parens": "warn",
