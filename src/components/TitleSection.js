@@ -8,12 +8,13 @@ const useStyles = makeStyles((theme) => ({
       if (props.textVariant === 'black') {
         return theme.palette.primary.main
       } else {
-        return theme.palette.secondary.main
+        return theme.palette.warning.main
       }
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '36px',
     },
+    marginBottom: '0.825em',
     textAlign: 'center',
   },
 }))

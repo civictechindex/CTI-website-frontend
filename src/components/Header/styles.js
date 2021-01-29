@@ -4,7 +4,7 @@ const useStyles = makeStyles(theme => ({
   nav: {
     position: 'relative',
     height: '100px',
-    backgroundColor: '#FFF',
+    backgroundColor: theme.palette.background.default,
     fontSize: '16px',
     fontFamily: theme.typography.fontFamily,
     zIndex: '900',
@@ -101,13 +101,13 @@ const useStyles = makeStyles(theme => ({
   subLinks: {
     fontSize: '14px',
     textDecoration: 'none',
-    color: '#8F8F8F',
+    color: theme.palette.grey[600],
     padding: '10px',
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.default,
     borderBottom: '1px solid #DEDEDE',
     '&:hover': {
-      color: theme.palette.common.white,
-      backgroundColor: '#C6C6C6',
+      color: theme.palette.background.default,
+      backgroundColor: theme.palette.grey[300],
     },
   },
   /** ********     MOBILE SECTION     **********/
@@ -125,7 +125,7 @@ const useStyles = makeStyles(theme => ({
     padding: '20px 12px',
     borderRadius: '22.5px',
     border: 'none',
-    background: `url(images/mobile-search.svg) no-repeat scroll 8px 5.5px`,
+    background: 'url(images/mobile-search.svg) no-repeat scroll 8px 5.5px',
     backgroundSize: '30px',
     paddingLeft: '50px',
     fontFamily: theme.typography.fontFamily,
@@ -261,7 +261,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: 'inherit',
       },
     },
-    showMobileNav:{
+    showMobileNav: {
       transform: 'translateY(100%)',
       transition: 'transform 1s',
     },

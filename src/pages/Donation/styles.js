@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   donateContainer: {
-    backgroundColor: '#F2F2F2',
+    backgroundColor: theme.palette.grey[100],
   },
 
   donateCrumbs: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   donateTitle: {
-    color: '#004364',
+    color: theme.palette.secondary.dark,
     fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(16px, 3vw, 46px)',
   },
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   infoThank: {
-    color: '#004364',
+    color: theme.palette.secondary.dark,
     fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(16px, 1.75vw, 28px)',
     fontWeight: 'bold',
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   styledLink: {
-    color: '#0CB2E7',
+    color: theme.palette.secondary.light,
     fontWeight: 'bold',
     textDecoration: 'underline',
   },
@@ -122,13 +122,13 @@ const useStyles = makeStyles(theme => ({
     },
 
     styledLink: {
-      color: 'black',
+      color: theme.palette.common.black,
       fontWeight: 'normal',
       textDecoration: 'none',
     },
 
     styledLinkMobile: {
-      color: '#0CB2E7',
+      color: theme.palette.secondary.light,
       fontWeight: 'bold',
       textDecoration: 'underline',
     },

@@ -10,9 +10,11 @@ import Landing from './pages/Landing'
 import Projects from './pages/Projects'
 import TagCreator from './pages/TagCreator'
 
-
+import Guides from './guides/'
+import useStyles from './styles'
 
 const App = () => {
+  useStyles()
   return (
     <>
       <Switch>
@@ -24,6 +26,7 @@ const App = () => {
         <Route exact path='/home' component={Home} />
         <Route exact path='/contributors/:affiliation' component={Contributors} />
         <Route exact path='/projects' component={Projects} />
+        <Route exact path='/guides' component={Guides} />
       </Switch>
     </>
   )

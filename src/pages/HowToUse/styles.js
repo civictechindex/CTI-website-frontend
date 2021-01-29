@@ -4,7 +4,7 @@ const useStyles = makeStyles(theme => ({
 /** ********     HOW-TO-USE PAGE     **********/
   main: {
     fontFamily: theme.typography.fontFamily,
-    color: theme.palette.common.black,
+    color: theme.palette.primary.main,
     '& section': {
       width: '100%',
     },
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0',
   },
   link: {
-    color: theme.palette.common.black,
+    color: theme.palette.primary.main,
     fontWeight: 'bold',
   },
   bold: {
@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& li::before': {
       content: 'counter(myCounter) ". "',
-      fontFamily: theme.typography.thirdFontFamily.fontFamily,
+      fontFamily: theme.typography.secondFontFamily.fontFamily,
       position: 'absolute',
       left: '-32px',
     },
@@ -101,7 +101,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '14px',
   },
   black: {
-    color: 'black',
+    color: theme.palette.common.black,
   },
   gray: {
     opacity: '0.5',
