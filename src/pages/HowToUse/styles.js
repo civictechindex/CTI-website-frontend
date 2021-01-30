@@ -1,10 +1,10 @@
-import { createUseStyles } from 'react-jss'
+import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = makeStyles(theme => ({
 /** ********     HOW-TO-USE PAGE     **********/
   main: {
-    fontFamily: theme.primaryFontFamily,
-    color: theme.primaryTextColor,
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.primary.main,
     '& section': {
       width: '100%',
     },
@@ -14,7 +14,7 @@ const useStyles = createUseStyles(theme => ({
   },
   /** ********     PROJECTS SECTION     **********/
   projectsSection: {
-    backgroundColor: theme.backgroundColor5,
+    backgroundColor: theme.palette.grey[200],
     padding: '0 20px',
   },
   projectsContainer: {
@@ -42,7 +42,7 @@ const useStyles = createUseStyles(theme => ({
     margin: '0',
   },
   link: {
-    color: theme.primaryTextColor,
+    color: theme.palette.primary.main,
     fontWeight: 'bold',
   },
   bold: {
@@ -63,7 +63,7 @@ const useStyles = createUseStyles(theme => ({
     },
     '& li::before': {
       content: 'counter(myCounter) ". "',
-      fontFamily: theme.thirdFontFamily,
+      fontFamily: theme.typography.secondFontFamily.fontFamily,
       position: 'absolute',
       left: '-32px',
     },
@@ -101,7 +101,7 @@ const useStyles = createUseStyles(theme => ({
     fontSize: '14px',
   },
   black: {
-    color: 'black',
+    color: theme.palette.common.black,
   },
   gray: {
     opacity: '0.5',
@@ -114,30 +114,6 @@ const useStyles = createUseStyles(theme => ({
     margin: '0',
     paddingTop: '40px',
     paddingBottom: '60px',
-  },
-  /** ********     CONTACT-US SECTION     **********/
-  contactUsSection: {
-    padding: '60px 20px',
-    textAlign: 'center',
-  },
-  contactUsHeading: {
-    fontWeight: '500',
-    fontSize: '36px',
-    margin: '0',
-    marginBottom: '30px',
-  },
-  contactUsBtn: {
-    display: 'inline-block',
-    fontWeight: 'bold',
-    fontSize: '16px',
-    color: theme.button1TextColor,
-    border: `1px solid ${theme.button1BG}`,
-    backgroundColor: theme.button1BG,
-    borderRadius: '22.5px',
-    width: '270px',
-    height: '45px',
-    outline: 'none',
-    cursor: 'pointer',
   },
   /** ********     MEDIA QUERIES     **********/
   '@media (max-width: 770px)': {

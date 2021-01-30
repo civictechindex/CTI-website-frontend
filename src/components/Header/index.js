@@ -1,8 +1,8 @@
-/*eslint-disable */
-import "../../styles.css";
-import useStyles from "./styles.js";
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import '../../styles.css'
+import useStyles from './styles.js'
+import NavButton from '../NavButton';
+import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const classes = useStyles();
@@ -46,19 +46,9 @@ const Header = () => {
         </div>
 
         <div className={classes.linksContainer}>
-          <p
-            className={`${classes.links} ${classes.linksWithArrows}`}
-            tabIndex="0"
-          >
-            <Link to="/contributors/all" className={classes.links}>
-              Contributors
-            </Link>
-            <img
-              className={classes.linksArrows}
-              src="/images/link-arrow.png"
-              alt="arrow for about link"
-              tabIndex="0"
-            />
+          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
+            <Link to='/contributors/all' className={classes.links} >Contributors</Link>
+            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
           </p>
           <div className={classes.subLinksContainer}>
             <Link to="/contributors/affiliated" className={classes.subLinks}>
@@ -115,9 +105,7 @@ const Header = () => {
           </div>
         </div>
         <div className={classes.searchContainer}>
-          <Link to="/projects">
-            <button className="nav-button">Search Projects</button>
-          </Link>
+          <NavButton href='/about' variant="blue">Search Projects</NavButton>
         </div>
       </div>
       <div className={classes.mobileContainer}>

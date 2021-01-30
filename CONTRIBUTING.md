@@ -1,11 +1,13 @@
 # How to contribute
-For any contribution you have in mind, please open a detailed issue on what you are contributing and why. This way, there can be room to have a productive discussion before any code is written. It can be discussed if the contribution is a good fit for this project, fine tune contribution goals, and more. 
+
+For any contribution you have in mind, please open a detailed issue on what you are contributing and why. This way, there can be room to have a productive discussion before any code is written. It can be discussed if the contribution is a good fit for this project, fine tune contribution goals, and more.
 
 Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/archives/CTYAKM0CW) to reach out and ask any questions.
 
 # OVERVIEW
 
 **Set up**
+
 1. [Join the Repo Team](#step-1-become-a-member-of-the-repository-team)
 
 2. [Using Git](#using-git) and [Fork the Repo](#step-2-fork-the-repository)
@@ -18,18 +20,17 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 5. [Switch to new issue branch before you start making changes](#step-5-change-to-a-new-branch)
 
-
-**After you've worked on your issue and before you make a pull request:**
+**After you've worked on your issue and before you make a pull request (PR):**
 
 6. [Code quality](#code-quality)
 
 7. [Check upstream before you push](#step-7-check-upstream-before-you-push).
 
-7a. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
+    a. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
 
-**Or**
+    **Or**
 
-7b. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
+    b. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
 
 **Okay. You're good to go!**
 
@@ -39,16 +40,16 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 # Forking and cloning the repository with proper security
 
-## Step 1 Become a member of the repository Team
+## Step 1: Become a member of the repository team
 
 1. In the [Civic Tech Index Slack](https://hackforla.slack.com/archives/CTYAKM0CW) channel, post your email address to the project manager and we'll add you to the Google Drive.
-Once you've been added to the Google Drive, we will send you a link to the roster and request that you add yourself. 
+Once you've been added to the Google Drive, we will send you a link to the roster and request that you add yourself.
 
 1. Once you've added yourself to the roster, we have verified you can edit files in the CTI Google Drive. Please notify the PM.
 
-1. Setup two factor authentication on your account https://github.com/hackforla/governance/issues/20
+1. Setup two factor authentication on your account <https://github.com/hackforla/governance/issues/20>
 
-1. We will add you as a member to the GitHub repository Team. Once you have accepted the GitHub invite (comes via email or in your GitHub notifications), please mark your membership public https://help.github.com/en/articles/publicizing-or-hiding-organization-membership#changing-the-visibility-of-your-organization-membership
+1. We will add you as a member to the GitHub repository Team. Once you have accepted the GitHub invite (comes via email or in your GitHub notifications), please mark your membership public <https://help.github.com/en/articles/publicizing-or-hiding-organization-membership#changing-the-visibility-of-your-organization-membership>
 
 ## Using Git
 
@@ -62,11 +63,11 @@ This section discusses some tips and best practices for working with Git.
 
 1. Push that commit(s) to your online GitHub fork.
 
-1. From the `CTI-website-frontend` repository, create a Pull Request which asks `CTI-website-frontend` to pull changes from your fork into the main repository.
+1. From the `CTI-website-frontend` repository, create a pull request (PR) which asks `CTI-website-frontend` to pull changes from your fork into the main repository.
 
-1. After the owner of the `CTI-website-frontend` repository approves and merges your Pull Request, your changes will be live on the website. 
+1. After the owner of the `CTI-website-frontend` repository approves and merges your pull request, your changes will be live on the website.
 
-## Step 2 Fork the repository
+## Step 2: Fork the repository
 
 In <https://github.com/civictechindex/CTI-website-frontend>, look for the fork icon in the top right. Click it and create a fork of the repository.
 
@@ -78,7 +79,7 @@ Note that this copy is on a remote server on the GitHub website and not on your 
 
 If you click the icon again, it will not create a new fork but instead give you the URL associated with your fork.
 
-## Step 3 Clone your online repository to your local computer
+## Step 3: Clone your online repository to your local computer
 
 For git beginners, this process will create a third copy of the repository on your local desktop.
 
@@ -116,21 +117,23 @@ git remote add upstream https://github.com/civictechindex/CTI-website-frontend.g
 
 Docker is the recommended approach to quickly getting started with local development. (Docker helps create a local/offline version of the `CTI-website-frontend` website on your computer so you can test out your code before submitting a pull request.)
 
-The recommended installation method is [Docker Desktop](https://docs.docker.com/install/) for Windows 10 64-bit and Mac. Linux users may check out [Docker Engine](https://docs.docker.com/engine/install/) instead.
+The recommended installation method is [Docker Desktop](https://docs.docker.com/get-docker/) for Windows 10 64-bit and Mac. Linux users may check out [Docker Engine](https://docs.docker.com/engine/install/) instead.
 
 More on using Docker and the concepts of containerization: [Docker overview](https://docs.docker.com/get-started/overview/)
 
 *Ensure you run the `docker` commands below from a shell inside the local directory containing your clone of this repository.*
 
 ### How to Run with Docker
+
 1) Build the image: `docker build -t [image-name] .`
 2) Run the image: `docker run -p [port#]:80 [image-name]`
 3) Open in browser: "localhost:[port#]"
 
-*<ins>Example</ins>:
-`docker build -t webmasterimage .`
-`docker run -p 80:80 webmasterimage`
-In browser go to localhost:80*
+Example:
+
+`docker build -t webmasterimage .`\
+`docker run -p 80:80 webmasterimage`\
+In browser go to [localhost:80](localhost:80)
 
 ## Step 5: Change to a new branch
 
@@ -148,9 +151,9 @@ You will see a list of all of your branches. There will be a star (`*`) next to 
 
 b) Create a new branch where you will work on your issue
 
-The `git checkout` command will create and change to a new branch where you will do the work on your issue.  In git, the checkout command lets you navigate between different branches.  Using the `-b` flag you can create a new branch and immediately switch into it. 
+The `git checkout` command will create and change to a new branch where you will do the work on your issue.  In git, the checkout command lets you navigate between different branches.  Using the `-b` flag you can create a new branch and immediately switch into it.
 
-To create a new issue branch, and switch into it (be sure to customize the branch name to your own): 
+To create a new issue branch, and switch into it (be sure to customize the branch name to your own):
 
 ```bash
 git checkout -b fix-logo-width-311
@@ -158,27 +161,29 @@ git checkout -b fix-logo-width-311
 
 The text after the `-b`, in the example `fix-logo-width-311`, will be the name of your new branch. Choose a branch name that relates to the issue you're working on. (No spaces!)
 
-The format should look like the scheme above where the words are a brief description of the issue that will make sense at a glance to someone unfamiliar with the issue. 
+The format should look like the scheme above where the words are a brief description of the issue that will make sense at a glance to someone unfamiliar with the issue.
 
 No law of physics will break if you don't adhere to this scheme, but laws of git will break if you add spaces.
 
-When you've finished working on your issue, follow the steps below to prepare your changes to push to your repository. 
+When you've finished working on your issue, follow the steps below to prepare your changes to push to your repository.
 
 c) Prepare your changes to push to your repository
 
-Once you are done with the work on your issue you will push it to your repository.  Before you can push your work to your repository, you will stage and commit your changes.  These two commands are similar to the save command that you have used to in other programs. 
+Once you are done with the work on your issue you will push it to your repository.  Before you can push your work to your repository, you will stage and commit your changes.  These two commands are similar to the save command that you have used to in other programs.
 
--Use the `git add` command to stage your changes.  
-This command prepares your changes before you commit them. You can stage files one at a time using the filename, or you can use the `.` to stage all of the files that you have added or made changes to. 
+-Use the `git add` command to stage your changes.
+This command prepares your changes before you commit them. You can stage files one at a time using the filename, or you can use the `.` to stage all of the files that you have added or made changes to.
 
-Run the command: 
+Run the command:
+
 ```bash
 git add .
 ```
 
--Use the `git status` command to see what files are staged. 
+-Use the `git status` command to see what files are staged.
 
-This command will list the files that have been staged.  These are the files that will be committed (saved) when you run the next command, `git commit`. 
+This command will list the files that have been staged.  These are the files that will be committed (saved) when you run the next command, `git commit`.
+
 ```bash
 git status
 ```
@@ -188,33 +193,38 @@ git status
 This command saves your work, and prepares it to push to your repository.  Use the `-m` flag to quickly add a message to your commit. Your message should be a short description of the issue you are working.  It will be extremely helpful if other people can understand your message, so try to reisst the temptation to be overly cryptic.
 
 To commit your changes with a message, run:
+
 ```bash
 git commit -m “insert message here”
 ```
 
 Congratulations!  You are now ready to push your work to your repository.
 
-## Step 6 Code Quality
+## Step 6: Code quality
 
 We use ESLint and Code Climate to improve code quality. ESLint works on your local machine before you submit your PR, while Code Climate is part of the CI/CD process on GitHub after you submit.
 
 ### ESLint
 
-ESLint is included in the repo when you run `npm install`. We use the `eslint` and `eslint-plugin-react` packages. The exact settings can be found in `.eslintr.json`. **Be sure to lint your code before pushing to GitHub.**
+ESLint is included in the repo when you run `npm install`. We use the `eslint` and `eslint-plugin-react` packages. The exact settings can be found in the `.eslintrc.json` file.
 
-To lint the entire repo, run `npm run lint`
+To lint the entire repo, run `npm run lint` from the command line.
 
 To lint a single file, run `npx eslint path/to/file.js`
 
-To see if ESLint can automatically fix errors for you in that file, run `npx eslint --fix path/to/file.js`
+To see if ESLint can automatically fix warnings and errors for you in that file, run `npx eslint --fix path/to/file.js`
 
-Eliminate errors and warnings before submitting your PR. (If that can't be done for some reason, please explain why in the PR.)
+**Be sure to lint your code before pushing changes to GitHub.** Eliminate errors and warnings before submitting your PR. If that can't be done for some reason, please explain why in the PR.)
 
 ### ESLint and Your Development Environment
 
 Most editors, including Visual Studio Code, can show the linting errors and warnings to you while you edit. Once you have installed the repo, just make sure you have installed the [ESLint Extention](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) as well. (Similar tools exist for most other code editors.)
 
-## Step 7 Check upstream before you push
+### Code Climate
+
+Code Climate is triggered by submitting a pull request. You don't have to do anything else beyond submitting the PR. ESLint warnings and errors include issues that would flag warnings in Code Climate, so resolving ESlint issues before submitting PRs will frequently avoid Code Climate errors.
+
+## Step 7: Check upstream before you push
 
 Before you push your local commits to your repository, check to see if there have been updates made in the main Civic Tech Index website repository. `git fetch` will check remote repositories for changes without altering your local repository.
 
@@ -222,7 +232,7 @@ Before you push your local commits to your repository, check to see if there hav
 git fetch upstream
 ```
 
-### Step 7a No changes in the upstream repository
+### Step 7a: No changes in the upstream repository
 
 If you do not see any output, there have not been any changes in the
 main CTI Front End website repository since the last time you
@@ -234,7 +244,7 @@ If you just type `git push` you will be prompted to create a new branch in your 
 git push --set-upstream origin fix-logo-width-311
 ```
 
-### Step 7b conflicting changes in the upstream repository
+### Step 7b: Conflicting changes in the upstream repository
 
 When you check the upstream repository, you may see output like this:
 
@@ -258,7 +268,6 @@ incorporate those changes into your repository before merging or
 rebasing your issue branch. Use the [instructions below](#incorporating-changes-from-upstream)
 to bring your fork up to date with the main repository.
 
-
 ### Incorporating changes from upstream
 
 Your fork of this repository on GitHub, and your local clone of that fork, will
@@ -271,30 +280,32 @@ You can also update your fork via the local clone of your fork, using
 these instructions. Assuming you have a local clone with remotes
 `upstream` (this repo) and `origin` (your GitHub fork of this repo):
 
-First, you will need to create a local branch which tracks upstream/main.  You will only need to do this once; you do not need to do this every time you want to incorporate upstream changes. 
+First, you will need to create a local branch which tracks upstream/main.  You will only need to do this once; you do not need to do this every time you want to incorporate upstream changes.
 
-Run the following two commands: 
+Run the following two commands:
 
 ```bash
 git fetch upstream
 git checkout -b upstream-main --track upstream/main
 ```
 
-If you have already created the branch upstream-main, the following commands will incorporate upstream changes: 
+If you have already created the branch upstream-main, the following commands will incorporate upstream changes:
 
 ```bash
-git checkout upstream-main # Move to the branch you want to merge with. 
+git checkout upstream-main # Move to the branch you want to merge with.
 git pull  # This updates your tracking branch to match the main branch in this repository
 git checkout main  # Move back to your main branch
-git merge upstream-main  # Merge to bring your main current. 
+git merge upstream-main  # Merge to bring your main current.
 ```
+
 If you do all your work on topic branches (as suggested above) and keep main free of local modifications, this merge should apply cleanly.
 
-Then push the merge changes to your GitHub fork:  
+Then push the merge changes to your GitHub fork:
 
 ```bash
 git push
 ```
+
 If you go to your online github repository this should remove the message "This branch is x commit behind CTI-website-frontend:main".
 
 ### Incorporating changes into your topic branch
@@ -317,7 +328,7 @@ git checkout fix-logo-width-311
 git merge main
 ```
 
-## Step 8 Complete the pull request
+## Step 8: Complete the pull request
 
 ```bash
 git push --set-upstream origin fix-logo-width-311
@@ -343,15 +354,13 @@ The Civic Tech Index project is separated into two repositories in GitHub, [CTI-
 
 ### Supported Platforms
 
-- [dockertoolbox](https://docs.docker.com/toolbox/overview/)
-- [react](https://reactjs.org/)
-- [hooks](https://reactjs.org/docs/hooks-overview.html)
+- [React](https://reactjs.org/)
+- [React - Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html)
 
 ### Tutorials
 
-- [Github Guides](https://guides.github.com/) 
-- [docker](https://docs.docker.com/get-started/)
-- [dockerdesktop](https://docs.docker.com/install/)
-
+- [GitHub Guides](https://guides.github.com/)
+- [Docker - Orientation and setup](https://docs.docker.com/get-started/)
+- [Docker Desktop](https://docs.docker.com/install/)
 
 [Back to Top](#overview)
