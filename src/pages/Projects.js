@@ -47,7 +47,7 @@ const Projects = () => {
       })
         .then(res => {
           const items = res.data.items.map((i) => renderCard(i));
-          setResultCount(<Grid item>Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>"{query}"</b></Grid>)
+          setResultCount(<Grid item>Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>&quot;{query}&quot;</b></Grid>)
           setResults(items);
         })
     }
