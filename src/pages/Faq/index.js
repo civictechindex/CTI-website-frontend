@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
 import React, { useState } from "react";
-import '../../theme-mui'
+// import '../../theme-mui'
 import {
   Footer,
   GetStartedCard,
@@ -27,7 +27,7 @@ export default function Faq({ match }) {
   const crumbs = [
     { name: "Home", href: "/home" },
     { name: "Radical Collaboration", href: "/radicalcollaboration" },
-    { name: "FAQ", href: "/faq" },
+    { name: "FAQ", href: "/radicalcollaboration/faq" },
   ];
 
   const [query, setQuery] = useState('');
@@ -62,7 +62,7 @@ export default function Faq({ match }) {
       <div className='default-background' style={{ paddingBottom: '80px', width: '100vw' }} >
         <Container>
           <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
-          <TitleSection title={"How can we help?"} />
+          <TitleSection>How can we help?</TitleSection>
           <SearchBar placeholder={"Search the knowledge base"} />
         </Container>
       </div>
