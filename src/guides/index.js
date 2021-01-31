@@ -1,0 +1,72 @@
+import React from 'react'
+import Container from '@material-ui/core/Container'
+import FormControl from '@material-ui/core/FormControl'
+import Grid from '@material-ui/core/Grid'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
+import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded'
+import { makeStyles } from '@material-ui/core/styles'
+import { Footer, Header } from '../components'
+import TypeStandards from './type-standards'
+import Typography from './typography'
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    backgroundColor: theme.palette.background.primary,
+    padding: theme.spacing(4)
+  },
+  gridItem0: {
+    backgroundColor: theme.palette.background.secondary
+  },
+  gridItem1: {
+    backgroundColor: theme.palette.background.default
+  },
+}))
+
+const Guides = () => {
+  const classes = useStyles()
+  const [guide, setGuide] = React.useState('palette')
+
+  const handleChange = (event) => {
+    event.target.value && setGuide(event.target.value)
+  }
+
+  const components = {
+    palette: TypeStandards,
+    typography: Typography
+  }
+  const Guide = components[guide]
+
+  return (
+    <>
+      <Header />
+      <Container className={classes.container} maxWidth={false}>
+        <Grid container spacing={2}>
+          <Grid item xs={3} className={classes.gridItem0}>
+            <FormControl>
+              <InputLabel id='select-a-guide'>Guides</InputLabel>
+              <Select
+                autoWidth
+                labelId='select-a-guide'
+                onChange={handleChange}
+                value={guide}
+                IconComponent={ExpandMoreRoundedIcon}
+              >
+                <MenuItem value=''><em>Select a Guide</em></MenuItem>
+                <MenuItem value='palette'>Type Standards</MenuItem>
+                <MenuItem value='typography'>Typography</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={9} className={classes.gridItem1}>
+            <Guide />
+          </Grid>
+        </Grid>
+      </Container>
+      <Footer />
+    </>
+  )
+}
+
+export default Guides

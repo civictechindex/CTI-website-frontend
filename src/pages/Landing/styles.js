@@ -1,9 +1,9 @@
-import { createUseStyles } from 'react-jss'
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   comingSoonHeader: {
-    color: '#FEFEFE',
-    fontFamily: theme.primaryFontFamily,
+    color: theme.palette.text.secondary,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: 'normal',
     letterSpacing: '0.4vw',
@@ -16,14 +16,14 @@ const useStyles = createUseStyles(theme => ({
   },
 
   errorMessage: {
-    color: 'lightcoral',
+    color: theme.palette.error.main,
     fontSize: '2vw',
     fontWeight: '500',
   },
 
   followAndVolunteerSection: {
     display: 'flex',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     justifyContent: 'space-around',
     margin: '50px auto',
     textAlign: 'center',
@@ -32,7 +32,7 @@ const useStyles = createUseStyles(theme => ({
 
   followContainer: {
     boxSizing: 'border-box',
-    color: '#FEFEFE',
+    color: theme.palette.text.secondary,
     display: 'inline-block',
     width: '33%',
   },
@@ -46,20 +46,20 @@ const useStyles = createUseStyles(theme => ({
   },
 
   footerSection: {
-    color: "#FEFEFE",
-    fontFamily: theme.primaryFontFamily,
+    color: theme.palette.text.secondary,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(16px, 1vw, 20px)',
     lineHeight: 'calc(16px + 0.8vw)',
     margin: '0 auto',
     textAlign: 'center',
     width: '60%',
     '& a': {
-      color: '#0CB2E7',
+      color: theme.palette.secondary.light,
     },
   },
 
   headerSection: {
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     margin: '0 auto',
     textAlign: 'center',
     width: '60%',
@@ -69,7 +69,7 @@ const useStyles = createUseStyles(theme => ({
   },
 
   landingContainer: {
-    backgroundColor: '#004364',
+    backgroundColor: theme.palette.background.primary,
     backgroundImage: 'url(images/world-view.png)',
     backgroundSize: 'cover',
     minHeight: '100vh',
@@ -77,19 +77,19 @@ const useStyles = createUseStyles(theme => ({
   },
 
   landingHeader: {
-    color: '#FFE06D',
+    color: theme.palette.warning.main,
     fontSize: 'clamp(12px, 3vw, 36px)',
   },
 
   notificationContainer: {
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     margin: '0 auto',
     textAlign: 'center',
   },
 
   notificationHeader: {
-    color: '#FEFEFE',
-    fontFamily: theme.primaryFontFamily,
+    color: theme.palette.text.secondary,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(12px, 2vw, 26px)',
     fontWeight: '500',
     marginBottom: '1.5vw',
@@ -97,9 +97,9 @@ const useStyles = createUseStyles(theme => ({
   },
 
   notifyButton: {
-    backgroundColor: '#0CB2E7',
+    backgroundColor: theme.palette.secondary.light,
     borderRadius: '0px 7px 7px 0px',
-    color: '#FEFEFE',
+    color: theme.palette.text.secondary,
     cursor: 'pointer',
     display: 'inline-block',
     fontSize: 'clamp(10px, 1vw, 14px)',
@@ -116,10 +116,10 @@ const useStyles = createUseStyles(theme => ({
   },
 
   notifyInput: {
-    backgroundColor: '#FEFEFE',
+    backgroundColor: theme.palette.background.default,
     border: 'none',
     borderRadius: '7px 0px 0px 7px',
-    fontFamily: theme.primaryFontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 'clamp(10px, 1vw, 14px)',
     letterSpacing: '0.5px',
     padding: '15px',
@@ -129,13 +129,13 @@ const useStyles = createUseStyles(theme => ({
       outline: 'none', // [CHANGE]: Change style based on figma recommendation
     },
     '&::placeholder': {
-      color: 'black',
+      color: theme.palette.primary.main,
       opacity: '1',
     },
   },
 
   submitMessage: {
-    color: '#FEFEFE',
+    color: theme.palette.text.secondary,
     fontSize: '2vw',
     fontWeight: '500',
   },
@@ -145,7 +145,7 @@ const useStyles = createUseStyles(theme => ({
   },
 
   volunteerButton: {
-    backgroundColor: '#0CB2E7',
+    backgroundColor: theme.palette.secondary.light,
     borderRadius: '7px',
     cursor: 'pointer',
     display: 'inline-block',
@@ -163,7 +163,7 @@ const useStyles = createUseStyles(theme => ({
   },
 
   volunteerContainer: {
-    color: '#FEFEFE',
+    color: theme.palette.text.secondary,
     display: 'inline-block',
     width: '33%',
   },
@@ -174,7 +174,7 @@ const useStyles = createUseStyles(theme => ({
   },
 
   volunteerLink: {
-    color: 'inherit',
+    color: theme.palette.text.secondary,
   },
 
   '@media screen and (max-width: 800px)': {

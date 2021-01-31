@@ -24,6 +24,7 @@ const renderLanguageChip = (language) => {
 const renderTopicTags = (topics) => {
   return topics.map((i) => {
     return <Chip
+      key={i}
       size="small"
       style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }}
       label={i} />

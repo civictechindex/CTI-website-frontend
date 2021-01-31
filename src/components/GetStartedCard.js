@@ -18,7 +18,7 @@ export default function GetStartedCard(props) {
     <>
       <div className='getStartedCardDivStyle'>
         <Grid container alignItems="center" justify="center" direction="column" style={{ backgroundColor: "#FFFFFF", padding: "30px 30px 60px 30px" }}>
-          <TitleSection textVariant='black' style={{ color: '#0F1D2F' }}>{headerTitle}</TitleSection>
+          <TitleSection textVariant='black'>{headerTitle}</TitleSection>
           <NavButton href={buttonHref} variant="blue">
             {buttonText}
           </NavButton>
