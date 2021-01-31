@@ -23,7 +23,7 @@ const defaultStyle = {
 
 
 export default function Faq({ match }) {
- 
+
   const crumbs = [
     { name: "Home", href: "/home" },
     { name: "Radical Collaboration", href: "/radicalcollaboration" },

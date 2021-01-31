@@ -1,4 +1,4 @@
-/* eslint-disable sort-keys */
+
 import React, { useState, useEffect } from "react";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
