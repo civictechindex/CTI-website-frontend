@@ -12,7 +12,7 @@ describe('About Page', () => {
   })
 
   it('verify title section loads', () => {
-    cy.contains('How can we Help?');
+    cy.contains('How can we help?');
   })
 
 
