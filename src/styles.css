@@ -1,9 +1,9 @@
-.page-section {
+/* .page-section {
     width: 100%;
     min-height: 40vh;
     box-sizing: border-box;
     padding: 75px 0 50px 0;
-}
+} */
 
 .default-background {
     background: #004364;
@@ -17,7 +17,7 @@
     background-image: url('/images/world-view.png');
 }
 
-.nav-button {
+/* .nav-button {
     display: inline-block;
     font-weight: bold;
     font-size: 16px;
@@ -30,7 +30,7 @@
     color: white;
     border: 1px solid #0CB2E7;
     background-color: #0CB2E7;
-}
+} */
 
 .search-button {
     display: inline-block;
@@ -48,7 +48,7 @@
     cursor: pointer;
 }
 
-body {
+/* body {
     font-family: Work Sans;
     font-style: normal;
 }
@@ -78,7 +78,7 @@ h5 {
     line-height: 30px;
     text-align: left;
     color: #FFFFFF;
-}
+} */
 
 p.white {
     color: white;
@@ -86,10 +86,10 @@ p.white {
     font-size:16px
 }
 
-p.black {
+/* p.black {
     color: black;
     text-align: center;
-}
+} */
 
 @media screen and (min-width: 600px) {
     p.white {

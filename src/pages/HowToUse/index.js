@@ -1,7 +1,10 @@
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+import BottomCallToAction from '../../components/BottomCallToAction'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+
 import useStyles from './styles.js'
 
 const HowToUse = () => {
@@ -43,10 +46,11 @@ const HowToUse = () => {
             <p className={classes.projectsFooter}>Don&apos;t forget to tell us when you&apos;ve submitted a project or if you would like your organization added to our network!</p>
           </div>
         </section>
-        <section className={classes.contactUsSection}>
-          <h2 className={classes.contactUsHeading}>Submitted a project or still need help?</h2>
-          <button className={`${classes.contactUsBtn} ${classes.black}`}>Contact Us</button>
-        </section>
+        <BottomCallToAction
+          heading='Submitted a project or still need help?'
+          buttonHref='mailto:civictechindex@hackforla.org'
+          buttonText='Contact Us'
+        />
       </main>
       <Footer />
     </>
