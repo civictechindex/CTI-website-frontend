@@ -1,17 +1,17 @@
 /* eslint-disable max-lines-per-function */
-import axios from "axios";
-import useStyles from "./styles.js";
-import React, { useState } from "react";
+import axios from 'axios';
+import useStyles from './styles.js';
+import React, { useState } from 'react';
 
 const Landing = () => {
   const classes = useStyles();
-  const [inputFieldValue, setInputValue] = useState("");
-  const [showSubmit, setSubmit] = useState("showForm");
-  const [showMessage, setMessage] = useState("");
+  const [inputFieldValue, setInputValue] = useState('');
+  const [showSubmit, setSubmit] = useState('showForm');
+  const [showMessage, setMessage] = useState('');
 
   const formSwitch = (param) => {
     switch (param) {
-    case "showForm":
+    case 'showForm':
       return (
         <div>
           <h4 className={classes.notificationHeader}>
@@ -21,9 +21,9 @@ const Landing = () => {
             <input
               className={classes.notifyInput}
               onChange={(event) => setInputValue(event.target.value)}
-              name="email"
-              placeholder="Enter your email address"
-              type="text"
+              name='email'
+              placeholder='Enter your email address'
+              type='text'
             ></input>
             <div className={classes.notifyButton} onClick={postUserEmail}>
                 Notify Me
@@ -38,13 +38,13 @@ const Landing = () => {
 
   const messageSwitch = (param) => {
     switch (param) {
-    case "duplicate":
+    case 'duplicate':
       return (
         <h4 className={classes.errorMessage}>
             That email address has already been registered with us.
         </h4>
       );
-    case "error":
+    case 'error':
       return (
         <h4 className={classes.errorMessage}>
             The email address you have submitted was invalid.
@@ -52,7 +52,7 @@ const Landing = () => {
             Please check the format and resubmit.
         </h4>
       );
-    case "success":
+    case 'success':
       return (
         <h4 className={classes.submitMessage}>
             Thanks for subscribing!
@@ -69,19 +69,19 @@ const Landing = () => {
     event.preventDefault();
     /* TODO: This needs to be passed via build arguments */
     axios
-      .post("https://test-civictechindexadmin.herokuapp.com/api/subscribe/", {
+      .post('https://test-civictechindexadmin.herokuapp.com/api/subscribe/', {
         email_address: inputFieldValue,
-        notification_type: "string",
+        notification_type: 'string',
       })
       .then((response) => {
-        setSubmit("");
-        setMessage("success");
+        setSubmit('');
+        setMessage('success');
       })
       .catch((error) => {
         if (error.response.data.email_address) {
-          setMessage("error");
+          setMessage('error');
         } else {
-          setMessage("duplicate");
+          setMessage('duplicate');
         }
       });
   };
@@ -89,7 +89,7 @@ const Landing = () => {
   return (
     <div className={classes.landingContainer}>
       <section className={classes.headerSection}>
-        <img src="/images/cti_logo_inverted.png" alt="civic tech index logo" />
+        <img src='/images/cti_logo_inverted.png' alt='civic tech index logo' />
         <h2 className={classes.landingHeader}>
           Join a worldwide movement to catalog every open source civic tech
           project
@@ -113,7 +113,7 @@ const Landing = () => {
           </h4>
           <a
             className={classes.volunteerLink}
-            href="https://www.hackforla.org/projects/civic-tech-index"
+            href='https://www.hackforla.org/projects/civic-tech-index'
           >
             <div className={classes.volunteerButton}>Volunteer</div>
           </a>
@@ -125,21 +125,21 @@ const Landing = () => {
             launch updates
           </h4>
           <div className={classes.followIcons}>
-            <a href="https://www.instagram.com/civictechindex">
-              <img src="/images/insta-logo.svg" alt="instagram logo" />
+            <a href='https://www.instagram.com/civictechindex'>
+              <img src='/images/insta-logo.svg' alt='instagram logo' />
             </a>
-            <a href="https://twitter.com/civictechindex">
+            <a href='https://twitter.com/civictechindex'>
               <img
                 className={classes.twitterIcon}
-                src="/images/twitter-logo.svg"
-                alt="twitter logo"
+                src='/images/twitter-logo.svg'
+                alt='twitter logo'
               />
             </a>
-            <a href="https://www.facebook.com/civictechindex">
-              <img src="/images/fb-logo.svg" alt="facebook logo" />
+            <a href='https://www.facebook.com/civictechindex'>
+              <img src='/images/fb-logo.svg' alt='facebook logo' />
             </a>
-            <a href="https://github.com/civictechindex">
-              <img src="/images/github-logo.svg" alt="github logo" />
+            <a href='https://github.com/civictechindex'>
+              <img src='/images/github-logo.svg' alt='github logo' />
             </a>
           </div>
         </div>
@@ -149,8 +149,8 @@ const Landing = () => {
         <p>
           The Civic Tech Index is an open-source project.
           <br />
-          You can download or contribute to the code on{" "}
-          <a href="https://github.com/civictechindex">Github.</a>
+          You can download or contribute to the code on{''}
+          <a href='https://github.com/civictechindex'>Github.</a>
         </p>
       </section>
     </div>
