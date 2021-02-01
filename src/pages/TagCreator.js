@@ -55,7 +55,7 @@ const TagCreator = () => {
       headers: { Accept: "application/vnd.github.mercy-preview+json" },
     })
       .then(res => {
-        setTopicSearchError()
+        setTopicSearchError('')
         document.getElementById('submitButton').style.display = 'none'
 
 
@@ -122,7 +122,7 @@ const TagCreator = () => {
                         </Grid> */}
           </>)
       }).catch(e => {
-        setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
+        setTopicSearchError('Cannot find repository. Please check the name and try again')
       })
   }
 
@@ -227,8 +227,7 @@ const TagCreator = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={12} style={{ margin: '0 auto', padding: '20px', width: '100%' }}>
-                {topicSearchError}
+              <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
               </Grid>
               <Grid>{topics}</Grid>

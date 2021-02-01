@@ -5,7 +5,11 @@ checks:
       threshold: 5
   method-lines:
     config:
-      threshold: 50
+      threshold: 100
+  similar-code:
+    enabled: false
+  identical-code:
+    enabled: true
 exclude_patterns:
 - "cypress/*"
 plugins: 

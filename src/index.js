@@ -19,8 +19,7 @@ const theme = createMuiTheme(themeMui)
 WebFont.load({
   google: {
     families: [
-      'Work Sans:400,500,700', 'sans-serif',
-      'Space Mono:400,500', 'monospace',
+      'Work Sans:400,700',
       'Source Code Pro:400',
     ],
   },

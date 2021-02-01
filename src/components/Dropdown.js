@@ -5,43 +5,43 @@ import { makeStyles } from '@material-ui/core/styles'
 import { ContributorThumbnail } from './ContributorThumbnail'
 import { DropdownArrow } from './DropdownArrow'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
   },
   codeForAll: {
     '& h4': {
-      color: '#004364',
+      color: theme.palette.secondary.dark,
     },
-    color: '#0F1D2F',
+    color: theme.palette.primary.main,
     margin: '1rem auto',
     boxSizing: 'border-box',
     width: '50%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.default,
     borderRadius: '2px',
     paddingRight: '1rem',
     '&:nth-of-type(2)': {
-      color: 'red',
+      color: theme.palette.error.main,
     },
   },
   dropdown: {
     '& p': {
-      color: '#0F1D2F',
+      color: theme.palette.primary.main,
       fontSize: '1.25rem',
       fontWeight: 'bold',
     },
     minHeight: '6rem',
     margin: '0.75rem 0',
-    color: '#004364',
+    color: theme.palette.secondary.dark,
     boxSizing: 'border-box',
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.default,
     borderRadius: '2px',
     paddingRight: '1rem',
   },
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     marginLeft: 'auto',
     padding: '0.5rem',
   },
-})
+}))
 
 export const Dropdown = ({
   organization,
