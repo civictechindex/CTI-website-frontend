@@ -24,6 +24,22 @@ import { getOrgId } from "./getOrgId.js";
  * @return {thumbnailInfo}
  */
 
+
+const getGithubLinks = ({ links }) => {
+  const githubInfo = { imageUrl: null, organizationUrl: null };
+  if (links) {
+    links.forEach((link) => {
+      if (link.link_type === "GitHub") {
+        const id = getOrgId(link.url);
+        const imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
+        githubInfo.imageUrl = imageUrl;
+        githubInfo.organizationUrl = link.url;
+      }
+    });
+  }
+  return githubInfo;
+}
+
 export const getOrganizationLinks = (organization) => {
   // initialize return object
   let thumbnailInfo = {  };
@@ -58,19 +74,4 @@ export const getOrganizationLinks = (organization) => {
   }
 
   return thumbnailInfo;
-
-  function getGithubLinks({ links }) {
-    const githubInfo = { imageUrl: null, organizationUrl: null };
-    if (links){
-      links.forEach((link) => {
-        if (link.link_type === "GitHub") {
-          const id = getOrgId(link.url);
-          const imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
-          githubInfo.imageUrl = imageUrl;
-          githubInfo.organizationUrl = link.url;
-        }
-      });
-    }
-    return githubInfo;
-  }
 };
