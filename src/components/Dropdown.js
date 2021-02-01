@@ -59,6 +59,11 @@ export const Dropdown = ({
   dropdownLength,
   isOpen,
 }) => {
+  if (typeof organization === "string") {
+    console.log('this organization is a string!')
+    console.log(organization)
+  }
+
   const [open, setOpen] = useState(false)
   const classes = useStyles()
 
