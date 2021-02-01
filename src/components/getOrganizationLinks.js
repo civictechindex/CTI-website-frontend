@@ -55,10 +55,6 @@ export const getOrganizationLinks = (organization) => {
   if (thumbnailInfo.organizationUrl === null) {
     console.log(`No GITHUB url available for ${organization.name}`);
 
-    if (organization.url) {
-      thumbnailInfo.organizationUrl = organization.image_url;
-    }
-
     if (organization.links && organization.links.length !== 0) {
       thumbnailInfo.organizationUrl = organization.links[0].url;
     } else {
