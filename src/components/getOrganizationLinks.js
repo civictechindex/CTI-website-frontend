@@ -43,13 +43,7 @@ const getGithubLinks = ({ links }) => {
 export const getOrganizationLinks = (organization) => {
   // initialize return object
   let thumbnailInfo = {  };
-  // if organization is just the string name
-  if (typeof organization === "string") {
-    thumbnailInfo.imageUrl = organization.image_url;
-    thumbnailInfo.organizationUrl = "https://codeforall.org/";
-    return thumbnailInfo;
-  }
-  // if organization is an object
+
   thumbnailInfo = getGithubLinks(organization);
   // check for empty results from getGithubLinks
   if (thumbnailInfo.imageUrl === null) {
