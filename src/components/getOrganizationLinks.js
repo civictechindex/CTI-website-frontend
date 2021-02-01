@@ -1,5 +1,29 @@
 import { getOrgId } from "./getOrgId.js";
 
+/**
+ * @typedef {Object} thumbnailInfo
+ * @property {string} imageUrl
+ * @property {string} organizationUrl
+ */
+
+/**
+ * @typedef {Object} organization
+ * @property {number} github_id
+ * @property {string} github_name
+ * @property {number} id
+ * @property {string} github_name
+ * @property {Array} links
+ * @property {string} location
+ * @property {string} name
+ * @property {Object} parent_organization
+ */
+
+/**
+ * Returns the organization's URL and its image URL
+ * @param  {string|organization} organization
+ * @return {thumbnailInfo}
+ */
+
 export const getOrganizationLinks = (organization) => {
   // initialize return object
   let thumbnailInfo = {  };
@@ -24,9 +48,7 @@ export const getOrganizationLinks = (organization) => {
     if (organization.url) {
       thumbnailInfo.organizationUrl = organization.image_url;
     }
-  }
 
-  if (thumbnailInfo.organizationUrl === null) {
     if (organization.links && organization.links.length !== 0) {
       thumbnailInfo.organizationUrl = organization.links[0].url;
     } else {
