@@ -1,6 +1,4 @@
-// / <reference types="cypress" />
-
-context('Actions', () => {
+describe('Contributors Page', () => {
   beforeEach(() => {
     cy.visit('/contributors/all')
   })
