@@ -9,4 +9,4 @@ This is the front-end code for the website for [Civic Tech Index](http://civicte
 
 ## Contributing
 
-Once you have gone through onboarding, read the [CONTRIBUTING](./CONTRIBUTING.md) document. Also see our [Code of Conduct](./CODEOFCONDUCT.md), [License](./LICENSE), [Security Policy](./SECURITY.md), and [Support](./SUPPORT.md) documents.
+Once you have gone through onboarding, read the [CONTRIBUTING](./CONTRIBUTING.md) document, and read the [UI-THEME-STYLES](./UI-THEME-STYLES.md) document for more information about our use of Material-UI. Also see our [Code of Conduct](./CODEOFCONDUCT.md), [License](./LICENSE), [Security Policy](./SECURITY.md), and [Support](./SUPPORT.md) documents.
