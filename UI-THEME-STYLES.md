@@ -69,22 +69,40 @@ For the time being, let's avoid the other ways without first coming to an agreem
 
 ## Local Styling
 
-At times it will make sense to have a local piece of styling.
-We have a preference to **avoid in-line styling like this**, especially if you hard-code locally some value that actually applies project-wide:
+At times it will make sense to have a local piece of in-line styling.
 
 ```javascript
 <Typography variant='h3' style={{ color: '#D8D8D8' }}>
 ```
 
-Typically, we prefer to re-use design, so make this a global change if possible. However, in the case that there is a valid reason to have a local piece of stying just for one component, unless it's a simple static piece of code we prefer `makeStyles` and `useStyles` to be able to reference the theme settings or to use any variable. So **the preferred approach is along these lines**:
+We have a preference to **avoid in-line styling** like this, especially if you hard-code some value that actually applies project-wide. Rather, we prefer to re-use design, so make this a global change if possible. **Avoid using hard-coded colors, fonts, and other styling in individual components.** There may be cases where a simple piece of local styling makes sense, but be sure it's the best way to go.
+
+In the case that there is a valid reason to have a local piece of stying just for one component, and it's not a simple static piece of code, we prefer `useTheme()` or `makeStyles()`/`useStyles()` to be able to reference the theme settings or to implement dynamic styling. **The two preferred approaches are along the lines of the following examples.**
+
+### useTheme()
+
+```javascript
+import { darken, useTheme } from '@material-ui/core/styles'
+
+const XYZcomponent = () => {
+  const theme = useTheme();
+  const localColor = darken(theme.palette.grey[300], 0.5)
+
+  return (
+    <Typography variant='h3' style={{ color: localColor }}>
+  )
+}
+```
+
+### makeStyles()
 
 ```javascript
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   foo: {
-    color: theme.palette.grey[300],
-    bar: ({ baz }) => baz
+    bar: (props) => props.baz * 2,
+    color: theme.palette.grey[300]
   }
 }))
 
