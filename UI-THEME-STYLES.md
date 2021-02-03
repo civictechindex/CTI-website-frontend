@@ -29,7 +29,7 @@ As one example, MUI's `<Button>` has been customized significantly in our theme.
 
 The file `src/styles.js` is another place to make global changes, in two ways.
 
-As a first example, the class `'.card240'` is defined in the `'@global'` section of this document.
+As a first example, the class `'.card240'` (placeholder name) is defined in the `'@global'` section of this document.
 That means that `className='card240'` is available for any element throughout the project.
 
 Secondly, styling objects can also be added at the top level, not under '@global':
@@ -59,13 +59,7 @@ Feel free to put anything we need here, but avoid putting something here that is
 The file `src/styles.css` is a standard CSS file used throughout the project.
 Use this for traditional CSS declarations, but this method is not preferred.
 This file needs to be imported into any component that uses its classes.
-[ _TODO: Is this true?_ ]
-
-### Is there any other way?
-
-There are many other ways to apply global or multi-file styling changes.
-For the time being, let's avoid the other ways without first coming to an agreement amongst the dev team.
-[ _TODO: This is how to proceed, yes?_ ]
+[ _TODO: Is this true? TODO: Are we going to keep this file?_ ]
 
 ## Local Styling
 
@@ -115,3 +109,9 @@ const XYZcomponent = () => {
   )
 }
 ```
+
+## Is there any other way?
+
+There are many other ways to apply styling changes.
+For the time being, let's avoid other ways without first coming to an agreement amongst the dev team.
+If you want to use another method of stying, please bring up the topic in team meetings!
