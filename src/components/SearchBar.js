@@ -3,10 +3,6 @@ import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 
-const defaultStyle = {
-  backgroundColor: '#fffff',
-}
-
 /**
  * Simple search.
  *
@@ -35,12 +31,10 @@ export default function SearchBar(props) {
               <SearchIcon />
             </InputAdornment>
           ),
-          style: { defaultStyle },
         }}
         value={props.query}
         onInput={props.onInput}
         variant='outlined'
-        style={defaultStyle}
         placeholder={props.placeholder}
         fullWidth
         margin="normal"

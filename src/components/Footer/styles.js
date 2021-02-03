@@ -3,31 +3,31 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
   footerContainer: {
     backgroundColor: theme.palette.grey[900],
-    color: theme.palette.common.white,
+    color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
-    paddingTop: '32px',
+    paddingTop: theme.spacing(4),
     [theme.breakpoints.down('sm')]: {
-      fontSize: '14px',
+      fontSize: theme.font.small.fontSize,
       lineHeight: '18px',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '16px',
+      fontSize: theme.font.paragraph.fontSize,
     },
     // info header links
     '& a:nth-child(1)': {
-      fontWeight: 'bold',
+      fontWeight: 700,
       marginTop: 0,
     },
     // info links
     '& a': {
-      color: theme.palette.common.white,
+      color: theme.palette.text.secondary,
       display: 'block',
-      marginTop: '14px',
+      marginTop: theme.spacing(1.5),
       textDecoration: 'none',
     },
   },
   noteContainer: {
-    marginTop: '55px',
+    marginTop: theme.spacing(6),
     textAlign: 'center',
     '& a': {
       display: 'inline',
@@ -35,16 +35,16 @@ const useStyles = makeStyles(theme => ({
     },
     '& p': {
       margin: 0,
-      paddingBottom: '10px',
+      paddingBottom: theme.spacing(1),
       [theme.breakpoints.down('sm')]: {
-        fontSize: '12px',
+        fontSize: theme.font.small.fontSize,
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: '16px',
+        fontSize: theme.font.paragraph.fontSize,
       },
     },
     '& p:last-child': {
-      paddingBottom: '30px',
+      paddingBottom: theme.spacing(4),
     },
   },
   socialContainer: {
