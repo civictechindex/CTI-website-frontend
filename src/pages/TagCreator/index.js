@@ -8,7 +8,7 @@ import orgs from './orgs.json'
 
 import axios from 'axios'
 
-import { Chip } from '@material-ui/core'
+import { Chip, Typography } from '@material-ui/core'
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 
@@ -19,15 +19,14 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment'
 
 
-const crumbs = [{ href: '/home', name: 'Home' }, { href: '/taggenerator', name: 'Tag Generator' }]
+const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
 const TitleSection = () => {
   return (
     <Grid Container>
-      {/* TODO: Use Typography component with MUI Styles */}
-      <Grid item xs={12}><h1 style={{ color: '#004364' }}>Civic Tech Index</h1></Grid>
-      <Grid item xs={12}><h2 style={{ alignContent: 'center', color: '#004364' }}>Tag Generator</h2>
-        <p style={{ textAlign: 'center' }}>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</p>
+      <Grid item xs={12}><Typography variant='h1'>Civic Tech Index</Typography></Grid>
+      <Grid item xs={12}><Typography variant='h2' color='secondary'>Tag Generator</Typography>
+        <Typography variant='body1'>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
       </Grid>
     </Grid>
   )
@@ -45,7 +44,9 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
   return (
     <>
       <Grid>
-        <p>These are your repository’s current topic tags:</p>
+        <Typography variant='body1'>These are your repository’s current topic tags:</Typography>
+      </Grid>
+      <Grid>
         <TopicTags topicNames = {names} />
       </Grid>
       <Grid>
@@ -68,7 +69,7 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
   )
 }
 
-const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepostioryUrl }) => {
+const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl }) => {
   return (
     <Grid item xs={12} sm={12}>
       <p>Project Repository URL</p>
@@ -94,7 +95,7 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
           renderInput={(params) => <TextField {...params} variant="outlined" />}
         />
       </Grid>
-      <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepostioryUrl = {setRepositoryUrl} />
+      <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} />
     </>
   )
 }
@@ -105,6 +106,7 @@ const TagCreator = () => {
   const [orgName, setOrgName] = useState('');
   const [repositoryUrl, setRepositoryUrl] = useState('');
   const [topics, setTopics] = useState('');
+  const [topicSearchError, setTopicSearchError] = useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value)
@@ -168,7 +170,7 @@ const TagCreator = () => {
             </Grid>
 
             <Grid container style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
-              <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepostioryUrl = {setRepositoryUrl} />
+              <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} />
               <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
                 {topicSearchError}
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
