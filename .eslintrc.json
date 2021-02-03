@@ -8,6 +8,7 @@
      "plugin:react/recommended",
      "react-app"
    ],
+  "ignorePatterns": "src/serviceWorker.js",
    "overrides": [
      {
        "files": [
