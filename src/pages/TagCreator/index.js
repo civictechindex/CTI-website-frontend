@@ -19,6 +19,8 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment'
 
 
+const crumbs = [{ href: '/home', name: 'Home' }, { href: '/taggenerator', name: 'Tag Generator' }]
+
 const TitleSection = () => {
   return (
     <Grid Container>
@@ -27,6 +29,53 @@ const TitleSection = () => {
       <Grid item xs={12}><h2 style={{ alignContent: 'center', color: '#004364' }}>Tag Generator</h2>
         <p style={{ textAlign: 'center' }}>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</p>
       </Grid>
+    </Grid>
+  )
+}
+
+
+const TopicTags = ({ topicNames }) => {
+  const topicArray = topicNames || []
+  return topicArray.map((name, key) =>
+    <Chip key = {key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} />
+  )
+}
+
+const TopicTagSection = ({ names, tagsToAdd }) => {
+  return (
+    <>
+      <Grid>
+        <p>These are your repository’s current topic tags:</p>
+        <TopicTags topicNames = {names} />
+      </Grid>
+      <Grid>
+        <p>Add these topic tags to your repository:</p>
+        {tagsToAdd.length === 0 ? <p color='dark-green'>You have already added all the necessary topic tags</p> : <TopicTags topics = {tagsToAdd} />}
+      </Grid>
+      <Grid style={{ paddingTop:'30px' }}><h3>How to add your tags to your project’s repository</h3><p>We recommend having your project’s repository open in another browser for ease of convenience.</p></Grid>
+      <Grid>
+        <p>1. Navigate to your project’s repository in another browser to add your generated tags.</p>
+      </Grid>
+      <Grid container xs={12}>
+        <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
+        <Grid item xs={6} sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
+        <Grid item xs={6} sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
+        <Grid item xs={6} sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
+        <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
+        <Grid item xs={6} sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
+      </Grid>
+    </>
+  )
+}
+
+const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepostioryUrl }) => {
+  return (
+    <Grid item xs={12} sm={12}>
+      <p>Project Repository URL</p>
+      <p style={{ fontSize: '10px' }}></p>
+      <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+        startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
+      }} />
     </Grid>
   )
 }
@@ -45,63 +94,20 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
           renderInput={(params) => <TextField {...params} variant="outlined" />}
         />
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <p>Project Repository URL</p>
-        <p style={{ fontSize: '10px' }}></p>
-        <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-          startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-        }} />
-      </Grid>
+      <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepostioryUrl = {setRepositoryUrl} />
     </>
   )
 }
 
 
 const TagCreator = () => {
-
-
-  /*
-   * AffiliationQuestion
-   * OrganizationSelector
-   * RepositoryQuestion
-   * Find Button
-   */
-
-
-  /*
-   * TagGeneratorResultComponent
-   * Affiliated Organization
-   * Project Repository URL
-   * TopicTagsSection
-   * TopicCips
-   */
-
-
-
-
-
-
-  const crumbs = [{ name: 'Home', href: '/home' }, { name: 'Tag Generator', href: '/taggenerator' }]
-
-
   const [value, setValue] = useState('');
   const [orgName, setOrgName] = useState('');
-  const [topicSearchError, setTopicSearchError] = useState('');
   const [repositoryUrl, setRepositoryUrl] = useState('');
   const [topics, setTopics] = useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value)
-  }
-
-  function renderTopicTags(topics) {
-    return topics.map((i) => {
-      return <Chip
-        size="small"
-        style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }}
-        label={i}
-        icon={<AssignmentTurnedInIcon />} />
-    })
   }
 
   const tagsToAdd = []
@@ -126,32 +132,13 @@ const TagCreator = () => {
           tagsToAdd(null)
         }
 
-        setTopics(
-          <>
-            <Grid>
-              <p>These are your repository’s current topic tags:</p>
-              {renderTopicTags(res.data.names)}
-            </Grid>
-            <Grid>
-              <p>Add these topic tags to your repository:</p>
-              {tagsToAdd.length === 0 ? <p color='dark-green'>You have already added all the necessary topic tags</p> : renderTopicTags(tagsToAdd)}
-            </Grid>
-            <Grid style={{ paddingTop:'30px' }}><h3>How to add your tags to your project’s repository</h3><p>We recommend having your project’s repository open in another browser for ease of convenience.</p></Grid>
-            <Grid>
-              <p>1. Navigate to your project’s repository in another browser to add your generated tags.</p>
-            </Grid>
-            <Grid container xs={12}>
-              <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
-              <Grid item xs={6} sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
-              <Grid item xs={6} sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
-              <Grid item xs={6} sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
-              <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
-              <Grid item xs={6} sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
-            </Grid>
-          </>)
-      }).catch(e => {
-        // This should store the error state.
-        // Component should check for error state and resolve the correct response.
+        const names = res.data.names;
+
+        setTopics(<TopicTagSection names={names} tagsToAdd={tagsToAdd} />)}).catch(e => {
+        /*
+         * This should store the error state.
+         * Component should check for error state and resolve the correct response.
+         */
         setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
       })
   }
@@ -174,7 +161,6 @@ const TagCreator = () => {
             <Grid container id="organizationTrue" style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
               <OrganizationSelectorSection orgs= {orgs} setOrgName = {setOrgName} handleEnter = {handleEnter} setRepositoryUrl = {setRepositoryUrl} />
               <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
-              // 
                 {topicSearchError}
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
               </Grid>
@@ -182,13 +168,7 @@ const TagCreator = () => {
             </Grid>
 
             <Grid container style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
-              <Grid item xs={12} sm={12}>
-                <p>Project Repository URL</p>
-                <p style={{ fontSize: '10px' }}></p>
-                <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-                  startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-                }} />
-              </Grid>
+              <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepostioryUrl = {setRepositoryUrl} />
               <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
                 {topicSearchError}
                 <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
