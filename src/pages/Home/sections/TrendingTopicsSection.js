@@ -12,9 +12,7 @@ const topicData = [
 ];
 
 const TrendingTopicsSection = () => {
-
   const TrendingTopicList = () => {
-
     return (
       topicData.map((topic, key) => {
         return <TrendingTopicChip key={key} href={topic.link}>{topic.detail}</TrendingTopicChip>
@@ -23,7 +21,11 @@ const TrendingTopicsSection = () => {
   }
 
   const TrendingTopicChip = (props) => {
-    return <span><a href={props.href}><Chip style={{ margin: 5 }} label={props.children} /></a></span>
+    return (
+      <a href={props.href}>
+        <Chip label={props.children} cursor="cursor" />
+      </a>
+    )
   }
 
   return (
