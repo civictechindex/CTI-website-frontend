@@ -192,8 +192,10 @@ Code Climate is triggered by submitting a pull request. You don't have to do any
 Do all your work on topic branches (as suggested above). To push the your branch's changes to GitHub:
 
 ```bash
-git push
+git push --set-upstream origin your-branch-name
 ```
+
+Tip: If you simply type `git push` instead, the command will fail, but it will also print out the full command above for an easy copy-paste.
 
 Now create a new pull request to ask for your updates to be incorporated into the live web site.
 Go to <https://github.com/civictechindex/CTI-website-frontend/pulls> and click on "New pull request".
