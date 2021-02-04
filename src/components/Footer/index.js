@@ -61,7 +61,7 @@ const Footer = () => {
           <Link to='/donate'>Donate</Link>
           <Link to='/'>Share the CTI</Link>
           <Link to='/'>Volunteer with Us</Link>
-          <Link to='/'>FAQ</Link>
+          <Link to='/radicalcollaboration/faq'>FAQ</Link>
         </Grid>
         <Grid item xs={6} sm={2}>
           <SocialSection />
