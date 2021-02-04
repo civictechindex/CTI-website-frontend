@@ -10,7 +10,7 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 1. [Join the Repo Team](#step-1-become-a-member-of-the-repository-team)
 
-2. [Using Git](#using-git) and [Fork the Repo](#step-2-fork-the-repository)
+2. [Using Git](#step-2-using-git)
 
 3. [Clone to your local machine](#step-3-clone-your-online-repository-to-your-local-computer)
 
@@ -24,21 +24,13 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 6. [Code quality](#code-quality)
 
-7. [Check upstream before you push](#step-7-check-upstream-before-you-push).
-
-    a. [No changes in the upstream repo](#step-7a-no-changes-in-the-upstream-repository)
-
-    **Or**
-
-    b. [Conflicting changes in the upstream repo](#step-7b-conflicting-changes-in-the-upstream-repository) and how to resolve them
-
 **Okay. You're good to go!**
 
 8. [Complete the pull request](#step-8-complete-the-pull-request)
 
 ---
 
-# Forking and cloning the repository with proper security
+# Cloning the repository with proper security
 
 ## Step 1: Become a member of the repository team
 
@@ -51,67 +43,38 @@ Once you've been added to the Google Drive, we will send you a link to the roste
 
 1. We will add you as a member to the GitHub repository Team. Once you have accepted the GitHub invite (comes via email or in your GitHub notifications), please mark your membership public <https://help.github.com/en/articles/publicizing-or-hiding-organization-membership#changing-the-visibility-of-your-organization-membership>
 
-## Using Git
+## Step 2: Using Git
 
 This section discusses some tips and best practices for working with Git.
 
 ### Making changes, committing and pushing
 
-1. Generally changes start on your local clone of your fork of this repository, in your own branch.
+1. Generally changes start on your local clone of this repository, in your own branch.
 
 1. Commit your changes with a comment related to the issue it addresses to your local repository.
 
-1. Push that commit(s) to your online GitHub fork.
+1. Push that commit(s) to GitHub.
 
-1. From the `CTI-website-frontend` repository, create a pull request (PR) which asks `CTI-website-frontend` to pull changes from your fork into the main repository.
+1. From the `CTI-website-frontend` repository, create a pull request (PR) which asks `CTI-website-frontend` to merge your changes into the repository.
 
 1. After the owner of the `CTI-website-frontend` repository approves and merges your pull request, your changes will be live on the website.
 
-## Step 2: Fork the repository
 
-In <https://github.com/civictechindex/CTI-website-frontend>, look for the fork icon in the top right. Click it and create a fork of the repository.
+## Step 3: Clone the repository to your local computer
 
-For git beginners, a fork is a copy of the repository that will be placed on your GitHub account url.
+For git beginners, this process will create a copy of the repository on your local desktop.
 
-It should create a copy here: <https://github.com/your_GitHub_user_name/CTI-website-frontend>, where `your_GitHub_user_name` is replaced with exactly that.
+First create a new folder on your computer that will contain Civic Tech Index projects.
 
-Note that this copy is on a remote server on the GitHub website and not on your computer yet.
-
-If you click the icon again, it will not create a new fork but instead give you the URL associated with your fork.
-
-## Step 3: Clone your online repository to your local computer
-
-For git beginners, this process will create a third copy of the repository on your local desktop.
-
-First create a new folder on your desktop that will contain `CTI-website-frontend` projects.
-
-In your shell, navigate there then run the following commands:
+In your shell, navigate there then run the following command:
 
 ```bash
-git clone https://github.com/your_GitHub_user_name/CTI-website-frontend.git
+git clone https://github.com/civictechindex/CTI-website-frontend.git
 ```
 
 You should now have a new folder called `CTI-website-frontend`.
 
-Verify which URL your `origin` remote is pointing to:
-
-```bash
-git remote show origin
-```
-
-If you accidentally cloned the `civictechindex/CTI-website-frontend.git` then you can correct that with the following two commands:
-
-1) Change your local copy to upload to your fork with the following:
-
-```bash
-git remote set-url origin https://github.com/your_GitHub_user_name/CTI-website-frontend.git
-```
-
-2) Add another remote called `upstream` that points to the `CTI-website-frontend` version of the repository. This will allow you to incorporate changes later:
-
-```bash
-git remote add upstream https://github.com/civictechindex/CTI-website-frontend.git
-```
+_Note: Instead of working on a clone, you can choose to make edits on a fork. To view the previous instructions on how to do that, look at [the version of this document dated Jan 14, 2021](https://github.com/civictechindex/CTI-website-frontend/blob/c4320bc33f6eada97bf3f404d240cac382ee7552/CONTRIBUTING.md)._
 
 ## Step 4: Setting up Docker
 
@@ -137,7 +100,7 @@ In browser go to [localhost:80](localhost:80)
 
 ## Step 5: Change to a new branch
 
-Create a new branch for each issue you work on. Doing all your work on topic branches leaves your repository's main branch (named `main`) unmodified and greatly simplifies keeping your fork in sync with the main project.
+Create a new branch for each issue you work on. Doing all your work on topic branches leaves the repository's main branch (named `main`) unmodified.
 
 a) Check current branch
 
@@ -156,20 +119,20 @@ The `git checkout` command will create and change to a new branch where you will
 To create a new issue branch, and switch into it (be sure to customize the branch name to your own):
 
 ```bash
-git checkout -b fix-logo-width-311
+git checkout -b build-project-card-140
 ```
 
-The text after the `-b`, in the example `fix-logo-width-311`, will be the name of your new branch. Choose a branch name that relates to the issue you're working on. (No spaces!)
+The text after the `-b`, in the example `build-project-card-140`, will be the name of your new branch. Choose a branch name that relates to the issue you're working on. (No spaces!)
 
 The format should look like the scheme above where the words are a brief description of the issue that will make sense at a glance to someone unfamiliar with the issue.
 
 No law of physics will break if you don't adhere to this scheme, but laws of git will break if you add spaces.
 
-When you've finished working on your issue, follow the steps below to prepare your changes to push to your repository.
+When you've finished working on your issue, follow the steps below to prepare your changes to push to GitHub.
 
-c) Prepare your changes to push to your repository
+c) Prepare your changes to push to the repository
 
-Once you are done with the work on your issue you will push it to your repository.  Before you can push your work to your repository, you will stage and commit your changes.  These two commands are similar to the save command that you have used to in other programs.
+Once you are done with the work on your issue you will push it to GitHub. Before you can push your work, you will stage and commit your changes.  These two commands are similar to the save command that you have used to in other programs.
 
 -Use the `git add` command to stage your changes.
 This command prepares your changes before you commit them. You can stage files one at a time using the filename, or you can use the `.` to stage all of the files that you have added or made changes to.
@@ -190,15 +153,15 @@ git status
 
 -Use the `git commit` command
 
-This command saves your work, and prepares it to push to your repository.  Use the `-m` flag to quickly add a message to your commit. Your message should be a short description of the issue you are working.  It will be extremely helpful if other people can understand your message, so try to reisst the temptation to be overly cryptic.
+This command saves your work, and prepares it to push to GitHub.  Use the `-m` flag to quickly add a message to your commit. Your message should be a short description of the issue you are working.  It will be extremely helpful if other people can understand your message, so try to resist the temptation to be overly cryptic.
 
 To commit your changes with a message, run:
 
 ```bash
-git commit -m “insert message here”
+git commit -m 'insert message here'
 ```
 
-Congratulations!  You are now ready to push your work to your repository.
+Congratulations!  You are now ready to push your work to GitHub.
 
 ## Step 6: Code quality
 
@@ -214,7 +177,7 @@ To lint a single file, run `npx eslint path/to/file.js`
 
 To see if ESLint can automatically fix warnings and errors for you in that file, run `npx eslint --fix path/to/file.js`
 
-**Be sure to lint your code before pushing changes to GitHub.** Eliminate errors and warnings before submitting your PR. If that can't be done for some reason, please explain why in the PR.)
+**Be sure to lint your code before pushing changes to GitHub.** Eliminate errors and warnings before submitting your PR. (If that can't be done for some reason, please explain why in the PR.)
 
 ### ESLint and Your Development Environment
 
@@ -224,125 +187,18 @@ Most editors, including Visual Studio Code, can show the linting errors and warn
 
 Code Climate is triggered by submitting a pull request. You don't have to do anything else beyond submitting the PR. ESLint warnings and errors include issues that would flag warnings in Code Climate, so resolving ESlint issues before submitting PRs will frequently avoid Code Climate errors.
 
-## Step 7: Check upstream before you push
+## Step 8: Complete the pull request
 
-Before you push your local commits to your repository, check to see if there have been updates made in the main Civic Tech Index website repository. `git fetch` will check remote repositories for changes without altering your local repository.
-
-```bash
-git fetch upstream
-```
-
-### Step 7a: No changes in the upstream repository
-
-If you do not see any output, there have not been any changes in the
-main CTI Front End website repository since the last time you
-checked. So it is safe to push your local commits to your fork.
-
-If you just type `git push` you will be prompted to create a new branch in your GitHub repository. The more complete command below will create a new branch on your copy of the website repository, and then push your local branch there. The name at the end of this command should be the same as the name of the local branch that you created back in step 7, as in the example below:
-
-```bash
-git push --set-upstream origin fix-logo-width-311
-```
-
-### Step 7b: Conflicting changes in the upstream repository
-
-When you check the upstream repository, you may see output like this:
-
-```bash
-Fetching upstream
-remote: Enumerating objects: 11, done.
-remote: Counting objects: 100% (11/11), done.
-remote: Compressing objects: 100% (7/7), done.
-remote: Total 11 (delta 5), reused 7 (delta 4), pack-reused 0
-Unpacking objects: 100% (11/11), 8.25 KiB | 402.00 KiB/s, done.
-From https://github.com/CTI-website-frontend/website
- + 770d667...14f9f46 Bonnie     -> CTI-website-frontend/Bonnie  (forced update)
- * [new branch]      bonnie     -> CTI-website-frontend/bonnie
-   5773ebe..0c86ecd  main   -> CTI-website-frontend/main
-```
-
-You can safely ignore changes in other issue branches, such as
-`bonnie` above. But if you see changes in main, as in
-`5773ebe..0c86ecd  main   -> CTI-website-frontend/main`, you should
-incorporate those changes into your repository before merging or
-rebasing your issue branch. Use the [instructions below](#incorporating-changes-from-upstream)
-to bring your fork up to date with the main repository.
-
-### Incorporating changes from upstream
-
-Your fork of this repository on GitHub, and your local clone of that fork, will
-get out of sync with this (upstream) repository from time to time.  (That's what has happend when you see something like "This branch is 1 commit behind CTI-website-frontend:main" on the github website version of your CTI-website-frontend repository.)
-
-One way to keep your fork up to date with this repository is to follow
-these instruction: [Syncing your fork to the original repository via the browser](https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser)
-
-You can also update your fork via the local clone of your fork, using
-these instructions. Assuming you have a local clone with remotes
-`upstream` (this repo) and `origin` (your GitHub fork of this repo):
-
-First, you will need to create a local branch which tracks upstream/main.  You will only need to do this once; you do not need to do this every time you want to incorporate upstream changes.
-
-Run the following two commands:
-
-```bash
-git fetch upstream
-git checkout -b upstream-main --track upstream/main
-```
-
-If you have already created the branch upstream-main, the following commands will incorporate upstream changes:
-
-```bash
-git checkout upstream-main # Move to the branch you want to merge with.
-git pull  # This updates your tracking branch to match the main branch in this repository
-git checkout main  # Move back to your main branch
-git merge upstream-main  # Merge to bring your main current.
-```
-
-If you do all your work on topic branches (as suggested above) and keep main free of local modifications, this merge should apply cleanly.
-
-Then push the merge changes to your GitHub fork:
+Do all your work on topic branches (as suggested above). To push the your branch's changes to GitHub:
 
 ```bash
 git push
 ```
 
-If you go to your online github repository this should remove the message "This branch is x commit behind CTI-website-frontend:main".
-
-### Incorporating changes into your topic branch
-
-To incorporate these updates from the main GitHub repository into your
-topic branch, you can 'rebase' your branch onto your updated main
-branch. NOTE you should only rebase if you have never pushed your
-topic branch to GitHub (or shared it with another collaborator). The name 'fix-logo-width-311' below should be replaced with the name of your branch in the following example, as usual.
-
-```bash
-git checkout fix-logo-width-311
-git rebase main
-```
-
-If you receive warnings about conflicts, abort the rebase with `git
-rebase --abort` and instead merge main into your branch.
-
-```bash
-git checkout fix-logo-width-311
-git merge main
-```
-
-## Step 8: Complete the pull request
-
-```bash
-git push --set-upstream origin fix-logo-width-311
-```
-
 Now create a new pull request to ask for your updates to be incorporated into the live web site.
 Go to <https://github.com/civictechindex/CTI-website-frontend/pulls> and click on "New pull request".
-Please rename your pull request something descriptive i.e. "building a project card for civic opportunity project".
-Also, since your changes are not in the civictechindex/CTI-website-frontend repostory, you need to click the "compare across forks" link in the
-first paragraph to make you repository and your new branch available. Review the changes that will be included in the pull
-request and, if it fixes a specific issue, include `Fixes #140` in the pull request message so the issue will be closed automatically once
-your pull request is accepted and merged.
-
-Once you have finished working on the issue you have chosen, commit the changes to your local branch (e.g. `fix-logo-width-311`).
+Please rename your pull request something descriptive, e.g., "Build a project card".
+Review the changes that will be included in the pull request and, if it fixes a specific issue, include `Closes #140` in the pull request message so the issue will be closed automatically once your pull request is accepted and merged.
 
 ## Civic Tech Index Architecture
 
