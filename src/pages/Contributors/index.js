@@ -13,6 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import Typography from "@material-ui/core/Typography";
 import { DropdownArrow } from "../../components/DropdownArrow.js";
 import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
@@ -137,7 +138,9 @@ export default function Contributors({ match }) {
       <div className={classes.unaffiliatedWrapper}>
         <div className={classes.sectionContainer}>
           <div className={classes.affiliation}>
-            <h2>Unaffiliated Contributors</h2>
+            <Typography variant='h2' color='primary'>
+              Unaffiliated Contributors
+            </Typography>
             <DropdownArrow setOpenFunction={setUnaffiliatedOpen} />
           </div>
           <div>
@@ -155,7 +158,9 @@ export default function Contributors({ match }) {
       <div className={classes.affiliatedWrapper}>
         <div className={classes.sectionContainer}>
           <div className={classes.affiliation}>
-            <h2>Affiliated Contributors</h2>
+            <Typography variant='h2' color='textPrimary'>
+              Affiliated Contributors
+            </Typography>
             <DropdownArrow setOpenFunction={setAffiliatedOpen} />
           </div>
           <div className={classes.affiliatedOrgsContainer}>
