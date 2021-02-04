@@ -36,7 +36,7 @@ const TitleSection = () => {
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
   return topicArray.map((name, key) =>
-    <Chip key = {key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} />
+    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} />
   )
 }
 
@@ -47,13 +47,13 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
         <Typography variant='body1'>These are your repository’s current topic tags:</Typography>
       </Grid>
       <Grid>
-        <TopicTags topicNames = {names} />
+        <TopicTags topicNames={names} />
       </Grid>
       <Grid>
         <p>Add these topic tags to your repository:</p>
-        {tagsToAdd.length === 0 ? <p color='dark-green'>You have already added all the necessary topic tags</p> : <TopicTags topics = {tagsToAdd} />}
+        {tagsToAdd.length === 0 ? <p color='dark-green'>You have already added all the necessary topic tags</p> : <TopicTags topics={tagsToAdd} />}
       </Grid>
-      <Grid style={{ paddingTop:'30px' }}><h3>How to add your tags to your project’s repository</h3><p>We recommend having your project’s repository open in another browser for ease of convenience.</p></Grid>
+      <Grid style={{ paddingTop: '30px' }}><h3>How to add your tags to your project’s repository</h3><p>We recommend having your project’s repository open in another browser for ease of convenience.</p></Grid>
       <Grid>
         <p>1. Navigate to your project’s repository in another browser to add your generated tags.</p>
       </Grid>
@@ -72,19 +72,19 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
 const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, topics, topicSearchError, handleSubmit }) => {
   return (
     <>
-    <Grid item xs={12} sm={12}>
-      <p>Project Repository URL</p>
-      <p style={{ fontSize: '10px' }}></p>
-      <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-        startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-      }} />
-    </Grid>
-    <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
-      {topicSearchError}
-      <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
-    </Grid>
-    <Grid>{topics}</Grid>
-  </>
+      <Grid item xs={12} sm={12}>
+        <p>Project Repository URL</p>
+        <p style={{ fontSize: '10px' }}></p>
+        <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+          startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
+        }} />
+      </Grid>
+      <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
+        {topicSearchError}
+        <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
+      </Grid>
+      <Grid>{topics}</Grid>
+    </>
   )
 }
 
@@ -102,7 +102,13 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
           renderInput={(params) => <TextField {...params} variant="outlined" />}
         />
       </Grid>
-      <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} topics = {topics} topicSearchError = {topicSearchError} handleSubmit = {handleSubmit} />
+      <ProjectRepositoryInput handleEnter={handleEnter}
+        repositoryUrl={repositoryUrl}
+        setRepositoryUrl={setRepositoryUrl}
+        topics={topics}
+        topicSearchError={topicSearchError}
+        handleSubmit={handleSubmit}
+      />
     </>
   )
 }
@@ -143,7 +149,8 @@ const TagCreator = () => {
 
         const names = res.data.names;
 
-        setTopics(<TopicTagSection names={names} tagsToAdd={tagsToAdd} />)}).catch(e => {
+        setTopics(<TopicTagSection names={names} tagsToAdd={tagsToAdd} />)
+      }).catch(e => {
         /*
          * This should store the error state.
          * Component should check for error state and resolve the correct response.
@@ -164,14 +171,25 @@ const TagCreator = () => {
       <div style={{ backgroundColor: '#F2F2F2' }}>
         <Container maxWidth='lg' style={{ padding: '50px' }}>
           <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
-          <TitleSection/>
+          <TitleSection />
           <Grid Container>
             <AffiliationQuestionSection value={value} handleChange={handleChange} />
             <Grid container id="organizationTrue" style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
-              <OrganizationSelectorSection orgs= {orgs} setOrgName = {setOrgName} handleEnter = {handleEnter} setRepositoryUrl = {setRepositoryUrl} topicSearchError = {topicSearchError} handleSubmit = {handleSubmit} topics = {topics}/>
+              <OrganizationSelectorSection orgs={orgs}
+                setOrgName={setOrgName}
+                handleEnter={handleEnter}
+                setRepositoryUrl={setRepositoryUrl}
+                topicSearchError={topicSearchError}
+                handleSubmit={handleSubmit}
+                topics={topics} />
             </Grid>
             <Grid container style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
-              <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} topicSearchError = {topicSearchError} handleSubmit = {handleSubmit} topics = {topics} />
+              <ProjectRepositoryInput handleEnter={handleEnter}
+                repositoryUrl={repositoryUrl}
+                setRepositoryUrl={setRepositoryUrl}
+                topicSearchError={topicSearchError}
+                handleSubmit={handleSubmit}
+                topics={topics} />
             </Grid>
 
           </Grid>
