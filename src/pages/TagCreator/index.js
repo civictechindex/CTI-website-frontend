@@ -60,7 +60,7 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
       <Grid container xs={12}>
         <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
         <Grid item xs={6} sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
-        <Grid item xs={6} sm={6}>3. Under "Topics", paste the topic you want to add to your repository.</Grid>
+        <Grid item xs={6} sm={6}>3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.</Grid>
         <Grid item xs={6} sm={6}><img src="/images/step_3.png" alt="Step 3" /></Grid>
         <Grid item xs={6} sm={6}>4. Repeat until you have finished adding all of your tags, then click Save Changes.</Grid>
         <Grid item xs={6} sm={6}><img src="/images/step_4.png" alt="Step 4" /></Grid>
@@ -69,8 +69,9 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
   )
 }
 
-const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl }) => {
+const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, topics, topicSearchError, handleSubmit }) => {
   return (
+    <>
     <Grid item xs={12} sm={12}>
       <p>Project Repository URL</p>
       <p style={{ fontSize: '10px' }}></p>
@@ -78,10 +79,16 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl }
         startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
       }} />
     </Grid>
+    <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
+      {topicSearchError}
+      <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
+    </Grid>
+    <Grid>{topics}</Grid>
+  </>
   )
 }
 
-const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repositoryUrl, setRepositoryUrl }) => {
+const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repositoryUrl, setRepositoryUrl, topics, topicSearchError, handleSubmit }) => {
   return (
     <>
       <Grid item xs={12} sm={12}>
@@ -95,7 +102,7 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
           renderInput={(params) => <TextField {...params} variant="outlined" />}
         />
       </Grid>
-      <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} />
+      <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} topics = {topics} topicSearchError = {topicSearchError} handleSubmit = {handleSubmit} />
     </>
   )
 }
@@ -161,21 +168,10 @@ const TagCreator = () => {
           <Grid Container>
             <AffiliationQuestionSection value={value} handleChange={handleChange} />
             <Grid container id="organizationTrue" style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
-              <OrganizationSelectorSection orgs= {orgs} setOrgName = {setOrgName} handleEnter = {handleEnter} setRepositoryUrl = {setRepositoryUrl} />
-              <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
-                {topicSearchError}
-                <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
-              </Grid>
-              <Grid>{topics}</Grid>
+              <OrganizationSelectorSection orgs= {orgs} setOrgName = {setOrgName} handleEnter = {handleEnter} setRepositoryUrl = {setRepositoryUrl} topicSearchError = {topicSearchError} handleSubmit = {handleSubmit} topics = {topics}/>
             </Grid>
-
             <Grid container style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
-              <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} />
-              <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
-                {topicSearchError}
-                <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
-              </Grid>
-              <Grid>{topics}</Grid>
+              <ProjectRepositoryInput handleEnter = {handleEnter} repositoryUrl = {repositoryUrl} setRepositoryUrl = {setRepositoryUrl} topicSearchError = {topicSearchError} handleSubmit = {handleSubmit} topics = {topics} />
             </Grid>
 
           </Grid>
