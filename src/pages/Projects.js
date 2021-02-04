@@ -14,12 +14,12 @@ import Container from '@material-ui/core/Container'
 
 const crumbs = [{ name: 'Home', href: '/home' }, { name: 'Search', href: '/projects' }]
 
-function calculateDaysSince(updateTime) {
+const calculateDaysSince = (updateTime) => {
   const days = new Date() - new Date(updateTime);
   return Math.round(days / (1000 * 3600 * 24))
 }
 
-function renderCard(i) {
+const renderCard = (i) => {
   return <Grid item style={{ paddingTop: '10px' }}> <ProjectCard projectUrl={i.html_url}
     organizationUrl={i.owner.html_url} organizationAvatarUrl={i.owner.avatar_url}
     ownerName={i.owner.login}
@@ -47,7 +47,7 @@ const Projects = () => {
       })
         .then(res => {
           const items = res.data.items.map((i) => renderCard(i));
-          setResultCount(<Grid item>Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>"{query}"</b></Grid>)
+          setResultCount(<Grid item>Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>&quot;{query}&quot;</b></Grid>)
           setResults(items);
         })
     }
