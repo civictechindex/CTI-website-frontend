@@ -36,7 +36,7 @@ const TitleSection = () => {
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
   return topicArray.map((name, key) =>
-    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} />
+    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} data-cy='topic-tag' />
   )
 }
 
@@ -46,7 +46,7 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
       <Grid>
         <Typography variant='body1'>These are your repository’s current topic tags:</Typography>
       </Grid>
-      <Grid>
+      <Grid data-cy='current-tags'>
         <TopicTags topicNames={names} />
       </Grid>
       <Grid>
@@ -75,7 +75,7 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, 
       <Grid item xs={12} sm={12}>
         <p>Project Repository URL</p>
         <p style={{ fontSize: '10px' }}></p>
-        <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
+        <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
           startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
         }} />
       </Grid>
@@ -174,7 +174,7 @@ const TagCreator = () => {
           <TitleSection />
           <Grid Container>
             <AffiliationQuestionSection value={value} handleChange={handleChange} />
-            <Grid container id="organizationTrue" style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
+            <Grid container id='container-affiliated' style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
               <OrganizationSelectorSection orgs={orgs}
                 setOrgName={setOrgName}
                 handleEnter={handleEnter}
@@ -183,7 +183,7 @@ const TagCreator = () => {
                 handleSubmit={handleSubmit}
                 topics={topics} />
             </Grid>
-            <Grid container style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
+            <Grid container id='container-unaffiliated' style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
               <ProjectRepositoryInput handleEnter={handleEnter}
                 repositoryUrl={repositoryUrl}
                 setRepositoryUrl={setRepositoryUrl}

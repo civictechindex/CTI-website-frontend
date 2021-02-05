@@ -11,6 +11,7 @@ export const AffiliationQuestionSection = ({ value, handleChange }) => {
       <Grid item sm={2} xs={2}>
         <Radio
           checked={value === 'affiliated'}
+          data-cy='radio-affiliated'
           onChange={handleChange}
           value="affiliated"
           name="affiliated"
@@ -20,6 +21,7 @@ export const AffiliationQuestionSection = ({ value, handleChange }) => {
       <Grid item sm={2} xs={2}>
         <Radio
           checked={value === 'unaffiliated'}
+          data-cy='radio-unaffiliated'
           onChange={handleChange}
           value="unaffiliated"
           name="unaffiliated"
