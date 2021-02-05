@@ -202,6 +202,8 @@ Go to <https://github.com/civictechindex/CTI-website-frontend/pulls> and click o
 Please rename your pull request something descriptive, e.g., "Build a project card".
 Review the changes that will be included in the pull request and, if it fixes a specific issue, include `Closes #140` in the pull request message so the issue will be closed automatically once your pull request is accepted and merged.
 
+(Actually, you can include a few verbs — "Closes," "Fixes," or "Resolves" — plus the number sign and the issue number. To read more on linking issues and PRs, see ["Linking a pull request to an issue using a keyword"](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in GitHub's docs.)
+
 ## Civic Tech Index Architecture
 
 ### A Few Notes
