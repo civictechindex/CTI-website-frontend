@@ -16,8 +16,6 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment'
-
 
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
@@ -31,7 +29,6 @@ const TitleSection = () => {
     </Grid>
   )
 }
-
 
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
@@ -75,9 +72,7 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, 
       <Grid item xs={12} sm={12}>
         <p>Project Repository URL</p>
         <p style={{ fontSize: '10px' }}></p>
-        <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-          startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-        }} />
+        <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="https://github.com/hackforla/example" fullWidth />
       </Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
         {topicSearchError}
@@ -113,6 +108,22 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
   )
 }
 
+/**
+ * By removing matched text, we allow leeway in entering repository URL,
+ * including how it might be pasted from GitHub. All these would work:
+ * https://github.com/civictechindex/CTI-website-frontend.git
+ * git@github.com:civictechindex/CTI-website-frontend.git
+ * github.com/civictechindex/CTI-website-frontend
+ * civictechindex/CTI-website-frontend
+ */
+const getRepositoryUrlPath = (url) => {
+  let result = url
+  const prefix = /^(?:https?:\/\/)?github\.com\/|git@github\.com:/
+  const suffix = /\.git$/
+  result = url.replace(prefix, '')
+  result = result.replace(suffix, '')
+  return result
+}
 
 const TagCreator = () => {
   const [value, setValue] = useState('');
@@ -128,7 +139,8 @@ const TagCreator = () => {
   const tagsToAdd = []
 
   const handleSubmit = (event) => {
-    axios.get('https://api.github.com/repos/' + repositoryUrl + '/topics', {
+    const urlPath = getRepositoryUrlPath(repositoryUrl)
+    axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
       headers: { Accept: "application/vnd.github.mercy-preview+json" },
     })
       .then(res => {

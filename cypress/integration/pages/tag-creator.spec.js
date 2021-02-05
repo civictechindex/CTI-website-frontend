@@ -1,5 +1,5 @@
 describe('Tag Creator (Tag Generator)', () => {
-  const TEST_URL = 'civictechindex/CTI-website-frontend'
+  const TEST_URL = 'https://github.com/civictechindex/CTI-website-frontend.git'
   const TEST_TAGS = [
     'civictechindex',
     'hack-for-la',
