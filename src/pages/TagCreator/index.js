@@ -23,7 +23,7 @@ const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name:
 
 const TitleSection = () => {
   return (
-    <Grid Container>
+    <Grid container>
       <Grid item xs={12}><Typography variant='h1'>Civic Tech Index</Typography></Grid>
       <Grid item xs={12}><Typography variant='h2' color='secondary'>Tag Generator</Typography>
         <Typography variant='body1'>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
@@ -57,7 +57,7 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
       <Grid>
         <p>1. Navigate to your project’s repository in another browser to add your generated tags.</p>
       </Grid>
-      <Grid container xs={12}>
+      <Grid container>
         <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
         <Grid item xs={6} sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
         <Grid item xs={6} sm={6}>3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.</Grid>
@@ -172,7 +172,7 @@ const TagCreator = () => {
         <Container maxWidth='lg' style={{ padding: '50px' }}>
           <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
           <TitleSection />
-          <Grid Container>
+          <Grid container>
             <AffiliationQuestionSection value={value} handleChange={handleChange} />
             <Grid container id='container-affiliated' style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
               <OrganizationSelectorSection orgs={orgs}
