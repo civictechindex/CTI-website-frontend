@@ -114,13 +114,13 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
  * https://github.com/civictechindex/CTI-website-frontend.git
  * git@github.com:civictechindex/CTI-website-frontend.git
  * github.com/civictechindex/CTI-website-frontend
- * civictechindex/CTI-website-frontend
+ * civictechindex / CTI-website-frontend
  */
 const getRepositoryUrlPath = (url) => {
-  let result = url
+  let result = url.replace(/ /g, '')
   const prefix = /^(?:https?:\/\/)?github\.com\/|git@github\.com:/
   const suffix = /\.git$/
-  result = url.replace(prefix, '')
+  result = result.replace(prefix, '')
   result = result.replace(suffix, '')
   return result
 }
