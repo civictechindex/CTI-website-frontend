@@ -1,3 +1,7 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable complexity */
+/* eslint-disable sort-keys */
+
 import React, { useEffect, useState } from "react";
 import { useStyle } from "./styles.js";
 import axios from "axios";

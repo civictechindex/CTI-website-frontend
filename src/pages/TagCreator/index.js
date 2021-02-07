@@ -16,14 +16,12 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment'
-
 
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
 const TitleSection = () => {
   return (
-    <Grid Container>
+    <Grid container>
       <Grid item xs={12}><Typography variant='h1'>Civic Tech Index</Typography></Grid>
       <Grid item xs={12}><Typography variant='h2' color='secondary'>Tag Generator</Typography>
         <Typography variant='body1'>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
@@ -32,11 +30,10 @@ const TitleSection = () => {
   )
 }
 
-
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
   return topicArray.map((name, key) =>
-    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} />
+    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} data-cy='topic-tag' />
   )
 }
 
@@ -46,7 +43,7 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
       <Grid>
         <Typography variant='body1'>These are your repository’s current topic tags:</Typography>
       </Grid>
-      <Grid>
+      <Grid data-cy='current-tags'>
         <TopicTags topicNames={names} />
       </Grid>
       <Grid>
@@ -57,7 +54,7 @@ const TopicTagSection = ({ names, tagsToAdd }) => {
       <Grid>
         <p>1. Navigate to your project’s repository in another browser to add your generated tags.</p>
       </Grid>
-      <Grid container xs={12}>
+      <Grid container>
         <Grid item xs={6} sm={6}>2. Under your project’s repository, click  to paste your tags.</Grid>
         <Grid item xs={6} sm={6}><img src="/images/step_2.png" alt="Step 2" /></Grid>
         <Grid item xs={6} sm={6}>3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.</Grid>
@@ -75,9 +72,7 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, 
       <Grid item xs={12} sm={12}>
         <p>Project Repository URL</p>
         <p style={{ fontSize: '10px' }}></p>
-        <TextField id="outlined-basic" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="hackforla/example" style={{ width: '100%' }} InputProps={{
-          startAdornment: <InputAdornment position="start">https://github.com/</InputAdornment>,
-        }} />
+        <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onInput={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="https://github.com/hackforla/example" fullWidth />
       </Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
         {topicSearchError}
@@ -113,6 +108,22 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
   )
 }
 
+/**
+ * By removing matched text, we allow leeway in entering repository URL,
+ * including how it might be pasted from GitHub. All these would work:
+ * https://github.com/civictechindex/CTI-website-frontend.git
+ * git@github.com:civictechindex/CTI-website-frontend.git
+ * github.com/civictechindex/CTI-website-frontend
+ * civictechindex/CTI-website-frontend
+ */
+const getRepositoryUrlPath = (url) => {
+  let result = url
+  const prefix = /^(?:https?:\/\/)?github\.com\/|git@github\.com:/
+  const suffix = /\.git$/
+  result = url.replace(prefix, '')
+  result = result.replace(suffix, '')
+  return result
+}
 
 const TagCreator = () => {
   const [value, setValue] = useState('');
@@ -128,7 +139,8 @@ const TagCreator = () => {
   const tagsToAdd = []
 
   const handleSubmit = (event) => {
-    axios.get('https://api.github.com/repos/' + repositoryUrl + '/topics', {
+    const urlPath = getRepositoryUrlPath(repositoryUrl)
+    axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
       headers: { Accept: "application/vnd.github.mercy-preview+json" },
     })
       .then(res => {
@@ -172,9 +184,9 @@ const TagCreator = () => {
         <Container maxWidth='lg' style={{ padding: '50px' }}>
           <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
           <TitleSection />
-          <Grid Container>
+          <Grid container>
             <AffiliationQuestionSection value={value} handleChange={handleChange} />
-            <Grid container id="organizationTrue" style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
+            <Grid container id='container-affiliated' style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
               <OrganizationSelectorSection orgs={orgs}
                 setOrgName={setOrgName}
                 handleEnter={handleEnter}
@@ -183,7 +195,7 @@ const TagCreator = () => {
                 handleSubmit={handleSubmit}
                 topics={topics} />
             </Grid>
-            <Grid container style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
+            <Grid container id='container-unaffiliated' style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
               <ProjectRepositoryInput handleEnter={handleEnter}
                 repositoryUrl={repositoryUrl}
                 setRepositoryUrl={setRepositoryUrl}
