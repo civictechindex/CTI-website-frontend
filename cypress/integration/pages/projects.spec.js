@@ -1,4 +1,4 @@
-describe('Tag Creator (Tag Generator)', () => {
+describe('Projects Page (Search Projects)', () => {
   const SEARCH = 'civic'
   const RESULTS = [
     'civictechindex/CTI-website-frontend',

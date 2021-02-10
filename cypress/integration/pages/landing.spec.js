@@ -5,11 +5,12 @@ describe('Landing Page', () => {
     cy.visit('/')
   })
 
-  it('verify header section loads', () => {
-    cy.contains('Join a worldwide movement to catalog every open source civic tech project')
+  it('header section loads', () => {
+    cy.get('h2')
+      .contains('Join a worldwide movement to catalog every open source civic tech project')
   })
 
-  it('verify footer loads', () => {
+  it('footer loads', () => {
     cy.contains('The Civic Tech Index is an open-source project.')
   })
 
