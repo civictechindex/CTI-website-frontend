@@ -1,16 +1,26 @@
 describe('Contributors Page', () => {
-  beforeEach(() => {
+  before(() => {
     cy.visit('/contributors/all')
   })
 
-  it('.type() - type into a DOM element', () => {
-    /*
-     *  cy.get('#dropdownChevron')
-     * .click({ force: true, multiple: true })
-     * .children('#dropdownIcon')
-     */
+  it('wait for affiliated orgs to load', () => {
+    cy.get('[class*=affiliatedOrgsContainer]').within(() => {
+      cy.get('[class*=container]').should('have.length', 24)
+    })
+  })
 
-    //  cy.contains('Code for Anchorage');
+  it('load thumbnail wrappers (whatever that is)', () => {
+    cy.get('[class*=thumbnailWrapper]').should('have.length', 26)
+  })
+
+  it('expands Code for America', () => {
+    cy.get('[href*=codeforamerica]').parents('[class*=dropdown]').within(() => {
+      cy.get('#dropdownChevron').click()
+    })
+    cy.get('[href*=codeforamerica]').parents('[class*=container]').within(() => {
+      cy.contains('Code for Anchorage');
+      cy.get('[class*=thumbnailWrapper]').should('have.length', 86)
+    })
   })
 })
 
