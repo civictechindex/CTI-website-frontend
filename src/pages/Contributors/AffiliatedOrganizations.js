@@ -21,10 +21,6 @@ export const AffiliatedOrganizations = ({ affiliatedObject }) => {
       isOpen={true}
     >
       {affiliatedObject["Code for All"].map((organization, idx) => {
-        if (typeof organization === "string") {
-          console.log('this organization is a string!')
-          console.log(organization)
-        }
         return (
           <Dropdown
             organization={organization}

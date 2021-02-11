@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { getOrgId } from "./getOrgId.js";
 
 /**
@@ -47,15 +45,13 @@ export const getOrganizationLinks = (organization) => {
   let thumbnailInfo = {  };
 
   thumbnailInfo = getGithubLinks(organization);
-
   // check for empty results from getGithubLinks
-  if (!Boolean(thumbnailInfo.imageUrl)) {
+  if (thumbnailInfo.imageUrl === null) {
     console.log(`No GITHUB image available for ${organization.name}`);
     if (organization.image_url) {
       thumbnailInfo.imageUrl = organization.image_url;
     }
   }
-
   if (thumbnailInfo.organizationUrl === null) {
     console.log(`No GITHUB url available for ${organization.name}`);
 
