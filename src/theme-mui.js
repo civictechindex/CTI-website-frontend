@@ -5,7 +5,9 @@ import { deepmerge } from '@material-ui/utils';
 const DARK_BLUE = '#0F1D2F'
 const TEAL = '#004364'
 const LIGHT_BLUE = '#0D99C6'
-const LIGHT_BLUE_VARIANT = '#0CB2E7'
+// const LIGHT_BLUE_VARIANT = '#0CB2E7'
+const LIGHT_BLUE_VARIANT = '#5FCAF9'
+const LIGHT_BLUE_HOVER = '#006B95'
 const YELLOW = '#FFE06D'
 const WHITE = '#FEFEFE'
 // Colors - Secondary
@@ -40,8 +42,8 @@ const themeSettings = {
           color: DARK_GRAY,
           backgroundColor: LIGHT_GRAY,
         },
-        '&:hover': {
-          backgroundColor: LIGHT_BLUE,
+        "&:hover": {
+          backgroundColor: LIGHT_BLUE_HOVER,
         },
         '&:active': {
           backgroundColor: LIGHT_BLUE,
