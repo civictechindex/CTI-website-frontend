@@ -14,6 +14,7 @@ const WHITE = '#FEFEFE'
 const DARK_GRAY = '#6D6E74'
 const LIGHT_GRAY = '#F2F2F2'
 const RED = '#D20E0E'
+const PURPLE = '#551A8B'
 // Colors - Grey
 const GREY100 = '#F4F4F4' // default = #f5f5f5
 const GREY200 = '#E9E9E9' // default = #eeeeee
@@ -116,7 +117,7 @@ const themeSettings = {
           color: LIGHT_BLUE_VARIANT,
         },
         '& a:visited': {
-          color: 'auto',
+          color: PURPLE,
         },
       },
       colorPrimary: {
