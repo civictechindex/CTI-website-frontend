@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export const useStyle = makeStyles((theme) => ({
   firstSectionWrapper: {
-    width: '100%',
-    background: '#004364',
-    color: '#FFE06D',
-    boxSizing: 'border-box',
+    width: "100%",
+    background: "#004364",
+    color: "#FFE06D",
+    boxSizing: "border-box",
     backgroundImage: 'url("/images/CTI-Contributors-BG-1.png")',
     minHeight: '57vh',
     backgroundPositionY: 'bottom',
@@ -17,8 +17,8 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
   banner: {
-    height: '20px',
-    width: '100px',
+    height: "20px",
+    width: "100px",
   },
   projectsLink: {
     margin: '0',

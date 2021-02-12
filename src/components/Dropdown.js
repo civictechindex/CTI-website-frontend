@@ -72,7 +72,7 @@ export const Dropdown = ({
     <div className={classes.container}>
       <div
         className={
-          typeof organization === 'string'
+          typeof organization === "string"
             ? classes.codeForAll
             : classes.dropdown
         }
@@ -89,5 +89,5 @@ export const Dropdown = ({
       </div>
       {open && children}
     </div>
-  )
-}
+  );
+};
