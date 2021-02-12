@@ -34,17 +34,13 @@ const ColorBox = ({ color }) => {
 
 const CardFooter = ({ children }) => {
   return (
-    <>
-      <Typography variant="body2" color="primary">
-        &nbsp;
-      </Typography>
-      <Divider />
+    <Box paddingTop={4}>
       <Typography variant="body2" color="primary">
         Code
       </Typography>
       <Divider />
       <Box>{children}</Box>
-    </>
+    </Box>
   )
 }
 
@@ -212,18 +208,17 @@ const ShowColors = () => {
                 theme.palette.text.secondary
               </Typography>
               <Typography variant="body1" className={classes.mono}>
-                Typography&nbspcolor={`'textSecondary'`}
+                {`Typography color='textSecondary'`}
               </Typography>
             </CardFooter>
           </Card>
         </Grid>
       </Grid>
-      <Typography variant="h1" gutterBottom>
-        &nbsp
-      </Typography>
-      <Typography variant="h2" color="secondary" gutterBottom>
-        Secondary
-      </Typography>
+      <Box paddingTop={4}>
+        <Typography variant="h2" color="secondary" gutterBottom>
+          Secondary
+        </Typography>
+      </Box>
       <Grid container spacing={2}>
         <Grid item xs={6} md={3}>
           <Card className="card242">
@@ -329,9 +324,8 @@ const ShowColors = () => {
           </Card>
         </Grid>
       </Grid>
-      <Typography variant="h1" gutterBottom>
-        &nbsp;
-      </Typography>
+      <Box paddingTop={4}>
+      </Box>
     </>
   )
 }
