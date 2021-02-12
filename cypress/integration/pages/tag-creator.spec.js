@@ -1,4 +1,4 @@
-describe('Tag Creator (Tag Generator)', () => {
+describe('Tag Generator Page (Tag Creator)', () => {
   const AFFILIATED_ORGANIZATION = 'Code for Boston'
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311'
   const AFFILIATED_TEST_TAGS = [
