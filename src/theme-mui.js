@@ -2,16 +2,19 @@
 import { deepmerge } from "@material-ui/utils";
 
 // Colors - Primary
-const DARK_BLUE = "#0F1D2F";
-const TEAL = "#004364";
-const LIGHT_BLUE = "#0D99C6";
-const LIGHT_BLUE_VARIANT = "#0CB2E7";
-const YELLOW = "#FFE06D";
-const WHITE = "#FEFEFE";
+const DARK_BLUE = '#0F1D2F'
+const TEAL = '#004364'
+const LIGHT_BLUE = '#0D99C6'
+// const LIGHT_BLUE_VARIANT = '#0CB2E7'
+const LIGHT_BLUE_VARIANT = '#5FCAF9'
+const LIGHT_BLUE_HOVER = '#006B95'
+const YELLOW = '#FFE06D'
+const WHITE = '#FEFEFE'
 // Colors - Secondary
-const DARK_GRAY = "#6D6E74";
-const LIGHT_GRAY = "#F2F2F2";
-const RED = "#D20E0E";
+const DARK_GRAY = '#6D6E74'
+const LIGHT_GRAY = '#F2F2F2'
+const RED = '#D20E0E'
+const PURPLE = '#551A8B'
 // Colors - Grey
 const GREY100 = "#F4F4F4"; // default = #f5f5f5
 const GREY200 = "#E9E9E9"; // default = #eeeeee
@@ -41,7 +44,7 @@ const themeSettings = {
           backgroundColor: LIGHT_GRAY,
         },
         "&:hover": {
-          backgroundColor: LIGHT_BLUE,
+          backgroundColor: LIGHT_BLUE_HOVER,
         },
         "&:active": {
           backgroundColor: LIGHT_BLUE,
@@ -113,8 +116,8 @@ const themeSettings = {
         "& a:hover": {
           color: LIGHT_BLUE_VARIANT,
         },
-        "& a:visited": {
-          color: "auto",
+        '& a:visited': {
+          color: PURPLE,
         },
       },
       colorPrimary: {

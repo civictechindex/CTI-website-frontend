@@ -49,7 +49,9 @@ const Thumbnail = ({ thumbnailInfo, organization }) => {
           src={thumbnailInfo.imageUrl}
           className={classes.thumbnailImage}
           onError={(e) =>
+            // eslint-disable-next-line no-console
             console.log(`${e}: error with ${organization.name} image`)
+            // Before MVP: Refactor as on-website error/generic case.
           }
           alt={`${organization.name} logo`}
           loading="lazy"

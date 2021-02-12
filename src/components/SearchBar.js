@@ -25,6 +25,7 @@ export default function SearchBar(props) {
   return (
     <div align='center'>
       <TextField
+        data-cy='search-projects'
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

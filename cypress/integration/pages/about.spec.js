@@ -7,27 +7,27 @@ describe('About Page', () => {
     // cy.visit('/about')
   })
 
-  it('verify header loads', () => {
-    cy.contains("Join the Index")
+  it('header loads', () => {
+    cy.contains('Join the Index')
   })
 
-  it('verify footer loads', () => {
+  it('footer loads', () => {
     cy.contains('The Civic Tech Index is an open-source project.')
   })
 
-  it('verify title section loads', () => {
+  it('title section loads', () => {
     cy.contains('A movement to index');
   })
 
-  it('verify marketing section loads', () => {
+  it('marketing section loads', () => {
     cy.contains('With your help')
   })
 
-  it('verify picture card loads', () => {
+  it('picture card loads', () => {
     cy.contains('No coding experience needed to submit your project!')
   })
 
-  it('verify get started card loads', () => {
+  it('get started card loads', () => {
     cy.contains('Ready to get started?')
   })
 })
