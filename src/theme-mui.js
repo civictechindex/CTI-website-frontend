@@ -1,22 +1,22 @@
 /* eslint-disable sort-keys */
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from "@material-ui/utils";
 
 // Colors - Primary
-const DARK_BLUE = '#0F1D2F'
-const TEAL = '#004364'
-const LIGHT_BLUE = '#0D99C6'
-const LIGHT_BLUE_VARIANT = '#0CB2E7'
-const YELLOW = '#FFE06D'
-const WHITE = '#FEFEFE'
+const DARK_BLUE = "#0F1D2F";
+const TEAL = "#004364";
+const LIGHT_BLUE = "#0D99C6";
+const LIGHT_BLUE_VARIANT = "#0CB2E7";
+const YELLOW = "#FFE06D";
+const WHITE = "#FEFEFE";
 // Colors - Secondary
-const DARK_GRAY = '#6D6E74'
-const LIGHT_GRAY = '#F2F2F2'
-const RED = '#D20E0E'
+const DARK_GRAY = "#6D6E74";
+const LIGHT_GRAY = "#F2F2F2";
+const RED = "#D20E0E";
 // Colors - Grey
-const GREY100 = '#F4F4F4' // default = #f5f5f5
-const GREY200 = '#E9E9E9' // default = #eeeeee
-const GREY300 = '#D8D8D8' // default = #e0e0e0
-const GREY900 = '#242424' // default = #212121
+const GREY100 = "#F4F4F4"; // default = #f5f5f5
+const GREY200 = "#E9E9E9"; // default = #eeeeee
+const GREY300 = "#D8D8D8"; // default = #e0e0e0
+const GREY900 = "#242424"; // default = #212121
 
 // themeSettings - modify Material-UI baseline theme
 const themeSettings = {
@@ -34,16 +34,16 @@ const themeSettings = {
         borderRadius: 24,
         color: WHITE,
         fontWeight: 700,
-        textTransform: 'none',
+        textTransform: "none",
         width: 256,
-        '&$disabled': {
+        "&$disabled": {
           color: DARK_GRAY,
           backgroundColor: LIGHT_GRAY,
         },
-        '&:hover': {
+        "&:hover": {
           backgroundColor: LIGHT_BLUE,
         },
-        '&:active': {
+        "&:active": {
           backgroundColor: LIGHT_BLUE,
         },
       },
@@ -51,15 +51,15 @@ const themeSettings = {
     MuiCardContent: {
       root: {
         padding: 0,
-        '&:last-child': {
+        "&:last-child": {
           paddingBottom: 0,
         },
       },
     },
     MuiCssBaseline: {
-      '@global': {
+      "@global": {
         body: {
-          fontStyle: 'normal',
+          fontStyle: "normal",
           fontWeight: 400,
           margin: 0,
         },
@@ -67,8 +67,8 @@ const themeSettings = {
     },
     MuiChip: {
       root: {
-        cursor: 'pointer',
-        margin: '0 8px 8px 0',
+        cursor: "pointer",
+        margin: "0 8px 8px 0",
       },
     },
     MuiInputLabel: {
@@ -89,32 +89,32 @@ const themeSettings = {
         color: DARK_BLUE,
       },
       colorSecondary: {
-        '&$checked': {
+        "&$checked": {
           color: DARK_BLUE,
         },
       },
     },
     MuiTextField: {
       root: {
-        width: '100%',
+        width: "100%",
       },
     },
     MuiTypography: {
       root: {
-        '& a': {
+        "& a": {
           fontWeight: 700,
         },
-        '& a:active': {
+        "& a:active": {
           color: LIGHT_BLUE_VARIANT,
         },
-        '& a:link': {
+        "& a:link": {
           color: LIGHT_BLUE,
         },
-        '& a:hover': {
+        "& a:hover": {
           color: LIGHT_BLUE_VARIANT,
         },
-        '& a:visited': {
-          color: 'auto',
+        "& a:visited": {
+          color: "auto",
         },
       },
       colorPrimary: {
@@ -136,7 +136,7 @@ const themeSettings = {
       disableTypography: true, // this changes startAdornment text color to primary
     },
     MuiTextField: {
-      variant: 'outlined',
+      variant: "outlined",
     },
   },
   palette: {
@@ -173,80 +173,85 @@ const themeSettings = {
     },
   },
   typography: {
-    fontFamily: 'Work Sans, sans-serif',
+    fontFamily: "Work Sans, sans-serif",
     fontSize: 16,
     h1: {
       color: DARK_BLUE,
-      fontSize: '3rem',
+      fontSize: "3rem",
       fontWeight: 700,
       lineHeight: 1.25,
     },
     h2: {
       color: DARK_BLUE,
-      fontSize: '2.5rem',
+      fontSize: "2.5rem",
       fontWeight: 700,
       lineHeight: 1.25,
     },
     h3: {
       color: DARK_BLUE,
-      fontSize: '2rem',
+      fontSize: "2rem",
       fontWeight: 700,
       lineHeight: 1.25,
     },
     h4: {
       color: DARK_BLUE,
-      fontSize: '1.75rem',
+      fontSize: "1.75rem",
       fontWeight: 700,
       lineHeight: 1.25,
     },
     h5: {
       color: DARK_BLUE,
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
       fontWeight: 700,
       lineHeight: 1.25,
     },
     h6: {
       color: DARK_BLUE,
-      fontSize: '1.25rem',
+      fontSize: "1.25rem",
       fontWeight: 700,
       lineHeight: 1.25,
     },
-    body1: { // paragraph
+    body1: {
+      // paragraph
       color: DARK_BLUE,
-      fontSize: '1rem',
+      fontSize: "1rem",
       fontWeight: 400,
       lineHeight: 1.35,
     },
     body2: {
       color: DARK_GRAY,
-      fontSize: '1rem',
-      fontWeight: 700,
+      fontSize: "1rem",
+      fontWeight: 400,
       lineHeight: 1.35,
     },
-    button: { // unused
+    button: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
     caption: {
       color: DARK_BLUE,
-      fontSize: '0.875rem',
+      fontSize: "0.875rem",
       fontWeight: 400,
       lineHeight: 1.35,
     },
-    overline: { // unused
+    overline: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle1: { // unused
+    subtitle1: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle2: { // unused
+    subtitle2: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
   },
-}
+};
 
 // customThemeSettings - extend Material-UI theming
 const customThemeSettings = {
@@ -256,10 +261,10 @@ const customThemeSettings = {
   },
   font: {
     paragraph: {
-      fontSize: '1rem',
+      fontSize: "1rem",
     },
     small: {
-      fontSize: 'clamp(14px, 0.875rem, 0.875rem)',
+      fontSize: "clamp(14px, 0.875rem, 0.875rem)",
     },
   },
   palette: {
@@ -276,11 +281,11 @@ const customThemeSettings = {
   },
   typography: {
     secondFontFamily: {
-      fontFamily: 'Source Code Pro, monospace',
+      fontFamily: "Source Code Pro, monospace",
     },
   },
-}
+};
 
-const theme = deepmerge(themeSettings, customThemeSettings)
+const theme = deepmerge(themeSettings, customThemeSettings);
 
-export default theme
+export default theme;
