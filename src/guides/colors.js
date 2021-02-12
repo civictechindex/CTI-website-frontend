@@ -36,7 +36,7 @@ const CardFooter = ({ children }) => {
   return (
     <>
       <Typography variant="body2" color="primary">
-        &nbsp
+        &nbsp;
       </Typography>
       <Divider />
       <Typography variant="body2" color="primary">
@@ -330,7 +330,7 @@ const ShowColors = () => {
         </Grid>
       </Grid>
       <Typography variant="h1" gutterBottom>
-        &nbsp
+        &nbsp;
       </Typography>
     </>
   )
