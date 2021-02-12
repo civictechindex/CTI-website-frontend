@@ -1,0 +1,181 @@
+[
+  {
+    "id": 3,
+    "name": "Code for America",
+    "github_name": "codeforamerica",
+    "github_id": 337792,
+    "location": "",
+    "image_url": "https://brigade.codeforamerica.org/assets/images/brigade-logo-white.c3dc5499c8537a8345af66de76cc7598.svg",
+    "links": [
+      {
+        "id": 4,
+        "link_type": "WebSite",
+        "url": "https://www.codeforamerica.org/",
+        "http_status": null,
+        "http_status_date": null,
+        "notes": null,
+        "organization": 3
+      },
+      {
+        "id": 5,
+        "link_type": "GitHub",
+        "url": "https://github.com/codeforamerica",
+        "http_status": null,
+        "http_status_date": null,
+        "notes": null,
+        "organization": 3
+      }
+    ],
+    "parent_organization": {
+      "id": 2,
+      "import_id": 2,
+      "name": "Code for All",
+      "location": "",
+      "image_url": "https://scontent-sjc3-1.xx.fbcdn.net/v/t31.0-8/p960x960/21741324_489829601378771_1951606481908231900_o.png?_nc_cat=109&_nc_sid=85a577&_nc_ohc=lr7GY_RmGscAX-p7CwV&_nc_ht=scontent-sjc3-1.xx&oh=08c9bd7edd6e74a845ef2706a8ef3e9f&oe=5E99819E",
+      "github_name": "",
+      "github_id": null,
+      "parent_organization": null
+    }
+  },
+  {
+    "id": 89,
+    "name": "Code for Canada",
+    "github_name": "code-for-canada",
+    "github_id": 32721448,
+    "location": "",
+    "image_url": "",
+    "links": [
+      {
+        "id": 281,
+        "link_type": "WebSite",
+        "url": "https://codefor.ca/",
+        "http_status": null,
+        "http_status_date": null,
+        "notes": null,
+        "organization": 89
+      },
+      {
+        "id": 282,
+        "link_type": "FaceBook",
+        "url": "https://www.facebook.com/code4ca/",
+        "http_status": "302",
+        "http_status_date": "2021-01-31",
+        "notes": null,
+        "organization": 89
+      },
+      {
+        "id": 283,
+        "link_type": "Twitter",
+        "url": "https://twitter.com/code4ca",
+        "http_status": "400",
+        "http_status_date": "2021-01-31",
+        "notes": null,
+        "organization": 89
+      },
+      {
+        "id": 284,
+        "link_type": "GitHub",
+        "url": "https://github.com/code-for-canada",
+        "http_status": null,
+        "http_status_date": null,
+        "notes": null,
+        "organization": 89
+      }
+    ],
+    "parent_organization": {
+      "id": 2,
+      "import_id": 2,
+      "name": "Code for All",
+      "location": "",
+      "image_url": "https://scontent-sjc3-1.xx.fbcdn.net/v/t31.0-8/p960x960/21741324_489829601378771_1951606481908231900_o.png?_nc_cat=109&_nc_sid=85a577&_nc_ohc=lr7GY_RmGscAX-p7CwV&_nc_ht=scontent-sjc3-1.xx&oh=08c9bd7edd6e74a845ef2706a8ef3e9f&oe=5E99819E",
+      "github_name": "",
+      "github_id": null,
+      "parent_organization": null
+    }
+  },
+  {
+    "id": 229,
+    "name": "Code for Poland",
+    "github_name": "",
+    "github_id": null,
+    "location": "",
+    "image_url": "",
+    "links": [
+      {
+        "id": 599,
+        "link_type": "WebSite",
+        "url": "https://codeforpoland.org/",
+        "http_status": null,
+        "http_status_date": null,
+        "notes": null,
+        "organization": 229
+      },
+      {
+        "id": 600,
+        "link_type": "Twitter",
+        "url": "https://twitter.com/CodeForPoland",
+        "http_status": "400",
+        "http_status_date": "2021-01-31",
+        "notes": null,
+        "organization": 229
+      }
+    ],
+    "parent_organization": {
+      "id": 2,
+      "import_id": 2,
+      "name": "Code for All",
+      "location": "",
+      "image_url": "https://scontent-sjc3-1.xx.fbcdn.net/v/t31.0-8/p960x960/21741324_489829601378771_1951606481908231900_o.png?_nc_cat=109&_nc_sid=85a577&_nc_ohc=lr7GY_RmGscAX-p7CwV&_nc_ht=scontent-sjc3-1.xx&oh=08c9bd7edd6e74a845ef2706a8ef3e9f&oe=5E99819E",
+      "github_name": "",
+      "github_id": null,
+      "parent_organization": null
+    }
+  },
+  {
+    "id": 98,
+    "name": "Open North",
+    "github_name": "",
+    "github_id": null,
+    "location": "",
+    "image_url": "",
+    "links": [
+      {
+        "id": 308,
+        "link_type": "WebSite",
+        "url": "http://www.opennorth.ca",
+        "http_status": "301",
+        "http_status_date": "2021-01-31",
+        "notes": null,
+        "organization": 98
+      },
+      {
+        "id": 309,
+        "link_type": "FaceBook",
+        "url": "https://www.facebook.com/OpenNorth.NordOuvert/",
+        "http_status": "302",
+        "http_status_date": "2021-01-31",
+        "notes": null,
+        "organization": 98
+      },
+      {
+        "id": 310,
+        "link_type": "GitHub",
+        "url": "Open North",
+        "http_status": "broken",
+        "http_status_date": "2021-01-31",
+        "notes": "Invalid URL 'Open North': No schema supplied. Perhaps you meant http://Open North?",
+        "organization": 98
+      }
+    ],
+    "parent_organization": {
+      "id": 89,
+      "import_id": 89,
+      "name": "Code for Canada",
+      "location": "",
+      "image_url": "",
+      "github_name": "code-for-canada",
+      "github_id": 32721448,
+      "parent_organization": 2
+    }
+  }
+]
