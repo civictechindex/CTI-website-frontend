@@ -34,6 +34,7 @@ export const DropdownThumbnail = ({ organizations }) => {
         return (
           <div key={indexSubchild} style={styles.thumbnails}>
             {
+              // eslint-disable-next-line no-console
               child.image_url ? <a href={child.links[0].url}><img src={child.image_url} style={styles.image} onError={() => console.log('error')} alt={child.name} loading='lazy'/></a> :
                 <a href={child.links[0].url}><p style={styles.imagePlaceholderText}>{child.name}</p></a>
             }

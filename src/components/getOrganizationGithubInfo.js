@@ -17,12 +17,18 @@ export const getOrganizationGithubInfo = (organization) => {
         githubInfo.organizationGithubUrl = link.url;
         return githubInfo;
       } else {
+        // TODO: Sean handle github data error
+        // eslint-disable-next-line
         console.log(`no Github data for ${organization.name}`);
         return null;
       }
     });
   } else {
-    // child.links[0] = "htttp://github.com/";
+    /*
+     *child.links[0] = "htttp://github.com/";
+     *TODO: Sean handle no links available error
+     */
+    // eslint-disable-next-line
     console.log(`no links available for ${organization.name}`);
     return null;
   }
