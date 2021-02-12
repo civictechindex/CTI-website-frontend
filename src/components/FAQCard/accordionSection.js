@@ -38,11 +38,11 @@ export default function AccordionSection(props) {
         return (
           <div key={faq.id}>
             <Accordion style={{ marginBottom: "20px",padding:'0px' }}>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />} disabled={sendRequest} onClick={() => {setSendRequest(true);setCurrentFaq(faq)}}>
+              <AccordionSummary data-cy='faq-question' expandIcon={<ExpandMoreIcon />} disabled={sendRequest} onClick={() => {setSendRequest(true);setCurrentFaq(faq)}}>
                 <h6 style={{ fontSize:'20px',margin:'0', padding:'0 25px' }}>{faq.question}</h6>
               </AccordionSummary>
               <Divider />
-              <AccordionDetails> <Typography style={{ padding:'0 25px' }}>{faq.answer}</Typography></AccordionDetails>
+              <AccordionDetails data-cy='faq-answer'> <Typography style={{ padding:'0 25px' }}>{faq.answer}</Typography></AccordionDetails>
             </Accordion>
           </div>
         );
