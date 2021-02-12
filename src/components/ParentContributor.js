@@ -19,10 +19,12 @@ export const ParentContributor = ({ dropdownLength, children }) => {
               src={"https://codeforall.org/assets/images/homepage/logo.png"}
               className={classes.codeForAllThumbnailImage}
               onError={(e) =>
+                // eslint-disable-next-line no-console
                 console.log(
                   e,
                   `error with 'Code For All' ParentContributor Component`
                 )
+                // Before MVP: Refactor as on-website error message / generic case.
               }
               alt="code for all logo"
               loading="lazy"

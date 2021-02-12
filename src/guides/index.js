@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select'
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded'
 import { makeStyles } from '@material-ui/core/styles'
 import { Footer, Header } from '../components'
+import Colors from './colors'
 import TypeStandards from './type-standards'
 import Typography from './typography'
 
@@ -26,15 +27,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Guides = () => {
   const classes = useStyles()
-  const [guide, setGuide] = React.useState('palette')
+  const [guide, setGuide] = React.useState('colors')
 
   const handleChange = (event) => {
     event.target.value && setGuide(event.target.value)
   }
 
   const components = {
+    colors: Colors,
     palette: TypeStandards,
-    typography: Typography
+    typography: Typography,
   }
   const Guide = components[guide]
 
@@ -43,7 +45,7 @@ const Guides = () => {
       <Header />
       <Container className={classes.container} maxWidth={false}>
         <Grid container spacing={2}>
-          <Grid item xs={3} className={classes.gridItem0}>
+          <Grid item xs={2} className={classes.gridItem0}>
             <FormControl>
               <InputLabel id='select-a-guide'>Guides</InputLabel>
               <Select
@@ -54,12 +56,13 @@ const Guides = () => {
                 IconComponent={ExpandMoreRoundedIcon}
               >
                 <MenuItem value=''><em>Select a Guide</em></MenuItem>
+                <MenuItem value='colors'>Colors</MenuItem>
                 <MenuItem value='palette'>Type Standards</MenuItem>
                 <MenuItem value='typography'>Typography</MenuItem>
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={9} className={classes.gridItem1}>
+          <Grid item xs={10} className={classes.gridItem1}>
             <Guide />
           </Grid>
         </Grid>

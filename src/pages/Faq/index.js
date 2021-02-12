@@ -37,20 +37,23 @@ export default function Faq({ match }) {
     return (
       <>
         <div align='center'>
-          <TextField autoFocus InputProps={{
-            startAdornment: (
-              <InputAdornment position="start"><SearchIcon /></InputAdornment>), style: { defaultStyle },
-          }}
-          value={query}
-          onInput={e => setQuery(e.target.value)}
-          variant='outlined'
-          style={defaultStyle}
-          placeholder={props.placeholder}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          <TextField
+            data-cy='search-faq'
+            autoFocus
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start"><SearchIcon /></InputAdornment>), style: { defaultStyle },
+            }}
+            value={query}
+            onInput={e => setQuery(e.target.value)}
+            variant='outlined'
+            style={defaultStyle}
+            placeholder={props.placeholder}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </div>
       </>
