@@ -108,7 +108,7 @@ export default function Contributors({ match }) {
   }, [affiliation]);
 
   return (
-    <Container>
+    <Container className='containerDefault'>
       <div className={classes.firstSectionWrapper}>
         <div className={classes.sectionContainer}>
           <NavBreadcrumb
