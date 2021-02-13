@@ -37,6 +37,14 @@ const useStyles = makeStyles(theme => ({
       },
     },
     '.frame223': {
+    ".containerDefault": {
+      backgroundColor: theme.palette.secondary.dark,
+      minHeight: "500px",
+    },
+    ".containerGray": {
+      backgroundColor: theme.palette.background.secondary,
+      minHeight: "500px",
+    },
       backgroundColor: theme.palette.background.secondary,
     },
     '.frame222': {
