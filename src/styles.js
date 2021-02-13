@@ -44,6 +44,12 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.background.secondary,
       minHeight: "500px",
     },
+    ".containerWorld": {
+      backgroundColor: theme.palette.secondary.dark,
+      backgroundImage: 'url(/images/world-view.png)',
+      backgroundRepeat: 'no-repeat',
+      minHeight: "500px",
+    },
     '.frame223': {
       backgroundColor: theme.palette.background.secondary,
     },

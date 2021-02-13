@@ -33,7 +33,7 @@ const CallToActionSection = () => {
 
 const Home = () => {
   return (
-    <Container className='world-background'>
+    <Container className='containerWorld'>
       <TitleSection>Join a worldwide movement to catalog every open source civic tech project.</TitleSection>
       <MarketingSection />
       <CallToActionSection />
