@@ -1,12 +1,8 @@
-import React from 'react'
-import '../../styles.css'
-
-import { Footer, GetStartedCard, Header, NavButton, TitleSection } from '../../components'
-
-import NotableUsersSection from './sections/NotableUsersSection'
-import TrendingTopicsSection from './sections/TrendingTopicsSection'
-
+import React from 'react';
 import { Container, Grid } from '@material-ui/core';
+import { GetStartedCard, NavButton, TitleSection } from '../../components';
+import NotableUsersSection from './sections/NotableUsersSection';
+import TrendingTopicsSection from './sections/TrendingTopicsSection';
 
 const MarketingSection = () => {
 
@@ -37,20 +33,14 @@ const CallToActionSection = () => {
 
 const Home = () => {
   return (
-    <>
-      <Header />
-      <div className='world-background' style={{ width: '100vw' }}>
-        <Container>
-          <TitleSection>Join a worldwide movement to catalog every open source civic tech project.</TitleSection>
-          <MarketingSection />
-          <CallToActionSection />
-          <NotableUsersSection />
-          <TrendingTopicsSection />
-        </Container>
-      </div>
+    <Container className='world-background'>
+      <TitleSection>Join a worldwide movement to catalog every open source civic tech project.</TitleSection>
+      <MarketingSection />
+      <CallToActionSection />
+      <NotableUsersSection />
+      <TrendingTopicsSection />
       <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/tag-generator" />
-      <Footer />
-    </>
+    </Container>
   )
 }
 
