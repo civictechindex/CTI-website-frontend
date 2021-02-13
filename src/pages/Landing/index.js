@@ -149,7 +149,7 @@ const Landing = () => {
         <p>
           The Civic Tech Index is an open-source project.
           <br />
-          You can download or contribute to the code on {''}
+          You can download or contribute to the code on{' '}
           <a href='https://github.com/civictechindex'>Github.</a>
         </p>
       </section>
