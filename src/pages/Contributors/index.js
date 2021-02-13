@@ -3,20 +3,16 @@
 /* eslint-disable sort-keys */
 
 import React, { useEffect, useState } from "react";
-import { useStyle } from "./styles.js";
 import axios from "axios";
-import BottomCallToAction from "../../components/BottomCallToAction";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import NavBreadcrumb from "../../components/NavBreadcrumbs";
-import TextField from "@material-ui/core/TextField";
+import { Container, InputAdornment, TextField, Typography } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import Typography from "@material-ui/core/Typography";
+import BottomCallToAction from "../../components/BottomCallToAction";
+import NavBreadcrumb from "../../components/NavBreadcrumbs";
 import { DropdownArrow } from "../../components/DropdownArrow.js";
 import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
+import { useStyle } from "./styles.js";
 
 export default function Contributors({ match }) {
   const affiliation = match.params.affiliation;
@@ -112,8 +108,7 @@ export default function Contributors({ match }) {
   }, [affiliation]);
 
   return (
-    <>
-      <Header />
+    <Container>
       <div className={classes.firstSectionWrapper}>
         <div className={classes.sectionContainer}>
           <NavBreadcrumb
@@ -180,8 +175,7 @@ export default function Contributors({ match }) {
         buttonHref="mailto:civictechindex@hackforla.org"
         buttonText="Contact Us"
       />
-      <Footer />
-    </>
+    </Container>
   );
 }
 
