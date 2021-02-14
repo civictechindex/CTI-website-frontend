@@ -1,9 +1,8 @@
 import React from 'react';
+import Container from "@material-ui/core/Container";
 
 import BottomCallToAction from '../../components/BottomCallToAction';
-import BreadCrumbs from '../../components/NavBreadcrumbs.js';
-import Footer from '../../components/Footer/index.js';
-import Header from '../../components/Header/index.js';
+import BreadCrumbs from "../../components/NavBreadcrumbs.js";
 
 import useStyles from './styles.js';
 
@@ -18,8 +17,7 @@ const Donation = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.donateContainer}>
-      <Header />
+    <Container className="containerGray">
       <section className={classes.commonSection + ' ' + classes.titleSection}>
         <BreadCrumbs crumbs={breadCrumbLinks} />
         <h2 className={classes.donateTitle}>Make a Donation</h2>
@@ -58,9 +56,8 @@ const Donation = () => {
         buttonHref='mailto:civictechindex@hackforla.org'
         buttonText='Contact Us'
       />
-      <Footer />
-    </div>
-  )
+    </Container>
+  );
 }
 
 export default Donation;

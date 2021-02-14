@@ -6,10 +6,6 @@ const useStyles = makeStyles(theme => ({
     width: '80%',
   },
 
-  donateContainer: {
-    backgroundColor: theme.palette.grey[100],
-  },
-
   donateCrumbs: {
     padding: '25px 0px',
   },
