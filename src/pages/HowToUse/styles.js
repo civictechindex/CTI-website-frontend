@@ -1,26 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
-/** ********     HOW-TO-USE PAGE     **********/
-  main: {
-    fontFamily: theme.typography.fontFamily,
-    color: theme.palette.primary.main,
-    '& section': {
-      width: '100%',
-    },
-    '& *': {
-      boxSizing: 'border-box',
-    },
-  },
   /** ********     PROJECTS SECTION     **********/
-  projectsSection: {
-    backgroundColor: theme.palette.grey[200],
-    padding: '0 20px',
-  },
-  projectsContainer: {
-    maxWidth: '770px',
-    margin: '0 auto',
-  },
   projectsLink: {
     margin: '0',
     paddingTop: '70px',
