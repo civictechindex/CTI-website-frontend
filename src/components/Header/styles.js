@@ -233,6 +233,8 @@ const useStyles = makeStyles((theme) => ({
       transform: "translateY(100%)",
       transition: "transform 1s",
       display: "flex",
+      flexDirection: "column",
+      alignItems: 'start',
     },
     mobileContainer: {
       display: "flex",
