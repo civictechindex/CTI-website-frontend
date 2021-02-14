@@ -137,42 +137,42 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
     },
   },
-  burger: {
-    position: 'relative',
-    cursor: 'pointer',
-    minWidth: '30px',
-    height: '35px',
-    zIndex: '500',
-    marginRight: '30px',
-    '& $burgerLine:nth-child(1)': {
-      top: '5px',
-    },
-    '& $burgerLine:nth-child(2)': {
-      top: '15px',
-    },
-    '& $burgerLine:nth-child(3)': {
-      top: '25px',
-    },
-  },
-  burgerLine: {
-    position: 'absolute',
-    width: '30px',
-    height: '4px',
-    background: 'black',
-    transition: 'all .2s ease-in-out',
-  },
-  transformLine1: {
-    transform: 'translateY(10px) rotate(135deg)',
-  },
-  transformLine3: {
-    transform: 'translateY(-10px) rotate(-135deg)',
-  },
+//   burger: {
+//     position: 'relative',
+//     cursor: 'pointer',
+//     minWidth: '30px',
+//     height: '35px',
+//     zIndex: '500',
+//     marginRight: '30px',
+//     '& $burgerLine:nth-child(1)': {
+//       top: '5px',
+//     },
+//     '& $burgerLine:nth-child(2)': {
+//       top: '15px',
+//     },
+//     '& $burgerLine:nth-child(3)': {
+//       top: '25px',
+//     },
+//   },
+//   burgerLine: {
+//     position: 'absolute',
+//     width: '30px',
+//     height: '4px',
+//     background: 'black',
+//     transition: 'all .2s ease-in-out',
+//   },
+//   transformLine1: {
+//     transform: 'translateY(10px) rotate(135deg)',
+//   },
+//   transformLine3: {
+//     transform: 'translateY(-10px) rotate(-135deg)',
+//   },
   displayNone: {
     display: 'none',
   },
-  background: {},
-  containsArrow: {},
-  showMobileNav: {},
+//   background: {},
+//   containsArrow: {},
+//   showMobileNav: {},
   /** ********     MEDIA-QUERIES SECTION     **********/
   '@media (max-width: 1000px)': {
     background: {
@@ -264,9 +264,11 @@ const useStyles = makeStyles(theme => ({
     showMobileNav: {
       transform: 'translateY(100%)',
       transition: 'transform 1s',
+      display: 'flex',
     },
     mobileContainer: {
       display: 'flex',
+      marginRight: '2rem',
     },
   },
 }))
