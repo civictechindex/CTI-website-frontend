@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavLink from "./NavLink.js";
 import NavSublink from "./NavSublink.js";
-import { Dehaze } from "@material-ui/icons";
+import { Menu } from "@material-ui/icons";
 const Header = () => {
   const classes = useStyles();
   const [isBurgerOpen, setIsBurgerOpen] = useState(null);
@@ -60,7 +60,7 @@ const Header = () => {
         </div>
       </div>
       <div onClick={handleClick} className={classes.mobileContainer}>
-        <Dehaze />
+        <Menu fontSize='large'/>
       </div>
     </nav>
   );
