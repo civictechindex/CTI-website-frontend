@@ -42,7 +42,7 @@ const Footer = () => {
   return (
     <div>
       <Grid container className={classes.footerContainer}>
-        <Grid item xs={0} sm={1} />
+        <Grid item xs={false} sm={1} />
         <Grid item xs={4} sm={2}>
           <Link to='/'>Join the Index</Link>
           <Link to='/tag-generator'>Tag Generator</Link>
@@ -66,7 +66,7 @@ const Footer = () => {
         <Grid item xs={6} sm={2}>
           <SocialSection />
         </Grid>
-        <Grid item xs={0} sm={1} />
+        <Grid item xs={false} sm={1} />
         <Grid item xs={12} className={classes.noteContainer}>
           <p>The Civic Tech Index is an open-source project.</p>
           <p>You can download or contribute to the code on <a href='https://github.com/civictechindex'>GitHub</a>.</p>
