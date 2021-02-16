@@ -170,11 +170,7 @@ export default function Contributors({ match }) {
           </div>
         </div>
       </div>
-      <BottomCallToAction
-        heading="Want to add your organization?"
-        buttonHref="mailto:civictechindex@hackforla.org"
-        buttonText="Contact Us"
-      />
+      <BottomCallToAction heading="Want to add your organization?" color="primary" />
     </Container>
   );
 }

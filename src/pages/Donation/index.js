@@ -51,11 +51,7 @@ const Donation = () => {
           src='./images/CTI-Donate-to-HfLA.gif' />
         <p className={classes.infoThank}>We appreciate your contribution.</p>
       </section>
-      <BottomCallToAction
-        heading='Want to support in other ways?'
-        buttonHref='mailto:civictechindex@hackforla.org'
-        buttonText='Contact Us'
-      />
+      <BottomCallToAction heading='Want to support in other ways?' />
     </Container>
   );
 }
