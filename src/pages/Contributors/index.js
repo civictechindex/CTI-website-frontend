@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, InputAdornment, TextField, Typography } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import BottomCallToAction from "../../components/BottomCallToAction";
 import NavBreadcrumb from "../../components/NavBreadcrumbs";
 import { DropdownArrow } from "../../components/DropdownArrow.js";
@@ -232,7 +232,7 @@ const TopCallToAction = ({
               type: "search",
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchRoundedIcon />
                 </InputAdornment>
               ),
             }}
