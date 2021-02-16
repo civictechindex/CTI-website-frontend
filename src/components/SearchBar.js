@@ -1,7 +1,7 @@
-import InputAdornment from '@material-ui/core/InputAdornment';
 import React from 'react';
-import SearchIcon from '@material-ui/icons/Search';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 /**
  * Simple search.
@@ -29,7 +29,7 @@ export default function SearchBar(props) {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon />
+              <SearchRoundedIcon />
             </InputAdornment>
           ),
         }}
