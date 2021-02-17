@@ -13,6 +13,7 @@ import Landing from './pages/Landing'
 import Projects from './pages/Projects'
 import TagCreator from './pages/TagCreator'
 
+import Placeholder from './pages/Placeholder';
 import Guides from './guides/'
 import useStyles from './styles'
 
@@ -39,7 +40,8 @@ const App = () => {
             component={Contributors}
           />
           <Route exact path="/projects" component={Projects} />
-          <Route exact path="/guides" component={Guides} />
+          <Route path="/guides" component={Guides} />
+          <Route path="/blank" component={Placeholder} />
         </Switch>
       </Layout>
     </BrowserRouter>
