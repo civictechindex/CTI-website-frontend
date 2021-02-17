@@ -13,10 +13,13 @@ const Placeholder = () => {
       <NavBreadcrumbs crumbs={crumbs} />
       <Card className='card244'>
         <CardContent>
-          <Typography variant='h1' color='secondary'>
-            Placeholder
+          <Typography variant='h1'>
+            Heading
           </Typography>
-          <Typography variant='body1'>This space intentionally left blank.</Typography>
+          <Typography variant='h6'>
+            Subheading
+          </Typography>
+          <Typography variant='body1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Typography>
         </CardContent>
       </Card>
     </Container>
