@@ -128,6 +128,9 @@ const themeSettings = {
     },
   },
   props: {
+    MuiContainer: {
+      maxWidth: 'xl',
+    },
     MuiInputAdornment: {
       disableTypography: true, // this changes startAdornment text color to primary
     },

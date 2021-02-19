@@ -1,10 +1,10 @@
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import githubColorDictionary from './data/gh-colors.json'
 import Grid from '@material-ui/core/Grid';
-import React from 'react';
+import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRounded';
+import githubColorDictionary from './data/gh-colors.json'
 
 const issueStyles = {
   fontSize: '13px',
@@ -17,7 +17,7 @@ const renderLanguageChip = (language) => {
     size="small"
     style={{ backgroundColor: '#F1F1F1' }}
     label={language}
-    icon={<FiberManualRecordIcon
+    icon={<FiberManualRecordRoundedIcon
       style={{ color: githubColorDictionary[language] }} />} />
 }
 
