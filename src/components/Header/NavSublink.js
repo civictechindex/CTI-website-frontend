@@ -4,12 +4,11 @@ import { MenuItem, Typography } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = () => ({
+const styles = (theme) => ({
   menuitem: {
     padding: "1rem",
     "&:hover": {
-      backgroundColor: "#0D99C6",
-      color: "white",
+      backgroundColor: theme.palette.secondary.main,
     },
   },
 });
