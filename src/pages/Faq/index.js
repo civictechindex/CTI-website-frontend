@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Container } from "@material-ui/core";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import {
   GetStartedCard,
   NavBreadcrumbs,
@@ -37,7 +37,7 @@ export default function Faq({ match }) {
             autoFocus
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start"><SearchIcon /></InputAdornment>), style: { defaultStyle },
+                <InputAdornment position="start"><SearchRoundedIcon /></InputAdornment>), style: { defaultStyle },
             }}
             value={query}
             onInput={e => setQuery(e.target.value)}
