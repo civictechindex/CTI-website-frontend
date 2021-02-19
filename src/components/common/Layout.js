@@ -1,8 +1,18 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header";
 
-const Layout = ({ children }) => {
+const Layout = (props) => {
+  const { children, location } = props;
+
+  if (location.pathname === '/') {
+    return (
+      <>
+        {children}
+      </>
+    )
+  }
   return (
     <>
       <Header />
@@ -12,4 +22,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default withRouter(Layout);
