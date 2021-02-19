@@ -1,47 +1,32 @@
-/* eslint-disable sort-keys */
+import React from 'react';
+import { Box, Button, Grid, Typography, useTheme } from '@material-ui/core';
 
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+const defaultBackgroundColor = 'transparent'; // see https://developer.mozilla.org/en-US/docs/Web/CSS/background-color - 'transparent' is initial value
+const defaultButtonHref = 'mailto:civictechindex@hackforla.org';
+const defaultButtonText = 'Contact Us';
 
-const useStyles = makeStyles(theme => ({
-  bottomCallToAction: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '15rem',
-    textAlign: 'center',
-  },
-  heading: {
-    fontFamily: theme.typography.fontFamily,
-    color: theme.palette.primary.main,
-    fontSize: '2.5rem',
-  },
-  button: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.font.paragraph.fontSize,
-    fontWeight: 700,
-    backgroundColor: theme.palette.info.main,
-    padding: '1rem 5rem',
-    color: theme.palette.text.secondary,
-    border: 'none',
-    borderRadius: theme.button.borderRadius,
-    boxShadow: '0.1rem 0.1rem 10px #e0dede',
-    cursor: 'pointer',
-  },
-}))
-
-const BottomCallToAction = (props) => {
-  const { heading, buttonHref, buttonText } = props
-
-  const classes = useStyles()
+const BottomCallToAction = ({ color, buttonHref = defaultButtonHref, buttonText = defaultButtonText, heading }) => {
+  const theme = useTheme();
+  let bgColor = defaultBackgroundColor;
+  if (color === 'primary') {
+    bgColor = theme.palette.background.default;
+  }
+  const boxStyle = {
+    backgroundColor: bgColor,
+  };
 
   return (
-    <div className={classes.bottomCallToAction}>
-      <p className={classes.heading}>{heading}</p>
-      <a href={buttonHref}><button className={classes.button}>{buttonText}</button></a>
-    </div>
-  )
-}
+    <Box style={boxStyle} py={8}>
+      <Grid container direction='column' justify='center' alignItems='center' spacing={4}>
+        <Grid item>
+          <Typography variant='h2'>{heading}</Typography>
+        </Grid>
+        <Grid item>
+          <Button href={buttonHref}>{buttonText}</Button>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
 
-export default BottomCallToAction
+export default BottomCallToAction;
