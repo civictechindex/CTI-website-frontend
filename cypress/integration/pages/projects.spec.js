@@ -21,7 +21,8 @@ describe('Projects Page (Search Projects)', () => {
     cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}')
     cy.get('[data-cy=project-card] [data-cy=project-url]').each(($el, index, $list) => {
       const innerText = $el.text()
-      expect(RESULTS.indexOf(innerText)).to.be.eq(index)
+      expect(RESULTS.indexOf(innerText)).to.be.at.least(0)
+      expect(RESULTS.indexOf(innerText)).to.be.lessThan(RESULTS.length)
     })
   })
 })
