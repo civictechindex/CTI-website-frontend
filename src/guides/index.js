@@ -7,7 +7,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded'
 import { makeStyles } from '@material-ui/core/styles'
-import { Footer, Header } from '../components'
 import Colors from './colors'
 import TypeStandards from './type-standards'
 import Typography from './typography'
@@ -41,34 +40,30 @@ const Guides = () => {
   const Guide = components[guide]
 
   return (
-    <>
-      <Header />
-      <Container className={classes.container} maxWidth={false}>
-        <Grid container spacing={2}>
-          <Grid item xs={2} className={classes.gridItem0}>
-            <FormControl>
-              <InputLabel id='select-a-guide'>Guides</InputLabel>
-              <Select
-                autoWidth
-                labelId='select-a-guide'
-                onChange={handleChange}
-                value={guide}
-                IconComponent={ExpandMoreRoundedIcon}
-              >
-                <MenuItem value=''><em>Select a Guide</em></MenuItem>
-                <MenuItem value='colors'>Colors</MenuItem>
-                <MenuItem value='palette'>Type Standards</MenuItem>
-                <MenuItem value='typography'>Typography</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={10} className={classes.gridItem1}>
-            <Guide />
-          </Grid>
+    <Container className={classes.container} maxWidth={false}>
+      <Grid container spacing={2}>
+        <Grid item xs={2} className={classes.gridItem0}>
+          <FormControl>
+            <InputLabel id='select-a-guide'>Guides</InputLabel>
+            <Select
+              autoWidth
+              labelId='select-a-guide'
+              onChange={handleChange}
+              value={guide}
+              IconComponent={ExpandMoreRoundedIcon}
+            >
+              <MenuItem value=''><em>Select a Guide</em></MenuItem>
+              <MenuItem value='colors'>Colors</MenuItem>
+              <MenuItem value='type-standards'>Type Standards</MenuItem>
+              <MenuItem value='typography'>Typography</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
-      </Container>
-      <Footer />
-    </>
+        <Grid item xs={10} className={classes.gridItem1}>
+          <Guide />
+        </Grid>
+      </Grid>
+    </Container>
   )
 }
 
