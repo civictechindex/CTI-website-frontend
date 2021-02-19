@@ -25,7 +25,7 @@ describe("Header component", () => {
   });
   it("mobile menu opens", () => {
     cy.viewport("iphone-8");
-    cy.get("[class*=makeStyles-showMobileNav]").should('not.exist');
+    cy.get("[class*=makeStyles-showMobileNav]").should("not.exist");
     cy.get("[data-cy=menuIcon]").click();
     cy.get("[class*=makeStyles-showMobileNav]").should("be.visible");
     cy.findLink("Join The Index").should("have.attr", "href", "/tag-generator");

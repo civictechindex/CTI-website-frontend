@@ -60,7 +60,7 @@ const Header = () => {
         </div>
       </div>
       <div onClick={handleClick} className={classes.mobileContainer}>
-        <MenuRounded data-cy='menuIcon' fontSize='large'/>
+        <MenuRounded data-cy="menuIcon" fontSize="large" />
       </div>
     </nav>
   );

@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
       transition: "transform 1s",
       display: "flex",
       flexDirection: "column",
-      alignItems: 'start',
+      alignItems: "start",
     },
     mobileContainer: {
       display: "flex",
