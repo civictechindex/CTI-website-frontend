@@ -197,6 +197,8 @@ git push --set-upstream origin your-branch-name
 
 Tip: If you simply type `git push` instead, the command will fail, but it will also print out the full command above for an easy copy-paste.
 
+Note: If this is your first time pushing after setting up two factor authentication, you may receive an authentication error and need to type in your github credentials. If you are using the command line to push and the credentials you typed in failed, [follow this link](https://medium.com/@ginnyfahs/github-error-authentication-failed-from-command-line-3a545bfd0ca8) to see how to create a personal access token to use as the password for your credentials.
+
 Now create a new pull request to ask for your updates to be incorporated into the live web site.
 Go to <https://github.com/civictechindex/CTI-website-frontend/pulls> and click on "New pull request".
 Please rename your pull request something descriptive, e.g., "Build a project card".
