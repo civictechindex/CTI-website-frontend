@@ -37,11 +37,7 @@ const HowToUse = () => {
         </div>
       </ol>
       <p className={classes.projectsFooter}>Don&apos;t forget to tell us when you&apos;ve submitted a project or if you would like your organization added to our network!</p>
-      <BottomCallToAction
-        heading='Submitted a project or still need help?'
-        buttonHref='mailto:civictechindex@hackforla.org'
-        buttonText='Contact Us'
-      />
+      <BottomCallToAction heading='Submitted a project or still need help?' />
     </Container>
   )
 }
