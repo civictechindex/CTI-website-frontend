@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
-import NavBreadcrumb from '../../components/NavBreadcrumbs'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import '../../styles.css'
-
-import orgs from './orgs.json'
-
-import axios from 'axios'
-
-import { Chip, Typography } from '@material-ui/core'
+import axios from 'axios';
+import { Chip, Container, Grid, TextField, Typography } from '@material-ui/core';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import { AffiliationQuestionSection } from "./AffilationQuestionSection";
-
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextField from '@material-ui/core/TextField';
+import NavBreadcrumb from '../../components/NavBreadcrumbs'
+import { AffiliationQuestionSection } from "./AffilationQuestionSection";
+import orgs from './orgs.json';
 
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
@@ -178,37 +168,30 @@ const TagCreator = () => {
   }
 
   return (
-    <>
-      <Header />
-      <div style={{ backgroundColor: '#F2F2F2' }}>
-        <Container maxWidth='lg' style={{ padding: '50px' }}>
-          <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
-          <TitleSection />
-          <Grid container>
-            <AffiliationQuestionSection value={value} handleChange={handleChange} />
-            <Grid container id='container-affiliated' style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
-              <OrganizationSelectorSection orgs={orgs}
-                setOrgName={setOrgName}
-                handleEnter={handleEnter}
-                setRepositoryUrl={setRepositoryUrl}
-                topicSearchError={topicSearchError}
-                handleSubmit={handleSubmit}
-                topics={topics} />
-            </Grid>
-            <Grid container id='container-unaffiliated' style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
-              <ProjectRepositoryInput handleEnter={handleEnter}
-                repositoryUrl={repositoryUrl}
-                setRepositoryUrl={setRepositoryUrl}
-                topicSearchError={topicSearchError}
-                handleSubmit={handleSubmit}
-                topics={topics} />
-            </Grid>
-
-          </Grid>
-        </Container>
-      </div>
-      <Footer />
-    </>
+    <Container className='containerGray'>
+      <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
+      <TitleSection />
+      <Grid container>
+        <AffiliationQuestionSection value={value} handleChange={handleChange} />
+        <Grid container id='container-affiliated' style={{ display: value === 'affiliated' ? 'block' : 'none' }}>
+          <OrganizationSelectorSection orgs={orgs}
+            setOrgName={setOrgName}
+            handleEnter={handleEnter}
+            setRepositoryUrl={setRepositoryUrl}
+            topicSearchError={topicSearchError}
+            handleSubmit={handleSubmit}
+            topics={topics} />
+        </Grid>
+        <Grid container id='container-unaffiliated' style={{ display: value === 'unaffiliated' ? 'block' : 'none' }}>
+          <ProjectRepositoryInput handleEnter={handleEnter}
+            repositoryUrl={repositoryUrl}
+            setRepositoryUrl={setRepositoryUrl}
+            topicSearchError={topicSearchError}
+            handleSubmit={handleSubmit}
+            topics={topics} />
+        </Grid>
+      </Grid>
+    </Container>
   )
 }
 

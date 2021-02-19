@@ -1,26 +1,21 @@
 /* eslint-disable sort-keys */
 import React, { useState } from "react";
-// import '../../theme-mui'
-import {
-  Footer,
-  GetStartedCard,
-  Header,
-  NavBreadcrumbs,
-  TitleSection,
-} from "../../components";
 import { Container } from "@material-ui/core";
-import useSearchFaq from './useSearchFaq'
-import FAQCard from '../../components/FAQCard'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
-
+import {
+  GetStartedCard,
+  NavBreadcrumbs,
+  TitleSection,
+} from "../../components";
+import useSearchFaq from './useSearchFaq'
+import FAQCard from '../../components/FAQCard'
 
 const defaultStyle = {
   backgroundColor: '#FFFFFF',
   width: '70%',
 }
-
 
 export default function Faq({ match }) {
 
@@ -59,16 +54,12 @@ export default function Faq({ match }) {
       </>
     );
   }
+
   return (
-    <>
-      <Header />
-      <div className='default-background' style={{ paddingBottom: '80px', width: '100vw' }} >
-        <Container>
-          <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
-          <TitleSection>How can we help?</TitleSection>
-          <SearchBar placeholder={"Search the knowledge base"} />
-        </Container>
-      </div>
+    <Container className='containerDefault'>
+      <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
+      <TitleSection>How can we help?</TitleSection>
+      <SearchBar placeholder={"Search the knowledge base"} />
       {status === 'fetchedFaq' && <FAQCard title={"Frequently Asked Questions:"} faqs={data} />}
       {status === 'fetchedSearch' && (
         <>
@@ -77,9 +68,6 @@ export default function Faq({ match }) {
         </>
       )}
       <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
-
-      <Footer />
-    </>
-
+    </Container>
   );
 }

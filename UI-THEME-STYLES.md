@@ -19,8 +19,8 @@ JSS syntax is idiosyncratic. You may find it a little unusual when you first sta
 
 ### Theme file
 
-The file `src/theme-mui.js` contains an `overrides` section.
-This is the preferred place to style all instances of a component across the website.
+The file `src/theme-mui.js` contains an `overrides` and a `props` section.
+These are the preferred places to style all instances of a component across the website.
 As one example, MUI's `<Button>` has been customized significantly in our theme.
 
 `theme-mui.js` also contains the implementation of our theme's color and font settings, and more.
@@ -29,8 +29,8 @@ As one example, MUI's `<Button>` has been customized significantly in our theme.
 
 The file `src/styles.js` is another place to make global changes, in two ways.
 
-As a first example, the class `'.card240'` (placeholder name) is defined in the `'@global'` section of this document.
-That means that `className='card240'` is available for any element throughout the project.
+As a first example, the class `'.containerDefault'` is defined in the `'@global'` section of this document.
+That means that `className='containerDefault'` is available throughout the project.
 
 Secondly, styling objects can also be added at the top level, not under '@global':
 
@@ -51,27 +51,34 @@ Secondly, styling objects can also be added at the top level, not under '@global
 This way, if you include `const classes = useStyles()` in a component, then `className={classes.uniqueName}` is available in that component to deal with breakpoints, in this theoretical example.
 
 Unlike declaring a plain CSS class in `src/styles.css`, classes here are built programmatically and can reference the MUI theme when declaring spacing, font, color, etc.
-For this reason, declaring global classes here is preferred.
+For this reason, **declaring global classes here is preferred**.
 Feel free to put anything we need here, but avoid putting something here that is not global.
 
 ### Global styles file, CSS
 
 The file `src/styles.css` is a standard CSS file used throughout the project.
 Use this for traditional CSS declarations, but this method is not preferred.
-This file needs to be imported into any component that uses its classes.
-[ _TODO: Is this true? TODO: Are we going to keep this file?_ ]
+[ _TODO: Are we going to keep this file?_ ]
 
 ## Local Styling
 
-At times it will make sense to have a local piece of in-line styling.
+At times it will make sense to have a local piece of in-line styling. But usually we avoid this.
 
 ```javascript
+/* not a good example */
 <Typography variant='h3' style={{ color: '#D8D8D8' }}>
 ```
 
-We have a preference to **avoid in-line styling** like this, especially if you hard-code some value that actually applies project-wide. Rather, we prefer to re-use design, so make this a global change if possible. **Avoid using hard-coded colors, fonts, and other styling in individual components.** There may be cases where a simple piece of local styling makes sense, but be sure it's the best way to go.
+We have a preference to **avoid in-line styling** like this, especially if you hard-code some value that actually applies project-wide. In this example, the color should come from the theme using theme variables and not be hard-coded.
 
-In the case that there is a valid reason to have a local piece of stying just for one component, and it's not a simple static piece of code, we prefer `useTheme()` or `makeStyles()`/`useStyles()` to be able to reference the theme settings or to implement dynamic styling. **The two preferred approaches are along the lines of the following examples.**
+We prefer to re-use design and make global changes, if possible. **Avoid using hard-coded colors, fonts, and other styling in individual components.** There may be cases where a simple piece of local styling makes sense, but be sure it's the best way to go.
+
+```javascript
+/* a fictitious but better example */
+<Typography variant='h3' style={{ somethingUnusual: 'only applies to one component' }}>
+```
+
+In the case that there is a valid reason to have a local piece of stying just for one component, and it's not a simple, stand-alone, static piece of code like above, we prefer `useTheme()` or `makeStyles()`/`useStyles()` to be able to reference the theme settings or to implement dynamic styling. **The two preferred approaches are along the lines of the following examples.**
 
 ### useTheme()
 

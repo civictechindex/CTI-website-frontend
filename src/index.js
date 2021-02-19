@@ -9,7 +9,6 @@ import {
 } from 'react-jss';
 import jss from 'jss';
 import preset from 'jss-preset-default';
-import { BrowserRouter } from 'react-router-dom';
 import WebFont from 'webfontloader';
 import {
   createMuiTheme,
@@ -76,9 +75,7 @@ ReactDOM.render(
       <CssBaseline />
       <RjssThemeProvider theme={themeR}>
         <JssProvider registry={sheets}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <App />
         </JssProvider>
       </RjssThemeProvider>
     </MuiThemeProvider>
