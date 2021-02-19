@@ -39,7 +39,7 @@ const App = () => {
             component={Contributors}
           />
           <Route exact path="/projects" component={Projects} />
-          <Route exact path="/guides" component={Guides} />
+          <Route exact path="/guides/:guide" component={Guides} />
         </Switch>
       </Layout>
     </BrowserRouter>

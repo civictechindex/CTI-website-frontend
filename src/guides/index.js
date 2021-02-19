@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import Container from '@material-ui/core/Container'
 import FormControl from '@material-ui/core/FormControl'
 import Grid from '@material-ui/core/Grid'
@@ -24,17 +25,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Guides = () => {
+const Guides = (props) => {
+  const { history, match } = props
   const classes = useStyles()
-  const [guide, setGuide] = React.useState('colors')
+  const [guide, setGuide] = React.useState(match.params.guide || 'colors')
 
   const handleChange = (event) => {
-    event.target.value && setGuide(event.target.value)
+    setGuide(event.target.value)
+    history.push('/guides/' + event.target.value)
   }
 
   const components = {
     colors: Colors,
-    palette: TypeStandards,
+    'type-standards': TypeStandards,
     typography: Typography,
   }
   const Guide = components[guide]
@@ -67,4 +70,4 @@ const Guides = () => {
   )
 }
 
-export default Guides
+export default withRouter(Guides)
