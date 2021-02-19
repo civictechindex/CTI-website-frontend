@@ -16,6 +16,7 @@ const styles = () => ({
 const NavSublink = ({ heading, route, classes }) => {
   return (
     <MenuItem
+      data-cy="menuItem"
       disableRipple
       disableGutters
       classes={{ root: classes.menuitem }}
