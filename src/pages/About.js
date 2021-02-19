@@ -1,16 +1,12 @@
 import React from "react";
-import "../styles.css";
-
+import { Card, CardMedia, Container, Grid } from "@material-ui/core";
 import {
-  Footer,
   GetStartedCard,
-  Header,
   NavBreadcrumbs,
   PictureCard,
   TitleSection,
 } from "../components";
-
-import { Card, CardMedia, Container, Grid } from "@material-ui/core";
+import "../styles.css";
 
 const About = () => {
   const crumbs = [
@@ -48,20 +44,20 @@ const About = () => {
   }
 
   return (
-    <>
-      <Header />
-      <div className='default-background' style={{ width: '100vw' }}>
-        <Container>
-          <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
-          <TitleSection>A movement to index every open source civic tech project on GitHub</TitleSection>
-          <VideoSection />
-          <MarketingSection />
-        </Container>
-        <PictureCard items={pictureMarketingPoints} />
-        <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/tag-generator" />
-      </div>
-      <Footer />
-    </>
+    <Container className="containerDefault">
+      <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
+      <TitleSection>
+        A movement to index every open source civic tech project on GitHub
+      </TitleSection>
+      <VideoSection />
+      <MarketingSection />
+      <PictureCard items={pictureMarketingPoints} />
+      <GetStartedCard
+        headerTitle="Ready to get started?"
+        buttonText="Tag your Project"
+        buttonHref="/tag-generator"
+      />
+    </Container>
   );
 };
 
