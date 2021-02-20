@@ -1,8 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
-  footerContainer: {
+  containerFooter: {
     backgroundColor: theme.palette.grey[900],
+  },
+  footerContainer: {
     color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
     paddingTop: theme.spacing(4),

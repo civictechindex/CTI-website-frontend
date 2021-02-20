@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid'
 import useStyles from './styles'
+import { Container } from '@material-ui/core'
 
 const SocialSection = () => {
   const classes = useStyles()
@@ -40,7 +41,7 @@ const Footer = () => {
   const classes = useStyles()
 
   return (
-    <div>
+    <Container className={classes.containerFooter}>
       <Grid container className={classes.footerContainer}>
         <Grid item xs={0} sm={1} />
         <Grid item xs={4} sm={2}>
@@ -73,7 +74,7 @@ const Footer = () => {
           <p><a href="/">View Attributions</a></p>
         </Grid>
       </Grid>
-    </div>
+    </Container>
   )
 }
 
