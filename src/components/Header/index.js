@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import NavLink from "./NavLink.js";
 import NavSublink from "./NavSublink.js";
 import { MenuRounded } from "@material-ui/icons";
+import { Container } from "@material-ui/core";
 const Header = () => {
   const classes = useStyles();
   const [isBurgerOpen, setIsBurgerOpen] = useState(null);
@@ -15,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <nav className={classes.nav}>
+    <Container className={classes.containerHeader}>
       <div className={classes.background}></div>
       <Link
         to="/home"
@@ -62,7 +63,7 @@ const Header = () => {
       <div onClick={handleClick} className={classes.mobileContainer}>
         <MenuRounded data-cy="menuIcon" fontSize="large" />
       </div>
-    </nav>
+    </Container>
   );
 };
 

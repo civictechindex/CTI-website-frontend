@@ -1,13 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  nav: {
-    position: "relative",
-    height: "100px",
+  containerHeader: {
     backgroundColor: theme.palette.background.default,
-    fontSize: "16px",
-    fontFamily: theme.typography.fontFamily,
-    zIndex: "900",
+    height: "100px",
   },
   flexContainer: {
     position: "relative",
