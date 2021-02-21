@@ -48,7 +48,8 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
   unaffiliatedWrapper: {
-    width: '100%',
+    marginLeft: theme.spacing(-3),
+    marginRight: theme.spacing(-3),
     textAlign: 'center',
     backgroundColor: theme.palette.grey[100],
     padding: '1rem 0',
