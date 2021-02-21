@@ -23,13 +23,6 @@ const GREY900 = '#242424' // default = #212121
 
 // themeSettings - modify Material-UI baseline theme
 const themeSettings = {
-  breakpoints: {
-    xs: 0,
-    sm: 768,
-    md: 1024,
-    lg: 1280,
-    xl: 1920,
-  },
   overrides: {
     MuiButton: {
       root: {
@@ -135,6 +128,9 @@ const themeSettings = {
     },
   },
   props: {
+    MuiContainer: {
+      maxWidth: 'xl',
+    },
     MuiInputAdornment: {
       disableTypography: true, // this changes startAdornment text color to primary
     },

@@ -1,5 +1,7 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import Layout from "./components/common/Layout";
 
 import Home from './pages/Home'
 import About from './pages/About'
@@ -34,6 +36,31 @@ const App = () => {
       </Switch>
     </>
   )
+    <BrowserRouter>
+      <Layout>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/about" component={About} />
+          <Route
+            exact
+            path="/adding-projects-to-the-index"
+            component={HowToUse}
+          />
+          <Route exact path="/donate" component={Donation} />
+          <Route exact path="/tag-generator" component={TagCreator} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/radicalcollaboration/:faq" component={Faq} />
+          <Route
+            exact
+            path="/contributors/:affiliation"
+            component={Contributors}
+          />
+          <Route exact path="/projects" component={Projects} />
+          <Route exact path="/guides" component={Guides} />
+        </Switch>
+      </Layout>
+    </BrowserRouter>
+  );
 }
 
 export default App

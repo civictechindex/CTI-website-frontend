@@ -17,9 +17,9 @@ describe('Contributors Page', () => {
     cy.get('[href*=codeforamerica]').parents('[class*=dropdown]').within(() => {
       cy.get('#dropdownChevron').click()
     })
-    cy.get('[href*=codeforamerica]').parents('[class*=container]').within(() => {
+    cy.get('[href*=codeforamerica]').parents('[class^=makeStyles-container]').within(() => {
       cy.contains('Code for Anchorage');
-      cy.get('[class*=thumbnailWrapper]').should('have.length', 86)
+      cy.get('[class^=makeStyles-thumbnailWrapper]').should('have.length', 86)
     })
   })
 })
