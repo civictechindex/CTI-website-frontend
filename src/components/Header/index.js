@@ -61,7 +61,7 @@ const Header = () => {
           </p>
           <div className={classes.subLinksContainer}>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
+            <Link to='/radicalcollaboration/sharethecti' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
             <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Volunteer with Us</Link>
             <Link to='/radicalcollaboration/faq' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
           </div>
