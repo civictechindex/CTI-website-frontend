@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Chip, Container, Grid, TextField, Typography } from '@material-ui/core';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import NavBreadcrumb from '../../components/NavBreadcrumbs'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
@@ -23,7 +23,7 @@ const TitleSection = () => {
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
   return topicArray.map((name, key) =>
-    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} data-cy='topic-tag' />
+    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInRoundedIcon />} data-cy='topic-tag' />
   )
 }
 
