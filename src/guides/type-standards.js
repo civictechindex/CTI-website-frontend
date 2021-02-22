@@ -33,7 +33,7 @@ const ShowTypeStandards = () => {
       <Typography variant='h1'>Type Standards</Typography>
       <Typography variant='h2' color='secondary' gutterBottom>Text &amp; Background Usage</Typography>
       <Grid container spacing={2} className={classes.textGridContainer}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Card className='card240'>
             <CardContent>
               <Typography variant='h6'>Header</Typography>
@@ -42,7 +42,7 @@ const ShowTypeStandards = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Card className='card241'>
             <CardContent>
               <Typography variant='h6'>Header</Typography>
@@ -51,7 +51,7 @@ const ShowTypeStandards = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Card className='card242'>
             <CardContent>
               <Typography variant='h6'>Header</Typography>
@@ -61,7 +61,7 @@ const ShowTypeStandards = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Card className='card244'>
             <CardContent>
               <Typography variant='h6'>Header</Typography>
@@ -71,14 +71,14 @@ const ShowTypeStandards = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Card>
             <CardContent>
               <Button>Button Label</Button>
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Card>
             <CardContent>
               <Button disabled>Disabled Button Label</Button>
