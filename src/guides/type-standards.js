@@ -10,9 +10,6 @@ import Link from './Link'
 const useStyles = makeStyles((theme) => ({
   textGridContainer: {
     paddingBottom: theme.spacing(4),
-    '& .MuiGrid-item': {
-      textAlign: 'center',
-    }
   },
 }))
 

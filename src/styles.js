@@ -5,6 +5,7 @@ const useStyles = makeStyles(theme => ({
     '.card240': {
       backgroundColor: theme.palette.background.dark,
       padding: theme.spacing(2),
+      textAlign: 'center',
       '& h6': {
         color: theme.palette.text.light,
       },
@@ -15,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     '.card241': {
       backgroundColor: theme.palette.background.primary,
       padding: theme.spacing(2),
+      textAlign: 'center',
       '& h6': {
         color: theme.palette.text.bright,
       },
@@ -25,6 +27,7 @@ const useStyles = makeStyles(theme => ({
     '.card242': {
       backgroundColor: theme.palette.background.light,
       padding: theme.spacing(2),
+      textAlign: 'center',
       '& h6': {
         color: theme.palette.secondary.dark,
       },
@@ -32,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     '.card244': {
       backgroundColor: theme.palette.background.secondary,
       padding: theme.spacing(2),
+      textAlign: 'center',
       '& h6': {
         color: theme.palette.secondary.dark,
       },

@@ -16,7 +16,7 @@ const BottomCallToAction = ({ color, buttonHref = defaultButtonHref, buttonText 
   };
 
   return (
-    <Box style={boxStyle} py={8}>
+    <Box style={boxStyle} py={8} mx={-3}>
       <Grid container direction='column' justify='center' alignItems='center' spacing={4}>
         <Grid item>
           <Typography variant='h2'>{heading}</Typography>
