@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Colors from './colors'
 import TypeStandards from './type-standards'
 import Typography from './typography'
+import Buttons from './buttons';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,6 +37,7 @@ const Guides = (props) => {
   }
 
   const components = {
+    buttons: Buttons,
     colors: Colors,
     'type-standards': TypeStandards,
     typography: Typography,
@@ -56,6 +58,7 @@ const Guides = (props) => {
               IconComponent={ExpandMoreRoundedIcon}
             >
               <MenuItem value=''><em>Select a Guide</em></MenuItem>
+              <MenuItem value='buttons'>Buttons</MenuItem>
               <MenuItem value='colors'>Colors</MenuItem>
               <MenuItem value='type-standards'>Type Standards</MenuItem>
               <MenuItem value='typography'>Typography</MenuItem>
