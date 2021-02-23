@@ -2,24 +2,23 @@
 import { deepmerge } from '@material-ui/utils';
 
 // Colors - Primary
-const DARK_BLUE = '#0F1D2F'
-const TEAL = '#004364'
-const LIGHT_BLUE = '#0D99C6'
-// const LIGHT_BLUE_VARIANT = '#0CB2E7'
-const LIGHT_BLUE_VARIANT = '#5FCAF9'
-const LIGHT_BLUE_HOVER = '#006B95'
-const YELLOW = '#FFE06D'
-const WHITE = '#FEFEFE'
+const DARK_BLUE = '#0F1D2F';
+const TEAL = '#004364';
+const LIGHT_BLUE = '#0D99C6';
+const LIGHT_BLUE_VARIANT = '#5FCAF9';
+const YELLOW = '#FFE06D';
+const WHITE = '#FEFEFE';
 // Colors - Secondary
-const DARK_GRAY = '#6D6E74'
-const LIGHT_GRAY = '#F2F2F2'
-const RED = '#D20E0E'
-const PURPLE = '#551A8B'
+const DARK_GRAY = '#6D6E74';
+const LIGHT_GRAY = '#F2F2F2';
+const RED = '#D20E0E';
+const PURPLE = '#551A8B';
 // Colors - Grey
-const GREY100 = '#F4F4F4' // default = #f5f5f5
-const GREY200 = '#E9E9E9' // default = #eeeeee
-const GREY300 = '#D8D8D8' // default = #e0e0e0
-const GREY900 = '#242424' // default = #212121
+const GREY100 = '#F4F4F4'; // default = #f5f5f5
+const GREY200 = '#E9E9E9'; // default = #eeeeee
+const GREY300 = '#D8D8D8'; // default = #e0e0e0
+const GREY900 = '#242424'; // default = #212121
+
 const defaultButtonSettings = {
   backgroundColor: LIGHT_BLUE,
   color: WHITE,
@@ -253,7 +252,8 @@ const themeSettings = {
       fontWeight: 700,
       lineHeight: 1.25,
     },
-    body1: { // paragraph
+    body1: {
+      // paragraph
       color: DARK_BLUE,
       fontSize: '1rem',
       fontWeight: 400,
@@ -265,7 +265,8 @@ const themeSettings = {
       fontWeight: 700,
       lineHeight: 1.35,
     },
-    button: { // unused
+    button: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
@@ -275,20 +276,23 @@ const themeSettings = {
       fontWeight: 400,
       lineHeight: 1.35,
     },
-    overline: { // unused
+    overline: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle1: { // unused
+    subtitle1: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle2: { // unused
+    subtitle2: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
   },
-}
+};
 
 // customThemeSettings - extend Material-UI theming
 const customThemeSettings = {
@@ -321,8 +325,8 @@ const customThemeSettings = {
       fontFamily: 'Source Code Pro, monospace',
     },
   },
-}
+};
 
-const theme = deepmerge(themeSettings, customThemeSettings)
+const theme = deepmerge(themeSettings, customThemeSettings);
 
-export default theme
+export default theme;
