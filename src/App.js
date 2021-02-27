@@ -10,7 +10,7 @@ import Faq from './pages/Faq';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
-import Projects from './pages/Projects';
+import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
 
 import Placeholder from './pages/Placeholder';
@@ -29,7 +29,7 @@ const App = () => {
           <Route exact path='/contributors/:affiliation' component={Contributors} />
           <Route exact path='/donate' component={Donation} />
           <Route exact path='/home' component={Home} />
-          <Route exact path='/projects' component={Projects} />
+          <Route exact path='/projects' component={SearchProjects} />
           <Route exact path='/tag-generator' component={TagCreator} />
           <Route exact path='/radicalcollaboration/:faq' component={Faq} />
           <Route path='/guides/:guide' component={Guides} />
