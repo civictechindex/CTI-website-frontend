@@ -11,7 +11,10 @@ checks:
   identical-code:
     enabled: true
 exclude_patterns:
-- "cypress/*"
+- "**/*.md"
+- "cypress/"
+- "public/"
+- "src/guides/"
 plugins: 
   eslint:
     enabled: true
