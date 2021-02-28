@@ -1,5 +1,8 @@
 import React from 'react';
-import Container from "@material-ui/core/Container";
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 import BottomCallToAction from '../../components/BottomCallToAction';
 import BreadCrumbs from "../../components/NavBreadcrumbs.js";
@@ -18,39 +21,39 @@ const Donation = () => {
 
   return (
     <Container className="containerGray">
-      <section className={classes.commonSection + ' ' + classes.titleSection}>
+      <Container className={classes.commonSection + ' ' + classes.titleSection}>
         <BreadCrumbs crumbs={breadCrumbLinks} />
-        <h2 className={classes.donateTitle}>Make a Donation</h2>
-      </section>
+        <Typography variant='h2' className={classes.donateTitle}>Make a Donation</Typography>
+      </Container>
 
-      <section className={classes.commonSection + ' ' + classes.infoSection}>
-        <div className={classes.infoText}>
-          <p className={classes.infoDescription}>
+      <Container className={classes.commonSection + ' ' + classes.infoSection}>
+        <Box className={classes.infoText}>
+          <Typography variant='body1' className={classes.infoDescription}>
             The Civic Tech Index is being developed by Hack For LA,
             and is currently taking donations through Code For America.
-          </p>
+          </Typography>
 
-          <p className={classes.infoSteps}>
+          <Typography variant='body1' className={classes.infoSteps}>
             1. Please follow this link to the Code For America{' '}
             <a
               className={classes.styledLinkMobile + ' ' + classes.styledLink}
               href='https://www.codeforamerica.org/donate'>
               donation form.
             </a>
-          </p>
+          </Typography>
 
-          <p className={classes.infoSteps}>
+          <Typography variant='body1' className={classes.infoSteps}>
             2. To make a donation to the Civic Tech Index, please
             select <strong>Hack For LA</strong> under the brigades listed.
-          </p>
-        </div>
-
+          </Typography>
+        </Box>
         <img
           alt='A gif demonstrating the use of the donation form'
           className={classes.infoGif}
           src='./images/CTI-Donate-to-HfLA.gif' />
-        <p className={classes.infoThank}>We appreciate your contribution.</p>
-      </section>
+
+        <Typography variant='body1' className={classes.infoThank}>We appreciate your contribution.</Typography>
+      </Container>
       <BottomCallToAction heading='Want to support in other ways?' />
     </Container>
   );

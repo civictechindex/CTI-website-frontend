@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   infoDescription: {
-
+    fontSize: 'clamp(12px, 1.5vw, 28px)',
   },
 
   infoGif: {
@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     display: 'inline-block',
     fontFamily: theme.typography.fontFamily,
-    fontSize: 'clamp(12px, 1.5vw, 28px)',
     letterSpacing: '0.05vw',
     padding: '3vw 1vw 0 0',
     verticalAlign: 'top',
