@@ -52,34 +52,6 @@ const Header = () => {
           />
           <NavSublink heading="Affiliated" route="/contributors/affiliated" />
         </NavLink>
-
-        <div className={classes.linksContainer}>
-          <Link to='/about' className={classes.links} onClick={() => setIsBurgerOpen(false)}>About</Link>
-        </div>
-
-        <div className={classes.linksContainer}>
-          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            <Link to='/contributors/all' className={classes.links} >Contributors</Link>
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
-          </p>
-          <div className={classes.subLinksContainer}>
-            <Link to='/contributors/affiliated' className={classes.subLinks} >Affiliated</Link>
-            <Link to='/contributors/unaffiliated' className={classes.subLinks} >Unaffiliated</Link>
-          </div>
-        </div>
-
-        <div className={classes.linksContainer}>
-          <p className={`${classes.links} ${classes.linksWithArrows}`} tabIndex='0'>
-            Radical Collaboration
-            <img className={classes.linksArrows} src='/images/link-arrow.png' alt='arrow for about link' tabIndex='0' />
-          </p>
-          <div className={classes.subLinksContainer}>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Donate</Link>
-            <Link to='/radicalcollaboration/sharethecti' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Share the CTI</Link>
-            <Link to='/' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>Volunteer with Us</Link>
-            <Link to='/radicalcollaboration/faq' className={classes.subLinks} onClick={() => setIsBurgerOpen(false)}>FAQ</Link>
-          </div>
-        </div>
         <div className={classes.searchContainer}>
           <NavButton href="/about" variant="blue">
             Search Projects

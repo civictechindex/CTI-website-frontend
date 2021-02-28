@@ -20,47 +20,24 @@ import useStyles from './styles'
 const App = () => {
   useStyles()
   return (
-    <>
-      <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route exact path='/about' component={About} />
-        <Route exact path='/adding-projects-to-the-index' component={HowToUse} />
-        <Route exact path='/donate' component={Donation} />
-        <Route exact path='/tag-generator' component={TagCreator} />
-        <Route exact path='/home' component={Home} />
-        <Route exact path='/radicalcollaboration/:faq' component={Faq} />
-        <Route exact path='/radicalcollaboration/:sharethecti' component={ShareTheCti} />
-        <Route exact path='/contributors/:affiliation' component={Contributors} />
-        <Route exact path='/projects' component={Projects} />
-        <Route exact path='/guides' component={Guides} />
-      </Switch>
-    </>
-  )
     <BrowserRouter>
       <Layout>
         <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/about" component={About} />
-          <Route
-            exact
-            path="/adding-projects-to-the-index"
-            component={HowToUse}
-          />
-          <Route exact path="/donate" component={Donation} />
-          <Route exact path="/tag-generator" component={TagCreator} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/radicalcollaboration/:faq" component={Faq} />
-          <Route
-            exact
-            path="/contributors/:affiliation"
-            component={Contributors}
-          />
-          <Route exact path="/projects" component={Projects} />
-          <Route exact path="/guides" component={Guides} />
+          <Route exact path='/' component={Landing} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/adding-projects-to-the-index' component={HowToUse} />
+          <Route exact path='/donate' component={Donation} />
+          <Route exact path='/tag-generator' component={TagCreator} />
+          <Route exact path='/home' component={Home} />
+          <Route exact path='/radicalcollaboration/:faq' component={Faq} />
+          <Route exact path='/sharethecti' component={ShareTheCti} />
+          <Route exact path='/contributors/:affiliation' component={Contributors} />
+          <Route exact path='/projects' component={Projects} />
+          <Route exact path='/guides' component={Guides} />
         </Switch>
       </Layout>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App
