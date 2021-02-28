@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Chip, Container, Grid, TextField, Typography } from '@material-ui/core';
+import { Button, Chip, Container, Grid, TextField, Typography } from '@material-ui/core';
 import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import NavBreadcrumb from '../../components/NavBreadcrumbs'
@@ -66,7 +66,7 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, 
       </Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
         {topicSearchError}
-        <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
+        <div align='center'><Button onClick={handleSubmit} id='submitButton'>Find Project</Button></div>
       </Grid>
       <Grid>{topics}</Grid>
     </>
