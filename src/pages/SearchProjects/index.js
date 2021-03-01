@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 import NavBreadcrumb from '../../components/NavBreadcrumbs';
 import ProjectCard from '../../components/ProjectCard';
@@ -45,6 +46,7 @@ const renderCard = (i) => {
 };
 
 const Projects = () => {
+  const [showResults, setShowResults] = useState(true);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
   const [resultCount, setResultCount] = useState('');
@@ -64,6 +66,7 @@ const Projects = () => {
             </Grid>
           );
           setResults(items);
+          setShowResults(true);
         });
     }
   };

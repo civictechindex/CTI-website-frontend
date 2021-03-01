@@ -24,6 +24,17 @@ const GREY900 = '#242424' // default = #212121
 // themeSettings - modify Material-UI baseline theme
 const themeSettings = {
   overrides: {
+    MuiAccordion: {
+      root: {
+        padding: 0,
+      },
+    },
+    MuiAccordionSummary: {
+      root: {
+        minHeight: 32,
+        padding: 0,
+      },
+    },
     MuiButton: {
       root: {
         backgroundColor: LIGHT_BLUE,
@@ -36,7 +47,7 @@ const themeSettings = {
           color: DARK_GRAY,
           backgroundColor: LIGHT_GRAY,
         },
-        "&:hover": {
+        '&:hover': {
           backgroundColor: LIGHT_BLUE_HOVER,
         },
         '&:active': {
@@ -73,6 +84,11 @@ const themeSettings = {
       },
       formControl: {
         color: DARK_GRAY,
+      },
+    },
+    MuiListItem: {
+      root: {
+        padding: 0,
       },
     },
     MuiPaper: {
@@ -133,6 +149,9 @@ const themeSettings = {
     },
     MuiInputAdornment: {
       disableTypography: true, // this changes startAdornment text color to primary
+    },
+    MuiPaper: {
+      elevation: 0,
     },
     MuiTextField: {
       variant: 'outlined',
@@ -210,7 +229,8 @@ const themeSettings = {
       fontWeight: 700,
       lineHeight: 1.25,
     },
-    body1: { // paragraph
+    body1: {
+      // paragraph
       color: DARK_BLUE,
       fontSize: '1rem',
       fontWeight: 400,
@@ -222,7 +242,8 @@ const themeSettings = {
       fontWeight: 700,
       lineHeight: 1.35,
     },
-    button: { // unused
+    button: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
@@ -232,20 +253,23 @@ const themeSettings = {
       fontWeight: 400,
       lineHeight: 1.35,
     },
-    overline: { // unused
+    overline: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle1: { // unused
+    subtitle1: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle2: { // unused
+    subtitle2: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
   },
-}
+};
 
 // customThemeSettings - extend Material-UI theming
 const customThemeSettings = {
