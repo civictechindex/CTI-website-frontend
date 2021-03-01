@@ -6,6 +6,9 @@ import Grid from '@material-ui/core/Grid';
 import NavBreadcrumb from '../../components/NavBreadcrumbs';
 import ProjectCard from '../../components/ProjectCard';
 import SearchBar from '../../components/SearchBar';
+
+import RefineResults from './RefineResults';
+
 import '../../styles.css';
 
 const crumbs = [
@@ -68,21 +71,41 @@ const Projects = () => {
   return (
     <Container className='containerGray'>
       <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
-      <Grid Container>
+      <Grid container className='card241'>
         <Grid item xs={12}>
-          <h1 style={{ color: '#004364' }}>Search Projects</h1>
+          <Typography variant='h1' color='textPrimary'>
+            Search Projects
+          </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={2} />
+        <Grid item xs={8}>
           <SearchBar value={query} onInput={(e) => setQuery(e.target.value)} placeholder='Search the Civic Tech Index' onKeyPress={handleSubmit} />
         </Grid>
-        <Grid container xs={12}>
-          <Grid item xs={12}>
-            <Grid container={9}>
-              <div style={{ width: '70%' }}>{resultCount}</div>
+        <Grid item xs={2} />
+      </Grid>
+      <Grid container className='card243'>
+        <Grid container item xs={12}>
+          <Grid item xs={1} />
+          <Grid item xs={3}></Grid>
+          <Grid item xs={1} />
+          <Grid item xs={6}>
+            {resultCount}
+          </Grid>
+          <Grid item xs={1} />
+        </Grid>
+        {showResults && (
+          <Grid container item xs={12}>
+            <Grid item xs={1} />
+            <Grid item xs={3}>
+              <RefineResults />
+            </Grid>
+            <Grid item xs={1} />
+            <Grid item xs={6}>
               {results}
             </Grid>
+            <Grid item xs={1} />
           </Grid>
-        </Grid>
+        )}
       </Grid>
     </Container>
   );
