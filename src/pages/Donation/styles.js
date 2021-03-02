@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   infoDescription: {
-    fontSize: 'clamp(12px, 1.5vw, 28px)',
+    fontSize: '20px',
   },
 
   infoGif: {
@@ -12,14 +12,11 @@ const useStyles = makeStyles(theme => ({
   },
 
   infoSteps: {
-    fontSize: 'clamp(11px, 1.3vw, 25px)',
+    fontSize: '18px',
     marginTop: '2.5vw',
   },
 
   infoThank: {
-    fontSize: 'clamp(16px, 1.75vw, 28px)',
-    fontWeight: 'bold',
-    margin: '2.5vw',
     textAlign: 'center',
   },
 

@@ -56,7 +56,7 @@ const Donation = () => {
         </Grid>
         <Grid item xs={false} sm={1} />
         <Grid item xs={12}>
-          <Typography variant='body1' className={classes.infoThank}>We appreciate your contribution.</Typography>
+          <Typography variant='h4' className={classes.infoThank}>We appreciate your contribution.</Typography>
         </Grid>
       </Grid>
       <BottomCallToAction heading='Want to support in other ways?' />
