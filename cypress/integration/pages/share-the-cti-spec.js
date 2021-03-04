@@ -21,7 +21,7 @@ describe('Share the CTI Page', () => {
   })
 
   it('media info loads', () => {
-    cy.contains('Brand Assets and Graphics')
+    cy.contains('Brand Assets & Graphics')
   })
 
 
