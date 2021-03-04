@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Chip, Container, Grid, TextField, Typography } from '@material-ui/core';
 import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import NavBreadcrumb from '../../components/NavBreadcrumbs'
+import NavBreadcrumbs from '../../components/NavBreadcrumbs'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import orgs from './orgs.json';
 
@@ -169,7 +169,7 @@ const TagCreator = () => {
 
   return (
     <Container className='containerGray'>
-      <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
+      <NavBreadcrumbs crumbs={crumbs} color="#0F1D2F" />
       <TitleSection />
       <Grid container>
         <AffiliationQuestionSection value={value} handleChange={handleChange} />

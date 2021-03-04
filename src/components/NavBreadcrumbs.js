@@ -1,42 +1,37 @@
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import { Breadcrumbs, Link, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-const defaultBreadcrumb = {
-  fontFamily: 'Work Sans',
-  fontSize: '3vw',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  letterSpacing: '0px',
-  lineHeight: '24px',
-  textAlign: 'left',
-}
+const useStyles = makeStyles({
+  root: props => ({
+    padding: '25px',
+    color: props.color,
+  }),
+});
 
 /**
  * Navigation enabled breadcrumb.
  *
  * You may pass an array containing an object of
- * <NavBreadcrumb crumbs={[{name: 'Home', href='/'}]}
+ * <NavBreadcrumbs crumbs={[{name: 'Home', href='/'}]}
  * @param {Array} crumbs Array of name & href pairs.
  * @param {String} color Use color scheme
  */
-export default function NavBreadcrumb(props) {
-  const crumbs = props.crumbs
+export default function NavBreadcrumbs(props) {
+  const crumbs = props.crumbs;
+  const classes = useStyles(props)
 
   const displayCrumbs = crumbs.map((i,idx) => {
     if (i.href) {
-      return <Link key={idx} color="inherit" href={i.href}> {i.name}</Link>
+      return <Link key={idx} color="inherit" href={i.href}>{i.name}</Link>
     } else {
       return <Typography key={idx} color="inherit">{i.name}</Typography>
     }
   });
 
   return (
-    <div style={defaultBreadcrumb}>
-      <Breadcrumbs aria-label="breadcrumb" style={{ color:props.color, padding: '25px' }}>
-        {displayCrumbs}
-      </Breadcrumbs>
-    </div>
+    <Breadcrumbs aria-label="breadcrumb" className={classes.root}>
+      {displayCrumbs}
+    </Breadcrumbs>
   );
 }

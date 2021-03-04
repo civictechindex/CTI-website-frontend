@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Container, Typography } from '@material-ui/core';
 
 import BottomCallToAction from '../../components/BottomCallToAction';
-import NavBreadCrumbs from "../../components/NavBreadcrumbs.js";
+import NavBreadcrumbs from "../../components/NavBreadcrumbs.js";
 
 import useStyles from './styles.js';
 
@@ -21,7 +21,7 @@ const Donation = () => {
       <Grid container spacing={2}>
         <Grid item xs={false} sm={1} />
         <Grid item xs={12} sm={10}>
-          <NavBreadCrumbs crumbs={breadCrumbLinks} />
+          <NavBreadcrumbs crumbs={breadCrumbLinks} />
         </Grid>
         <Grid item xs={false} sm={1} />
         <Grid item xs={false} sm={1} />
