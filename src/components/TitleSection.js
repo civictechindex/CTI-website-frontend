@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         return theme.palette.warning.main
       }
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '36px',
     },
     marginBottom: '0.825em',
