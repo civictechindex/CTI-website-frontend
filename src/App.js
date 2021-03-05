@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
 import Layout from "./components/common/Layout";
-
 import Home from './pages/Home'
 import About from './pages/About'
 import Donation from './pages/Donation';
@@ -12,7 +10,7 @@ import Contributors from './pages/Contributors'
 import Landing from './pages/Landing'
 import Projects from './pages/Projects'
 import TagCreator from './pages/TagCreator'
-
+import SupportUs from './pages/SupportUs'
 import Guides from './guides/'
 import useStyles from './styles'
 
@@ -40,6 +38,8 @@ const App = () => {
           />
           <Route exact path="/projects" component={Projects} />
           <Route exact path="/guides" component={Guides} />
+          <Route exact path="/support" component={SupportUs} />
+
         </Switch>
       </Layout>
     </BrowserRouter>
