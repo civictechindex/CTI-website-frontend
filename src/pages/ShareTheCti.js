@@ -216,7 +216,13 @@ const ButtonSection = () => {
         <Typography variant='body1' color='textSecondary'  > (All sizes & formats listed above in a .zip file)</Typography>
       </Grid>
     </Grid>
-
+  )
+}
+const StarMediaTypogrphy = (props) =>{
+  return (
+    <Grid item style={{ paddingBottom:'32px' }}>
+      <Typography variant='body1' align='center'  >{props.children}</Typography>
+    </Grid>
   )
 }
 
@@ -229,9 +235,7 @@ const StarMediaSection = () => {
         <Grid item style={{ padding:' 32px 0 32px' }}>
           <img src='/images/image3.svg' alt='StarCount logo' />
         </Grid>
-        <Grid item style={{ paddingBottom:'32px' }}>
-          <Typography variant='body1' align='center' >Don’t forget to star our repository</Typography>
-        </Grid>
+        <StarMediaTypogrphy>Don’t forget to star our repository</StarMediaTypogrphy>
       </Grid>
       <Hidden mdUp>
         <Grid item xs={1} ></Grid>
@@ -241,9 +245,7 @@ const StarMediaSection = () => {
         <Grid item  >
           <img src='/images/Medium_logo_Monogram.svg' alt='Medium logo' />
         </Grid>
-        <Grid item style={{ paddingBottom:'32px' }}>
-          <Typography variant='body1' align='center'>  Mention or write about us on Medium</Typography>
-        </Grid>
+        <StarMediaTypogrphy>Mention or write about us on Medium</StarMediaTypogrphy>
       </Grid>
       <Hidden mdUp>
         <Grid item xs={1} ></Grid>
@@ -253,9 +255,7 @@ const StarMediaSection = () => {
         <Grid item style={{ padding:' 16px 0 32px' }}>
           <img src='/images/mail.png' alt='Mail logo' />
         </Grid>
-        <Grid item style={{ paddingBottom:'32px' }}>
-          <Typography variant='body1' align='center'  >Send an email to your project admin with suggested tags for your repository</Typography>
-        </Grid>
+        <StarMediaTypogrphy>Send an email to your project admin with suggested tags for your repository</StarMediaTypogrphy>
       </Grid>
       <Grid item xs={1} ></Grid>
     </Grid>
