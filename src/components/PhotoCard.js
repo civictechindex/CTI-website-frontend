@@ -46,6 +46,14 @@ const CardItem = (props) => {
                             height: '169px', marginTop: '50px', textAlign: 'left', marginLeft: '16px', marginRight: '16px'
                         }}>
                             Every gift helps us continue our work.
+                            <br></br>
+                            <Typography style={{ textAlign: 'left', marginLeft: '0px', marginRight: '0px', size: '20px', lineHeight: '24px', marginTop: '5px' }}>
+                                Your tax-deductible gift today will help make more open-source solutions easily available for the communities
+                                who need it the most.
+                            </Typography>
+                            <Typography variant="h6" >
+                                Thank you.
+                            </Typography>
                         </Typography>
 
                     </CardContent>
