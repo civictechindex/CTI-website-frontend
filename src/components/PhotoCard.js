@@ -19,12 +19,14 @@ const useStyles = makeStyles(
         },
         cardHeading: {
             color: theme.palette.secondary.dark
+        },
+        cardParagraphHeading: {
+            color: theme.palette.primary.main
         }
     })
 );
 
 const CardItem = (props) => {
-    //const theme = useTheme();
     const classes = useStyles();
     return (
         <Grid item xs={12} lg={4} style={{ margin: 'auto' }} align='center' >
@@ -36,13 +38,16 @@ const CardItem = (props) => {
                         <img style={{ width: '328px', height: '192px' }} src={props.src} alt={props.alt} />
                     </CardMedia>
                     <CardContent>
-                        <Typography className={classes.cardHeading} gutterBottom variant="h4">
-                            Lizard
+                        <Typography className={classes.cardHeading} style={{ position: 'absolute', height: '38px', left: '16px', top: '203px', fontSize: '28px', lineHeight: '38px' }} gutterBottom variant="h4">
+                            Donate
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                            across all continents except Antarctica
-                </Typography>
+
+                        <Typography variant="h6" className={classes.cardParagraphHeading} style={{
+                            height: '169px', marginTop: '50px', textAlign: 'left', marginLeft: '16px', marginRight: '16px'
+                        }}>
+                            Every gift helps us continue our work.
+                        </Typography>
+
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
