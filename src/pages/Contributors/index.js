@@ -116,7 +116,6 @@ export default function Contributors({ match }) {
               { name: "Home", href: "/" },
               { name: "Contributors", href: "/contributors" },
             ]}
-            color="white"
           />
         </div>
         <div className={classes.sectionContainer}>

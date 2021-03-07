@@ -21,7 +21,7 @@ const Donation = () => {
       <Grid container spacing={2}>
         <Grid item xs={false} sm={1} />
         <Grid item xs={12} sm={10}>
-          <NavBreadcrumbs crumbs={breadCrumbLinks} />
+          <NavBreadcrumbs crumbs={breadCrumbLinks} color="secondary"/>
         </Grid>
         <Grid item xs={false} sm={1} />
         <Grid item xs={false} sm={1} />

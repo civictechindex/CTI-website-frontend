@@ -169,7 +169,7 @@ const TagCreator = () => {
 
   return (
     <Container className='containerGray'>
-      <NavBreadcrumbs crumbs={crumbs} color="#0F1D2F" />
+      <NavBreadcrumbs crumbs={crumbs} color="secondary" />
       <TitleSection />
       <Grid container>
         <AffiliationQuestionSection value={value} handleChange={handleChange} />
