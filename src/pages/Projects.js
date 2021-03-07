@@ -3,7 +3,7 @@ import axios from "axios";
 import Container from "@material-ui/core/Container";
 import Grid from '@material-ui/core/Grid';
 
-import NavBreadcrumb from '../components/NavBreadcrumbs'
+import NavBreadcrumbs from '../components/NavBreadcrumbs'
 import ProjectCard from '../components/ProjectCard'
 import SearchBar from '../components/SearchBar'
 import '../styles.css'
@@ -51,7 +51,7 @@ const Projects = () => {
 
   return (
     <Container className='containerGray'>
-      <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
+      <NavBreadcrumbs crumbs={crumbs} color="secondary" />
       <Grid Container>
         <Grid item xs={12}>
           <h1 style={{ color: "#004364" }}>Search Projects</h1>

@@ -9,7 +9,7 @@ describe('Donate Page (Make a Donation)', () => {
   })
 
   it('applies styles', () => {
-    cy.get('[class^=makeStyles-infoThank]')
+    cy.get('[class*=makeStyles-infoThank]')
       .contains('We appreciate your contribution.')
   })
 })
