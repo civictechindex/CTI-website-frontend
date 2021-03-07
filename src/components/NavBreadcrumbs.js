@@ -32,6 +32,7 @@ export default function NavBreadcrumbs(props) {
   const linkProps = {
     color: linkColor,
     opacity: opacity,
+    textDecoration: 'none',
   }
   const activeLinkProps = {
     color: activeLinkColor,
