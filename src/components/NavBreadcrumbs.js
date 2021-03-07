@@ -41,8 +41,8 @@ export default function NavBreadcrumbs(props) {
   const theme = createMuiTheme({
     overrides: {
       MuiBreadcrumbs: {
-        ol: { padding: '32px' },
-        li: {
+        root: {
+          padding: '32px',
           '& p': linkProps,
           '& a:link': linkProps,
           '& a:visited': linkProps,
