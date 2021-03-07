@@ -8,7 +8,7 @@ import { Container, InputAdornment, TextField, Typography } from "@material-ui/c
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import BottomCallToAction from "../../components/BottomCallToAction";
-import NavBreadcrumb from "../../components/NavBreadcrumbs";
+import NavBreadcrumbs from "../../components/NavBreadcrumbs";
 import { DropdownArrow } from "../../components/DropdownArrow.js";
 import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
@@ -111,12 +111,11 @@ export default function Contributors({ match }) {
     <Container className='containerDefault'>
       <div className={classes.firstSectionWrapper}>
         <div className={classes.sectionContainer}>
-          <NavBreadcrumb
+          <NavBreadcrumbs
             crumbs={[
               { name: "Home", href: "/" },
               { name: "Contributors", href: "/contributors" },
             ]}
-            color="white"
           />
         </div>
         <div className={classes.sectionContainer}>
