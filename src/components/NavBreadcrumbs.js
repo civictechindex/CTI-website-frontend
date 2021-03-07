@@ -42,6 +42,7 @@ export default function NavBreadcrumbs(props) {
     overrides: {
       MuiBreadcrumbs: {
         root: {
+          fontFamily: 'Work Sans',
           padding: '32px',
           '& p': linkProps,
           '& a:link': linkProps,
