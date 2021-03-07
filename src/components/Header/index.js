@@ -38,11 +38,11 @@ const Header = () => {
       >
         <NavLink heading="Join The Index" route="/tag-generator" />
         <NavLink heading="About" route="/about" />
-        <NavLink heading="Radical Collaboration" route="">
+        <NavLink heading="Radical Collaboration" route="/radicalcollaboration">
           <NavSublink heading="Donate" route="/" />
-          <NavSublink heading="Share the CTI" route="/" />
+          <NavSublink heading="Share the CTI" route="/radicalcollaboration/sharethecti" />
           <NavSublink heading="Volunteer with us" route="/" />
-          <NavSublink heading="FAQ" route="/" />
+          <NavSublink heading="FAQ" route="/radicalcollaboration/faq" />
         </NavLink>
         <NavLink heading="Organizations" route="/contributors/all">
           <NavSublink heading="Index Contributors" route="/contributors/all" />

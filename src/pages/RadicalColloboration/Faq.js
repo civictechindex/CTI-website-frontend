@@ -8,9 +8,9 @@ import {
   GetStartedCard,
   NavBreadcrumbs,
   TitleSection,
-} from "../../../components";
+} from "../../components";
 import useSearchFaq from './useSearchFaq'
-import FAQCard from '../../../components/FAQCard'
+import FAQCard from '../../components/FAQCard'
 
 const defaultStyle = {
   backgroundColor: '#FFFFFF',
@@ -56,7 +56,7 @@ export default function Faq({ match }) {
   }
 
   return (
-    <Box>
+    <Box className='boxBackground'>
       <Container >
         <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
         <TitleSection>How can we help?</TitleSection>

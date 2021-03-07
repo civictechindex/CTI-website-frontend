@@ -37,14 +37,16 @@ const About = () => {
   };
 
   return (
-    <Container className='containerDefault'>
-      <NavBreadcrumbs crumbs={crumbs} />
-      <TitleSection>A movement to index every open source civic tech project on GitHub</TitleSection>
-      <VideoSection />
-      <MarketingSection />
-      <PictureCard items={pictureMarketingPoints} />
-      <GetStartedCard headerTitle='Ready to get started?' buttonText='Tag your Project' buttonHref='/tag-generator' />
-    </Container>
+    <Box className='containerDefault'>
+      <Container >
+        <NavBreadcrumbs crumbs={crumbs} />
+        <TitleSection>A movement to index every open source civic tech project on GitHub</TitleSection>
+        <VideoSection />
+        <MarketingSection />
+        <PictureCard items={pictureMarketingPoints} />
+        <GetStartedCard headerTitle='Ready to get started?' buttonText='Tag your Project' buttonHref='/tag-generator' />
+      </Container>
+    </Box>
   );
 };
 

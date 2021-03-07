@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, InputAdornment, TextField, Typography } from "@material-ui/core";
+import { Box,Container, InputAdornment, TextField, Typography } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import BottomCallToAction from "../../components/BottomCallToAction";
@@ -108,70 +108,72 @@ export default function Contributors({ match }) {
   }, [affiliation]);
 
   return (
-    <Container className='containerDefault'>
-      <div className={classes.firstSectionWrapper}>
-        <div className={classes.sectionContainer}>
-          <NavBreadcrumb
-            crumbs={[
-              { name: "Home", href: "/" },
-              { name: "Contributors", href: "/contributors" },
-            ]}
-            color="white"
-          />
+    <Box className='containerDefault'>
+      <Container>
+        <div className={classes.firstSectionWrapper}>
+          <div className={classes.sectionContainer}>
+            <NavBreadcrumb
+              crumbs={[
+                { name: "Home", href: "/" },
+                { name: "Contributors", href: "/contributors" },
+              ]}
+              color="white"
+            />
+          </div>
+          <div className={classes.sectionContainer}>
+            <TopCallToAction
+              heading="Index Contributors"
+              tagline="Check out our partners who have contributed to the Civic Tech Index"
+              options={organizationNamesList}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              inputPlaceholder="Search for an organization"
+            />
+          </div>
         </div>
-        <div className={classes.sectionContainer}>
-          <TopCallToAction
-            heading="Index Contributors"
-            tagline="Check out our partners who have contributed to the Civic Tech Index"
-            options={organizationNamesList}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            inputPlaceholder="Search for an organization"
-          />
-        </div>
-      </div>
-      <div className={classes.unaffiliatedWrapper}>
-        <div className={classes.sectionContainer}>
-          <div className={classes.affiliation}>
-            <Typography variant='h2' color='primary'>
+        <div className={classes.unaffiliatedWrapper}>
+          <div className={classes.sectionContainer}>
+            <div className={classes.affiliation}>
+              <Typography variant='h2' color='primary'>
               Unaffiliated Contributors
-            </Typography>
-            <DropdownArrow setOpenFunction={setUnaffiliatedOpen} />
-          </div>
-          <div>
-            {unaffiliatedOpen && (
-              <Affiliation
-                organizations={affiliatedOrganizationsObject["unaffiliated"]}
-                inputValue={inputValue}
-                classes={classes}
-                affiliation="unaffiliated"
-              />
-            )}
+              </Typography>
+              <DropdownArrow setOpenFunction={setUnaffiliatedOpen} />
+            </div>
+            <div>
+              {unaffiliatedOpen && (
+                <Affiliation
+                  organizations={affiliatedOrganizationsObject["unaffiliated"]}
+                  inputValue={inputValue}
+                  classes={classes}
+                  affiliation="unaffiliated"
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <div className={classes.affiliatedWrapper}>
-        <div className={classes.sectionContainer}>
-          <div className={classes.affiliation}>
-            <Typography variant='h2' color='textPrimary'>
+        <div className={classes.affiliatedWrapper}>
+          <div className={classes.sectionContainer}>
+            <div className={classes.affiliation}>
+              <Typography variant='h2' color='textPrimary'>
               Affiliated Contributors
-            </Typography>
-            <DropdownArrow setOpenFunction={setAffiliatedOpen} />
-          </div>
-          <div className={classes.affiliatedOrgsContainer}>
-            {affiliatedOpen && (
-              <Affiliation
-                organizations={affiliatedOrganizationsObject}
-                inputValue={inputValue}
-                classes={classes}
-                affiliation="affiliated"
-              />
-            )}
+              </Typography>
+              <DropdownArrow setOpenFunction={setAffiliatedOpen} />
+            </div>
+            <div className={classes.affiliatedOrgsContainer}>
+              {affiliatedOpen && (
+                <Affiliation
+                  organizations={affiliatedOrganizationsObject}
+                  inputValue={inputValue}
+                  classes={classes}
+                  affiliation="affiliated"
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <BottomCallToAction heading="Want to add your organization?" color="primary" />
-    </Container>
+        <BottomCallToAction heading="Want to add your organization?" color="primary" />
+      </Container>
+    </Box>
   );
 }
 

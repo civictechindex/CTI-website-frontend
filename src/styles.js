@@ -69,6 +69,9 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.secondary,
       },
     },
+    '.boxBackground':{
+      backgroundColor: theme.palette.background.primary,
+    },
   },
 }))
 
