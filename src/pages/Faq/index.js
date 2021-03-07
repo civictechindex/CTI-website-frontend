@@ -57,7 +57,7 @@ export default function Faq({ match }) {
 
   return (
     <Container className='containerDefault'>
-      <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
+      <NavBreadcrumbs crumbs={crumbs} />
       <TitleSection>How can we help?</TitleSection>
       <SearchBar placeholder={"Search the knowledge base"} />
       {status === 'fetchedFaq' && <FAQCard title={"Frequently Asked Questions:"} faqs={data} />}

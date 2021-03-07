@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         return theme.palette.warning.main
       }
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '36px',
     },
     marginBottom: '0.825em',
@@ -32,7 +32,7 @@ const TitleSection = (props) => {
     <Grid container>
       <Grid item xs={1} md={2} />
       <Grid item xs={10} md={8}>
-        <Typography variant='h2' className={classes.titleStyle}>
+        <Typography variant='h1' className={classes.titleStyle}>
           {title}
         </Typography>
       </Grid>

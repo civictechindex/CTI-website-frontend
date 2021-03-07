@@ -1,134 +1,25 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
-  commonSection: {
-    margin: '0 auto',
-    width: '80%',
-  },
-
-  donateCrumbs: {
-    padding: '25px 0px',
-  },
-
-  donateTitle: {
-    color: theme.palette.secondary.dark,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: 'clamp(16px, 3vw, 46px)',
-  },
-
   infoDescription: {
-
+    fontSize: '20px',
   },
 
   infoGif: {
     boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
-    maxWidth: '35vw',
-    width: '50%',
+    width: '100%',
+    marginTop: '5vw',
   },
 
   infoSteps: {
-    fontSize: 'clamp(11px, 1.3vw, 25px)',
+    fontSize: '18px',
     marginTop: '2.5vw',
   },
 
-  infoText: {
-    boxSizing: 'border-box',
-    display: 'inline-block',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: 'clamp(12px, 1.5vw, 28px)',
-    letterSpacing: '0.05vw',
-    padding: '3vw 1vw 0 0',
-    verticalAlign: 'top',
-    width: '50%',
-  },
-
   infoThank: {
-    color: theme.palette.secondary.dark,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: 'clamp(16px, 1.75vw, 28px)',
-    fontWeight: 'bold',
-    margin: '2.5vw',
     textAlign: 'center',
   },
 
-  styledLink: {
-    color: theme.palette.secondary.light,
-    fontWeight: 'bold',
-    textDecoration: 'underline',
-  },
-
-  styledLinkMobile: {
-
-  },
-
-  titleSection: {
-    marginBottom: '4vw',
-  },
-
-  '@media screen and (max-width: 700px)': {
-    commonSection: {
-      width: '90%',
-    },
-
-    contactButton: {
-      borderRadius: '7vw',
-      fontSize: '3.5vw',
-      padding: '4vw 16vw',
-    },
-
-    contactHeader: {
-      fontSize: '5.5vw',
-      lineHeight: '8vw',
-      margin: '0 0 3vw',
-    },
-
-    contactSection: {
-      padding: '7.5vw 0 10vw',
-    },
-
-    donateTitle: {
-      fontSize: '9vw',
-    },
-
-    infoDescription: {
-      fontSize: '4.5vw',
-      margin: '0 0 8vw 0',
-    },
-
-    infoGif: {
-      width: '100%',
-    },
-
-    infoSteps: {
-      fontSize: '3.8vw',
-    },
-
-    infoText: {
-      display: 'block',
-      fontSize: '3.8vw',
-      fontWeight: 'normal',
-      margin: '0 0 6vw 0',
-      padding: '0',
-      width: '100%',
-    },
-
-    infoThank: {
-      fontSize: '5vw',
-      margin: '7vw 0',
-    },
-
-    styledLink: {
-      color: theme.palette.common.black,
-      fontWeight: 'normal',
-      textDecoration: 'none',
-    },
-
-    styledLinkMobile: {
-      color: theme.palette.secondary.light,
-      fontWeight: 'bold',
-      textDecoration: 'underline',
-    },
-  },
 }))
 
 export default useStyles
