@@ -46,7 +46,7 @@ const renderCard = (i) => {
 };
 
 const Projects = () => {
-  const [showResults, setShowResults] = useState(true);
+  const [showResults, setShowResults] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
   const [resultCount, setResultCount] = useState('');

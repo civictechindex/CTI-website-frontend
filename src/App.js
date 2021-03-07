@@ -41,7 +41,7 @@ const App = () => {
           <RouteTitled exact path='/contributors/:affiliation' component={Contributors} title='Contributors' />
           <RouteTitled exact path='/donate' component={Donation} title='Donate' />
           <Route exact path='/home' component={Home} />
-          <RouteTitled exact path='/projects' component={Projects} title='Search Projects' />
+          <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
           <RouteTitled exact path='/tag-generator' component={TagCreator} title='Tag Generator' />
           <RouteTitled exact path='/radicalcollaboration/:faq' component={Faq} title='FAQs' />
           <Route path='/guides/:guide' component={Guides} />
