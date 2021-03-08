@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+
 const useStyles = makeStyles(
     (theme) => ({
         root: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles(
 );
 
 const CardItem = (props) => {
+    //console.log(props);
     const classes = useStyles();
     return (
         <Grid item xs={12} lg={4} style={{ margin: 'auto' }} align='center' >
@@ -59,7 +61,7 @@ const CardItem = (props) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button className={classes.largeButton} style={{ width: '225px', margin: '0 auto', padding: '16px' }}>
+                    <Button className={classes.largeButton} style={{ backgroundColor: '#5fcaf9', width: '225px', margin: '0 auto', padding: '16px' }}>
                         Make a Donation
                     </Button>
                 </CardActions>
@@ -69,14 +71,12 @@ const CardItem = (props) => {
 }
 
 export default function PhotoCard(props) {
-
     const items = props.items;
-
-
+    console.log(items);
     return (
         <>
             {items.map((i, idx) => {
-                return <CardItem src={i.src} alt={i.alt} key={idx} />
+                return <CardItem src={i.src} alt={i.alt} key={idx}></CardItem>
             })}
         </>
     );
