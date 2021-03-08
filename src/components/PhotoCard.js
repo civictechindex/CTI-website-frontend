@@ -22,7 +22,10 @@ const useStyles = makeStyles(
         },
         cardParagraphHeading: {
             color: theme.palette.primary.main
-        }
+        },
+        largeButton: {
+            button: theme.overrides.MuiButton
+        },
     })
 );
 
@@ -32,22 +35,19 @@ const CardItem = (props) => {
         <Grid item xs={12} lg={4} style={{ margin: 'auto' }} align='center' >
             <Card className={classes.root} style={{ border: '2px solid red', padding: '0px', marginBottom: '5px' }}>
                 <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                    >
+                    <CardMedia className={classes.media}>
                         <img style={{ width: '328px', height: '192px' }} src={props.src} alt={props.alt} />
                     </CardMedia>
                     <CardContent>
-                        <Typography className={classes.cardHeading} style={{ position: 'absolute', height: '38px', left: '16px', top: '203px', fontSize: '28px', lineHeight: '38px' }} gutterBottom variant="h4">
+                        <Typography className={classes.cardHeading} style={{ position: 'absolute', left: '16px', top: '203px', fontSize: '28px', lineHeight: '38px' }} gutterBottom variant="h4">
                             Donate
                         </Typography>
-
                         <Typography variant="h6" className={classes.cardParagraphHeading} style={{
-                            height: '169px', marginTop: '50px', textAlign: 'left', marginLeft: '16px', marginRight: '16px'
+                            height: '180px', marginTop: '50px', textAlign: 'left', marginLeft: '16px', marginRight: '16px'
                         }}>
                             Every gift helps us continue our work.
                             <br></br>
-                            <Typography style={{ textAlign: 'left', marginLeft: '0px', marginRight: '0px', size: '20px', lineHeight: '24px', marginTop: '5px' }}>
+                            <Typography style={{ textAlign: 'left', marginLeft: '0px', marginRight: '0px', size: '20px', lineHeight: '21px', marginTop: '5px', marginBottom: '8px' }}>
                                 Your tax-deductible gift today will help make more open-source solutions easily available for the communities
                                 who need it the most.
                             </Typography>
@@ -59,12 +59,9 @@ const CardItem = (props) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        Share
-              </Button>
-                    <Button size="small" color="primary">
-                        Learn More
-              </Button>
+                    <Button className={classes.largeButton} style={{ width: '225px', margin: '0 auto', padding: '16px' }}>
+                        Make a Donation
+                    </Button>
                 </CardActions>
             </Card>
         </Grid>

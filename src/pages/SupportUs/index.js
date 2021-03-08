@@ -23,7 +23,7 @@ const SupportUs = () => {
     ];
     return (
         <Container className="containerDefault">
-            <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
+            <NavBreadcrumbs crumbs={crumbs} style={{ fontColor: '#FEFEFE' }} />
             <TitleSection>
                 Your Help Goes a Long Way
             </TitleSection>
