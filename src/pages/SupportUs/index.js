@@ -18,8 +18,9 @@ const SupportUs = () => {
 
     const Images = [
         { src: "/images/photo-of-people-standing-near-window-3184427.png", alt: "team high fiving" },
-        { src: "/images/girlandguyCoding.png", alt: "girl and guy coding", children: "Make your project more visible with GitHub’s open-source communities" },
-        { src: "/images/groupCoding.png", alt: "group coding", children: "The Index is owned by all who contribute to it" },
+        { src: "/images/group-smiling-working.png", alt: "group working", children: "The Index is owned by all who contribute to it" },
+        { src: "/images/bulletin-board-postits.png", alt: "bulletin board", children: "Make your project more visible with GitHub’s open-source communities" },
+        { src: "/images/man-and-woman-working.png", alt: "girl and guy coding", children: "Make your project more visible with GitHub’s open-source communities" },
     ];
     return (
         <Container className="containerDefault">
