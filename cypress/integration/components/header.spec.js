@@ -7,14 +7,14 @@ describe("Header component", () => {
     cy.viewport(1280, 800);
     cy.findLink("Join The Index").should("have.attr", "href", "/tag-generator");
     cy.findLink("About").should("have.attr", "href", "/about");
-    cy.findLink("Radical Collaboration")
-      .should("have.attr", "href", "/")
-      .trigger("mouseover")
-      .get("[data-cy=menuItem]")
+    cy.findLink('Radical Collaboration')
+      .should('have.attr', 'href', '/radicalcollaboration')
+      .trigger('mouseover')
+      .get('[data-cy=menuItem]')
       .within(() => {
-        cy.contains("Donate");
-        cy.contains("Volunteer with us");
-        cy.contains("FAQ");
+        cy.contains('Donate');
+        cy.contains('Volunteer with us');
+        cy.contains('FAQ');
       });
     cy.findLink("Organizations")
       .should("have.attr", "href", "/contributors/all")
@@ -30,7 +30,7 @@ describe("Header component", () => {
     cy.get("[class*=makeStyles-showMobileNav]").should("be.visible");
     cy.findLink("Join The Index").should("have.attr", "href", "/tag-generator");
     cy.findLink("About").should("have.attr", "href", "/about");
-    cy.findLink("Radical Collaboration").should("have.attr", "href", "/");
+    cy.findLink('Radical Collaboration').should('have.attr', 'href', '/radicalcollaboration');
     cy.findLink("Organizations").should(
       "have.attr",
       "href",
