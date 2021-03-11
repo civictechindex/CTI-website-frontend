@@ -37,7 +37,7 @@ const SupportUs = () => {
             heading: 'Volunteer with Us',
             subHeading: 'Help us improve the Civic Tech Index',
             textBody: 'Please complete this application if you would like us to reach out to you directly or find us on our project team page.',
-            buttonText: 'Make a Donation'
+            buttonText: 'Become a Volunteer'
         },
         {
             src: "/images/man-and-woman-working.png", alt: "girl and guy coding",
