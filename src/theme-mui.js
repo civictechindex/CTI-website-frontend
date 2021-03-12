@@ -1,4 +1,5 @@
 /* eslint-disable sort-keys */
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import { deepmerge } from '@material-ui/utils';
 
 // Colors - Primary
@@ -18,6 +19,8 @@ const GREY100 = '#F4F4F4'; // default = #f5f5f5
 const GREY200 = '#E9E9E9'; // default = #eeeeee
 const GREY300 = '#D8D8D8'; // default = #e0e0e0
 const GREY900 = '#242424'; // default = #212121
+
+const breakpoints = createBreakpoints({});
 
 const defaultButtonSettings = {
   backgroundColor: LIGHT_BLUE,
@@ -46,6 +49,10 @@ const themeSettings = {
     MuiButton: {
       root: {
         borderRadius: 24,
+        height: 48,
+        [breakpoints.down('sm')]: {
+          height: 42,
+        },
         ...defaultButtonSettings,
       },
       label: {
@@ -91,6 +98,16 @@ const themeSettings = {
         },
       },
     },
+    MuiChip: {
+      root: {
+        cursor: 'pointer',
+        height: 48,
+        [breakpoints.down('sm')]: {
+          height: 42,
+        },
+        margin: '0 8px 8px 0',
+      },
+    },
     MuiCssBaseline: {
       '@global': {
         body: {
@@ -98,12 +115,6 @@ const themeSettings = {
           fontWeight: 400,
           margin: 0,
         },
-      },
-    },
-    MuiChip: {
-      root: {
-        cursor: 'pointer',
-        margin: '0 8px 8px 0',
       },
     },
     MuiInputLabel: {
