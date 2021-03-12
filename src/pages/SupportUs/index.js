@@ -6,7 +6,8 @@ import {
     GetStartedCard,
     NavBreadcrumbs,
     TitleSection,
-    PhotoCardMobile
+    PhotoCardMobile,
+    PhotoCardDsktp
 } from '../../components';
 
 const SupportUs = () => {
@@ -53,7 +54,7 @@ const SupportUs = () => {
                 Your Help Goes a Long Way
             </TitleSection>
             <Hidden mdDown>
-                <h1>Hello World</h1>
+                <PhotoCardDsktp items={Images} />
             </Hidden>
             <Hidden mdUp>
                 <PhotoCardMobile items={Images} />

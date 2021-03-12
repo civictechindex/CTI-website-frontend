@@ -38,7 +38,7 @@ function PhotoCardMobile(props) {
             {items.map((i, idx) => {
                 return (
                     <Grid item xs={12} lg={4} style={{ margin: 'auto' }} align='center' >
-                        <Card className={classes.root} style={{ border: '2px solid red', padding: '0px', marginBottom: '5px' }}>
+                        <Card className={classes.root} style={{ padding: '0px', marginBottom: '5px' }}>
                             <CardActionArea>
                                 <CardMedia className={classes.media}>
                                     <img style={{ width: '328px', height: '192px' }} src={i.src} alt={i.alt} />

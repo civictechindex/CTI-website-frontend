@@ -8,6 +8,7 @@ import ProjectCard from './ProjectCard'
 import SearchBar from './SearchBar'
 import TitleSection from './TitleSection'
 import PhotoCardMobile from './PhotoCardMobile'
+import PhotoCardDsktp from './PhotoCardDsktp'
 
 export {
   Footer,
@@ -16,6 +17,7 @@ export {
   NavBreadcrumbs,
   NavButton,
   PhotoCardMobile,
+  PhotoCardDsktp,
   PictureCard,
   ProjectCard,
   SearchBar,
