@@ -18,7 +18,7 @@ const SupportUs = () => {
 
     const Images = [
         {
-            src: "/images/photo-of-people-standing-near-window-3184427.png", alt: "team high fiving",
+            src: "/images/dsktp-photo-of-people-standing-near-window-3184427.png", alt: "team high fiving",
             heading: 'Donate',
             subHeading: 'Every gift helps us continue our work.',
             textBody: 'Your tax-deductible gift today will help make more open-source solutions easily available for the communities who need it the most.',
