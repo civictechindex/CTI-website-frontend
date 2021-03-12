@@ -1,16 +1,15 @@
 import React from 'react'
 import { Container } from "@material-ui/core";
+import Hidden from '@material-ui/core/Hidden';
+import withWidth from '@material-ui/core/withWidth';
 import {
     GetStartedCard,
     NavBreadcrumbs,
     TitleSection,
-    PhotoCard
-
+    PhotoCardMobile
 } from '../../components';
-//import useStyles from './styles.js'
 
 const SupportUs = () => {
-    //const classes = useStyles()
     const crumbs = [
         { name: "Home", href: "/home" },
         { name: "Support Us", href: "/support" },
@@ -53,9 +52,12 @@ const SupportUs = () => {
             <TitleSection>
                 Your Help Goes a Long Way
             </TitleSection>
-
-            <PhotoCard items={Images} />
-
+            <Hidden mdDown>
+                <h1>Hello World</h1>
+            </Hidden>
+            <Hidden mdUp>
+                <PhotoCardMobile items={Images} />
+            </Hidden>
             <GetStartedCard
                 headerTitle="Ready to get started?"
                 buttonText="Tag your Project"
@@ -66,4 +68,4 @@ const SupportUs = () => {
 
 }
 
-export default SupportUs;
+export default withWidth()(SupportUs);

@@ -9,7 +9,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-
 const useStyles = makeStyles(
     (theme) => ({
         root: {
@@ -30,11 +29,10 @@ const useStyles = makeStyles(
     })
 );
 
-//<CardItem src={i.src} alt={i.alt} key={idx}></CardItem>
-export default function PhotoCard(props) {
+function PhotoCardMobile(props) {
     const items = props.items;
     const classes = useStyles();
-    // console.log(items);
+
     return (
         <>
             {items.map((i, idx) => {
@@ -61,7 +59,6 @@ export default function PhotoCard(props) {
                                             {i.footerText}
                                         </Typography>
                                     </Typography>
-
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
@@ -76,3 +73,5 @@ export default function PhotoCard(props) {
         </>
     );
 }
+
+export default PhotoCardMobile;
