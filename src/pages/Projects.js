@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
-import { Container, Box, Grid, Typography, Modal, Link } from "@material-ui/core";
+import { Container, Box, Grid, Typography, Modal } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 
