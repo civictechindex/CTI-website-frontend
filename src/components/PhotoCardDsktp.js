@@ -22,14 +22,14 @@ const useStyles = makeStyles(
         },
         largeButton: {
             button: theme.overrides.MuiButton
-        },
+        }
     })
 );
-//
+
 function PhotoCardDsktp(props) {
     const items = props.items;
     const classes = useStyles();
-
+    //<img style={{ width: '328px', height: '192px' }} src={i.src} alt={i.alt} />
     return (
         <>
             {items.map((i, idx) => {
@@ -37,8 +37,8 @@ function PhotoCardDsktp(props) {
                     <Grid item xs={12} lg={4} style={{ margin: 'auto' }} align='center' >
                         <Card className={classes.root} style={{ padding: '0px', marginBottom: '5px' }}>
                             <CardActionArea>
-                                <CardMedia >
-                                    <img style={{ width: '328px', height: '192px' }} src={i.src} alt={i.alt} />
+                                <CardMedia style={{ backgroundImage: `url(${i.src})` }}>
+
                                 </CardMedia>
                                 <CardContent>
                                     <Typography className={classes.cardHeading} style={{ position: 'absolute', left: '16px', top: '203px', fontSize: '28px', lineHeight: '38px' }} gutterBottom variant="h4">
