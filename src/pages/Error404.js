@@ -3,11 +3,6 @@ import { Box, Card, CardContent, Container, Typography } from '@material-ui/core
 import { TitleSection } from '../components';
 import ErrorOutlineRoundedIcon from '@material-ui/icons/ErrorOutlineRounded';
 
-const defaultStyle = {
-  backgroundColor: '#FFFFFF',
-  width: '70%',
-}
-
 const Error404 = () => {
   // No breadcrumbs on Figma design
 
