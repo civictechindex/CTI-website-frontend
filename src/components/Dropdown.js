@@ -53,7 +53,7 @@ export const Dropdown = ({
   }, [isOpen])
 
   return (
-    <Box>
+    <Box className="containerDropdown">
       <Box
         className={
           typeof organization === 'string'
