@@ -13,6 +13,7 @@ import Landing from './pages/Landing';
 import Projects from './pages/Projects';
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
+import Error404 from './pages/Error404'
 import ShareTheCti from './pages/RadicalColloboration/ShareTheCti'
 import Guides from './guides/';
 import useStyles from './styles';
@@ -47,6 +48,7 @@ const App = () => {
           <Route exact path='/radicalcollaboration/faq' component={Faq} />
           <Route path='/guides/:guide' component={Guides} />
           <Route path='/blank' component={Placeholder} />
+          <Route path='/404' component={Error404} />
           <Redirect from='/adding-projects' to='/adding-projects-to-the-index' />
           <Redirect from='/how' to='/adding-projects-to-the-index' />
           <Redirect from='/how-to' to='/adding-projects-to-the-index' />
@@ -61,7 +63,7 @@ const App = () => {
           <Redirect from='/guides' to='/guides/colors' />
           <Redirect from='/placeholder' to='/blank' />
           <Redirect from='/template' to='/blank' />
-          <Redirect to='/' />
+          <Redirect to='/404' />
         </Switch>
       </Layout>
     </BrowserRouter>
