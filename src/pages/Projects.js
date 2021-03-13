@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
-import Container from "@material-ui/core/Container";
-import Grid from '@material-ui/core/Grid';
+import { Container, Box, Grid, Typography, Modal } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
 
 import NavBreadcrumbs from '../components/NavBreadcrumbs'
 import ProjectCard from '../components/ProjectCard'
 import SearchBar from '../components/SearchBar'
-import '../styles.css'
 
 const crumbs = [{ name: 'Home', href: '/home' }, { name: 'Search', href: '/projects' }]
 
@@ -29,11 +30,44 @@ const renderCard = (i) => {
   </Grid>
 }
 
+const useStyles = makeStyles((theme) => ({
+  openSearchTips: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  searchTips: {
+    width: '686px',
+    height: '381px',
+    margin: '322px auto',
+    padding: '32px',
+    backgroundColor: theme.palette.background.default,
+    '& h4': {
+      textAlign: 'center',
+      color: theme.palette.secondary.dark,
+    },
+    '& p': {
+      color: theme.palette.primary.main,
+    },
+    '& a': {
+      color: theme.palette.secondary.light,
+    },
+    '& a:hover': {
+      cursor: 'pointer',
+    },
+    '& svg': {
+      float: 'right',
+    },
+  },
+}));
+
 const Projects = () => {
 
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
   const [resultCount, setResultCount] = useState('');
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
 
   const handleSubmit = (event) => {
     if (event.key === 'Enter') {
@@ -47,7 +81,15 @@ const Projects = () => {
           setResults(items);
         })
     }
-  }
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Container className='containerGray'>
@@ -63,6 +105,7 @@ const Projects = () => {
             placeholder="Search the Civic Tech Index"
             onKeyPress={handleSubmit}
           />
+          <Typography className={classes.openSearchTips} onClick={handleOpen}><u>How to improve your search result</u></Typography>
         </Grid>
         <Grid container xs={12}>
           <Grid item xs={12}>
@@ -73,6 +116,26 @@ const Projects = () => {
           </Grid>
         </Grid>
       </Grid>
+      <Modal aria-labelledby='search-tips-title' className={classes.modal} open={open} onBackdropClick={handleClose}>
+        <Box className={classes.searchTips}>
+          <Typography variant='h4' id='search-tips-title'>Search Tips<CloseIcon onClick={handleClose}/></Typography>
+          <br/><br/>
+          <Typography variant='body2'>Need more search results?</Typography>
+          <Typography variant='body1'>
+            The repository search uses &apos;&amp;&apos; for multiple search terms.
+            In order to get more results try reducing the number of search terms.
+          </Typography>
+          <br/>
+          <Typography variant='body2'>Want to search outside of the Civic Tech Index?</Typography>
+          <Typography variant='body1'>
+            All searches from this page include the tag &apos;civictechindex&apos;.
+            Go to <a href='https://github.com/search'>GitHub’s repository search tool</a> to search outside of the civictechindex.
+          </Typography>
+          <br/>
+          <Typography variant='body2'>Don&apos;t see your project repository in the search results?</Typography>
+          <Typography variant='body1'>Use the <Link to='/tag-generator' underline='always'>tag generator tool</Link> to add your project to the Civic Tech Index.</Typography>
+        </Box>
+      </Modal>
     </Container>
   );
 }
