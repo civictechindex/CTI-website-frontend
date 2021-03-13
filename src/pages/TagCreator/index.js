@@ -130,6 +130,10 @@ const TagCreator = () => {
 
   const handleSubmit = (event) => {
     const urlPath = getRepositoryUrlPath(repositoryUrl)
+    // Return error message if no url present
+    if (urlPath.length === 0){
+      return setTopicSearchError(<p style={{ color: 'red' }}>Please enter a URL</p>);
+    }
     axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
       headers: { Accept: "application/vnd.github.mercy-preview+json" },
     })
