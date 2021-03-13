@@ -15,7 +15,3 @@ exclude_patterns:
 - "cypress/"
 - "public/"
 - "src/guides/"
-plugins: 
-  eslint:
-    enabled: true
-    channel: "eslint-6"

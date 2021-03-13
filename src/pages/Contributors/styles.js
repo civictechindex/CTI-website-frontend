@@ -161,6 +161,7 @@ export const useStyle = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     minHeight: '6rem',
+    color: theme.palette.primary.main,
   },
   textWrapperWithoutImage: {
     display: 'grid',
@@ -172,6 +173,7 @@ export const useStyle = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '0 0.5rem',
     minHeight: '6rem',
+    color: theme.palette.primary.main,
   },
 
   codeForAllThumbnailWrapper: {

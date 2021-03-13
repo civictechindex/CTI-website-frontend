@@ -181,11 +181,17 @@ const themeSettings = {
     MuiButtonBase: {
       disableRipple: true,
     },
+    MuiCard: {
+      elevation: 0,
+    },
     MuiContainer: {
       maxWidth: 'lg',
     },
     MuiInputAdornment: {
       disableTypography: true, // this changes startAdornment text color to primary
+    },
+    MuiPaper: {
+      elevation: 0,
     },
     MuiTextField: {
       variant: 'outlined',
