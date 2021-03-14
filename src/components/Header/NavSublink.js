@@ -13,7 +13,19 @@ const styles = () => ({
     },
   },
 });
-const NavSublink = ({ heading, route, classes }) => {
+const NavSublink = ({ heading, route, classes, isExternal=false }) => {
+  const linkComponent = isExternal
+    ? <a href={route} target='_blank'
+        style={{ textDecoration: 'none' }}>
+        <Typography>{heading}</Typography>
+      </a>
+    : <Link
+        component={RouterLink}
+        to={route}
+        underline="none"
+        classes={{ root: classes.text }}
+      ><Typography>{heading}</Typography>
+      </Link>;
   return (
     <MenuItem
       data-cy="menuItem"
@@ -22,14 +34,7 @@ const NavSublink = ({ heading, route, classes }) => {
       classes={{ root: classes.menuitem }}
       ListItemClasses={{ root: classes.text }}
     >
-      <Link
-        component={RouterLink}
-        to={route}
-        underline="none"
-        classes={{ root: classes.text }}
-      >
-        <Typography>{heading}</Typography>
-      </Link>
+    {linkComponent}
     </MenuItem>
   );
 };
