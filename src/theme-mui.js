@@ -100,6 +100,7 @@ const themeSettings = {
     },
     MuiChip: {
       root: {
+        borderRadius: 24,
         cursor: 'pointer',
         height: 48,
         [breakpoints.down('sm')]: {
@@ -330,6 +331,9 @@ const customThemeSettings = {
       primary: TEAL,
       secondary: LIGHT_GRAY,
       dark: DARK_BLUE,
+    },
+    outline: {
+      gray: DARK_GRAY,
     },
     text: {
       bright: YELLOW,
