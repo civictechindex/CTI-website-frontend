@@ -40,7 +40,7 @@ const TopicTag = (props) => {
     Component = ClickableTopicTag;
   }
 
-  return <Component label={label} clickable={false} variant='outlined' className={classes.topicTag} />;
+  return <Component label={label} clickable={false} variant='outlined' className={classes.topicTag} data-cy='topic-tag' />;
 };
 
 export default TopicTag;

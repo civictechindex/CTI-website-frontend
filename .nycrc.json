@@ -6,6 +6,7 @@
   "exclude": [
     "**/*.test.js",
     "src/guides/*.js",
+    "src/icons/*.js",
     "src/serviceWorker.js",
     "src/setupTests.js"
   ]
