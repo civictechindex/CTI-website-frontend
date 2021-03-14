@@ -51,13 +51,13 @@ function PhotoCardMobile(props) {
                                         marginTop: '50px', textAlign: 'left', marginLeft: '16px', marginRight: '16px'
                                     }}>
                                         {i.subHeading}
-                                        <br></br>
-                                        <Typography style={{ textAlign: 'left', marginLeft: '0px', marginRight: '0px', size: '20px', lineHeight: '21px', marginTop: '5px', marginBottom: '8px' }}>
-                                            {i.textBody}
-                                        </Typography>
-                                        <Typography variant="h6" >
-                                            {i.footerText}
-                                        </Typography>
+                                    </Typography>
+                                    <br></br>
+                                    <Typography style={{ textAlign: 'left', marginLeft: '0px', marginRight: '0px', size: '20px', lineHeight: '21px', marginTop: '5px', marginBottom: '8px' }}>
+                                        {i.textBody}
+                                    </Typography>
+                                    <Typography variant="h6" >
+                                        {i.footerText}
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
