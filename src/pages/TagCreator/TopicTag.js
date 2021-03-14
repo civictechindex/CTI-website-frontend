@@ -1,52 +1,46 @@
-import React from 'react'
-import Chip from '@material-ui/core/Chip'
-import CopyPasteIcon from '../../icons/CopyPasteIcon'
+import React from 'react';
+import Chip from '@material-ui/core/Chip';
+import { makeStyles } from '@material-ui/core/styles';
+import CopyPasteIcon from '../../icons/CopyPasteIcon';
 
-const GeneratedTopicTag = ({ label }) => {
-  return (
-    <Chip clickable={false} label={label} />
-  )
-}
+const useStyles = makeStyles((theme) => ({
+  topicTag: {
+    backgroundColor: theme.palette.background.default,
+    '&.MuiChip-outlined': {
+      borderColor: theme.palette.outline.gray,
+    },
+    '&.MuiChip-deletable svg': {
+      color: theme.palette.outline.gray,
+    },
+  },
+}));
 
-const ClickableTopicTag = ({ label }) => {
-  const handleDelete = () => {
-    // do nothing
-  }
-  return (
-    <Chip clickable={false} label={label} onDelete={handleDelete} />
-  )
-}
+const handleDelete = () => {};
 
-const CopyPasteTopicTag = ({ label }) => {
-  const handleDelete = () => {
-    // do nothing
-  }
-  return (
-    <Chip clickable={false} label={label} onDelete={handleDelete} deleteIcon={<CopyPasteIcon />} />
-  )
-}
+const GeneratedTopicTag = (props) => {
+  return <Chip {...props} clickable={true} />;
+};
+
+const ClickableTopicTag = (props) => {
+  return <Chip onDelete={handleDelete} {...props} />;
+};
+
+const CopyPasteTopicTag = (props) => {
+  return <Chip onDelete={handleDelete} deleteIcon={<CopyPasteIcon />} {...props} />;
+};
 
 const TopicTag = (props) => {
-  const { label, variant } = props
+  const { label, variant } = props;
+  const classes = useStyles();
 
   let Component = CopyPasteTopicTag;
-
   if (variant === 'generated') {
-    Component = GeneratedTopicTag
+    Component = GeneratedTopicTag;
   } else if (variant === 'clickable') {
-    Component = ClickableTopicTag
+    Component = ClickableTopicTag;
   }
 
-  return (
-    <Component label={label} />
-  )
-  // return (
-  //   <>
-  //     { variant === 'generated' && <GeneratedTopicTag label={label} />}
-  //     { variant === 'clickable' && <ClickableTopicTag label={label} />}
-  //     { variant === 'copyandpaste' && <CopyPasteTopicTag label={label} />}
-  //   </>
-  // )
-}
+  return <Component label={label} clickable={false} variant='outlined' className={classes.topicTag} />;
+};
 
 export default TopicTag;

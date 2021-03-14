@@ -12,11 +12,11 @@ const ShowTopicTags = () => {
   return (
     <Container className='containerGray'>
       <Typography variant='h1'>Topic Tags</Typography>
-      <Card className='card241'>
+      <Card className='card244'>
         <CardContent>
-          <TopicTag label="foo" variant="generated" />
-          <TopicTag label="bar" variant="clickable" />
-          <TopicTag label="long long long long label" variant="copyandpaste" />
+          <TopicTag label='generated-topic' variant='generated' />
+          <TopicTag label='clickable-topic' variant='clickable' />
+          <TopicTag label='copy-and-paste-topic' variant='copyandpaste' />
         </CardContent>
       </Card>
     </Container>
