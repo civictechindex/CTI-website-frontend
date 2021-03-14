@@ -3,8 +3,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Link from './Link';
 
 import TopicTag from '../pages/TagCreator/TopicTag'
 

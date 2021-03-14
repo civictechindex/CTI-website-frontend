@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Chip, Grid } from '@material-ui/core';
+import TopicTag from '../../TagCreator/TopicTag';
 
 const topicData = [
   { detail: "Covid-19", link: "#" },
@@ -23,7 +24,7 @@ const TrendingTopicsSection = () => {
   const TrendingTopicChip = (props) => {
     return (
       <a href={props.href}>
-        <Chip label={props.children} cursor="cursor" />
+        <TopicTag label={props.children} variant="generated" />
       </a>
     )
   }
