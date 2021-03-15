@@ -68,7 +68,7 @@ export default function ProjectCard(props) {
                 <Grid item xs={12} sm={2} >
                   <span style={issueStyles}><a href={props.issuesUrl}><b>{props.issueCount}</b> Open Issues</a></span>
                 </Grid>
-             </Grid>
+              </Grid>
               <Grid item xs={12} sm={12} style={{ paddingTop: '10px' }}>
                 <span><b>Affiliations Topic Tags:</b> {props.projectTags}</span>
               </Grid>
