@@ -1,9 +1,9 @@
 import React from 'react';
-import { Grid, Container, Typography } from '@material-ui/core';
-
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import NavBreadcrumbs from "../../components/NavBreadcrumbs.js";
-
 import useStyles from './styles.js';
 
 const breadCrumbLinks = [

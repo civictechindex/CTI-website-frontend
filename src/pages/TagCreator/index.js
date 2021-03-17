@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Container, Grid, TextField, Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Breadcrumbs, Typography } from '@material-ui/core';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 
 const DARK_BLUE = '#0F1D2F';

@@ -1,8 +1,9 @@
 import * as React from "react";
 import Link from "@material-ui/core/Link";
-import { MenuItem, Typography } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { Link as RouterLink } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
 
 const styles = () => ({
   menuitem: {
