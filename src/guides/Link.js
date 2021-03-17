@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded'
 
 const useStyles = makeStyles({

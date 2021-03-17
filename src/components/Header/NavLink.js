@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Link } from "@material-ui/core";
+import Link from "@material-ui/core/Link";
 import { NavLink as NaviLink, withRouter } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import {
   usePopupState,
   bindMenu,
