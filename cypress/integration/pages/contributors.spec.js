@@ -5,7 +5,16 @@ describe('Contributors Page', () => {
 
   it('wait for affiliated orgs to load', () => {
     cy.get('[class*=affiliatedOrgsContainer]').within(() => {
-      cy.get('[class*=containerDropdown]', { timeout: 10000 }).should('have.length', 24);
+      cy.get('[class*=containerDropdown]', { timeout: 10000 }).should('have.length', 24)
+    })
+  })
+
+  it('check Code for All', () => {
+    cy.get('[class*=affiliatedOrgsContainer]').within(() => {
+      cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1)
+      cy.get('[href*=codeforall]').within(() => {
+        cy.contains('Code for All')
+      })
     })
   })
 
@@ -18,7 +27,7 @@ describe('Contributors Page', () => {
       cy.get('#dropdownChevron').click()
     })
     cy.get('[href*=codeforamerica]').parents('[class*=containerDropdown]').within(() => {
-      cy.contains('Code for Anchorage');
+      cy.contains('Code for Anchorage')
       cy.get('[class^=makeStyles-thumbnailWrapper]').should('have.length', 86)
     })
   })

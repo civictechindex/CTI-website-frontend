@@ -27,7 +27,7 @@ export const ParentContributor = ({ dropdownLength, children }) => {
             alt="code for all logo"
             loading="lazy"
           />
-          <Typography variant='body2'>Code For All</Typography>
+          <Typography variant='body2'>Code for All</Typography>
         </a>
         <Typography variant='body2'>({dropdownLength})</Typography>
       </Box>
