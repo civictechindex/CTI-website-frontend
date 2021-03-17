@@ -1,10 +1,9 @@
 import React from "react";
-// import logo from '../../public/images/Brigade-Photo.png'
 import { useStyle } from "../pages/Contributors/styles";
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-export const ParentContributor = ({ dropdownLength, children }) => {  
+export const ParentContributor = ({ dropdownLength, children }) => {
   const classes = useStyle();
 
   return (
