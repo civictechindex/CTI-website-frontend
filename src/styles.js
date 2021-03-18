@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
     ".containerGray": {
       backgroundColor: theme.palette.background.secondary,
-      minHeight: "500px",
+      minHeight: "350px",
     },
     ".containerWorld": {
       backgroundColor: theme.palette.secondary.dark,

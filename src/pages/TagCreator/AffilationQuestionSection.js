@@ -2,29 +2,30 @@ import React from 'react';
 
 import Radio from '@material-ui/core/Radio';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography'
 
 
-export const AffiliationQuestionSection = ({ value, handleChange }) => {
+export const AffiliationQuestionSection = ({ value, handleChange,question }) => {
   return (
-    <Grid container style={{ paddingTop: '30px' }}>
-      <Grid item xs={8} sm={8}>Are you affiliated with an organization?</Grid>
-      <Grid item sm={2} xs={2}>
+    <Grid container style={{ paddingTop: '50px' }}>
+      <Grid item xs={8} sm={8}><Typography variant='h6' style={{ fontWeight:'500' }}>{question}</Typography></Grid>
+      <Grid item  xs={8}>
         <Radio
-          checked={value === 'affiliated'}
-          data-cy='radio-affiliated'
+          checked={value === 'yes'}
+          data-cy='radio-yes'
           onChange={handleChange}
-          value="affiliated"
-          name="affiliated"
+          value="yes"
+          name="yes"
           inputProps={{ 'aria-label': 'true' }}
         /> Yes
       </Grid>
-      <Grid item sm={2} xs={2}>
+      <Grid item xs={8}>
         <Radio
-          checked={value === 'unaffiliated'}
-          data-cy='radio-unaffiliated'
+          checked={value === 'no'}
+          data-cy='radio-no'
           onChange={handleChange}
-          value="unaffiliated"
-          name="unaffiliated"
+          value="no"
+          name="no"
           inputProps={{ 'aria-label': 'false' }}
         /> No
       </Grid>
