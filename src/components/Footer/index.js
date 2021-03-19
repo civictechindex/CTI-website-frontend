@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom/'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import useStyles from './styles'
-import { Box } from '@material-ui/core'
 
 const SocialSection = () => {
   const classes = useStyles()
@@ -61,7 +60,9 @@ const Footer = () => {
           <Link to='/adding-projects-to-the-index'>How to Do It</Link>
           <Link to='/donate'>Donate</Link>
           <Link to='/'>Share the CTI</Link>
-          <Link to='/'>Volunteer with Us</Link>
+          <a href='https://www.hackforla.org/projects/civic-tech-index'>
+            Volunteer with Us
+          </a>
           <Link to='/radicalcollaboration/faq'>FAQ</Link>
         </Grid>
         <Grid item xs={6} sm={2}>

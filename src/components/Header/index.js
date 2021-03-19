@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavLink from "./NavLink.js";
 import NavSublink from "./NavSublink.js";
-import { MenuRounded } from "@material-ui/icons";
+import MenuRounded from "@material-ui/icons/MenuRounded";
 const Header = () => {
   const classes = useStyles();
   const [isBurgerOpen, setIsBurgerOpen] = useState(null);
@@ -41,7 +41,7 @@ const Header = () => {
         <NavLink heading="Radical Collaboration" route="/radicalcollaboration">
           <NavSublink heading="Donate" route="/" />
           <NavSublink heading="Share the CTI" route="/radicalcollaboration/sharethecti" />
-          <NavSublink heading="Volunteer with us" route="/" />
+          <NavSublink heading="Volunteer with us" route="https://www.hackforla.org/projects/civic-tech-index" isExternal/>
           <NavSublink heading="FAQ" route="/radicalcollaboration/faq" />
         </NavLink>
         <NavLink heading="Organizations" route="/contributors/all">

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Container, Grid } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import { GetStartedCard, NavButton, TitleSection } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
 import TrendingTopicsSection from './sections/TrendingTopicsSection';
