@@ -17,7 +17,8 @@ const styles = () => ({
 const NavSublink = ({ heading, route, classes, isExternal=false }) => {
   const linkComponent = isExternal
     ? <a href={route}
-        style={{ textDecoration: 'none' }}>
+        style={{ textDecoration: 'none' }}
+      >
         <Typography>{heading}</Typography>
       </a>
     : <Link
@@ -25,7 +26,8 @@ const NavSublink = ({ heading, route, classes, isExternal=false }) => {
         to={route}
         underline="none"
         classes={{ root: classes.text }}
-      ><Typography>{heading}</Typography>
+      >
+        <Typography>{heading}</Typography>
       </Link>;
   return (
     <MenuItem
