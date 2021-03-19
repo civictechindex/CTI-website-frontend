@@ -16,7 +16,7 @@ const styles = () => ({
 });
 const NavSublink = ({ heading, route, classes, isExternal=false }) => {
   const linkComponent = isExternal
-    ? <a href={route} target='_blank'
+    ? <a href={route} rel="noopener noreferrer"
         style={{ textDecoration: 'none' }}>
         <Typography>{heading}</Typography>
       </a>
