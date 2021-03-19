@@ -1,6 +1,7 @@
 import React from 'react'
-
-import { Chip, Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TopicTag from '../../TagCreator/TopicTag';
 
 const topicData = [
   { detail: "Covid-19", link: "#" },
@@ -23,21 +24,29 @@ const TrendingTopicsSection = () => {
   const TrendingTopicChip = (props) => {
     return (
       <a href={props.href}>
-        <Chip label={props.children} cursor="cursor" />
+        <TopicTag label={props.children} variant="generated" />
       </a>
-    )
+    );
   }
 
   return (
-    <Grid container justify="center">
-      <Grid item sm={6} style={{ padding: '20px' }}>
-        <h2>How are people using the CTI?</h2>
-        <h5>Trending Topics:</h5>
+    <Grid container>
+      <Grid item xs={false} md={1} />
+      <Grid item xs={6} md={5}>
+        <Typography variant='h3' color='textPrimary' gutterBottom>
+          How are people using the CTI?
+        </Typography>
+        <Typography variant='h5' color='textSecondary' gutterBottom>
+          Trending Topics:
+        </Typography>
         <TrendingTopicList />
       </Grid>
-      <Grid item sm={6} style={{ padding: '20px' }}><img width="100%" src="images/mag.svg" alt="Trending topics side"></img></Grid>
+      <Grid item xs={6} md={5}>
+        <img width='100%' src='images/mag.svg' alt='Trending topics side graphic'></img>
+      </Grid>
+      <Grid item xs={false} md={1} />
     </Grid>
-  )
+  );
 }
 
 export default TrendingTopicsSection

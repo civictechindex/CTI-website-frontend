@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-import { deepmerge } from '@material-ui/utils';
+import deepmerge from '@material-ui/utils/deepmerge';
 
 // Colors - Primary
 const DARK_BLUE = '#0F1D2F';
@@ -100,6 +100,7 @@ const themeSettings = {
     },
     MuiChip: {
       root: {
+        borderRadius: 24,
         cursor: 'pointer',
         height: 48,
         [breakpoints.down('sm')]: {
@@ -330,6 +331,9 @@ const customThemeSettings = {
       primary: TEAL,
       secondary: LIGHT_GRAY,
       dark: DARK_BLUE,
+    },
+    outline: {
+      gray: DARK_GRAY,
     },
     text: {
       bright: YELLOW,

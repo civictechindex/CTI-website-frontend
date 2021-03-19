@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Chip, Container, Grid, TextField, Typography } from '@material-ui/core';
-import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
+import TopicTag from './TopicTag';
 import orgs from './orgs.json';
 
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
@@ -22,9 +26,7 @@ const TitleSection = () => {
 
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
-  return topicArray.map((name, key) =>
-    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInRoundedIcon />} data-cy='topic-tag' />
-  )
+  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant='generated' />);
 }
 
 const TopicTagSection = ({ names, tagsToAdd }) => {

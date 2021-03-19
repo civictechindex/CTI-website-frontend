@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom/'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import useStyles from './styles'
-import { Box } from '@material-ui/core'
 
 const SocialSection = () => {
   const classes = useStyles()
