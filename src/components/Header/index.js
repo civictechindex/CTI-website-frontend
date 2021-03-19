@@ -41,7 +41,7 @@ const Header = () => {
         <NavLink heading="Radical Collaboration" route="/radicalcollaboration">
           <NavSublink heading="Donate" route="/" />
           <NavSublink heading="Share the CTI" route="/radicalcollaboration/sharethecti" />
-          <NavSublink heading="Volunteer with us" route="/" />
+          <NavSublink heading="Volunteer with us" route="https://www.hackforla.org/projects/civic-tech-index" isExternal/>
           <NavSublink heading="FAQ" route="/radicalcollaboration/faq" />
         </NavLink>
         <NavLink heading="Organizations" route="/contributors/all">
