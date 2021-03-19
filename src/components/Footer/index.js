@@ -60,7 +60,7 @@ const Footer = () => {
           <Link to='/adding-projects-to-the-index'>How to Do It</Link>
           <Link to='/donate'>Donate</Link>
           <Link to='/'>Share the CTI</Link>
-          <a href='https://www.hackforla.org/projects/civic-tech-index' rel="noopener noreferrer">
+          <a href='https://www.hackforla.org/projects/civic-tech-index'>
             Volunteer with Us
           </a>
           <Link to='/radicalcollaboration/faq'>FAQ</Link>
