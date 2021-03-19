@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import NavButton from "./NavButton";
 import React from "react";
 import TitleSection from "./TitleSection";

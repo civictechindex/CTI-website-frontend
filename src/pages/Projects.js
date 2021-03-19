@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import { Container, Box, Grid, Typography, Modal } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Typography from '@material-ui/core/Typography';
+import Modal from "@material-ui/core/Modal";
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import CloseIcon from '@material-ui/icons/Close';
 
 import NavBreadcrumbs from '../components/NavBreadcrumbs'

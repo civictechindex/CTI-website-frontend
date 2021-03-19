@@ -1,8 +1,9 @@
 /* eslint-disable sort-keys */
 
 import React, { useState, useEffect } from 'react'
-import { Box, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import { ContributorThumbnail } from './ContributorThumbnail'
 import { DropdownArrow } from './DropdownArrow'
 
