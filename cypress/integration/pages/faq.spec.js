@@ -13,7 +13,7 @@ describe('FAQ Page', () => {
 
   it('gets faq by search', () => {
     cy.get('[data-cy=search-faq]').click({ force: true }) // need two get's to avoid flaky test
-    cy.get('[data-cy=search-faq] input').click({ force: true }).type(SEARCH)
+    cy.get('[data-cy=search-faq]').click({ force: true }).type(SEARCH)
     cy.get('[data-cy=faq-question]')
       .first()
       .contains(Q)

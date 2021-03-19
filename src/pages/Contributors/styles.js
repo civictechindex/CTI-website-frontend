@@ -175,47 +175,32 @@ export const useStyle = makeStyles((theme) => ({
     minHeight: '6rem',
     color: theme.palette.primary.main,
   },
-
-  codeForAllThumbnailWrapper: {
-    display: 'flex',
-    flexGrow: '1',
+  codeForAllWrapper: {
+    '& a': {
+      alignItems: 'center',
+      marginRight: '0.5rem',
+      display: 'flex',
+      textDecoration: 'none',
+      '& p': {
+        color: theme.palette.secondary.dark,
+      },
+      '& img': {
+        marginRight: '0.5rem',
+        maxWidth: '6rem',
+      },
+    },
+    '& p': {
+      display: 'flex',
+      color: theme.palette.secondary.dark,
+    },
     width: '50%',
-    borderRadius: '4px',
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.secondary.dark.contrastText,
+    minHeight: '7rem',
     margin: '1rem auto',
-  },
-  codeForAllThumbnails: {
     display: 'flex',
-    textDecoration: 'none',
-  },
-  codeForAllImageWrapper: {
-    display: 'flex',
-    placeItems: 'center',
-    maxWidth: '6rem',
-    margin: ' 0 0.5rem',
-    flexGrow: '1',
-  },
-  codeForAllThumbnailImage: {
-    maxWidth: '100%',
-    height: 'auto',
-  },
-  codeForAllTextWrapper: {
-    display: 'flex',
-    margin: '0 0.5rem 0 1rem',
-    flexGrow: '1',
     alignItems: 'center',
+    backgroundColor: theme.palette.background.default,
+    border: '1px solid #BCBCBC',
+    borderRadius: '4px',
+    padding: '1rem',
   },
-  codeForAllThumbnailText: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    margin: '0',
-    color: theme.palette.secondary.dark,
-  },
-  dropdownLength: {
-    color: theme.palette.secondary.dark,
-  },
-  contributorsTagline: {
-    margin: theme.spacing(4, 0),
-  },
-}))
+}));
