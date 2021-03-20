@@ -1,7 +1,7 @@
 describe('Share the CTI Page', () => {
 
   before(() => {
-    cy.visit('/sharethecti')
+    cy.visit('/radicalcollaboration/sharethecti');
   })
 
   it('header loads', () => {

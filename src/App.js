@@ -6,14 +6,15 @@ import Layout from './components/common/Layout';
 import About from './pages/About';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
-import Faq from './pages/Faq';
+import Faq from './pages/RadicalColloboration/Faq'
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
 import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
-import ShareTheCti from './pages/ShareTheCti'
+import Error404 from './pages/Error404'
+import ShareTheCti from './pages/RadicalColloboration/ShareTheCti'
 import Guides from './guides/';
 import useStyles from './styles';
 
@@ -43,9 +44,11 @@ const App = () => {
           <Route exact path='/home' component={Home} />
           <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
           <RouteTitled exact path='/tag-generator' component={TagCreator} title='Tag Generator' />
-          <RouteTitled exact path='/radicalcollaboration/:faq' component={Faq} title='FAQs' />
+          <Route exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} />
+          <Route exact path='/radicalcollaboration/faq' component={Faq} />
           <Route path='/guides/:guide' component={Guides} />
           <Route path='/blank' component={Placeholder} />
+          <Route path='/404' component={Error404} />
           <Redirect from='/adding-projects' to='/adding-projects-to-the-index' />
           <Redirect from='/how' to='/adding-projects-to-the-index' />
           <Redirect from='/how-to' to='/adding-projects-to-the-index' />
@@ -56,12 +59,11 @@ const App = () => {
           <Redirect from='/tagcreator' to='/tag-generator' />
           <Redirect from='/search' to='/projects' />
           <Redirect from='/faq' to='/radicalcollaboration/faq' />
-          <Redirect from='/radicalcollaboration' to='/radicalcollaboration/faq' />
-          <Route exact path='/sharethecti' component={ShareTheCti} />
+          <Redirect from='/radicalcollaboration' to='/radicalcollaboration/faq' component={Faq} />
           <Redirect from='/guides' to='/guides/colors' />
           <Redirect from='/placeholder' to='/blank' />
           <Redirect from='/template' to='/blank' />
-          <Redirect to='/' />
+          <Redirect to='/404' />
         </Switch>
       </Layout>
     </BrowserRouter>

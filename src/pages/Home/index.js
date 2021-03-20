@@ -1,5 +1,7 @@
 import React from 'react';
-import { Container, Grid } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import { GetStartedCard, NavButton, TitleSection } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
 import TrendingTopicsSection from './sections/TrendingTopicsSection';
@@ -33,14 +35,16 @@ const CallToActionSection = () => {
 
 const Home = () => {
   return (
-    <Container className='containerWorld'>
-      <TitleSection>Join a worldwide movement to catalog every open source civic tech project.</TitleSection>
-      <MarketingSection />
-      <CallToActionSection />
-      <NotableUsersSection />
-      <TrendingTopicsSection />
-      <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/tag-generator" />
-    </Container>
+    <Box className='boxBackground'>
+      <Container className='containerWorld'>
+        <TitleSection>Join a worldwide movement to catalog every open source civic tech project.</TitleSection>
+        <MarketingSection />
+        <CallToActionSection />
+        <NotableUsersSection />
+        <TrendingTopicsSection />
+        <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/tag-generator" />
+      </Container>
+    </Box>
   )
 }
 

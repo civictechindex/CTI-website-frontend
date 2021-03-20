@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -68,6 +68,9 @@ const useStyles = makeStyles(theme => ({
       '& p': {
         color: theme.palette.text.secondary,
       },
+    },
+    '.boxBackground':{
+      backgroundColor: theme.palette.background.primary,
     },
   },
 }))

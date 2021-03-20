@@ -1,5 +1,9 @@
 import React from 'react';
-import { Box, Card, CardMedia, Container, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import { GetStartedCard, NavBreadcrumbs, PictureCard, TitleSection } from '../components';
 
 const About = () => {
@@ -37,14 +41,16 @@ const About = () => {
   };
 
   return (
-    <Container className='containerDefault'>
-      <NavBreadcrumbs crumbs={crumbs} />
-      <TitleSection>A movement to index every open source civic tech project on GitHub</TitleSection>
-      <VideoSection />
-      <MarketingSection />
-      <PictureCard items={pictureMarketingPoints} />
-      <GetStartedCard headerTitle='Ready to get started?' buttonText='Tag your Project' buttonHref='/tag-generator' />
-    </Container>
+    <Box className='containerDefault'>
+      <Container >
+        <NavBreadcrumbs crumbs={crumbs} />
+        <TitleSection>A movement to index every open source civic tech project on GitHub</TitleSection>
+        <VideoSection />
+        <MarketingSection />
+        <PictureCard items={pictureMarketingPoints} />
+        <GetStartedCard headerTitle='Ready to get started?' buttonText='Tag your Project' buttonHref='/tag-generator' />
+      </Container>
+    </Box>
   );
 };
 

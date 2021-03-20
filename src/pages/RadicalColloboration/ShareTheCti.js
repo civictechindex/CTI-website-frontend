@@ -2,14 +2,17 @@ import React from "react";
 import {
   NavBreadcrumbs,
   TitleSection,
-} from "../components";
-import { Button, Container,Grid,Hidden } from "@material-ui/core";
+} from "../../components";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
-    backgroundColor: theme.palette.secondary.dark,
     paddingBottom:theme.spacing(6),
   },
   mediaImageContainerStyle:{
@@ -271,17 +274,19 @@ export default function ShareTheCti() {
   ];
 
   return (
-    <Container className={classes.containerStyle}>
-      <NavBreadcrumbs crumbs={crumbs}/>
-      <TitleSection>Share the CTI</TitleSection>
-      <HeadingSection caption1={"Follow us on Social Media"} caption2={"#civictechindex"}/>
-      <SocialMediaImages/>
-      <HeadingSection caption1={"Tell others about us!"} caption2={"Here are some suggested content to share with your networks."}/>
-      <SocialMediaPostSection/>
-      <MediaInfo/>
-      <CtiImageSection/>
-      <ButtonSection/>
-      <StarMediaSection/>
-    </Container>
+    <Box className='boxBackground'>
+      <Container className={classes.containerStyle}>
+        <NavBreadcrumbs crumbs={crumbs}/>
+        <TitleSection>Share the CTI</TitleSection>
+        <HeadingSection caption1={"Follow us on Social Media"} caption2={"#civictechindex"}/>
+        <SocialMediaImages/>
+        <HeadingSection caption1={"Tell others about us!"} caption2={"Here are some suggested content to share with your networks."}/>
+        <SocialMediaPostSection/>
+        <MediaInfo/>
+        <CtiImageSection/>
+        <ButtonSection/>
+        <StarMediaSection/>
+      </Container>
+    </Box>
   );
 }

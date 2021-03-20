@@ -1,8 +1,9 @@
 import * as React from "react";
 import Link from "@material-ui/core/Link";
-import { MenuItem, Typography } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { Link as RouterLink } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
 
 const styles = () => ({
   menuitem: {
@@ -13,7 +14,21 @@ const styles = () => ({
     },
   },
 });
-const NavSublink = ({ heading, route, classes }) => {
+const NavSublink = ({ heading, route, classes, isExternal=false }) => {
+  const linkComponent = isExternal
+    ? <a href={route}
+        style={{ textDecoration: 'none' }}
+      >
+        <Typography>{heading}</Typography>
+      </a>
+    : <Link
+        component={RouterLink}
+        to={route}
+        underline="none"
+        classes={{ root: classes.text }}
+      >
+        <Typography>{heading}</Typography>
+      </Link>;
   return (
     <MenuItem
       data-cy="menuItem"
@@ -22,14 +37,7 @@ const NavSublink = ({ heading, route, classes }) => {
       classes={{ root: classes.menuitem }}
       ListItemClasses={{ root: classes.text }}
     >
-      <Link
-        component={RouterLink}
-        to={route}
-        underline="none"
-        classes={{ root: classes.text }}
-      >
-        <Typography>{heading}</Typography>
-      </Link>
+    {linkComponent}
     </MenuItem>
   );
 };

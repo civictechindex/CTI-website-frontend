@@ -10,6 +10,7 @@ import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import Buttons from './buttons';
 import Colors from './colors';
+import TopicTags from './topic-tags';
 import TypeStandards from './type-standards';
 import Typography from './typography';
 
@@ -39,6 +40,7 @@ const Guides = (props) => {
   const components = {
     buttons: Buttons,
     colors: Colors,
+    'topic-tags': TopicTags,
     'type-standards': TypeStandards,
     typography: Typography,
   };
@@ -56,6 +58,7 @@ const Guides = (props) => {
               </MenuItem>
               <MenuItem value='buttons'>Buttons</MenuItem>
               <MenuItem value='colors'>Colors</MenuItem>
+              <MenuItem value='topic-tags'>Topic Tags</MenuItem>
               <MenuItem value='type-standards'>Type Standards</MenuItem>
               <MenuItem value='typography'>Typography</MenuItem>
             </Select>
