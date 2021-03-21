@@ -131,7 +131,7 @@ const Projects = () => {
         </Grid>
         <Grid item xs={2} />
       </Grid>
-      <Grid container className='card243'>
+      <Grid container className='card242'>
         <Grid container item xs={12}>
           <Grid item xs={1} />
           <Grid item xs={3}></Grid>

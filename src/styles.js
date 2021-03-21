@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
     '.card242': {
-      backgroundColor: theme.palette.background.light,
+      backgroundColor: theme.palette.background.default,
       padding: theme.spacing(2),
       textAlign: 'center',
       '& h6': {
