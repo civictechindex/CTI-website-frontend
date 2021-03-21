@@ -26,24 +26,24 @@ const calculateDaysSince = (updateTime) => {
   return Math.round(days / (1000 * 3600 * 24));
 };
 
-const renderCard = (i) => {
+const renderCard = (project) => {
   return (
-    <Grid item style={{ paddingTop: '10px' }}>
+    <Grid item style={{ paddingTop: '10px' }} key={project.id}>
       {' '}
       <ProjectCard
-        projectUrl={i.html_url}
-        organizationUrl={i.owner.html_url}
-        organizationAvatarUrl={i.owner.avatar_url}
-        ownerName={i.owner.login}
-        projectName={i.name}
-        projectDescription={i.description}
-        homepage={i.homepage} /* TODO: Fan out */
-        lastUpdate={calculateDaysSince(i.updated_at)}
-        issueCount={i.open_issues}
-        projectLanguage={i.language}
-        topics={i.topics}
-        watchers={i.watchers_count}
-        stargazers={i.stargazers_count}
+        projectUrl={project.html_url}
+        organizationUrl={project.owner.html_url}
+        organizationAvatarUrl={project.owner.avatar_url}
+        ownerName={project.owner.login}
+        projectName={project.name}
+        projectDescription={project.description}
+        homepage={project.homepage} /* TODO: Fan out */
+        lastUpdate={calculateDaysSince(project.updated_at)}
+        issueCount={project.open_issues}
+        projectLanguage={project.language}
+        topics={project.topics}
+        watchers={project.watchers_count}
+        stargazers={project.stargazers_count}
       />
     </Grid>
   );
