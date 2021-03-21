@@ -33,8 +33,11 @@ const localTheme = {
       },
     },
     MuiFormControlLabel: {
+      root: {
+        marginLeft: 0,
+      },
       label: {
-        fontSize: '0.75rem',
+        fontSize: '1rem',
         paddingLeft: 4,
       },
     },
@@ -83,10 +86,7 @@ const themeMerge = (outerTheme) => {
 const SearchField = (props) => {
   return (
     <TextField
-      onInput={props.onInput}
-      onKeyPress={props.onKeyPress}
-      placeholder={props.placeholder}
-      value={props.query}
+      fullWidth
       InputLabelProps={{
         shrink: true,
       }}
@@ -97,9 +97,12 @@ const SearchField = (props) => {
           </InputAdornment>
         ),
       }}
-      fullWidth
       margin='dense'
+      onInput={props.onInput}
+      onKeyPress={props.onKeyPress}
+      placeholder={props.placeholder}
       size='small'
+      value={props.query}
       variant='outlined'
     />
   );
@@ -113,7 +116,8 @@ const ProgrammingLanguages = (props) => {
     setOpen(!open);
   };
   const viewMore = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+    // eslint-disable-next-line
     console.log('View More Languages');
   };
   return (
@@ -160,10 +164,11 @@ const Affiliation = (props) => {
   const handleClick = () => {
     setOpen(!open);
   };
-    const viewMore = (event) => {
-      event.preventDefault();
-      console.log('View More Affiliations');
-    };
+  const viewMore = (event) => {
+    event.preventDefault();
+    // eslint-disable-next-line
+    console.log('View More Affiliations');
+  };
 
   return (
     <List dense disablePadding style={{ foo: 'bar' }}>

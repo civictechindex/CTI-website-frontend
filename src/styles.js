@@ -1,6 +1,6 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     '.card240': {
       backgroundColor: theme.palette.background.dark,
@@ -40,13 +40,13 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.secondary.dark,
       },
     },
-    ".containerDefault": {
+    '.containerDefault': {
       backgroundColor: theme.palette.secondary.dark,
-      minHeight: "500px",
+      minHeight: '500px',
     },
-    ".containerGray": {
+    '.containerGray': {
       backgroundColor: theme.palette.background.secondary,
-      minHeight: "500px",
+      minHeight: '500px',
     },
     '.containerWhite': {
       backgroundColor: theme.palette.background.default,
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.secondary.dark,
       backgroundImage: 'url(/images/world-view.png)',
       backgroundRepeat: 'no-repeat',
-      minHeight: "500px",
+      minHeight: '500px',
     },
     '.frame223': {
       backgroundColor: theme.palette.background.secondary,
@@ -88,6 +88,6 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.background.primary,
     },
   },
-}))
+}));
 
 export default useStyles

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import axios from 'axios';
 import Box from '@material-ui/core/Box';
@@ -99,9 +100,9 @@ const Projects = () => {
         .then((res) => {
           const items = res.data.items.map((i) => renderCard(i));
           setResultCount(
-            <Grid item>
-              Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>&quot;{query}&quot;</b>
-            </Grid>
+            <Typography variant='body1'>
+              Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>“{query}”</b>
+            </Typography>
           );
           setResults(items);
           setShowResults(true);
@@ -123,14 +124,16 @@ const Projects = () => {
         <Grid container className='grid241'>
           <Grid item xs={12}>
             <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
-            <Typography variant='h1' color='textPrimary'>
-              Search Projects
-            </Typography>
+            <Box style={{ textAlign: 'center' }}>
+              <Typography variant='h1' color='textPrimary'>
+                Search Projects
+              </Typography>
+            </Box>
           </Grid>
           <Grid item xs={2} />
           <Grid item xs={8}>
             <SearchBar value={query} onInput={(e) => setQuery(e.target.value)} placeholder='Search the Civic Tech Index' onKeyPress={handleSubmit} />
-            <Typography className={classes.openSearchTips} onClick={handleOpen}>
+            <Typography variant='body1' className={classes.openSearchTips} onClick={handleOpen}>
               <u>How to improve your search result</u>
             </Typography>
           </Grid>
