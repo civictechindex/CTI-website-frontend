@@ -73,7 +73,18 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.secondary,
       },
     },
-    '.boxBackground':{
+    '.grid241': {
+      backgroundColor: theme.palette.background.primary,
+      padding: theme.spacing(2),
+      '& .MuiTypography-body1': {
+        color: theme.palette.text.secondary,
+      },
+    },
+    '.grid242': {
+      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing(2),
+    },
+    '.boxBackground': {
       backgroundColor: theme.palette.background.primary,
     },
   },

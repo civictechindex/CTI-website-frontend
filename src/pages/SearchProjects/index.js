@@ -120,7 +120,7 @@ const Projects = () => {
   return (
     <Box className='containerGray'>
       <Container>
-        <Grid container className='card241'>
+        <Grid container className='grid241'>
           <Grid item xs={12}>
             <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
             <Typography variant='h1' color='textPrimary'>
