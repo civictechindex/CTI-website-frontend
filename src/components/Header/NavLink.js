@@ -53,9 +53,9 @@ const NavLink = ({ heading, route, children, classes }) => {
           }}
           classes={{ paper: classes.paper, list: classes.menu }}
           PopoverClasses={{ paper: classes.popover }}
-          elevation="0"
+          elevation={0}
         >
-          {children}
+          <div>{children}</div>
         </Menu>
       )}
     </>
