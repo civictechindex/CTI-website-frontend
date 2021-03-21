@@ -21,7 +21,7 @@ export default function AccordionSection(props) {
         body: JSON.stringify({
           "question": currentFaq.question,
           "answer": currentFaq.answer,
-          "view_count": currentFaq.view_count
+          "view_count": currentFaq.view_count,
         }),
       }
       await axios.get(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestOptions);
