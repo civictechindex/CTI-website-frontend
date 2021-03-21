@@ -1,5 +1,6 @@
 /* eslint-disable sort-keys */
-import { useEffect,useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
+import axios from "axios";
 
 // PREVENTS RERENDER FLICKERING AS USER TYPES IN SEARCH
 const sleep = (ms) => {
@@ -13,12 +14,12 @@ const useSearchFaq = (url) => {
   };
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
-    case 'FETCHEDSEARCH':
-      return { ...initialState, status: 'fetchedSearch', data: action.payload };
-    case 'FETCHEDFAQ':
-      return { ...initialState, status: 'fetchedFaq', data: action.payload };
-    default:
-      return state;
+      case 'FETCHEDSEARCH':
+        return { ...initialState, status: 'fetchedSearch', data: action.payload };
+      case 'FETCHEDFAQ':
+        return { ...initialState, status: 'fetchedFaq', data: action.payload };
+      default:
+        return state;
     }
   }, initialState);
 
@@ -27,9 +28,11 @@ const useSearchFaq = (url) => {
     const controller = new AbortController()
     if (!url) {
       const fetchFaqs = async function () {
-        const fullResponse = await fetch('http://test-civictechindexadmin.herokuapp.com/api/faqs/');
-        const responseJson = await fullResponse.json();
-        dispatch({ type: 'FETCHEDFAQ', payload: responseJson });
+        const apiUrl = 'http://test-civictechindexadmin.herokuapp.com/api/faqs/';
+        axios.get(apiUrl).then((repos) => {
+          const responseJson = repos.data;
+          dispatch({ type: 'FETCHEDFAQ', payload: responseJson });
+        });
       }
       fetchFaqs();
     }
@@ -38,9 +41,11 @@ const useSearchFaq = (url) => {
         await sleep(350)
         if (currentQuery) {
           const fetchData = async function () {
-            const response = await fetch(url,controller);
-            const data = await response.json();
-            dispatch({ type: 'FETCHEDSEARCH', payload: data });
+            axios.get(url, controller).then((repos) => {
+              const data = repos.data;
+              dispatch({ type: 'FETCHEDSEARCH', payload: data });
+            });
+
           }
           fetchData();
         }
