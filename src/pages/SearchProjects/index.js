@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
@@ -117,45 +118,46 @@ const Projects = () => {
   };
 
   return (
-    <Container className='containerGray'>
-      <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
-      <Grid container className='card241'>
-        <Grid item xs={12}>
-          <Typography variant='h1' color='textPrimary'>
-            Search Projects
-          </Typography>
-        </Grid>
-        <Grid item xs={2} />
-        <Grid item xs={8}>
-          <SearchBar value={query} onInput={(e) => setQuery(e.target.value)} placeholder='Search the Civic Tech Index' onKeyPress={handleSubmit} />
-        </Grid>
-        <Grid item xs={2} />
-      </Grid>
-      <Grid container className='card242'>
-        <Grid container item xs={12}>
-          <Grid item xs={1} />
-          <Grid item xs={3}></Grid>
-          <Grid item xs={1} />
-          <Grid item xs={6}>
-            {resultCount}
+    <Box className='containerGray'>
+      <Container>
+        <Grid container className='card241'>
+          <Grid item xs={12}>
+            <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
+            <Typography variant='h1' color='textPrimary'>
+              Search Projects
+            </Typography>
           </Grid>
-          <Grid item xs={1} />
+          <Grid item xs={2} />
+          <Grid item xs={8}>
+            <SearchBar value={query} onInput={(e) => setQuery(e.target.value)} placeholder='Search the Civic Tech Index' onKeyPress={handleSubmit} />
+            <Typography className={classes.openSearchTips} onClick={handleOpen}>
+              <u>How to improve your search result</u>
+            </Typography>
+          </Grid>
+          <Grid item xs={2} />
         </Grid>
-        {showResults && (
+        <Grid container className='card242'>
+          <Grid container item xs={12}>
+            <Grid item xs={1} />
+            <Grid item xs={3}></Grid>
+            <Grid item xs={1} />
+            <Grid item xs={6}>
+              {resultCount}
+            </Grid>
+            <Grid item xs={1} />
+          </Grid>
           <Grid container item xs={12}>
             <Grid item xs={1} />
             <Grid item xs={3}>
               <RefineResults />
             </Grid>
             <Grid item xs={1} />
-            <Grid item xs={6}>
-              {results}
+            <Grid container item xs={6}>
+              {showResults && results}
             </Grid>
             <Grid item xs={1} />
           </Grid>
-        )}
-      </Grid>
-    </Container>
+        </Grid>
         <Modal aria-labelledby='search-tips-title' className={classes.modal} open={modalOpen} onBackdropClick={handleClose}>
           <Box className={classes.searchTips}>
             <Typography variant='h4' id='search-tips-title'>
@@ -185,6 +187,8 @@ const Projects = () => {
             </Typography>
           </Box>
         </Modal>
+      </Container>
+    </Box>
   );
 };
 
