@@ -136,28 +136,26 @@ const Projects = () => {
           </Grid>
           <Grid item xs={2} />
         </Grid>
-        <Grid container className='card242'>
-          <Grid container item xs={12}>
-            <Grid item xs={1} />
-            <Grid item xs={3}></Grid>
-            <Grid item xs={1} />
-            <Grid item xs={6}>
-              {resultCount}
+        {showResults && (
+          <Grid container className='grid242'>
+            <Grid container item xs={12}>
+              <Grid item xs={4}></Grid>
+              <Grid item xs={1} />
+              <Grid item xs={7}>
+                {resultCount}
+              </Grid>
             </Grid>
-            <Grid item xs={1} />
+            <Grid container item xs={12}>
+              <Grid item xs={4}>
+                <RefineResults />
+              </Grid>
+              <Grid item xs={1} />
+              <Grid container item xs={7}>
+                {results}
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid container item xs={12}>
-            <Grid item xs={1} />
-            <Grid item xs={3}>
-              <RefineResults />
-            </Grid>
-            <Grid item xs={1} />
-            <Grid container item xs={6}>
-              {showResults && results}
-            </Grid>
-            <Grid item xs={1} />
-          </Grid>
-        </Grid>
+        )}
         <Modal aria-labelledby='search-tips-title' className={classes.modal} open={modalOpen} onBackdropClick={handleClose}>
           <Box className={classes.searchTips}>
             <Typography variant='h4' id='search-tips-title'>
