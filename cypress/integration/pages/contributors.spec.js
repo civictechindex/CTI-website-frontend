@@ -5,7 +5,7 @@ describe('Contributors Page', () => {
 
   it('wait for affiliated orgs to load', () => {
     cy.get('[class*=affiliatedOrgsContainer]').within(() => {
-      cy.get('[class*=containerDropdown]', { timeout: 20000 }).should('have.length', 24)
+      cy.get('[class*=containerDropdown]', { timeout: 60000 }).should('have.length', 24)
     })
   })
 
