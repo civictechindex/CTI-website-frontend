@@ -7,12 +7,12 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CloseIcon from '@material-ui/icons/Close';
 
-import NavBreadcrumb from '../../components/NavBreadcrumbs';
-import ProjectCard from '../../components/ProjectCard';
-import SearchBar from '../../components/SearchBar';
-
-import RefineResults from './RefineResults';
 import Link from '../../components/common/Link';
+import NavBreadcrumb from '../../components/NavBreadcrumbs';
+
+import ProjectCard from './ProjectCard';
+import SearchBar from './SearchBar';
+import RefineResults from './RefineResults';
 
 import '../../styles.css';
 

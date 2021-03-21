@@ -157,6 +157,11 @@ const themeSettings = {
         },
       },
     },
+    MuiOutlinedInput: {
+      root: {
+        backgroundColor: WHITE,
+      },
+    },
     MuiTextField: {
       root: {
         width: '100%',

@@ -26,23 +26,23 @@ export default function SearchBar(props) {
     <div align='center'>
       <TextField
         data-cy='search-projects'
+        fullWidth
+        InputLabelProps={{
+          shrink: true,
+        }}
         InputProps={{
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position='start'>
               <SearchRoundedIcon />
             </InputAdornment>
           ),
         }}
-        value={props.query}
+        margin='normal'
         onInput={props.onInput}
-        variant='outlined'
-        placeholder={props.placeholder}
-        fullWidth
-        margin="normal"
         onKeyPress={props.onKeyPress}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        placeholder={props.placeholder}
+        value={props.query}
+        variant='outlined'
       />
     </div>
   );
