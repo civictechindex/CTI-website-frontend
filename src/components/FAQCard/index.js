@@ -1,32 +1,38 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import Pagination from '@material-ui/lab/Pagination';
-import AccordionSection from './accordionSection'
+import { makeStyles } from '@material-ui/core/styles';
+import AccordionSection from './accordionSection';
 
-const PaginationSection = () =>{
+const useStyles = makeStyles((theme) => ({
+  faqTitleContainer: {
+    paddingBottom: '25px',
+  },
+  faqTitle: {
+    color: theme.palette.secondary.dark,
+  },
+}));
+
+const FAQCard = (props) => {
+  const classes = useStyles();
+
   return (
-    <Grid item xs={12} lg={7} >
-      <Box my={2} display="flex" justifyContent="center">
-        <Pagination count={5} variant="outlined" shape="rounded" color="primary" />
-      </Box>
-    </Grid>
-  )
-}
-export default function FAQCard(props) {
-  return (
-    <>
-      <div style={{ backgroundColor:'#F2F2F2' }}>
-        <Grid container  alignItems="center" justify="center" style={{ padding:'60px' }} >
-          <Grid item xs={12} lg={7} style={{ paddingBottom:'25px' }}>
-            <Typography variant="h5"  style={{ color:'#004364' }}>{props.title}</Typography>
-          </Grid>
-          <AccordionSection faqs={props.faqs}/>
-          <PaginationSection/>
+    <Box className="containerGray" py={6} px={1}>
+      <Grid container justify="center">
+        <Grid item xs={12} sm={9} lg={11} className={classes.faqTitleContainer}>
+          <Typography variant="h5" className={classes.faqTitle}>{props.title}</Typography>
         </Grid>
-      </div>
-    </>
+        <AccordionSection faqs={props.faqs}/>
+        <Grid item xs={12} sm={9} lg={11}>
+          <Box my={3} display="flex" justifyContent="center">
+            <Pagination color="secondary" count={props.pages} onChange={props.onChange} />
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
-}
+};
 
+export default FAQCard;
