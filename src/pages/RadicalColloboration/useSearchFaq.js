@@ -1,6 +1,5 @@
 /* eslint-disable sort-keys */
-import { useEffect, useReducer } from 'react';
-import axios from "axios";
+import { useEffect,useReducer } from 'react';
 
 // PREVENTS RERENDER FLICKERING AS USER TYPES IN SEARCH
 const sleep = (ms) => {
@@ -28,11 +27,9 @@ const useSearchFaq = (url) => {
     const controller = new AbortController()
     if (!url) {
       const fetchFaqs = async function () {
-        const apiUrl = 'http://test-civictechindexadmin.herokuapp.com/api/faqs/';
-        await axios.get(apiUrl).then((repos) => {
-          const responseJson = repos.data;
-          dispatch({ type: 'FETCHEDFAQ', payload: responseJson });
-        });
+        const fullResponse = await fetch('http://test-civictechindexadmin.herokuapp.com/api/faqs/');
+        const responseJson = await fullResponse.json();
+        dispatch({ type: 'FETCHEDFAQ', payload: responseJson });
       }
       fetchFaqs();
     }
@@ -41,11 +38,9 @@ const useSearchFaq = (url) => {
         await sleep(350)
         if (currentQuery) {
           const fetchData = async function () {
-            await axios.get(url, controller).then((repos) => {
-              const data = repos.data;
-              dispatch({ type: 'FETCHEDSEARCH', payload: data });
-            });
-
+            const response = await fetch(url,controller);
+            const data = await response.json();
+            dispatch({ type: 'FETCHEDSEARCH', payload: data });
           }
           fetchData();
         }

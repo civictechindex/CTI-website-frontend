@@ -6,9 +6,8 @@ import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
-import axios from "axios";
 
-export default function AccordionSection(props) {
+export default function AccordionSection (props) {
   const [currentFaq, setCurrentFaq] = useState([]);
   const [sendRequest, setSendRequest] = useState(false);
   const faqs = props.faqs
@@ -18,32 +17,30 @@ export default function AccordionSection(props) {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          "question": currentFaq.question,
+        body: JSON.stringify({ "question":currentFaq.question,
           "answer": currentFaq.answer,
-          "view_count": currentFaq.view_count,
-        }),
+          "view_count": currentFaq.view_count }),
       }
-      await axios.get(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestOptions);
+      await fetch(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestOptions);
     }
-    if (sendRequest) {
+    if (sendRequest){
       // send the request
       incrementViewCount()
       setSendRequest(false);
     }
-  }, [sendRequest, currentFaq]);
+  }, [sendRequest,currentFaq]);
 
   return (
     <Grid item xs={12} lg={7} >
       {faqs.map((faq) => {
         return (
           <div key={faq.id}>
-            <Accordion style={{ marginBottom: "20px", padding: '0px' }}>
+            <Accordion style={{ marginBottom: "20px",padding:'0px' }}>
               <AccordionSummary data-cy='faq-question' expandIcon={<ExpandMoreRoundedIcon />} disabled={sendRequest} onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}>
-                <h6 style={{ fontSize: '20px', margin: '0', padding: '0 25px' }}>{faq.question}</h6>
+                <h6 style={{ fontSize:'20px',margin:'0', padding:'0 25px' }}>{faq.question}</h6>
               </AccordionSummary>
               <Divider />
-              <AccordionDetails data-cy='faq-answer'> <Typography style={{ padding: '0 25px' }}>{faq.answer}</Typography></AccordionDetails>
+              <AccordionDetails data-cy='faq-answer'> <Typography style={{ padding:'0 25px' }}>{faq.answer}</Typography></AccordionDetails>
             </Accordion>
           </div>
         );
