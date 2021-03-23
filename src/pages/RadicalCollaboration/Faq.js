@@ -51,13 +51,24 @@ const Faq = () => {
             />
           </Grid>
         </Grid>
-        {status === 'fetchedFaq' && <FAQCard title={"Frequently Asked Questions:"} faqs={data} pages={5} onChange={handleChange} />}
-        {status === 'fetchedSearch' && (
-          <>
-            {<div> No Search Results found!</div>}
-            {<FAQCard title={`Search results (${data.length})`} faqs={data} pages={5} onChange={handleChange} />}
-          </>
-        )}
+        {
+          status === 'fetchedFaq'
+          && <FAQCard
+            title={'Top Asked Questions:'}
+            faqs={data}
+            pages={10}
+            onChange={handleChange}
+          />
+        }
+        {
+          status === 'fetchedSearch'
+          && <FAQCard
+            title={`Search results (${data.length})`}
+            faqs={data}
+            pages={5}
+            onChange={handleChange}
+          />
+        }
         <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
       </Container>
     </Box>
