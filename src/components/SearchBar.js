@@ -2,6 +2,7 @@ import React from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import { makeStyles } from '@material-ui/core/styles';
 
 /**
  * Simple search.
@@ -21,29 +22,38 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
  * @param {function} onKeyPress Listens for enter value.
  */
 
+const useStyles = makeStyles((theme) => ({
+  input: {
+    backgroundColor: theme.palette.background.default,
+  },
+  inputIcon: {
+    color: theme.palette.text.secondary,
+    backgroundColor: theme.palette.secondary.main,
+  },
+}));
+
 export default function SearchBar(props) {
+  const classes = useStyles();
+
   return (
-    <div align='center'>
-      <TextField
-        data-cy='search-projects'
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchRoundedIcon />
-            </InputAdornment>
-          ),
-        }}
-        value={props.query}
-        onInput={props.onInput}
-        variant='outlined'
-        placeholder={props.placeholder}
-        fullWidth
-        margin="normal"
-        onKeyPress={props.onKeyPress}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </div>
+    <TextField className={classes.input}
+      data-cy={props.dataCy}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position='end'>
+            <SearchRoundedIcon className={classes.inputIcon}/>
+          </InputAdornment>
+        ),
+      }}
+      value={props.query}
+      onInput={props.onInput}
+      placeholder={props.placeholder}
+      fullWidth
+      margin="normal"
+      onKeyPress={props.onKeyPress}
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
   );
 }

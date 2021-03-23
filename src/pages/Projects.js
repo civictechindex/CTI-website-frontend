@@ -104,6 +104,7 @@ const Projects = () => {
         </Grid>
         <Grid item xs={12}>
           <SearchBar
+            dataCy='search-projects'
             value={query}
             onInput={(e) => setQuery(e.target.value)}
             placeholder="Search the Civic Tech Index"

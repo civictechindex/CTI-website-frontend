@@ -1,24 +1,25 @@
 /* eslint-disable sort-keys */
-import React, { useState } from "react";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import React, { useState } from 'react';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   GetStartedCard,
   NavBreadcrumbs,
+  SearchBar,
   TitleSection,
 } from "../../components";
 import useSearchFaq from './useSearchFaq'
 import FAQCard from '../../components/FAQCard'
 
-const defaultStyle = {
-  backgroundColor: '#FFFFFF',
-  width: '70%',
-}
+const useStyles = makeStyles({
+  searchBar: {
+    marginBottom: '40px',
+  },
+});
 
-export default function Faq({ match }) {
+const Faq = () => {
 
   const crumbs = [
     { name: "Home", href: "/home" },
@@ -29,31 +30,10 @@ export default function Faq({ match }) {
   const [query, setQuery] = useState('');
   const searchUrl = query && `http://test-civictechindexadmin.herokuapp.com/api/faqs/?search=${query}`;
   const { status, data } = useSearchFaq(searchUrl);
-  const SearchBar = (props) => {
-    return (
-      <>
-        <div align='center'>
-          <TextField
-            data-cy='search-faq'
-            autoFocus
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start"><SearchRoundedIcon /></InputAdornment>), style: { defaultStyle },
-            }}
-            value={query}
-            onInput={e => setQuery(e.target.value)}
-            variant='outlined'
-            style={defaultStyle}
-            placeholder={props.placeholder}
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </div>
-      </>
-    );
+  const classes = useStyles();
+
+  const handleChange = (event, value) => {
+    console.log(value);
   }
 
   return (
@@ -61,12 +41,21 @@ export default function Faq({ match }) {
       <Container >
         <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
         <TitleSection>How can we help?</TitleSection>
-        <SearchBar placeholder={"Search the knowledge base"} />
-        {status === 'fetchedFaq' && <FAQCard title={"Frequently Asked Questions:"} faqs={data} />}
+        <Grid container justify='center' className={classes.searchBar}>
+          <Grid item xs={12} sm={9}>
+            <SearchBar
+              dataCy='search-faq'
+              value={query}
+              onInput={(e) => setQuery(e.target.value)}
+              placeholder="Search the Civic Tech Index"
+            />
+          </Grid>
+        </Grid>
+        {status === 'fetchedFaq' && <FAQCard title={"Frequently Asked Questions:"} faqs={data} pages={5} onChange={handleChange} />}
         {status === 'fetchedSearch' && (
           <>
-            {data.length === 0 && <div> No Search Results found!</div>}
-            {<FAQCard title={`Search results for ${query}`} faqs={data} />}
+            {<div> No Search Results found!</div>}
+            {<FAQCard title={`Search results (${data.length})`} faqs={data} pages={5} onChange={handleChange} />}
           </>
         )}
         <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
@@ -74,3 +63,5 @@ export default function Faq({ match }) {
     </Box>
   );
 }
+
+export default Faq;
