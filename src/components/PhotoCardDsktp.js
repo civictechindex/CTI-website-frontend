@@ -3,10 +3,6 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -26,11 +22,9 @@ const useStyles = makeStyles(
         }
     })
 );
-
 function PhotoCardDsktp(props) {
     const items = props.items;
     const classes = useStyles();
-
     return (
         <>
             {items.map((i, idx) => {
@@ -44,8 +38,8 @@ function PhotoCardDsktp(props) {
                         height: `460px`,
                         backgroundRepeat: `no-repeat`,
                         margin: `0 0 0 495px`
-
-                    }
+                    },
+                    donatePath: `/donate`
                 };
                 return (
                     <Grid item style={{ margin: 'auto' }} align='center' >
@@ -72,7 +66,7 @@ function PhotoCardDsktp(props) {
                                 <Typography variant="h6" style={{ position: 'absolute', left: '69px', top: '280px' }} >
                                     {i.footerText}
                                 </Typography>
-                                <Button className={classes.largeButton} style={{ position: 'absolute', left: '60px', top: '330px', backgroundColor: '#5fcaf9', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                <Button href={styles.donatePath} className={classes.largeButton} style={{ position: 'absolute', left: '60px', top: '330px', backgroundColor: '#5fcaf9', width: '225px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
@@ -83,5 +77,4 @@ function PhotoCardDsktp(props) {
         </>
     );
 }
-
 export default PhotoCardDsktp;
