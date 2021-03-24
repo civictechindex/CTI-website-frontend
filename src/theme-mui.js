@@ -1,53 +1,92 @@
 /* eslint-disable sort-keys */
-import { deepmerge } from '@material-ui/utils';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+import deepmerge from '@material-ui/utils/deepmerge';
 
 // Colors - Primary
-const DARK_BLUE = '#0F1D2F'
-const TEAL = '#004364'
-const LIGHT_BLUE = '#0D99C6'
-// const LIGHT_BLUE_VARIANT = '#0CB2E7'
-const LIGHT_BLUE_VARIANT = '#5FCAF9'
-const LIGHT_BLUE_HOVER = '#006B95'
-const YELLOW = '#FFE06D'
-const WHITE = '#FEFEFE'
+const DARK_BLUE = '#0F1D2F';
+const TEAL = '#004364';
+const LIGHT_BLUE = '#0D99C6';
+const LIGHT_BLUE_VARIANT = '#5FCAF9';
+const YELLOW = '#FFE06D';
+const WHITE = '#FEFEFE';
 // Colors - Secondary
-const DARK_GRAY = '#6D6E74'
-const LIGHT_GRAY = '#F2F2F2'
-const RED = '#D20E0E'
-const PURPLE = '#551A8B'
+const DARK_GRAY = '#6D6E74';
+const LIGHT_GRAY = '#F2F2F2';
+const RED = '#D20E0E';
+const PURPLE = '#551A8B';
 // Colors - Grey
-const GREY100 = '#F4F4F4' // default = #f5f5f5
-const GREY200 = '#E9E9E9' // default = #eeeeee
-const GREY300 = '#D8D8D8' // default = #e0e0e0
-const GREY900 = '#242424' // default = #212121
+const GREY100 = '#F4F4F4'; // default = #f5f5f5
+const GREY200 = '#E9E9E9'; // default = #eeeeee
+const GREY300 = '#D8D8D8'; // default = #e0e0e0
+const GREY900 = '#242424'; // default = #212121
+
+const breakpoints = createBreakpoints({});
+
+const defaultButtonSettings = {
+  backgroundColor: LIGHT_BLUE,
+  color: WHITE,
+  '&$disabled': {
+    color: WHITE,
+    opacity: '0.50',
+  },
+  '&:hover': {
+    backgroundColor: LIGHT_BLUE,
+    opacity: '0.92',
+  },
+  '&:focus': {
+    backgroundColor: LIGHT_BLUE,
+    opacity: '0.76',
+  },
+  '&:active': {
+    backgroundColor: LIGHT_BLUE,
+    opacity: '0.68',
+  },
+};
 
 // themeSettings - modify Material-UI baseline theme
 const themeSettings = {
-  breakpoints: {
-    xs: 0,
-    sm: 768,
-    md: 1024,
-    lg: 1280,
-    xl: 1920,
-  },
   overrides: {
     MuiButton: {
       root: {
-        backgroundColor: LIGHT_BLUE,
         borderRadius: 24,
-        color: WHITE,
-        fontWeight: 700,
-        textTransform: 'none',
-        width: 256,
-        '&$disabled': {
-          color: DARK_GRAY,
-          backgroundColor: LIGHT_GRAY,
+        height: 48,
+        [breakpoints.down('sm')]: {
+          height: 42,
         },
-        "&:hover": {
-          backgroundColor: LIGHT_BLUE_HOVER,
+        ...defaultButtonSettings,
+      },
+      label: {
+        fontWeight: 700,
+        marginLeft: 12,
+        marginRight: 12,
+        minWidth: 128,
+        paddingLeft: 12,
+        paddingRight: 12,
+        textTransform: 'none',
+        whiteSpace: 'nowrap',
+      },
+      textPrimary: {
+        ...defaultButtonSettings,
+      },
+      textSecondary: {
+        backgroundColor: WHITE,
+        color: DARK_BLUE,
+        '&$disabled': {
+          backgroundColor: '#6D6E74',
+          color: DARK_BLUE,
+          opacity: '0.50',
+        },
+        '&:hover': {
+          backgroundColor: '#F1F2F4',
+          color: DARK_BLUE,
+        },
+        '&:focus': {
+          backgroundColor: '#D9DCDF',
+          color: DARK_BLUE,
         },
         '&:active': {
-          backgroundColor: LIGHT_BLUE,
+          backgroundColor: '#C3C8CA',
+          color: DARK_BLUE,
         },
       },
     },
@@ -59,6 +98,17 @@ const themeSettings = {
         },
       },
     },
+    MuiChip: {
+      root: {
+        borderRadius: 24,
+        cursor: 'pointer',
+        height: 48,
+        [breakpoints.down('sm')]: {
+          height: 42,
+        },
+        margin: '0 8px 8px 0',
+      },
+    },
     MuiCssBaseline: {
       '@global': {
         body: {
@@ -66,12 +116,6 @@ const themeSettings = {
           fontWeight: 400,
           margin: 0,
         },
-      },
-    },
-    MuiChip: {
-      root: {
-        cursor: 'pointer',
-        margin: '0 8px 8px 0',
       },
     },
     MuiInputLabel: {
@@ -135,11 +179,20 @@ const themeSettings = {
     },
   },
   props: {
+    MuiButtonBase: {
+      disableRipple: true,
+    },
+    MuiCard: {
+      elevation: 0,
+    },
     MuiContainer: {
-      maxWidth: 'xl',
+      maxWidth: 'lg',
     },
     MuiInputAdornment: {
       disableTypography: true, // this changes startAdornment text color to primary
+    },
+    MuiPaper: {
+      elevation: 0,
     },
     MuiTextField: {
       variant: 'outlined',
@@ -217,7 +270,8 @@ const themeSettings = {
       fontWeight: 700,
       lineHeight: 1.25,
     },
-    body1: { // paragraph
+    body1: {
+      // paragraph
       color: DARK_BLUE,
       fontSize: '1rem',
       fontWeight: 400,
@@ -229,7 +283,8 @@ const themeSettings = {
       fontWeight: 700,
       lineHeight: 1.35,
     },
-    button: { // unused
+    button: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
@@ -239,20 +294,23 @@ const themeSettings = {
       fontWeight: 400,
       lineHeight: 1.35,
     },
-    overline: { // unused
+    overline: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle1: { // unused
+    subtitle1: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
-    subtitle2: { // unused
+    subtitle2: {
+      // unused
       color: DARK_BLUE,
       fontWeight: 400,
     },
   },
-}
+};
 
 // customThemeSettings - extend Material-UI theming
 const customThemeSettings = {
@@ -274,6 +332,9 @@ const customThemeSettings = {
       secondary: LIGHT_GRAY,
       dark: DARK_BLUE,
     },
+    outline: {
+      gray: DARK_GRAY,
+    },
     text: {
       bright: YELLOW,
       dark: DARK_BLUE,
@@ -285,8 +346,8 @@ const customThemeSettings = {
       fontFamily: 'Source Code Pro, monospace',
     },
   },
-}
+};
 
-const theme = deepmerge(themeSettings, customThemeSettings)
+const theme = deepmerge(themeSettings, customThemeSettings);
 
-export default theme
+export default theme;

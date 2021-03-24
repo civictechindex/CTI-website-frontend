@@ -2,17 +2,16 @@ version: "2"
 checks:
   method-complexity:
     config:
-      threshold: 5
+      threshold: 8
   method-lines:
     config:
-      threshold: 100
+      threshold: 150
   similar-code:
     enabled: false
   identical-code:
     enabled: true
 exclude_patterns:
-- "cypress/*"
-plugins: 
-  eslint:
-    enabled: true
-    channel: "eslint-6"
+- "**/*.md"
+- "cypress/"
+- "public/"
+- "src/guides/"

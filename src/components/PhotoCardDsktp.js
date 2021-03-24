@@ -30,14 +30,8 @@ function PhotoCardDsktp(props) {
             {items.map((i, idx) => {
                 const styles = {
                     cardContainer: {
-                        backgroundImage: `linear-gradient(
-                            to left,
-                            rgba(245, 246, 252, 0.1),
-                            rgba(255, 255, 255, 0.9999)
-                            ),url(${i.src})`,
-                        height: `460px`,
-                        backgroundRepeat: `no-repeat`,
-                        margin: `0 0 0 495px`
+                        height: `448px`,
+                        width: `1216px`,
                     },
                     donatePath: `/donate`
                 };

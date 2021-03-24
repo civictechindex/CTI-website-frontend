@@ -1,16 +1,17 @@
 /* eslint-disable sort-keys */
 import React, { useState } from "react";
-import { Container } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import {
   GetStartedCard,
   NavBreadcrumbs,
   TitleSection,
-} from "../../components";
+} from "../../../components";
 import useSearchFaq from './useSearchFaq'
-import FAQCard from '../../components/FAQCard'
+import FAQCard from '../../../components/FAQCard'
 
 const defaultStyle = {
   backgroundColor: '#FFFFFF',
@@ -37,7 +38,7 @@ export default function Faq({ match }) {
             autoFocus
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start"><SearchIcon /></InputAdornment>), style: { defaultStyle },
+                <InputAdornment position="start"><SearchRoundedIcon /></InputAdornment>), style: { defaultStyle },
             }}
             value={query}
             onInput={e => setQuery(e.target.value)}
@@ -56,18 +57,20 @@ export default function Faq({ match }) {
   }
 
   return (
-    <Container className='containerDefault'>
-      <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
-      <TitleSection>How can we help?</TitleSection>
-      <SearchBar placeholder={"Search the knowledge base"} />
-      {status === 'fetchedFaq' && <FAQCard title={"Frequently Asked Questions:"} faqs={data} />}
-      {status === 'fetchedSearch' && (
-        <>
-          {data.length === 0 && <div> No Search Results found!</div>}
-          {<FAQCard title={`Search results for ${query}`} faqs={data} />}
-        </>
-      )}
-      <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
-    </Container>
+    <Box>
+      <Container >
+        <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
+        <TitleSection>How can we help?</TitleSection>
+        <SearchBar placeholder={"Search the knowledge base"} />
+        {status === 'fetchedFaq' && <FAQCard title={"Frequently Asked Questions:"} faqs={data} />}
+        {status === 'fetchedSearch' && (
+          <>
+            {data.length === 0 && <div> No Search Results found!</div>}
+            {<FAQCard title={`Search results for ${query}`} faqs={data} />}
+          </>
+        )}
+        <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
+      </Container>
+    </Box>
   );
 }

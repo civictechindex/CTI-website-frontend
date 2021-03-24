@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom/'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import useStyles from './styles'
 
 const SocialSection = () => {
@@ -40,9 +40,9 @@ const Footer = () => {
   const classes = useStyles()
 
   return (
-    <div>
+    <Box className={classes.containerFooter}>
       <Grid container className={classes.footerContainer}>
-        <Grid item xs={0} sm={1} />
+        <Grid item xs={false} sm={1} />
         <Grid item xs={4} sm={2}>
           <Link to='/'>Join the Index</Link>
           <Link to='/tag-generator'>Tag Generator</Link>
@@ -60,20 +60,22 @@ const Footer = () => {
           <Link to='/adding-projects-to-the-index'>How to Do It</Link>
           <Link to='/donate'>Donate</Link>
           <Link to='/'>Share the CTI</Link>
-          <Link to='/'>Volunteer with Us</Link>
+          <a href='https://www.hackforla.org/projects/civic-tech-index'>
+            Volunteer with Us
+          </a>
           <Link to='/radicalcollaboration/faq'>FAQ</Link>
         </Grid>
         <Grid item xs={6} sm={2}>
           <SocialSection />
         </Grid>
-        <Grid item xs={0} sm={1} />
+        <Grid item xs={false} sm={1} />
         <Grid item xs={12} className={classes.noteContainer}>
           <p>The Civic Tech Index is an open-source project.</p>
           <p>You can download or contribute to the code on <a href='https://github.com/civictechindex'>GitHub</a>.</p>
           <p><a href="/">View Attributions</a></p>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   )
 }
 

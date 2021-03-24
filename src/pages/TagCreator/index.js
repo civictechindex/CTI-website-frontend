@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Chip, Container, Grid, TextField, Typography } from '@material-ui/core';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import NavBreadcrumb from '../../components/NavBreadcrumbs'
+import NavBreadcrumbs from '../../components/NavBreadcrumbs'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
+import TopicTag from './TopicTag';
 import orgs from './orgs.json';
 
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
@@ -22,9 +26,7 @@ const TitleSection = () => {
 
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
-  return topicArray.map((name, key) =>
-    <Chip key={key} size="small" style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={name} icon={<AssignmentTurnedInIcon />} data-cy='topic-tag' />
-  )
+  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant='generated' />);
 }
 
 const TopicTagSection = ({ names, tagsToAdd }) => {
@@ -66,7 +68,7 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, 
       </Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
         {topicSearchError}
-        <div align='center'><button onClick={handleSubmit} id='submitButton' className="search-button">Find Project</button></div>
+        <div align='center'><Button onClick={handleSubmit} id='submitButton'>Find Project</Button></div>
       </Grid>
       <Grid>{topics}</Grid>
     </>
@@ -130,6 +132,10 @@ const TagCreator = () => {
 
   const handleSubmit = (event) => {
     const urlPath = getRepositoryUrlPath(repositoryUrl)
+    // Return error message if no url present
+    if (urlPath.length === 0){
+      return setTopicSearchError(<p style={{ color: 'red' }}>Please enter a URL</p>);
+    }
     axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
       headers: { Accept: "application/vnd.github.mercy-preview+json" },
     })
@@ -169,7 +175,7 @@ const TagCreator = () => {
 
   return (
     <Container className='containerGray'>
-      <NavBreadcrumb crumbs={crumbs} color="#0F1D2F" />
+      <NavBreadcrumbs crumbs={crumbs} color="secondary" />
       <TitleSection />
       <Grid container>
         <AffiliationQuestionSection value={value} handleChange={handleChange} />

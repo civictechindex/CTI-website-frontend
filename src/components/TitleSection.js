@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Typography } from '@material-ui/core'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
   titleStyle: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         return theme.palette.warning.main
       }
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '36px',
     },
     marginBottom: '0.825em',
@@ -32,7 +33,7 @@ const TitleSection = (props) => {
     <Grid container>
       <Grid item xs={1} md={2} />
       <Grid item xs={10} md={8}>
-        <Typography variant='h2' className={classes.titleStyle}>
+        <Typography variant='h1' className={classes.titleStyle}>
           {title}
         </Typography>
       </Grid>
