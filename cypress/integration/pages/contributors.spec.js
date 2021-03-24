@@ -28,7 +28,7 @@ describe('Contributors Page', () => {
     })
     cy.get('[href*=codeforamerica]').parents('[class*=containerDropdown]').within(() => {
       cy.contains('Code for Anchorage')
-      cy.get('[class^=makeStyles-thumbnailWrapper]').should('have.length', 86)
+      cy.get('[class*=makeStyles-thumbnailWrapper]', { timeout: 20000 }).should('have.length', 86)
     })
   })
 })
