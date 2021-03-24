@@ -27,17 +27,13 @@ const AccordionSection = (props) => {
 
   useEffect(() => {
     const incrementViewCount = async function () {
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          question: currentFaq.question,
-          answer: currentFaq.answer,
-          view_count: currentFaq.view_count,
-        }),
-      }
-      await axios.get(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestOptions);
-    }
+      const requestBody = {
+        question: currentFaq.question,
+        answer: currentFaq.answer,
+        view_count: currentFaq.view_count,
+      };
+      await axios.post(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestBody);
+    };
     if (sendRequest) {
       // send the request
       incrementViewCount()
@@ -47,24 +43,22 @@ const AccordionSection = (props) => {
 
   return (
     <Grid item xs={12} sm={9} lg={11}>
-      {faqs.map((faq) => {
-        return (
-          <Box key={faq.id}>
-            <Accordion className={classes.accordion}>
-              <AccordionSummary
-                data-cy='faq-question'
-                expandIcon={<ExpandMoreRoundedIcon />}
-                disabled={sendRequest}
-                onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}
-              >
-                <Typography variant='h6'>{faq.question}</Typography>
-              </AccordionSummary>
-              <Divider />
-              <AccordionDetails data-cy='faq-answer'><Typography>{faq.answer}</Typography></AccordionDetails>
-            </Accordion>
-          </Box>
-        );
-      })}
+      {faqs.map((faq) => (
+        <Box key={faq.id}>
+          <Accordion className={classes.accordion}>
+            <AccordionSummary
+              data-cy='faq-question'
+              expandIcon={<ExpandMoreRoundedIcon />}
+              disabled={sendRequest}
+              onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}
+            >
+              <Typography variant='h6'>{faq.question}</Typography>
+            </AccordionSummary>
+            <Divider />
+            <AccordionDetails data-cy='faq-answer'><Typography>{faq.answer}</Typography></AccordionDetails>
+          </Accordion>
+        </Box>
+      ))}
     </Grid>
   )
 }

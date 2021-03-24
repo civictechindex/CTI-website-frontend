@@ -8,12 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AccordionSection from './accordionSection';
 
 const useStyles = makeStyles((theme) => ({
-  titleContainer: {
-    paddingBottom: '25px',
-  },
-  title: {
-    color: theme.palette.secondary.dark,
-  },
   message: {
     display: 'flex',
     marginTop: theme.spacing(12),
@@ -25,7 +19,13 @@ const useStyles = makeStyles((theme) => ({
     height: '1.75em',
     marginRight: theme.spacing(1),
     color: theme.palette.text.disabled,
-  }
+  },
+  title: {
+    color: theme.palette.secondary.dark,
+  },
+  titleContainer: {
+    paddingBottom: '25px',
+  },
 }));
 
 const FAQCard = (props) => {
