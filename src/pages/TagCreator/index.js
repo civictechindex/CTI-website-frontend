@@ -337,7 +337,6 @@ const TagCreator = () => {
     }
   }
   const handleSubmit = (event) => {
-    console.log('orgname',orgName)
     const urlPath = getRepositoryUrlPath(repositoryUrl)
     setRepositoryName(urlPath)
     // Return error message if no url present
