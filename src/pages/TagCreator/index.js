@@ -146,7 +146,7 @@ const AddTags = ({ setDisplayState,setValue,setOrgName,setRepositoryUrl,setRepos
   )
 }
 
-const NewTags =({ setDisplayState,setValue,setOrgName,setRepositoryUrl,setRepositoryName,setTopicSearchError,setTagsToAdd,setNames,tagsToAdd,orgTags,userTags })=>{
+const NewTags =({ setDisplayState,setValue,setOrgName,setRepositoryUrl,setRepositoryName,setTopicSearchError,setTagsToAdd,setNames,tagsToAdd })=>{
   const handleResetForm = () => {
     setValue('')
     setOrgName('')
@@ -473,10 +473,6 @@ const TagCreator = () => {
             setRepositoryName={setRepositoryName}
             setTopicSearchError={setTopicSearchError}
             setNames={setNames}
-            setUserTags={setUserTags}
-            orgTags={orgTags}
-            userTags={userTags}
-            setOrgTags={setOrgTags}
             setTagsToAdd={setTagsToAdd}/>
         </>
       )
