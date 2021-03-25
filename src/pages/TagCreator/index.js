@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable max-lines-per-function */
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button';
@@ -10,13 +11,11 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import TopicTag from './TopicTag';
-// import TopicTagSection from './TopicTagSection'
 import orgs from './orgs.json';
 import { TitleSection } from '../../components'
 import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
-import Chip from "@material-ui/core/Chip";
 import ChipInput from "material-ui-chip-input";
 
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
@@ -25,6 +24,15 @@ const useStyles = makeStyles((theme) => ({
   textStyle:{
     color:'textSecondary',
     textAlign:'center',
+  },
+  topicTag: {
+    backgroundColor: theme.palette.background.default,
+    '&.MuiChip-outlined': {
+      borderColor: theme.palette.outline.gray,
+    },
+    '&.MuiChip-deletable svg': {
+      color: theme.palette.outline.gray,
+    },
   },
 }))
 
@@ -46,114 +54,203 @@ const HeaderSection = () => {
   )
 }
 
+
+const AddTopicTagSection = ({ orgName,userTags,setUserTags,setDisplayState,setTagsToAdd }) =>{
+  const classes = useStyles();
+
+  const handleChangeChip = (chips) =>{
+    setUserTags (chips)
+  }
+
+  const handleGenerateTag = () =>{
+    setTagsToAdd(arr=>[...arr,...userTags])
+    let topics=[]
+    if (orgName){
+      axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/'+orgName,)
+        .then(res => {
+          let po = res.data.parent_organization
+          while (po!=null){
+            topics.push(po.name)
+            po =po.parent_organization
+          }
+          topics=topics.map(v=>v.toLowerCase().replace(/ /g, ""))
+          setTagsToAdd(arr=>[...arr,...topics])
+          setDisplayState('GenerateTags')
+        }).catch(e => {
+        /*
+         * This should store the error state.
+         * Component should check for error state and resolve the correct response.
+         */
+          console.log(e);
+        })
+    }
+    else {
+      setDisplayState('GenerateTags')
+    }
+  }
+
+
+  return (
+    <>
+      <Grid>
+        <Grid>
+          <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
+        </Grid>
+        <ChipInput
+          fullWidth
+          placeholder='Add topic tag'
+          onChange={(chips) => handleChangeChip(chips)}
+          className={classes.topicTag}
+        />
+      </Grid>
+      <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
+        <Grid item><Button onClick={handleGenerateTag}>Generate Tags</Button></Grid>
+        <Grid item><Button>Reset Form</Button></Grid>
+      </Grid>
+      {/* <TopicTags topicNames={userTags} /> */}
+    </>
+  )
+}
+
+const AddTags = ({ setDisplayState,setValue,setOrgName,setRepositoryUrl,setRepositoryName,setTopicSearchError,setTagsToAdd,setNames }) =>{
+  const [addTagValue, setAddTagValue] = useState('');
+  const handleChangeTag = (event) => {
+    setAddTagValue(event.target.value)
+  }
+  const showAddTopicTag = () =>{
+    if (addTagValue === 'yes'){
+      setDisplayState('ShowAddTopicTags')
+    }
+    if (addTagValue === 'no'){
+      setDisplayState('GenerateTags')
+    }
+  }
+  const handleResetForm = () => {
+    setValue('')
+    setOrgName('')
+    setRepositoryUrl('')
+    setRepositoryName('')
+    setTopicSearchError('')
+    setTagsToAdd([])
+    setNames([])
+    setDisplayState('InitialState')
+  }
+  return (
+    <>
+      <AffiliationQuestionSection value={addTagValue} handleChange={handleChangeTag} question={"Do you want to add more tags specific to your project's subject area to increase visibility?"} />
+      <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
+        <Button onClick={showAddTopicTag}>Generate Tags</Button>
+        <Button onClick={handleResetForm}>Reset Form</Button>
+      </Grid>
+    </>
+  )
+}
+
+const NewTags =({ setDisplayState,setValue,setOrgName,setRepositoryUrl,setRepositoryName,setTopicSearchError,setTagsToAdd,setNames,tagsToAdd,orgTags,userTags })=>{
+  const handleResetForm = () => {
+    setValue('')
+    setOrgName('')
+    setRepositoryUrl('')
+    setRepositoryName('')
+    setTopicSearchError('')
+    setTagsToAdd([])
+    setNames([])
+    setDisplayState('InitialState')
+  }
+
+
+  return (
+    <>
+      <Grid>
+        <Grid style={{ padding:'20px' }}>
+          <Typography variant='body1'>New tags to add to your repository:</Typography>
+        </Grid>
+        <Grid data-cy='current-tags' style={{ padding:'30px' }}>
+          <TopicTags topicNames={tagsToAdd} />
+        </Grid>
+      </Grid>
+      <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
+        <Button>Add these tags to your repo</Button>
+        <Button onClick={handleResetForm}>Reset Form</Button>
+      </Grid>
+    </>
+  )
+}
+
 const TopicTags = ({ topicNames }) => {
   const topicArray = topicNames || []
   return topicArray.map((name, key) => <TopicTag key={key} label={name} variant='generated' />);
 }
 
-const defaultValue = ['Add Topic Tag'];
-const AddTopicTagSection = () =>{
-
-  const chipRenderer = ({ chip, className, handleClick, handleDelete }, key) => (
-    <Chip
-      className={className}
-      key={key}
-      label={chip}
-      onClick={handleClick}
-      onDelete={handleDelete}
-    />
-  );
-  return (
-    <Grid>
-      <Grid>
-        <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
-      </Grid>
-      <ChipInput chipRenderer={chipRenderer} defaultValue={defaultValue} />
-    </Grid>
-  )
-}
-
-
-const TopicTagSection = ({ names, tagsToAdd,orgName,repositoryUrl,repositoryName }) => {
-  const [addTagValue, setAddTagValue] = useState('');
-  const handleChange = (event) => {
-    setAddTagValue(event.target.value)
-  }
+const CurrentTopicTagSection = ({ names, tagsToAdd,orgName,repositoryUrl,repositoryName }) => {
   return (
     <>
-      <Grid container md={8} direction="row" alignItems="center"  spacing={3} style={{ padding:'10px' }}>
-        {orgName ?<> <Grid item>
-          <Typography variant='body1'>Affliated Organization:</Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant='h3'>{orgName}</Typography>
-        </Grid></>:<Grid item style={{ paddingRight:'50px' }}>
-          <Typography variant='h3'>Unaffliated</Typography>
-        </Grid>}
-        <Grid item>
-          <Typography variant='body1'>
-            <Link >change</Link>
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid container md={8} direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item>
-          <Typography variant='body1'>Project Repository URL:</Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant='body1'><Link href={repositoryUrl}>{repositoryUrl}</Link></Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant='body1'>
-            <Link>change</Link>
-          </Typography>
-        </Grid>
-      </Grid>
       {names.length !== 0 ?<Grid>
         <Grid style={{ padding:'20px' }}>
           <Typography variant='body1'>Current topic tags on {repositoryName}:</Typography>
         </Grid>
         <Grid data-cy='current-tags' style={{ padding:'30px' }}>
           <TopicTags topicNames={names} />
-        </Grid> </Grid>: <Grid md={8} style={{ margin:'auto', padding:'30px' }}>
+        </Grid> </Grid>: <Grid item md={8} style={{ margin:'auto', padding:'30px' }}>
         <Typography variant='h5' style={{ textAlign:'center' }}>There are currently no topic tags in your project’s repository. Add tags to increase your project visibility.</Typography>
       </Grid> }
       <Grid>
         <Divider />
       </Grid>
-      <AffiliationQuestionSection value={addTagValue} handleChange={handleChange} question={"Do you want to add more tags specific to your project's subject area to increase visibility?"} />
-      <Grid container id='container-addTags'  style={{ display: addTagValue === 'yes' ? 'block' : 'none',padding:'20px' }}>
-        <AddTopicTagSection/>
-      </Grid>
-      <Grid container id='container-addNoTags' style={{ display: addTagValue === 'no' ? 'block' : 'none' }}>
-
-      </Grid>
     </>
   )
 }
 
-const UnaffliatedSection = ({ handleEnter, repositoryUrl, setRepositoryUrl, topics, topicSearchError, handleSubmit }) =>{
+const OrgNameSection = ({ value,setDisplayState,orgName }) => {
+  const handleChangeOrg = () =>{
+    if (value === 'yes'){
+      setDisplayState('RadioYes')
+    }
+    else {
+      setDisplayState('InitialState')
+    }
+  }
   return (
-    <Grid container direction="row" alignItems="center" spacing={3}>
+    <Grid container  direction="row" alignItems="center"  spacing={3} style={{ padding:'10px' }}>
       <Grid item>
-        <Typography variant='h3'>Unaffiliated Project</Typography>
+        <Typography variant='body1'>Affliated Organization:</Typography>
       </Grid>
+      {orgName ?
+        <Grid item>
+          <Typography variant='h3'>{orgName}</Typography>
+        </Grid>:<Grid item style={{ paddingRight:'50px' }}>
+          <Typography variant='h3'>Unaffliated</Typography>
+        </Grid>}
       <Grid item>
         <Typography variant='body1'>
-          <Link >change</Link>
+          <Link onClick={handleChangeOrg} >change</Link>
         </Typography>
       </Grid>
-      <ProjectRepositoryInput handleEnter={handleEnter}
-        repositoryUrl={repositoryUrl}
-        setRepositoryUrl={setRepositoryUrl}
-        topicSearchError={topicSearchError}
-        handleSubmit={handleSubmit}
-        topics={topics} />
     </Grid>
   )
 }
 
-const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, topics, topicSearchError, handleSubmit }) => {
+const ProjectRepositorySection = ({ repositoryUrl,setDisplayState }) => {
+
+  return (
+    <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
+      <Grid item>
+        <Typography variant='body1'>Project Repository URL:</Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant='body1'><Link href={repositoryUrl} >{repositoryUrl}</Link></Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant='body1'>
+          <Link onClick={()=>setDisplayState('SubmitOrg')}>change</Link>
+        </Typography>
+      </Grid>
+    </Grid>
+  )
+}
+
+
+const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, topicSearchError, handleSubmit }) => {
   return (
     <>
       <Grid item xs={12} sm={12}>
@@ -163,14 +260,13 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, 
       </Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
         {topicSearchError}
-        <div align='center'><Button onClick={handleSubmit} id='submitButton'>Find Project</Button></div>
+        <Grid align='center'><Button onClick={handleSubmit} id='submitButton'>Find Project</Button></Grid>
       </Grid>
-      <Grid>{topics}</Grid>
     </>
   )
 }
 
-const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repositoryUrl, setRepositoryUrl, topics, topicSearchError, handleSubmit }) => {
+const OrganizationSelectorSection = ({ setOrgName,displayState,setDisplayState }) => {
   return (
     <>
       <Grid item xs={12} sm={12}>
@@ -184,16 +280,16 @@ const OrganizationSelectorSection = ({ orgs, setOrgName, handleEnter, repository
           renderInput={(params) => <TextField {...params} variant="outlined" />}
         />
       </Grid>
-      <ProjectRepositoryInput handleEnter={handleEnter}
-        repositoryUrl={repositoryUrl}
-        setRepositoryUrl={setRepositoryUrl}
-        topics={topics}
-        topicSearchError={topicSearchError}
-        handleSubmit={handleSubmit}
-      />
+      <Grid item>
+        <Typography variant='body1'>Don’t see your organization? Click <Link >here</Link> to add it. </Typography>
+      </Grid>
+      <Grid item>
+        <Grid align='center' style={{ padding:'20px' }}><Button onClick={()=>setDisplayState('SubmitOrg')} id='submitButton'>Submit Organization</Button></Grid>
+      </Grid>
     </>
   )
 }
+
 
 /**
  * By removing matched text, we allow leeway in entering repository URL,
@@ -211,42 +307,29 @@ const getRepositoryUrlPath = (repositoryUrl) => {
   result = result.replace(suffix, '')
   return result
 }
-const InitialWizard = ({ setOrgName,setRepositoryUrl,setDisplayState,topics,setTopics,topicSearchError,handleEnter,handleSubmit }) => {
-  const [value, setValue] = useState('');
-
-  const handleChange = (event) => {
-    setValue(event.target.value)
-  }
-
-  return (
-    <Grid container id='mainContainer'>
-      <AffiliationQuestionSection value={value} handleChange={handleChange} question={'Are you affiliated with an organization?'} />
-      <Grid container id='container-affiliated' style={{ display: value === 'yes' ? 'block' : 'none' }}>
-        <OrganizationSelectorSection orgs={orgs}
-          setOrgName={setOrgName}
-          handleEnter={handleEnter}
-          setRepositoryUrl={setRepositoryUrl}
-          topicSearchError={topicSearchError}
-          handleSubmit={handleSubmit}
-          topics={topics} />
-      </Grid>
-      <Grid container id='container-unaffiliated' style={{ display: value === 'no' ? setDisplayState('StateUnaffliated') : 'none' }}>
-        <UnaffliatedSection/>
-      </Grid>
-    </Grid>
-  )
-}
 
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
-  const [displayState, setDisplayState] = useState("State1");
+  const [displayState, setDisplayState] = useState("InitialState");
+  const [value, setValue] = useState('');
   const [orgName, setOrgName] = useState('');
   const [repositoryUrl, setRepositoryUrl] = useState('');
   const [repositoryName, setRepositoryName] = useState('');
-  const [topics, setTopics] = useState('');
   const [topicSearchError, setTopicSearchError] = useState('');
   const [tagsToAdd, setTagsToAdd] = useState([]);
   const [names, setNames] = useState([]);
+  const [userTags, setUserTags] = useState([]);
+  const [orgTags, setOrgTags] = useState([]);
+
+
+  useEffect(() => {
+    if (value === 'yes'){
+      setDisplayState('RadioYes')
+    }
+    if (value === 'no'){
+      setDisplayState('SubmitOrg')
+    }
+  },[value])
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
@@ -254,6 +337,7 @@ const TagCreator = () => {
     }
   }
   const handleSubmit = (event) => {
+    console.log('orgname',orgName)
     const urlPath = getRepositoryUrlPath(repositoryUrl)
     setRepositoryName(urlPath)
     // Return error message if no url present
@@ -267,17 +351,13 @@ const TagCreator = () => {
         setTopicSearchError()
         document.getElementById('submitButton').style.display = 'none'
         if (!res.data.names.includes("civictechindex")) {
-          tagsToAdd.push("civictechindex");
+          setTagsToAdd(arr=>[...arr,"civictechindex"])
         }
-        if (orgName != null && !res.data.names.includes(orgName.toLowerCase().replaceAll(" ", "-"))) {
-          tagsToAdd.push(orgName.toLowerCase().replaceAll(" ", "-"))
-        }
-        if (tagsToAdd.length === 0) {
-          // tagsToAdd(null)
+        if (orgName && !res.data.names.includes(orgName.toLowerCase().replaceAll(" ", ""))) {
+          setTagsToAdd(arr=>[...arr,orgName.toLowerCase().replaceAll(" ", "")])
         }
         setNames(res.data.names)
-        setDisplayState('State2')
-        setTopics(<TopicTagSection names={names} tagsToAdd={tagsToAdd} orgName={orgName} repositoryUrl={repositoryUrl} repositoryName={repositoryName} />)
+        setDisplayState('TopicTag')
 
       }).catch(e => {
         /*
@@ -290,41 +370,121 @@ const TagCreator = () => {
   }
 
 
+  const handleChange = (event) => {
+    setValue(event.target.value)
+  }
+
+  // eslint-disable-next-line complexity
+  // eslint-disable-next-line max-lines-per-function
+  // eslint-disable-next-line complexity
   const renderCurrentState = () => {
     switch (displayState) {
-    case "State1":
-      return <InitialWizard displayState={displayState} setDisplayState={setDisplayState}
-        orgName={orgName}
-        setOrgName={setOrgName}
-        repositoryUrl={repositoryUrl}
-        setRepositoryUrl={setRepositoryUrl}
-        repositoryName={repositoryName}
-        setRepositoryName={setRepositoryName}
-        names={names}
-        setNames={setNames}
-        topicSearchError={topicSearchError}
-        setTopicSearchError={setTopicSearchError}
-        topics={topics}
-        setTopics={setTopics}
-        handleSubmit={handleSubmit}/>
-    case "State2":
-      return <TopicTagSection displayState={displayState} setDisplayState={setDisplayState}
-        names={names}
-        tagsToAdd={tagsToAdd}
-        setTagsToAdd={setTagsToAdd}
-        orgName={orgName}
-        repositoryUrl={repositoryUrl}
-        repositoryName={repositoryName}
-        setRepositoryName={setRepositoryName}/>
-    case "StateUnaffliated":
-      return <UnaffliatedSection handleEnter={handleEnter}
-        repositoryUrl={repositoryUrl}
-        setRepositoryUrl={setRepositoryUrl}
-        topicSearchError={topicSearchError}
-        handleSubmit={handleSubmit}
-        topics={topics}/>
+    case "InitialState":
+      return <AffiliationQuestionSection value={value} handleChange={handleChange} question={'Are you affiliated with an organization?'} />
+    case "RadioYes":
+      return (
+        <>
+          <AffiliationQuestionSection value={value} handleChange={handleChange} question={'Are you affiliated with an organization?'} />
+          <Grid container id='container-affiliated'>
+            <OrganizationSelectorSection
+              displayState={displayState}
+              setDisplayState={setDisplayState}
+              setOrgName={setOrgName}
+              handleEnter={handleEnter}
+              setRepositoryUrl={setRepositoryUrl}
+              topicSearchError={topicSearchError}
+              handleSubmit={handleSubmit}/>
+          </Grid>
+        </>
+      )
+    case "SubmitOrg":
+      return (
+        <>
+          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState}
+            value={value}
+            orgName={orgName}/>
+          <ProjectRepositoryInput displayState={displayState} setDisplayState={setDisplayState}
+            value={value}
+            orgName={orgName}
+            repositoryUrl={repositoryUrl}
+            handleEnter={handleEnter}
+            setRepositoryUrl={setRepositoryUrl}
+            topicSearchError={topicSearchError}
+            setTopicSearchError={setTopicSearchError}
+            handleSubmit={handleSubmit}
+          />
+        </>
+      )
+    case "TopicTag":
+      return (
+        <>
+          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState}
+            value={value}
+            orgName={orgName}/>
+          <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
+          <CurrentTopicTagSection
+            names={names}
+            repositoryName={repositoryName}
+          />
+          <AddTags setDisplayState={setDisplayState}
+            setValue={setValue}
+            setOrgName={setOrgName}
+            setRepositoryUrl={setRepositoryUrl}
+            setRepositoryName={setRepositoryName}
+            setTopicSearchError={setTopicSearchError}
+            setNames={setNames}
+            setTagsToAdd={setTagsToAdd}
+            setUserTags={setUserTags}
+            setOrgTags={setOrgTags}
+          />
+        </>
+      )
+    case "ShowAddTopicTags":
+      return (
+        <>
+          <CurrentTopicTagSection
+            names={names}
+            repositoryName={repositoryName}/>
+          <AddTopicTagSection
+            setDisplayState={setDisplayState}
+            orgName={orgName}
+            setTagsToAdd={setTagsToAdd}
+            userTags={userTags}
+            setUserTags={setUserTags}
+            orgTags={orgTags}
+            setOrgTags={setOrgTags}/>
+        </>
+      )
+    case "GenerateTags":
+      return (
+        <>
+          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState}
+            value={value}
+            orgName={orgName}/>
+          <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
+          <CurrentTopicTagSection
+            names={names}
+            repositoryName={repositoryName}
+          />
+          <NewTags tagsToAdd={tagsToAdd}
+            setDisplayState={setDisplayState}
+            setValue={setValue}
+            setOrgName={setOrgName}
+            setRepositoryUrl={setRepositoryUrl}
+            setRepositoryName={setRepositoryName}
+            setTopicSearchError={setTopicSearchError}
+            setNames={setNames}
+            setUserTags={setUserTags}
+            orgTags={orgTags}
+            userTags={userTags}
+            setOrgTags={setOrgTags}
+            setTagsToAdd={setTagsToAdd}/>
+        </>
+      )
     default:
-      return <div/>
+      return (
+        <AffiliationQuestionSection value={value} handleChange={handleChange} question={'Are you affiliated with an organization?'} />
+      )
     }
 
   }
