@@ -4,17 +4,18 @@ const useStyles = makeStyles(theme => ({
   containerFooter: {
     backgroundColor: theme.palette.grey[900],
   },
+  dropdownHeader: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'space-between',
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
   footerContainer: {
     color: theme.palette.text.secondary,
-    fontFamily: theme.typography.fontFamily,
-    paddingTop: theme.spacing(4),
-    [theme.breakpoints.down('sm')]: {
-      fontSize: theme.font.small.fontSize,
-      lineHeight: '18px',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: theme.font.paragraph.fontSize,
-    },
+    paddingBottom: theme.spacing(6),
+    paddingTop: theme.spacing(6),
     // info header links
     '& a:nth-child(1)': {
       fontWeight: 700,
@@ -38,21 +39,13 @@ const useStyles = makeStyles(theme => ({
     '& p': {
       margin: 0,
       paddingBottom: theme.spacing(1),
-      [theme.breakpoints.down('sm')]: {
-        fontSize: theme.font.small.fontSize,
-      },
-      [theme.breakpoints.up('md')]: {
-        fontSize: theme.font.paragraph.fontSize,
-      },
-    },
-    '& p:last-child': {
-      paddingBottom: theme.spacing(4),
+      fontSize: theme.font.small.fontSize,
     },
   },
   socialContainer: {
-    // Twitter logo
-    '& div:nth-child(3) a img': {
-      transform: 'translate(0, 3px)',
+    '& a': {
+      display: 'inline',
+      marginRight: '25px',
     },
   },
 }))
