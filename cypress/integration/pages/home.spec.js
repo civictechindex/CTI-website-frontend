@@ -12,7 +12,7 @@ describe('Home Page', () => {
   })
 
   it('footer loads', () => {
-    cy.contains('The Civic Tech Index is an open-source project.')
+    cy.contains('The Civic Tech Index is an open-source project, read more on our')
   })
 
   it('title section loads', () => {
