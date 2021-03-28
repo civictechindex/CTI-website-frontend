@@ -171,7 +171,8 @@ We use ESLint and Code Climate to improve code quality. ESLint works on your loc
 
 ESLint is included in the repo when you run `npm install`. We use the `eslint` and `eslint-plugin-react` packages. The exact settings can be found in the `.eslintrc.json` file.
 
-To lint the entire repo, run `npm run lint` from the command line.
+To lint the entire repo, run `npm run lint` from the command line. 
+_Note: If you encouter "No files matching the pattern "'src/**/*.js'" were found." error msg after running `npm run lint` from the command line, try to update the pattern of 'lint' with escaped double quotes in package.json. The new pattern should look like this: "lint": "eslint \"src/**/*.js\"" 
 
 To lint a single file, run `npx eslint path/to/file.js`
 
