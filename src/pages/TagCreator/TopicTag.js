@@ -1,5 +1,6 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
+import ChipInput from "material-ui-chip-input";
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CopyPasteIcon from '../../icons/CopyPasteIcon';
 
@@ -17,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
 
 const handleDelete = () => {};
 
+const handleChangeChip = (chips) =>{
+  // setUserTags (chips)
+}
+
 const GeneratedTopicTag = (props) => {
   return <Chip {...props} clickable={true} />;
 };
@@ -29,8 +34,13 @@ const CopyPasteTopicTag = (props) => {
   return <Chip onDelete={handleDelete} deleteIcon={<CopyPasteIcon />} {...props} />;
 };
 
+const AddTopicTag = (props) => {
+  return <ChipInput fullWidth placeholder='Add topic tag' onChange={handleChangeChip} />
+};
+
+
 const TopicTag = (props) => {
-  const { label, variant } = props;
+  const { label, variant} = props;
   const classes = useStyles();
 
   let Component = CopyPasteTopicTag;
@@ -38,9 +48,11 @@ const TopicTag = (props) => {
     Component = GeneratedTopicTag;
   } else if (variant === 'clickable') {
     Component = ClickableTopicTag;
+  } else if (variant === 'add') {
+    Component = AddTopicTag;
   }
 
-  return <Component label={label} clickable={false} variant='outlined' className={classes.topicTag} data-cy='topic-tag' />;
+  return <Component label={label} clickable={false}  variant='outlined' className={classes.topicTag} data-cy='topic-tag' />;
 };
 
 export default TopicTag;

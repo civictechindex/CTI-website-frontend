@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import axios from 'axios';
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button';
@@ -17,22 +17,23 @@ import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import ChipInput from "material-ui-chip-input";
+import Chip from '@material-ui/core/Chip';
 
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
 const useStyles = makeStyles((theme) => ({
-  textStyle:{
-    color:'textSecondary',
-    textAlign:'center',
+  chipInputRoot: {
+    border: 'borderColor: theme.palette.outline.gray',
+    borderRadius: 24,
+    cursor: 'pointer',
+    height: 48,
+    margin: '0 8px 8px 0',
   },
-  topicTag: {
+  chipInputInput:{
+    color:'textSecondary',
+  },
+  chip: {
     backgroundColor: theme.palette.background.default,
-    '&.MuiChip-outlined': {
-      borderColor: theme.palette.outline.gray,
-    },
-    '&.MuiChip-deletable svg': {
-      color: theme.palette.outline.gray,
-    },
   },
 }))
 
@@ -54,8 +55,7 @@ const HeaderSection = () => {
   )
 }
 
-
-const AddTopicTagSection = ({ orgName,userTags,setUserTags,setDisplayState,setTagsToAdd }) =>{
+const AddTopicTagSection = ({ orgName,userTags,setUserTags,orgTags,setOrgTags,setDisplayState,setTagsToAdd,names }) =>{
   const classes = useStyles();
 
   const handleChangeChip = (chips) =>{
@@ -64,16 +64,21 @@ const AddTopicTagSection = ({ orgName,userTags,setUserTags,setDisplayState,setTa
 
   const handleGenerateTag = () =>{
     setTagsToAdd(arr=>[...arr,...userTags])
-    let topics=[]
+    const topics=[]
     if (orgName){
       axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/'+orgName,)
         .then(res => {
           let po = res.data.parent_organization
+          if (!names.includes(res.data.org_tag) && res.data.org_tag !== '') {
+            topics.push(res.data.org_tag)
+          }
           while (po!=null){
-            topics.push(po.name)
+            if (!names.includes(po.org_tag)) {
+              topics.push(po.org_tag)
+            }
             po =po.parent_organization
           }
-          topics=topics.map(v=>v.toLowerCase().replace(/ /g, ""))
+          setOrgTags(topics)
           setTagsToAdd(arr=>[...arr,...topics])
           setDisplayState('GenerateTags')
         }).catch(e => {
@@ -88,19 +93,21 @@ const AddTopicTagSection = ({ orgName,userTags,setUserTags,setDisplayState,setTa
       setDisplayState('GenerateTags')
     }
   }
-
-
   return (
     <>
+      <Grid style={{ padding:'20px' }}>
+        <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
+      </Grid>
       <Grid>
-        <Grid>
-          <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
-        </Grid>
         <ChipInput
           fullWidth
           placeholder='Add topic tag'
           onChange={(chips) => handleChangeChip(chips)}
-          className={classes.topicTag}
+          classes={{
+            root: classes.chipInputRoot,
+            input: classes.chipInputInput,
+            chip: classes.chip,
+          }}
         />
       </Grid>
       <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
@@ -157,16 +164,19 @@ const NewTags =({ setDisplayState,setValue,setOrgName,setRepositoryUrl,setReposi
     setNames([])
     setDisplayState('InitialState')
   }
-
-
   return (
     <>
       <Grid>
         <Grid style={{ padding:'20px' }}>
           <Typography variant='body1'>New tags to add to your repository:</Typography>
         </Grid>
-        <Grid data-cy='current-tags' style={{ padding:'30px' }}>
-          <TopicTags topicNames={tagsToAdd} />
+        <Grid container direction="row">
+          <Grid item md={8} data-cy='current-tags' style={{ padding:'30px' }}>
+            <TopicTags topicNames={tagsToAdd} variant='clickable' />
+          </Grid>
+          <Grid item md={4}>
+            <Typography variant='body1'><Link onClick={()=>setDisplayState('ShowAddTopicTags')} >Add More tags</Link></Typography>
+          </Grid>
         </Grid>
       </Grid>
       <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
@@ -177,12 +187,12 @@ const NewTags =({ setDisplayState,setValue,setOrgName,setRepositoryUrl,setReposi
   )
 }
 
-const TopicTags = ({ topicNames }) => {
+const TopicTags = ({ topicNames,variant }) => {
   const topicArray = topicNames || []
-  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant='generated' />);
+  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant={variant} />);
 }
 
-const CurrentTopicTagSection = ({ names, tagsToAdd,orgName,repositoryUrl,repositoryName }) => {
+const CurrentTopicTagSection = ({ names, repositoryName }) => {
   return (
     <>
       {names.length !== 0 ?<Grid>
@@ -190,7 +200,7 @@ const CurrentTopicTagSection = ({ names, tagsToAdd,orgName,repositoryUrl,reposit
           <Typography variant='body1'>Current topic tags on {repositoryName}:</Typography>
         </Grid>
         <Grid data-cy='current-tags' style={{ padding:'30px' }}>
-          <TopicTags topicNames={names} />
+          <TopicTags topicNames={names} variant='generated' />
         </Grid> </Grid>: <Grid item md={8} style={{ margin:'auto', padding:'30px' }}>
         <Typography variant='h5' style={{ textAlign:'center' }}>There are currently no topic tags in your project’s repository. Add tags to increase your project visibility.</Typography>
       </Grid> }
@@ -231,7 +241,6 @@ const OrgNameSection = ({ value,setDisplayState,orgName }) => {
 }
 
 const ProjectRepositorySection = ({ repositoryUrl,setDisplayState }) => {
-
   return (
     <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
       <Grid item>
@@ -266,7 +275,7 @@ const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, 
   )
 }
 
-const OrganizationSelectorSection = ({ setOrgName,displayState,setDisplayState }) => {
+const OrganizationSelectorSection = ({ setOrgName,setDisplayState }) => {
   return (
     <>
       <Grid item xs={12} sm={12}>
@@ -308,6 +317,14 @@ const getRepositoryUrlPath = (repositoryUrl) => {
   return result
 }
 
+const usePrevious =(refValue) => {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = refValue;
+  });
+  return ref.current;
+}
+
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
   const [displayState, setDisplayState] = useState("InitialState");
@@ -320,6 +337,7 @@ const TagCreator = () => {
   const [names, setNames] = useState([]);
   const [userTags, setUserTags] = useState([]);
   const [orgTags, setOrgTags] = useState([]);
+
 
 
   useEffect(() => {
@@ -336,36 +354,39 @@ const TagCreator = () => {
       handleSubmit();
     }
   }
+  const prevRefUrl = usePrevious(repositoryUrl)
   const handleSubmit = (event) => {
-    const urlPath = getRepositoryUrlPath(repositoryUrl)
-    setRepositoryName(urlPath)
-    // Return error message if no url present
-    if (urlPath.length === 0){
-      return setTopicSearchError(<p style={{ color: 'red' }}>Please enter a URL</p>);
-    }
-    axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
-      headers: { Accept: "application/vnd.github.mercy-preview+json" },
-    })
-      .then(res => {
-        setTopicSearchError()
-        document.getElementById('submitButton').style.display = 'none'
-        if (!res.data.names.includes("civictechindex")) {
-          setTagsToAdd(arr=>[...arr,"civictechindex"])
-        }
-        if (orgName && !res.data.names.includes(orgName.toLowerCase().replaceAll(" ", ""))) {
-          setTagsToAdd(arr=>[...arr,orgName.toLowerCase().replaceAll(" ", "")])
-        }
-        setNames(res.data.names)
-        setDisplayState('TopicTag')
+    if (prevRefUrl !== repositoryUrl){
+      const urlPath = getRepositoryUrlPath(repositoryUrl)
+      setRepositoryName(urlPath)
+      // Return error message if no url present
+      if (urlPath.length === 0){
+        return setTopicSearchError(<p style={{ color: 'red' }}>Please enter a URL</p>);
+      }
+      axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
+        headers: { Accept: "application/vnd.github.mercy-preview+json" },
+      })
+        .then(res => {
+          setTopicSearchError()
+          document.getElementById('submitButton').style.display = 'none'
+          if (!res.data.names.includes("civictechindex")) {
+            setTagsToAdd(arr=>[...arr,"civictechindex"])
+          }
+          setNames(res.data.names)
+          setDisplayState('TopicTag')
 
-      }).catch(e => {
+        }).catch(e => {
         /*
          * This should store the error state.
          * Component should check for error state and resolve the correct response.
          */
-        console.log(e);
-        setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
-      })
+          console.log(e);
+          setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
+        })
+    }
+    else {
+      setDisplayState('TopicTag')
+    }
   }
 
 
@@ -374,7 +395,6 @@ const TagCreator = () => {
   }
 
   // eslint-disable-next-line complexity
-  // eslint-disable-next-line max-lines-per-function
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
     switch (displayState) {
@@ -399,9 +419,7 @@ const TagCreator = () => {
     case "SubmitOrg":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState}
-            value={value}
-            orgName={orgName}/>
+          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName}/>
           <ProjectRepositoryInput displayState={displayState} setDisplayState={setDisplayState}
             value={value}
             orgName={orgName}
@@ -417,14 +435,9 @@ const TagCreator = () => {
     case "TopicTag":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState}
-            value={value}
-            orgName={orgName}/>
+          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName}/>
           <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
-          <CurrentTopicTagSection
-            names={names}
-            repositoryName={repositoryName}
-          />
+          <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <AddTags setDisplayState={setDisplayState}
             setValue={setValue}
             setOrgName={setOrgName}
@@ -434,37 +447,30 @@ const TagCreator = () => {
             setNames={setNames}
             setTagsToAdd={setTagsToAdd}
             setUserTags={setUserTags}
-            setOrgTags={setOrgTags}
           />
         </>
       )
     case "ShowAddTopicTags":
       return (
         <>
-          <CurrentTopicTagSection
-            names={names}
-            repositoryName={repositoryName}/>
+          <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <AddTopicTagSection
             setDisplayState={setDisplayState}
             orgName={orgName}
             setTagsToAdd={setTagsToAdd}
+            names={names}
             userTags={userTags}
             setUserTags={setUserTags}
-            orgTags={orgTags}
-            setOrgTags={setOrgTags}/>
+            setOrgTags={setOrgTags}
+          />
         </>
       )
     case "GenerateTags":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState}
-            value={value}
-            orgName={orgName}/>
+          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName}/>
           <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
-          <CurrentTopicTagSection
-            names={names}
-            repositoryName={repositoryName}
-          />
+          <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
             setValue={setValue}
