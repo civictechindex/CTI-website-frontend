@@ -17,7 +17,7 @@ const DropdownList = ({ header, links }) => {
   return (
     <>
       <Box className={classes.dropdownHeader} onClick={toggleList}>
-        <Typography variant='body2' color='inherit'>{header}</Typography>
+        <Typography variant='body2' color='textSecondary'>{header}</Typography>
         {open ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
       </Box>
       {open &&

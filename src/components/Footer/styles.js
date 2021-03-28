@@ -12,8 +12,10 @@ const useStyles = makeStyles(theme => ({
       cursor: 'pointer',
     },
   },
+  errorMessage: {
+    color: theme.palette.error.main,
+  },
   footerContainer: {
-    color: theme.palette.text.secondary,
     paddingBottom: theme.spacing(6),
     paddingTop: theme.spacing(6),
     // info header links
@@ -47,6 +49,23 @@ const useStyles = makeStyles(theme => ({
       display: 'inline',
       marginRight: '25px',
     },
+  },
+  subHeader: {
+    marginBottom: theme.spacing(2),
+  },
+  subSection: {
+    display: 'flex',
+    marginBottom: theme.spacing(1),
+    '& button': {
+      marginLeft: theme.spacing(1),
+    }
+  },
+  successMessage: {
+    textAlign: 'center',
+  },
+  textField: {
+    backgroundColor: theme.palette.background.default,
+    borderRadius: '8px',
   },
 }))
 

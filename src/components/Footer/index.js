@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import DropdownList from './dropdownList';
 import SocialSection from './socialSection';
+import SubscribeSection from './subscribeSection';
 
 const Footer = () => {
   const classes = useStyles();
@@ -47,6 +48,9 @@ const Footer = () => {
           </Grid>
           <Grid item xs={12}>
             <SocialSection />
+          </Grid>
+          <Grid container item spacing={6} xs={12}>
+            <SubscribeSection />
           </Grid>
         </Grid>
         <Grid item xs={12} className={classes.noteContainer}>
