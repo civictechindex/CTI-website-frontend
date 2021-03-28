@@ -37,7 +37,7 @@ const SubscribeSection = () => {
     case 'duplicate':
       return (
         <Typography variant='body2' className={classes.errorMessage}>
-            That email address has already been registered with us.
+          That email address has already been registered with us.
         </Typography>
       );
     case 'error':
