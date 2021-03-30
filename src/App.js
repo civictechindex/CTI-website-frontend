@@ -6,7 +6,7 @@ import Layout from './components/common/Layout';
 import About from './pages/About';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
-import Faq from './pages/RadicalColloboration/Faq'
+import Faq from './pages/RadicalCollaboration/Faq'
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
@@ -14,7 +14,7 @@ import Projects from './pages/Projects';
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
 import Error404 from './pages/Error404'
-import ShareTheCti from './pages/RadicalColloboration/ShareTheCti'
+import ShareTheCti from './pages/RadicalCollaboration/ShareTheCti'
 import Guides from './guides/';
 import useStyles from './styles';
 

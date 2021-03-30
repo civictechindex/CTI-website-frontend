@@ -41,9 +41,17 @@ const FAQCard = (props) => {
           props.faqs.length > 0 ? (
             <>
               <AccordionSection faqs={props.faqs}/>
-              <Box my={3} display="flex" justifyContent="center">
-                <Pagination color="secondary" count={props.pages} onChange={props.onChange} />
-              </Box>
+              <Grid item xs={12}>
+                <Box my={3} display="flex" justifyContent="center">
+                  <Pagination
+                    color="secondary"
+                    defaultPage={1}
+                    disabled={props.pages <= 1}
+                    count={props.pages}
+                    onChange={props.onPageChange}
+                  />
+                </Box>
+              </Grid>
             </>
           ) : (
             <Typography variant='body1' className={classes.message}>
