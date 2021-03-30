@@ -63,7 +63,7 @@ function PhotoCardDsktp(props) {
                                 <Typography variant="h6" style={{ position: 'absolute', left: '69px', top: '280px' }} >
                                     {i.footerText}
                                 </Typography>
-                                <Button href={styles.donatePath} className={classes.largeButton} style={{ position: 'absolute', left: '60px', top: '330px', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '330px', width: '225px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
