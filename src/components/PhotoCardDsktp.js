@@ -18,7 +18,10 @@ const useStyles = makeStyles(
             color: theme.palette.primary.main
         },
         largeButton: {
-            button: theme.overrides.MuiButton
+            button: theme.overrides.MuiButton,
+            color: theme.palette.primary.main,
+            backgroundColor: theme.palette.background.default,
+
         }
     })
 );
@@ -60,7 +63,7 @@ function PhotoCardDsktp(props) {
                                 <Typography variant="h6" style={{ position: 'absolute', left: '69px', top: '280px' }} >
                                     {i.footerText}
                                 </Typography>
-                                <Button href={styles.donatePath} className={classes.largeButton} style={{ position: 'absolute', left: '60px', top: '330px', backgroundColor: '#5fcaf9', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                <Button href={styles.donatePath} className={classes.largeButton} style={{ position: 'absolute', left: '60px', top: '330px', width: '225px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
