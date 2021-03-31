@@ -75,7 +75,7 @@ const Faq = () => {
   return (
     <Box className='boxBackground'>
       <Container >
-        <NavBreadcrumbs crumbs={crumbs} color="#FEFEFE" />
+        <NavBreadcrumbs crumbs={crumbs} color='primary' />
         <TitleSection>How can we help?</TitleSection>
         <Grid container justify='center' className={classes.searchBar}>
           <Grid item xs={12} sm={9}>
