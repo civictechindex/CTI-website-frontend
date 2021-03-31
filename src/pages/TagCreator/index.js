@@ -105,6 +105,20 @@ const TagCreator = () => {
       handleSubmit();
     }
   }
+  const handleChangeValue = () =>{
+    if (changeValue === 'TopicTag'){
+      setDisplayState('TopicTag')
+    }
+    else if (changeValue === 'GenerateTags'){
+      setDisplayState('GenerateTags')
+    }
+    else if (changeValue === 'CopyPasteTags'){
+      setDisplayState('CopyPasteTags')
+    }
+    else {
+      setDisplayState('SubmitOrg')
+    }
+  }
   const prevRefUrl = usePrevious(repositoryUrl)
   // eslint-disable-next-line complexity
   const handleSubmit = (event) => {
@@ -137,22 +151,28 @@ const TagCreator = () => {
           setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
         })
     }
-
-    if (changeValue === 'TopicTag'){
-      setDisplayState('TopicTag')
-    }
-    else if (changeValue === 'GenerateTags'){
-      setDisplayState('GenerateTags')
-    }
-    else if (changeValue === 'CopyPasteTags'){
-      setDisplayState('CopyPasteTags')
-    }
-
+    handleChangeValue()
   }
 
 
   const handleChange = (event) => {
     setValue(event.target.value)
+  }
+  const handleChangeChip = (chips) =>{
+    let chipsArr = []
+    chipsArr = chips.map(chip => chip.toLowerCase().trim().replaceAll(" ", "-"))
+    setUserTags(chipsArr)
+  }
+
+  const OrgProjSection = () => {
+    return (
+      <>
+        <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
+          setChangeValue={setChangeValue}
+          setOrgName={setOrgName}/>
+        <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
+      </>
+    )
   }
 
 
@@ -178,7 +198,8 @@ const TagCreator = () => {
               setOrgName={setOrgName}
               changeValue={changeValue}
               setChangeValue={setChangeValue}
-              setOrgTags={setOrgTags}/>
+              setOrgTags={setOrgTags}
+              handleChangeValue={handleChangeValue}/>
           </Grid>
         </>
       )
@@ -201,10 +222,7 @@ const TagCreator = () => {
     case "TopicTag":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
-            setChangeValue={setChangeValue}
-            setOrgName={setOrgName}/>
-          <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
+          <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <AddTags setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}/>
         </>
@@ -217,16 +235,14 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             setUserTags={setUserTags}
             setChangeValue={setChangeValue}
-            resetForm={resetForm}/>
+            resetForm={resetForm}
+            handleChangeChip={handleChangeChip}/>
         </>
       )
     case "GenerateTags":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
-            setChangeValue={setChangeValue}
-            setOrgName={setOrgName}/>
-          <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState} setChangeValue={setChangeValue}/>
+          <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
@@ -242,15 +258,12 @@ const TagCreator = () => {
     case "ShowAddOrgTopicTags":
       return (
         <AddMoreTags userTags={userTags} setUserTags={setUserTags} setDisplayState={setDisplayState} orgTags={orgTags} setTagsToAdd={setTagsToAdd}
-          resetForm={resetForm} />
+          resetForm={resetForm} handleChangeChip={handleChangeChip} />
       )
     case "CopyPasteTags":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
-            setChangeValue={setChangeValue}
-            setOrgName={setOrgName}/>
-          <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState} setChangeValue={setChangeValue}/>
+          <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}/>
         </>

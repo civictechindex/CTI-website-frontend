@@ -44,7 +44,7 @@ export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => 
 }
 
 
-export const OrganizationSelectorSection = ({ orgName,setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags }) => {
+export const OrganizationSelectorSection = ({ orgName,setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags,handleChangeValue }) => {
   const handleSubmitOrg = () =>{
     const topics=[]
     axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/'+orgName,)
@@ -65,18 +65,7 @@ export const OrganizationSelectorSection = ({ orgName,setOrgName,setDisplayState
          */
         console.log(e);
       })
-    if (changeValue === 'TopicTag'){
-      setDisplayState('TopicTag')
-    }
-    else if (changeValue === 'GenerateTags'){
-      setDisplayState('GenerateTags')
-    }
-    else if (changeValue === 'CopyPasteTags'){
-      setDisplayState('CopyPasteTags')
-    }
-    else {
-      setDisplayState('SubmitOrg')
-    }
+    handleChangeValue()
   }
   return (
     <>

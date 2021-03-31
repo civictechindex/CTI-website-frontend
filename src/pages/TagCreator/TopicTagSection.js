@@ -25,14 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const AddTopicTagSection = ({ setUserTags,setDisplayState,setChangeValue,resetForm }) =>{
+export const AddTopicTagSection = ({ setUserTags,setDisplayState,setChangeValue,resetForm,handleChangeChip }) =>{
   const classes = useStyles();
-
-  const handleChangeChip = (chips) =>{
-    let chipsArr = []
-    chipsArr = chips.map(chip => chip.toLowerCase().trim().replaceAll(" ", "-"))
-    setUserTags(chipsArr)
-  }
 
   const handleGenerateTag = () =>{
     setChangeValue('GenerateTags')
@@ -166,17 +160,13 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
 }
 
 
-export const AddMoreTags = ({ userTags,setUserTags,setDisplayState,setTagsToAdd,orgTags,resetForm }) =>{
+export const AddMoreTags = ({ userTags,setUserTags,setDisplayState,setTagsToAdd,orgTags,resetForm,handleChangeChip }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
     setTagsToAdd([...userTags,...orgTags])
     setDisplayState('GenerateTags')
   }
-  const handleChangeChip = (chips) =>{
-    let chipsArr = []
-    chipsArr = chips.map(chip => chip.toLowerCase().trim().replaceAll(" ", "-"))
-    setUserTags(chipsArr)
-  }
+
   const handleResetForm = () => {
     resetForm()
   }
