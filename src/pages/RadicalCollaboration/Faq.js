@@ -37,13 +37,17 @@ const Faq = () => {
   const apiUrl = 'http://test-civictechindexadmin.herokuapp.com/api/faqs/';
 
   const theme = useTheme();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('sm'));
+  const largeScreen = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });
 
-  const callApi = async (currentQuery) => {
-    console.log(`IS SCREEN LARGE: ${largeScreen}`);
-    const params = { page: pageNum, page_size: largeScreen ? 10 : 5 };
-    if (currentQuery) {
-      params.search = currentQuery;
+  const getFAQData = async (currentQuery, resetPageNum) => {
+    const params = {
+      page: resetPageNum ? 1 : pageNum,
+      page_size: largeScreen ? 10 : 5,
+      search: currentQuery,
+    };
+    // reset pagination current page to 1 in certain cases such as new search query input
+    if (resetPageNum) {
+      setPageNum(1);
     }
     const res = await axios.get(apiUrl, { params: params });
     setData(res.data.results);
@@ -52,11 +56,11 @@ const Faq = () => {
   }
 
   const debounce = useCallback(_.debounce((value) => {
-    callApi(value);
+    getFAQData(value, true);
   }, 300), []);
 
   useEffect(() => {
-    callApi(query);
+    getFAQData(query, false);
   }, [pageNum, largeScreen]);
 
   const handleInput = (event) => {
@@ -86,6 +90,7 @@ const Faq = () => {
           title={status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
           faqs={data}
           pages={Math.ceil(totalCount / (largeScreen ? 10 : 5))}
+          currentPageNum={pageNum}
           onPageChange={handlePageNumChange}
         />
         <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />

@@ -45,10 +45,11 @@ const FAQCard = (props) => {
                 <Box my={3} display="flex" justifyContent="center">
                   <Pagination
                     color="secondary"
+                    count={props.pages}
                     defaultPage={1}
                     disabled={props.pages <= 1}
-                    count={props.pages}
                     onChange={props.onPageChange}
+                    page={props.currentPageNum}
                   />
                 </Box>
               </Grid>
