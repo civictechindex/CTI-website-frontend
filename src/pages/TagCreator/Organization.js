@@ -16,7 +16,7 @@ export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => 
     }
   });
   const handleChangeOrg = () =>{
-    setDisplayState('InitialState')
+    setDisplayState('')
   }
   return (
     <Grid container  direction="row" alignItems="center"  spacing={3} style={{ padding:'10px' }}>
@@ -39,7 +39,7 @@ export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => 
 }
 
 
-export const OrganizationSelectorSection = ({ orgName,setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags,handleChangeValue }) => {
+export const OrganizationSelectorSection = ({setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags,handleChangeValue }) => {
 
   return (
     <>
@@ -48,10 +48,10 @@ export const OrganizationSelectorSection = ({ orgName,setOrgName,setDisplayState
         <Autocomplete
           id="organization"
           options={orgs}
+          onChange={(e, v) => setOrgName(v)}
           getOptionLabel={(option) => option}
-          onChange={(e, v) => setOrgName(v) }
           style={{ width: '100%' }}
-          renderInput={(params) => <TextField {...params}  variant="outlined" />}
+          renderInput={(params) => <TextField {...params} variant="outlined" />}
         />
       </Grid>
       <Grid item>
@@ -73,7 +73,7 @@ export const OrgChange = ({ orgName,setOrgTags,changeValue,setDisplayState }) =>
       setDisplayState('CopyPasteTags')
     }
     else {
-      setDisplayState('SubmitOrg')
+      setDisplayState('ProjectUrl')
     }
   }
   const handleSubmitOrg = () =>{

@@ -1,4 +1,4 @@
-/* eslint-disable max-lines-per-function */
+
 import React, { useState,useEffect,useRef } from 'react';
 import axios from 'axios';
 import Box from '@material-ui/core/Box'
@@ -64,9 +64,10 @@ const usePrevious =(refValue) => {
   return ref.current;
 }
 
+
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
-  const [displayState, setDisplayState] = useState("InitialState");
+  const [displayState, setDisplayState] = useState("");
   const [value, setValue] = useState('');
   const [orgName, setOrgName] = useState('');
   const [changeValue, setChangeValue] = useState('');
@@ -89,8 +90,18 @@ const TagCreator = () => {
     setUserTags([])
     setOrgTags([])
     setChangeValue('')
-    setDisplayState('InitialState')
+    setDisplayState('')
   }
+
+  useEffect(() => {
+    if (orgTags.length !== 0 && names.length !== 0){
+      const result = orgTags.filter(ot => !names.includes(ot))
+      setTagsToAdd([...userTags,...result])
+    }
+    else
+      setTagsToAdd([...userTags,...orgTags])
+
+  },[orgTags, names, setTagsToAdd, userTags])
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
@@ -118,7 +129,7 @@ const TagCreator = () => {
     }
   }
   const prevRefUrl = usePrevious(repositoryUrl)
-  // eslint-disable-next-line complexity
+
   const handleSubmit = (event) => {
     const urlPath = getRepositoryUrlPath(repositoryUrl)
     // Setting Repository Name
@@ -187,16 +198,7 @@ const TagCreator = () => {
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
     switch (displayState) {
-    case "InitialState":
-      return (
-        <>
-          <AffiliationQuestionSection value={value} handleChange={handleChange}
-            question={'Are you affiliated with an organization?'} />
-          {(value === 'yes')?<RadioYes setOrgName={setOrgName}/>:null}
-          {(value === 'no')?<OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>:null}
-        </>
-      )
-    case "SubmitOrg":
+    case "ProjectUrl":
       return (
         <>
           <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
@@ -220,7 +222,7 @@ const TagCreator = () => {
           <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}/>
         </>
       )
-    case "ShowAddTopicTags":
+    case "AddTopicTags":
       return (
         <>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
@@ -248,22 +250,32 @@ const TagCreator = () => {
             resetForm={resetForm}/>
         </>
       )
-    case "ShowAddOrgTopicTags":
+    case "AddMoreTags":
       return (
         <AddMoreTags userTags={userTags} setUserTags={setUserTags} setDisplayState={setDisplayState} orgTags={orgTags} setTagsToAdd={setTagsToAdd}
-          resetForm={resetForm} handleChangeChip={handleChangeChip} />
+          resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue} />
       )
     case "CopyPasteTags":
       return (
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
-          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}/>
+          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}
+            names={names}
+            setNames={setNames}
+            setTagsToAdd={setTagsToAdd}
+            orgTags={orgTags}
+            userTags={userTags}/>
         </>
       )
     default:
       return (
-        <AffiliationQuestionSection value={value} handleChange={handleChange} question={'Are you affiliated with an organization?'} />
+        <>
+          <AffiliationQuestionSection value={value} handleChange={handleChange}
+            question={'Are you affiliated with an organization?'} />
+          {(value === 'yes')?<RadioYes setOrgName={setOrgName}/>:null}
+          {(value === 'no')?<OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>:null}
+        </>
       )
     }
 

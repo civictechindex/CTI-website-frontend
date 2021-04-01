@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -24,6 +24,59 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
   },
 }))
+
+const TopicTags = ({ topicNames,variant }) => {
+  const topicArray = topicNames || []
+  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant={variant} />);
+}
+
+
+export const CurrentTopicTagSection = ({ names, repositoryName }) => {
+  return (
+    <>
+      {names.length !== 0 ?<Grid>
+        <Grid style={{ padding:'20px' }}>
+          <Typography variant='body1'>Current topic tags on {repositoryName}:</Typography>
+        </Grid>
+        <Grid data-cy='current-tags' style={{ padding:'30px' }}>
+          <TopicTags topicNames={names} variant='generated' />
+        </Grid> </Grid>: <Grid item md={8} style={{ margin:'auto', padding:'30px' }}>
+        <Typography variant='h5' style={{ textAlign:'center' }}>There are currently no topic tags in your project’s repository. Add tags to increase your project visibility.</Typography>
+      </Grid> }
+      <Grid>
+        <Divider />
+      </Grid>
+    </>
+  )
+}
+
+export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>{
+  const [addTagValue, setAddTagValue] = useState('');
+  const handleChangeTag = (event) => {
+    setAddTagValue(event.target.value)
+  }
+  const showAddTopicTag = () =>{
+    if (addTagValue === 'yes'){
+      setDisplayState('AddTopicTags')
+    }
+    if (addTagValue === 'no'){
+      setChangeValue('GenerateTags')
+      setDisplayState('GenerateTags')
+    }
+  }
+  const handleResetForm = () => {
+    resetForm()
+  }
+  return (
+    <>
+      <AffiliationQuestionSection value={addTagValue} handleChange={handleChangeTag} question={"Do you want to add more tags specific to your project's subject area to increase visibility?"} />
+      <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
+        <Grid item style={{ padding:'10px' }}><Button onClick={showAddTopicTag}>Generate Tags</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
+      </Grid>
+    </>
+  )
+}
 
 export const AddTopicTagSection = ({ setUserTags,setDisplayState,setChangeValue,resetForm,handleChangeChip }) =>{
   const classes = useStyles();
@@ -60,46 +113,7 @@ export const AddTopicTagSection = ({ setUserTags,setDisplayState,setChangeValue,
   )
 }
 
-export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>{
-  const [addTagValue, setAddTagValue] = useState('');
-  const handleChangeTag = (event) => {
-    setAddTagValue(event.target.value)
-  }
-  const showAddTopicTag = () =>{
-    if (addTagValue === 'yes'){
-      setDisplayState('ShowAddTopicTags')
-    }
-    if (addTagValue === 'no'){
-      setChangeValue('GenerateTags')
-      setDisplayState('GenerateTags')
-    }
-  }
-  const handleResetForm = () => {
-    resetForm()
-  }
-  return (
-    <>
-      <AffiliationQuestionSection value={addTagValue} handleChange={handleChangeTag} question={"Do you want to add more tags specific to your project's subject area to increase visibility?"} />
-      <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={showAddTopicTag}>Generate Tags</Button></Grid>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
-      </Grid>
-    </>
-  )
-}
-
-
-export const NewTags =({ resetForm,setDisplayState,setTagsToAdd,tagsToAdd,orgTags,names,userTags,setChangeValue })=>{
-  useEffect(() => {
-    if (orgTags.length !== 0 && names.length !== 0){
-      const result = orgTags.filter(ot => !names.includes(ot))
-      setTagsToAdd([...userTags,...result])
-    }
-    else
-      setTagsToAdd([...userTags,...orgTags])
-
-  },[orgTags, names, setTagsToAdd, userTags])
-
+export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>{
   const handleResetForm = () => {
     resetForm()
   }
@@ -114,23 +128,23 @@ export const NewTags =({ resetForm,setDisplayState,setTagsToAdd,tagsToAdd,orgTag
           <Typography variant='body1'>New tags to add to your repository:</Typography>
         </Grid>
         <Grid container direction="row">
-          <Grid item md={8} data-cy='current-tags' style={{ padding:'30px' }}>
+          <Grid item md={8} data-cy='tags-to-add' style={{ padding:'30px' }}>
             <TopicTags topicNames={tagsToAdd} variant='generated' />
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('ShowAddOrgTopicTags')} >Add More tags</Link></Typography>
+            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleAddTags}>Generate Tags</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={handleAddTags}>Add these tags to your repo</Button></Grid>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
       </Grid>
     </>
   )
 }
 
-export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl }) =>{
+export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl}) =>{
   return (
     <>
       <Grid style={{ padding:'20px' }}>
@@ -147,11 +161,11 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
           <Typography variant='h6'>Here are the Topic Tags to add to {repositoryName}:</Typography>
         </Grid>
         <Grid container direction="row">
-          <Grid item md={8} data-cy='current-tags' style={{ padding:'30px' }}>
+          <Grid item md={8} data-cy='tags-to-add' style={{ padding:'30px' }}>
             <TopicTags topicNames={tagsToAdd} variant='copypaste' />
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('ShowAddOrgTopicTags')} >Add More tags</Link></Typography>
+            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -160,11 +174,15 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
 }
 
 
-export const AddMoreTags = ({ userTags,setUserTags,setDisplayState,setTagsToAdd,orgTags,resetForm,handleChangeChip }) =>{
+export const AddMoreTags = ({ userTags,setUserTags,setDisplayState,setTagsToAdd,orgTags,resetForm,handleChangeChip,changeValue }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
     setTagsToAdd([...userTags,...orgTags])
-    setDisplayState('GenerateTags')
+    if (changeValue === 'CopyPasteTags'){
+      setDisplayState('CopyPasteTags')
+    }
+    else
+      setDisplayState('GenerateTags')
   }
 
   const handleResetForm = () => {
@@ -191,30 +209,6 @@ export const AddMoreTags = ({ userTags,setUserTags,setDisplayState,setTagsToAdd,
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleAddMoreTags}>Generate Tags</Button></Grid>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
-      </Grid>
-    </>
-  )
-}
-
-const TopicTags = ({ topicNames,variant }) => {
-  const topicArray = topicNames || []
-  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant={variant} />);
-}
-
-export const CurrentTopicTagSection = ({ names, repositoryName }) => {
-  return (
-    <>
-      {names.length !== 0 ?<Grid>
-        <Grid style={{ padding:'20px' }}>
-          <Typography variant='body1'>Current topic tags on {repositoryName}:</Typography>
-        </Grid>
-        <Grid data-cy='current-tags' style={{ padding:'30px' }}>
-          <TopicTags topicNames={names} variant='generated' />
-        </Grid> </Grid>: <Grid item md={8} style={{ margin:'auto', padding:'30px' }}>
-        <Typography variant='h5' style={{ textAlign:'center' }}>There are currently no topic tags in your project’s repository. Add tags to increase your project visibility.</Typography>
-      </Grid> }
-      <Grid>
-        <Divider />
       </Grid>
     </>
   )

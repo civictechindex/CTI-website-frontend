@@ -16,7 +16,7 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState }) => {
       </Grid>
       <Grid item>
         <Typography variant='body1'>
-          <Link onClick={()=>setDisplayState('SubmitOrg')}>change</Link>
+          <Link onClick={()=>setDisplayState('ProjectUrl')}>change</Link>
         </Typography>
       </Grid>
     </Grid>
