@@ -76,9 +76,11 @@ You should now have a new folder called `CTI-website-frontend`.
 
 _Note: Instead of working on a clone, you can choose to make edits on a fork. To view the previous instructions on how to do that, look at [the version of this document dated Jan 14, 2021](https://github.com/civictechindex/CTI-website-frontend/blob/c4320bc33f6eada97bf3f404d240cac382ee7552/CONTRIBUTING.md)._
 
-## Step 4: Setting up Docker
+## Step 4: Setting up Docker (Optional)
 
-Docker is the recommended approach to quickly getting started with local development. (Docker helps create a local/offline version of the `CTI-website-frontend` website on your computer so you can test out your code before submitting a pull request.)
+Docker will soon be the recommended approach to quickly getting started with local development, but this step is optional for now, and most devs are not using Docker.
+
+Docker is a tool that can help create a local/offline version of the `CTI-website-frontend` website on your computer so you can test out your code before submitting a pull request.
 
 The recommended installation method is [Docker Desktop](https://docs.docker.com/get-docker/) for Windows 10 64-bit and Mac. Linux users may check out [Docker Engine](https://docs.docker.com/engine/install/) instead.
 
@@ -102,7 +104,7 @@ In browser go to [localhost:80](localhost:80)
 
 Create a new branch for each issue you work on. Doing all your work on topic branches leaves the repository's main branch (named `main`) unmodified.
 
-a) Check current branch
+### a) Check current branch
 
 The `git branch` command will let you know what branch you are in, and what branch names are already in use.
 
@@ -112,7 +114,7 @@ git branch
 
 You will see a list of all of your branches. There will be a star (`*`) next to the branch that you are currently in. By default you should start on the `main` branch.
 
-b) Create a new branch where you will work on your issue
+### b) Create a new branch where you will work on your issue
 
 The `git checkout` command will create and change to a new branch where you will do the work on your issue.  In git, the checkout command lets you navigate between different branches.  Using the `-b` flag you can create a new branch and immediately switch into it.
 
@@ -130,20 +132,27 @@ No law of physics will break if you don't adhere to this scheme, but laws of git
 
 When you've finished working on your issue, follow the steps below to prepare your changes to push to GitHub.
 
-c) Prepare your changes to push to the repository
+### c) Prepare your changes to push to the repository
 
 Once you are done with the work on your issue you will push it to GitHub. Before you can push your work, you will stage and commit your changes.  These two commands are similar to the save command that you have used to in other programs.
 
--Use the `git add` command to stage your changes.
-This command prepares your changes before you commit them. You can stage files one at a time using the filename, or you can use the `.` to stage all of the files that you have added or made changes to.
+#### Use the `git add` command to stage your changes
 
-Run the command:
+This command prepares your changes before you commit them. You can stage files one at a time using the filename, or many at a time using wildcards, or you can use the `.` to stage all of the files that you have added or made changes to. For more information on `git add`, see <https://github.com/git-guides/git-add>.
+
+To stage changes to a specific file, run the command:
+
+```bash
+git add path/to/file/you/just/edited.js
+```
+
+To stage all of the changes in your folder, run the command:
 
 ```bash
 git add .
 ```
 
--Use the `git status` command to see what files are staged.
+#### Use the `git status` command to see what files are staged
 
 This command will list the files that have been staged.  These are the files that will be committed (saved) when you run the next command, `git commit`.
 
@@ -151,7 +160,7 @@ This command will list the files that have been staged.  These are the files tha
 git status
 ```
 
--Use the `git commit` command
+#### Use the `git commit` command
 
 This command saves your work, and prepares it to push to GitHub.  Use the `-m` flag to quickly add a message to your commit. Your message should be a short description of the issue you are working.  It will be extremely helpful if other people can understand your message, so try to resist the temptation to be overly cryptic.
 
@@ -161,7 +170,7 @@ To commit your changes with a message, run:
 git commit -m 'insert message here'
 ```
 
-Congratulations!  You are now ready to push your work to GitHub.
+### d) Congratulations! You are now ready to push your work to GitHub
 
 ## Step 6: Code quality
 
