@@ -16,12 +16,7 @@ export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => 
     }
   });
   const handleChangeOrg = () =>{
-    if (value === 'yes'){
-      setDisplayState('RadioYes')
-    }
-    if (value === 'no') {
-      setDisplayState('InitialState')
-    }
+    setDisplayState('InitialState')
   }
   return (
     <Grid container  direction="row" alignItems="center"  spacing={3} style={{ padding:'10px' }}>
@@ -45,28 +40,7 @@ export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => 
 
 
 export const OrganizationSelectorSection = ({ orgName,setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags,handleChangeValue }) => {
-  const handleSubmitOrg = () =>{
-    const topics=[]
-    axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/'+orgName,)
-      .then(res => {
-        let po = res.data.parent_organization
-        if (res.data.org_tag !== ""){
-          topics.push(res.data.org_tag)
-        }
-        while (po!=null){
-          topics.push(po.org_tag)
-          po =po.parent_organization
-        }
-        setOrgTags(topics)
-      }).catch(e => {
-        /*
-         * This should store the error state.
-         * Component should check for error state and resolve the correct response.
-         */
-        console.log(e);
-      })
-    handleChangeValue()
-  }
+
   return (
     <>
       <Grid item xs={12} sm={12}>
@@ -74,24 +48,21 @@ export const OrganizationSelectorSection = ({ orgName,setOrgName,setDisplayState
         <Autocomplete
           id="organization"
           options={orgs}
-          onChange={(e, v) => setOrgName(v)}
           getOptionLabel={(option) => option}
+          onChange={(e, v) => setOrgName(v) }
           style={{ width: '100%' }}
-          renderInput={(params) => <TextField {...params} variant="outlined" />}
+          renderInput={(params) => <TextField {...params}  variant="outlined" />}
         />
       </Grid>
       <Grid item>
         <Typography variant='body1'>Don’t see your organization? Click <Link >here</Link> to add it. </Typography>
       </Grid>
-      <Grid item>
-        <Grid align='center' style={{ padding:'20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
-      </Grid>
     </>
   )
 }
 
-export const OrgChange = ({ setDisplayState,changeValue }) =>{
-  const handleSubmitOrgChange = () =>{
+export const OrgChange = ({ orgName,setOrgTags,changeValue,setDisplayState }) =>{
+  const handleChangeOrg = () =>{
     if (changeValue === 'TopicTag'){
       setDisplayState('TopicTag')
     }
@@ -105,9 +76,33 @@ export const OrgChange = ({ setDisplayState,changeValue }) =>{
       setDisplayState('SubmitOrg')
     }
   }
+  const handleSubmitOrg = () =>{
+    const topics=[]
+    if (orgName){
+      axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/'+orgName,)
+        .then(res => {
+          let po = res.data.parent_organization
+          if (res.data.org_tag !== ""){
+            topics.push(res.data.org_tag)
+          }
+          while (po!=null){
+            topics.push(po.org_tag)
+            po =po.parent_organization
+          }
+          setOrgTags(topics)
+        }).catch(e => {
+        /*
+         * This should store the error state.
+         * Component should check for error state and resolve the correct response.
+         */
+          console.log(e);
+        })
+    }
+    handleChangeOrg()
+  }
   return (
     <Grid item>
-      <Grid align='center' style={{ padding:'20px' }}><Button onClick={handleSubmitOrgChange} id='submitButton'>Submit Organization</Button></Grid>
+      <Grid align='center' style={{ padding:'20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
     </Grid>
   )
 }

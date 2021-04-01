@@ -9,7 +9,7 @@ import NavBreadcrumbs from '../../components/NavBreadcrumbs'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organization'
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
-import { AddTopicTagSection,AddTags,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
+import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
 import { TitleSection } from '../../components'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -55,6 +55,7 @@ const getRepositoryUrlPath = (repositoryUrl) => {
   return result
 }
 
+// checks if URL is deifferent
 const usePrevious =(refValue) => {
   const ref = useRef();
   useEffect(() => {
@@ -91,21 +92,17 @@ const TagCreator = () => {
     setDisplayState('InitialState')
   }
 
-  useEffect(() => {
-    if (value === 'yes'){
-      setDisplayState('RadioYes')
-    }
-    if (value === 'no'){
-      setDisplayState('SubmitOrg')
-    }
-  },[value])
-
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
       handleSubmit();
     }
   }
-  const handleChangeValue = () =>{
+
+  const handleChange = (event) => {
+    setValue(event.target.value)
+  }
+
+  const handleChangeProjectRepository = () =>{
     if (changeValue === 'TopicTag'){
       setDisplayState('TopicTag')
     }
@@ -116,13 +113,15 @@ const TagCreator = () => {
       setDisplayState('CopyPasteTags')
     }
     else {
-      setDisplayState('SubmitOrg')
+      setChangeValue('TopicTag')
+      setDisplayState('TopicTag')
     }
   }
   const prevRefUrl = usePrevious(repositoryUrl)
   // eslint-disable-next-line complexity
   const handleSubmit = (event) => {
     const urlPath = getRepositoryUrlPath(repositoryUrl)
+    // Setting Repository Name
     const patt = /[a-z]+\//g
     const repName = urlPath.replace(patt, '')
     setRepositoryName(repName)
@@ -130,6 +129,7 @@ const TagCreator = () => {
     if (urlPath.length === 0){
       return setTopicSearchError(<p style={{ color: 'red' }}>Please enter a URL</p>);
     }
+    // Fetches Tags from API only if URL is changed
     if (prevRefUrl !== repositoryUrl){
       axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
         headers: { Accept: "application/vnd.github.mercy-preview+json" },
@@ -140,8 +140,6 @@ const TagCreator = () => {
             setTagsToAdd(arr=>[...arr,"civictechindex"])
           }
           setNames(res.data.names)
-          setChangeValue('TopicTag')
-          setDisplayState('TopicTag')
         }).catch(e => {
         /*
          * This should store the error state.
@@ -151,12 +149,7 @@ const TagCreator = () => {
           setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
         })
     }
-    handleChangeValue()
-  }
-
-
-  const handleChange = (event) => {
-    setValue(event.target.value)
+    handleChangeProjectRepository()
   }
   const handleChangeChip = (chips) =>{
     let chipsArr = []
@@ -175,6 +168,21 @@ const TagCreator = () => {
     )
   }
 
+  const RadioYes = ({ setOrgName }) =>{
+    return (
+      <>
+        <OrganizationSelectorSection
+          setDisplayState={setDisplayState}
+          orgName={orgName}
+          setOrgName={setOrgName}
+          changeValue={changeValue}
+          setChangeValue={setChangeValue}
+          setOrgTags={setOrgTags}/>
+        <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>
+      </>
+    )
+  }
+
 
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
@@ -182,25 +190,10 @@ const TagCreator = () => {
     case "InitialState":
       return (
         <>
-          <AffiliationQuestionSection value={value} handleChange={handleChange} question={'Are you affiliated with an organization?'} />
-          {(value === 'no' && changeValue !== '')?<OrgChange setOrgName={setOrgName} setDisplayState={setDisplayState}
-            changeValue={changeValue} setChangeValue={setChangeValue}/>:null}
-        </>
-      )
-    case "RadioYes":
-      return (
-        <>
-          <AffiliationQuestionSection value={value} handleChange={handleChange} question={'Are you affiliated with an organization?'} />
-          <Grid container id='container-affiliated'>
-            <OrganizationSelectorSection
-              setDisplayState={setDisplayState}
-              orgName={orgName}
-              setOrgName={setOrgName}
-              changeValue={changeValue}
-              setChangeValue={setChangeValue}
-              setOrgTags={setOrgTags}
-              handleChangeValue={handleChangeValue}/>
-          </Grid>
+          <AffiliationQuestionSection value={value} handleChange={handleChange}
+            question={'Are you affiliated with an organization?'} />
+          {(value === 'yes')?<RadioYes setOrgName={setOrgName}/>:null}
+          {(value === 'no')?<OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>:null}
         </>
       )
     case "SubmitOrg":
@@ -224,7 +217,7 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
-          <AddTags setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}/>
+          <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}/>
         </>
       )
     case "ShowAddTopicTags":

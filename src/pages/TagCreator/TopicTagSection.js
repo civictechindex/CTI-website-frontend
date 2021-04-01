@@ -60,7 +60,7 @@ export const AddTopicTagSection = ({ setUserTags,setDisplayState,setChangeValue,
   )
 }
 
-export const AddTags = ({ resetForm,setDisplayState,setChangeValue }) =>{
+export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>{
   const [addTagValue, setAddTagValue] = useState('');
   const handleChangeTag = (event) => {
     setAddTagValue(event.target.value)
