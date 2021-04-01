@@ -114,6 +114,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
 }
 
 export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>{
+
   const handleResetForm = () => {
     resetForm()
   }
@@ -145,6 +146,7 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
 }
 
 export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl }) =>{
+
   return (
     <>
       <Grid style={{ padding:'20px' }}>

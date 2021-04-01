@@ -67,13 +67,16 @@ const TagCreator = () => {
   }
 
   useEffect(() => {
+    const civicName = []
+    if (!names.includes("civictechindex")) {
+      civicName.push("civictechindex")
+    }
     if (orgTags.length !== 0 && names.length !== 0){
       const result = orgTags.filter(ot => !names.includes(ot))
-      setTagsToAdd([...userTags,...result])
+      setTagsToAdd([...userTags,...result,...civicName])
     }
     else
-      setTagsToAdd([...userTags,...orgTags])
-
+      setTagsToAdd([...userTags,...orgTags,...civicName])
   },[orgTags, names, setTagsToAdd, userTags])
 
   const handleEnter = (event) => {
@@ -120,9 +123,6 @@ const TagCreator = () => {
       })
         .then(res => {
           setTopicSearchError()
-          if (!res.data.names.includes("civictechindex")) {
-            setTagsToAdd(arr=>[...arr,"civictechindex"])
-          }
           setNames(res.data.names)
         }).catch(e => {
         /*
@@ -214,7 +214,11 @@ const TagCreator = () => {
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
-            resetForm={resetForm}/>
+            resetForm={resetForm}
+            orgTags={orgTags}
+            names={names}
+            userTags={userTags}
+            setTagsToAdd={setTagsToAdd}/>
         </>
       )
     case "AddMoreTags":
@@ -227,7 +231,11 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
-          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}/>
+          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}
+            orgTags={orgTags}
+            names={names}
+            userTags={userTags}
+            setTagsToAdd={setTagsToAdd}/>
         </>
       )
     default:
