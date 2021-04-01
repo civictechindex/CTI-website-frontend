@@ -151,10 +151,10 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
         <Typography variant='h5'>How to add your tags to your project’s repository</Typography>
       </Grid>
       <Grid style={{ padding:'10px' }}>
-        <Typography variant='h6' style={{  fontWeight: '700' }} >We recommend having your <Link href={repositoryUrl} >project’s repository</Link> open in another browser for ease of convenience. </Typography>
+        <Typography variant='h6' style={{  fontWeight: '400' }} >We recommend having your <Link href={repositoryUrl} >project’s repository</Link> open in another browser for ease of convenience. </Typography>
       </Grid>
-      <Grid style={{ padding:'20px', fontWeight: '700' }}>
-        <Typography variant='h6' style={{  fontWeight: 700 }}>If you don’t see the (Github Gear icon) button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below). Please click here to copy this page link and send it to your repository admin.</Typography>
+      <Grid style={{ padding:'20px' }}>
+        <Typography variant='h6' style={{  fontWeight: '400' }}>If you don’t see the (Github Gear icon) button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below). Please click here to copy this page link and send it to your repository admin.</Typography>
       </Grid>
       <Grid>
         <Grid style={{ padding:'20px' }}>
@@ -177,7 +177,6 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
 export const AddMoreTags = ({ userTags,setUserTags,setDisplayState,setTagsToAdd,orgTags,resetForm,handleChangeChip,changeValue }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
-    setTagsToAdd([...userTags,...orgTags])
     if (changeValue === 'CopyPasteTags'){
       setDisplayState('CopyPasteTags')
     }

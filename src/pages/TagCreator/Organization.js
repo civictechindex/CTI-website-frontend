@@ -8,6 +8,26 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import orgs from './orgs.json';
 import Link from '@material-ui/core/Link';
 
+export const OrganizationSelectorSection = ({ setOrgName }) => {
+  return (
+    <>
+      <Grid item xs={12} sm={12}>
+        <p>Which Organization?</p>
+        <Autocomplete
+          id="organization"
+          options={orgs}
+          onChange={(e, v) => setOrgName(v)}
+          getOptionLabel={(option) => option}
+          style={{ width: '100%' }}
+          renderInput={(params) => <TextField {...params} variant="outlined" />}
+        />
+      </Grid>
+      <Grid item>
+        <Typography variant='body1'>Don’t see your organization? Click <Link >here</Link> to add it. </Typography>
+      </Grid>
+    </>
+  )
+}
 
 export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => {
   useEffect(() => {
@@ -35,29 +55,6 @@ export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => 
         </Typography>
       </Grid>
     </Grid>
-  )
-}
-
-
-export const OrganizationSelectorSection = ({ setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags,handleChangeValue }) => {
-
-  return (
-    <>
-      <Grid item xs={12} sm={12}>
-        <p>Which Organization?</p>
-        <Autocomplete
-          id="organization"
-          options={orgs}
-          onChange={(e, v) => setOrgName(v)}
-          getOptionLabel={(option) => option}
-          style={{ width: '100%' }}
-          renderInput={(params) => <TextField {...params} variant="outlined" />}
-        />
-      </Grid>
-      <Grid item>
-        <Typography variant='body1'>Don’t see your organization? Click <Link >here</Link> to add it. </Typography>
-      </Grid>
-    </>
   )
 }
 
