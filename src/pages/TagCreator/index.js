@@ -228,7 +228,6 @@ const TagCreator = () => {
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <AddTopicTagSection
             setDisplayState={setDisplayState}
-            setUserTags={setUserTags}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
             handleChangeChip={handleChangeChip}/>
@@ -241,11 +240,6 @@ const TagCreator = () => {
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
-            names={names}
-            setNames={setNames}
-            setTagsToAdd={setTagsToAdd}
-            orgTags={orgTags}
-            userTags={userTags}
             setChangeValue={setChangeValue}
             resetForm={resetForm}/>
         </>
@@ -260,12 +254,7 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
-          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}
-            names={names}
-            setNames={setNames}
-            setTagsToAdd={setTagsToAdd}
-            orgTags={orgTags}
-            userTags={userTags}/>
+          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}/>
         </>
       )
     default:

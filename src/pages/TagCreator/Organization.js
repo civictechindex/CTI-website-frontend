@@ -39,7 +39,7 @@ export const OrgNameSection = ({ value,setDisplayState,orgName,setOrgName }) => 
 }
 
 
-export const OrganizationSelectorSection = ({setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags,handleChangeValue }) => {
+export const OrganizationSelectorSection = ({ setOrgName,setDisplayState,changeValue,setChangeValue,setOrgTags,handleChangeValue }) => {
 
   return (
     <>

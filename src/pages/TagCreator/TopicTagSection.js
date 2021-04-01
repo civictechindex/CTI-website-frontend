@@ -78,7 +78,7 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
   )
 }
 
-export const AddTopicTagSection = ({ setUserTags,setDisplayState,setChangeValue,resetForm,handleChangeChip }) =>{
+export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,handleChangeChip }) =>{
   const classes = useStyles();
 
   const handleGenerateTag = () =>{
@@ -144,7 +144,7 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
   )
 }
 
-export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl}) =>{
+export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl }) =>{
   return (
     <>
       <Grid style={{ padding:'20px' }}>
