@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from "@material-ui/core/Button"
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
@@ -38,9 +39,9 @@ export default function NavButton (props) {
   return (
     <>
       <Link to={props.href}>
-        <button className={classes.buttonStyles}>
+        <Button className={classes.buttonStyles}>
           {props.children}
-        </button>
+        </Button>
       </Link>
     </>
   );
