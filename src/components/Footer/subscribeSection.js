@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import axios from 'axios';
 
-const SubscribeSection = () => {
+const SubscribeSection = ({ size }) => {
   const classes = useStyles();
   const [inputValue, setInputValue] = useState('');
   const [message, setMessage] = useState('');
@@ -68,16 +68,17 @@ const SubscribeSection = () => {
       </Grid>
     ) : (
       <>
-        <Grid item sm={12} md={5}>
+        <Grid item sm={12} md={size === 'lg' ? 12 : 5}>
           <Typography variant='body2' color='textSecondary' className={classes.subHeader}>Newsletter</Typography>
           <Typography variant='body1' color='textSecondary'>
             To receive updates about new projects and trending topics on the index, subscribe here.
           </Typography>
         </Grid>
-        <Grid item sm={12} md={5}>
+        <br />
+        <Grid item sm={12} md={size === 'lg' ? 12 : 5}>
           <form onSubmit={submitEmail}>
             <Typography variant='body2' color='textSecondary' className={classes.subHeader}>E-mail</Typography>
-            <Box className={classes.subSection}>
+            <Box className={size !== 'lg' && classes.subSection}>
               <TextField
                 className={classes.textField}
                 onInput={(e) => setInputValue(e.target.value)}

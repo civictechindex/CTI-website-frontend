@@ -6,6 +6,7 @@ const useStyles = makeStyles(theme => ({
   },
   dropdownHeader: {
     alignItems: 'center',
+    color: theme.palette.text.secondary,
     display: 'flex',
     justifyContent: 'space-between',
     '&:hover': {
@@ -50,6 +51,12 @@ const useStyles = makeStyles(theme => ({
       marginRight: '25px',
     },
   },
+  socialContainerLarge: {
+    textAlign: 'center',
+    '& a': {
+      marginBottom: theme.spacing(3),
+    },
+  },
   subHeader: {
     marginBottom: theme.spacing(2),
   },
@@ -66,6 +73,7 @@ const useStyles = makeStyles(theme => ({
   textField: {
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
+    marginBottom: theme.spacing(2),
   },
 }))
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom/';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
+import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
+import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import useStyles from './styles';
 
 const DropdownList = ({ header, links }) => {
@@ -18,7 +18,7 @@ const DropdownList = ({ header, links }) => {
     <>
       <Box className={classes.dropdownHeader} onClick={toggleList}>
         <Typography variant='body2' color='textSecondary'>{header}</Typography>
-        {open ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
+        {open ? <ExpandLessRounded /> : <ExpandMoreRounded />}
       </Box>
       {open &&
         links.map((link) => {

@@ -2,13 +2,13 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
 
-const SocialSection = () => {
+const SocialSection = ({ size }) => {
   const classes = useStyles()
 
   return (
-    <Grid container direction='column' spacing={4}>
+    <Grid container direction='column' spacing={size !== 'lg' && 4} className={size === 'lg' && classes.socialContainerLarge}>
       <Grid item xs={12}><a href='/'>Follow Us</a></Grid>
-      <Grid item xs={12} className={classes.socialContainer}>
+      <Grid item xs={12} className={size !== 'lg' && classes.socialContainer}>
         <a href='https://www.instagram.com/civictechindex'>
           <img src='/images/insta-logo.svg' alt='Instagram logo' />
         </a>
