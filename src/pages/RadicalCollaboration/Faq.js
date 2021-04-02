@@ -8,13 +8,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import _ from 'lodash';
 
-import {
-  GetStartedCard,
-  NavBreadcrumbs,
-  SearchBar,
-  TitleSection,
-} from "../../components";
-import FAQCard from '../../components/FAQCard'
+import { GetStartedCard, NavBreadcrumbs, TitleSection } from '../../components';
+import SearchBar from '../SearchProjects/SearchBar';
+import FAQCard from '../../components/FAQCard';
 
 const useStyles = makeStyles({
   searchBar: {
