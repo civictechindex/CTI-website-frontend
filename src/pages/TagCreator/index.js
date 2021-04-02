@@ -79,6 +79,13 @@ const TagCreator = () => {
       setTagsToAdd([...userTags,...orgTags,...civicName])
   },[orgTags, names, setTagsToAdd, userTags])
 
+  useEffect(() => {
+    if (value === 'no'){
+      setOrgName('')
+      setOrgTags([])
+    }
+  },[value])
+
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
       handleSubmit();
@@ -146,7 +153,8 @@ const TagCreator = () => {
       <>
         <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
           setChangeValue={setChangeValue}
-          setOrgName={setOrgName}/>
+          setOrgName={setOrgName}
+          setOrgTags={setOrgTags}/>
         <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
       </>
     )
@@ -155,13 +163,7 @@ const TagCreator = () => {
   const RadioYes = ({ setOrgName }) =>{
     return (
       <>
-        <OrganizationSelectorSection
-          setDisplayState={setDisplayState}
-          orgName={orgName}
-          setOrgName={setOrgName}
-          changeValue={changeValue}
-          setChangeValue={setChangeValue}
-          setOrgTags={setOrgTags}/>
+        <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName}/>
         <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>
       </>
     )
@@ -214,16 +216,12 @@ const TagCreator = () => {
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
-            resetForm={resetForm}
-            orgTags={orgTags}
-            names={names}
-            userTags={userTags}
-            setTagsToAdd={setTagsToAdd}/>
+            resetForm={resetForm}/>
         </>
       )
     case "AddMoreTags":
       return (
-        <AddMoreTags userTags={userTags} setUserTags={setUserTags} setDisplayState={setDisplayState} orgTags={orgTags} setTagsToAdd={setTagsToAdd}
+        <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
           resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue} />
       )
     case "CopyPasteTags":
@@ -231,11 +229,7 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
-          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}
-            orgTags={orgTags}
-            names={names}
-            userTags={userTags}
-            setTagsToAdd={setTagsToAdd}/>
+          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}/>
         </>
       )
     default:
@@ -244,7 +238,8 @@ const TagCreator = () => {
           <AffiliationQuestionSection value={value} handleChange={handleChange}
             question={'Are you affiliated with an organization?'} />
           {(value === 'yes')?<RadioYes setOrgName={setOrgName}/>:null}
-          {(value === 'no')?<OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>:null}
+          {(value === 'no')?<OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}
+            setOrgName={setOrgName}/>:null}
         </>
       )
     }

@@ -176,7 +176,7 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
 }
 
 
-export const AddMoreTags = ({ userTags,setUserTags,setDisplayState,setTagsToAdd,orgTags,resetForm,handleChangeChip,changeValue }) =>{
+export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
     if (changeValue === 'CopyPasteTags'){
