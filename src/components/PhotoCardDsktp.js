@@ -38,7 +38,7 @@ function PhotoCardDsktp(props) {
                         height: `448px`,
                         width: `1216px`,
                     },
-                    innerLCardContainer: {
+                    innerTextCardContainer: {
                         height: `448px`,
                         width: `608px`,
                     },
@@ -48,7 +48,7 @@ function PhotoCardDsktp(props) {
                     <Grid container style={{ margin: 'auto' }} align='center' >
                         <Card className={classes.root} style={{ position: 'relative', padding: '0px', width: '1184px', margin: '0 auto', marginBottom: '10px' }}>
                             <Grid item>
-                                <Paper elevation={0} style={styles.innerLCardContainer}>
+                                <Paper elevation={0} style={styles.innerTextCardContainer}>
                                     <Typography className={classes.cardHeading} style={{ position: 'absolute', left: '69px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
                                         {i.heading}
                                     </Typography>
