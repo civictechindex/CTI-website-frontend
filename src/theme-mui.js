@@ -46,6 +46,17 @@ const defaultButtonSettings = {
 // themeSettings - modify Material-UI baseline theme
 const themeSettings = {
   overrides: {
+    MuiAccordion: {
+      root: {
+        padding: 0,
+      },
+    },
+    MuiAccordionSummary: {
+      root: {
+        minHeight: 32,
+        padding: 0,
+      },
+    },
     MuiButton: {
       root: {
         borderRadius: 24,
@@ -126,6 +137,11 @@ const themeSettings = {
         color: DARK_GRAY,
       },
     },
+    MuiListItem: {
+      root: {
+        padding: 0,
+      },
+    },
     MuiPaper: {
       root: {
         padding: 16,
@@ -139,6 +155,11 @@ const themeSettings = {
         '&$checked': {
           color: DARK_BLUE,
         },
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        backgroundColor: WHITE,
       },
     },
     MuiTextField: {
