@@ -15,13 +15,6 @@ describe('Footer', () => {
     })
   })
 
-  it('navigates to about us', () => {
-    cy.get('[class*=containerFooter]').within(() => {
-      cy.get('[href*=about]').click()
-    })
-    cy.contains('With your help')
-  })
-
   it('navigates to donate', () => {
     cy.get('[class*=containerFooter]').within(() => {
       cy.contains('Radical Collaboration').click()
