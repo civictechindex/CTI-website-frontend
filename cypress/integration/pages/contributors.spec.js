@@ -5,7 +5,7 @@ describe('Contributors Page', () => {
 
   it('wait for affiliated orgs to load', () => {
     cy.get('[class*=affiliatedOrgsContainer]').within(() => {
-      cy.get('[class*=containerDropdown]', { timeout: 60000 }).should('have.length', 24)
+      cy.get('[class*=containerDropdown]', { timeout: 20000 }).should('have.length', 24)
     })
   })
 
@@ -28,7 +28,7 @@ describe('Contributors Page', () => {
     })
     cy.get('[href*=codeforamerica]').parents('[class*=containerDropdown]').within(() => {
       cy.contains('Code for Anchorage')
-      cy.get('[class^=makeStyles-thumbnailWrapper]').should('have.length', 86)
+      cy.get('[class*=makeStyles-thumbnailWrapper]').should('have.length', 86)
     })
   })
 })
