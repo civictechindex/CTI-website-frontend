@@ -53,7 +53,7 @@ export default function SearchBar(props) {
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>
-            <SearchRoundedIcon className={classes.icon}/>
+            <SearchRoundedIcon className={classes.icon} />
           </InputAdornment>
         ),
       }}
