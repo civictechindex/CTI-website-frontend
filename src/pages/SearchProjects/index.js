@@ -132,7 +132,13 @@ const Projects = () => {
           </Grid>
           <Grid item xs={2} />
           <Grid item xs={8}>
-            <SearchBar value={query} onInput={(e) => setQuery(e.target.value)} placeholder='Search the Civic Tech Index' onKeyPress={handleSubmit} />
+            <SearchBar
+              dataCy='search-projects'
+              onInput={(e) => setQuery(e.target.value)}
+              onKeyPress={handleSubmit}
+              placeholder='Search the Civic Tech Index'
+              value={query}
+            />
             <Typography variant='body1' className={classes.openSearchTips} onClick={handleOpen}>
               <u>How to improve your search result</u>
             </Typography>
