@@ -73,7 +73,6 @@ export const OrgChange = ({ orgName,setOrgTags,changeValue,setDisplayState }) =>
     }
   }
   const handleSubmitOrg = () =>{
-    console.log(orgName)
     const topics=[]
     if (orgName){
       axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/'+orgName,)
