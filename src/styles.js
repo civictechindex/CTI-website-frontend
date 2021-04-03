@@ -1,6 +1,6 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     '.card240': {
       backgroundColor: theme.palette.background.dark,
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
     '.card242': {
-      backgroundColor: theme.palette.background.light,
+      backgroundColor: theme.palette.background.default,
       padding: theme.spacing(2),
       textAlign: 'center',
       '& h6': {
@@ -40,19 +40,23 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.secondary.dark,
       },
     },
-    ".containerDefault": {
+    '.containerDefault': {
       backgroundColor: theme.palette.secondary.dark,
-      minHeight: "500px",
+      minHeight: '500px',
     },
-    ".containerGray": {
+    '.containerGray': {
       backgroundColor: theme.palette.background.secondary,
-      minHeight: "350px",
+      minHeight: '500px',
     },
-    ".containerWorld": {
+    '.containerWhite': {
+      backgroundColor: theme.palette.background.default,
+      minHeight: '500px',
+    },
+    '.containerWorld': {
       backgroundColor: theme.palette.secondary.dark,
       backgroundImage: 'url(/images/world-view.png)',
       backgroundRepeat: 'no-repeat',
-      minHeight: "500px",
+      minHeight: '500px',
     },
     '.frame223': {
       backgroundColor: theme.palette.background.secondary,
@@ -69,10 +73,21 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.secondary,
       },
     },
-    '.boxBackground':{
+    '.grid241': {
+      backgroundColor: theme.palette.background.primary,
+      padding: theme.spacing(2),
+      '& .MuiTypography-body1': {
+        color: theme.palette.text.secondary,
+      },
+    },
+    '.grid242': {
+      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing(2),
+    },
+    '.boxBackground': {
       backgroundColor: theme.palette.background.primary,
     },
   },
-}))
+}));
 
 export default useStyles
