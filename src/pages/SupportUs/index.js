@@ -36,7 +36,7 @@ const SupportUs = () => {
             heading: 'Share the CTI',
             subHeading: 'Love the Index? Be an evangelist!',
             textBody: ' Help others and their communities discover, share, and benefit from contributed projects on the Index.',
-            buttonText: 'Share the CTI',
+            buttonText: 'Share the Civic Tech Index',
             dsktpTxtLn1: 'Help others and their communities discover, share,',
             dsktpTxtLn2: 'and benefit from contributed projects on the index.'
         },
