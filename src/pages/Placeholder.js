@@ -17,7 +17,7 @@ const Placeholder = () => {
       <Card className='card244'>
         <CardContent>
           <Typography variant='h1'>
-             Heading
+            Heading
           </Typography>
           <Typography variant='h6'>
             Subheading
@@ -28,5 +28,5 @@ const Placeholder = () => {
     </Container>
   );
 };
-   
+
 export default Placeholder;
