@@ -3,6 +3,7 @@ import React, { useState,useEffect,useRef } from 'react';
 import axios from 'axios';
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import { HeaderSection } from './HeaderSection'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organization'
@@ -162,10 +163,10 @@ const TagCreator = () => {
 
   const RadioYes = ({ setOrgName }) =>{
     return (
-      <>
+      <Grid container id='container-affiliated'>
         <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName}/>
         <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>
-      </>
+      </Grid>
     )
   }
 
