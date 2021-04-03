@@ -63,19 +63,3 @@ describe('Tag Generator Page (Tag Creator)', () => {
   })
 })
 
-/*
- *   it('loads correct 7 tags for `civictechindex/CTI-website-frontend` - unaffiliated', () => {
- *     cy.get('[data-cy=radio-unaffiliated]').click()
- *     cy.get('#container-unaffiliated').within(() => {
- *       cy.get('#repository-url').click().type(UNAFFILIATED_TEST_URL).type('{enter}')
- *       cy.get('[data-cy=current-tags]').within(() => {
- *         cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
- *           const innerText = $el.text()
- *           expect(UNAFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index)
- *           // expect(UNAFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.gt(-1)
- *         })
- *       })
- *     })
- *   })
- * })
- */
