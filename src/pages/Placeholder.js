@@ -4,6 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { NavBreadcrumbs } from '../components';
+import AddOrganization from '../components/AddOrganization';
 
 const Placeholder = () => {
   const crumbs = [
@@ -12,20 +13,9 @@ const Placeholder = () => {
   ];
 
   return (
-    <Container className='containerDefault'>
-      <NavBreadcrumbs crumbs={crumbs} />
-      <Card className='card244'>
-        <CardContent>
-          <Typography variant='h1'>
-            Heading
-          </Typography>
-          <Typography variant='h6'>
-            Subheading
-          </Typography>
-          <Typography variant='body1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Typography>
-        </CardContent>
-      </Card>
-    </Container>
+  
+      <AddOrganization></AddOrganization>
+   
   );
 };
 
