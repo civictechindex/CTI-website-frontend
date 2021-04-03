@@ -99,10 +99,10 @@ function PhotoCardDsktp(props) {
                                     {i.subHeading}
                                 </Typography>
                                 <br></br>
-                                <Typography style={{ position: 'absolute', right: '180px', top: '197px' }}>
+                                <Typography style={{ position: 'absolute', right: '146px', top: '197px' }}>
                                     {i.dsktpTxtLn1}
                                 </Typography>
-                                <Typography style={{ position: 'absolute', right: '174px', top: '220px' }}>
+                                <Typography style={{ position: 'absolute', right: '210px', top: '220px' }}>
                                     {i.dsktpTxtLn2}
                                 </Typography>
                                 <Typography style={{ position: 'absolute', right: '69px', top: '243px' }}>
@@ -112,6 +112,43 @@ function PhotoCardDsktp(props) {
                                     {i.footerText}
                                 </Typography>
                                 <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '307px', top: '268px', width: '278px', margin: '0 auto', padding: '16px' }}>
+                                    {i.buttonText}
+                                </Button>
+                            </Paper>
+                        </Grid>
+                        <Grid item >
+                            <Card className={classes.root} style={{ position: 'absolute', top: '33px', right: '608px', width: '544px', height: '382px' }}>
+                                <CardMedia
+                                    style={{ width: '544px', height: '382px' }}
+                                    className={classes.media}
+                                    image={i.src}
+                                />
+                            </Card>
+                        </Grid>
+                    </div>
+                } else {
+                    card = <div>
+                        <Grid item>
+                            <Paper elevation={0} style={styles.innerTextCardContainer}>
+                                <Typography className={classes.cardHeading} style={{ position: 'absolute', right: '332px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
+                                    {i.heading}
+                                </Typography>
+                                <Typography variant="h6" className={classes.cardParagraphHeading} style={{
+                                    position: 'absolute', right: '164px', top: '159px'
+                                }}>
+                                    {i.subHeading}
+                                </Typography>
+                                <br></br>
+                                <Typography style={{ position: 'absolute', right: '180px', top: '197px' }}>
+                                    {i.dsktpTxtLn1}
+                                </Typography>
+                                <Typography style={{ position: 'absolute', right: '357px', top: '220px' }}>
+                                    {i.dsktpTxtLn2}
+                                </Typography>
+                                <Typography style={{ position: 'absolute', right: '218px', top: '255px' }}>
+                                    {i.dsktpTxtLn3}
+                                </Typography>
+                                <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '287px', top: '312px', width: '278px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>

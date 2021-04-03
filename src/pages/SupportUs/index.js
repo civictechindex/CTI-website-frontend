@@ -37,8 +37,8 @@ const SupportUs = () => {
             subHeading: 'Love the Index? Be an evangelist!',
             textBody: ' Help others and their communities discover, share, and benefit from contributed projects on the Index.',
             buttonText: 'Share the Civic Tech Index',
-            dsktpTxtLn1: 'Help others and their communities discover, share,',
-            dsktpTxtLn2: 'and benefit from contributed projects on the index.'
+            dsktpTxtLn1: 'Help others and their communities discover, share, and',
+            dsktpTxtLn2: 'benefit from contributed projects on the index.'
         },
         {
             src: "/images/bulletin-board-postits.png", alt: "bulletin board",
