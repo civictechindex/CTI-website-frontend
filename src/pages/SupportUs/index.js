@@ -2,7 +2,6 @@ import React from 'react'
 import { Container } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
-
 import {
     GetStartedCard,
     NavBreadcrumbs,
@@ -62,7 +61,6 @@ const SupportUs = () => {
             dsktpTxtLn1: "We've shared some of our most frequently asked",
             dsktpTxtLn2: 'questions to help you out!',
             dsktpTxtLn3: 'View our FAQ to find answers or contact us.'
-
         },
     ];
     return (
@@ -84,7 +82,6 @@ const SupportUs = () => {
             />
         </Container>
     );
-
 }
 
 export default withWidth()(SupportUs);

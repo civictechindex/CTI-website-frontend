@@ -6,7 +6,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+//todo: (1)add links to 3rd and 4th cards. 
+//(2)Make sure diff views (mobile) display properly
+//(3)Probably have to break out code so not so many lines in this file
+//(4)Make sure correct buttons linked to the right pages
 
 const useStyles = makeStyles(
     (theme) => ({
@@ -46,7 +49,7 @@ function PhotoCardDsktp(props) {
                 };
                 //conditional for img switching
                 let card;
-                if (i.title === 'img-1' || i.title === 'img-3') {
+                if (i.title === 'img-1') {
                     card = <div>
                         <Grid item>
                             <Paper elevation={0} style={styles.innerTextCardContainer}>
@@ -72,6 +75,46 @@ function PhotoCardDsktp(props) {
                                     {i.footerText}
                                 </Typography>
                                 <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '330px', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                    {i.buttonText}
+                                </Button>
+                            </Paper>
+                        </Grid>
+                        <Grid item >
+                            <Card className={classes.root} style={{ position: 'absolute', top: '33px', left: '608px', width: '544px', height: '382px' }}>
+                                <CardMedia
+                                    style={{ width: '544px', height: '382px' }}
+                                    className={classes.media}
+                                    image={i.src}
+                                />
+                            </Card>
+                        </Grid>
+                    </div>
+                } else if (i.title === 'img-3') {
+                    card = <div>
+                        <Grid item>
+                            <Paper elevation={0} style={styles.innerTextCardContainer}>
+                                <Typography className={classes.cardHeading} style={{ position: 'absolute', left: '69px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
+                                    {i.heading}
+                                </Typography>
+                                <Typography variant="h6" className={classes.cardParagraphHeading} style={{
+                                    position: 'absolute', left: '69px', top: '159px'
+                                }}>
+                                    {i.subHeading}
+                                </Typography>
+                                <br></br>
+                                <Typography style={{ position: 'absolute', left: '69px', top: '197px' }}>
+                                    {i.dsktpTxtLn1}
+                                </Typography>
+                                <Typography style={{ position: 'absolute', left: '69px', top: '220px' }}>
+                                    {i.dsktpTxtLn2}
+                                </Typography>
+                                <Typography style={{ position: 'absolute', left: '69px', top: '243px' }}>
+                                    {i.dsktpTxtLn3}
+                                </Typography>
+                                <Typography variant="h6" style={{ position: 'absolute', left: '69px', top: '280px' }} >
+                                    {i.footerText}
+                                </Typography>
+                                <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '288px', width: '225px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
