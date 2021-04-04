@@ -98,7 +98,7 @@ export const OrgChange = ({ orgName,setOrgTags,changeValue,setDisplayState }) =>
     handleChangeOrg()
   }
   return (
-    <Grid item>
+    <Grid item xs={12} sm={12}>
       <Grid align='center' style={{ padding:'20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
     </Grid>
   )
