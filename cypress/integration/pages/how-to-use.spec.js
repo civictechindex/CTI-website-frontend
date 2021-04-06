@@ -4,15 +4,12 @@ describe('How To Use Page (Adding Projects to the Index)', () => {
   })
 
   it('header section loads', () => {
-    cy.get('h1')
-      .contains('Adding Projects to the Index')
+    cy.get('h2')
+      .contains('Tag Generator')
   })
 
   it('footer section loads', () => {
-    cy.contains('Submitted a project or still need help?')
+    cy.contains('This project is so new we are celebrating every win')
   })
 
-  it('6 steps load', () => {
-    cy.get('li').should('have.length', 6)
-  })
 })
