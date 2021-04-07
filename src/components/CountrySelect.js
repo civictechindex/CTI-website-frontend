@@ -3,7 +3,6 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
-import { FullscreenExitSharp } from '@material-ui/icons';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -31,7 +30,6 @@ export default function CountrySelect() {
   return (
     <Autocomplete
       id="country-select-demo"
-      style={{ backgroundColor:"white" }}
       options={countries}
       classes={{
         option: classes.option,
