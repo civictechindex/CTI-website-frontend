@@ -53,7 +53,7 @@ function PhotoCardMobile(props) {
                                         {i.subHeading}
                                     </Typography>
                                     <br></br>
-                                    <Typography style={{ textAlign: 'left', marginLeft: '0px', marginRight: '0px', size: '20px', lineHeight: '21px', marginTop: '5px', marginBottom: '8px' }}>
+                                    <Typography style={{ textAlign: 'left', marginLeft: '16px', marginRight: '0px', size: '20px', lineHeight: '21px', marginTop: '5px', marginBottom: '8px' }}>
                                         {i.textBody}
                                     </Typography>
                                     <Typography variant="h6" >
