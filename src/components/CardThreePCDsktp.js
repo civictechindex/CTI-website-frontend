@@ -58,7 +58,7 @@ function Card_Three(props) {
                                 </Typography>
                                 <br></br>
                                 <Typography style={{ position: 'absolute', left: '69px', top: '197px' }}>
-                                    Please <a href="https://www.hackforla.org/#about">complete this application</a> if you would like
+                                    Please <a style={{ color: '#5caf9' }} href="https://www.hackforla.org/#about">complete this application</a> if you would like
                                 </Typography>
                                 <Typography style={{ position: 'absolute', left: '69px', top: '220px' }}>
                                     {i.dsktpTxtLn2}
