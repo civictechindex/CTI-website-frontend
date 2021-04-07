@@ -41,7 +41,7 @@ function Card_Two(props) {
                         height: `448px`,
                         width: `608px`,
                     },
-                    donatePath: `/donate`
+                    buttonPath: `/radicalcollaboration/sharethecti`
                 };
                 let card;
                 if (i.title === 'img-2') {
@@ -69,7 +69,7 @@ function Card_Two(props) {
                                 <Typography variant="h6" style={{ position: 'absolute', right: '69px', top: '280px' }} >
                                     {i.footerText}
                                 </Typography>
-                                <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '307px', top: '268px', width: '278px', margin: '0 auto', padding: '16px' }}>
+                                <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '307px', top: '268px', width: '278px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>

@@ -15,7 +15,6 @@ function PhotoCardDsktp(props) {
             <CardTwo items={props.items} />
             <CardThree items={props.items} />
             <CardFour items={props.items} />
-
         </>
     );
 }

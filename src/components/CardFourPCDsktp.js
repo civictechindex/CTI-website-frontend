@@ -41,7 +41,7 @@ function Card_Four(props) {
                         height: `448px`,
                         width: `608px`,
                     },
-                    donatePath: `/donate`
+                    buttonPath: `/faq`
                 };
                 let card;
                 if (i.title === 'img-4') {
@@ -64,9 +64,9 @@ function Card_Four(props) {
                                     {i.dsktpTxtLn2}
                                 </Typography>
                                 <Typography style={{ position: 'absolute', right: '218px', top: '255px' }}>
-                                    {i.dsktpTxtLn3}
+                                    View our <a>FAQ</a> to find answers or <a>contact us.</a>
                                 </Typography>
-                                <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '287px', top: '312px', width: '278px', margin: '0 auto', padding: '16px' }}>
+                                <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '287px', top: '312px', width: '278px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>

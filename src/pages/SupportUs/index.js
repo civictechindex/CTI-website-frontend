@@ -76,9 +76,9 @@ const SupportUs = () => {
                 <PhotoCardMobile items={Images} />
             </Hidden>
             <GetStartedCard
-                headerTitle="Want to support in other ways?"
-                buttonText="Contact Us"
-                buttonHref="mailto:civictechindex@hackforla.org"
+                headerTitle="Ready to get Started?"
+                buttonText="Tag Your Project"
+                buttonHref="/tag-generator"
             />
         </Container>
     );
