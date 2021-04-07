@@ -64,7 +64,7 @@ function Card_Four(props) {
                                     {i.dsktpTxtLn2}
                                 </Typography>
                                 <Typography style={{ position: 'absolute', right: '218px', top: '255px' }}>
-                                    View our <a>FAQ</a> to find answers or <a>contact us.</a>
+                                    View our <a href="/faq">FAQ</a> to find answers or <a href="mailto:civictechindex@hackforla.org">contact us.</a>
                                 </Typography>
                                 <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '287px', top: '312px', width: '278px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}

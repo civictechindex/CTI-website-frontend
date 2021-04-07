@@ -58,13 +58,13 @@ function Card_Three(props) {
                                 </Typography>
                                 <br></br>
                                 <Typography style={{ position: 'absolute', left: '69px', top: '197px' }}>
-                                    Please <a>complete this application</a> if you would like
+                                    Please <a href="https://www.hackforla.org/#about">complete this application</a> if you would like
                                 </Typography>
                                 <Typography style={{ position: 'absolute', left: '69px', top: '220px' }}>
                                     {i.dsktpTxtLn2}
                                 </Typography>
                                 <Typography style={{ position: 'absolute', left: '69px', top: '243px' }}>
-                                    <a>project team page.</a>
+                                    <a href="https://www.hackforla.org/projects/civic-tech-index">project team page.</a>
                                 </Typography>
                                 <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '288px', width: '225px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
