@@ -2,7 +2,7 @@ import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import ChipInput from "material-ui-chip-input";
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import CopyClipboardIcon from '../../icons/CopyClipboard';
+import CopyPasteIcon from '../../icons/CopyPasteIcon';
 
 const useStyles = makeStyles((theme) => ({
   topicTag: {
@@ -31,7 +31,7 @@ const ClickableTopicTag = (props) => {
 };
 
 const CopyPasteTopicTag = (props) => {
-  return <Chip onDelete={handleDelete} deleteIcon={<CopyClipboardIcon />} {...props} />;
+  return <Chip onDelete={handleDelete} deleteIcon={<CopyPasteIcon />} {...props} />;
 };
 
 const AddTopicTag = (props) => {
