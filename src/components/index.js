@@ -5,5 +5,23 @@ import NavBreadcrumbs from './NavBreadcrumbs'
 import NavButton from './NavButton'
 import PictureCard from './PictureCard'
 import TitleSection from './TitleSection'
+import PhotoCardMobile from './PhotoCardMobile'
+import PhotoCardDsktp from './PhotoCardDsktp'
 
+<<<<<<< HEAD
 export { Footer, GetStartedCard, Header, NavBreadcrumbs, NavButton, PictureCard, TitleSection };
+=======
+export {
+  Footer,
+  GetStartedCard,
+  Header,
+  NavBreadcrumbs,
+  NavButton,
+  PhotoCardMobile,
+  PhotoCardDsktp,
+  PictureCard,
+  ProjectCard,
+  SearchBar,
+  TitleSection,
+}
+>>>>>>> supportUsPage317
