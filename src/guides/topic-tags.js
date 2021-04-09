@@ -13,8 +13,10 @@ const ShowTopicTags = () => {
       <Card className='card244'>
         <CardContent>
           <TopicTag label='generated-topic' variant='generated' />
-          <TopicTag label='clickable-topic' variant='clickable' />
+          <TopicTag label='clickable-topic' />
           <TopicTag label='copy-and-paste-topic' variant='copypaste' />
+          <TopicTag label='home-topic' variant='home' />
+          <TopicTag label='add-topic' variant='add' />
         </CardContent>
       </Card>
     </Container>
