@@ -24,7 +24,7 @@ const TrendingTopicsSection = () => {
   const TrendingTopicChip = (props) => {
     return (
       <a href={props.href}>
-        <TopicTag label={props.children} variant="generated" />
+        <TopicTag label={props.children} variant='home' />
       </a>
     );
   }
