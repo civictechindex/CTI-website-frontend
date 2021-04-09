@@ -8,9 +8,6 @@ import TitleSection from './TitleSection'
 import PhotoCardMobile from './PhotoCardMobile'
 import PhotoCardDsktp from './PhotoCardDsktp'
 
-<<<<<<< HEAD
-export { Footer, GetStartedCard, Header, NavBreadcrumbs, NavButton, PictureCard, TitleSection };
-=======
 export {
   Footer,
   GetStartedCard,
@@ -24,4 +21,3 @@ export {
   SearchBar,
   TitleSection,
 }
->>>>>>> supportUsPage317
