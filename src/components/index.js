@@ -11,6 +11,7 @@ import ProjectCard from './ProjectCard'
 import SearchBar from '../pages/SearchProjects/SearchBar'
 
 
+
 export {
   Footer,
   GetStartedCard,
@@ -24,3 +25,4 @@ export {
   SearchBar,
   TitleSection,
 }
+
