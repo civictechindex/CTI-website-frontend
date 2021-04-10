@@ -7,6 +7,9 @@ import PictureCard from './PictureCard'
 import TitleSection from './TitleSection'
 import PhotoCardMobile from './PhotoCardMobile'
 import PhotoCardDsktp from './PhotoCardDsktp'
+import ProjectCard from './ProjectCard'
+import SearchBar from '../pages/SearchProjects/SearchBar'
+
 
 export {
   Footer,
