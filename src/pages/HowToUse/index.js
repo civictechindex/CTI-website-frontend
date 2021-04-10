@@ -8,16 +8,10 @@ import { List } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
+import { TitleSection } from '../../components'
 
 const useStyles = makeStyles(theme => ({
-  tagText: {
-    marginTop: '20px',
-    paddingBottom: '30px',
-  },
-  projectsSubHeader: {
-    backgroundColor: theme.palette.background.primary,
-    textAlign: 'center',
-  },
+
   projectsList: {
     color: theme.palette.text.primary,
     paddingLeft: '126px',
@@ -74,26 +68,21 @@ const useStyles = makeStyles(theme => ({
 
 const crumbs = [{ href: '/About ', name: 'About ' }, { href: '/adding-Projects', name: 'Adding Projects to the Index' }]
 
-const TitleSection = () => {
-  const classes = useStyles()
-  return (
-    <Grid container>
-      <Grid item xs={12}><Typography color='textSecondary'>Civic Tech Index</Typography></Grid>
-      <Grid item xs={12}><Typography variant='h2' color='textPrimary'>Tag Generator</Typography>
-        <Typography variant='body1' color='textSecondary' className={classes.tagText}>Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
-      </Grid>
-    </Grid >
-  )
-}
 
 const HowToUse = () => {
   const classes = useStyles()
 
   return (
     <>
-      <Grid className={classes.projectsSubHeader}>
+      <Grid className='boxBackground'>
         <NavBreadcrumbs crumbs={crumbs} color='textPrimary' />
-        <TitleSection />
+        <Grid container>
+          <Grid item xs={12}><Typography variant='h4' fontFamily='Space Mono' style={{ textAlign: 'center' }} color='textSecondary'>Civic Tech Index</Typography></Grid>
+          <TitleSection>Tag Generator</TitleSection>
+          <Grid item xs={12}>
+            <Typography variant='h6' color='textSecondary' style={{ fontWeight: '500', textAlign: 'center', marginTop: '-1.15em', marginBottom: '0.825em' }} >Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
+          </Grid>
+        </Grid>
       </Grid>
       <Typography className={classes.projectsList}>
         <List>

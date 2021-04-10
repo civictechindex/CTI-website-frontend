@@ -4,8 +4,7 @@ describe('How To Use Page (Adding Projects to the Index)', () => {
   })
 
   it('header section loads', () => {
-    cy.get('h2')
-      .contains('Tag Generator')
+    cy.contains('Tag Generator')
   })
 
   it('footer section loads', () => {
