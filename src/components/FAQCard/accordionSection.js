@@ -12,10 +12,30 @@ import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   accordion: {
-    marginBottom: '20px',
-    padding: '5px 0',
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
+    '&.MuiAccordion-rounded:last-child': {
+      marginBottom: theme.spacing(2),
+    },
+    '&.Mui-expanded:last-child': {
+      marginBottom: theme.spacing(2),
+    },
+  },
+  detail: {
+    paddingTop: theme.spacing(2),
+  },
+  summary: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    '&.Mui-expanded': {
+      backgroundColor: theme.palette.secondary.dark,
+      '& h6': {
+        color: theme.palette.text.secondary,
+      },
+      '& svg': {
+        color: theme.palette.secondary.main,
+      },
+    },
   },
 }));
 
@@ -47,15 +67,18 @@ const AccordionSection = (props) => {
         <Box key={faq.id}>
           <Accordion className={classes.accordion}>
             <AccordionSummary
+              className={classes.summary}
               data-cy='faq-question'
-              expandIcon={<ExpandMoreRoundedIcon />}
               disabled={sendRequest}
+              expandIcon={<ExpandMoreRoundedIcon />}
               onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}
             >
               <Typography variant='h6'>{faq.question}</Typography>
             </AccordionSummary>
             <Divider />
-            <AccordionDetails data-cy='faq-answer'><Typography>{faq.answer}</Typography></AccordionDetails>
+            <AccordionDetails data-cy='faq-answer' className={classes.detail}>
+              <Typography>{faq.answer}</Typography>
+            </AccordionDetails>
           </Accordion>
         </Box>
       ))}
