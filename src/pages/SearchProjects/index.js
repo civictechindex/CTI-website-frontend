@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import axios from 'axios';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -90,23 +91,36 @@ const Projects = () => {
   const [resultCount, setResultCount] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.query) {
+      setQuery(location.query.search);
+      fetchData(location.query.search);
+    }
+  }, []);
+
+  const fetchData = (queryStr) => {
+    axios
+      .get(`https://api.github.com/search/repositories`, {
+        headers: { Accept: 'application/vnd.github.mercy-preview+json' },
+        params: { q: 'topic:civictechindex ' + queryStr, sort: 'newissues', order: 'desc', per_page: 100 },
+      })
+      .then((res) => {
+        const items = res.data.items.map((i) => renderCard(i));
+        setResultCount(
+          <Typography variant='body1'>
+            Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>“{queryStr}”</b>
+          </Typography>
+        );
+        setResults(items);
+        setShowResults(true);
+      });
+  };
+
   const handleSubmit = (event) => {
     if (event.key === 'Enter') {
-      axios
-        .get(`https://api.github.com/search/repositories`, {
-          headers: { Accept: 'application/vnd.github.mercy-preview+json' },
-          params: { q: 'topic:civictechindex ' + query, sort: 'updated', order: 'desc', per_page: 100 },
-        })
-        .then((res) => {
-          const items = res.data.items.map((i) => renderCard(i));
-          setResultCount(
-            <Typography variant='body1'>
-              Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>“{query}”</b>
-            </Typography>
-          );
-          setResults(items);
-          setShowResults(true);
-        });
+      fetchData(query);
     }
   };
 
