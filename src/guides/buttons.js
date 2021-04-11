@@ -90,6 +90,24 @@ const ShowButtons = () => {
             </CardContent>
           </Card>
         </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Card className='card241'>
+            <CardContent>
+              <Button variant='outlined' onClick={handleOpen}>
+                Outlined
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Card className='card240'>
+            <CardContent>
+              <Button variant='outlined' disabled>
+                Outlined Disabled
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
       </Grid>
     </>
   );

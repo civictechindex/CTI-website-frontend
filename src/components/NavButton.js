@@ -1,42 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from "@material-ui/core/Button"
-import makeStyles from '@material-ui/core/styles/makeStyles';
-
-const useStyles = makeStyles(theme => ({
-  buttonStyles: {
-    backgroundColor: props => {
-      if (props.variant === 'blue') {
-        return theme.button.blue
-      } else {
-        return theme.palette.background.default
-      }
-    },
-    border: 'none',
-    borderRadius: theme.button.borderRadius,
-    boxShadow: '4px 4px 12px 4px rgba(4, 45, 95, 0.08)',
-    color: props => {
-      if (props.variant === 'blue') {
-        return theme.palette.text.secondary
-      } else {
-        return theme.palette.text.disabled
-      }
-    },
-    fontSize: '1rem',
-    fontWeight: 700,
-    padding: theme.spacing(2),
-    width: theme.spacing(32),
-  },
-}));
+import Button from '@material-ui/core/Button';
 
 /**
- * button color
- * @param {*} props.variant
+ * Nav Button styled by Material-UI theme
+ * @param {*} props.color - optional - primary or secondary
+ * @param {*} props.href - link
+ * @param {*} props.variant - optional - contained or outlined
  */
 
 export default function NavButton({ children, href, ...rest }) {
   return (
     <Button component={Link} to={href} {...rest}>
       {children}
+    </Button>
   );
 }
