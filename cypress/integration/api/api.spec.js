@@ -18,13 +18,10 @@ describe('CTI API', () => {
       .should('have.length', 264)
       .its('0')
       .should('include', {
-        'github_name': 'DemocracyLab',
+        github_name: 'sfbrigade',
       })
       .and('have.property', 'id')
-      .should(
-        'match',
-        /^[0-9]*$/,
-      )
+      .should('match', /^[0-9]*$/);
   })
 
   it('fails to subscribe existing email', () => {
