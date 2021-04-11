@@ -47,9 +47,13 @@ const NotableUsersSection = () => {
   const MoreContributors = () => {
     return (
       <Grid item xs={12} style={{ padding: '30px' }}>
-        <div align='center'><NavButton href='/contributors/affiliated' variant='blue'>View more contributors</NavButton></div>
+        <div align='center'>
+          <NavButton href='/contributors/affiliated' color='primary'>
+            View more contributors
+          </NavButton>
+        </div>
       </Grid>
-    )
+    );
   }
 
   return (
