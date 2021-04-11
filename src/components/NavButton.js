@@ -34,15 +34,9 @@ const useStyles = makeStyles(theme => ({
  * @param {*} props.variant
  */
 
-export default function NavButton (props) {
-  const classes = useStyles(props);
+export default function NavButton({ children, href, ...rest }) {
   return (
-    <>
-      <Link to={props.href}>
-        <Button className={classes.buttonStyles}>
-          {props.children}
-        </Button>
-      </Link>
-    </>
+    <Button component={Link} to={href} {...rest}>
+      {children}
   );
 }
