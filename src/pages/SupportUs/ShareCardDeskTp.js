@@ -26,7 +26,7 @@ const useStyles = makeStyles(
         }
     })
 );
-function Card_Three(props) {
+function ShareCardDeskTp(props) {
     const items = props.items;
     const classes = useStyles();
     return (
@@ -41,38 +41,41 @@ function Card_Three(props) {
                         height: `448px`,
                         width: `608px`,
                     },
-                    buttonPath: `/radicalcollaboration/faq`
+                    buttonPath: `/radicalcollaboration/sharethecti`
                 };
                 let card;
-                if (i.title === 'img-3') {
+                if (i.title === 'img-2') {
                     card = <div>
                         <Grid item>
                             <Paper elevation={0} style={styles.innerTextCardContainer}>
-                                <Typography className={classes.cardHeading} style={{ position: 'absolute', left: '69px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
+                                <Typography className={classes.cardHeading} style={{ position: 'absolute', right: '300px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
                                     {i.heading}
                                 </Typography>
                                 <Typography variant="h6" className={classes.cardParagraphHeading} style={{
-                                    position: 'absolute', left: '69px', top: '159px'
+                                    position: 'absolute', right: '250px', top: '159px'
                                 }}>
                                     {i.subHeading}
                                 </Typography>
                                 <br></br>
-                                <Typography style={{ position: 'absolute', left: '69px', top: '197px' }}>
-                                    Please <a style={{ color: '#5caf9' }} href="https://www.hackforla.org/#about">complete this application</a> if you would like
+                                <Typography style={{ position: 'absolute', right: '146px', top: '197px' }}>
+                                    {i.dsktpTxtLn1}
                                 </Typography>
-                                <Typography style={{ position: 'absolute', left: '69px', top: '220px' }}>
+                                <Typography style={{ position: 'absolute', right: '210px', top: '220px' }}>
                                     {i.dsktpTxtLn2}
                                 </Typography>
-                                <Typography style={{ position: 'absolute', left: '69px', top: '243px' }}>
-                                    <a style={{ color: '#5caf9' }} href="https://www.hackforla.org/projects/civic-tech-index">project team page.</a>
+                                <Typography style={{ position: 'absolute', right: '69px', top: '243px' }}>
+                                    {i.dsktpTxtLn3}
                                 </Typography>
-                                <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '288px', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                <Typography variant="h6" style={{ position: 'absolute', right: '69px', top: '280px' }} >
+                                    {i.footerText}
+                                </Typography>
+                                <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '307px', top: '268px', width: '278px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
                         </Grid>
                         <Grid item >
-                            <Card className={classes.root} style={{ position: 'absolute', top: '33px', left: '608px', width: '544px', height: '382px' }}>
+                            <Card className={classes.root} style={{ position: 'absolute', top: '33px', right: '608px', width: '544px', height: '382px' }}>
                                 <CardMedia
                                     style={{ width: '544px', height: '382px' }}
                                     className={classes.media}
@@ -93,4 +96,4 @@ function Card_Three(props) {
         </>
     );
 }
-export default Card_Three;
+export default ShareCardDeskTp;

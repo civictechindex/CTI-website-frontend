@@ -5,8 +5,8 @@ import NavBreadcrumbs from './NavBreadcrumbs'
 import NavButton from './NavButton'
 import PictureCard from './PictureCard'
 import TitleSection from './TitleSection'
-import PhotoCardMobile from './PhotoCardMobile'
-import PhotoCardDsktp from './PhotoCardDsktp'
+import PhotoCardMobile from '../pages/SupportUs/PhotoCardMobile'
+import PhotoCardDeskTp from '../pages/SupportUs/PhotoCardDeskTp'
 import ProjectCard from './ProjectCard'
 import SearchBar from '../pages/SearchProjects/SearchBar'
 
@@ -19,7 +19,7 @@ export {
   NavBreadcrumbs,
   NavButton,
   PhotoCardMobile,
-  PhotoCardDsktp,
+  PhotoCardDeskTp,
   PictureCard,
   ProjectCard,
   SearchBar,

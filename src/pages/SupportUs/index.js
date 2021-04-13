@@ -7,7 +7,7 @@ import {
     NavBreadcrumbs,
     TitleSection,
     PhotoCardMobile,
-    PhotoCardDsktp
+    PhotoCardDeskTp
 } from '../../components';
 
 const SupportUs = () => {
@@ -70,7 +70,7 @@ const SupportUs = () => {
                 Your Help Goes a Long Way
             </TitleSection>
             <Hidden mdDown>
-                <PhotoCardDsktp items={Images} />
+                <PhotoCardDeskTp items={Images} />
             </Hidden>
             <Hidden mdUp>
                 <PhotoCardMobile items={Images} />
