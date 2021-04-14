@@ -4,8 +4,12 @@ import { useLocation } from 'react-router';
 import axios from 'axios';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import Modal from '@material-ui/core/Modal';
+import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CloseIcon from '@material-ui/icons/Close';
@@ -58,6 +62,10 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+  resultsHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   searchTips: {
     width: '686px',
     height: '381px',
@@ -85,43 +93,73 @@ const useStyles = makeStyles((theme) => ({
 
 const Projects = () => {
   const classes = useStyles();
-  const [showResults, setShowResults] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
   const [resultCount, setResultCount] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [sort, setSort] = useState('best match')
 
   const location = useLocation();
 
+  /*
+   * only want to fetch data with query params
+   * the first time the page is loaded by nav from other pages
+   * (e.g. Trending Topics on home page)
+   */
   useEffect(() => {
     if (location.query) {
       setQuery(location.query.search);
       fetchData(location.query.search);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (query) {
+      fetchData(query);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sort]);
+
   const fetchData = (queryStr) => {
+    const params = {
+      q: 'topic:civictechindex ' + queryStr,
+      sort: sort,
+      order: 'desc',
+      page: 1,
+      per_page: 10,
+    };
     axios
       .get(`https://api.github.com/search/repositories`, {
         headers: { Accept: 'application/vnd.github.mercy-preview+json' },
-        params: { q: 'topic:civictechindex ' + queryStr, sort: 'newissues', order: 'desc', per_page: 100 },
+        params: params,
       })
       .then((res) => {
         const items = res.data.items.map((i) => renderCard(i));
         setResultCount(
-          <Typography variant='body1'>
-            Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>“{queryStr}”</b>
-          </Typography>
+          <Box className={classes.resultsHeader}>
+            <Typography variant='body1'>
+              Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>“{queryStr}”</b>
+            </Typography>
+            <FormControl variant='outlined'>
+              <InputLabel id='sort-select-label'>Sort</InputLabel>
+              <Select
+                labelId='sort-select-label'
+                label='Sort'
+                defaultValue='best match'
+                onChange={(e) => handleSortChange(e.target.value)}
+              >
+                <MenuItem value='best match'>Best Match</MenuItem>
+                <MenuItem value='updated'>Last Updated</MenuItem>
+                <MenuItem value='stars'>Stargazer Count</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         );
         setResults(items);
         setShowResults(true);
       });
-  };
-
-  const handleSubmit = (event) => {
-    if (event.key === 'Enter') {
-      fetchData(query);
-    }
   };
 
   const handleOpen = () => {
@@ -131,6 +169,22 @@ const Projects = () => {
   const handleClose = () => {
     setModalOpen(false);
   };
+
+  const handleSortChange = (value) => {
+    setSort(value)
+  };
+
+  const handleSubmit = (event) => {
+    if (event.key === 'Enter') {
+      if (query) {
+        fetchData(query);
+      } else {
+        setShowResults(false);
+      }
+    }
+  };
+
+
 
   return (
     <Box className='containerGray'>
@@ -161,19 +215,14 @@ const Projects = () => {
         </Grid>
         {showResults && (
           <Grid container className='grid242'>
-            <Grid container item xs={12}>
-              <Grid item xs={4}></Grid>
-              <Grid item xs={1} />
-              <Grid item xs={7}>
+            <Grid item xs={4}>
+              <RefineResults />
+            </Grid>
+            <Grid container item direction='column' xs={8}>
+              <Grid item xs={12}>
                 {resultCount}
               </Grid>
-            </Grid>
-            <Grid container item xs={12}>
-              <Grid item xs={4}>
-                <RefineResults />
-              </Grid>
-              <Grid item xs={1} />
-              <Grid container item xs={7}>
+              <Grid container item xs={12}>
                 {results}
               </Grid>
             </Grid>
