@@ -19,7 +19,7 @@ const Header = () => {
       <div className={classes.background}></div>
       <Link
         to="/home"
-        // onClick={() => setIsBurgerOpen(false)}
+      // onClick={() => setIsBurgerOpen(false)}
       >
         <div className={classes.circle}></div>
         <img
@@ -39,9 +39,9 @@ const Header = () => {
         <NavLink heading="Join The Index" route="/tag-generator" />
         <NavLink heading="About" route="/about" />
         <NavLink heading="Radical Collaboration" route="/radicalcollaboration">
-          <NavSublink heading="Donate" route="/" />
+          <NavSublink heading="Donate" route="/donate" />
           <NavSublink heading="Share the CTI" route="/radicalcollaboration/sharethecti" />
-          <NavSublink heading="Volunteer with us" route="https://www.hackforla.org/projects/civic-tech-index" isExternal/>
+          <NavSublink heading="Volunteer with us" route="https://www.hackforla.org/projects/civic-tech-index" isExternal />
           <NavSublink heading="FAQ" route="/radicalcollaboration/faq" />
         </NavLink>
         <NavLink heading="Organizations" route="/contributors/all">
