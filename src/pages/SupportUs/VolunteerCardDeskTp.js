@@ -54,7 +54,7 @@ function VolunteerCardDeskTp(props) {
                                 <Typography style={{ position: 'absolute', left: '69px', top: '243px' }}>
                                     <a id='linkText' href="https://www.hackforla.org/projects/civic-tech-index">project team page.</a>
                                 </Typography>
-                                <Button href='/radicalcollaboration/faq' style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '288px', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                <Button href='https://www.hackforla.org/projects/civic-tech-index.html' style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '288px', width: '225px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
