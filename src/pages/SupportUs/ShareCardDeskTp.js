@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import './styles.css';
 
 const useStyles = makeStyles(
     (theme) => ({
@@ -32,52 +33,33 @@ function ShareCardDeskTp(props) {
     return (
         <>
             {items.map((i, idx) => {
-                const styles = {
-                    outerCardContainer: {
-                        height: `448px`,
-                        width: `1216px`,
-                    },
-                    innerTextCardContainer: {
-                        height: `448px`,
-                        width: `608px`,
-                    },
-                    buttonPath: `/radicalcollaboration/sharethecti`
-                };
                 let card;
                 if (i.title === 'img-2') {
                     card = <div>
                         <Grid item>
-                            <Paper elevation={0} style={styles.innerTextCardContainer}>
-                                <Typography className={classes.cardHeading} style={{ position: 'absolute', right: '300px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
+                            <Paper elevation={0} id='innerTextCardContainer'>
+                                <Typography className={classes.cardHeading} id='rightCardHeading' gutterBottom variant="h4">
                                     {i.heading}
                                 </Typography>
-                                <Typography variant="h6" className={classes.cardParagraphHeading} style={{
-                                    position: 'absolute', right: '250px', top: '159px'
-                                }}>
+                                <Typography variant="h6" className={classes.cardParagraphHeading} id='rightPHeading'>
                                     {i.subHeading}
                                 </Typography>
                                 <br></br>
-                                <Typography style={{ position: 'absolute', right: '146px', top: '197px' }}>
+                                <Typography id='rightDtpLine1'>
                                     {i.dsktpTxtLn1}
                                 </Typography>
-                                <Typography style={{ position: 'absolute', right: '210px', top: '220px' }}>
+                                <Typography id='rightDtpLine2'>
                                     {i.dsktpTxtLn2}
                                 </Typography>
-                                <Typography style={{ position: 'absolute', right: '69px', top: '243px' }}>
-                                    {i.dsktpTxtLn3}
-                                </Typography>
-                                <Typography variant="h6" style={{ position: 'absolute', right: '69px', top: '280px' }} >
-                                    {i.footerText}
-                                </Typography>
-                                <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', right: '307px', top: '268px', width: '278px', margin: '0 auto', padding: '16px' }}>
+                                <Button href='/radicalcollaboration/sharethecti' id='buttonRight'>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
                         </Grid>
                         <Grid item >
-                            <Card className={classes.root} style={{ position: 'absolute', top: '33px', right: '608px', width: '544px', height: '382px' }}>
+                            <Card className={classes.root} id='imgCardLeft'>
                                 <CardMedia
-                                    style={{ width: '544px', height: '382px' }}
+                                    id='cardMedia'
                                     className={classes.media}
                                     image={i.src}
                                 />
@@ -86,8 +68,8 @@ function ShareCardDeskTp(props) {
                     </div>
                 }
                 return (
-                    <Grid container style={{ margin: 'auto' }} align='center' >
-                        <Card className={classes.root} style={{ position: 'relative', padding: '0px', width: '1184px', margin: '0 auto', marginBottom: '10px' }}>
+                    <Grid container id='gridCont' align='center' >
+                        <Card className={classes.root} id='outerCard'>
                             {card}
                         </Card>
                     </Grid>

@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import './styles.css'
 
 const useStyles = makeStyles(
     (theme) => ({
@@ -32,49 +33,36 @@ function VolunteerCardDeskTp(props) {
     return (
         <>
             {items.map((i, idx) => {
-                const styles = {
-                    outerCardContainer: {
-                        height: `448px`,
-                        width: `1216px`,
-                    },
-                    innerTextCardContainer: {
-                        height: `448px`,
-                        width: `608px`,
-                    },
-                    buttonPath: `/radicalcollaboration/faq`
-                };
                 let card;
                 if (i.title === 'img-3') {
                     card = <div>
                         <Grid item>
-                            <Paper elevation={0} style={styles.innerTextCardContainer}>
-                                <Typography className={classes.cardHeading} style={{ position: 'absolute', left: '69px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
+                            <Paper elevation={0} id='innerTextCardContainer'>
+                                <Typography className={classes.cardHeading} id='cardHeading' gutterBottom variant="h4">
                                     {i.heading}
                                 </Typography>
-                                <Typography variant="h6" className={classes.cardParagraphHeading} style={{
-                                    position: 'absolute', left: '69px', top: '159px'
-                                }}>
+                                <Typography variant="h6" className={classes.cardParagraphHeading} id='pHeading'>
                                     {i.subHeading}
                                 </Typography>
                                 <br></br>
-                                <Typography style={{ position: 'absolute', left: '69px', top: '197px' }}>
-                                    Please <a style={{ color: '#5caf9' }} href="https://www.hackforla.org/#about">complete this application</a> if you would like
+                                <Typography id='dtpLine1'>
+                                    Please <a id='linkText' href="https://www.hackforla.org/#about">complete this application</a> if you would like
                                 </Typography>
                                 <Typography style={{ position: 'absolute', left: '69px', top: '220px' }}>
                                     {i.dsktpTxtLn2}
                                 </Typography>
                                 <Typography style={{ position: 'absolute', left: '69px', top: '243px' }}>
-                                    <a style={{ color: '#5caf9' }} href="https://www.hackforla.org/projects/civic-tech-index">project team page.</a>
+                                    <a id='linkText' href="https://www.hackforla.org/projects/civic-tech-index">project team page.</a>
                                 </Typography>
-                                <Button href={styles.buttonPath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '288px', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                <Button href='/radicalcollaboration/faq' style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '288px', width: '225px', margin: '0 auto', padding: '16px' }}>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
                         </Grid>
                         <Grid item >
-                            <Card className={classes.root} style={{ position: 'absolute', top: '33px', left: '608px', width: '544px', height: '382px' }}>
+                            <Card className={classes.root} id='imgCard'>
                                 <CardMedia
-                                    style={{ width: '544px', height: '382px' }}
+                                    id='cardMedia'
                                     className={classes.media}
                                     image={i.src}
                                 />
@@ -83,8 +71,8 @@ function VolunteerCardDeskTp(props) {
                     </div>
                 }
                 return (
-                    <Grid container style={{ margin: 'auto' }} align='center' >
-                        <Card className={classes.root} style={{ position: 'relative', padding: '0px', width: '1184px', margin: '0 auto', marginBottom: '10px' }}>
+                    <Grid container id='gridCont' align='center' >
+                        <Card className={classes.root} id='outerCard'>
                             {card}
                         </Card>
                     </Grid>

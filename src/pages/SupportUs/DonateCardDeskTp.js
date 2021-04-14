@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import './styles.css'
 
 const useStyles = makeStyles(
     (theme) => ({
@@ -32,52 +33,39 @@ function DonateCardDeskTp(props) {
     return (
         <>
             {items.map((i, idx) => {
-                const styles = {
-                    outerCardContainer: {
-                        height: `448px`,
-                        width: `1216px`,
-                    },
-                    innerTextCardContainer: {
-                        height: `448px`,
-                        width: `608px`,
-                    },
-                    donatePath: `/donate`
-                };
                 let card;
                 if (i.title === 'img-1') {
                     card = <div>
                         <Grid item>
-                            <Paper elevation={0} style={styles.innerTextCardContainer}>
-                                <Typography className={classes.cardHeading} style={{ position: 'absolute', left: '69px', top: '94px', fontSize: '42px', lineHeight: '48px' }} gutterBottom variant="h4">
+                            <Paper elevation={0} id='innerTextCardContainer'>
+                                <Typography className={classes.cardHeading} id='cardHeading' gutterBottom variant='h4'>
                                     {i.heading}
                                 </Typography>
-                                <Typography variant="h6" className={classes.cardParagraphHeading} style={{
-                                    position: 'absolute', left: '69px', top: '159px'
-                                }}>
+                                <Typography variant="h6" className={classes.cardParagraphHeading} id='pHeading'>
                                     {i.subHeading}
                                 </Typography>
                                 <br></br>
-                                <Typography style={{ position: 'absolute', left: '69px', top: '197px' }}>
+                                <Typography id='dtpLine1'>
                                     {i.dsktpTxtLn1}
                                 </Typography>
-                                <Typography style={{ position: 'absolute', left: '69px', top: '220px' }}>
+                                <Typography id='dtpLine2'>
                                     {i.dsktpTxtLn2}
                                 </Typography>
-                                <Typography style={{ position: 'absolute', left: '69px', top: '243px' }}>
+                                <Typography id='dtpLine3'>
                                     {i.dsktpTxtLn3}
                                 </Typography>
-                                <Typography variant="h6" style={{ position: 'absolute', left: '69px', top: '280px' }} >
+                                <Typography variant="h6" id='footerTxt'>
                                     {i.footerText}
                                 </Typography>
-                                <Button href={styles.donatePath} style={{ border: '2px solid black', backgroundColor: 'white', borderColor: '#0F1D2F', color: 'black', position: 'absolute', left: '60px', top: '330px', width: '225px', margin: '0 auto', padding: '16px' }}>
+                                <Button href="/donate" id='button'>
                                     {i.buttonText}
                                 </Button>
                             </Paper>
                         </Grid>
                         <Grid item >
-                            <Card className={classes.root} style={{ position: 'absolute', top: '33px', left: '608px', width: '544px', height: '382px' }}>
+                            <Card className={classes.root} id='imgCard'>
                                 <CardMedia
-                                    style={{ width: '544px', height: '382px' }}
+                                    id='cardMedia'
                                     className={classes.media}
                                     image={i.src}
                                 />
@@ -86,8 +74,8 @@ function DonateCardDeskTp(props) {
                     </div>
                 }
                 return (
-                    <Grid container style={{ margin: 'auto' }} align='center' >
-                        <Card className={classes.root} style={{ position: 'relative', padding: '0px', width: '1184px', margin: '0 auto', marginBottom: '10px' }}>
+                    <Grid container id='gridCont' align='center' >
+                        <Card className={classes.root} id='outerCard'>
                             {card}
                         </Card>
                     </Grid>
