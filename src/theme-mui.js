@@ -26,6 +26,7 @@ const defaultButtonSettings = {
   backgroundColor: LIGHT_BLUE,
   color: WHITE,
   '&$disabled': {
+    backgroundColor: LIGHT_BLUE,
     color: WHITE,
     opacity: '0.50',
   },
@@ -76,6 +77,32 @@ const themeSettings = {
         textTransform: 'none',
         whiteSpace: 'nowrap',
       },
+      outlined: {
+        backgroundColor: 'transparent',
+        borderColor: WHITE,
+        color: WHITE,
+        '&$disabled': {
+          backgroundColor: 'transparent',
+          borderColor: WHITE,
+          color: WHITE,
+          opacity: '0.50',
+        },
+        '&:hover': {
+          backgroundColor: 'transparent',
+          color: WHITE,
+          opacity: '0.92',
+        },
+        '&:focus': {
+          backgroundColor: 'transparent',
+          color: WHITE,
+          opacity: '0.76',
+        },
+        '&:active': {
+          backgroundColor: 'transparent',
+          color: WHITE,
+          opacity: '0.68',
+        },
+      },
       textPrimary: {
         ...defaultButtonSettings,
       },
@@ -83,21 +110,24 @@ const themeSettings = {
         backgroundColor: WHITE,
         color: DARK_BLUE,
         '&$disabled': {
-          backgroundColor: '#6D6E74',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
           opacity: '0.50',
         },
         '&:hover': {
-          backgroundColor: '#F1F2F4',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
+          opacity: '0.92',
         },
         '&:focus': {
-          backgroundColor: '#D9DCDF',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
+          opacity: '0.76',
         },
         '&:active': {
-          backgroundColor: '#C3C8CA',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
+          opacity: '0.68',
         },
       },
     },

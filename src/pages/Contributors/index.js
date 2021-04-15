@@ -189,7 +189,7 @@ const Affiliation = ({ organizations, inputValue, classes, affiliation }) => {
     if (affiliation === "unaffiliated") {
       return <UnaffiliatedOrganizations unAffiliatedOrgs={organizations} />;
     } else {
-      return <AffiliatedOrganizations affiliatedObject={organizations} />;
+      return <AffiliatedOrganizations organizations={organizations} />;
     }
   }
 };
