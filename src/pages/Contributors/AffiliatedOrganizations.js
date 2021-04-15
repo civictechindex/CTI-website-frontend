@@ -4,40 +4,38 @@ import { ParentContributor } from "../../components/ParentContributor";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
 import { useStyle } from "./styles.js";
 
-export const AffiliatedOrganizations = ({ affiliatedObject }) => {
+export const AffiliatedOrganizations = ({ organizations }) => {
   const classes = useStyle();
-  const parent = Object.keys(affiliatedObject)[0];
 
-  const numOfChildren = (organization) => {
-    if (affiliatedObject[organization.name]) {
-      return affiliatedObject[organization.name].length;
+  const parentOrg = organizations['Code for All'];
+
+  const getChildrenLength = (org) => {
+    if (organizations[org.name]) {
+      return organizations[org.name].length;
     } else {
       return 0;
     }
   };
-  return (parent ? (
-    <ParentContributor
-      dropdownLength={affiliatedObject["Code for All"].length}
-      isOpen={true}
-    >
-      {affiliatedObject["Code for All"].map((organization, idx) => {
-        return (
-          <Dropdown
-            organization={organization}
-            key={idx}
-            dropdownLength={numOfChildren(organization)}
-            isOpen={affiliatedObject["Code for All"].length < 3 ? true : false}
-          >
-            {affiliatedObject[organization.name] ? (
-              <div className={classes.affiliatedThumbnailsWrapper}>
-                {affiliatedObject[organization.name].map((child, idx) => (
-                  <ContributorThumbnail organization={child} key={idx} />
-                ))}
-              </div>
-            ) : null}
-          </Dropdown>
-        );
-      })}
-    </ParentContributor>
-  ) : null);
+
+  if (parentOrg) {
+    return (
+      <ParentContributor dropdownLength={parentOrg.length} isOpen={true}>
+        {parentOrg.map((org, i) => {
+          return (
+            <Dropdown organization={org} key={i} dropdownLength={getChildrenLength(org)} isOpen={parentOrg.length < 3 ? true : false}>
+              {organizations[org.name] ? (
+                <div className={classes.affiliatedThumbnailsWrapper}>
+                  {organizations[org.name].map((child, idx) => (
+                    <ContributorThumbnail organization={child} key={idx} />
+                  ))}
+                </div>
+              ) : null}
+            </Dropdown>
+          );
+        })}
+      </ParentContributor>
+    );
+  } else {
+    return null;
+  }
 };
