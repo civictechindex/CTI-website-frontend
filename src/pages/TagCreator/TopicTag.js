@@ -1,23 +1,10 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-
+import CopyPasteIcon from '../../icons/CopyPasteIcon';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
-  homeTag: {
-    backgroundColor: theme.palette.background.default,
-    borderRadius: '8px',
-    padding: '0 4px',
-    '&.MuiChip-outlined': {
-      borderColor: theme.palette.outline.gray,
-    },
-    [theme.breakpoints.down('md')]: {
-      height: '36px',
-    },
-    [theme.breakpoints.up('md')]: {
-      height: '42px',
-    },
-  },
   topicTag: {
     backgroundColor: theme.palette.background.default,
     borderRadius: '24px',
@@ -37,43 +24,61 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleDelete = () => {};
-
-const GeneratedTopicTag = (props) => {
-  return <Chip {...props} />;
+const handleDelete = (data) => () => {
+  navigator.clipboard.writeText(data)
 };
 
-const HomeTopicTag = (props) => {
-  return <Chip {...props} />;
+const GeneratedTopicTag = (props) => {
+  const topicArray = props.topicNames || []
+  return topicArray.map((data,key) =>  {
+    return (
+      <Grid key={key}>
+        <Chip label={data} {...props} />
+      </Grid>
+    );
+  })
 }
+
 
 const ClickableTopicTag = (props) => {
   return <Chip onDelete={handleDelete} {...props} />;
 };
 
+const CopyPasteTopicTag = (props) => {
+  const topicArray = props.topicNames || []
+  return topicArray.map((data,key) => {
+    return (
+      <Grid key={key}>
+        <Chip
+          label={data}
+          onDelete={handleDelete(data)}
+          deleteIcon={<CopyPasteIcon />}
+          {...props}
+        />
+      </Grid>
+    );
+  })
+};
 
 
-const TopicTag = ({ label, variant }) => {
+const TopicTag = ({ topicNames, variant,label }) => {
   const classes = useStyles();
 
   let Component = ClickableTopicTag;
-  let className = classes.topicTag;
   let clickable = false;
   if (variant === 'generated') {
     Component = GeneratedTopicTag;
     clickable = true;
-  } else if (variant === 'home') {
-    Component = HomeTopicTag;
-    className = classes.homeTag;
-    clickable = true;
+  } else if (variant === 'copypaste') {
+    Component = CopyPasteTopicTag;
   }
 
   return (
     <Component
-      label={label}
+      topicNames={topicNames}
       clickable={clickable}
       variant='outlined'
-      className={className}
+      className={classes.topicTag}
       data-cy='topic-tag'
     />
   );

@@ -8,9 +8,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import ChipInput from "material-ui-chip-input";
-import CopyPasteIcon from '../../icons/CopyPasteIcon';
-import Chip from '@material-ui/core/Chip';
-
 
 const useStyles = makeStyles((theme) => ({
   addTag: {
@@ -31,29 +28,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  topicTag: {
-    backgroundColor: theme.palette.background.default,
-    borderRadius: '24px',
-    padding: '0 10px',
-    '&.MuiChip-outlined': {
-      borderColor: theme.palette.outline.gray,
-    },
-    '&.MuiChip-deletable svg': {
-      color: theme.palette.outline.gray,
-    },
-    [theme.breakpoints.down('md')]: {
-      height: '42px',
-    },
-    [theme.breakpoints.up('md')]: {
-      height: '48px',
-    },
-  },
 }))
-
-const TopicTags = ({ topicNames,variant }) => {
-  const topicArray = topicNames || []
-  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant={variant} />);
-}
 
 
 export const CurrentTopicTagSection = ({ names, repositoryName }) => {
@@ -63,8 +38,8 @@ export const CurrentTopicTagSection = ({ names, repositoryName }) => {
         <Grid style={{ padding:'20px' }}>
           <Typography variant='body1'>Current topic tags on {repositoryName}:</Typography>
         </Grid>
-        <Grid data-cy='current-tags' style={{ padding:'30px' }}>
-          <TopicTags topicNames={names} variant='generated' />
+        <Grid container direction="row" data-cy='current-tags' style={{ padding:'30px' }}>
+          <TopicTag topicNames={names} variant='generated' />
         </Grid> </Grid>: <Grid item md={8} style={{ margin:'auto', padding:'30px' }}>
         <Typography variant='h5' style={{ textAlign:'center' }}>There are currently no topic tags in your project’s repository. Add tags to increase your project visibility.</Typography>
       </Grid> }
@@ -151,7 +126,9 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
         </Grid>
         <Grid container direction="row">
           <Grid item md={8} data-cy='new-tags' style={{ padding:'30px' }}>
-            <TopicTags topicNames={tagsToAdd} variant='generated' />
+            <Grid container direction="row">
+              <TopicTag topicNames={tagsToAdd} variant='generated' />
+            </Grid>
           </Grid>
           <Grid item md={4}>
             <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
@@ -167,10 +144,6 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
 }
 
 export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl }) =>{
-  const classes = useStyles();
-  const handleDelete = (data) => () => {
-    navigator.clipboard.writeText(data)
-  };
 
   return (
     <>
@@ -190,18 +163,7 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
         <Grid container direction="row">
           <Grid item md={8} data-cy='copy-paste-tags' style={{ padding:'30px' }}>
             <Grid container direction="row">
-              {tagsToAdd.map((data,key) => {
-                return (
-                  <Grid key={key}>
-                    <Chip
-                      label={data}
-                      onDelete={handleDelete(data)}
-                      deleteIcon={<CopyPasteIcon />}
-                      className = {classes.topicTag}
-                    />
-                  </Grid>
-                );
-              })}
+              <TopicTag topicNames={tagsToAdd} variant='copypaste'/>
             </Grid>
           </Grid>
           <Grid item md={4}>
