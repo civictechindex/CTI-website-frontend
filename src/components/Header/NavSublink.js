@@ -10,10 +10,14 @@ const styles = () => ({
     padding: "1rem",
     "&:hover": {
       backgroundColor: "#0D99C6",
-      color: "white",
+      "& $p": {
+        color: "white",
+        fontWeight: "700",
+      }
     },
   },
 });
+
 const NavSublink = ({ heading, route, classes, isExternal=false }) => {
   const linkComponent = isExternal
     ? <a href={route}
