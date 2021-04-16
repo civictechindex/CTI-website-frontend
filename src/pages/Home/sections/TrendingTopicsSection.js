@@ -1,7 +1,25 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import TopicTag from '../../TagCreator/TopicTag';
+import Chip from '@material-ui/core/Chip';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles((theme) => ({
+  homeTag: {
+    backgroundColor: theme.palette.background.default,
+    borderRadius: '8px',
+    padding: '0 4px',
+    '&.MuiChip-outlined': {
+      borderColor: theme.palette.outline.gray,
+    },
+    [theme.breakpoints.down('md')]: {
+      height: '36px',
+    },
+    [theme.breakpoints.up('md')]: {
+      height: '42px',
+    },
+  },
+}));
 
 const topicData = [
   { detail: "Covid-19", link: "#" },
@@ -22,9 +40,13 @@ const TrendingTopicsSection = () => {
   }
 
   const TrendingTopicChip = (props) => {
+    const classes = useStyles();
     return (
       <a href={props.href}>
-        <TopicTag label={props.children} variant='home' />
+        <Chip
+          label={props.children}
+          className = {classes.homeTag}
+        />
       </a>
     );
   }
