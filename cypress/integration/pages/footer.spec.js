@@ -20,7 +20,8 @@ describe('Footer', () => {
       cy.contains('Radical Collaboration').click()
       cy.get('[href*=donate]').click()
     })
-    cy.get('h2').contains('Make a Donation')
+    cy.get('[class*=makeStyles-infoThank]')
+      .contains('We appreciate your contribution.')
   })
 
   it('does not capture a poorly formatted email address', () => {
