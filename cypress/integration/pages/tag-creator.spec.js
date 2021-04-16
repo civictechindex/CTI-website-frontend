@@ -42,8 +42,22 @@ describe('Tag Generator Page (Tag Creator)', () => {
       cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text()
         expect(AFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index)
-      // expect(AFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.gt(-1)
       })
+    })
+    cy.get('[data-cy=radio-yes]').click()
+    cy.get('#generateButton').click()
+    cy.get('p').contains('Current topic tags on voiceapp311')
+    cy.get('[data-cy=current-tags]').within(() => {
+      cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
+        const innerText = $el.text()
+        expect(AFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index)
+      })
+    })
+    cy.get('[data-cy=add-topic-tags').type('tag1').type('{enter}')
+    cy.get('#generateTagsButton').click()
+    cy.get('p').contains('New tags to add to your repository')
+    cy.get('[data-cy=new-tags]').within(() => {
+      cy.get('[data-cy=topic-tag] span').contains('tag1')
     })
   })
 
