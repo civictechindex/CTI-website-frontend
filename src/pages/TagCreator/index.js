@@ -149,14 +149,15 @@ const TagCreator = () => {
     setUserTags(chipsArr)
   }
 
+  const linkStyles = {
+    fontWeight: '400',
+    color: '#0D99C6',
+  }
   const OrgProjSection = () => {
     return (
       <>
-        <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
-          setChangeValue={setChangeValue}
-          setOrgName={setOrgName}
-          setOrgTags={setOrgTags}/>
-        <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
+        <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles}/>
+        <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </>
     )
   }
@@ -165,7 +166,7 @@ const TagCreator = () => {
     return (
       <Grid container id='container-affiliated'>
         <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName}/>
-        <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>
+        <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </Grid>
     )
   }
@@ -177,9 +178,7 @@ const TagCreator = () => {
     case "ProjectUrl":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
-            setChangeValue={setChangeValue}
-            setOrgName={setOrgName}/>
+          <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles}/>
           <ProjectRepositoryInput
             repositoryUrl={repositoryUrl}
             handleEnter={handleEnter}
@@ -217,7 +216,8 @@ const TagCreator = () => {
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
-            resetForm={resetForm}/>
+            resetForm={resetForm}
+            linkStyles={linkStyles}/>
         </>
       )
     case "AddMoreTags":
@@ -230,7 +230,10 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
-          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}/>
+          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState}
+            repositoryName={repositoryName}
+            repositoryUrl={repositoryUrl}
+            linkStyles={linkStyles}/>
         </>
       )
     default:

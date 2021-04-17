@@ -109,7 +109,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
   )
 }
 
-export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>{
+export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,linkStyles })=>{
 
   const handleResetForm = () => {
     resetForm()
@@ -124,14 +124,14 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
         <Grid style={{ padding:'20px' }}>
           <Typography variant='body1'>New tags to add to your repository:</Typography>
         </Grid>
-        <Grid container direction="row">
+        <Grid container direction="row" alignItems="center">
           <Grid item md={8} data-cy='new-tags' style={{ padding:'30px' }}>
             <Grid container direction="row">
               <TopicTag topicNames={tagsToAdd} variant='generated' />
             </Grid>
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
+            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link></Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -143,7 +143,7 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
   )
 }
 
-export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl }) =>{
+export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl,linkStyles }) =>{
 
   return (
     <>
@@ -160,14 +160,14 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
         <Grid style={{ padding:'20px' }}>
           <Typography variant='h6'>Here are the Topic Tags to add to {repositoryName}:</Typography>
         </Grid>
-        <Grid container direction="row">
+        <Grid container direction="row" alignItems="center">
           <Grid item md={8} data-cy='copy-paste-tags' style={{ padding:'30px' }}>
             <Grid container direction="row">
               <TopicTag topicNames={tagsToAdd} variant='copypaste'/>
             </Grid>
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
+            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link></Typography>
           </Grid>
         </Grid>
       </Grid>

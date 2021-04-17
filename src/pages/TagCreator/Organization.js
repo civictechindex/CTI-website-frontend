@@ -31,7 +31,7 @@ export const OrganizationSelectorSection = ({ orgName,setOrgName }) => {
   )
 }
 
-export const OrgNameSection = ({ setDisplayState,orgName }) => {
+export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
 
   const handleChangeOrg = () =>{
     setDisplayState('')
@@ -49,7 +49,7 @@ export const OrgNameSection = ({ setDisplayState,orgName }) => {
         </Grid>}
       <Grid item>
         <Typography variant='body1'>
-          <Link onClick={handleChangeOrg} >change</Link>
+          <Link onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
         </Typography>
       </Grid>
     </Grid>
