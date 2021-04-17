@@ -21,41 +21,6 @@ import ProjectCard from './ProjectCard';
 import SearchBar from './SearchBar';
 import RefineResults from './RefineResults';
 
-import '../../styles.css';
-
-const crumbs = [
-  { name: 'Home', href: '/home' },
-  { name: 'Search', href: '/projects' },
-];
-
-const calculateDaysSince = (updateTime) => {
-  const days = new Date() - new Date(updateTime);
-  return Math.round(days / (1000 * 3600 * 24));
-};
-
-const renderCard = (project) => {
-  return (
-    <Grid item style={{ paddingTop: '10px' }} key={project.id}>
-      {' '}
-      <ProjectCard
-        projectUrl={project.html_url}
-        organizationUrl={project.owner.html_url}
-        organizationAvatarUrl={project.owner.avatar_url}
-        ownerName={project.owner.login}
-        projectName={project.name}
-        projectDescription={project.description}
-        homepage={project.homepage} /* TODO: Fan out */
-        lastUpdate={calculateDaysSince(project.updated_at)}
-        issueCount={project.open_issues}
-        projectLanguage={project.language}
-        topics={project.topics}
-        watchers={project.watchers_count}
-        stargazers={project.stargazers_count}
-      />
-    </Grid>
-  );
-};
-
 const useStyles = makeStyles((theme) => ({
   openSearchTips: {
     '&:hover': {
@@ -91,16 +56,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const renderCard = (project) => {
+  const calculateDaysSince = (updateTime) => {
+    const days = new Date() - new Date(updateTime);
+    return Math.round(days / (1000 * 3600 * 24));
+  };
+  return (
+    <Grid item xs={12} key={project.id}>
+      <ProjectCard
+        projectUrl={project.html_url}
+        organizationUrl={project.owner.html_url}
+        organizationAvatarUrl={project.owner.avatar_url}
+        ownerName={project.owner.login}
+        projectName={project.name}
+        projectDescription={project.description}
+        homepage={project.homepage} /* TODO: Fan out */
+        lastUpdate={calculateDaysSince(project.updated_at)}
+        issueCount={project.open_issues}
+        projectLanguage={project.language}
+        topics={project.topics}
+        watchers={project.watchers_count}
+        stargazers={project.stargazers_count}
+      />
+    </Grid>
+  );
+};
+
 const Projects = () => {
+  const crumbs = [
+    { name: 'Home', href: '/home' },
+    { name: 'Search', href: '/projects' },
+  ];
   const classes = useStyles();
+  const location = useLocation();
+  const [filters, setFilters] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
   const [resultCount, setResultCount] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [sort, setSort] = useState('best match')
-
-  const location = useLocation();
 
   /*
    * only want to fetch data with query params
@@ -120,11 +115,19 @@ const Projects = () => {
       fetchData(query);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sort]);
+  }, [sort, filters]);
 
   const fetchData = (queryStr) => {
+    const q = ['topic:civictechindex', queryStr];
+    for (const filter of filters) {
+      if (filter.category === 'pushed') {
+        q.push(`${filter.category}:${filter.value}`);
+      } else {
+        q.push(`${filter.category}:${filter.name}`);
+      }
+    }
     const params = {
-      q: 'topic:civictechindex ' + queryStr,
+      q: q.join(' '),
       sort: sort,
       order: 'desc',
       page: 1,
@@ -168,6 +171,10 @@ const Projects = () => {
 
   const handleClose = () => {
     setModalOpen(false);
+  };
+
+  const handleFilterChange = (filters) => {
+    setFilters(filters);
   };
 
   const handleSortChange = (value) => {
@@ -216,15 +223,13 @@ const Projects = () => {
         {showResults && (
           <Grid container className='grid242'>
             <Grid item xs={4}>
-              <RefineResults />
+              <RefineResults onFilterChange={handleFilterChange}/>
             </Grid>
-            <Grid container item direction='column' xs={8}>
+            <Grid container item direction='column' xs={8} spacing={2}>
               <Grid item xs={12}>
                 {resultCount}
               </Grid>
-              <Grid container item xs={12}>
-                {results}
-              </Grid>
+              {results}
             </Grid>
           </Grid>
         )}
