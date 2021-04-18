@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Collapse from '@material-ui/core/Collapse';
@@ -118,6 +118,17 @@ const ProgrammingLanguages = (props) => {
     // eslint-disable-next-line
     console.log('View More Languages');
   };
+
+  const languageFilters = props.filterList.map((filter) => {
+    return (
+      <ListItem key={`${filter.category}:${filter.name}`}>
+        <FormControlLabel
+          control={<Checkbox onChange={(e) => props.onChange({ ...filter, selected: e.target.checked })} checked={filter.selected} />}
+          label={filter.label} />
+      </ListItem>
+    );
+  });
+
   return (
     <List dense disablePadding style={{ foo: 'bar' }}>
       <ListItem button onClick={handleClick}>
@@ -125,25 +136,11 @@ const ProgrammingLanguages = (props) => {
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout='auto'>
-        <List dense disablePadding style={{ foo: 'baz' }}>
+        <List dense disablePadding>
           <ListItem>
             <SearchField data-cy='search-programming-languages-used' />
           </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('language', 'javascript', e.target.checked)} />} label='JavaScript' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('language', 'python', e.target.checked)} />} label='Python' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('language', 'java', e.target.checked)} />} label='Java' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('language', 'go', e.target.checked)} />} label='Go' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('language', 'typescript', e.target.checked)} />} label='TypeScript' />
-          </ListItem>
+          {languageFilters}
           <ListItem>
             <Typography variant='body2'>
               <Link onClick={viewMore}>
@@ -168,44 +165,28 @@ const Affiliation = (props) => {
     console.log('View More Affiliations');
   };
 
+  const topicFilters = props.filterList.map((filter) => {
+    return (
+      <ListItem key={`${filter.category}:${filter.name}`}>
+        <FormControlLabel
+          control={<Checkbox onChange={(e) => props.onChange({ ...filter, selected: e.target.checked })} checked={filter.selected} />}
+          label={filter.label} />
+      </ListItem>
+    );
+  });
+
   return (
-    <List dense disablePadding style={{ foo: 'bar' }}>
+    <List dense disablePadding>
       <ListItem button onClick={handleClick}>
         <ListItemText primary='Affliation:' primaryTypographyProps={{ variant: 'h6' }} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout='auto'>
-        <List dense disablePadding style={{ foo: 'baz' }}>
+        <List dense disablePadding>
           <ListItem>
             <SearchField data-cy='search-affiliation' />
           </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'unaffiliated', e.target.checked)} />} label='Unaffiliated' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'code-for-all', e.target.checked)} />} label='Code for All' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'code-for-america', e.target.checked)} />} label='Code for America' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'hack-for-la', e.target.checked)} />} label='Hack for LA' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'open-oakland', e.target.checked)} />} label='Open Oakland' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'code-for-canada', e.target.checked)} />} label='Code for Canada' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'code-for-japan', e.target.checked)} />} label='Code for Japan' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'open-democracy-labs', e.target.checked)} />} label='Open Democracy Labs' />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel control={<Checkbox onChange={(e) => props.onChange('topic', 'yale-openlab', e.target.checked)} />} label='Yale Openlab' />
-          </ListItem>
+          {topicFilters}
           <ListItem>
             <Typography variant='body2'>
               <Link onClick={viewMore}>View More Affiliations</Link>
@@ -217,39 +198,6 @@ const Affiliation = (props) => {
   );
 };
 
-/*
- * const OpenIssues = (props) => {
- *   const [open, setOpen] = useState(true);
- *   const handleClick = () => {
- *     setOpen(!open);
- *   };
- *   return (
- *     <List dense disablePadding style={{ foo: 'bar' }}>
- *       <ListItem button onClick={handleClick}>
- *         <ListItemText primary='Open Issues Count:' primaryTypographyProps={{ variant: 'h6' }} />
- *         {open ? <ExpandLess /> : <ExpandMore />}
- *       </ListItem>
- *       <Collapse in={open} timeout='auto'>
- *         <List dense disablePadding style={{ foo: 'baz' }}>
- *           <ListItem>
- *             <FormControlLabel control={<Checkbox />} label='0 - 10' />
- *           </ListItem>
- *           <ListItem>
- *             <FormControlLabel control={<Checkbox />} label='11 - 20' />
- *           </ListItem>
- *           <ListItem>
- *             <FormControlLabel control={<Checkbox />} label='21 - 50' />
- *           </ListItem>
- *           <ListItem>
- *             <FormControlLabel control={<Checkbox />} label='50+' />
- *           </ListItem>
- *         </List>
- *       </Collapse>
- *     </List>
- *   );
- * };
- */
-
 const LastUpdated = (props) => {
   const [open, setOpen] = useState(true);
 
@@ -257,62 +205,25 @@ const LastUpdated = (props) => {
     setOpen(!open);
   };
 
-  const getDateWithOffset = (unit, offset) => {
-    const d = new Date();
-    switch (unit) {
-    case 'h': d.setHours(d.getHours() - offset); break;
-    case 'd': d.setDate(d.getDate() - offset); break;
-    case 'm': d.setMonth(d.getMonth() - offset); break;
-    case 'y': d.setFullYear(d.getFullYear() - offset); break;
-    default: return d.toISOString().split('T')[0];
-    }
-    return d.toISOString().split('T')[0];
-  };
+  const topicFilters = props.filterList.map((filter) => {
+    return (
+      <ListItem key={`${filter.category}:${filter.name}`}>
+        <FormControlLabel
+          control={<Checkbox onChange={(e) => props.onChange({ ...filter, selected: e.target.checked })} checked={filter.selected} />}
+          label={filter.label} />
+      </ListItem>
+    );
+  });
 
   return (
-    <List dense disablePadding style={{ foo: 'bar' }}>
+    <List dense disablePadding>
       <ListItem button onClick={handleClick}>
         <ListItemText primary='Last Updated:' primaryTypographyProps={{ variant: 'h6' }} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout='auto'>
-        <List dense disablePadding style={{ foo: 'baz' }}>
-          <ListItem>
-            <FormControlLabel
-              control={<Checkbox onChange={(e) => props.onChange('pushed', '24h', e.target.checked, `>=${getDateWithOffset('h', 24)}`)} />}
-              label='Within the last 24 hours'
-            />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel
-              control={<Checkbox onChange={(e) => props.onChange('pushed', '7d', e.target.checked, `>=${getDateWithOffset('d', 7)}`)} />}
-              label='Within the last week'
-            />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel
-              control={<Checkbox onChange={(e) => props.onChange('pushed', '30d', e.target.checked, `>=${getDateWithOffset('d', 30)}`)} />}
-              label='Within the last 30 days'
-            />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel
-              control={<Checkbox onChange={(e) => props.onChange('pushed', '1m', e.target.checked, `${getDateWithOffset('m', 6)}..${getDateWithOffset('m', 1)}`)} />}
-              label='1 - 6 months'
-            />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel
-              control={<Checkbox onChange={(e) => props.onChange('pushed', '6m', e.target.checked, `${getDateWithOffset('m', 12)}..${getDateWithOffset('m', 6)}`)} />}
-              label='6 - 12 months'
-            />
-          </ListItem>
-          <ListItem>
-            <FormControlLabel
-              control={<Checkbox onChange={(e) => props.onChange('pushed', '1y', e.target.checked, `<${getDateWithOffset('y', 1)}`)} />}
-              label='More than a year ago'
-            />
-          </ListItem>
+        <List dense disablePadding>
+          {topicFilters}
         </List>
       </Collapse>
     </List>
@@ -321,53 +232,22 @@ const LastUpdated = (props) => {
 
 const RefineResults = (props) => {
   const [open, setOpen] = useState(true);
-  const [filters, setFilters] = useState([
-    { category: 'language', name: 'javascript', value: '', selected: false },
-    { category: 'language', name: 'python', value: '', selected: false },
-    { category: 'language', name: 'java', value: '', selected: false },
-    { category: 'language', name: 'go', value: '', selected: false },
-    { category: 'language', name: 'typescript', value: '', selected: false },
-    { category: 'topic', name: 'unaffiliated', value: '', selected: false },
-    { category: 'topic', name: 'code-for-all', value: '', selected: false },
-    { category: 'topic', name: 'code-for-america', value: '', selected: false },
-    { category: 'topic', name: 'hack-for-la', value: '', selected: false },
-    { category: 'topic', name: 'open-oakland', value: '', selected: false },
-    { category: 'topic', name: 'code-for-canada', value: '', selected: false },
-    { category: 'topic', name: 'code-for-japan', value: '', selected: false },
-    { category: 'topic', name: 'open-democracy-labs', value: '', selected: false },
-    { category: 'topic', name: 'yale-openlab', value: '', selected: false },
-    { category: 'pushed', name: '24h', value: '', selected: false },
-    { category: 'pushed', name: '7d', value: '', selected: false },
-    { category: 'pushed', name: '30d', value: '', selected: false },
-    { category: 'pushed', name: '1m', value: '', selected: false },
-    { category: 'pushed', name: '6m', value: '', selected: false },
-    { category: 'pushed', name: '1y', value: '', selected: false },
-  ]);
-  useEffect(() => {
-    const selectedFilters = filters.filter((filter) => {
-      return filter.selected;
-    });
-    props.onFilterChange(selectedFilters);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
 
   const handleClick = () => {
     setOpen(!open);
   };
 
-  const handleListChange = (category, name, selected, value = '') => {
-    const newFilters = filters.map((filter) => {
-      if (filter.category === category && filter.name === name) {
-        return { ...filter, selected: selected, value: value}
-      }
-      return filter
-    });
-    setFilters(newFilters);
+  const handleListChange = (filterProps) => {
+    props.onFilterChange(filterProps, false);
   };
+
+  const languageFilterList = props.filterList.filter((filter) => filter.category === 'language');
+  const topicFilterList = props.filterList.filter((filter) => filter.category === 'topic');
+  const lastUpdatedFilterList = props.filterList.filter((filter) => filter.category === 'pushed');
 
   return (
     <ThemeProvider theme={themeMerge}>
-      <List dense disablePadding style={{ foo: 'baz' }}>
+      <List dense disablePadding>
         <ListItem button onClick={handleClick}>
           <ListItemText primary='Filter' primaryTypographyProps={{ variant: 'h5' }} />
           {open ? <ExpandLess /> : <ExpandMore />}
@@ -375,13 +255,13 @@ const RefineResults = (props) => {
         <Collapse in={open} timeout='auto'>
           <List dense disablePadding style={{ foo: 'bar' }}>
             <ListItem>
-              <ProgrammingLanguages onChange={handleListChange} />
+              <ProgrammingLanguages onChange={handleListChange} filterList={languageFilterList} />
             </ListItem>
             <ListItem>
-              <Affiliation onChange={handleListChange} />
+              <Affiliation onChange={handleListChange} filterList={topicFilterList} />
             </ListItem>
             <ListItem>
-              <LastUpdated onChange={handleListChange} />
+              <LastUpdated onChange={handleListChange} filterList={lastUpdatedFilterList} />
             </ListItem>
           </List>
         </Collapse>

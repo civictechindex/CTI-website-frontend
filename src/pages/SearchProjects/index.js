@@ -18,20 +18,17 @@ import CloseIcon from '@material-ui/icons/Close';
 import Link from '../../components/common/Link';
 import NavBreadcrumb from '../../components/NavBreadcrumbs';
 
-import ProjectCard from './ProjectCard';
-import SearchBar from './SearchBar';
-import RefineResults from './RefineResults';
+import FilterTag from './FilterTag';
 import Pagination from '@material-ui/lab/Pagination';
+import ProjectCard from './ProjectCard';
+import RefineResults from './RefineResults';
+import SearchBar from './SearchBar';
 
 const useStyles = makeStyles((theme) => ({
   openSearchTips: {
     '&:hover': {
       cursor: 'pointer',
     },
-  },
-  resultsHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
   },
   searchTips: {
     width: '686px',
@@ -58,13 +55,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const defaultFilterList = [
+  { category: 'language', name: 'javascript', label: 'Javascript', selected: false },
+  { category: 'language', name: 'python', label: 'Python', selected: false },
+  { category: 'language', name: 'java', label: 'Java', selected: false },
+  { category: 'language', name: 'go', label: 'Go', selected: false },
+  { category: 'language', name: 'typescript', label: 'Typescript', selected: false },
+  { category: 'topic', name: 'unaffiliated', label: 'Unaffiliated', selected: false },
+  { category: 'topic', name: 'code-for-all', label: 'Code for All', selected: false },
+  { category: 'topic', name: 'code-for-america', label: 'Code for America', selected: false },
+  { category: 'topic', name: 'hack-for-la', label: 'Hack for LA', selected: false },
+  { category: 'topic', name: 'open-oakland', label: 'Open Oakland', selected: false },
+  { category: 'topic', name: 'code-for-canada', label: 'Code for Canada', selected: false },
+  { category: 'topic', name: 'code-for-japan', label: 'Code for Japan', selected: false },
+  { category: 'topic', name: 'open-democracy-labs', label: 'Open Democracy Labs', selected: false },
+  { category: 'topic', name: 'yale-openlab', label: 'Yale Openlab', selected: false },
+  { category: 'pushed', name: '>=24h', label: 'Within the last 24 hours', selected: false },
+  { category: 'pushed', name: '>=7d', label: 'Within the last week', selected: false },
+  { category: 'pushed', name: '>=30d', label: 'Within the last 30 days', selected: false },
+  { category: 'pushed', name: '1-6m', label: '1 - 6 months', selected: false },
+  { category: 'pushed', name: '6-12m', label: '6 - 12 months', selected: false },
+  { category: 'pushed', name: '<1y', label: 'More than a year ago', selected: false },
+]
+
 const renderCard = (project) => {
   const calculateDaysSince = (updateTime) => {
     const days = new Date() - new Date(updateTime);
     return Math.round(days / (1000 * 3600 * 24));
   };
   return (
-    <Grid item xs={12} key={project.id}>
+    <Box key={project.id} my={1}>
       <ProjectCard
         projectUrl={project.html_url}
         organizationUrl={project.owner.html_url}
@@ -80,7 +100,7 @@ const renderCard = (project) => {
         watchers={project.watchers_count}
         stargazers={project.stargazers_count}
       />
-    </Grid>
+    </Box>
   );
 };
 
@@ -91,13 +111,14 @@ const Projects = () => {
   ];
   const classes = useStyles();
   const location = useLocation();
-  const [filters, setFilters] = useState([]);
+  const [filterList, setFilterList] = useState(defaultFilterList);
   const [modalOpen, setModalOpen] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [pages, setPages] = useState(1);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
-  const [resultCount, setResultCount] = useState('');
+  const [resultCountHeader, setResultCountHeader] = useState('');
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [sort, setSort] = useState('best match');
 
@@ -123,7 +144,7 @@ const Projects = () => {
       fetchData(query, false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, pageNum, sort]);
+  }, [selectedFilters, pageNum, sort]);
 
   // need to reset page to 1 when paginator count changes to avoid strange paginator states
   useEffect(() => {
@@ -133,11 +154,39 @@ const Projects = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsPerPage]);
 
+  const getDateQuery = (dateVal) => {
+    const getDateWithOffset = (unit, offset) => {
+      const d = new Date();
+      switch (unit) {
+      case 'h': d.setHours(d.getHours() - offset); break;
+      case 'd': d.setDate(d.getDate() - offset); break;
+      case 'm': d.setMonth(d.getMonth() - offset); break;
+      case 'y': d.setFullYear(d.getFullYear() - offset); break;
+      default: return d.toISOString().split('T')[0];
+      }
+      return d.toISOString().split('T')[0];
+    };
+
+    let queryStr = '';
+    const unit = dateVal.substring(dateVal.length - 1, dateVal.length);
+    if (dateVal.indexOf('<') > -1) {
+      const offset = Number(dateVal.substring(1, dateVal.length - 1));
+      queryStr = `<${getDateWithOffset(unit, offset)}`
+    } else if (dateVal.indexOf('>=') > -1) {
+      const offset = Number(dateVal.substring(2, dateVal.length - 1));
+      queryStr = `>=${getDateWithOffset(unit, offset)}`
+    } else {
+      const offsets = dateVal.substring(0, dateVal.length - 1).split('-');
+      queryStr = `${getDateWithOffset(unit, Number(offsets[1]))}..${getDateWithOffset(unit, Number(offsets[0]))}`
+    }
+    return queryStr;
+  };
+
   const fetchData = (queryStr, resetPageNum = false) => {
     const q = ['topic:civictechindex', queryStr];
-    for (const filter of filters) {
+    for (const filter of selectedFilters) {
       if (filter.category === 'pushed') {
-        q.push(`${filter.category}:${filter.value}`);
+        q.push(`pushed:${getDateQuery(filter.name)}`);
       } else {
         q.push(`${filter.category}:${filter.name}`);
       }
@@ -160,10 +209,11 @@ const Projects = () => {
       .then((res) => {
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
         const items = res.data.items.map((i) => renderCard(i));
-        setResultCount(
-          <Box className={classes.resultsHeader}>
-            <Typography variant='body1'>
-              Displaying {res.data.items.length} of {res.data.total_count} results matching: <b>“{queryStr}”</b>
+        setResultCountHeader(
+          <Box display='flex' justifyContent='space-between' alignItems='center'>
+            <Typography variant='span' color='primary'>
+              <b>Displaying {res.data.items.length} of {res.data.total_count} results matching: </b>
+              <Typography variant='span' color='secondary'><b>“{queryStr}”</b></Typography>
             </Typography>
             <FormControl variant='outlined'>
               <InputLabel id='sort-select-label'>Sort</InputLabel>
@@ -183,6 +233,7 @@ const Projects = () => {
         setResults(items);
         setShowResults(true);
       });
+
   };
 
   const handleOpen = () => {
@@ -193,8 +244,17 @@ const Projects = () => {
     setModalOpen(false);
   };
 
-  const handleFilterChange = (filters) => {
-    setFilters(filters);
+  const handleFilterChange = (flt, deleteFlt) => {
+    const tempList = filterList.map((filter) => {
+      if (flt.category === 'all') {
+        return { ...filter, selected: false };
+      } else if (filter.category ===  flt.category && filter.name === flt.name) {
+        return { ...filter, selected: deleteFlt ? false : flt.selected };
+      }
+      return filter;
+    });
+    setFilterList(tempList);
+    setSelectedFilters(tempList.filter((filter) => filter.selected));
   };
 
   const handleSortChange = (value) => {
@@ -211,7 +271,16 @@ const Projects = () => {
     }
   };
 
-
+  const filterTags = selectedFilters.map((filter) => {
+    return (
+      <FilterTag
+        key={`${filter.category}:${filter.name}`}
+        label={filter.label}
+        data={filter}
+        onDelete={handleFilterChange}
+      />
+    );
+  });
 
   return (
     <Box className='containerGray'>
@@ -243,13 +312,30 @@ const Projects = () => {
         {showResults && (
           <Grid container className='grid242'>
             <Grid item xs={4}>
-              <RefineResults onFilterChange={handleFilterChange}/>
+              <RefineResults onFilterChange={handleFilterChange} filterList={filterList} />
             </Grid>
             <Grid container item direction='column' xs={8} spacing={2}>
               <Grid item xs={12}>
-                {resultCount}
+                {resultCountHeader}
               </Grid>
-              {results}
+              {selectedFilters.length > 0 &&
+                <Grid item xs={12}>
+                  <Typography variant='span' color='primary'>
+                    <b>Filter: </b>
+                    {filterTags}
+                    <Typography
+                      variant='span'
+                      color='secondary'
+                      onClick={() => handleFilterChange({ category: 'all' }, true)}
+                    >
+                      <b>Clear all</b>
+                    </Typography>
+                  </Typography>
+                </Grid>
+              }
+              <Grid item xs={12} display='flex'>
+                {results}
+              </Grid>
               <Grid item xs={12}>
                 <Box my={3} display='flex' justifyContent='center'>
                   <Pagination
