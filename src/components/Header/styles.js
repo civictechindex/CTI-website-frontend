@@ -1,9 +1,10 @@
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
+//Large Screens
   nav: {
     position: "relative",
-    height: "100px",
+    height: "128px",
     backgroundColor: theme.palette.background.default,
     fontSize: "16px",
     fontFamily: theme.typography.fontFamily,
@@ -16,25 +17,21 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     alignItems: "center",
     marginLeft: "240px",
-  },
-  circle: {
-    position: "absolute",
-    width: "336px",
-    height: "180px",
-    borderRadius: "180px 180px 0 0",
-    backgroundColor: theme.palette.grey[100],
-    transform: "translate(-100px, -80px)",
+    "& $button": {
+      height: "48px",
+      width: "173px",
+    },
   },
   logo: {
     position: "absolute",
-    width: "150px",
-    top: "26px",
-    left: "30px",
+    width: "188px",
+    top: "35px",
+    left: "32px",
   },
   searchContainer: {
-    width: "250px",
+    width: "200px",
   },
-  /** ********     MOBILE SECTION     **********/
+//Small Screens
   mobileContainer: {
     display: "none",
     position: "relative",
@@ -43,16 +40,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     marginLeft: "220px",
   },
-  /** ********     MEDIA-QUERIES SECTION     **********/
-  "@media (max-width: 1000px)": {
-    background: {
-      position: "absolute",
-      height: "100px",
-      width: "100%",
-      backgroundColor: theme.palette.grey[300],
-    },
-    circle: {
-      display: "none",
+  "@media (max-width: 959px)": {
+    nav: {
+      height: "72px",
     },
     flexContainer: {
       display: "flex",
@@ -60,16 +50,29 @@ const useStyles = makeStyles((theme) => ({
       bottom: "0px",
       left: "-240px",
       transform: "translateY(0)",
-      backgroundColor: theme.palette.grey[100],
+      backgroundColor: theme.palette.background.default,
       width: "100%",
       height: "fit-content",
-      fontSize: "18px",
+      fontSize: "20px",
       fontWeight: "bold",
-      padding: "30px 20px 40px 20px",
+      padding: "0px 35px 40px 35px",
       zIndex: "-10",
-      "& $searchContainer": {
+      "& $p": {
+        display: "none",
+      }, 
+      "& $a": {
         display: "none",
       },
+      "& $svg": {
+        display: "none",
+      },
+    },
+    logo: {
+      src: "/images/cti-logo.svg", 
+      position: "absolute",
+      width: "112px",
+      top: "19px",
+      left: "36px",
     },
     showMobileNav: {
       transform: "translateY(100%)",
@@ -77,10 +80,45 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       flexDirection: "column",
       alignItems: "start",
+      "& $p": {
+        display: "inline",
+        padding: "16px 0px",
+        fontSize: "20px",
+        fontWeight: "700",
+        color: "#0F1D2F",
+      },
+      "& $a": {
+        display: "inline",
+        padding: "12px 0px",
+        fontSize: "16px",
+        fontWeight: "400",
+        color: "#0F1D2F",
+      },"& $a:link": {
+        underline: "none",
+      },
+      "& $svg": {
+        display: "inline",
+        justifyContent: "right",
+      },
+      "& $searchContainer": {
+        alignContent: "center",
+        width: "200px",
+        padding: "16px 0px",
+        "& $a": {
+          color: "white"},
+      },
     },
     mobileContainer: {
       display: "flex",
       marginRight: "2rem",
+    },
+    dropdownHeader: {
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'space-between',
+      '&:hover': {
+        cursor: 'pointer',
+      },
     },
   },
 }));
