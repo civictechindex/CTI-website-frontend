@@ -11,7 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Modal from '@material-ui/core/Modal';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 
 import Link from '../../components/common/Link';
@@ -20,6 +21,7 @@ import NavBreadcrumb from '../../components/NavBreadcrumbs';
 import ProjectCard from './ProjectCard';
 import SearchBar from './SearchBar';
 import RefineResults from './RefineResults';
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme) => ({
   openSearchTips: {
@@ -91,11 +93,17 @@ const Projects = () => {
   const location = useLocation();
   const [filters, setFilters] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [pageNum, setPageNum] = useState(1);
+  const [pages, setPages] = useState(1);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
   const [resultCount, setResultCount] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [sort, setSort] = useState('best match')
+  const [sort, setSort] = useState('best match');
+
+  const theme = useTheme();
+  const largeScreen = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true });
+  const itemsPerPage = largeScreen ? 10 : 5;
 
   /*
    * only want to fetch data with query params
@@ -105,19 +113,27 @@ const Projects = () => {
   useEffect(() => {
     if (location.query) {
       setQuery(location.query.search);
-      fetchData(location.query.search);
+      fetchData(location.query.search, false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (query) {
-      fetchData(query);
+      fetchData(query, false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sort, filters]);
+  }, [filters, pageNum, sort]);
 
-  const fetchData = (queryStr) => {
+  // need to reset page to 1 when paginator count changes to avoid strange paginator states
+  useEffect(() => {
+    if (query) {
+      fetchData(query, true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemsPerPage]);
+
+  const fetchData = (queryStr, resetPageNum = false) => {
     const q = ['topic:civictechindex', queryStr];
     for (const filter of filters) {
       if (filter.category === 'pushed') {
@@ -130,15 +146,19 @@ const Projects = () => {
       q: q.join(' '),
       sort: sort,
       order: 'desc',
-      page: 1,
-      per_page: 10,
+      page: resetPageNum ? 1 : pageNum,
+      per_page: itemsPerPage,
     };
+    if (resetPageNum) {
+      setPageNum(1);
+    }
     axios
       .get(`https://api.github.com/search/repositories`, {
         headers: { Accept: 'application/vnd.github.mercy-preview+json' },
         params: params,
       })
       .then((res) => {
+        setPages(Math.ceil(res.data.total_count / itemsPerPage));
         const items = res.data.items.map((i) => renderCard(i));
         setResultCount(
           <Box className={classes.resultsHeader}>
@@ -184,7 +204,7 @@ const Projects = () => {
   const handleSubmit = (event) => {
     if (event.key === 'Enter') {
       if (query) {
-        fetchData(query);
+        fetchData(query, true);
       } else {
         setShowResults(false);
       }
@@ -230,6 +250,18 @@ const Projects = () => {
                 {resultCount}
               </Grid>
               {results}
+              <Grid item xs={12}>
+                <Box my={3} display='flex' justifyContent='center'>
+                  <Pagination
+                    color='secondary'
+                    count={pages}
+                    defaultPage={1}
+                    disabled={pages <= 1}
+                    onChange={(e, val) => setPageNum(val)}
+                    page={pageNum}
+                  />
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
         )}
