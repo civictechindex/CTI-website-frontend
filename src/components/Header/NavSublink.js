@@ -1,9 +1,9 @@
-import * as React from "react";
-import Link from "@material-ui/core/Link";
-import MenuItem from "@material-ui/core/MenuItem";
-import Typography from "@material-ui/core/Typography";
-import withStyles from "@material-ui/core/styles/withStyles";
-import { Link as RouterLink } from "react-router-dom";
+import * as React from 'react';
+import Link from '@material-ui/core/Link';
+import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import { Link as RouterLink } from 'react-router-dom';
 
 const styles = () => ({
   menuitem: {
@@ -18,12 +18,12 @@ const styles = () => ({
   },
 });
 
-const NavSublink = ({ heading, route, classes, isExternal=false }) => {
+const NavSublink = ({ header, route, classes, isExternal=false }) => {
   const linkComponent = isExternal
     ? <a href={route}
       style={{ textDecoration: 'none' }}
     >
-      <Typography>{heading}</Typography>
+      <Typography>{header}</Typography>
     </a>
     : <Link
       component={RouterLink}
@@ -31,7 +31,7 @@ const NavSublink = ({ heading, route, classes, isExternal=false }) => {
       underline="none"
       classes={{ root: classes.text }}
     >
-      <Typography>{heading}</Typography>
+      <Typography>{header}</Typography>
     </Link>;
   return (
     <MenuItem

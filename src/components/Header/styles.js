@@ -1,4 +1,4 @@
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
 //Large Screens
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
       height: "fit-content",
       fontSize: "20px",
       fontWeight: "bold",
-      padding: "16px 35px 40px 35px",
+      padding: "0px 35px 40px 35px",
       zIndex: "-10",
       "& $p": {
         display: "none",
@@ -98,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
       },
       "& $svg": {
         display: "inline",
+        justifyContent: "right",
       },
       "& $searchContainer": {
         alignContent: "center",
