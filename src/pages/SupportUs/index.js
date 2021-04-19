@@ -72,7 +72,7 @@ const SupportUs = () => {
       <Hidden mdDown>
         <PhotoCardDeskTp items={Images} />
       </Hidden>
-      <Hidden mdUp>
+      <Hidden lgUp>
         <PhotoCardMobile items={Images} />
       </Hidden>
       <GetStartedCard
