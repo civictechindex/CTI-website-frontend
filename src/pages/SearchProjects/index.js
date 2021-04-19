@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 import Link from '../../components/common/Link';
 import NavBreadcrumb from '../../components/NavBreadcrumbs';
@@ -25,10 +26,23 @@ import RefineResults from './RefineResults';
 import SearchBar from './SearchBar';
 
 const useStyles = makeStyles((theme) => ({
+  message: {
+    display: 'flex',
+    fontSize: '2rem',
+  },
+  messageIcon: {
+    width: '1.75em',
+    height: '1.75em',
+    marginRight: theme.spacing(1),
+    color: theme.palette.text.disabled,
+  },
   openSearchTips: {
     '&:hover': {
       cursor: 'pointer',
     },
+  },
+  resultContainer: {
+    alignSelf: 'flex-start',
   },
   searchTips: {
     width: '686px',
@@ -314,12 +328,11 @@ const Projects = () => {
             <Grid item xs={4}>
               <RefineResults onFilterChange={handleFilterChange} filterList={filterList} />
             </Grid>
-            <Grid container item direction='column' xs={8} spacing={2}>
+            <Grid container item xs={8} className={classes.resultContainer}>
               <Grid item xs={12}>
                 {resultCountHeader}
-              </Grid>
-              {selectedFilters.length > 0 &&
-                <Grid item xs={12}>
+                <br />
+                {selectedFilters.length > 0 &&
                   <Typography variant='span' color='primary'>
                     <b>Filter: </b>
                     {filterTags}
@@ -331,22 +344,29 @@ const Projects = () => {
                       <b>Clear all</b>
                     </Typography>
                   </Typography>
-                </Grid>
-              }
-              <Grid item xs={12} display='flex'>
-                {results}
+                }
               </Grid>
               <Grid item xs={12}>
-                <Box my={3} display='flex' justifyContent='center'>
-                  <Pagination
-                    color='secondary'
-                    count={pages}
-                    defaultPage={1}
-                    disabled={pages <= 1}
-                    onChange={(e, val) => setPageNum(val)}
-                    page={pageNum}
-                  />
-                </Box>
+                {results}
+                {results.length === 0 ?
+                  (<Box my={12} display='flex' justifyContent='center'>
+                    <Typography variant='body1' className={classes.message}>
+                      <SearchRoundedIcon className={classes.messageIcon}/>
+                      <i>Sorry, no results found.</i>
+                    </Typography>
+                  </Box>) :
+                  (<Box my={3} display='flex' justifyContent='center'>
+                    <Pagination
+                      color='secondary'
+                      count={pages}
+                      defaultPage={1}
+                      disabled={pages === 1}
+                      onChange={(e, val) => setPageNum(val)}
+                      page={pageNum}
+                    />
+                  </Box>)
+                }
+
               </Grid>
             </Grid>
           </Grid>
