@@ -4,44 +4,31 @@ import { useLocation } from 'react-router';
 import axios from 'axios';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import Modal from '@material-ui/core/Modal';
-import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 import Link from '../../components/common/Link';
 import NavBreadcrumb from '../../components/NavBreadcrumbs';
 
 import FilterTag from './FilterTag';
-import Pagination from '@material-ui/lab/Pagination';
 import ProjectCard from './ProjectCard';
 import RefineResults from './RefineResults';
+import ResultFilters from './ResultFilters';
+import ResultHeader from './ResultHeader';
+import ResultContainer from './ResultContainer';
 import SearchBar from './SearchBar';
 
 const useStyles = makeStyles((theme) => ({
-  message: {
-    display: 'flex',
-    fontSize: '2rem',
-  },
-  messageIcon: {
-    width: '1.75em',
-    height: '1.75em',
-    marginRight: theme.spacing(1),
-    color: theme.palette.text.disabled,
-  },
   openSearchTips: {
     '&:hover': {
       cursor: 'pointer',
     },
   },
-  resultContainer: {
+  resultSection: {
     alignSelf: 'flex-start',
   },
   searchTips: {
@@ -126,6 +113,7 @@ const Projects = () => {
   const classes = useStyles();
   const location = useLocation();
   const [filterList, setFilterList] = useState(defaultFilterList);
+  const [filterOpen, setFilterOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [pages, setPages] = useState(1);
@@ -224,25 +212,14 @@ const Projects = () => {
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
         const items = res.data.items.map((i) => renderCard(i));
         setResultCountHeader(
-          <Box display='flex' justifyContent='space-between' alignItems='center'>
-            <Typography variant='span' color='primary'>
-              <b>Displaying {res.data.items.length} of {res.data.total_count} results matching: </b>
-              <Typography variant='span' color='secondary'><b>“{queryStr}”</b></Typography>
-            </Typography>
-            <FormControl variant='outlined'>
-              <InputLabel id='sort-select-label'>Sort</InputLabel>
-              <Select
-                labelId='sort-select-label'
-                label='Sort'
-                defaultValue='best match'
-                onChange={(e) => handleSortChange(e.target.value)}
-              >
-                <MenuItem value='best match'>Best Match</MenuItem>
-                <MenuItem value='updated'>Last Updated</MenuItem>
-                <MenuItem value='stars'>Stargazer Count</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
+          <ResultHeader
+            queryStr={queryStr}
+            itemLength={res.data.items.length}
+            totalCount={res.data.total_count}
+            variant={largeScreen ? 'large' : 'small'}
+            onSortChange={handleSortChange}
+            onHeaderClick={handleHeaderClick}
+          />
         );
         setResults(items);
         setShowResults(true);
@@ -271,8 +248,16 @@ const Projects = () => {
     setSelectedFilters(tempList.filter((filter) => filter.selected));
   };
 
+  const handleHeaderClick = () => {
+    setFilterOpen(!filterOpen);
+  };
+
+  const handlePageChange = (value) => {
+    setPageNum(value);
+  };
+
   const handleSortChange = (value) => {
-    setSort(value)
+    setSort(value);
   };
 
   const handleSubmit = (event) => {
@@ -295,6 +280,60 @@ const Projects = () => {
       />
     );
   });
+
+  const renderPage = () => {
+    if (largeScreen) {
+      return (
+        <>
+          <Grid item xs={4}>
+            <RefineResults onFilterChange={handleFilterChange} filterList={filterList} />
+          </Grid>
+          <Grid container item xs={8} className={classes.resultSection}>
+            <Grid item xs={12}>
+              {resultCountHeader}
+              <br />
+              <ResultFilters
+                filterTags={filterTags}
+                show={selectedFilters.length > 0}
+                onFilterChange={handleFilterChange} />
+            </Grid>
+            <Grid item xs={12}>
+              <ResultContainer
+                results={results}
+                pages={pages}
+                pageNum={pageNum}
+                onPageChange={handlePageChange}
+              />
+            </Grid>
+          </Grid>
+        </>
+      );
+    }
+    return filterOpen ? (
+      <Grid item xs={12}>
+        <RefineResults onFilterChange={handleFilterChange} filterList={filterList} />
+      </Grid>
+    ) : (
+      <Grid container item xs={12} className={classes.resultSection}>
+        <Grid item xs={12}>
+          {resultCountHeader}
+          <br />
+          <ResultFilters
+            filterTags={filterTags}
+            show={selectedFilters.length > 0}
+            onFilterChange={handleFilterChange} />
+        </Grid>
+        <Grid item xs={12}>
+          <ResultContainer
+            results={results}
+            pages={pages}
+            pageNum={pageNum}
+            onPageChange={handlePageChange}
+          />
+        </Grid>
+      </Grid>
+    )
+  };
 
   return (
     <Box className='containerGray'>
@@ -325,50 +364,7 @@ const Projects = () => {
         </Grid>
         {showResults && (
           <Grid container className='grid242'>
-            <Grid item xs={4}>
-              <RefineResults onFilterChange={handleFilterChange} filterList={filterList} />
-            </Grid>
-            <Grid container item xs={8} className={classes.resultContainer}>
-              <Grid item xs={12}>
-                {resultCountHeader}
-                <br />
-                {selectedFilters.length > 0 &&
-                  <Typography variant='span' color='primary'>
-                    <b>Filter: </b>
-                    {filterTags}
-                    <Typography
-                      variant='span'
-                      color='secondary'
-                      onClick={() => handleFilterChange({ category: 'all' }, true)}
-                    >
-                      <b>Clear all</b>
-                    </Typography>
-                  </Typography>
-                }
-              </Grid>
-              <Grid item xs={12}>
-                {results}
-                {results.length === 0 ?
-                  (<Box my={12} display='flex' justifyContent='center'>
-                    <Typography variant='body1' className={classes.message}>
-                      <SearchRoundedIcon className={classes.messageIcon}/>
-                      <i>Sorry, no results found.</i>
-                    </Typography>
-                  </Box>) :
-                  (<Box my={3} display='flex' justifyContent='center'>
-                    <Pagination
-                      color='secondary'
-                      count={pages}
-                      defaultPage={1}
-                      disabled={pages === 1}
-                      onChange={(e, val) => setPageNum(val)}
-                      page={pageNum}
-                    />
-                  </Box>)
-                }
-
-              </Grid>
-            </Grid>
+            {renderPage()}
           </Grid>
         )}
         <Modal aria-labelledby='search-tips-title' className={classes.modal} open={modalOpen} onBackdropClick={handleClose}>
