@@ -1,7 +1,7 @@
-import * as React from "react";
-import Link from "@material-ui/core/Link";
-import { NavLink as NaviLink, withRouter } from "react-router-dom";
-import withStyles from "@material-ui/core/styles/withStyles";
+import * as React from 'react';
+import Link from '@material-ui/core/Link';
+import { NavLink as NaviLink, withRouter } from 'react-router-dom';
+import withStyles from '@material-ui/core/styles/withStyles';
 import {
   usePopupState,
   bindMenu,
@@ -21,8 +21,9 @@ const styles = () => ({
   },
 });
 
-const NavLink = ({ heading, route, children, classes }) => {
+const NavLink = ({ header, route, children, classes }) => {
   const popupState = usePopupState({ variant: "popper", popupId: "navlink" });
+  
   return (
     <>
       <Link
@@ -37,7 +38,7 @@ const NavLink = ({ heading, route, children, classes }) => {
         }}
         classes={{ root: classes.link }}
       >
-        {heading}
+        {header}
       </Link>
       {children && (
         <Menu
