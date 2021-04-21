@@ -16,7 +16,7 @@ const SubscribeSection = ({ size }) => {
     event.preventDefault();
     /* TODO: This needs to be passed via build arguments */
     axios
-      .post('https://test-civictechindexadmin.herokuapp.com/api/subscribe/', {
+      .post(`${process.env.REACT_APP_API_URL}/api/subscribe/`, {
         email_address: inputValue,
         notification_type: 'string',
       })
@@ -37,13 +37,13 @@ const SubscribeSection = ({ size }) => {
     case 'duplicate':
       return (
         <Typography variant='body2' className={classes.errorMessage}>
-          That email address has already been registered with us.
+            That email address has already been registered with us.
         </Typography>
       );
     case 'error':
       return (
         <Typography variant='body2' className={classes.errorMessage}>
-          The email address you have submitted was invalid.
+            The email address you have submitted was invalid.
           <br />
           Please check the format and resubmit.
         </Typography>
@@ -51,7 +51,7 @@ const SubscribeSection = ({ size }) => {
     case 'success':
       return (
         <Typography variant='h5' color='textSecondary' className={classes.successMessage}>
-          Thanks for subscribing!
+            Thanks for subscribing!
           <br />
           We will be in touch soon.
         </Typography>
