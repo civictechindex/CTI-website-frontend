@@ -24,10 +24,10 @@ export default function PictureCard(props) {
   });
 
   return (
-    <>
-      <Grid container style={{ backgroundColor: "#F2F2F2" , margin: 'auto', maxWidth: '1200px', padding:'20px 0 20px 0' }}>
-        {displayCards}
-      </Grid>
-    </>
+    <div>
+        <Grid container style={{ backgroundColor: "#F2F2F2", margin: 'auto', padding:'20px 0 20px 0' }}>
+          {displayCards}
+        </Grid>
+    </div>
   );
 }
