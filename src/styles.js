@@ -42,20 +42,23 @@ const useStyles = makeStyles((theme) => ({
     },
     '.containerDefault': {
       backgroundColor: theme.palette.secondary.dark,
-      minHeight: '500px',
     },
     '.containerGray': {
       backgroundColor: theme.palette.background.secondary,
-      minHeight: '500px',
+    },
+    '.containerTeal': {
+      backgroundColor: theme.palette.background.primary,
     },
     '.containerWhite': {
       backgroundColor: theme.palette.background.default,
-      minHeight: '500px',
     },
     '.containerWorld': {
       backgroundColor: theme.palette.secondary.dark,
       backgroundImage: 'url(/images/world-view.png)',
       backgroundRepeat: 'no-repeat',
+      minHeight: '500px',
+    },
+    '.pageContainer': {
       minHeight: '500px',
     },
     '.frame223': {
