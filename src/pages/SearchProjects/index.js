@@ -14,15 +14,19 @@ import CloseIcon from '@material-ui/icons/Close';
 import Link from '../../components/common/Link';
 import NavBreadcrumb from '../../components/NavBreadcrumbs';
 
+import FilterSelector from './FilterSelector';
 import FilterTag from './FilterTag';
 import ProjectCard from './ProjectCard';
-import RefineResults from './RefineResults';
 import ResultFilters from './ResultFilters';
 import ResultHeader from './ResultHeader';
 import ResultContainer from './ResultContainer';
 import SearchBar from './SearchBar';
 
 const useStyles = makeStyles((theme) => ({
+  filterSection: {
+    backgroundColor: theme.palette.background.secondary,
+    padding: theme.spacing(2),
+  },
   openSearchTips: {
     '&:hover': {
       cursor: 'pointer',
@@ -60,9 +64,14 @@ const defaultFilterList = [
   { category: 'language', name: 'javascript', label: 'Javascript', selected: false },
   { category: 'language', name: 'python', label: 'Python', selected: false },
   { category: 'language', name: 'java', label: 'Java', selected: false },
-  { category: 'language', name: 'go', label: 'Go', selected: false },
   { category: 'language', name: 'typescript', label: 'Typescript', selected: false },
-  { category: 'topic', name: 'unaffiliated', label: 'Unaffiliated', selected: false },
+  { category: 'language', name: 'c#', label: 'C#', selected: false },
+  { category: 'language', name: 'php', label: 'PHP', selected: false },
+  { category: 'language', name: 'c++', label: 'C++', selected: false },
+  { category: 'language', name: 'c', label: 'C', selected: false },
+  { category: 'language', name: 'shell', label: 'Shell', selected: false },
+  { category: 'language', name: 'ruby', label: 'Ruby', selected: false },
+  { category: 'topic', name: '', label: 'Unaffiliated', selected: false },
   { category: 'topic', name: 'code-for-all', label: 'Code for All', selected: false },
   { category: 'topic', name: 'code-for-america', label: 'Code for America', selected: false },
   { category: 'topic', name: 'hack-for-la', label: 'Hack for LA', selected: false },
@@ -112,8 +121,10 @@ const Projects = () => {
   ];
   const classes = useStyles();
   const location = useLocation();
+  const [backupFilterList, setBackupFilterList] = useState([]);
   const [filterList, setFilterList] = useState(defaultFilterList);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [filterSelector, setFilterSelector] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [pages, setPages] = useState(1);
@@ -136,23 +147,25 @@ const Projects = () => {
   useEffect(() => {
     if (location.query) {
       setQuery(location.query.search);
-      fetchData(location.query.search, false);
+      fetchProjects(location.query.search, false);
     }
+    fetchTopicTags();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (query) {
-      fetchData(query, false);
+      fetchProjects(query, false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFilters, pageNum, sort]);
+  }, [filterList, selectedFilters, pageNum, sort]);
 
   // need to reset page to 1 when paginator count changes to avoid strange paginator states
   useEffect(() => {
     if (query) {
-      fetchData(query, true);
+      fetchProjects(query, true);
     }
+    setFilterOpen(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsPerPage]);
 
@@ -184,7 +197,7 @@ const Projects = () => {
     return queryStr;
   };
 
-  const fetchData = (queryStr, resetPageNum = false) => {
+  const fetchProjects = (queryStr, resetPageNum = false) => {
     const q = ['topic:civictechindex', queryStr];
     for (const filter of selectedFilters) {
       if (filter.category === 'pushed') {
@@ -213,18 +226,46 @@ const Projects = () => {
         const items = res.data.items.map((i) => renderCard(i));
         setResultCountHeader(
           <ResultHeader
-            queryStr={queryStr}
             itemLength={res.data.items.length}
+            onHeaderClick={handleFilterOpen}
+            onSortChange={handleSortChange}
+            queryStr={queryStr}
             totalCount={res.data.total_count}
             variant={largeScreen ? 'large' : 'small'}
-            onSortChange={handleSortChange}
-            onHeaderClick={handleHeaderClick}
+          />
+        );
+        setFilterSelector(
+          <FilterSelector
+            filterList={filterList}
+            itemLength={res.data.items.length}
+            onFilterChange={handleFilterChange}
+            onFilterClose={handleFilterClose}
+            queryStr={queryStr}
+            totalCount={res.data.total_count}
+            variant={largeScreen ? 'large' : 'small'}
           />
         );
         setResults(items);
         setShowResults(true);
       });
+  };
 
+  const fetchTopicTags = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+      .then((res) => {
+        let tempFilterList = filterList.filter((filter) => filter.category !== 'topic');
+        tempFilterList = tempFilterList.concat(res.data.filter((org) => org.org_tag)
+          .map((org) => {
+            return {
+              category: 'topic',
+              name: org.org_tag,
+              label: org.name,
+              selected: false,
+            };
+          })
+        );
+        setFilterList(tempFilterList);
+      });
   };
 
   const handleOpen = () => {
@@ -239,7 +280,7 @@ const Projects = () => {
     const tempList = filterList.map((filter) => {
       if (flt.category === 'all') {
         return { ...filter, selected: false };
-      } else if (filter.category ===  flt.category && filter.name === flt.name) {
+      } else if (filter.category === flt.category && filter.name === flt.name) {
         return { ...filter, selected: deleteFlt ? false : flt.selected };
       }
       return filter;
@@ -248,9 +289,18 @@ const Projects = () => {
     setSelectedFilters(tempList.filter((filter) => filter.selected));
   };
 
-  const handleHeaderClick = () => {
-    setFilterOpen(!filterOpen);
+  const handleFilterClose = (restore) => {
+    if (restore) {
+      setFilterList(backupFilterList);
+      setSelectedFilters(backupFilterList.filter((filter) => filter.selected));
+    }
+    setFilterOpen(false);
   };
+
+  const handleFilterOpen = () => {
+    setBackupFilterList(filterList);
+    setFilterOpen(true);
+  }
 
   const handlePageChange = (value) => {
     setPageNum(value);
@@ -263,7 +313,7 @@ const Projects = () => {
   const handleSubmit = (event) => {
     if (event.key === 'Enter') {
       if (query) {
-        fetchData(query, true);
+        fetchProjects(query, true);
       } else {
         setShowResults(false);
       }
@@ -284,9 +334,9 @@ const Projects = () => {
   const renderPage = () => {
     if (largeScreen) {
       return (
-        <>
+        <Grid container className='grid242'>
           <Grid item xs={4}>
-            <RefineResults onFilterChange={handleFilterChange} filterList={filterList} />
+            {filterSelector}
           </Grid>
           <Grid container item xs={8} className={classes.resultSection}>
             <Grid item xs={12}>
@@ -306,30 +356,34 @@ const Projects = () => {
               />
             </Grid>
           </Grid>
-        </>
+        </Grid>
       );
     }
     return filterOpen ? (
-      <Grid item xs={12}>
-        <RefineResults onFilterChange={handleFilterChange} filterList={filterList} />
+      <Grid container className={classes.filterSection}>
+        <Grid item xs={12}>
+          {filterSelector}
+        </Grid>
       </Grid>
     ) : (
-      <Grid container item xs={12} className={classes.resultSection}>
-        <Grid item xs={12}>
-          {resultCountHeader}
-          <br />
-          <ResultFilters
-            filterTags={filterTags}
-            show={selectedFilters.length > 0}
-            onFilterChange={handleFilterChange} />
-        </Grid>
-        <Grid item xs={12}>
-          <ResultContainer
-            results={results}
-            pages={pages}
-            pageNum={pageNum}
-            onPageChange={handlePageChange}
-          />
+      <Grid container className='grid242'>
+        <Grid container item xs={12} className={classes.resultSection}>
+          <Grid item xs={12}>
+            {resultCountHeader}
+            <br />
+            <ResultFilters
+              filterTags={filterTags}
+              show={selectedFilters.length > 0}
+              onFilterChange={handleFilterChange} />
+          </Grid>
+          <Grid item xs={12}>
+            <ResultContainer
+              results={results}
+              pages={pages}
+              pageNum={pageNum}
+              onPageChange={handlePageChange}
+            />
+          </Grid>
         </Grid>
       </Grid>
     )
@@ -338,35 +392,33 @@ const Projects = () => {
   return (
     <Box className='containerGray'>
       <Container>
-        <Grid container className='grid241'>
-          <Grid item xs={12}>
-            <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
-            <Box style={{ textAlign: 'center' }}>
-              <Typography variant='h1' color='textPrimary'>
-                Search Projects
+        {!filterOpen &&
+          <Grid container className='grid241'>
+            <Grid item xs={12}>
+              <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
+              <Box style={{ textAlign: 'center' }}>
+                <Typography variant='h1' color='textPrimary'>
+                  Search Projects
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={2} />
+            <Grid item xs={8}>
+              <SearchBar
+                dataCy='search-projects'
+                onInput={(e) => setQuery(e.target.value)}
+                onKeyPress={handleSubmit}
+                placeholder='Search the Civic Tech Index'
+                value={query}
+              />
+              <Typography variant='body1' className={classes.openSearchTips} onClick={handleOpen}>
+                <u>How to improve your search result</u>
               </Typography>
-            </Box>
+            </Grid>
+            <Grid item xs={2} />
           </Grid>
-          <Grid item xs={2} />
-          <Grid item xs={8}>
-            <SearchBar
-              dataCy='search-projects'
-              onInput={(e) => setQuery(e.target.value)}
-              onKeyPress={handleSubmit}
-              placeholder='Search the Civic Tech Index'
-              value={query}
-            />
-            <Typography variant='body1' className={classes.openSearchTips} onClick={handleOpen}>
-              <u>How to improve your search result</u>
-            </Typography>
-          </Grid>
-          <Grid item xs={2} />
-        </Grid>
-        {showResults && (
-          <Grid container className='grid242'>
-            {renderPage()}
-          </Grid>
-        )}
+        }
+        {showResults && renderPage()}
         <Modal aria-labelledby='search-tips-title' className={classes.modal} open={modalOpen} onBackdropClick={handleClose}>
           <Box className={classes.searchTips}>
             <Typography variant='h4' id='search-tips-title'>

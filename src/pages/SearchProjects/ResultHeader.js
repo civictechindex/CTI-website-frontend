@@ -27,9 +27,9 @@ const ResultHeaderLarge = (props) => {
   const classes = useStyles();
   return (
     <Box display='flex' justifyContent='space-between' alignItems='center'>
-      <Typography color='primary'>
-        <b>Displaying {props.itemLength} of {props.totalCount} results matching: </b>
-        <span className={classes.query}><b>“{props.queryStr}”</b></span>
+      <Typography variant='body2' color='primary'>
+        Displaying {props.itemLength} of {props.totalCount} results matching:
+        <span className={classes.query}> “{props.queryStr}”</span>
       </Typography>
       <FormControl variant='outlined'>
         <InputLabel id='sort-select-label'>Sort</InputLabel>
@@ -69,12 +69,10 @@ const ResultHeaderSmall = (props) => {
           </Select>
         </FormControl>
       </Box>
-      <Box>
-        <Typography color='primary'>
-          <b>Displaying {props.itemLength} of {props.totalCount} results matching: </b>
-          <span className={classes.query}><b>“{props.queryStr}”</b></span>
-        </Typography>
-      </Box>
+      <Typography variant='body2' color='primary'>
+        Displaying {props.itemLength} of {props.totalCount} results matching:
+        <span className={classes.query}> “{props.queryStr}”</span>
+      </Typography>
     </>
   );
 };
