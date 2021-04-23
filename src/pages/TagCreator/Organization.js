@@ -8,7 +8,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import orgs from './orgs.json';
 import Link from '@material-ui/core/Link';
 
-export const OrganizationSelectorSection = ({ orgName,setOrgName }) => {
+export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
 
   return (
     <>
@@ -18,7 +18,7 @@ export const OrganizationSelectorSection = ({ orgName,setOrgName }) => {
           id="organization"
           options={orgs}
           value={orgName}
-          onChange={(e, v) => setOrgName(v) }
+          onChange={(e, v) => setOrgName(v)}
           getOptionLabel={(option) => option}
           style={{ width: '100%' }}
           renderInput={(params) => <TextField {...params} variant="outlined" />}
@@ -31,20 +31,20 @@ export const OrganizationSelectorSection = ({ orgName,setOrgName }) => {
   )
 }
 
-export const OrgNameSection = ({ setDisplayState,orgName }) => {
+export const OrgNameSection = ({ setDisplayState, orgName }) => {
 
-  const handleChangeOrg = () =>{
+  const handleChangeOrg = () => {
     setDisplayState('')
   }
   return (
-    <Grid container  direction="row" alignItems="center"  spacing={3} style={{ padding:'10px' }}>
+    <Grid container direction="row" alignItems="center" spacing={3} style={{ padding: '10px' }}>
       <Grid item>
         <Typography variant='body1'>Affliated Organization:</Typography>
       </Grid>
       {orgName ?
         <Grid item>
           <Typography variant='h3'>{orgName}</Typography>
-        </Grid>:<Grid item style={{ paddingRight:'50px' }}>
+        </Grid> : <Grid item style={{ paddingRight: '50px' }}>
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
       <Grid item>
@@ -56,41 +56,41 @@ export const OrgNameSection = ({ setDisplayState,orgName }) => {
   )
 }
 
-export const OrgChange = ({ orgName,setOrgTags,changeValue,setDisplayState }) =>{
+export const OrgChange = ({ orgName, setOrgTags, changeValue, setDisplayState }) => {
 
-  const handleChangeOrg = () =>{
-    if (changeValue === 'TopicTag'){
+  const handleChangeOrg = () => {
+    if (changeValue === 'TopicTag') {
       setDisplayState('TopicTag')
     }
-    else if (changeValue === 'GenerateTags'){
+    else if (changeValue === 'GenerateTags') {
       setDisplayState('GenerateTags')
     }
-    else if (changeValue === 'CopyPasteTags'){
+    else if (changeValue === 'CopyPasteTags') {
       setDisplayState('CopyPasteTags')
     }
     else {
       setDisplayState('ProjectUrl')
     }
   }
-  const handleSubmitOrg = () =>{
-    const topics=[]
-    if (orgName){
-      axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/'+orgName,)
+  const handleSubmitOrg = () => {
+    const topics = []
+    if (orgName) {
+      axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/` + orgName,)
         .then(res => {
           let po = res.data.parent_organization
-          if (res.data.org_tag !== ""){
+          if (res.data.org_tag !== "") {
             topics.push(res.data.org_tag)
           }
-          while (po!=null){
+          while (po != null) {
             topics.push(po.org_tag)
-            po =po.parent_organization
+            po = po.parent_organization
           }
           setOrgTags(topics)
         }).catch(e => {
-        /*
-         * This should store the error state.
-         * Component should check for error state and resolve the correct response.
-         */
+          /*
+           * This should store the error state.
+           * Component should check for error state and resolve the correct response.
+           */
           console.log(e);
         })
     }
@@ -99,7 +99,7 @@ export const OrgChange = ({ orgName,setOrgTags,changeValue,setDisplayState }) =>
   }
   return (
     <Grid item xs={12} sm={12}>
-      <Grid align='center' style={{ padding:'20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
+      <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
     </Grid>
   )
 }

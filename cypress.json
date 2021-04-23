@@ -1,5 +1,10 @@
 {
   "baseUrl": "http://localhost:3000",
   "defaultCommandTimeout": 20000,
-  "ignoreTestFiles": ["contributors.spec.js"]
+  "env": {
+    "URL": "https://test-civictechindexadmin.herokuapp.com"
+  },
+  "ignoreTestFiles": [
+    "contributors.spec.js"
+  ]
 }
