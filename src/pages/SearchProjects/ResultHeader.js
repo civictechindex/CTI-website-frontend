@@ -23,37 +23,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ResultHeaderLarge = (props) => {
+const ResultHeader = (props) => {
   const classes = useStyles();
-  return (
-    <Box display='flex' justifyContent='space-between' alignItems='center'>
-      <Typography variant='body2' color='primary'>
-        Displaying {props.itemLength} of {props.totalCount} results matching:
-        <span className={classes.query}> “{props.queryStr}”</span>
-      </Typography>
-      <FormControl variant='outlined'>
-        <InputLabel id='sort-select-label'>Sort</InputLabel>
-        <Select
-          labelId='sort-select-label'
-          label='Sort'
-          defaultValue='best match'
-          onChange={(e) => props.onSortChange(e.target.value)}
-        >
-          <MenuItem value='best match'>Best Match</MenuItem>
-          <MenuItem value='updated'>Last Updated</MenuItem>
-          <MenuItem value='stars'>Stargazer Count</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-  );
-};
 
-const ResultHeaderSmall = (props) => {
-  const classes = useStyles();
+  const resultCount = (
+    <Typography variant='body2' color='primary'>
+      Displaying {props.itemLength} of {props.totalCount} results matching:
+      <span className={classes.query}> “{props.queryStr}”</span>
+    </Typography>
+  );
   return (
     <>
       <Box display='flex' justifyContent='space-between' alignItems='center' mb={2}>
-        <Button className={classes.button} onClick={props.onHeaderClick}><FilterListIcon />Filter</Button>
+        {props.variant === 'large' ? resultCount : (
+          <Button className={classes.button} onClick={props.onHeaderClick}>
+            <FilterListIcon />Filter
+          </Button>
+        )}
         <FormControl variant='outlined'>
           <InputLabel id='sort-select-label'>Sort</InputLabel>
           <Select
@@ -69,20 +55,9 @@ const ResultHeaderSmall = (props) => {
           </Select>
         </FormControl>
       </Box>
-      <Typography variant='body2' color='primary'>
-        Displaying {props.itemLength} of {props.totalCount} results matching:
-        <span className={classes.query}> “{props.queryStr}”</span>
-      </Typography>
+      {props.variant === 'small' && resultCount}
     </>
   );
-};
-
-const ResultHeader = (props) => {
-  if (props.variant === 'large') {
-    return <ResultHeaderLarge {...props} />
-  } else {
-    return <ResultHeaderSmall {...props} />
-  }
 };
 
 export default ResultHeader;
