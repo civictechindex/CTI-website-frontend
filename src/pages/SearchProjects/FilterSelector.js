@@ -6,17 +6,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExpandLessRoundedIcon from '@material-ui/icons/ExpandLessRounded';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 import CheckBoxOutlineBlankIcon from '../../icons/CheckBoxOutlineBlankIcon';
 import Link from '../../components/common/Link';
@@ -154,34 +151,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchField = (props) => {
-  return (
-    <TextField
-      fullWidth
-      InputLabelProps={{
-        shrink: true,
-      }}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position='start'>
-            <SearchRoundedIcon />
-          </InputAdornment>
-        ),
-      }}
-      margin='dense'
-      onInput={props.onInput}
-      onKeyPress={props.onKeyPress}
-      placeholder={props.placeholder}
-      size='small'
-      value={props.query}
-      variant='outlined'
-    />
-  );
-};
-
 const FilterDropdownLarge = ({
   category,
-  dataCy,
   filterList,
   label,
   onChange,
@@ -193,15 +164,9 @@ const FilterDropdownLarge = ({
     setOpen(!open);
   };
 
-  let searchField = null;
   let viewMoreLink = null;
   if (showViewMore) {
     filterList = viewMore ? filterList : filterList.slice(0, 5);
-    searchField = (
-      <ListItem>
-        <SearchField data-cy={dataCy} />
-      </ListItem>
-    );
     viewMoreLink = (
       <Typography variant='body2'>
         <Link onClick={() => setViewMore(!viewMore)}>
@@ -233,7 +198,6 @@ const FilterDropdownLarge = ({
       </ListItem>
       <Collapse in={open} timeout='auto'>
         <List dense disablePadding>
-          {searchField}
           {filters}
           <ListItem>
             {viewMoreLink}
@@ -246,7 +210,6 @@ const FilterDropdownLarge = ({
 
 const FilterDropdownSmall = ({
   category,
-  dataCy,
   filterList,
   label,
   onChange,
@@ -259,15 +222,9 @@ const FilterDropdownSmall = ({
     setOpen(!open);
   };
 
-  let searchField = null;
   let viewMoreLink = null;
   if (showViewMore) {
     filterList = viewMore ? filterList : filterList.slice(0, 5);
-    searchField = (
-      <ListItem>
-        <SearchField data-cy={dataCy} />
-      </ListItem>
-    );
     viewMoreLink = (
       <Box className={classes.linkContainer}>
         <Typography variant='body2'>
@@ -305,7 +262,6 @@ const FilterDropdownSmall = ({
       </ListItem>
       <Collapse in={open} timeout='auto'>
         <List dense disablePadding className={classes.dropdownList}>
-          {searchField}
           {filters}
         </List>
         {viewMoreLink}
@@ -332,7 +288,6 @@ const FilterSelector = (props) => {
   const filterPropsList = [
     {
       category: 'Languages',
-      dataCy: 'search-programming-languages',
       filterList: languageFilterList,
       label: 'Primary Programming Language:',
       onChange: handleListChange,
@@ -340,7 +295,6 @@ const FilterSelector = (props) => {
     },
     {
       category: 'Affiliations',
-      dataCy: 'search-affiliations',
       filterList: affiliationFilterList,
       label: 'Affiliation:',
       onChange: handleListChange,
