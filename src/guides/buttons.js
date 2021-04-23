@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   textGridContainer: {
@@ -86,6 +86,24 @@ const ShowButtons = () => {
             <CardContent>
               <Button color='primary' disabled>
                 Primary Disabled
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Card className='card241'>
+            <CardContent>
+              <Button variant='outlined' onClick={handleOpen}>
+                Outlined
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Card className='card240'>
+            <CardContent>
+              <Button variant='outlined' disabled>
+                Outlined Disabled
               </Button>
             </CardContent>
           </Card>

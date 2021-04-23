@@ -1,50 +1,89 @@
-import React, { useState, useEffect } from "react";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Divider from "@material-ui/core/Divider";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import React, { useState, useEffect } from 'react';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
+import { makeStyles } from '@material-ui/core/styles';
+import axios from "axios";
 
-export default function AccordionSection (props) {
+const useStyles = makeStyles((theme) => ({
+  accordion: {
+    border: '1px solid',
+    borderColor: theme.palette.outline.gray,
+    '&.MuiAccordion-rounded:last-child': {
+      marginBottom: theme.spacing(2),
+    },
+    '&.Mui-expanded:last-child': {
+      marginBottom: theme.spacing(2),
+    },
+  },
+  detail: {
+    paddingTop: theme.spacing(2),
+  },
+  summary: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    '&.Mui-expanded': {
+      backgroundColor: theme.palette.secondary.dark,
+      '& h6': {
+        color: theme.palette.text.secondary,
+      },
+      '& svg': {
+        color: theme.palette.secondary.main,
+      },
+    },
+  },
+}));
+
+const AccordionSection = (props) => {
   const [currentFaq, setCurrentFaq] = useState([]);
   const [sendRequest, setSendRequest] = useState(false);
-  const faqs = props.faqs
+  const faqs = props.faqs;
+  const classes = useStyles();
 
   useEffect(() => {
     const incrementViewCount = async function () {
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ "question":currentFaq.question,
-          "answer": currentFaq.answer,
-          "view_count": currentFaq.view_count }),
-      }
-      await fetch(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestOptions);
-    }
-    if (sendRequest){
+      const requestBody = {
+        question: currentFaq.question,
+        answer: currentFaq.answer,
+        view_count: currentFaq.view_count,
+      };
+      await axios.post(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestBody);
+    };
+    if (sendRequest) {
       // send the request
       incrementViewCount()
       setSendRequest(false);
     }
-  }, [sendRequest,currentFaq]);
+  }, [sendRequest, currentFaq]);
 
   return (
-    <Grid item xs={12} lg={7} >
-      {faqs.map((faq) => {
-        return (
-          <div key={faq.id}>
-            <Accordion style={{ marginBottom: "20px",padding:'0px' }}>
-              <AccordionSummary data-cy='faq-question' expandIcon={<ExpandMoreRoundedIcon />} disabled={sendRequest} onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}>
-                <h6 style={{ fontSize:'20px',margin:'0', padding:'0 25px' }}>{faq.question}</h6>
-              </AccordionSummary>
-              <Divider />
-              <AccordionDetails data-cy='faq-answer'> <Typography style={{ padding:'0 25px' }}>{faq.answer}</Typography></AccordionDetails>
-            </Accordion>
-          </div>
-        );
-      })}
+    <Grid item xs={12} sm={9} lg={11}>
+      {faqs.map((faq) => (
+        <Box key={faq.id}>
+          <Accordion className={classes.accordion}>
+            <AccordionSummary
+              className={classes.summary}
+              data-cy='faq-question'
+              disabled={sendRequest}
+              expandIcon={<ExpandMoreRoundedIcon />}
+              onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}
+            >
+              <Typography variant='h6'>{faq.question}</Typography>
+            </AccordionSummary>
+            <Divider />
+            <AccordionDetails data-cy='faq-answer' className={classes.detail}>
+              <Typography>{faq.answer}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        </Box>
+      ))}
     </Grid>
   )
 }
+
+export default AccordionSection;

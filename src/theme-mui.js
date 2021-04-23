@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-import { deepmerge } from '@material-ui/utils';
+import deepmerge from '@material-ui/utils/deepmerge';
 
 // Colors - Primary
 const DARK_BLUE = '#0F1D2F';
@@ -26,6 +26,7 @@ const defaultButtonSettings = {
   backgroundColor: LIGHT_BLUE,
   color: WHITE,
   '&$disabled': {
+    backgroundColor: LIGHT_BLUE,
     color: WHITE,
     opacity: '0.50',
   },
@@ -46,6 +47,17 @@ const defaultButtonSettings = {
 // themeSettings - modify Material-UI baseline theme
 const themeSettings = {
   overrides: {
+    MuiAccordion: {
+      root: {
+        padding: 0,
+      },
+    },
+    MuiAccordionSummary: {
+      root: {
+        minHeight: 32,
+        padding: 0,
+      },
+    },
     MuiButton: {
       root: {
         borderRadius: 24,
@@ -65,6 +77,32 @@ const themeSettings = {
         textTransform: 'none',
         whiteSpace: 'nowrap',
       },
+      outlined: {
+        backgroundColor: 'transparent',
+        borderColor: WHITE,
+        color: WHITE,
+        '&$disabled': {
+          backgroundColor: 'transparent',
+          borderColor: WHITE,
+          color: WHITE,
+          opacity: '0.50',
+        },
+        '&:hover': {
+          backgroundColor: 'transparent',
+          color: WHITE,
+          opacity: '0.92',
+        },
+        '&:focus': {
+          backgroundColor: 'transparent',
+          color: WHITE,
+          opacity: '0.76',
+        },
+        '&:active': {
+          backgroundColor: 'transparent',
+          color: WHITE,
+          opacity: '0.68',
+        },
+      },
       textPrimary: {
         ...defaultButtonSettings,
       },
@@ -72,21 +110,24 @@ const themeSettings = {
         backgroundColor: WHITE,
         color: DARK_BLUE,
         '&$disabled': {
-          backgroundColor: '#6D6E74',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
           opacity: '0.50',
         },
         '&:hover': {
-          backgroundColor: '#F1F2F4',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
+          opacity: '0.92',
         },
         '&:focus': {
-          backgroundColor: '#D9DCDF',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
+          opacity: '0.76',
         },
         '&:active': {
-          backgroundColor: '#C3C8CA',
+          backgroundColor: WHITE,
           color: DARK_BLUE,
+          opacity: '0.68',
         },
       },
     },
@@ -100,6 +141,7 @@ const themeSettings = {
     },
     MuiChip: {
       root: {
+        borderRadius: 24,
         cursor: 'pointer',
         height: 48,
         [breakpoints.down('sm')]: {
@@ -125,6 +167,11 @@ const themeSettings = {
         color: DARK_GRAY,
       },
     },
+    MuiListItem: {
+      root: {
+        padding: 0,
+      },
+    },
     MuiPaper: {
       root: {
         padding: 16,
@@ -138,6 +185,11 @@ const themeSettings = {
         '&$checked': {
           color: DARK_BLUE,
         },
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        backgroundColor: WHITE,
       },
     },
     MuiTextField: {
@@ -330,6 +382,9 @@ const customThemeSettings = {
       primary: TEAL,
       secondary: LIGHT_GRAY,
       dark: DARK_BLUE,
+    },
+    outline: {
+      gray: DARK_GRAY,
     },
     text: {
       bright: YELLOW,

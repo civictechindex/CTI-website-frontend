@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import NavButton from "./NavButton";
 import React from "react";
 import TitleSection from "./TitleSection";
@@ -19,7 +19,7 @@ export default function GetStartedCard(props) {
       <div className='getStartedCardDivStyle'>
         <Grid container alignItems="center" justify="center" direction="column" style={{ backgroundColor: "#FFFFFF", padding: "30px 30px 60px 30px" }}>
           <TitleSection textVariant='black'>{headerTitle}</TitleSection>
-          <NavButton href={buttonHref} variant="blue">
+          <NavButton href={buttonHref} color="primary">
             {buttonText}
           </NavButton>
         </Grid>

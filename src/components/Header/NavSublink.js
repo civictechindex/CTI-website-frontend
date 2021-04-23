@@ -1,19 +1,38 @@
-import * as React from "react";
-import Link from "@material-ui/core/Link";
-import { MenuItem, Typography } from "@material-ui/core";
-import { Link as RouterLink } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
+import * as React from 'react';
+import Link from '@material-ui/core/Link';
+import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import { Link as RouterLink } from 'react-router-dom';
 
 const styles = () => ({
   menuitem: {
     padding: "1rem",
     "&:hover": {
       backgroundColor: "#0D99C6",
-      color: "white",
+      "& $p": {
+        color: "white",
+        fontWeight: "700",
+      }
     },
   },
 });
-const NavSublink = ({ heading, route, classes }) => {
+
+const NavSublink = ({ header, route, classes, isExternal=false }) => {
+  const linkComponent = isExternal
+    ? <a href={route}
+      style={{ textDecoration: 'none' }}
+    >
+      <Typography>{header}</Typography>
+    </a>
+    : <Link
+      component={RouterLink}
+      to={route}
+      underline="none"
+      classes={{ root: classes.text }}
+    >
+      <Typography>{header}</Typography>
+    </Link>;
   return (
     <MenuItem
       data-cy="menuItem"
@@ -22,14 +41,7 @@ const NavSublink = ({ heading, route, classes }) => {
       classes={{ root: classes.menuitem }}
       ListItemClasses={{ root: classes.text }}
     >
-      <Link
-        component={RouterLink}
-        to={route}
-        underline="none"
-        classes={{ root: classes.text }}
-      >
-        <Typography>{heading}</Typography>
-      </Link>
+      {linkComponent}
     </MenuItem>
   );
 };

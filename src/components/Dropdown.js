@@ -1,23 +1,13 @@
 /* eslint-disable sort-keys */
 
-import React, { useState, useEffect } from 'react'
-import { Box, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
-import { ContributorThumbnail } from './ContributorThumbnail'
-import { DropdownArrow } from './DropdownArrow'
+import React, { useState, useEffect } from 'react';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { ContributorThumbnail } from './ContributorThumbnail';
+import { DropdownArrow } from './DropdownArrow';
 
 const useStyles = makeStyles(theme => ({
-  codeForAll: {
-    '& h4': {
-      color: theme.palette.secondary.dark,
-    },
-    margin: '1rem auto',
-    width: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: theme.palette.background.default,
-    borderRadius: '2px',
-  },
   dropdown: {
     '& p': {
       fontSize: '1.25rem',
@@ -28,14 +18,16 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     backgroundColor: theme.palette.background.default,
-    borderRadius: '2px',
+    boxSizing: 'border-box',
+    border: '1px solid #BCBCBC',
+    borderRadius: '4px',
     paddingRight: '1.5rem',
   },
   chevron: {
     cursor: 'pointer',
     fontSize: '1.3rem',
   },
-}))
+}));
 
 export const Dropdown = ({
   organization,
@@ -43,24 +35,18 @@ export const Dropdown = ({
   dropdownLength,
   isOpen,
 }) => {
-  const [open, setOpen] = useState(false)
-  const classes = useStyles()
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
 
   useEffect(() => {
     if (isOpen) {
       setOpen(isOpen)
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <Box className="containerDropdown">
-      <Box
-        className={
-          typeof organization === 'string'
-            ? classes.codeForAll
-            : classes.dropdown
-        }
-      >
+      <Box className={classes.dropdown}>
         <ContributorThumbnail organization={organization} />
         {dropdownLength ? (
           <>
@@ -71,5 +57,5 @@ export const Dropdown = ({
       </Box>
       {open && children}
     </Box>
-  )
-}
+  );
+};

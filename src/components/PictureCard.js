@@ -1,9 +1,9 @@
-import { Grid } from "@material-ui/core";
 import React from "react";
+import Grid from "@material-ui/core/Grid";
 
 const CardItem = (props) => {
   return (
-    <Grid item xs={12} lg={4} style={{ margin:'auto' }} align='center' >
+    <Grid item xs={12} md={4} style={{ margin:'auto' }} align='center' >
       <img src={props.src} alt={props.alt} />
       <p style={{ padding:'0 30px 0 30px' }}>{props.children}</p>
     </Grid>
