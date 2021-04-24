@@ -3,31 +3,27 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import NavBreadcrumb from '../../components/NavBreadcrumbs';
 import FilterSelector from './FilterSelector';
 import FilterTag from './FilterTag';
+import HeaderSection from './HeaderSection';
 import HelpModal from './HelpModal';
 import ProjectCard from './ProjectCard';
 import ResultFilters from './ResultFilters';
 import ResultHeader from './ResultHeader';
 import ResultContainer from './ResultContainer';
-import SearchBar from './SearchBar';
 
 const useStyles = makeStyles((theme) => ({
-  filterSection: {
-    backgroundColor: theme.palette.background.secondary,
-    padding: theme.spacing(2),
+  content: {
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
   },
-  openSearchTips: {
-    '&:hover': {
-      cursor: 'pointer',
-    },
+  empty: {
+    backgroundColor: theme.palette.background.primary,
+    minHeight: '10rem',
   },
   resultSection: {
     alignSelf: 'flex-start',
@@ -89,10 +85,6 @@ const renderCard = (project) => {
 };
 
 const Projects = () => {
-  const crumbs = [
-    { name: 'Home', href: '/home' },
-    { name: 'Search', href: '/projects' },
-  ];
   const classes = useStyles();
   const location = useLocation();
   const [backupFilterList, setBackupFilterList] = useState([]);
@@ -221,6 +213,9 @@ const Projects = () => {
         );
         setResults(items);
         setShowResults(true);
+      })
+      .catch(() => {
+        setShowResults(false);
       });
   };
 
@@ -240,14 +235,6 @@ const Projects = () => {
         );
         setFilterList(tempFilterList);
       });
-  };
-
-  const handleOpen = () => {
-    setModalOpen(true);
-  };
-
-  const handleClose = () => {
-    setModalOpen(false);
   };
 
   const handleFilterChange = (flt, deleteFlt) => {
@@ -308,7 +295,7 @@ const Projects = () => {
   const renderPage = () => {
     if (largeScreen) {
       return (
-        <Grid container className='grid242'>
+        <Grid container className={classes.content}>
           <Grid item xs={4}>
             {filterSelector}
           </Grid>
@@ -334,13 +321,13 @@ const Projects = () => {
       );
     }
     return filterOpen ? (
-      <Grid container className={classes.filterSection}>
+      <Grid container>
         <Grid item xs={12}>
           {filterSelector}
         </Grid>
       </Grid>
     ) : (
-      <Grid container className='grid242'>
+      <Grid container className={classes.content}>
         <Grid container item xs={12} className={classes.resultSection}>
           <Grid item xs={12}>
             {resultCountHeader}
@@ -364,38 +351,23 @@ const Projects = () => {
   };
 
   return (
-    <Box className='containerGray'>
-      <Container>
+    <>
+      <Box>
         {!filterOpen &&
-          <Grid container className='grid241'>
-            <Grid item xs={12}>
-              <NavBreadcrumb crumbs={crumbs} color='#0F1D2F' />
-              <Box style={{ textAlign: 'center' }}>
-                <Typography variant='h1' color='textPrimary'>
-                  Search Projects
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={2} />
-            <Grid item xs={8}>
-              <SearchBar
-                dataCy='search-projects'
-                onInput={(e) => setQuery(e.target.value)}
-                onKeyPress={handleSubmit}
-                placeholder='Search the Civic Tech Index'
-                value={query}
-              />
-              <Typography variant='body1' className={classes.openSearchTips} onClick={handleOpen}>
-                <u>How to improve your search result</u>
-              </Typography>
-            </Grid>
-            <Grid item xs={2} />
-          </Grid>
+            <HeaderSection
+              onLinkClick={() => setModalOpen(true)}
+              onSearchInput={setQuery}
+              onSearchKeyPress={handleSubmit}
+              searchQuery={query}
+              showLink={showResults}
+            />
         }
-        {showResults && renderPage()}
-        <HelpModal modalOpen={modalOpen} onClose={handleClose} />
-      </Container>
-    </Box>
+        <Box className={classes.empty}>
+          {showResults && renderPage()}
+        </Box>
+      </Box>
+      <HelpModal modalOpen={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 };
 

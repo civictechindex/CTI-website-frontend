@@ -94,6 +94,7 @@ const themeMerge = (outerTheme) => {
 const useStyles = makeStyles((theme) => ({
   backArrow: {
     fontSize: '2rem',
+    marginBottom: theme.spacing(6),
     '&:hover': {
       cursor: 'pointer',
     },
@@ -128,8 +129,10 @@ const useStyles = makeStyles((theme) => ({
   dropdownList: {
     marginBottom: theme.spacing(2),
   },
-  filterPage: {
+  filterSection: {
     backgroundColor: theme.palette.background.secondary,
+    minHeight: '32rem',
+    padding: theme.spacing(3),
   },
   header: {
     marginBottom: theme.spacing(2),
@@ -340,7 +343,7 @@ const FilterSelector = (props) => {
   }
   return (
     <ThemeProvider theme={themeMerge}>
-      <Box className={classes.filterPage}>
+      <Box className={classes.filterSection}>
         <ChevronLeftIcon className={classes.backArrow} onClick={() => {props.onFilterClose(true)}} />
         <Grid container>
           <Grid item xs={false} sm={2} />
