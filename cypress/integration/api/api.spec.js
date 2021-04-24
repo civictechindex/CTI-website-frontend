@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
 
-const REACT_APP_API_URL = 'https://test-civictechindexadmin.herokuapp.com'
 const TEST_EMAIL = 'me@example.com'
+
 
 describe('CTI API', () => {
   beforeEach(() => {
@@ -9,11 +9,12 @@ describe('CTI API', () => {
   })
 
   before(() => {
-    cy.log(`${REACT_APP_API_URL}`)
+    cy.log(`${Cypress.env('URL')}`)
   })
 
   it('gets all contributors', () => {
-    cy.request(`${REACT_APP_API_URL}/api/organizations/`)
+
+    cy.request(`${Cypress.env('URL')}/api/organizations/`)
       .its('body')
       .should('have.length', 264)
       .its('0')
@@ -30,7 +31,7 @@ describe('CTI API', () => {
   it('fails to subscribe existing email', () => {
     cy.request({
       method: 'POST',
-      url: `${REACT_APP_API_URL}/api/subscribe/`,
+      url: `${Cypress.env('URL')}/api/subscribe/`,
       failOnStatusCode: false,
       body: {
         email_address: TEST_EMAIL,

@@ -69,7 +69,7 @@ const Landing = () => {
     event.preventDefault();
     /* TODO: This needs to be passed via build arguments */
     axios
-      .post('https://test-civictechindexadmin.herokuapp.com/api/subscribe/', {
+      .post(`${process.env.REACT_APP_API_URL}/api/subscribe/`, {
         email_address: inputFieldValue,
         notification_type: 'string',
       })
