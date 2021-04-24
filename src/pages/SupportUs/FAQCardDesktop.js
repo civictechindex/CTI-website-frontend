@@ -13,7 +13,7 @@ const FAQCardDeskTp = (props) => {
   const classes = useStyles();
   return (
     <>
-      {items.map((i, idx) => {
+      {items.map((i) => {
         let card;
         if (i.title === 'img-4') {
           card = <div>

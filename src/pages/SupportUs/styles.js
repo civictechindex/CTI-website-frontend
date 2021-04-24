@@ -1,18 +1,12 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
-
-  largeButton: {
-    button: theme.overrides.MuiButton,
-    color: theme.palette.primary.main,
-    backgroundColor: theme.palette.background.default,
-  },
   innerTextCardContainer: {
     height: '448px',
     width: '608px',
   },
   faqCardHeading: {
-    color: theme.palette.secondary.dark,
+    color: '#004364',
     position: 'absolute',
     top: '94px',
     right: '330px',
@@ -20,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     lineHeight:'48px',
   },
   faqPHeading: {
-    color: theme.palette.primary.main,
+    color: '#0F1D2F',
     position: 'absolute',
     top: '159px',
     right: '164px',
@@ -45,10 +39,8 @@ const useStyles = makeStyles(theme => ({
   },
   faqButton: {
     position: 'absolute',
-    border: '2px solid black',
-    backgroundColor: 'white',
-    borderColor: '#0F1D2F',
-    color: 'black',
+    color: 'white',
+    backgroundColor: '#0D99C6',
     margin: '0 auto',
     padding: '16px',
     top: '312px',
@@ -61,8 +53,6 @@ const useStyles = makeStyles(theme => ({
     height: '382px',
     width: '544px',
     left: '608px',
-
-
   },
   imgCardLeft: {
     maxWidth: 1280,
@@ -87,7 +77,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '10px',
     maxWidth: 1280,
   },
-  cardHeading: { // does this happen outside of vol card?
+  cardHeading: {
+    color: '#004364',
     position: 'absolute',
     top: '94px',
     left: '69px',
@@ -95,6 +86,7 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '48px',
   },
   cardParaHeading:{
+    color: '#0F1D2F',
     position: 'absolute',
     left: '69px',
     top: '159px',
@@ -108,7 +100,6 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     left: '69px',
     top: '220px',
-
   },
   dtpLine3: {
     position: 'absolute',
@@ -117,10 +108,8 @@ const useStyles = makeStyles(theme => ({
   },
   volButton: {
     position: 'absolute',
-    border: '2px solid black',
-    backgroundColor: 'white',
-    borderColor: '#0F1D2F',
-    color: 'black',
+    color: 'white',
+    backgroundColor: '#0D99C6',
     margin: '0 auto',
     padding: '16px',
     width: '225px',
@@ -128,7 +117,7 @@ const useStyles = makeStyles(theme => ({
     left: '60px',
   },
   shareCardHeading: {
-    color: theme.palette.secondary.dark,
+    color: '#004364',
     position: 'absolute',
     top: '94px',
     right: '300px',
@@ -136,6 +125,7 @@ const useStyles = makeStyles(theme => ({
     lineHeight:'48px',
   },
   shareCardPHeading: {
+    color: '#0F1D2F',
     position: 'absolute',
     top: '159px',
     right: '250px',
@@ -152,10 +142,8 @@ const useStyles = makeStyles(theme => ({
   },
   buttonRight: {
     position: 'absolute',
-    border: '2px solid black',
-    backgroundColor: 'white',
-    borderColor: '#0F1D2F',
-    color: 'black',
+    color: 'white',
+    backgroundColor: '#0D99C6',
     margin: '0 auto',
     padding: '16px',
     top: '268px',
@@ -169,15 +157,65 @@ const useStyles = makeStyles(theme => ({
   },
   donateButton: {
     position: 'absolute',
-    border: '2px solid black',
-    backgroundColor: 'white',
-    borderColor: '#0F1D2F',
-    color: 'black',
+    color: 'white',
+    backgroundColor: '#0D99C6',
     margin: '0 auto',
     padding: '16px',
     top: '330px',
     left: '69px',
     width: '225px',
   },
+  innerCardMobile: {
+    maxWidth: 328,
+    padding: '0px',
+    marginBottom: '5px',
+  },
+  innerTextCardContainerMobile: {
+    margin: 'auto',
+    marginBottom: '20px',
+  },
+  cardMediaMobile: {
+    height: 192,
+    width: '328px',
+  },
+  mobileImg: {
+    width: '328px',
+    height: '192px',
+  },
+  mobileCardHeading: {
+    color: '#004364',
+    position: 'absolute',
+    left: '16px',
+    top: '203px',
+    fontSize: '28px',
+    lineHeight: '38px',
+  },
+  mobileParaHeading: {
+    color: '#0F1D2F',
+    marginTop: '50px',
+    textAlign: 'left',
+    marginLeft: '16px',
+    marginRight: '16px',
+  },
+  mobileParaText: {
+    textAlign: 'left',
+    marginLeft: '16px',
+    marginRight: '0px',
+    size: '20px',
+    lineHeight: '21px',
+    marginTop: '5px',
+    marginBottom: '8px',
+  },
+  mobileCardActions: {
+    marginBottom: '20px',
+  },
+  mobileButton: {
+    color: 'white',
+    backgroundColor: '#0D99C6',
+    width: '225px',
+    margin: '0 auto',
+    padding: '16px',
+  },
+
 }))
 export default useStyles
