@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -359,12 +360,12 @@ const Projects = () => {
               onSearchInput={setQuery}
               onSearchKeyPress={handleSubmit}
               searchQuery={query}
-              showLink={showResults}
+              showDefault={!showResults}
             />
         }
-        <Box className={classes.empty}>
+        <Container>
           {showResults && renderPage()}
-        </Box>
+        </Container>
       </Box>
       <HelpModal modalOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>

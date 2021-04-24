@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '20rem',
   },
+  containerDefault: {
+    minHeight: '30rem',
+  },
   link: {
     color: theme.palette.text.secondary,
     '&:hover': {
@@ -31,12 +34,12 @@ const HeaderSection = ({
   onSearchInput,
   onSearchKeyPress,
   searchQuery,
-  showLink,
+  showDefault,
 }) => {
   const classes = useStyles();
   return (
     <Box className='boxBackground'>
-      <Container className={classes.container}>
+      <Container className={showDefault ? classes.containerDefault : classes.container}>
         <NavBreadcrumbs crumbs={breadCrumbLinks} color='primary' />
         <TitleSection>Search Projects</TitleSection>
         <Grid container justify='center'>
@@ -51,7 +54,7 @@ const HeaderSection = ({
             />
           </Grid>
           <Grid item xs={false} sm={1} />
-          {showLink &&
+          {!showDefault &&
             <Typography variant='body2' className={classes.link} onClick={onLinkClick}>
               <u>How to improve your search result</u>
             </Typography>
