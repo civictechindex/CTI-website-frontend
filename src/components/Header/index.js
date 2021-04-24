@@ -53,7 +53,7 @@ const Header = () => {
           <NavSublink heading="Affiliated" route="/contributors/affiliated" />
         </NavLink>
         <div className={classes.searchContainer}>
-          <NavButton href="/projects" variant="blue">
+          <NavButton href="/projects" color="primary">
             Search Projects
           </NavButton>
         </div>
