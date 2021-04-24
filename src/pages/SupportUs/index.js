@@ -2,12 +2,12 @@ import React from 'react'
 import { Container } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
+import PhotoCardDesktop from './PhotoCardDesktop';
+import PhotoCardMobile from './PhotoCardMobile';
 import {
   GetStartedCard,
   NavBreadcrumbs,
   TitleSection,
-  PhotoCardMobile,
-  PhotoCardDeskTp,
 } from '../../components';
 
 const SupportUs = () => {
@@ -70,7 +70,7 @@ const SupportUs = () => {
                 Your Help Goes a Long Way
       </TitleSection>
       <Hidden mdDown>
-        <PhotoCardDeskTp items={Images} />
+        <PhotoCardDesktop items={Images} />
       </Hidden>
       <Hidden lgUp>
         <PhotoCardMobile items={Images} />
