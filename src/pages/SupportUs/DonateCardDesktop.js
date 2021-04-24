@@ -1,70 +1,51 @@
 import React from 'react';
 import { Grid } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import './styles.css'
+import useStyles from './styles.js';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 1280,
-  },
-  cardHeading: {
-    color: theme.palette.secondary.dark,
-  },
-  cardParagraphHeading: {
-    color: theme.palette.primary.main,
-  },
-  largeButton: {
-    button: theme.overrides.MuiButton,
-    color: theme.palette.primary.main,
-    backgroundColor: theme.palette.background.default,
-  },
-})
-);
 const DonateCardDeskTp = (props) => {
   const items = props.items;
   const classes = useStyles();
   return (
     <>
-      {items.map((i, idx) => {
+      {items.map((i) => {
         let card;
         if (i.title === 'img-1') {
           card = <div>
             <Grid item>
-              <Paper elevation={0} id='innerTextCardContainer'>
-                <Typography className={classes.cardHeading} id='cardHeading' gutterBottom variant='h4'>
+              <Paper elevation={0} className={classes.innerTextCardContainer}>
+                <Typography className={classes.cardHeading} gutterBottom variant='h4'>
                   {i.heading}
                 </Typography>
-                <Typography variant="h6" className={classes.cardParagraphHeading} id='pHeading'>
+                <Typography variant="h6" className={classes.cardParaHeading}>
                   {i.subHeading}
                 </Typography>
                 <br></br>
-                <Typography id='dtpLine1'>
+                <Typography className={classes.dtpLine1}>
                   {i.dsktpTxtLn1}
                 </Typography>
-                <Typography id='dtpLine2'>
+                <Typography className={classes.dtpLine2}>
                   {i.dsktpTxtLn2}
                 </Typography>
-                <Typography id='dtpLine3'>
+                <Typography className={classes.dtpLine3}>
                   {i.dsktpTxtLn3}
                 </Typography>
-                <Typography variant="h6" id='footerTxt'>
+                <Typography variant="h6" className={classes.footerTxt}>
                   {i.footerText}
                 </Typography>
-                <Button href="/donate" id='button'>
+                <Button href="/donate" className={classes.donateButton}>
                   {i.buttonText}
                 </Button>
               </Paper>
             </Grid>
             <Grid item >
-              <Card className={classes.root} id='imgCard'>
+              <Card className={classes.imgCard}>
                 <CardMedia
-                  id='cardMedia'
-                  className={classes.media}
+                  className={classes.cardMedia}
                   image={i.src}
                 />
               </Card>
@@ -72,8 +53,8 @@ const DonateCardDeskTp = (props) => {
           </div>
         }
         return (
-          <Grid container id='gridCont' align='center' key='#' >
-            <Card className={classes.root} id='outerCard'>
+          <Grid container className={classes.gridCont} align='center' key='#' >
+            <Card className={classes.outerCard}>
               {card}
             </Card>
           </Grid>
