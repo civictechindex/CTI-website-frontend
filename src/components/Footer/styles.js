@@ -2,10 +2,18 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 
 const useStyles = makeStyles(theme => ({
   containerFooter: {
-    backgroundColor: theme.palette.grey[900],
+    backgroundColor: '#0F1D2F',
+    border: 'none',
+  },
+  containerItem: {
+    padding: '0px 30px',
+  },
+  footerPadding: {
+    padding: '40px 5px 65px 5px',
   },
   dropdownHeader: {
     alignItems: 'center',
+    padding: '0px 30px',
     color: theme.palette.text.secondary,
     display: 'flex',
     justifyContent: 'space-between',
@@ -17,8 +25,11 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.error.main,
   },
   footerContainer: {
-    paddingBottom: theme.spacing(6),
-    paddingTop: theme.spacing(6),
+    position: "relative",
+    display: "flex",
+    height: "100%",
+    justifyContent: "space-around",
+    alignItems: "top",
     // info header links
     '& a:nth-child(1)': {
       fontWeight: 700,
@@ -32,7 +43,7 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
     },
   },
-  noteContainer: {
+  annotation: {
     marginTop: theme.spacing(6),
     textAlign: 'center',
     '& a': {
@@ -57,15 +68,18 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(3),
     },
   },
-  subHeader: {
-    marginBottom: theme.spacing(2),
+  subHeaderNewsletter: {
+    margin: '16px 0px 0px 0px',
+  },
+  subHeaderNews: {
+    margin: '0px 40px 0px 0px',
+  },
+  subHeaderEmail: {
+    margin: '16px 0px 0px 0px',
   },
   subSection: {
     display: 'flex',
-    marginBottom: theme.spacing(1),
-    '& button': {
-      marginLeft: theme.spacing(1),
-    }
+    justify: "flex-end",
   },
   successMessage: {
     textAlign: 'center',
@@ -73,8 +87,8 @@ const useStyles = makeStyles(theme => ({
   textField: {
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
-    marginBottom: theme.spacing(2),
+    margin: '0px 8px 5px 0px',
   },
-}))
+}));
 
-export default useStyles
+export default useStyles;
