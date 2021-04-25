@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/core';
 
+
 const defaultBackgroundColor = 'transparent'; // see https://developer.mozilla.org/en-US/docs/Web/CSS/background-color - 'transparent' is initial value
 const defaultButtonHref = 'mailto:civictechindex@hackforla.org';
 const defaultButtonText = 'Contact Us';
