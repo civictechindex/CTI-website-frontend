@@ -6,8 +6,9 @@ const SocialSection = ({ size }) => {
   const classes = useStyles()
 
   return (
+    <div className={classes.containerItem}>
     <Grid container direction='column' spacing={size !== 'lg' && 4} className={size === 'lg' && classes.socialContainerLarge}>
-      <Grid item xs={12}><a href='/'>Follow Us</a></Grid>
+      <Grid item xs={12}><a href='/' style={{ whiteSpace: 'nowrap' }}>Follow Us</a></Grid>
       <Grid item xs={12} className={size !== 'lg' && classes.socialContainer}>
         <a href='https://www.instagram.com/civictechindex'>
           <img src='/images/insta-logo.svg' alt='Instagram logo' />
@@ -23,6 +24,7 @@ const SocialSection = ({ size }) => {
         </a>
       </Grid>
     </Grid>
+    </div>
   )
 };
 
