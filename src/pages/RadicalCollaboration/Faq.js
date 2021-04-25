@@ -31,7 +31,7 @@ const Faq = () => {
   const [status, setStatus] = useState('fetchedFaq');
   const [totalCount, setTotalCount] = useState(0);
   const classes = useStyles();
-  const apiUrl = 'http://test-civictechindexadmin.herokuapp.com/api/faqs/';
+  const apiUrl = `${process.env.REACT_APP_API_URL}/api/faqs/`;
 
   const theme = useTheme();
   const largeScreen = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });

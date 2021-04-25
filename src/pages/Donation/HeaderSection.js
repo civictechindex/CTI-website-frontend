@@ -8,16 +8,15 @@ import { TitleSection } from '../../components'
 
 const breadCrumbLinks = [
   { href: '/home', name: 'Home' },
-  { href: '/donate#root', name: 'Radical Collaboration' },
+  { href: '/radicalcollaboration/faq', name: 'Radical Collaboration' },
   { href: '/donate', name: 'Make a Donation' },
 ];
-
 
 export const HeaderSection = () => {
   return (
     <Box className='boxBackground'>
       <Container style={{ paddingBottom: '40px' }}>
-        <NavBreadcrumbs crumbs={breadCrumbLinks} color="secondary" />
+        <NavBreadcrumbs crumbs={breadCrumbLinks} />
         <Grid container>
           <TitleSection>Make a Donation</TitleSection>
         </Grid>
