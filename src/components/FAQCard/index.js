@@ -6,6 +6,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import AccordionSection from './accordionSection';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   message: {
@@ -33,35 +34,37 @@ const FAQCard = (props) => {
 
   return (
     <Box className="containerGray" py={4} px={1}>
-      <Grid container justify="center">
-        <Grid item xs={12} sm={9} lg={11} className={classes.titleContainer}>
-          <Typography variant="h6" className={classes.title}>{props.title}</Typography>
+      <Container>
+        <Grid container justify="center">
+          <Grid item xs={12} sm={9} lg={11} className={classes.titleContainer}>
+            <Typography variant="h6" className={classes.title}>{props.title}</Typography>
+          </Grid>
+          {
+            props.faqs.length > 0 ? (
+              <>
+                <AccordionSection faqs={props.faqs}/>
+                <Grid item xs={12}>
+                  <Box my={3} display="flex" justifyContent="center">
+                    <Pagination
+                      color="secondary"
+                      count={props.pages}
+                      defaultPage={1}
+                      disabled={props.pages <= 1}
+                      onChange={props.onPageChange}
+                      page={props.currentPageNum}
+                    />
+                  </Box>
+                </Grid>
+              </>
+            ) : (
+              <Typography variant='body1' className={classes.message}>
+                <SearchRoundedIcon className={classes.messageIcon}/>
+                <i>Sorry, no results found.</i>
+              </Typography>
+            )
+          }
         </Grid>
-        {
-          props.faqs.length > 0 ? (
-            <>
-              <AccordionSection faqs={props.faqs}/>
-              <Grid item xs={12}>
-                <Box my={3} display="flex" justifyContent="center">
-                  <Pagination
-                    color="secondary"
-                    count={props.pages}
-                    defaultPage={1}
-                    disabled={props.pages <= 1}
-                    onChange={props.onPageChange}
-                    page={props.currentPageNum}
-                  />
-                </Box>
-              </Grid>
-            </>
-          ) : (
-            <Typography variant='body1' className={classes.message}>
-              <SearchRoundedIcon className={classes.messageIcon}/>
-              <i>Sorry, no results found.</i>
-            </Typography>
-          )
-        }
-      </Grid>
+      </Container>
     </Box>
   );
 };
