@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -37,13 +36,13 @@ const SubscribeSection = ({ size }) => {
     case 'duplicate':
       return (
         <Typography variant='body2' className={classes.errorMessage}>
-            That email address has already been registered with us.
+          That email address has already been registered with us.
         </Typography>
       );
     case 'error':
       return (
         <Typography variant='body2' className={classes.errorMessage}>
-            The email address you have submitted was invalid.
+          The email address you have submitted was invalid.
           <br />
           Please check the format and resubmit.
         </Typography>
@@ -51,7 +50,7 @@ const SubscribeSection = ({ size }) => {
     case 'success':
       return (
         <Typography variant='h5' color='textSecondary' className={classes.successMessage}>
-            Thanks for subscribing!
+          Thanks for subscribing!
           <br />
           We will be in touch soon.
         </Typography>
@@ -63,32 +62,36 @@ const SubscribeSection = ({ size }) => {
 
   return (
     message === 'success' ? (
-      <Grid item xs={12}>
+      <div>
         {messageSwitch(message)}
-      </Grid>
+      </div>
     ) : (
       <>
-        <Grid item sm={12} md={size === 'lg' ? 12 : 5}>
-          <Typography variant='body2' color='textSecondary' className={classes.subHeader}>Newsletter</Typography>
-          <Typography variant='body1' color='textSecondary'>
+      <Grid container className={classes.containerItem}>
+        <Grid item sm={size === 'lg' ? 12 : 6}>
+          <Typography variant='body2' color='textSecondary' className={size !== 'lg' && classes.subHeaderNewsletter}>Newsletter</Typography>
+          <Typography variant='body1' color='textSecondary' className={size !== 'lg' && classes.subHeaderNews}>
             To receive updates about new projects and trending topics on the index, subscribe here.
           </Typography>
         </Grid>
         <br />
-        <Grid item sm={12} md={size === 'lg' ? 12 : 5}>
+        <Grid container item sm={size === 'lg' ? 12 : 6}>
           <form onSubmit={submitEmail}>
-            <Typography variant='body2' color='textSecondary' className={classes.subHeader}>E-mail</Typography>
-            <Box className={size !== 'lg' && classes.subSection}>
-              <TextField
-                className={classes.textField}
-                onInput={(e) => setInputValue(e.target.value)}
-                placeholder='John.doe@domain.com'
-                variant='outlined'
-              />
+            <Typography variant='body2' color='textSecondary' className={size !== 'lg' && classes.subHeaderEmail}>E-mail</Typography>
+            <Grid item xs={12} className={size !== 'lg' && classes.subSection}>
+              <Grid item className={classes.textField}>
+                <TextField
+                  onInput={(e) => setInputValue(e.target.value)}
+                  placeholder='name@domain.com'
+                  type='email'
+                  variant='outlined'
+                />
+              </Grid>
               <Button color='primary' onClick={submitEmail}>Submit</Button>
-            </Box>
+            </Grid>
           </form>
           {messageSwitch(message)}
+        </Grid>
         </Grid>
       </>
     )
