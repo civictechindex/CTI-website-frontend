@@ -30,10 +30,10 @@ const NavLink = ({ header, route, children, classes }) => {
         {...bindHover(popupState)}
         underline="none"
         component={NaviLink}
-        to={route}
-        exact
+        to={route} exact
         activeStyle={{
-          color: "#0F1D2F",
+          // color: "#0F1D2F",
+          color: "red",
           fontWeight: "bold",
         }}
         classes={{ root: classes.link }}
@@ -55,6 +55,11 @@ const NavLink = ({ header, route, children, classes }) => {
           classes={{ paper: classes.paper, list: classes.menu }}
           PopoverClasses={{ paper: classes.popover }}
           elevation={0}
+          activeStyle={{
+            // color: "#0F1D2F",
+            color: "blue",
+            fontWeight: "bold",
+          }}
         >
           <div>{children}</div>
         </Menu>
