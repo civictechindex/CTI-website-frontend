@@ -8,7 +8,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import ExpandLess from '@material-ui/icons/ExpandLessRounded';
@@ -108,8 +107,6 @@ const SearchField = (props) => {
   );
 };
 
-
-
 const ProgrammingLanguages = (props) => {
   const [open, setOpen] = useState(true);
   const handleClick = () => {
@@ -147,11 +144,14 @@ const ProgrammingLanguages = (props) => {
             <FormControlLabel control={<Checkbox />} label='TypeScript' />
           </ListItem>
           <ListItem>
-            <Typography variant='body2'>
-              <Link onClick={viewMore}>
-                View More Languages
-              </Link>
-            </Typography>
+            <Link
+              component='button'
+              data-cy='view-more-languages'
+              onClick={viewMore}
+              variant='body2'
+            >
+              View More Languages
+            </Link>
           </ListItem>
         </List>
       </Collapse>
@@ -209,9 +209,14 @@ const Affiliation = (props) => {
             <FormControlLabel control={<Checkbox />} label='Yale Openlab' />
           </ListItem>
           <ListItem>
-            <Typography variant='body2'>
-              <Link onClick={viewMore}>View More Affiliations</Link>
-            </Typography>
+            <Link
+              component='button'
+              data-cy='view-more-affiliations'
+              onClick={viewMore}
+              variant='body2'
+            >
+              View More Affiliations
+            </Link>
           </ListItem>
         </List>
       </Collapse>

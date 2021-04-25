@@ -1,28 +1,37 @@
 describe('Projects Page (Search Projects)', () => {
-  const SEARCH = 'civic'
+  const SEARCH = 'civic';
   const RESULTS = [
     'civictechindex/CTI-website-frontend',
     'civictechindex/CTI-website-backend',
     'hackforla/civic-opportunity',
     'hackforla/civic-tech-structure',
     'civictechindex/civictechindex-launch',
-  ]
+  ];
 
-  before(() => {
-    cy.visit('/projects')
-  })
+  beforeEach(() => {
+    cy.visit('/projects');
+  });
 
   it('loads', () => {
-    cy.get('h1')
-      .contains('Search Projects')
-  })
+    cy.get('h1').contains('Search Projects');
+  });
+
+  it('loads search tips', () => {
+    cy.get('u').click();
+    cy.get('[data-cy=search-tips').within(() => {
+      cy.get('p').first().contains('Need more search results?');
+      cy.get('a').last().click();
+      cy.url().should('include', '/tag-generator');
+    });
+  });
 
   it('loads search results', () => {
-    cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}')
+    cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
     cy.get('[data-cy=project-card] [data-cy=project-url]').each(($el, index, $list) => {
-      const innerText = $el.text()
-      expect(RESULTS.indexOf(innerText)).to.be.at.least(0)
-      expect(RESULTS.indexOf(innerText)).to.be.lessThan(RESULTS.length)
-    })
-  })
-})
+      const innerText = $el.text();
+      expect(RESULTS.indexOf(innerText)).to.be.at.least(0);
+      expect(RESULTS.indexOf(innerText)).to.be.lessThan(RESULTS.length);
+    });
+    cy.get('[data-cy=view-more-languages').click();
+  });
+});

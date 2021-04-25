@@ -69,13 +69,25 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
   }
   return (
     <>
-      <AffiliationQuestionSection value={addTagValue} handleChange={handleChangeTag} question={"Do you want to add more tags specific to your project's subject area to increase visibility?"} />
-      <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={showAddTopicTag} id='generateButton'>Generate Tags</Button></Grid>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
+      <AffiliationQuestionSection
+        value={addTagValue}
+        handleChange={handleChangeTag}
+        question={"Do you want to add more tags specific to your project's subject area to increase visibility?"}
+      />
+      <Grid container direction='row' justify='center' alignItems='center' spacing={3} style={{ padding: '10px' }}>
+        <Grid item style={{ padding: '10px' }}>
+          <Button onClick={showAddTopicTag} id='generate-button'>
+            Generate Tags
+          </Button>
+        </Grid>
+        <Grid item style={{ padding: '10px' }}>
+          <Button onClick={handleResetForm} id='reset-form-button'>
+            Reset Form
+          </Button>
+        </Grid>
       </Grid>
     </>
-  )
+  );
 }
 
 export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,handleChangeChip }) =>{
@@ -121,26 +133,36 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
   return (
     <>
       <Grid>
-        <Grid style={{ padding:'20px' }}>
+        <Grid style={{ padding: '20px' }}>
           <Typography variant='body1'>New tags to add to your repository:</Typography>
         </Grid>
-        <Grid container direction="row">
-          <Grid item md={8} data-cy='new-tags' style={{ padding:'30px' }}>
-            <Grid container direction="row">
+        <Grid container direction='row'>
+          <Grid item md={8} data-cy='new-tags' style={{ padding: '30px' }}>
+            <Grid container direction='row'>
               <TopicTag topicNames={tagsToAdd} variant='generated' />
             </Grid>
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
+            <Typography variant='body1'>
+              <Link onClick={() => setDisplayState('AddMoreTags')}>Add More tags</Link>
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
-      <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleAddTags}>Add these tags to your repo</Button></Grid>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
+      <Grid container direction='row' justify='center' alignItems='center' spacing={3} style={{ padding: '10px' }}>
+        <Grid item style={{ padding: '10px' }}>
+          <Button onClick={handleAddTags} id='add-tags-button'>
+            Add these tags to your repo
+          </Button>
+        </Grid>
+        <Grid item style={{ padding: '10px' }}>
+          <Button onClick={handleResetForm} id='reset-form-button'>
+            Reset Form
+          </Button>
+        </Grid>
       </Grid>
     </>
-  )
+  );
 }
 
 export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl }) =>{

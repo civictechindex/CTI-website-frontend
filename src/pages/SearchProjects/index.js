@@ -165,8 +165,13 @@ const Projects = () => {
             </Grid>
           </Grid>
         )}
-        <Modal aria-labelledby='search-tips-title' className={classes.modal} open={modalOpen} onBackdropClick={handleClose}>
-          <Box className={classes.searchTips}>
+        <Modal
+          aria-labelledby='search-tips-title'
+          className={classes.modal}
+          open={modalOpen}
+          onBackdropClick={handleClose}
+        >
+          <Box className={classes.searchTips} data-cy='search-tips'>
             <Typography variant='h4' id='search-tips-title'>
               Search Tips
               <CloseIcon onClick={handleClose} />
