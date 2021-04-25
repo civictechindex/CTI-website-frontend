@@ -61,7 +61,7 @@ export default function SearchBar(props) {
       onInput={props.onInput}
       onKeyPress={props.onKeyPress}
       placeholder={props.placeholder}
-      value={props.query}
+      value={props.value}
       variant='outlined'
     />
   );
