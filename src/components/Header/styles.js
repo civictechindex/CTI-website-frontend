@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     alignItems: "center",
     marginLeft: "240px",
+    "& $a": {
+      padding: "0 0 0 1rem",
+    },
     "& $button": {
       height: "48px",
       width: "173px",

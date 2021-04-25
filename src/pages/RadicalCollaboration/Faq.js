@@ -31,7 +31,7 @@ const Faq = () => {
   const [status, setStatus] = useState('fetchedFaq');
   const [totalCount, setTotalCount] = useState(0);
   const classes = useStyles();
-  const apiUrl = 'http://test-civictechindexadmin.herokuapp.com/api/faqs/';
+  const apiUrl = `${process.env.REACT_APP_API_URL}/api/faqs/`;
 
   const theme = useTheme();
   const largeScreen = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });
@@ -83,15 +83,15 @@ const Faq = () => {
             />
           </Grid>
         </Grid>
-        <FAQCard
-          title={status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
-          faqs={data}
-          pages={Math.ceil(totalCount / (largeScreen ? 10 : 5))}
-          currentPageNum={pageNum}
-          onPageChange={handlePageNumChange}
-        />
-        <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
       </Container>
+      <FAQCard
+        title={status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
+        faqs={data}
+        pages={Math.ceil(totalCount / (largeScreen ? 10 : 5))}
+        currentPageNum={pageNum}
+        onPageChange={handlePageNumChange}
+      />
+      <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
     </Box>
   );
 }
