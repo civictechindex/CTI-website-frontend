@@ -30,8 +30,7 @@ const NavLink = ({ header, route, children, classes }) => {
         {...bindHover(popupState)}
         underline="none"
         component={NaviLink}
-        to={route}
-        exact
+        to={route} exact
         activeStyle={{
           color: "#0F1D2F",
           fontWeight: "bold",

@@ -32,6 +32,4 @@ const Header = () => {
   return headerSize ? <HeaderLarge links={links} /> : <HeaderSmall links={links} />;
 };
 
-
-
 export default Header;
