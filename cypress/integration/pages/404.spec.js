@@ -4,15 +4,11 @@ describe('Error 404 Page', () => {
   })
 
   it('header loads on invalid page URL', () => {
-    cy.contains('Join the Index')
+    cy.contains('Search Projects')
   })
 
   it('footer loads on invalid page URL', () => {
-<<<<<<< HEAD
-    cy.contains('The Civic Tech Index is an open-source project.')
-=======
-    cy.contains('The Civic Tech Index is an open-source project, read more on our')
->>>>>>> 05e6005ed4ac28b90fa745b8b949cb02e4bdf10e
+    cy.contains('Newsletter')
   })
 
   it('title section loads on invalid page URL', () => {
