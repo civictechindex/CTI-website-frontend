@@ -68,14 +68,14 @@ const SubscribeSection = ({ size }) => {
     ) : (
       <>
       <Grid container className={classes.containerItem}>
-        <Grid item sm={12} sm={size === 'lg' ? 12 : 5}>
+        <Grid item sm={size === 'lg' ? 12 : 6}>
           <Typography variant='body2' color='textSecondary' className={size !== 'lg' && classes.subHeaderNewsletter}>Newsletter</Typography>
           <Typography variant='body1' color='textSecondary' className={size !== 'lg' && classes.subHeaderNews}>
             To receive updates about new projects and trending topics on the index, subscribe here.
           </Typography>
         </Grid>
         <br />
-        <Grid container item sm={12} sm={size === 'lg' ? 12 : 5}>
+        <Grid container item sm={size === 'lg' ? 12 : 6}>
           <form onSubmit={submitEmail}>
             <Typography variant='body2' color='textSecondary' className={size !== 'lg' && classes.subHeaderEmail}>E-mail</Typography>
             <Grid item xs={12} className={size !== 'lg' && classes.subSection}>
