@@ -58,6 +58,7 @@ const Faq = () => {
 
   useEffect(() => {
     getFAQData(query, false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNum, largeScreen]);
 
   const handleInput = (event) => {
