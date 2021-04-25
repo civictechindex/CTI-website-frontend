@@ -9,6 +9,7 @@ import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organization'
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
 import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
+import useTheme from '@material-ui/core/styles/useTheme';
 
 
 
@@ -41,6 +42,7 @@ const usePrevious =(refValue) => {
 
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
+  const theme = useTheme();
   const [displayState, setDisplayState] = useState("");
   const [value, setValue] = useState('');
   const [orgName, setOrgName] = useState('');
@@ -151,7 +153,7 @@ const TagCreator = () => {
 
   const linkStyles = {
     fontWeight: '400',
-    color: '#0D99C6',
+    color: theme.palette.secondary.main,
   }
   const OrgProjSection = () => {
     return (
