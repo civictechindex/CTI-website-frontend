@@ -83,6 +83,7 @@ const SubscribeSection = ({ size }) => {
                 <TextField
                   onInput={(e) => setInputValue(e.target.value)}
                   placeholder='name@domain.com'
+                  type='email'
                   variant='outlined'
                 />
               </Grid>
