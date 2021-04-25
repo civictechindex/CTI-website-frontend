@@ -3,8 +3,5 @@
   "defaultCommandTimeout": 20000,
   "env": {
     "REACT_APP_API_URL": "https://test-civictechindexadmin.herokuapp.com"
-  },
-  "ignoreTestFiles": [
-    "contributors.spec.js"
-  ]
+  }
 }

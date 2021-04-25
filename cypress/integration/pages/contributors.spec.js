@@ -18,17 +18,21 @@ describe('Contributors Page', () => {
     })
   })
 
-  it('load thumbnail wrappers (whatever that is)', () => {
-    cy.get('[class*=thumbnailWrapper]').should('have.length', 26)
-  })
+  it('load thumbnail wrappers', () => {
+    cy.get('[class*=thumbnailWrapper]').should('have.length', 27);
+  });
 
-  it('expands Code for America', () => {
-    cy.get('[href*=codeforamerica]').parents('[class*=containerDropdown]').within(() => {
-      cy.get('#dropdownChevron').click()
-    })
-    cy.get('[href*=codeforamerica]').parents('[class*=containerDropdown]').within(() => {
-      cy.contains('Code for Anchorage')
-      cy.get('[class*=makeStyles-thumbnailWrapper]').should('have.length', 86)
-    })
-  })
+  it('expands Code for America, find Code for Anchorage', () => {
+    cy.get('[href*=codeforamerica]')
+      .parents('[class*=containerDropdown]')
+      .within(() => {
+        cy.get('#dropdownChevron').click();
+      });
+    cy.get('[href*=codeforamerica]')
+      .parents('[class*=containerDropdown]')
+      .within(() => {
+        cy.contains('Code for Anchorage');
+        cy.get('[class*=makeStyles-thumbnailWrapper]').should('have.length', 86);
+      });
+  });
 })
