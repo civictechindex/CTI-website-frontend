@@ -17,7 +17,7 @@ const styles = () => ({
     padding: "0",
   },
   paper: {
-    paddingTop: "0.7rem",
+    paddingTop: "1rem",
   },
 });
 
@@ -30,8 +30,7 @@ const NavLink = ({ header, route, children, classes }) => {
         {...bindHover(popupState)}
         underline="none"
         component={NaviLink}
-        to={route}
-        exact
+        to={route} exact
         activeStyle={{
           color: "#0F1D2F",
           fontWeight: "bold",
@@ -46,11 +45,11 @@ const NavLink = ({ header, route, children, classes }) => {
           getContentAnchorEl={null}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "center",
+            horizontal: "left",
           }}
           transformOrigin={{
             vertical: "top",
-            horizontal: "center",
+            horizontal: "left",
           }}
           classes={{ paper: classes.paper, list: classes.menu }}
           PopoverClasses={{ paper: classes.popover }}
