@@ -6,7 +6,7 @@ import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import useStyles from './styles';
 
-const DropdownList = ({ header, links }) => {
+const DropdownList = ({ header, links, route }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -17,12 +17,12 @@ const DropdownList = ({ header, links }) => {
   return (
     <>
       <Box className={classes.dropdownHeader} onClick={toggleList}>
-        <Typography variant='body2' color='textSecondary'>{header}</Typography>
+        <Typography component={Link} to={route} variant='body2' color='textSecondary' style={{ fontWeight:'bold', textDecoration: 'none' }}>{header}</Typography>
         {open ? <ExpandLessRounded color="secondary" /> : <ExpandMoreRounded color="primary" />}
       </Box>
       {open &&
         links.map((link) => {
-          return link.external ? <a href={link.to}>{link.text}</a> : <Link to={link.to}>{link.text}</Link>
+          return link.external ? <a style={{ textDecoration: 'none' }} href={link.to}>{link.text}</a> : <Link style={{ textDecoration: 'none' }} to={link.to}>{link.text}</Link>
         })
       }
     </>
