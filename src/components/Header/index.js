@@ -21,9 +21,10 @@ const Header = () => {
       { text: 'Affiliated', to: '/contributors/affiliated' },
     ],
     collaborate: [
+      { text: 'Collaborate with Us', to: '/support' },
       { text: 'How to Do It', to: '/adding-projects-to-the-index' },
       { text: 'Donate', to: '/donate' },
-      { text: 'Share the CTI', to: '/' },
+      { text: 'Share the CTI', to: '/radicalcollaboration/sharethecti' },
       { text: 'Volunteer with Us', to: 'https://www.hackforla.org/projects/civic-tech-index', external: true },
       { text: 'FAQ', to: '/radicalcollaboration/faq' },
     ],
