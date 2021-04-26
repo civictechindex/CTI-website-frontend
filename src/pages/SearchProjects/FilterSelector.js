@@ -171,11 +171,15 @@ const FilterDropdownLarge = ({
   if (showViewMore) {
     filterList = viewMore ? filterList : filterList.slice(0, 5);
     viewMoreLink = (
-      <Typography variant='body2'>
-        <Link onClick={() => setViewMore(!viewMore)}>
-          View {viewMore ? 'Less' : 'More'} {category}
-        </Link>
-      </Typography>
+      <Link
+        component='button'
+        data-cy={`view-${category}`}
+        onClick={() => setViewMore(!viewMore)}
+        variant='body2'
+      >
+        View {viewMore ? 'Less' : 'More'} {category}
+      </Link>
+
     );
   }
   const filters = filterList.map((filter) => {
