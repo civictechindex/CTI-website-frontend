@@ -19,10 +19,10 @@ const FooterLarge = ({ links }) => {
     <Box className={classes.containerFooter}>
       <Box className={classes.footerPadding}>
         <Container className={classes.footerContainer}>
-          <LinkList links={links.join} header='Join the Index' />
-          <LinkList links={links.about} header='About' />
-          <LinkList links={links.contribute} header='Organization' />
-          <LinkList style={{display:"flex"}} links={links.collaborate} header='Radical Collaboration' />
+          <LinkList links={links.join} header='Join the Index' route="/tag-generator" />
+          <LinkList links={links.about} header='About' route="/about" />
+          <LinkList links={links.contribute} header='Organization' route="/contributors/all" />
+          <LinkList style={{display:"flex"}} links={links.collaborate} header='Radical Collaboration' route="/support" />
           <SocialSection size='lg' />
           <SubscribeSection size='lg'/>
         </Container>
@@ -41,21 +41,21 @@ const FooterSmall = ({ links }) => {
       <Grid container className={classes.footerContainer}>
         <Grid container item spacing={4} xs={12} direction='column'>
           <Grid item xs={12}>
-            <DropdownList links={links.join} header='Join the Index' />
+            <DropdownList links={links.join} header='Join the Index' route="/tag-generator" />
           </Grid>
           <Grid item xs={12}>
-            <DropdownList links={links.about} header='About' />
+            <DropdownList links={links.about} header='About' route="/about" />
           </Grid>
           <Grid item xs={12}>
-            <DropdownList links={links.contribute} header='Organization' />
+            <DropdownList links={links.contribute} header='Organization' route="/contributors/all" />
           </Grid>
           <Grid item xs={12}>
-            <DropdownList links={links.collaborate} header='Radical Collaboration' />
+            <DropdownList links={links.collaborate} header='Radical Collaboration' route="/support" />
           </Grid>
           <Grid item xs={12}>
             <SocialSection size='sm' />
           </Grid>
-          <Grid container item xs={12}>
+          <Grid item xs={12}>
             <SubscribeSection size='sm'/>
           </Grid>
         </Grid>
@@ -84,9 +84,10 @@ const Footer = () => {
       { text: 'Affiliated', to: '/contributors/affiliated' },
     ],
     collaborate: [
+      { text: 'Collaborate with Us', to: '/support' },
       { text: 'How to Do It', to: '/adding-projects-to-the-index' },
       { text: 'Donate', to: '/donate' },
-      { text: 'Share the CTI', to: '/' },
+      { text: 'Share the CTI', to: '/radicalcollaboration/sharethecti' },
       { text: 'Volunteer with Us', to: 'https://www.hackforla.org/projects/civic-tech-index', external: true },
       { text: 'FAQ', to: '/radicalcollaboration/faq' },
     ],
