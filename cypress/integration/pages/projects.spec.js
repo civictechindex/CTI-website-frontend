@@ -39,7 +39,7 @@ describe('Projects Page (Search Projects)', () => {
     cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
     cy.get('[data-cy=view-Languages').click();
     cy.contains('C++');
-    cy.get('[data-cy=view-Affiliations').click();
+    cy.get('[data-cy=view-Affiliations', { timeout: 60000 }).click();
     cy.contains('Code for Baltimore');
   });
 });
