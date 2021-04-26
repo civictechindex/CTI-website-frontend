@@ -20,7 +20,7 @@ const Donation = () => {
       </Box>
       <Box className='containerGray' style={{ paddingBottom: '46px' }}>
         <Grid container direction='row' spacing={2} alignItems="stretch">
-          <Grid spacing={8} xs={12} sm={5} style={{ paddingTop: '14vw', paddingLeft: '11vw', height: '100%' }}>
+          <Grid spacing={8} xs={12} sm={5} style={{ paddingTop: '14vw', paddingLeft: '18vw', height: '100%' }}>
             <Typography variant='body1' className={classes.infoDescription}>
               The Civic Tech Index is being developed by Hack For LA,
               and is currently taking donations through Code For America.
