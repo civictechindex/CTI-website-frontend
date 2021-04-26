@@ -54,15 +54,20 @@ const HeaderSection = ({
             />
           </Grid>
           <Grid item xs={false} sm={1} />
-          {!showDefault &&
-            <Typography variant='body2' className={classes.link} onClick={onLinkClick}>
+          {!showDefault && (
+            <Typography
+              variant='body2'
+              className={classes.link}
+              onClick={onLinkClick}
+              data-cy='how-to-improve-your-search-results'
+            >
               <u>How to improve your search result</u>
             </Typography>
-          }
+          )}
         </Grid>
       </Container>
     </Box>
-  )
+  );
 }
 
 export default HeaderSection;
