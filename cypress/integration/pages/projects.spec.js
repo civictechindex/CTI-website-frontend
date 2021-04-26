@@ -17,7 +17,8 @@ describe('Projects Page (Search Projects)', () => {
   });
 
   it('loads search tips', () => {
-    cy.get('u').click();
+    cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
+    cy.get('[data-cy=how-to-improve-your-search-results]').click();
     cy.get('[data-cy=search-tips').within(() => {
       cy.get('p').first().contains('Need more search results?');
       cy.get('a').last().click();
@@ -32,6 +33,13 @@ describe('Projects Page (Search Projects)', () => {
       expect(RESULTS.indexOf(innerText)).to.be.at.least(0);
       expect(RESULTS.indexOf(innerText)).to.be.lessThan(RESULTS.length);
     });
-    cy.get('[data-cy=view-more-languages').click();
+  });
+
+  it('loads more when you click View More', () => {
+    cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
+    cy.get('[data-cy=view-Languages').click();
+    cy.contains('C++');
+    cy.get('[data-cy=view-Affiliations').click();
+    cy.contains('Code for Baltimore');
   });
 });
