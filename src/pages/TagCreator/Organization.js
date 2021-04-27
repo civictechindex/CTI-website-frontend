@@ -39,7 +39,6 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
     if (!open) {
       setOptions([]);
     }
-
   }, [open]);
 
   return (
