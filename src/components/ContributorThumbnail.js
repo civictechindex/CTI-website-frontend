@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getOrganizationLinks } from "./getOrganizationLinks.js";
 import { useStyle } from "../pages/Contributors/styles";
-import Box from "@material-ui/core/Box";
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import CardMedia from '@material-ui/core/CardMedia';
+import Container from "@material-ui/core/Container";
+import Grid from '@material-ui/core/Grid';
 
 export const ContributorThumbnail = ({ organization }) => {
   const classes = useStyle();
@@ -15,7 +16,7 @@ export const ContributorThumbnail = ({ organization }) => {
   }, [organization]);
 
   return (
-    <Typography className={classes.thumbnailWrapper}>
+    <Container className={classes.thumbnailWrapper}>
       {thumbnailInfo.organizationUrl ? (
         <Link
           href={thumbnailInfo.organizationUrl}
@@ -29,19 +30,19 @@ export const ContributorThumbnail = ({ organization }) => {
               organization={organization}
             />
           ) : (
-            <Typography className={classes.textWrapperWithoutImage}>
-              <Typography className={classes.thumbnailTextWithoutImage}>
+            <Grid className={classes.textWrapperWithoutImage}>
+              <Typography className={classes.thumbnailTextWithoutImage} component="div">
                 {organization.name ? organization.name : organization}
               </Typography>
-            </Typography>
+            </Grid>
           )}
         </Link>
       ) : (
-        <Typography className={classes.textWrapperWithoutImage}>
+        <Grid className={classes.textWrapperWithoutImage}>
             No URL Data for {organization.name}
-        </Typography>
+        </Grid>
       )}
-    </Typography>
+    </Container>
   );
 };
 
@@ -49,7 +50,7 @@ const Thumbnail = ({ thumbnailInfo, organization }) => {
   const classes = useStyle();
   return (
     <>
-      <Box className={classes.imageWrapper}>
+      <Grid className={classes.imageWrapper}>
         <CardMedia
           component="img"
           src={thumbnailInfo.imageUrl}
@@ -62,12 +63,12 @@ const Thumbnail = ({ thumbnailInfo, organization }) => {
           alt={`${organization.name} logo`}
           loading="lazy"
         />
-      </Box>
-      <Box className={classes.textWrapper}>
-        <Box className={classes.thumbnailText}>
+      </Grid>
+      <Grid className={classes.textWrapper}>
+        <Grid className={classes.thumbnailText}>
           {organization.name ? organization.name : organization}
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </>
   );
 };
