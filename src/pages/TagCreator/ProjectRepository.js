@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState }) => {
+export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkStyles }) => {
   return (
     <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
       <Grid item>
@@ -16,7 +16,7 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState }) => {
       </Grid>
       <Grid item>
         <Typography variant='body1'>
-          <Link onClick={()=>setDisplayState('ProjectUrl')}>change</Link>
+          <Link onClick={()=>setDisplayState('ProjectUrl')} underline='always' style={linkStyles} >change</Link>
         </Typography>
       </Grid>
     </Grid>

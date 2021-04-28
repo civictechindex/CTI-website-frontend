@@ -1,30 +1,57 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import TopicTag from '../../TagCreator/TopicTag';
+import Chip from '@material-ui/core/Chip';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles((theme) => ({
+  homeTag: {
+    backgroundColor: theme.palette.background.default,
+    borderRadius: '8px',
+    padding: '0 4px',
+    '&.MuiChip-outlined': {
+      borderColor: theme.palette.outline.gray,
+    },
+    [theme.breakpoints.down('md')]: {
+      height: '36px',
+    },
+    [theme.breakpoints.up('md')]: {
+      height: '42px',
+    },
+  },
+}));
 
 const topicData = [
-  { detail: "Covid-19", link: "#" },
-  { detail: "Trending Topic 1", link: "#" },
-  { detail: "Trending Topic 2", link: "#" },
-  { detail: "Trending Topic 3", link: "#" },
-  { detail: "Trending Topic 4", link: "#" },
-  { detail: "Trending Topic 5", link: "#" },
+  { detail: 'Covid-19', link: '/projects' },
+  { detail: 'food', link: '/projects' },
+  { detail: 'justice', link: '/projects' },
+  { detail: 'Trending Topic 1', link: '/projects' },
+  { detail: 'Trending Topic 2', link: '/projects' },
+  { detail: 'Trending Topic 3', link: '/projects' },
 ];
 
 const TrendingTopicsSection = () => {
   const TrendingTopicList = () => {
     return (
       topicData.map((topic, key) => {
-        return <TrendingTopicChip key={key} href={topic.link}>{topic.detail}</TrendingTopicChip>
+        return (
+          <TrendingTopicChip key={key}>
+            <Link to={{ pathname: topic.link, query: { search: topic.detail }}}>{topic.detail}</Link>
+          </TrendingTopicChip>
+        );
       })
-    )
+    );
   }
 
   const TrendingTopicChip = (props) => {
+    const classes = useStyles();
     return (
       <a href={props.href}>
-        <TopicTag label={props.children} variant='home' />
+        <Chip
+          label={props.children}
+          className = {classes.homeTag}
+        />
       </a>
     );
   }

@@ -4,18 +4,18 @@ describe('Error 404 Page', () => {
   })
 
   it('header loads on invalid page URL', () => {
-    cy.contains('Join the Index')
+    cy.contains('Search Projects')
   })
 
   it('footer loads on invalid page URL', () => {
-    cy.contains('The Civic Tech Index is an open-source project, read more on our')
+    cy.contains('Newsletter')
   })
 
   it('title section loads on invalid page URL', () => {
     cy.contains('404');
-  })
+  });
 
   it('body loads on invalid page URL', () => {
     cy.contains('Oops! The page you are looking for has moved or does not exist.');
-  })
+  });
 })

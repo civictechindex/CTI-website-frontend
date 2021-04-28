@@ -9,6 +9,7 @@ import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organization'
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
 import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
+import useTheme from '@material-ui/core/styles/useTheme';
 
 
 
@@ -41,6 +42,7 @@ const usePrevious =(refValue) => {
 
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
+  const theme = useTheme();
   const [displayState, setDisplayState] = useState("");
   const [value, setValue] = useState('');
   const [orgName, setOrgName] = useState('');
@@ -149,14 +151,15 @@ const TagCreator = () => {
     setUserTags(chipsArr)
   }
 
+  const linkStyles = {
+    fontWeight: '400',
+    color: theme.palette.secondary.main,
+  }
   const OrgProjSection = () => {
     return (
       <>
-        <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
-          setChangeValue={setChangeValue}
-          setOrgName={setOrgName}
-          setOrgTags={setOrgTags}/>
-        <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState}/>
+        <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles}/>
+        <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </>
     )
   }
@@ -165,7 +168,7 @@ const TagCreator = () => {
     return (
       <Grid container id='container-affiliated'>
         <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName}/>
-        <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}/>
+        <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </Grid>
     )
   }
@@ -177,9 +180,7 @@ const TagCreator = () => {
     case "ProjectUrl":
       return (
         <>
-          <OrgNameSection displayState={displayState} setDisplayState={setDisplayState} value={value} orgName={orgName} changeValue={changeValue}
-            setChangeValue={setChangeValue}
-            setOrgName={setOrgName}/>
+          <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles}/>
           <ProjectRepositoryInput
             repositoryUrl={repositoryUrl}
             handleEnter={handleEnter}
@@ -217,7 +218,8 @@ const TagCreator = () => {
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
-            resetForm={resetForm}/>
+            resetForm={resetForm}
+            linkStyles={linkStyles}/>
         </>
       )
     case "AddMoreTags":
@@ -230,7 +232,10 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
-          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState} repositoryName={repositoryName} repositoryUrl={repositoryUrl}/>
+          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState}
+            repositoryName={repositoryName}
+            repositoryUrl={repositoryUrl}
+            linkStyles={linkStyles}/>
         </>
       )
     default:
@@ -248,9 +253,9 @@ const TagCreator = () => {
   }
 
   return (
-    <Box>
+    <Box className='pageContainer'>
       <HeaderSection/>
-      <Box className='containerGray'>
+      <Box className='containerGray' >
         <Container >
           {renderCurrentState()}
         </Container>

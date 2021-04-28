@@ -28,7 +28,7 @@ const useSearchFaq = (url) => {
     const controller = new AbortController()
     if (!url) {
       const fetchFaqs = async function () {
-        const apiUrl = 'http://test-civictechindexadmin.herokuapp.com/api/faqs/';
+        const apiUrl = `${process.env.REACT_APP_API_URL}/api/faqs/`;
         await axios.get(apiUrl).then((repos) => {
           const responseJson = repos.data;
           dispatch({ type: 'FETCHEDFAQ', payload: responseJson });
