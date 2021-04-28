@@ -10,25 +10,25 @@ import Divider from '@material-ui/core/Divider';
 import ChipInput from "material-ui-chip-input";
 
 const useStyles = makeStyles((theme) => ({
-  chipInputRoot: {
-    border: 'borderColor: theme.palette.outline.gray',
-    borderRadius: 24,
-    cursor: 'pointer',
-    height: 48,
-    margin: '0 8px 8px 0',
-  },
-  chipInputInput:{
-    color:'textSecondary',
-  },
-  chip: {
-    backgroundColor: theme.palette.background.default,
+  addTag: {
+    '& .MuiChip-clickable': {
+      backgroundColor: theme.palette.background.default,
+      border: '1px solid',
+      borderColor: theme.palette.outline.gray,
+      borderRadius: '24px',
+      padding: '0 10px',
+      '&.MuiChip-deletable svg': {
+        color: theme.palette.outline.gray,
+      },
+      [theme.breakpoints.down('md')]: {
+        height: '42px',
+      },
+      [theme.breakpoints.up('md')]: {
+        height: '48px',
+      },
+    },
   },
 }))
-
-const TopicTags = ({ topicNames,variant }) => {
-  const topicArray = topicNames || []
-  return topicArray.map((name, key) => <TopicTag key={key} label={name} variant={variant} />);
-}
 
 
 export const CurrentTopicTagSection = ({ names, repositoryName }) => {
@@ -38,8 +38,8 @@ export const CurrentTopicTagSection = ({ names, repositoryName }) => {
         <Grid style={{ padding:'20px' }}>
           <Typography variant='body1'>Current topic tags on {repositoryName}:</Typography>
         </Grid>
-        <Grid data-cy='current-tags' style={{ padding:'30px' }}>
-          <TopicTags topicNames={names} variant='generated' />
+        <Grid container direction="row" data-cy='current-tags' style={{ padding:'30px' }}>
+          <TopicTag topicNames={names} variant='generated' />
         </Grid> </Grid>: <Grid item md={8} style={{ margin:'auto', padding:'30px' }}>
         <Typography variant='h5' style={{ textAlign:'center' }}>There are currently no topic tags in your project’s repository. Add tags to increase your project visibility.</Typography>
       </Grid> }
@@ -71,8 +71,8 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
     <>
       <AffiliationQuestionSection value={addTagValue} handleChange={handleChangeTag} question={"Do you want to add more tags specific to your project's subject area to increase visibility?"} />
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={showAddTopicTag}>Generate Tags</Button></Grid>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={showAddTopicTag} id='generate-button'>Generate Tags</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm} id='reset-form-button'>Reset Form</Button></Grid>
       </Grid>
     </>
   )
@@ -93,27 +93,23 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
       <Grid style={{ padding:'20px' }}>
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
-      <Grid>
+      <Grid data-cy='add-topic-tags'>
         <ChipInput
           fullWidth
           placeholder='Add topic tag'
           onChange={(chips) => handleChangeChip(chips)}
-          classes={{
-            root: classes.chipInputRoot,
-            input: classes.chipInputInput,
-            chip: classes.chip,
-          }}
+          className = {classes.addTag}
         />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleGenerateTag}>Generate Tags</Button></Grid>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={handleGenerateTag} id='generateTagsButton'>Generate Tags</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm} id='reset-form-button'>Reset Form</Button></Grid>
       </Grid>
     </>
   )
 }
 
-export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>{
+export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,linkStyles })=>{
 
   const handleResetForm = () => {
     resetForm()
@@ -128,24 +124,34 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue })=>
         <Grid style={{ padding:'20px' }}>
           <Typography variant='body1'>New tags to add to your repository:</Typography>
         </Grid>
-        <Grid container direction="row">
-          <Grid item md={8} data-cy='tags-to-add' style={{ padding:'30px' }}>
-            <TopicTags topicNames={tagsToAdd} variant='generated' />
+        <Grid container direction="row" alignItems="center">
+          <Grid item md={8} data-cy='new-tags' style={{ padding:'30px' }}>
+            <Grid container direction="row">
+              <TopicTag topicNames={tagsToAdd} variant='generated' />
+            </Grid>
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
+            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link></Typography>
           </Grid>
         </Grid>
       </Grid>
-      <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleAddTags}>Add these tags to your repo</Button></Grid>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm}>Reset Form</Button></Grid>
+      <Grid container direction='row' justify='center' alignItems='center' spacing={3} style={{ padding: '10px' }}>
+        <Grid item style={{ padding: '10px' }}>
+          <Button onClick={handleAddTags} id='add-tags-button'>
+            Add these tags to your repo
+          </Button>
+        </Grid>
+        <Grid item style={{ padding: '10px' }}>
+          <Button onClick={handleResetForm} id='reset-form-button'>
+            Reset Form
+          </Button>
+        </Grid>
       </Grid>
     </>
   )
 }
 
-export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl }) =>{
+export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl,linkStyles }) =>{
 
   return (
     <>
@@ -162,12 +168,14 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
         <Grid style={{ padding:'20px' }}>
           <Typography variant='h6'>Here are the Topic Tags to add to {repositoryName}:</Typography>
         </Grid>
-        <Grid container direction="row">
-          <Grid item md={8} data-cy='tags-to-add' style={{ padding:'30px' }}>
-            <TopicTags topicNames={tagsToAdd} variant='copypaste' />
+        <Grid container direction="row" alignItems="center">
+          <Grid item md={8} data-cy='copy-paste-tags' style={{ padding:'30px' }}>
+            <Grid container direction="row">
+              <TopicTag topicNames={tagsToAdd} variant='copypaste'/>
+            </Grid>
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} >Add More tags</Link></Typography>
+            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link></Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -200,11 +208,7 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChi
           fullWidth
           placeholder='Add topic tag'
           onChange={(chips) => handleChangeChip(chips)}
-          classes={{
-            root: classes.chipInputRoot,
-            input: classes.chipInputInput,
-            chip: classes.chip,
-          }}
+          className = {classes.addTag}
         />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>

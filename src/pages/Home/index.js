@@ -42,8 +42,8 @@ const Home = () => {
         <CallToActionSection />
         <NotableUsersSection />
         <TrendingTopicsSection />
-        <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/tag-generator" />
       </Container>
+      <GetStartedCard headerTitle="Ready to get started?" buttonText="Tag your Project" buttonHref="/tag-generator" />
     </Box>
   )
 }

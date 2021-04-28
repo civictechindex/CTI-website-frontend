@@ -1,7 +1,7 @@
-import * as React from "react";
-import Link from "@material-ui/core/Link";
-import { NavLink as NaviLink, withRouter } from "react-router-dom";
-import withStyles from "@material-ui/core/styles/withStyles";
+import * as React from 'react';
+import Link from '@material-ui/core/Link';
+import { NavLink as NaviLink, withRouter } from 'react-router-dom';
+import withStyles from '@material-ui/core/styles/withStyles';
 import {
   usePopupState,
   bindMenu,
@@ -17,27 +17,27 @@ const styles = () => ({
     padding: "0",
   },
   paper: {
-    paddingTop: "0.7rem",
+    paddingTop: "1rem",
   },
 });
 
-const NavLink = ({ heading, route, children, classes }) => {
+const NavLink = ({ header, route, children, classes }) => {
   const popupState = usePopupState({ variant: "popper", popupId: "navlink" });
+  
   return (
     <>
       <Link
         {...bindHover(popupState)}
         underline="none"
         component={NaviLink}
-        to={route}
-        exact
+        to={route} exact
         activeStyle={{
           color: "#0F1D2F",
           fontWeight: "bold",
         }}
         classes={{ root: classes.link }}
       >
-        {heading}
+        {header}
       </Link>
       {children && (
         <Menu
@@ -45,11 +45,11 @@ const NavLink = ({ heading, route, children, classes }) => {
           getContentAnchorEl={null}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "center",
+            horizontal: "left",
           }}
           transformOrigin={{
             vertical: "top",
-            horizontal: "center",
+            horizontal: "left",
           }}
           classes={{ paper: classes.paper, list: classes.menu }}
           PopoverClasses={{ paper: classes.popover }}

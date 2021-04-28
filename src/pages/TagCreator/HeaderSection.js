@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 export const HeaderSection = () => {
   const classes = useStyles()
   return (
-    <Box className='boxBackground'>
+    <Box className='containerTeal'>
       <Container style={{ paddingBottom:'40px' }}>
         <NavBreadcrumbs crumbs={crumbs} color="secondary" />
         <Grid container>

@@ -52,7 +52,7 @@ const AccordionSection = (props) => {
         answer: currentFaq.answer,
         view_count: currentFaq.view_count,
       };
-      await axios.post(`http://test-civictechindexadmin.herokuapp.com/api/faqs/${currentFaq.id}/increment_count/`, requestBody);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/faqs/${currentFaq.id}/increment_count/`, requestBody);
     };
     if (sendRequest) {
       // send the request

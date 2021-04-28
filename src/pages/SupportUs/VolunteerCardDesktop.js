@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from "react-router-dom";
 import useStyles from './styles.js';
 
 const VolunteerCardDeskTp = (props) => {
@@ -27,17 +28,19 @@ const VolunteerCardDeskTp = (props) => {
                 </Typography>
                 <br></br>
                 <Typography className={classes.dtpLine1}>
-                                    Please <a className={classes.inLineLinkText} href="https://www.hackforla.org/#about">complete this application</a> if you would like
+                                    Please <Link className={classes.inLineLinkText} to="https://www.hackforla.org/#about">complete this application</Link> if you would like
                 </Typography>
                 <Typography className={classes.dtpLine2}>
                   {i.dsktpTxtLn2}
                 </Typography>
                 <Typography className={classes.dtpLine3}>
-                  <a className={classes.inLineLinkText} href="https://www.hackforla.org/projects/civic-tech-index">project team page.</a>
+                  <Link className={classes.inLineLinkText} to="https://www.hackforla.org/projects/civic-tech-index">project team page.</Link>
                 </Typography>
-                <Button href='https://www.hackforla.org/projects/civic-tech-index.html' className={classes.volButton}>
-                  {i.buttonText}
-                </Button>
+                <Link to='https://www.hackforla.org/projects/civic-tech-index.html'>
+                  <Button className={classes.volButton}>
+                    {i.buttonText}
+                  </Button>
+                </Link>
               </Paper>
             </Grid>
             <Grid item >
