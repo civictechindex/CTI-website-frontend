@@ -253,9 +253,9 @@ const TagCreator = () => {
   }
 
   return (
-    <Box className='pageContainer'>
+    <Box>
       <HeaderSection/>
-      <Box className='containerGray' >
+      <Box className='containerGray' style={{ paddingBottom:'30px' }} >
         <Container >
           {renderCurrentState()}
         </Container>
