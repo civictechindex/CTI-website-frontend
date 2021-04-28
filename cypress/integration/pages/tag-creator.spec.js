@@ -26,7 +26,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('loads correct 4 tags for `codeforboston/voiceapp311` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization').click().wait(6000).type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(AFFILIATED_ORGANIZATION);
@@ -59,7 +59,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('resets form in the middle of `codeforboston/voiceapp311` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization').click().wait(6000).type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(AFFILIATED_ORGANIZATION);

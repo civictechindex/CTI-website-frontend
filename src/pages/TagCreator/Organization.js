@@ -8,6 +8,12 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+const Sleep=(delay = 0)=> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+}
+
 export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
@@ -19,15 +25,16 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
     if (!loading) {
       return undefined;
     }
+    (async () => {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+      await Sleep(400)
+      const orgs =await (response.data).map((org) => org.name)
+      if (active) {
+        setOptions(["",...orgs]);
+      }
+    })();
 
-    axios.get('https://test-civictechindexadmin.herokuapp.com/api/organizations/')
-      .then(res => {
-        if (active){
-          const orgs = (res.data).map((org) => org.name)
-          orgs.push("")
-          setOptions(orgs);
-        }
-      })
+
 
     return () => {
       active = false;
@@ -58,9 +65,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
           getOptionSelected={(option, value) => option === value }
           getOptionLabel={(option) => option}
           options={options}
-          filterOptions={(options) =>
-            options.filter((option) => option !== "")
-          }
+          autoComplete
           loading={loading}
           value={orgName}
           onChange={(e, v) => setOrgName(v)}
