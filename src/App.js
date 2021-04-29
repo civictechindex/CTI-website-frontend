@@ -7,6 +7,7 @@ import About from './pages/About';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
 import Faq from './pages/RadicalCollaboration/Faq';
+import IndvOrganization from './pages/Organizations';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
@@ -46,6 +47,7 @@ const App = () => {
           <RouteTitled exact path='/tag-generator' component={TagCreator} title='Tag Generator' />
           <Route exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} />
           <Route exact path='/radicalcollaboration/faq' component={Faq} />
+          <Route exact path='/organizations/*' component={IndvOrganization} />
           <Route path='/guides/:guide' component={Guides} />
           <Route path='/blank' component={Placeholder} />
           <Route path='/404' component={Error404} />
