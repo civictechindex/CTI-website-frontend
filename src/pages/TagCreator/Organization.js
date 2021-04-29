@@ -21,7 +21,6 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
 
   useEffect(() => {
     let active = true;
-
     if (!loading) {
       return undefined;
     }
@@ -33,14 +32,10 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
         setOptions(["",...orgs]);
       }
     })();
-
-
-
     return () => {
       active = false;
     };
   }, [loading]);
-
 
   useEffect(() => {
     if (!open) {
@@ -93,7 +88,6 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
 }
 
 export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
-
   const handleChangeOrg = () => {
     setDisplayState('')
   }
