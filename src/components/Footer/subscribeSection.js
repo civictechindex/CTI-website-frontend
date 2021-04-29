@@ -111,6 +111,7 @@ const SubscribeSection = ({ size }) => {
                     }
                   />
                 </Grid>
+                <Button color='primary' onClick={submitEmail}>Submit</Button>
               </Grid>
             </form>
             {messageSwitch(message)}
