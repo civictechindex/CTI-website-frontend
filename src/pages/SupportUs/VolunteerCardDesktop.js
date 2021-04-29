@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React from 'react';
 import { Grid } from "@material-ui/core";
 import Card from '@material-ui/core/Card';
