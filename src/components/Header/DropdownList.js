@@ -17,7 +17,11 @@ const DropdownList = ({ header, links, route }) => {
   return (
     <>
       <Box className={classes.dropdownHeader} onClick={toggleList}>
-        <Typography component={Link} to={route} variant='body2' color='textSecondary' style={{ fontWeight:'bold', textDecoration: 'none' }}>{header}</Typography>
+        <Typography 
+          // Uncomment below to create Menu header as link
+          // component={Link} to={route} 
+          variant='body2' color='textSecondary' style={{ fontWeight:'bold', textDecoration: 'none' }}>{header}
+        </Typography>
         {open ? <ExpandLessRounded color="secondary" /> : <ExpandMoreRounded color="primary" />}
       </Box>
       {open &&

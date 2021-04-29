@@ -32,7 +32,7 @@ const HeaderSmall = ({ links }) => {
             <DropdownList header="Join" route="/tag-generator" links={links.join} />
             <DropdownList header="About" route="/about" links={links.about} />
             <DropdownList header="Organizations" route="/contributors/all" links={links.contribute} />
-            <DropdownList header="Radical Collaboration" route="/radicalcollaboration" links={links.collaborate} />
+            <DropdownList header="Radical Collaboration" route="/support" links={links.collaborate} />
             <SearchContainer />
         </div>
         <div onClick={openBurger} className={classes.mobileContainer}>
