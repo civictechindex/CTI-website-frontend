@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -16,7 +15,7 @@ const SubscribeSection = ({ size }) => {
     event.preventDefault();
     /* TODO: This needs to be passed via build arguments */
     axios
-      .post('https://test-civictechindexadmin.herokuapp.com/api/subscribe/', {
+      .post(`${process.env.REACT_APP_API_URL}/api/subscribe/`, {
         email_address: inputValue,
         notification_type: 'string',
       })
@@ -63,34 +62,63 @@ const SubscribeSection = ({ size }) => {
 
   return (
     message === 'success' ? (
-      <Grid item xs={12}>
+      <div>
         {messageSwitch(message)}
-      </Grid>
+      </div>
     ) : (
-      <>
-        <Grid item sm={12} md={size === 'lg' ? 12 : 5}>
-          <Typography variant='body2' color='textSecondary' className={classes.subHeader}>Newsletter</Typography>
-          <Typography variant='body1' color='textSecondary'>
+      <div className={classes.containerItem}>
+      <Grid container>
+        <Grid item sm={size === 'lg' ? 12 : 6}>
+          <Typography 
+            variant='body2' 
+            color='textSecondary' 
+            className={size !== 'lg'
+              ? `${classes.sectionPaddingSm}`
+              : `${classes.sectionPaddingLg}`
+            }
+          >
+            Newsletter
+          </Typography>
+          <Typography 
+            variant='body1' 
+            color='textSecondary' 
+            className={classes.sectionPaddingLg}
+          >
             To receive updates about new projects and trending topics on the index, subscribe here.
           </Typography>
         </Grid>
-        <br />
-        <Grid item sm={12} md={size === 'lg' ? 12 : 5}>
+        
+        <Grid container item sm={size === 'lg' ? 12 : 6}>
           <form onSubmit={submitEmail}>
-            <Typography variant='body2' color='textSecondary' className={classes.subHeader}>E-mail</Typography>
-            <Box className={size !== 'lg' && classes.subSection}>
-              <TextField
-                className={classes.textField}
-                onInput={(e) => setInputValue(e.target.value)}
-                placeholder='John.doe@domain.com'
-                variant='outlined'
-              />
+            <Typography 
+              variant='body2' 
+              color='textSecondary' 
+              className={size !== 'lg'
+                ? `${classes.sectionPaddingSm}`
+                : `${classes.sectionPaddingLg}`
+              }>
+              E-mail
+            </Typography>
+            <Grid item className={size !== 'lg' && classes.emailSubscribe}>
+              <Grid item xs={12} className={classes.textField} >
+                <TextField
+                  onInput={(e) => setInputValue(e.target.value)}
+                  placeholder='name@domain.com'
+                  type='email'
+                  variant='outlined'
+                  className={size !== 'lg'
+                    ? `${classes.sectionPaddingSm}`
+                    : `${classes.sectionPaddingLg}`
+                  }
+                />
+              </Grid>
               <Button color='primary' onClick={submitEmail}>Submit</Button>
-            </Box>
+            </Grid>
           </form>
           {messageSwitch(message)}
         </Grid>
-      </>
+        </Grid>
+      </div>
     )
   );
 };
