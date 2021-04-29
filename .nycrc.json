@@ -4,9 +4,11 @@
     "src/**/*.js"
   ],
   "exclude": [
+    "**/*.spec.js",
     "**/*.test.js",
     "src/guides/*.js",
     "src/icons/*.js",
+    "src/pages/Landing/*.js",
     "src/serviceWorker.js",
     "src/setupTests.js"
   ]

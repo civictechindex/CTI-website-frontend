@@ -13,9 +13,9 @@ describe('Error 404 Page', () => {
 
   it('title section loads on invalid page URL', () => {
     cy.contains('404');
-  })
+  });
 
   it('body loads on invalid page URL', () => {
     cy.contains('Oops! The page you are looking for has moved or does not exist.');
-  })
+  });
 })
