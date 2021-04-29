@@ -8,6 +8,9 @@ const useStyles = makeStyles(theme => ({
   containerItem: {
     padding: '0px 30px',
   },
+  subscribeSection: {
+    padding: '0px 30px',
+  },
   footerPadding: {
     padding: '40px 5px 65px 5px',
   },
@@ -41,6 +44,7 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
       marginTop: theme.spacing(1.5),
       textDecoration: 'none',
+      padding: '0px 0px 0px 30px',
     },
   },
   annotation: {
@@ -59,7 +63,6 @@ const useStyles = makeStyles(theme => ({
   socialContainer: {
     '& a': {
       display: 'inline',
-      marginRight: '25px',
     },
   },
   socialContainerLarge: {
@@ -68,18 +71,9 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(3),
     },
   },
-  subHeaderNewsletter: {
-    margin: '16px 0px 0px 0px',
-  },
-  subHeaderNews: {
-    margin: '0px 40px 0px 0px',
-  },
-  subHeaderEmail: {
-    margin: '16px 0px 0px 0px',
-  },
-  subSection: {
+  emailSubscribe: {
     display: 'flex',
-    justify: "flex-end",
+    justify: 'flex-end',
   },
   successMessage: {
     textAlign: 'center',
@@ -88,6 +82,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
     margin: '0px 8px 5px 0px',
+  },
+  sectionPaddingSm: {
+    padding: '15px 10px 0px 0px',
+  },
+  sectionPaddingLg: {
+    padding: '0px 0px 10px 0px',
   },
 }));
 
