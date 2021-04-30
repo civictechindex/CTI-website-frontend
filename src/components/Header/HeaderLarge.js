@@ -29,7 +29,8 @@ const HeaderLarge = () => {
                     <NavSublink header="Unaffiliated" route="/contributors/unaffiliated" />
                     <NavSublink header="Affiliated" route="/contributors/affiliated" />
                 </NavLink>
-                <NavLink header="Radical Collaboration" route="/adding-projects-to-the-index">
+                <NavLink header="Radical Collaboration" route="/support">
+                    <NavSublink header="Collaborate with Us" route="/support" />
                     <NavSublink header="How to Do It" route="/adding-projects-to-the-index" />
                     <NavSublink header="Donate" route="/donate" />
                     <NavSublink header="Share the CTI" route="/radicalcollaboration/sharethecti" />
