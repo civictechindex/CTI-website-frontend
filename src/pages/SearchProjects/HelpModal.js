@@ -57,7 +57,7 @@ const HelpModal = ({ modalOpen, onClose }) => {
 
   return (
     <Modal aria-labelledby='search-tips-title' className={classes.modal} open={modalOpen} onBackdropClick={onClose}>
-      <Box className={classes.searchTips}>
+      <Box className={classes.searchTips} data-cy='search-tips'>
         <Typography variant='h4' id='search-tips-title'>
           Search Tips
           <CloseIcon className={classes.close} onClick={onClose} />
