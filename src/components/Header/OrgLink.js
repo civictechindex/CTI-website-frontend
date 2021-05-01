@@ -22,7 +22,7 @@ const styles = () => ({
   },
 });
 
-const NavLink = ({ header, route, children, classes }) => {
+const OrgLink = ({ header, route, children, classes }) => {
   const popupState = usePopupState({ variant: "popper", popupId: "navlink" });
   const { pathname } = useLocation();
   
@@ -37,6 +37,13 @@ const NavLink = ({ header, route, children, classes }) => {
         activeStyle={{
           color: "#0F1D2F",
           fontWeight: "bold",
+        }}
+        isActive={(match, location) => {
+          if (match) {
+            return true;
+          } else if (window.location.href.indexOf("/contributors") > -1) {
+            return true;
+          }
         }}
         classes={{ root: classes.link }}
       >
@@ -65,4 +72,4 @@ const NavLink = ({ header, route, children, classes }) => {
   );
 };
 
-export default withRouter(withStyles(styles)(NavLink));
+export default withRouter(withStyles(styles)(OrgLink));

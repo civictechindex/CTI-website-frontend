@@ -22,7 +22,7 @@ const styles = () => ({
   },
 });
 
-const NavLink = ({ header, route, children, classes }) => {
+const RCLink = ({ header, route, children, classes }) => {
   const popupState = usePopupState({ variant: "popper", popupId: "navlink" });
   const { pathname } = useLocation();
   
@@ -33,10 +33,23 @@ const NavLink = ({ header, route, children, classes }) => {
         underline="none"
         component={NaviLink}
         to={route} 
-        exact
+        
         activeStyle={{
           color: "#0F1D2F",
           fontWeight: "bold",
+        }}
+        isActive={(match, location) => {
+          if (match) {
+            return true;
+          } else if (window.location.href.indexOf("/radical") > -1) {
+            return true;
+          } else if (window.location.href.indexOf("/support") > -1) {
+            return true;
+          } else if (window.location.href.indexOf("/donate") > -1) {
+            return true;
+          } else if (window.location.href.indexOf("/adding") > -1) {
+            return true;
+          }
         }}
         classes={{ root: classes.link }}
       >
@@ -65,4 +78,4 @@ const NavLink = ({ header, route, children, classes }) => {
   );
 };
 
-export default withRouter(withStyles(styles)(NavLink));
+export default withRouter(withStyles(styles)(RCLink));
