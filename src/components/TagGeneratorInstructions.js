@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
   btnText: {
     borderRadius: '142.5px',
     fontSize: '14px',
-    fontFamily: 'Work Sans',
     paddingTop:'10px',
   },
   btnStyle: {
@@ -31,7 +30,6 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #BCBCBC',
     color: '#6D6E74',
     fontSize: '14px',
-    fontFamily: 'Work Sans',
     '&:hover': {
       backgroundColor: '#fff',
     },
@@ -46,7 +44,6 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '40px',
     paddingTop: '40px',
     color: '#042D5F',
-    fontFamily: 'Work Sans',
   },
   projText: {
     marginTop: '40px',
@@ -65,9 +62,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '46px',
     color:'#0F1D2F',
     fontSize: '18px',
-    fontFamily: 'Work Sans',
   },
-
 }));
 
 const HowToUse = () => {
