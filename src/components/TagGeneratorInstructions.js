@@ -26,12 +26,13 @@ const useStyles = makeStyles(theme => ({
     width:'200px',
     height: '36px',
     borderRadius: '22.5px',
-    backgroundColor: '#fff',
-    border: '1px solid #BCBCBC',
-    color: '#6D6E74',
+    backgroundColor: theme.palette.background.default,
+    border: '1px solid',
+    borderColor: theme.palette.grey[400],
+    color: theme.palette.outline.gray,
     fontSize: '14px',
     '&:hover': {
-      backgroundColor: '#fff',
+      backgroundColor: theme.palette.background.default,
     },
   },
   btnClass: {
@@ -52,7 +53,8 @@ const useStyles = makeStyles(theme => ({
   },
 
   boxItem: {
-    border: '1px solid #BCBCBC',
+    border: '1px solid',
+    borderColor: theme.palette.grey[400],
     borderRadius: '12px',
     width: '272px',
     height: '152px',
@@ -60,7 +62,6 @@ const useStyles = makeStyles(theme => ({
   boxText: {
     paddingTop: '30px',
     paddingLeft: '46px',
-    color:'#0F1D2F',
     fontSize: '18px',
   },
 }));
@@ -108,11 +109,11 @@ const HowToUse = () => {
         </Grid>
         <Grid container direction="row" className={classes.projText} alignItems="center" justify="center">
           <Box component="div" className={classes.boxItem} p={1} m={1}>
-            <Typography className={classes.boxText}>Add Another Project</Typography>
+            <Typography className={classes.boxText} color='primary'>Add Another Project</Typography>
             <Grid className={classes.btnClass}> <Button className={classes.button} href="/tag-generator">Tag Generator</Button></Grid>
           </Box>
           <Box component="div" className={classes.boxItem} p={1} m={1}>
-            <Typography className={classes.boxText}>Collaborate with us</Typography>
+            <Typography className={classes.boxText} color='primary'>Collaborate with us</Typography>
             <Grid className={classes.btnClass}> <Button className={classes.button} href="/radicalcollaboration/faq">Learn More</Button></Grid>
           </Box>
         </Grid>
