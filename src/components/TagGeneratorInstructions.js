@@ -1,21 +1,16 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { List } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles(theme => ({
-
-  projectsList: {
-    color: theme.palette.text.primary,
-    paddingLeft: '126px',
-    backgroundColor: theme.palette.background.secondary,
-  },
   btnText: {
     borderRadius: '142.5px',
     fontSize: '14px',
@@ -80,7 +75,8 @@ const HowToUse = () => {
 
   return (
     <>
-      <Typography className={classes.projectsList} component="div">
+      <Box className='containerGray'>
+      <Container>
         <List>
           <ListItem alignItems="flex-start" >
             <ListItemText primary={
@@ -106,7 +102,10 @@ const HowToUse = () => {
             <ListItemText><img src="/images/step_4.png" alt="Step 4" style={{ paddingRight: '97px' }} /></ListItemText>
           </ListItem>
         </List>
-      </Typography>
+      </Container>
+      </Box>
+      <Box className='containerWhite'>
+      <Container>
       <Grid container alignItems="center" justify="center" direction="column">
         <Grid className={classes.projectText}> This project is so new we are celebrating every win</Grid>
         <Grid className={classes.btnStyle}>
@@ -123,6 +122,8 @@ const HowToUse = () => {
           </Box>
         </Grid>
       </Grid>
+      </Container>
+      </Box>
     </>
   )
 }
