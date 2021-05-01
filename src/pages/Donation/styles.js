@@ -9,18 +9,14 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       width: '41vw',
       fontSize: '24px',
-      textAlign: 'justify',
     },
     [theme.breakpoints.down('xs')]: {
       width: '80vw',
       fontSize: '18px',
-      textAlign: 'justify',
     },
     [theme.breakpoints.up('sm')]: {
       width: '35vw',
       fontSize: '20px',
-      textAlign: 'justify',
-
     },
   },
 
@@ -39,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       width: '458px',
       height: '466px',
-      marginLeft: '11vw',
+      marginLeft: '18vw',
       marginTop: '6vw',
     },
     [theme.breakpoints.down('xs')]: {
