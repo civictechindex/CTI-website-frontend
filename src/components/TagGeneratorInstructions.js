@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     width: '468px',
     height: '56px',
     paddingTop: '13px',
-    paddingLeft: '38rem',
+    paddingLeft: '57px',
   },
   button: {
     width:'200px',
@@ -49,15 +49,14 @@ const useStyles = makeStyles(theme => ({
     fontSize: '32px',
     fontWeight:'500',
     lineHeight: '40px',
-    textAlign: 'center',
     paddingTop: '40px',
     color: '#042D5F',
     fontFamily: 'Work Sans',
   },
   projText: {
     marginTop: '40px',
-    paddingLeft: '30rem',
     paddingBottom: '64px',
+    paddingRight: '82px',
   },
 
   boxItem: {
@@ -108,21 +107,21 @@ const HowToUse = () => {
           </ListItem>
         </List>
       </Typography>
-      <Grid>
+      <Grid container alignItems="center" justify="center" direction="column">
         <Grid className={classes.projectText}> This project is so new we are celebrating every win</Grid>
-      </Grid>
-      <Box className={classes.btnStyle}>
-        <Button className={classes.btnText}>Let us know when you&apos;ve added <br/> #civictechindex</Button>
-      </Box>
-      <Grid container direction="row" className={classes.projText}>
-        <Box component="div" className={classes.boxItem} p={1} m={1}>
-          <Typography className={classes.boxText}>Add Another Project</Typography>
-          <Grid className={classes.btnClass}> <Button className={classes.button} href="/tag-generator">Tag Generator</Button></Grid>
-        </Box>
-        <Box component="div" className={classes.boxItem} p={1} m={1}>
-          <Typography className={classes.boxText}>Collaborate with us</Typography>
-          <Grid className={classes.btnClass}> <Button className={classes.button} href="/radicalcollaboration/faq">Learn More</Button></Grid>
-        </Box>
+        <Grid className={classes.btnStyle}>
+          <Button className={classes.btnText}>Let us know when you&apos;ve added <br/> #civictechindex</Button>
+        </Grid>
+        <Grid container direction="row" className={classes.projText} alignItems="center" justify="center">
+          <Box component="div" className={classes.boxItem} p={1} m={1}>
+            <Typography className={classes.boxText}>Add Another Project</Typography>
+            <Grid className={classes.btnClass}> <Button className={classes.button} href="/tag-generator">Tag Generator</Button></Grid>
+          </Box>
+          <Box component="div" className={classes.boxItem} p={1} m={1}>
+            <Typography className={classes.boxText}>Collaborate with us</Typography>
+            <Grid className={classes.btnClass}> <Button className={classes.button} href="/radicalcollaboration/faq">Learn More</Button></Grid>
+          </Box>
+        </Grid>
       </Grid>
     </>
   )
