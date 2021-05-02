@@ -17,7 +17,7 @@ const styles = () => ({
   },
 });
 
-const NavLink = ({ header, route, children, classes }) => {
+const NavLink = ({ children, classes, header, matchPathParent, route }) => {
   const popupState = usePopupState({ variant: 'popper', popupId: 'navlink' });
 
   return (
@@ -28,6 +28,9 @@ const NavLink = ({ header, route, children, classes }) => {
         component={NaviLink}
         to={route}
         exact
+        isActive={() => {
+          return route === matchPathParent;
+        }}
         activeStyle={{
           color: '#0F1D2F',
           fontWeight: 'bold',

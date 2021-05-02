@@ -85,6 +85,18 @@ const navigation = [
   },
 ];
 
+const findSubNavParent = (subNavRoute) => {
+  let results;
+  navigation.forEach((nav) => {
+    const found = nav.subNavigation.some((element) => element.route === subNavRoute);
+    if (found) {
+      results = nav.route;
+    }
+  });
+  return results;
+};
+
 module.exports = {
+  findSubNavParent,
   navigation,
 };
