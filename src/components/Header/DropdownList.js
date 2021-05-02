@@ -30,12 +30,12 @@ const DropdownList = ({ header, links, route }) => {
       {open &&
         links.map((link) => {
           return link.external ? (
-            <a style={{ textDecoration: 'none' }} href={link.to}>
-              {link.text}
+            <a style={{ textDecoration: 'none' }} href={link.route}>
+              {link.header}
             </a>
           ) : (
-            <Link style={{ textDecoration: 'none' }} to={link.to}>
-              {link.text}
+            <Link style={{ textDecoration: 'none' }} to={link.route}>
+              {link.header}
             </Link>
           );
         })}

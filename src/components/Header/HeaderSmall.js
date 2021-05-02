@@ -6,23 +6,7 @@ import DropdownList from './DropdownList';
 import SearchContainer from './SearchContainer';
 import useStyles from './styles';
 
-const links = {
-  about: [{ text: 'Overview', to: '/about' }],
-  join: [{ text: 'Tag Generator', to: '/tag-generator' }],
-  contribute: [
-    { text: 'Index Contributors', to: '/contributors/all' },
-    { text: 'Unaffiliated', to: '/contributors/unaffiliated' },
-    { text: 'Affiliated', to: '/contributors/affiliated' },
-  ],
-  collaborate: [
-    { text: 'Collaborate with Us', to: '/support' },
-    { text: 'How to Do It', to: '/adding-projects-to-the-index' },
-    { text: 'Donate', to: '/donate' },
-    { text: 'Share the CTI', to: '/radicalcollaboration/sharethecti' },
-    { text: 'Volunteer with Us', to: 'https://www.hackforla.org/projects/civic-tech-index', external: true },
-    { text: 'FAQ', to: '/radicalcollaboration/faq' },
-  ],
-};
+import { navigation } from '../../navigation';
 
 const HeaderSmall = () => {
   const classes = useStyles();
@@ -37,10 +21,9 @@ const HeaderSmall = () => {
         <img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' />
       </Link>
       <div className={isBurgerOpen ? `${classes.flexContainer} ${classes.showMobileNav}` : `${classes.flexContainer}`}>
-        <DropdownList header='Join' route='/tag-generator' links={links.join} />
-        <DropdownList header='About' route='/about' links={links.about} />
-        <DropdownList header='Organizations' route='/contributors/all' links={links.contribute} />
-        <DropdownList header='Radical Collaboration' route='/support' links={links.collaborate} />
+        {navigation.map((nav) => {
+          return <DropdownList {...nav} links={nav.subNavigation} />;
+        })}
         <SearchContainer />
       </div>
       <div onClick={openBurger} className={classes.mobileContainer}>
