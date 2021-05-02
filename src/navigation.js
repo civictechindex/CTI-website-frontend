@@ -1,83 +1,83 @@
 const navigation = [
   {
-    key: 'join',
+    id: 'join',
     header: 'Join',
     route: '/tag-generator',
     subNavigation: [
       {
-        key: 'overview',
+        id: 'overview',
         header: 'Tag Generator',
         route: '/tag-generator',
       },
     ],
   },
   {
-    key: 'about',
+    id: 'about',
     header: 'About',
     route: '/about',
     subNavigation: [
       {
-        key: 'overview',
+        id: 'overview',
         header: 'About',
         route: '/about',
       },
     ],
   },
   {
-    key: 'organizations',
+    id: 'organizations',
     header: 'Organizations',
     route: '/contributors/all',
     subNavigation: [
       {
-        key: 'indexContributors',
+        id: 'indexContributors',
         header: 'Index Contributors',
         route: '/contributors/all',
       },
       {
-        key: 'unaffiliated',
+        id: 'unaffiliated',
         header: 'Unaffiliated',
         route: '/contributors/unaffiliated',
       },
       {
-        key: 'affiliated',
+        id: 'affiliated',
         header: 'Affiliated',
         route: '/contributors/affiliated',
       },
     ],
   },
   {
-    key: 'radicalCollaboration',
+    id: 'radicalCollaboration',
     header: 'Radical Collaboration',
     route: '/support',
     subNavigation: [
       {
-        key: 'collaborateWithUs',
+        id: 'collaborateWithUs',
         header: 'Collaborate with Us',
         route: '/support',
       },
       {
-        key: 'howToDoIt',
+        id: 'howToDoIt',
         header: 'How to Do It',
         route: '/adding-projects-to-the-index',
       },
       {
-        key: 'donate',
+        id: 'donate',
         header: 'Donate',
         route: '/donate',
       },
       {
-        key: 'shareTheCti',
+        id: 'shareTheCti',
         header: 'Share the CTI',
         route: '/radicalcollaboration/sharethecti',
       },
       {
-        key: 'volunteerWithUs',
+        id: 'volunteerWithUs',
         header: 'Volunteer with Us',
         route: 'https://www.hackforla.org/projects/civic-tech-index',
         isExternal: true,
       },
       {
-        key: 'faq',
+        id: 'faq',
         header: 'FAQ',
         route: '/radicalcollaboration/faq',
       },

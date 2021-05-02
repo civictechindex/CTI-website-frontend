@@ -22,7 +22,7 @@ const HeaderSmall = () => {
       </Link>
       <div className={isBurgerOpen ? `${classes.flexContainer} ${classes.showMobileNav}` : `${classes.flexContainer}`}>
         {navigation.map((nav) => {
-          return <DropdownList {...nav} links={nav.subNavigation} />;
+          return <DropdownList key={nav.id} header={nav.header} route={nav.route} links={nav.subNavigation} />;
         })}
         <SearchContainer />
       </div>
