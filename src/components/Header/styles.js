@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginLeft: '240px',
-    '& $a': {
+    '& a': {
       padding: '0 0 0 1rem',
     },
-    '& $button': {
+    '& button': {
       height: '48px',
       width: '173px',
     },
@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
   },
   searchContainer: {
     width: '200px',
+    '& a': {
+      padding: '0',
+    },
   },
   // Small Screens
   mobileContainer: {
@@ -60,13 +63,13 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 'bold',
       padding: '0px 35px 40px 35px',
       zIndex: '-10',
-      '& $p': {
+      '& p': {
         display: 'none',
       },
-      '& $a': {
+      '& a': {
         display: 'none',
       },
-      '& $svg': {
+      '& svg': {
         display: 'none',
       },
     },
@@ -83,24 +86,24 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
-      '& $p': {
+      '& p': {
         display: 'inline',
         padding: '16px 0px',
         fontSize: '20px',
         fontWeight: '700',
         color: '#0F1D2F',
       },
-      '& $a': {
+      '& a': {
         display: 'inline',
         padding: '12px 0px',
         fontSize: '16px',
         fontWeight: '400',
         color: '#0F1D2F',
       },
-      '& $a:link': {
+      '& a:link': {
         underline: 'none',
       },
-      '& $svg': {
+      '& svg': {
         display: 'inline',
         justifyContent: 'right',
       },
@@ -108,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
         alignContent: 'center',
         width: '200px',
         padding: '16px 0px',
-        '& $a': {
+        '& a': {
           color: 'white',
         },
       },

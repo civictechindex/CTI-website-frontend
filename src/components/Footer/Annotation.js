@@ -12,9 +12,6 @@ export default function Annotation() {
                 The Civic Tech Index is an open-source project, read more on our&nbsp;
                 <a style={{ color: '#0D99C6', padding: '0px' }} href='https://github.com/civictechindex'>GitHub</a>.
             </Typography>
-            <Typography variant='body1'>
-                <a style={{ color: '#0D99C6' }} href="/">View Attributions</a>
-            </Typography>
         </Grid>
     )
 };
