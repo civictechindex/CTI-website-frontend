@@ -9,12 +9,8 @@ const Header = () => {
   const headerSize = useMediaQuery(theme.breakpoints.up('md'));
 
   const links = {
-    about: [
-      { text: 'Overview', to: '/about' },
-    ],
-    join: [
-      { text: 'Tag Generator', to: '/tag-generator' },
-    ],
+    about: [{ text: 'Overview', to: '/about' }],
+    join: [{ text: 'Tag Generator', to: '/tag-generator' }],
     contribute: [
       { text: 'Index Contributors', to: '/contributors/all' },
       { text: 'Unaffiliated', to: '/contributors/unaffiliated' },
