@@ -11,12 +11,13 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import BottomCallToAction from "../../components/BottomCallToAction";
 import NavBreadcrumbs from "../../components/NavBreadcrumbs";
 import { DropdownArrow } from "../../components/DropdownArrow.js";
 import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
 import { useStyle } from "./styles.js";
+import GetStartedCard from '../../components/GetStartedCard'
+
 
 export default function Contributors({ match }) {
   const affiliation = match.params.affiliation;
@@ -174,8 +175,12 @@ export default function Contributors({ match }) {
             </div>
           </div>
         </div>
-        <BottomCallToAction heading="Want to add your organization?" color="primary" />
       </Container>
+      <GetStartedCard
+        headerTitle='Want to add your organization?'
+        buttonText='ContatUs'
+        buttonHref='/contactus'
+      />
     </Box>
   );
 }
@@ -206,7 +211,7 @@ const TopCallToAction = ({
   return (
     <div style={{ display: "grid", placeItems: "center" }}>
       <h1 style={{ marginBottom: 0 }}>{heading}</h1>
-      <p
+      <div
         style={{
           color: "white",
           textAlign: "center",
@@ -215,7 +220,7 @@ const TopCallToAction = ({
         }}
       >
         {tagline}
-      </p>
+      </div>
       <Autocomplete
         id="free-solo"
         freeSolo

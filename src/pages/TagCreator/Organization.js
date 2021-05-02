@@ -1,14 +1,47 @@
-import React from 'react';
+import React,{ useState,useEffect } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import orgs from './orgs.json';
 import Link from '@material-ui/core/Link';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+const Sleep=(delay = 0)=> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+}
 
 export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
+  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState([]);
+  const loading = open && options.length === 0;
+
+  useEffect(() => {
+    let active = true;
+    if (!loading) {
+      return undefined;
+    }
+    (async () => {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+      await Sleep(400)
+      const orgs =await (response.data).map((org) => org.name)
+      if (active) {
+        setOptions(["",...orgs]);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [loading]);
+
+  useEffect(() => {
+    if (!open) {
+      setOptions([]);
+    }
+  }, [open]);
 
   return (
     <>
@@ -16,12 +49,35 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
         <p>Which Organization?</p>
         <Autocomplete
           id="organization"
-          options={orgs}
+          style={{ width: '100%' }}
+          open={open}
+          onOpen={() => {
+            setOpen(true);
+          }}
+          onClose={() => {
+            setOpen(false);
+          }}
+          getOptionSelected={(option, value) => option === value }
+          getOptionLabel={(option) => option}
+          options={options}
+          autoComplete
+          loading={loading}
           value={orgName}
           onChange={(e, v) => setOrgName(v)}
-          getOptionLabel={(option) => option}
-          style={{ width: '100%' }}
-          renderInput={(params) => <TextField {...params} variant="outlined" />}
+          renderInput={(params) =>(
+            <TextField {...params}
+              variant="outlined"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
+            />
+          )}
         />
       </Grid>
       <Grid item>
@@ -31,8 +87,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
   )
 }
 
-export const OrgNameSection = ({ setDisplayState, orgName }) => {
-
+export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
   const handleChangeOrg = () => {
     setDisplayState('')
   }
@@ -49,7 +104,7 @@ export const OrgNameSection = ({ setDisplayState, orgName }) => {
         </Grid>}
       <Grid item>
         <Typography variant='body1'>
-          <Link onClick={handleChangeOrg} >change</Link>
+          <Link onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
         </Typography>
       </Grid>
     </Grid>

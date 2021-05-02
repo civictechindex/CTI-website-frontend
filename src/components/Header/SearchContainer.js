@@ -3,13 +3,11 @@ import useStyles from './styles.js';
 import NavButton from '../NavButton';
 
 export default function SearchContainer() {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-        <div className={classes.searchContainer}>
-            <NavButton href="/projects" variant="blue">
-                Search Projects
-            </NavButton>
-        </div>
-    )
+  return (
+    <div className={classes.searchContainer}>
+      <NavButton href="/projects">Search Projects</NavButton>
+    </div>
+  )
 };
