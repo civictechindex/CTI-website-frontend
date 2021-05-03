@@ -18,6 +18,7 @@ import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
 import { useStyle } from "./styles.js";
 import GetStartedCard from '../../components/GetStartedCard'
 
+
 export default function Contributors({ match }) {
   const affiliation = match.params.affiliation;
 
@@ -210,7 +211,7 @@ const TopCallToAction = ({
   return (
     <div style={{ display: "grid", placeItems: "center" }}>
       <h1 style={{ marginBottom: 0 }}>{heading}</h1>
-      <p
+      <div
         style={{
           color: "white",
           textAlign: "center",
@@ -219,7 +220,7 @@ const TopCallToAction = ({
         }}
       >
         {tagline}
-      </p>
+      </div>
       <Autocomplete
         id="free-solo"
         freeSolo
