@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
         return theme.palette.warning.main
       }
     },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '32px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '36px',
     },
-    marginBottom: '32px',
+    marginBottom: '0.825em',
     textAlign: 'center',
   },
 }))
