@@ -6,18 +6,13 @@ import Grid from '@material-ui/core/Grid';
 import { GetStartedCard, NavButton, TitleSection } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
 import TrendingTopicsSection from './sections/TrendingTopicsSection';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   marketingPointContainerStyle: {
-    display: 'flex',
     alignItems: 'center',
-    margin: '0 auto',
-    color: 'white',
     fontSize: '18px',
-    textAlign: 'center',
     paddingTop: '8px',
-    width: '1008px',
-    height: '120px',
     '& p': {
       width: '33.3%',
     },
@@ -29,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       height: '161.5px',
       marginBottom: '29.42px',
+      justifyContent:'space-between',
       '& p': {
         width: '80%',
       },
@@ -37,55 +33,54 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  btnGroupsContainerStyle: {
-    display: 'flex',
-    width: '392px',
-    justifyContent: 'space-between',
+  localTitleSectionStyle:{
+    paddingTop: '120px',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '0',
+    },
   },
 }));
 
 const MarketingSection = () => {
   const classes = useStyles();
   return (
-    <div className={classes.marketingPointContainerStyle}>
-      <p>Requires no coding</p>
-      <p>
-                Make your project more <br /> visible with GitHub’s open-source
-                communities
-      </p>
-      <p>
-                The Index is owned by <br />
-                all who use it
-      </p>
-    </div>
+    <Grid container align="center" className={classes.marketingPointContainerStyle}>
+      <Typography variant='body1' color='textSecondary'>Requires no coding</Typography>
+      <Typography variant='body1' color='textSecondary'> Make your project more <br /> visible with GitHub’s open-source
+    communities</Typography>
+      <Typography variant='body1' color='textSecondary'> The Index is owned by <br />
+    all who use it</Typography>
+    </Grid>
   );
 };
 
 const CallToActionSection = () => {
-  const classes = useStyles();
   return (
     <Grid container style={{ paddingTop: '35px' }} justify='center'>
-      <div className={classes.btnGroupsContainerStyle}>
+      <Grid container justify="space-between" style={{ width:'392px' }} >
         <NavButton href='/tag-generator' color='primary'>
                     Tag your project
         </NavButton>
         <NavButton href='/about' variant='outlined'>
                     Learn more
         </NavButton>
-      </div>
+      </Grid>
     </Grid>
   );
 };
 
 const Home = () => {
+  const classes = useStyles();
   return (
     <Box className='boxBackground'>
       <div className='containerWorld'>
         <Container>
-          <TitleSection>
+          <Box  component="div" className={classes.localTitleSectionStyle}>
+            <TitleSection >
                         Join a worldwide movement to catalog every open source
                         civic tech project.
-          </TitleSection>
+            </TitleSection>
+          </Box>
           <MarketingSection />
           <CallToActionSection />
           <NotableUsersSection />
