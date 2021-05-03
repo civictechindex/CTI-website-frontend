@@ -90,6 +90,7 @@ const Footer = () => {
       { key: 'share', text: 'Share the CTI', to: '/radicalcollaboration/sharethecti' },
       { key: 'volunteer', text: 'Volunteer with Us', to: 'https://www.hackforla.org/projects/civic-tech-index', external: true },
       { key: 'faq', text: 'FAQ', to: '/radicalcollaboration/faq' },
+      { key: 'contact', text: 'Contact Us', to: '/radicalcollaboration/contact' },
     ],
   };
 
