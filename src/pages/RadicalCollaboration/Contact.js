@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import TitleSection from '../components/TitleSection';
-import NavBreadcrumbs from '../components/NavBreadcrumbs';
+import TitleSection from '../../components/TitleSection';
+import NavBreadcrumbs from '../../components/NavBreadcrumbs';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -41,15 +41,15 @@ const Contact = () => {
       padding: '48px 0px',
       justifyContent: 'center',
       '& h3': {
-          fontSize: '20px',
-          fontWeight: '500',
-          margin: '32px 0px 8px 0px',
-          color: theme.palette.text.primary,
+        fontSize: '20px',
+        fontWeight: '500',
+        margin: '32px 0px 8px 0px',
+        color: theme.palette.text.primary,
       },
       '& h4': {
         fontSize: '20px',
         fontWeight: '500',
-        // margin: '0px 0px 0px 0px',
+        margin: '8px 0px 0px 0px',
         color: theme.palette.text.primary,
     },
     },
@@ -74,7 +74,7 @@ const Contact = () => {
             className={classes.headerStyle}
           >
             <Grid item xs={12} md={10}>
-              <h6>We would love to hear your thoughts or feedback on how we can improve your experience with the Civic Tech Index!</h6>
+              <Typography variant='h6'>We would love to hear your thoughts or feedback on how we can improve your experience with the Civic Tech Index!</Typography>
             </Grid>
           </Grid>
         </Container>
@@ -96,26 +96,26 @@ const Contact = () => {
               direction='column'
             >
               <Grid item xs={12}>
-                <h3>Email *</h3>
+                <Typography variant='h3'>Email <span style={{ color: 'red' }}>*</span></Typography>
                 <TextField id='email-input' placeholder='Your email'></TextField>
                 
-                <h3>I have a question, comment or feature suggestion.</h3>
-                <TextField id='user-message' placeholder='Your message'></TextField>
+                <Typography variant='h3'>I have a question, comment or feature suggestion.</Typography>
+                <TextField id='user-message' placeholder='Your message' multiline='true'></TextField>
                 
-                <h3>I added the civictechindex tag to my project, please add my logo to your website.</h3>
-                <Button style={{ width: '200px', height: '48px', margin: '8px 0px' }} variant='contained' color='default'>
+                <Typography variant='h3'>I added the civictechindex tag to my project, please add my logo to your website.</Typography>
+                <Button style={{ width: '200px', height: '48px', margin: '4px 0px' }} variant='contained' color='default'>
                   <PresentToAllIcon />
                   &nbsp;&nbsp;Upload File
                 </Button>
-                <Typography>[ADD FILE DETAILS (SIZE, TYPE)]</Typography>
+                <Typography variant='h4'>[ADD FILE DETAILS (SIZE, TYPE)]</Typography>
                 
-                <h3>Name *</h3>
+                <Typography variant='h3'>Name <span style={{ color: 'red' }}>*</span></Typography>
                 <TextField id='name-input' placeholder='Your name'></TextField>
                 
-                <h3>Organization / Brigade / Affiliation *</h3>
+                <Typography variant='h3'>Organization / Brigade / Affiliation <span style={{ color: 'red' }}>*</span></Typography>
                 <TextField id='user-affiliation' placeholder='Name of your organization, brigade, affiliation'></TextField>
                 
-                <h3>Your Project or Organization's GitHub URL *</h3>
+                <Typography variant='h3'>Your Project or Organization's GitHub URL <span style={{ color: 'red' }}>*</span></Typography>
                 <TextField id='github-url' placeholder='GitHub URL'></TextField>
                 
                 <Button style={{ width: '105px', height: '48px', padding: '10px', margin: '32px 0px' }} variant='contained' color='secondary'>

@@ -5,7 +5,7 @@ import About from './pages/About';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
 import Faq from './pages/RadicalCollaboration/Faq';
-import Contact from './pages/RadicalCollaboration/contact';
+import Contact from './pages/RadicalCollaboration/Contact';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
