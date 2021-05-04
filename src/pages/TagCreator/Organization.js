@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from 'react';
+import React,{ useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -8,40 +8,10 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Sleep=(delay = 0)=> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
 
-export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
+export const OrganizationSelectorSection = ({ orgName, setOrgName,options }) => {
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
-
-  useEffect(() => {
-    let active = true;
-    if (!loading) {
-      return undefined;
-    }
-    (async () => {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-      await Sleep(400)
-      const orgs =await (response.data).map((org) => org.name)
-      if (active) {
-        setOptions(["",...orgs]);
-      }
-    })();
-    return () => {
-      active = false;
-    };
-  }, [loading]);
-
-  useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
 
   return (
     <>

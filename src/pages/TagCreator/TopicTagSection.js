@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import ChipInput from "material-ui-chip-input";
+import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
   addTag: {
@@ -31,15 +32,15 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export const CurrentTopicTagSection = ({ names, repositoryName }) => {
+export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
   return (
     <>
-      {names.length !== 0 ?<Grid>
+      {currentTags.length !== 0 ?<Grid>
         <Grid style={{ padding:'20px' }}>
           <Typography variant='body1'>Current topic tags on {repositoryName}:</Typography>
         </Grid>
         <Grid container direction="row" data-cy='current-tags' style={{ padding:'30px' }}>
-          <TopicTag topicNames={names} variant='generated' />
+          <TopicTag topicnames={currentTags} variant='generated' />
         </Grid> </Grid>: <Grid item md={8} style={{ margin:'auto', padding:'30px' }}>
         <Typography variant='h5' style={{ textAlign:'center' }}>There are currently no topic tags in your project’s repository. Add tags to increase your project visibility.</Typography>
       </Grid> }
@@ -127,7 +128,7 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,link
         <Grid container direction="row" alignItems="center">
           <Grid item md={8} data-cy='new-tags' style={{ padding:'30px' }}>
             <Grid container direction="row">
-              <TopicTag topicNames={tagsToAdd} variant='generated' />
+              <TopicTag topicnames={tagsToAdd} variant='generated' />
             </Grid>
           </Grid>
           <Grid item md={4}>
@@ -152,6 +153,12 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,link
 }
 
 export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl,linkStyles }) =>{
+  const clipboard = useClipboard({
+    copiedTimeout: 600,
+  });
+  const handleQueryParamLink = () => {
+    clipboard.copy(window.location.href)
+  }
 
   return (
     <>
@@ -159,10 +166,11 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
         <Typography variant='h5'>How to add your tags to your project’s repository</Typography>
       </Grid>
       <Grid style={{ padding:'10px' }}>
-        <Typography variant='h6' style={{  fontWeight: '400' }} >We recommend having your <Link href={repositoryUrl} >project’s repository</Link> open in another browser for ease of convenience. </Typography>
+        <Typography variant='h6' style={{  fontWeight: '400' }} >We recommend having your <Link target="_blank" href={repositoryUrl} >project’s repository</Link> open in another browser for ease of convenience. </Typography>
       </Grid>
       <Grid style={{ padding:'20px' }}>
-        <Typography variant='h6' style={{  fontWeight: '400' }}>If you don’t see the (Github Gear icon) button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below). Please click here to copy this page link and send it to your repository admin.</Typography>
+        <Typography variant='h6' style={{  fontWeight: '400' }}>If you don’t see the (Github Gear icon) button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below). 
+        Please click <Link onClick={()=>handleQueryParamLink()} underline='always'>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
       </Grid>
       <Grid>
         <Grid style={{ padding:'20px' }}>
@@ -171,13 +179,16 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
         <Grid container direction="row" alignItems="center">
           <Grid item md={8} data-cy='copy-paste-tags' style={{ padding:'30px' }}>
             <Grid container direction="row">
-              <TopicTag topicNames={tagsToAdd} variant='copypaste'/>
+              <TopicTag topicnames={tagsToAdd} variant='copypaste'/>
             </Grid>
           </Grid>
           <Grid item md={4}>
             <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link></Typography>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid>
+        <Typography variant='body1' style={{  fontWeight: '300', fontStyle:'italic' }}>Click each individual generated topic tag to copy it one at a time. Paste selected tag into your repository.</Typography>
       </Grid>
     </>
   )

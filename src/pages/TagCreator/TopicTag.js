@@ -3,6 +3,8 @@ import Chip from '@material-ui/core/Chip';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CopyPasteIcon from '../../icons/CopyPasteIcon';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
   topicTag: {
@@ -24,12 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleDelete = (data) => () => {
-  navigator.clipboard.writeText(data)
-};
 
 const GeneratedTopicTag = (props) => {
-  const topicArray = props.topicNames || []
+  const topicArray = props.topicnames || []
   return topicArray.map((data,key) =>  {
     return (
       <Grid key={key}>
@@ -41,12 +40,18 @@ const GeneratedTopicTag = (props) => {
 
 
 const ClickableTopicTag = (props) => {
-  return <Chip onDelete={handleDelete} {...props} />;
+  return <Chip {...props} />;
 };
 
 const CopyPasteTopicTag = (props) => {
-  const topicArray = props.topicNames || []
-  return topicArray.map((data,key) => {
+  const clipboard = useClipboard({
+    copiedTimeout: 600,
+  });
+  const handleDelete = (data) => () => {
+    clipboard.copy(data);
+  };
+  const topicArray = props.topicnames || []
+  const ChipArray = topicArray.map((data,key) => {
     return (
       <Grid key={key}>
         <Chip
@@ -58,10 +63,19 @@ const CopyPasteTopicTag = (props) => {
       </Grid>
     );
   })
+  return (
+    <>
+      <Grid item xs={10}>
+        <Typography variant='body1' style={{ textAlign:'center' }}>{clipboard.copied ? 'Copied' : null}</Typography>
+      </Grid>
+      {ChipArray}
+    </>
+  )
+
 };
 
 
-const TopicTag = ({ topicNames, variant,label }) => {
+const TopicTag = ({ topicnames, variant,label }) => {
   const classes = useStyles();
 
   let Component = ClickableTopicTag;
@@ -75,7 +89,7 @@ const TopicTag = ({ topicNames, variant,label }) => {
 
   return (
     <Component
-      topicNames={topicNames}
+      topicnames={topicnames}
       clickable={clickable}
       variant='outlined'
       className={classes.topicTag}
