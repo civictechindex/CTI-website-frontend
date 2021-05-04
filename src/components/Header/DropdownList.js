@@ -17,18 +17,28 @@ const DropdownList = ({ header, links, route }) => {
   return (
     <>
       <Box className={classes.dropdownHeader} onClick={toggleList}>
-        <Typography 
-          // Uncomment below to create Menu header as link
-          // component={Link} to={route} 
-          variant='body2' color='textSecondary' style={{ fontWeight:'bold', textDecoration: 'none' }}>{header}
+        <Typography
+          // component={Link} to={route} // uncomment to create Menu header as link
+          variant='body2'
+          color='textSecondary'
+          style={{ fontWeight: 'bold', textDecoration: 'none' }}
+        >
+          {header}
         </Typography>
-        {open ? <ExpandLessRounded color="secondary" /> : <ExpandMoreRounded color="primary" />}
+        {open ? <ExpandLessRounded color='secondary' /> : <ExpandMoreRounded color='primary' />}
       </Box>
       {open &&
         links.map((link) => {
-          return link.external ? <a style={{ textDecoration: 'none' }} href={link.to}>{link.text}</a> : <Link style={{ textDecoration: 'none' }} to={link.to}>{link.text}</Link>
-        })
-      }
+          return link.external ? (
+            <a style={{ textDecoration: 'none' }} href={link.route}>
+              {link.header}
+            </a>
+          ) : (
+            <Link style={{ textDecoration: 'none' }} to={link.route}>
+              {link.header}
+            </Link>
+          );
+        })}
     </>
   );
 };
