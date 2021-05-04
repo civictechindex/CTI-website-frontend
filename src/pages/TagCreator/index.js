@@ -52,11 +52,11 @@ const usePrevious =(refValue) => {
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
   const theme = useTheme();
-  const [displayState, setDisplayState] = useQueryParam('displayState',StringParam);
-  const [value, setValue] = useQueryParam('value',StringParam);
-  const [orgName, setOrgName] = useQueryParam('orgName',StringParam);
-  const [changeValue, setChangeValue] = useQueryParam('changeValue',StringParam);
-  const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl',StringParam);
+  const [displayState, setDisplayState] = useQueryParam('displayState',withDefault(StringParam,''));
+  const [value, setValue] = useQueryParam('value',withDefault(StringParam,''));
+  const [orgName, setOrgName] = useQueryParam('orgName',withDefault(StringParam,''));
+  const [changeValue, setChangeValue] = useQueryParam('changeValue',withDefault(StringParam,''));
+  const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl',withDefault(StringParam,''));
   const [repositoryName, setRepositoryName] = useQueryParam('repositoryName',StringParam);
   const [topicSearchError, setTopicSearchError] = useState('');
   const [tagsToAdd, setTagsToAdd] = useQueryParam('tagsToAdd',withDefault(ArrayParam,[]));
@@ -123,6 +123,10 @@ const TagCreator = () => {
     if (event.key === 'Enter') {
       handleSubmit();
     }
+  }
+
+  const handleChangeUrl = (e) => {
+    setRepositoryUrl(e.target.value)
   }
 
   const handleChange = (event) => {
@@ -216,7 +220,7 @@ const TagCreator = () => {
           <ProjectRepositoryInput
             repositoryUrl={repositoryUrl}
             handleEnter={handleEnter}
-            setRepositoryUrl={setRepositoryUrl}
+            handleChangeUrl={handleChangeUrl}
             topicSearchError={topicSearchError}
             setTopicSearchError={setTopicSearchError}
             handleSubmit={handleSubmit}/>
