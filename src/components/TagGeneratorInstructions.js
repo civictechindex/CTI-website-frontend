@@ -97,7 +97,7 @@ const HowToUse = () => {
               <Typography variant='body1'> 1. Navigate to your project&apos;s repository in another browser to add your generated tags.</Typography>
             </Grid>
             <StepComp stext='2. Under your project’s repository, click to paste your tags.' src='/images/step_2.png' alt='Step 2'/>
-            <StepComp stext='>3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.' src='/images/step_3.png' alt='Step 3'/>
+            <StepComp stext='3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.' src='/images/step_3.png' alt='Step 3'/>
             <StepComp stext='4. Repeat until you have finished adding all of your tags, then click Save Changes.' src='/images/step_4.png' alt='Step 4'/>
           </Grid>
         </Container>
