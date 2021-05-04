@@ -118,10 +118,6 @@ const TagCreator = () => {
     }
   }
 
-  const handleChangeUrl = (e) => {
-    setRepositoryUrl(e.target.value)
-  }
-
   const handleChange = (event) => {
     setValue(event.target.value)
   }
@@ -213,7 +209,7 @@ const TagCreator = () => {
           <ProjectRepositoryInput
             repositoryUrl={repositoryUrl}
             handleEnter={handleEnter}
-            handleChangeUrl={handleChangeUrl}
+            setRepositoryUrl={setRepositoryUrl}
             topicSearchError={topicSearchError}
             setTopicSearchError={setTopicSearchError}
             handleSubmit={handleSubmit}/>

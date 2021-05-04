@@ -23,13 +23,13 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkSty
   )
 }
 
-export const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, topicSearchError, handleSubmit,handleChangeUrl }) => {
+export const ProjectRepositoryInput = ({ handleEnter, repositoryUrl,setRepositoryUrl, topicSearchError, handleSubmit }) => {
   return (
     <>
       <Grid data-cy='grid-repository' item xs={12} sm={12}>
         <p>Project Repository URL</p>
         <p style={{ fontSize: '10px' }}></p>
-        <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onChange={handleChangeUrl} variant="outlined" placeholder="https://github.com/hackforla/example" fullWidth />
+        <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onChange={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="https://github.com/hackforla/example" fullWidth />
       </Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
         {topicSearchError}
