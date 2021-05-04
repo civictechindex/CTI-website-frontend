@@ -75,11 +75,11 @@ const BottomSection = () =>{
 }
 
 const HowToUse = () => {
-  const StepComp =({ stext,src,alt }) =>{
+  const StepComp =({ stepText,src,alt }) =>{
     return (
       <>
         <Grid item xs={12} md={6}>
-          <Typography variant='body1'>{stext}</Typography>
+          <Typography variant='body1'>{stepText}</Typography>
         </Grid>
         <Grid item xs={12} md={6}>
           <img src={src} alt={alt} />
@@ -96,9 +96,9 @@ const HowToUse = () => {
             <Grid item xs={12} style={{ padding:'70px 10px' }}>
               <Typography variant='body1'> 1. Navigate to your project&apos;s repository in another browser to add your generated tags.</Typography>
             </Grid>
-            <StepComp stext='2. Under your project’s repository, click to paste your tags.' src='/images/step_2.png' alt='Step 2'/>
-            <StepComp stext='3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.' src='/images/step_3.png' alt='Step 3'/>
-            <StepComp stext='4. Repeat until you have finished adding all of your tags, then click Save Changes.' src='/images/step_4.png' alt='Step 4'/>
+            <StepComp stepText='2. Under your project’s repository, click to paste your tags.' src='/images/step_2.png' alt='Step 2'/>
+            <StepComp stepText='3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.' src='/images/step_3.png' alt='Step 3'/>
+            <StepComp stepText='4. Repeat until you have finished adding all of your tags, then click Save Changes.' src='/images/step_4.png' alt='Step 4'/>
           </Grid>
         </Container>
         <BottomSection/>

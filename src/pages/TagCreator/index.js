@@ -57,7 +57,7 @@ const TagCreator = () => {
   const [orgName, setOrgName] = useQueryParam('orgName',withDefault(StringParam,''));
   const [changeValue, setChangeValue] = useQueryParam('changeValue',withDefault(StringParam,''));
   const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl',withDefault(StringParam,''));
-  const [repositoryName, setRepositoryName] = useQueryParam('repositoryName',StringParam);
+  const [repositoryName, setRepositoryName] = useQueryParam('repositoryName',withDefault(StringParam,''));
   const [topicSearchError, setTopicSearchError] = useState('');
   const [tagsToAdd, setTagsToAdd] = useQueryParam('tagsToAdd',withDefault(ArrayParam,[]));
   const [currentTags, setCurrentTags] = useQueryParam('currentTags',withDefault(ArrayParam,[]));
