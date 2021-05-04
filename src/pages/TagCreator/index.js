@@ -90,13 +90,6 @@ const TagCreator = () => {
     return () => {
       active = false;
     };
-    /*
-     * (async () => {
-     *   const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-     *   const orgs =await (response.data).map((org) => org.name)
-     *   setOptions(["",...orgs]);
-     * })();
-     */
   }, []);
 
   useEffect(() => {
