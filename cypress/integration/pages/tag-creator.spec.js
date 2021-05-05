@@ -112,7 +112,9 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true }).click().type(AFFILIATED_TEST_URL).type('{enter}');
     });
-    cy.get('a').contains(AFFILIATED_TEST_URL);
+    cy.get('[data-cy=grid-repository-url]').within(() => {
+      cy.get('a').contains(AFFILIATED_TEST_URL);
+    });
     cy.get('#change-url').click();
     cy.get('#repository-url').clear().type(UNAFFILIATED_TEST_URL).type('{enter}');
     cy.get('a').contains(UNAFFILIATED_TEST_URL);

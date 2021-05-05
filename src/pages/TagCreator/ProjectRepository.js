@@ -11,7 +11,7 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkSty
       <Grid item>
         <Typography variant='body1'>Project Repository URL:</Typography>
       </Grid>
-      <Grid item>
+      <Grid data-cy='grid-repository-url' item>
         <Link variant='body1' href={repositoryUrl} >{repositoryUrl}</Link>
       </Grid>
       <Grid item>
