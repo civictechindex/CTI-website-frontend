@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Container } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
@@ -5,6 +6,7 @@ import withWidth from '@material-ui/core/withWidth';
 import PhotoCardDesktop from './PhotoCardDesktop';
 import PhotoCardMobile from './PhotoCardMobile';
 import { GetStartedCard, NavBreadcrumbs, TitleSection } from '../../components';
+
 
 const SupportUs = () => {
   const crumbs = [
@@ -66,7 +68,16 @@ const SupportUs = () => {
       dsktpTxtLn3: 'View our FAQ to find answers or contact us.',
     },
   ];
+  const useStyles = makeStyles(theme => ({
+    root: {
+      "& .MuiPaper-root": {
+        backgroundColor: 'transparent',
+      },
+    },
+  }));
+  const classes = useStyles();
   return (
+
     <Container className='containerDefault'>
       <NavBreadcrumbs crumbs={crumbs} style={{ fontColor: '#FEFEFE' }} />
       <TitleSection>Your Help Goes a Long Way</TitleSection>
