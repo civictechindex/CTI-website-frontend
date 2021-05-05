@@ -132,7 +132,7 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,link
             </Grid>
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link></Typography>
+            <Link component="button" variant='body1' onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link>
           </Grid>
         </Grid>
       </Grid>
@@ -169,8 +169,8 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
         <Typography variant='h6' style={{  fontWeight: '400' }} >We recommend having your <Link target="_blank" href={repositoryUrl} >project’s repository</Link> open in another browser for ease of convenience. </Typography>
       </Grid>
       <Grid style={{ padding:'20px' }}>
-        <Typography variant='h6' style={{  fontWeight: '400' }}>If you don’t see the (Github Gear icon) button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below). 
-        Please click <Link onClick={()=>handleQueryParamLink()} underline='always'>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
+        <Typography variant='h6' style={{  fontWeight: '400' }}>If you don’t see the (Github Gear icon) button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
+        Please click <Link component="button" variant='h6' onClick={()=>handleQueryParamLink()} underline='always' style={linkStyles}>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
       </Grid>
       <Grid>
         <Grid style={{ padding:'20px' }}>
@@ -183,7 +183,7 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
             </Grid>
           </Grid>
           <Grid item md={4}>
-            <Typography variant='body1'><Link onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link></Typography>
+            <Link component="button" variant='body1' onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link>
           </Grid>
         </Grid>
       </Grid>

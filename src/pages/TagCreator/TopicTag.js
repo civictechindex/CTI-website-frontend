@@ -1,9 +1,8 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CopyPasteIcon from '../../icons/CopyPasteIcon';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,19 +43,22 @@ const ClickableTopicTag = (props) => {
 };
 
 const CopyPasteTopicTag = (props) => {
+  const [cValue,setCvalue]=useState()
   const clipboard = useClipboard({
     copiedTimeout: 600,
   });
-  const handleDelete = (data) => () => {
+  const handleDelete = (data,key) => () => {
     clipboard.copy(data);
+    setCvalue(key)
   };
   const topicArray = props.topicnames || []
   const ChipArray = topicArray.map((data,key) => {
     return (
       <Grid key={key}>
         <Chip
-          label={data}
-          onDelete={handleDelete(data)}
+          key={key}
+          label={(clipboard.copied && cValue === key)?'copied':data}
+          onDelete={handleDelete(data,key)}
           deleteIcon={<CopyPasteIcon />}
           {...props}
         />
@@ -65,9 +67,6 @@ const CopyPasteTopicTag = (props) => {
   })
   return (
     <>
-      <Grid item xs={10}>
-        <Typography variant='body1' style={{ textAlign:'center' }}>{clipboard.copied ? 'Copied' : null}</Typography>
-      </Grid>
       {ChipArray}
     </>
   )
