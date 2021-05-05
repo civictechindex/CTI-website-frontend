@@ -73,7 +73,7 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
       <Grid item>
-        <Link component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
+        <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>
   )

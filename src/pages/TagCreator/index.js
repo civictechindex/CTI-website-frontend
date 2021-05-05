@@ -18,10 +18,6 @@ import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,Cu
 import useTheme from '@material-ui/core/styles/useTheme';
 import TagGeneratorInstructions from '../../components/TagGeneratorInstructions'
 
-
-
-
-
 /**
  * By removing matched text, we allow leeway in entering repository URL,
  * including how it might be pasted from GitHub. All these would work:
@@ -47,7 +43,6 @@ const usePrevious =(refValue) => {
   });
   return ref.current;
 }
-
 
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
@@ -78,6 +73,7 @@ const TagCreator = () => {
     setChangeValue('')
     setDisplayState('')
   }
+
   useEffect(() => {
     let active = true;
     axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
@@ -183,7 +179,7 @@ const TagCreator = () => {
   const OrgProjSection = () => {
     return (
       <>
-        <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles}/>
+        <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles} />
         <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </>
     )

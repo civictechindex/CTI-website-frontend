@@ -12,10 +12,10 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkSty
         <Typography variant='body1'>Project Repository URL:</Typography>
       </Grid>
       <Grid item>
-        <Typography variant='body1'><Link href={repositoryUrl} >{repositoryUrl}</Link></Typography>
+        <Link variant='body1' href={repositoryUrl} >{repositoryUrl}</Link>
       </Grid>
       <Grid item>
-        <Link component="button" variant='body1' onClick={()=>setDisplayState('ProjectUrl')} underline='always' style={linkStyles} >change</Link>
+        <Link id="change-url" component="button" variant='body1' onClick={()=>setDisplayState('ProjectUrl')} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>
   )
