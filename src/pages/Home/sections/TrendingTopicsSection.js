@@ -32,13 +32,27 @@ const topicData = [
 ];
 
 const TrendingTopicsSection = () => {
+
+
   const TrendingTopicList = () => {
+    const classes = useStyles();
     return (
       topicData.map((topic, key) => {
         return (
-          <TrendingTopicChip key={key}>
-            <Link to={{ pathname: topic.link, query: { search: topic.detail }}}>{topic.detail}</Link>
-          </TrendingTopicChip>
+          <Chip
+            key={key}
+            label={topic.detail}
+            component="a"
+            //to={{ pathname: topic.link, query: { search: topic.detail }}}
+            href={topic.link}
+            clickable
+            className = {classes.homeTag}
+          />
+          /*
+           * <TrendingTopicChip key={key}>
+           *   <Link to={{ pathname: topic.link, query: { search: topic.detail }}}>{topic.detail}</Link>
+           * </TrendingTopicChip>
+           */
         );
       })
     );
