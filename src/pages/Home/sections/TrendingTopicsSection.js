@@ -47,12 +47,13 @@ const TrendingTopicsSection = () => {
   const TrendingTopicChip = (props) => {
     const classes = useStyles();
     return (
-      <a href={props.href}>
-        <Chip
-          label={props.children}
-          className = {classes.homeTag}
-        />
-      </a>
+      <Chip
+        label={props.children}
+        component="a"
+        href={props.href}
+        clickable
+        className = {classes.homeTag}
+      />
     );
   }
 
