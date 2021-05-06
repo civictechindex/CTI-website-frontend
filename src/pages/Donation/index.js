@@ -18,16 +18,16 @@ const Donation = () => {
           <HeaderSection />
         </Container>
       </Box>
-      <Box className='containerGray' style={{ paddingBottom: '46px' }}>
-        <Grid container direction='row' spacing={2} alignItems="stretch">
-          <Grid spacing={8} xs={12} sm={5} style={{ paddingTop: '14vw', paddingLeft: '18vw', height: '100%' }}>
+      <Box className='containerGray' style={{ padding: '16px' }}>
+        <Grid container direction='row' alignItems='center' justify='center'>
+          <Grid item xs={12} sm={6} className={classes.infoGrid}>
             <Typography variant='body1' className={classes.infoDescription}>
               The Civic Tech Index is being developed by Hack For LA,
               and is currently taking donations through Code For America.
             </Typography>
             <Typography variant='body1' className={classes.infoSteps}>
               1. Please follow this link to the Code For America{' '}
-              <a href='https://www.codeforamerica.org/donate'>donation form.</a>
+              <a style={{ color: '#0D99C6' }} href='https://www.codeforamerica.org/donate'>donation form.</a>
             </Typography>
             <Typography variant='body1' className={classes.infoSteps}>
               2. To make a donation to the Civic Tech Index,
@@ -35,11 +35,13 @@ const Donation = () => {
             </Typography>
             <Typography variant='h4' className={classes.infoThank}>We appreciate your contribution.</Typography>
           </Grid>
-          <Grid item style={{ height: '100%', width: '50%' }} xs={12} sm={5}>
-            <img
-              alt='A gif demonstrating the use of the donation form'
-              className={classes.infoGif} xs={12} md={10}
-              src='./images/CTI-Donate-to-HfLA.gif' />
+          <Grid item container xs={12} sm={6} direction='column' alignItems='center' justify='center'>
+            <Grid item>
+              <img
+                alt='A gif demonstrating the use of the donation form'
+                className={classes.infoGif}
+                src='./images/CTI-Donate-to-HfLA.gif' />
+            </Grid>
           </Grid>
         </Grid>
       </Box>
