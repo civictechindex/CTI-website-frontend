@@ -12,15 +12,13 @@ import AddOrgModal from '../../components/AddOrgModal';
 export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [currentOptions, setCurrentOptions] = useState(options);
+
   const loading = open && options.length === 0;
 
-  const handleModalClose = async (addOrg, org) => {
-    if (addOrg) {
-      try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/api/organizations/`, org);
-      } catch(error) {
-        console.log(error.response.data);
-      }
+  const handleModalClose = (newOrg) => {
+    if (newOrg) {
+      setCurrentOptions([newOrg.name, ...currentOptions]);
     }
     setModalOpen(false);
   };
@@ -41,7 +39,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           }}
           getOptionSelected={(option, value) => option === value }
           getOptionLabel={(option) => option}
-          options={options}
+          options={currentOptions}
           autoComplete
           loading={loading}
           value={orgName}
