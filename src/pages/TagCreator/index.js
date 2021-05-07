@@ -95,10 +95,10 @@ const TagCreator = () => {
     }
     if (orgTags.length !== 0 && currentTags.length !== 0){
       const result = orgTags.filter(ot => !currentTags.includes(ot))
-      setTagsToAdd([...userTags,...result,...civicName])
+      setTagsToAdd([...civicName,...result,...userTags])
     }
     else
-      setTagsToAdd([...userTags,...orgTags,...civicName])
+      setTagsToAdd([...civicName,...orgTags,...userTags])
   },[orgTags, currentTags, setTagsToAdd, userTags])
 
   useEffect(() => {
