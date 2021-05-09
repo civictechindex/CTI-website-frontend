@@ -46,13 +46,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 
-  contactUs: {
-    backgroundColor: 'theme.palette.background.secondary',
-    '& h2': {
-      fontSize: '28px',
-    },
-  },
-
   infoGif: {
     boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
     marginTop: '4vw',

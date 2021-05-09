@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     position: 'relative',
     textDecoration: 'none',
     top: '.125em',
+    whiteSpace: 'nowrap',
   },
   muiLink: {
     textDecoration: 'underline',
