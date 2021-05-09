@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CopyPasteIcon from '../../icons/CopyPasteIcon';
 import Grid from '@material-ui/core/Grid';
+import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
   topicTag: {
@@ -24,12 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleDelete = (data) => () => {
-  navigator.clipboard.writeText(data)
-};
 
 const GeneratedTopicTag = (props) => {
-  const topicArray = props.topicNames || []
+  const topicArray = props.topicnames || []
   return topicArray.map((data,key) =>  {
     return (
       <Grid key={key}>
@@ -41,27 +39,42 @@ const GeneratedTopicTag = (props) => {
 
 
 const ClickableTopicTag = (props) => {
-  return <Chip onDelete={handleDelete} {...props} />;
+  return <Chip {...props} />;
 };
 
 const CopyPasteTopicTag = (props) => {
-  const topicArray = props.topicNames || []
-  return topicArray.map((data,key) => {
+  const [cValue,setCvalue]=useState()
+  const clipboard = useClipboard({
+    copiedTimeout: 600,
+  });
+  const handleDelete = (data,key) => () => {
+    clipboard.copy(data);
+    setCvalue(key)
+  };
+  const topicArray = props.topicnames || []
+  const ChipArray = topicArray.map((data,key) => {
     return (
       <Grid key={key}>
         <Chip
-          label={data}
-          onDelete={handleDelete(data)}
+          key={key}
+          label={(clipboard.copied && cValue === key)?'copied':data}
+          onDelete={handleDelete(data,key)}
           deleteIcon={<CopyPasteIcon />}
           {...props}
         />
       </Grid>
     );
   })
+  return (
+    <>
+      {ChipArray}
+    </>
+  )
+
 };
 
 
-const TopicTag = ({ topicNames, variant,label }) => {
+const TopicTag = ({ topicnames, variant,label }) => {
   const classes = useStyles();
 
   let Component = ClickableTopicTag;
@@ -75,7 +88,7 @@ const TopicTag = ({ topicNames, variant,label }) => {
 
   return (
     <Component
-      topicNames={topicNames}
+      topicnames={topicnames}
       clickable={clickable}
       variant='outlined'
       className={classes.topicTag}
