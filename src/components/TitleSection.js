@@ -1,24 +1,27 @@
-import React from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import React from 'react';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   titleStyle: {
     color: (props) => {
       if (props.textVariant === 'black') {
-        return theme.palette.primary.main
+        return theme.palette.primary.main;
       } else {
-        return theme.palette.warning.main
+        return theme.palette.warning.main;
       }
     },
-    [theme.breakpoints.down('md')]: {
-      fontSize: '36px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '32px',
+      marginTop: '72px',
     },
+    // marginTop: '80px',
     marginBottom: '0.825em',
     textAlign: 'center',
+    fontSize: '40px',
   },
-}))
+}));
 
 /**
  * Getting Started Call to Action typically right above the footer.
@@ -26,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
  * @param {*} props.textVariant
  */
 const TitleSection = (props) => {
-  const classes = useStyles(props)
-  const title = props.children
+  const classes = useStyles(props);
+  const title = props.children;
 
   return (
     <Grid container>
@@ -39,7 +42,7 @@ const TitleSection = (props) => {
       </Grid>
       <Grid item xs={1} md={2} />
     </Grid>
-  )
-}
+  );
+};
 
-export default TitleSection
+export default TitleSection;
