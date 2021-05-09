@@ -1,13 +1,12 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import Link from '../../components/common/Link';
 import useStyles from './styles.js';
-import { HeaderSection } from './HeaderSection'
-import Box from '@material-ui/core/Box'
-
+import { HeaderSection } from './HeaderSection';
 
 const Donation = () => {
   const classes = useStyles();

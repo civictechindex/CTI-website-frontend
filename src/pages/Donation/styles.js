@@ -1,14 +1,13 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
-const useStyles = makeStyles(theme => ({
-
+const useStyles = makeStyles((theme) => ({
   infoGrid: {
-    height: '100%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '32px 16px',
     },
-    [theme.breakpoints.up('sm')]: {
-      padding: '48px 48px 96px 48px',
+    [theme.breakpoints.up('md')]: {
+      marginTop: '4vw',
+      padding: '0 48px 96px 48px',
     },
   },
 
@@ -48,18 +47,18 @@ const useStyles = makeStyles(theme => ({
 
   infoGif: {
     boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
-    marginTop: '4vw',
     marginBottom: '6vw',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
+      marginTop: 0,
       width: '80vw',
       height: '75vw',
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: '4vw',
       width: '458px',
       height: '466px',
     },
   },
-
-}))
+}));
 
 export default useStyles
