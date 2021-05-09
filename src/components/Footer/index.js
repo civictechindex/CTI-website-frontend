@@ -17,17 +17,16 @@ const FooterLarge = ({ links }) => {
 
   return (
     <Box className={classes.containerFooter}>
-      <Box className={classes.footerPadding}>
-        <Container className={classes.footerContainer}>
-          <LinkList links={links.join} header='Join the Index' route="/tag-generator" />
-          <LinkList links={links.about} header='About' route="/about" />
-          <LinkList links={links.contribute} header='Organization' route="/contributors/all" />
-          <LinkList style={{ display:"flex" }} links={links.collaborate} header='Radical Collaboration' route="/support" />
-          <SocialSection size='lg' />
-          <SubscribeSection size='lg' />
-        </Container>
-        <Annotation />
-      </Box>
+      <Container className={classes.footerContainer}>
+        <LinkList links={links.join} header='Join the Index' route="/tag-generator" />
+        <LinkList links={links.about} header='About' route="/about" />
+        <LinkList links={links.contribute} header='Organization' route="/contributors/all" />
+        <LinkList style={{ display:"flex" }} links={links.collaborate} header='Radical Collaboration' route="/support" />
+        <SocialSection size='lg' />
+        <SubscribeSection size='lg' />
+
+      </Container>
+      <Annotation />
     </Box>
   );
 }
