@@ -6,22 +6,26 @@ const SocialSection = ({ size }) => {
   const classes = useStyles()
 
   return (
-    <div 
+    <div
       className={size !== 'lg'
         ? `${classes.sectionPaddingSm}`
         : `${classes.containerItem}`
       }
     >
-      <Grid container direction='column' spacing={size !== 'lg' && 4} className={size === 'lg' && classes.socialContainerLarge}>
+      <Grid
+        container direction='column'
+        spacing={size !== 'lg' ? 4 : 0}
+        className={size === 'lg' ? classes.socialContainerLarge : null}
+      >
         <Grid item xs={12}>
-          <a 
+          <a
             href='/radicalcollaboration/sharethecti'
             style={{ whiteSpace: 'nowrap' }}
           >
             Follow Us
           </a>
         </Grid>
-        <Grid item xs={12} className={size !== 'lg' && classes.socialContainer}>
+        <Grid item xs={12} className={size !== 'lg' ? classes.socialContainer : null}>
           <a href='https://www.instagram.com/civictechindex'>
             <img src='/images/insta-logo.svg' alt='Instagram logo' />
           </a>

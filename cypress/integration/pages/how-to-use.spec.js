@@ -8,7 +8,7 @@ describe('How To Use Page (Adding Projects to the Index)', () => {
   })
 
   it('footer section loads', () => {
-    cy.contains('This project is so new we are celebrating every win')
+    cy.contains('Add Another Project')
   })
 
 })

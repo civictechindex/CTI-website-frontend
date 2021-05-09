@@ -1,13 +1,13 @@
 import React from 'react';
-import useStyles from './styles.js';
 import NavButton from '../NavButton';
+import useStyles from './styles.js';
 
 export default function SearchContainer() {
   const classes = useStyles();
 
   return (
     <div className={classes.searchContainer}>
-      <NavButton href="/projects" variant="blue">Search Projects</NavButton>
+      <NavButton href='/projects'>Search Projects</NavButton>
     </div>
-  )
-};
+  );
+}

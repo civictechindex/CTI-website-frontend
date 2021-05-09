@@ -1,4 +1,4 @@
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -54,8 +54,10 @@ const useStyles = makeStyles((theme) => ({
     },
     '.containerWorld': {
       backgroundColor: theme.palette.secondary.dark,
-      backgroundImage: 'url(/images/world-view.png)',
-      backgroundRepeat: 'no-repeat',
+      backgroundImage: 'url(/images/world-view.png),url(/images/mag.svg)',
+      backgroundRepeat: 'no-repeat, no-repeat',
+      backgroundPosition: 'top center,bottom right',
+      backgroundSize: 'contain,534px 356px',
       minHeight: '500px',
     },
     '.pageContainer': {
@@ -87,4 +89,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default useStyles
+export default useStyles;
