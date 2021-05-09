@@ -1,8 +1,9 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ErrorOutlineRoundedIcon from '@material-ui/icons/ErrorOutlineRounded';
+import Typography from '@material-ui/core/Typography';
 
 const Error404 = () => {
 
@@ -12,9 +13,11 @@ const Error404 = () => {
       '& h1': {
         [theme.breakpoints.down('sm')]: {
           color: theme.palette.warning.main,
+          fontSize: '72px',
         },
         [theme.breakpoints.up('md')]: {
           color: theme.palette.warning.main,
+          fontSize: '72px',
         },
       },
       '& h6': {
@@ -33,22 +36,16 @@ const Error404 = () => {
   const ErrorSection = () => {
     const classes = useStyles();
     return (
-      <Grid
-        container
-        justify='center'
-        className={classes.errorPageStyle}
-      >
-        <Grid style={{ fontSize: 52 }}>
-          <h1>404<ErrorOutlineRoundedIcon style={{ fontSize: 84 }}/></h1>
-          <h6>Oops! The page you are looking for has moved or does not exist.</h6>
-        </Grid>
-      </Grid>
+      <Container maxWidth= 'sm' className={classes.errorPageStyle} >
+        <Typography variant='h1'>404<ErrorOutlineRoundedIcon style={{ fontSize: 60 , transform: "translateX(12px) translateY(6px)" }}/></Typography>
+        <Typography variant='h6'>Oops! The page you are looking for has moved or does not exist.</Typography>
+      </Container>
     );
   };
 
   return (
-    <Box className='containerDefault' p={10}>
-      <ErrorSection />
+    <Box className='containerDefault' py={10} px={5}>
+      <ErrorSection/>
     </Box>
   )
 }
