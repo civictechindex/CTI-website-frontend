@@ -14,7 +14,7 @@ describe('Header component', () => {
       .within(() => {
         cy.contains('How to Do It');
         cy.contains('Donate');
-        cy.contains('Volunteer with us');
+        cy.contains('Volunteer with Us');
         cy.contains('FAQ');
       });
     cy.findLink('Organizations').should('have.attr', 'href', '/contributors/all').trigger('mouseover');
