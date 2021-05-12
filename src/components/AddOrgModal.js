@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -79,24 +80,36 @@ const useStyles = makeStyles((theme) => ({
 },
 }));
 
-export default function AddOrgModal() {
+const AddOrgModal = ({ open, onClose }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
+  const [orgProps, setOrgProps] = useState({});
+
+  const handleClose = (newOrg) => {
+    onClose(newOrg)
+  }
+
+  const handleSave = async () => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/organizations/`, orgProps);
+      handleClose(response.data);
+    } catch(error) {
+      console.log(error.response);
+    }
+  }
+
+  const handleCountryChange = (country) => {
+    setOrgProps({ ...orgProps, country: country })
   };
-  const handleClose = () => {
-    setOpen(false);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setOrgProps({ ...orgProps, [name]: value });
   };
 
   return (
     <>
-      <button type='button' onClick={handleOpen}>
-        Add Organization
-      </button>
       <Modal
         open={open}
-        onClose={handleClose}
         style={{ overflow:'scroll' }}
       >
         <Grid container style={{ justifyContent: 'center' }} className={classes.AddOrgStyle}>
@@ -112,27 +125,27 @@ export default function AddOrgModal() {
             <Grid item xs={12}>
               <Typography variant='h2'>Organization Detail</Typography>
               <Typography variant='h3'>Organization Name:*</Typography>
-              <TextField id='organization-name'></TextField>
+              <TextField id='organization-name' name='name' onChange={handleInputChange}></TextField>
               <Typography variant='h3'>Parent Organization:</Typography>
-              <TextField id='parent-organization'></TextField>
+              <TextField id='parent-organization' name='parent_organization' onChange={handleInputChange}></TextField>
             </Grid>
 
             <Grid item xs={12}>
               <Typography variant='h2'>Project URL</Typography>
               <Typography variant='h3'>Website URL:*</Typography>
-              <TextField id='project-website-url'></TextField>
+              <TextField id='project-website-url' name='website_url' onChange={handleInputChange}></TextField>
               <Typography variant='h3'>Github URL:*</Typography>
-              <TextField id='project-github-url'></TextField>
+              <TextField id='project-github-url' name='github_url' onChange={handleInputChange}></TextField>
             </Grid>
 
             <Grid item xs={12}>
               <Typography variant='h2'>Social Media URL</Typography>
               <Typography variant='h3'>Facebook URL:</Typography>
-              <TextField id='facebook-url'></TextField>
+              <TextField id='facebook-url' name='facebook_url' onChange={handleInputChange}></TextField>
               <Typography variant='h3'>Twitter URL:</Typography>
-              <TextField id='twitter-url'></TextField>
+              <TextField id='twitter-url' name='twitter_url' onChange={handleInputChange}></TextField>
               <Typography variant='h3'>MeetUp URL:</Typography>
-              <TextField id='meetup-url'></TextField>
+              <TextField id='meetup-url' name='meetup_url' onChange={handleInputChange}></TextField>
             </Grid>
             
             <Grid item xs={12}>
@@ -141,55 +154,67 @@ export default function AddOrgModal() {
             <Grid container item xs={12} spacing={2}>
               <Grid item xs={12} sm={4}>
                 <Typography variant='h3'>City</Typography>
-                <TextField id='location-city'></TextField>
+                <TextField id='location-city' name='city' onChange={handleInputChange}></TextField>
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant='h3'>State/Prov./Co.</Typography>
-                <TextField id='location-state-prov-co'></TextField>
+                <TextField id='location-state-prov-co' name='state' onChange={handleInputChange}></TextField>
               </Grid>
               <Grid item xs={12} sm={5}>
                 <Typography variant='h3'>Country:</Typography>
-                <CountrySelect  style={{ width: '100%' }}/>
+                <CountrySelect style={{ width: '100%' }} onChange={handleCountryChange}/>
               </Grid>
             </Grid>
 
             <Grid item xs={12}>
               <Typography variant='h2'>Github Tags</Typography>
-              <TextField 
-                id='github-tags'
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='start'>
-                      <HelpIcon style={{ blend: 'pass-through' }}/>
-                    </InputAdornment>
-                  )
-                }}
-              >
-              </TextField>
+              <TextField
+              id='github-tags'
+              name='org_tag'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='start'>
+                    <HelpIcon style={{ blend: 'pass-through' }}/>
+                  </InputAdornment>
+                ),
+              }}
+              onChange={handleInputChange}
+            >
+            </TextField>
             </Grid>
             <Grid item xs={12}>
               <Typography variant='h2'>Organization Email*</Typography>
-              <TextField id='organization-email'></TextField>
+              <TextField id='organization-email' name='organization_email' onChange={handleInputChange}></TextField>
             </Grid>
 
             {/* //Buttons */}
             <Grid container justify='center' alignItems='center' style={{ height: '100px', padding: '40px 0px' }}>
               <Grid style={{ textAlign: 'center' }}>
-                <Button style={{ width: '270px', padding: '10px', margin: '12px' }} variant='contained' color='default'>
+                <Button
+                  style={{ width: '270px', padding: '10px', margin: '12px' }}
+                  variant='contained'
+                  color='default'
+                  onClick={() => handleClose(null)}
+                >
                   Cancel
                 </Button>
               </Grid>
               <Grid style={{ textAlign: 'center' }}>
-                <Button style={{ width: '270px', padding: '10px', margin: '12px' }} variant='contained' color='secondary'>
+                <Button
+                  style={{ width: '270px', padding: '10px', margin: '12px' }}
+                  variant='contained'
+                  color='secondary'
+                  onClick={() => handleSave()}
+                >
                   Save
                 </Button>
               </Grid>    
             </Grid>
-
           </Grid>
-          <Grid item xs={1} />
         </Grid>
       </Modal>
     </>
   );
-}
+};
+
+export default AddOrgModal;

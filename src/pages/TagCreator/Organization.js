@@ -7,11 +7,21 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AddOrgModal from '../../components/AddOrgModal';
 
-
-export const OrganizationSelectorSection = ({ orgName, setOrgName,options }) => {
+export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [currentOptions, setCurrentOptions] = useState(options);
+
   const loading = open && options.length === 0;
+
+  const handleModalClose = (newOrg) => {
+    if (newOrg) {
+      setCurrentOptions([newOrg.name, ...currentOptions]);
+    }
+    setModalOpen(false);
+  };
 
   return (
     <>
@@ -29,7 +39,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName,options }) => 
           }}
           getOptionSelected={(option, value) => option === value }
           getOptionLabel={(option) => option}
-          options={options}
+          options={currentOptions}
           autoComplete
           loading={loading}
           value={orgName}
@@ -51,8 +61,11 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName,options }) => 
         />
       </Grid>
       <Grid item>
-        <Typography variant='body1'>Don’t see your organization? Click <Link >here</Link> to add it. </Typography>
+        <Typography variant='body1'>
+          Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
+        </Typography>
       </Grid>
+      <AddOrgModal open={modalOpen} onClose={handleModalClose} />
     </>
   )
 }
