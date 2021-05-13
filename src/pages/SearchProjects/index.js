@@ -12,7 +12,7 @@ import FilterSelector from './FilterSelector';
 import FilterTag from './FilterTag';
 import HeaderSection from './HeaderSection';
 import HelpModal from './HelpModal';
-import ProjectCard from './ProjectCard';
+import ProjectCard from '../../components/ProjectCard';
 import ResultFilters from './ResultFilters';
 import ResultHeader from './ResultHeader';
 import ResultContainer from './ResultContainer';
@@ -73,7 +73,7 @@ const renderCard = (project) => {
         ownerName={project.owner.login}
         projectName={project.name}
         projectDescription={project.description}
-        homepage={project.homepage} /* TODO: Fan out */
+        homepage={project.homepage}
         lastUpdate={calculateDaysSince(project.updated_at)}
         issueCount={project.open_issues}
         projectLanguage={project.language}
