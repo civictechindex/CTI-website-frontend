@@ -12,7 +12,6 @@ import Landing from './pages/Landing';
 import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
-import IndvOrgPage from './pages/IndvOrganization'
 import Error404 from './pages/Error404'
 import ShareTheCti from './pages/RadicalCollaboration/ShareTheCti';
 import Guides from './guides/';
@@ -49,7 +48,6 @@ const App = () => {
             <Route exact path='/radicalcollaboration/faq' component={Faq} />
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/blank' component={Placeholder} />
-            <Route path='/organizations/*' component={IndvOrgPage} />
             <Route path='/404' component={Error404} />
             <Redirect from='/adding-projects' to='/adding-projects-to-the-index' />
             <Redirect from='/how' to='/adding-projects-to-the-index' />
