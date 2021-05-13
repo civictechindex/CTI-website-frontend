@@ -51,7 +51,7 @@ const NotableUsersSection = () => {
             alignItems='center'
             justify='center'
             style={{ height:'100%' }}>
-            <a href={props.link}>
+            <a href={"/organizations/"+props.alt.replaceAll(" ","")}>
               <img
                 style={{ top: '50%' }}
                 align='center'
