@@ -8,19 +8,27 @@ const LinkList = ({ header, links, route }) => {
   const classes = useStyles();
 
   return (
-    <Box
-      className={classes.containerItem}
-    >
-      <Typography component={Link} to={route} variant='body2' color='textSecondary'>{header}</Typography>
+    <Box >
+      <Typography
+        component={Link}
+        to={route}
+        variant='body2'
+        color='textSecondary'
+        style={{ fontSize: '14px' }}>
+        {header}
+      </Typography>
       {links.map((link) => {
         return link.external ? (
-          <a key={link.key} href={link.to}>{link.text}</a>
+          <a key={link.key} href={link.to}>
+            {link.text}
+          </a>
         ) : (
-          <Link key={link.key} to={link.to}>{link.text}</Link>
+          <Link key={link.key} to={link.to}>
+            {link.text}
+          </Link>
         );
       })}
     </Box>
-
   );
 };
 

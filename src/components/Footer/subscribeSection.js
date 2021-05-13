@@ -70,8 +70,8 @@ const SubscribeSection = ({ size }) => {
       </Box>
     ) : (
       <Box >
-        <Grid container style={{ maxWidth:'293px' }}>
-          <Grid item  >
+        <Grid container className={size === 'lg' ? classes.subscribeSectionLarge : classes.subscribeSectionSmall}  >
+          <Grid   className={size === 'lg' ? null : classes.newsLetter} >
             <Typography
               variant='body2'
               color='textSecondary'
@@ -90,7 +90,7 @@ const SubscribeSection = ({ size }) => {
               To receive updates about new projects and trending topics on the index, subscribe here.
             </Typography>
           </Grid>
-          <form onSubmit={submitEmail}>
+          <form   onSubmit={submitEmail} >
             <Typography
               variant='body2'
               color='textSecondary'
@@ -100,20 +100,18 @@ const SubscribeSection = ({ size }) => {
               }>
                 E-mail
             </Typography>
-            <Grid item  className={size !== 'lg' ? classes.emailSubscribe : null}>
-              <Grid item lg={12} className={classes.textField} >
-                <TextField
-                  onInput={(e) => setInputValue(e.target.value)}
-                  placeholder='name@domain.com'
-                  type='email'
-                  variant='outlined'
-                  className={size !== 'lg'
-                    ? `${classes.sectionPaddingSm}`
-                    : `${classes.sectionPaddingLg}`
-                  }
-                />
-              </Grid>
-              <Button color='primary' onClick={submitEmail}>Submit</Button>
+            <Grid className={size === 'lg' ? null : classes.emailSubscribe} >
+              <TextField
+                onInput={(e) => setInputValue(e.target.value)}
+                placeholder='name@domain.com'
+                type='email'
+                variant='outlined'
+                className={size !== 'lg'
+                  ? `${classes.sectionPaddingSm}`
+                  : `${classes.sectionPaddingLg}`
+                }
+              />
+              <Button color='primary' onClick={submitEmail} style={{ marginTop:'5px' ,fontSize:'16px' }}>Submit</Button>
             </Grid>
           </form>
           {messageSwitch(message)}

@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
   },
   dropdownHeader: {
     alignItems: 'center',
-    padding: '0px 30px',
     color: theme.palette.text.secondary,
     display: 'flex',
     justifyContent: 'space-between',
@@ -56,9 +55,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   socialContainer: {
+    width:'208px',
+    display:'flex',
+    justifyContent:'space-between',
+    alignItems:'center',
     '& a': {
-      display: 'inline',
+      margin: 0,
     },
+
   },
   socialContainerLarge: {
     textAlign: 'center',
@@ -66,9 +70,22 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(1.5),
     },
   },
+  subscribeSectionLarge:{
+    maxWidth:'293px',
+  },
+  subscribeSectionSmall:{
+    display:'flex',
+    justifyContent:'space-between',
+  },
+  newsLetter:{
+    maxWidth:'403px',
+  },
   emailSubscribe: {
-    display: 'flex',
-    justify: 'flex-end',
+    display:'flex',
+    justifyContent:'space-between',
+    '& button': {
+      marginLeft:'8px',
+    },
   },
   successMessage: {
     textAlign: 'center',
@@ -80,7 +97,7 @@ const useStyles = makeStyles(theme => ({
     width:'100%',
   },
   sectionPaddingSm: {
-    padding: '15px 10px 0px 0px',
+    padding: '0px 10px 16px 0px',
   },
   sectionPaddingLg: {
     padding: '0px 0px 10px 0px',
