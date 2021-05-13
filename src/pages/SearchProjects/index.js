@@ -80,6 +80,7 @@ const renderCard = (project) => {
         topics={project.topics}
         watchers={project.watchers_count}
         stargazers={project.stargazers_count}
+        projectTags={null}
       />
     </Box>
   );
