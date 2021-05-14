@@ -7,19 +7,16 @@ const useStyles = makeStyles((theme) => ({
   titleStyle: {
     color: (props) => {
       if (props.textVariant === 'black') {
-        return theme.palette.primary.main;
+        return theme.palette.primary.main
       } else {
-        return theme.palette.warning.main;
+        return theme.palette.warning.main
       }
     },
     [theme.breakpoints.down('sm')]: {
       fontSize: '32px',
-      marginTop: '72px',
     },
-    // marginTop: '80px',
-    marginBottom: '0.825em',
+    marginBottom: '32px',
     textAlign: 'center',
-    fontSize: '40px',
   },
 }));
 
