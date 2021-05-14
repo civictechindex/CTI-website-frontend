@@ -4,6 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { NavBreadcrumbs } from '../components';
+import AddOrgModal from '../components/AddOrgModal';
 
 const Placeholder = () => {
   const crumbs = [
@@ -16,6 +17,7 @@ const Placeholder = () => {
       <NavBreadcrumbs crumbs={crumbs} />
       <Card className='card244'>
         <CardContent>
+          <AddOrgModal />
           <Typography variant='h1'>
             Heading
           </Typography>
