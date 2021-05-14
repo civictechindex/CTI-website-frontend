@@ -7,7 +7,20 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles'
 
+const useStyles = makeStyles((theme) => ({
+  gridStyle:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  typoStyle: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '24px',
+    },
+  },
+}))
 
 export const OrganizationSelectorSection = ({ orgName, setOrgName,options }) => {
   const [open, setOpen] = useState(false);
@@ -36,6 +49,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName,options }) => 
           onChange={(e, v) => setOrgName(v)}
           renderInput={(params) =>(
             <TextField {...params}
+              required
               variant="outlined"
               InputProps={{
                 ...params.InputProps,
@@ -58,21 +72,22 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName,options }) => 
 }
 
 export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
+  const classes = useStyles()
   const handleChangeOrg = () => {
     setDisplayState('')
   }
   return (
-    <Grid container direction="row" alignItems="center" spacing={3} style={{ padding: '10px' }}>
-      <Grid item>
+    <Grid container className={classes.gridStyle}  spacing={3} style={{ padding: '10px' }}>
+      <Grid item xs={12} sm={2}>
         <Typography variant='body1'>Affliated Organization:</Typography>
       </Grid>
       {orgName ?
-        <Grid item>
-          <Typography variant='h3'>{orgName}</Typography>
-        </Grid> : <Grid item style={{ paddingRight: '50px' }}>
+        <Grid item xs={8} sm={6}>
+          <Typography variant='h3' className={classes.typoStyle}>{orgName}</Typography>
+        </Grid> : <Grid item  style={{ paddingRight: '50px' }}>
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
-      <Grid item>
+      <Grid item xs={4} sm={2}>
         <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>

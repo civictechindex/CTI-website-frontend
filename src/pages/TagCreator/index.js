@@ -137,6 +137,7 @@ const TagCreator = () => {
 
   const handleSubmit = (event) => {
     const urlPath = getRepositoryUrlPath(repositoryUrl)
+    console.log(urlPath)
     // Setting Repository Name
     const patt = /[a-z]+\//g
     const repName = urlPath.replace(patt, '')

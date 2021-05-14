@@ -35,6 +35,13 @@ const useStyles = makeStyles(theme => ({
     borderColor: theme.palette.grey[400],
     color: theme.palette.outline.gray,
   },
+  imgStyle:{
+    width:'300px',
+    padding:theme.spacing(1),
+    [theme.breakpoints.up('sm')]: {
+      width:'100%',
+    },
+  },
 }));
 
 const BottomSection = () =>{
@@ -75,16 +82,17 @@ const BottomSection = () =>{
 }
 
 const HowToUse = () => {
+  const classes = useStyles()
   const StepComp =({ stepText,src,alt }) =>{
     return (
-      <>
-        <Grid item xs={12} md={6}>
+      <Grid container >
+        <Grid item xs={12} md={6} style={{ padding:'8px' }}>
           <Typography variant='body1'>{stepText}</Typography>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <img src={src} alt={alt} />
+        <Grid item xs={10} md={6}>
+          <img className={classes.imgStyle} src={src} alt={alt} />
         </Grid>
-      </>
+      </Grid>
     )
   }
 
