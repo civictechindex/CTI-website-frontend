@@ -14,7 +14,7 @@ const LinkList = ({ header, links, route }) => {
         to={route}
         variant='body2'
         color='textSecondary'
-        style={{ fontSize: '14px' }}>
+        className={classes.linkTypography}>
         {header}
       </Typography>
       {links.map((link) => {

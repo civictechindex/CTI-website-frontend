@@ -102,6 +102,13 @@ const useStyles = makeStyles(theme => ({
   sectionPaddingLg: {
     padding: '0px 0px 10px 0px',
   },
+  submitBtn:{
+    marginTop:'5px!important' ,
+    fontSize:'16px!important',
+  },
+  linkTypography:{
+    fontSize: '14px!important',
+  },
 }));
 
 export default useStyles;

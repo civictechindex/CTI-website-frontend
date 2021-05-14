@@ -111,7 +111,7 @@ const SubscribeSection = ({ size }) => {
                   : `${classes.sectionPaddingLg}`
                 }
               />
-              <Button color='primary' onClick={submitEmail} style={{ marginTop:'5px' ,fontSize:'16px' }}>Submit</Button>
+              <Button color='primary' onClick={submitEmail} className={classes.submitBtn}>Submit</Button>
             </Grid>
           </form>
           {messageSwitch(message)}
