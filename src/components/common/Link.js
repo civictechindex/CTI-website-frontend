@@ -8,20 +8,10 @@ import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
 
 const useStyles = makeStyles({
   icon: {
-    '&:after': {
-      borderBottom: '1px solid',
-      borderBottomColor: 'inherit',
-      bottom: '0',
-      content: '""',
-      left: '0',
-      position: 'absolute',
-      right: '0',
-    },
     height: '0.875rem',
-    position: 'relative',
-    textDecoration: 'none',
-    top: '.125em',
-    whiteSpace: 'nowrap',
+    '& svg': {
+      transform: 'translateY(4px)',
+    },
   },
   muiLink: {
     textDecoration: 'underline',
@@ -44,8 +34,7 @@ const Link = ({ to, children, ...props }) => {
   if (/^https?:\/\//.test(to)) {
     return (
       <a href={to} className={classes.icon} {...props}>
-        {children}
-        <OpenInNewRoundedIcon fontSize='inherit' />
+        {children} <OpenInNewRoundedIcon fontSize='inherit' />
       </a>
     );
   }
