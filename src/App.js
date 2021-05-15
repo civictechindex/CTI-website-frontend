@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
 import SearchProjects from './pages/SearchProjects';
+import SupportUs from './pages/SupportUs';
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
 import Error404 from './pages/Error404'
@@ -44,8 +45,9 @@ const App = () => {
             <Route exact path='/home' component={Home} />
             <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
             <RouteTitled exact path='/tag-generator' component={TagCreator} title='Tag Generator' />
-            <Route exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} />
-            <Route exact path='/radicalcollaboration/faq' component={Faq} />
+            <RouteTitled exact path='/radicalcollaboration' component={SupportUs} title='Radical Collaboration' />
+            <RouteTitled exact path='/radicalcollaboration/faq' component={Faq} title='FAQ' />
+            <RouteTitled exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} title='Share The CTI' />
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />
@@ -58,6 +60,7 @@ const App = () => {
             <Redirect from='/tag-creator' to='/tag-generator' />
             <Redirect from='/tagcreator' to='/tag-generator' />
             <Redirect from='/search' to='/projects' />
+            <Redirect from='/support' to='/radicalcollaboration' />
             <Redirect from='/faq' to='/radicalcollaboration/faq' />
             <Redirect from='/radicalcollaboration' to='/radicalcollaboration/faq' component={Faq} />
             <Redirect from='/guides' to='/guides/colors' />

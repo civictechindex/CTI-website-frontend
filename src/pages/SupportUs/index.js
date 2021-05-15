@@ -1,11 +1,11 @@
 import React from 'react'
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
-import PhotoCardDesktop from './PhotoCardDesktop';
-import PhotoCardMobile from './PhotoCardMobile';
+// import PhotoCardDesktop from './PhotoCardDesktop';
+// import PhotoCardMobile from './PhotoCardMobile';
 import { makeStyles } from "@material-ui/core";
-import Box from '@material-ui/core/Box'
-import Container from "@material-ui/core/Container";
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import {
   GetStartedCard,
   NavBreadcrumbs,
@@ -15,7 +15,7 @@ import {
 const SupportUs = () => {
   const crumbs = [
     { name: "Home", href: "/home" },
-    { name: "Support Us", href: "/support" },
+    { name: "Radical Collaboration", href: "/radicalcollaboration" },
   ];
 
   const Images = [
@@ -73,11 +73,12 @@ const SupportUs = () => {
     },
   }));
   const classes = useStyles();
+  // need to restore PhotoCardDesktop and PhotoCardMobile
   return (
     <Box className='pageContainer'>
       <Box className='containerDefault'>
         <Container >
-          <NavBreadcrumbs crumbs={crumbs} style={{ fontColor: '#FEFEFE' }} />
+          <NavBreadcrumbs crumbs={crumbs} color='primary' />
           <TitleSection>
                   Your Help Goes a Long Way
           </TitleSection>
@@ -86,10 +87,10 @@ const SupportUs = () => {
       <Box className='containerGray'>
         <Container className={classes.root}>
           <Hidden mdDown>
-            <PhotoCardDesktop items={Images} />
+            {null}
           </Hidden>
           <Hidden lgUp>
-            <PhotoCardMobile items={Images} />
+            {null}
           </Hidden>
         </Container>
       </Box>
