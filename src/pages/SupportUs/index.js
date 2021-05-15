@@ -17,7 +17,6 @@ const SupportUs = () => {
     { name: 'Home', href: '/home' },
     { name: 'Radical Collaboration', href: '/support' },
   ];
-
   const Images = [
     {
       src: "/images/dsktp-photo-of-people-standing-near-window-3184427.png", alt: "team high fiving",
