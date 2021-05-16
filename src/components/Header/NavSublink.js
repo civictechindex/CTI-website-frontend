@@ -3,17 +3,15 @@ import { Link as RouterLink, withRouter } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { withStyles } from '@material-ui/core/styles';
 
-const styles = () => ({
+const styles = (theme) => ({
   menuitem: {
-    padding: '1rem',
+    padding: theme.spacing(2),
     '&:hover': {
-      backgroundColor: '#0D99C6',
-      '& $p': {
-        color: 'white',
-        fontWeight: '700',
-      },
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.text.secondary,
+      fontWeight: '700',
     },
   },
 });
