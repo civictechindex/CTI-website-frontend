@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
+import ScrollToTop from './components/common/ScrollToTop';
 import About from './pages/About';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
@@ -34,6 +35,7 @@ const App = () => {
   useStyles();
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Switch>
