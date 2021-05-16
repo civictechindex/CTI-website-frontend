@@ -40,25 +40,24 @@ const NavLink = ({ children, classes, header, matchPathParent, route }) => {
       >
         {header}
       </Link>
-      {children && (
-        <Menu
-          {...bindMenu(popupState)}
-          getContentAnchorEl={null}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          classes={{ paper: classes.paper, list: classes.menu }}
-          PopoverClasses={{ paper: classes.popover }}
-          elevation={0}
-        >
-          <div>{children}</div>
-        </Menu>
-      )}
+      <Menu
+        {...bindMenu(popupState)}
+        onClick={popupState.close}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        classes={{ paper: classes.paper, list: classes.menu }}
+        PopoverClasses={{ paper: classes.popover }}
+        elevation={0}
+      >
+        <div>{children}</div>
+      </Menu>
     </>
   );
 };
