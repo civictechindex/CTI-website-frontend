@@ -25,7 +25,7 @@ const SocialSection = ({ size }) => {
             Follow Us
           </a>
         </Grid>
-        <Grid item xs={12} className={size !== 'lg' ? classes.socialContainer : null}>
+        <Grid item  className={size !== 'lg' ? classes.socialContainer : null}>
           <a href='https://www.instagram.com/civictechindex'>
             <img src='/images/insta-logo.svg' alt='Instagram logo' />
           </a>
