@@ -28,7 +28,7 @@ const renderAffiliationsTopicsTags = (topics) => {
     return '';
   }
   return topics.map((i) => {
-    return <Chip key={i} size='small' style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={i} />;
+    return <Chip key={i} size='small' avatar={<Avatar alt="Natacha" src="/images/github-topic-tag-logo.png" />} style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={i} />;
   });
 };
 
