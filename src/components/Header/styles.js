@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     },
     showMobileNav: {
       transform: 'translateY(100%)',
-      transition: 'transform 1s',
+      transitionDuration: theme.transitions.duration.enteringScreen,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
