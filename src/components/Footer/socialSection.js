@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom/';
+import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 
 const SocialSection = ({ size }) => {
@@ -9,8 +9,8 @@ const SocialSection = ({ size }) => {
   return (
     <div className={classes.containerItem}>
       <Grid container direction='column' spacing={size !== 'lg' && 4} className={size === 'lg' && classes.socialContainerLarge}>
-        <Grid item xs={12}>
-          <Link to="/" style={{ whiteSpace: 'nowrap' }}>Follow Us</Link></Grid>
+        <Grid item className={classes.followUsTitle}  >
+          <Typography variant='body2' color='textSecondary'  >Follow Us</Typography></Grid>
         <Grid item xs={12} className={size !== 'lg' && classes.socialContainer}>
           <a href='https://www.instagram.com/civictechindex'>
             <img src='/images/insta-logo.svg' alt='Instagram logo' />

@@ -43,6 +43,10 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
     },
   },
+  followUsTitle:{
+    whiteSpace: 'nowrap',
+    marginBottom:'12px',
+  },
   annotation: {
     marginTop: theme.spacing(6),
     textAlign: 'center',
