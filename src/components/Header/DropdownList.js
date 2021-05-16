@@ -46,7 +46,7 @@ const DropdownList = ({ linkClickHandler, header, links, route }) => {
           // component={Link} to={route} // uncomment to create Menu header as link
           variant='body2'
           color='textSecondary'
-          style={{ fontWeight: 'bold', textDecoration: 'none' }}
+          style={{ cursor: 'pointer', fontWeight: 'bold', textDecoration: 'none' }}
         >
           {header}
         </Typography>
@@ -56,8 +56,8 @@ const DropdownList = ({ linkClickHandler, header, links, route }) => {
         <List dense disablePadding>
           {links.map((link, index) => {
             return (
-              <ListItem dense disableGutters>
-                <LinkComponent key={index} link={link} />
+              <ListItem dense disableGutters key={index}>
+                <LinkComponent link={link} />
               </ListItem>
             );
           })}
