@@ -28,7 +28,10 @@ Issues](https://github.com/civictechindex/CTI-website-frontend/issues?q=is%3Aope
 (Netlify)](https://civictechindex.netlify.app/guides/typography)
 
 [Our Swagger (API
-browser)](https://test-civictechindexadmin.herokuapp.com/swagger/)
+browser) Test Server](https://test-civictechindexadmin.herokuapp.com/swagger/)
+
+[Our Swagger (API
+browser) Stage Server](https://api-stage.civictechindex.org/swagger/)
 
 [Civic Tech Index dot org Live Site](http://civictechindex.org/home)
 
