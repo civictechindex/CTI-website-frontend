@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
+import { Link } from 'react-router-dom/';
 
 const DonateCardDeskTp = (props) => {
   const items = props.items;
@@ -37,9 +38,12 @@ const DonateCardDeskTp = (props) => {
                 <Typography variant="h6" className={classes.footerTxt}>
                   {i.footerText}
                 </Typography>
-                <Button href="/donate" className={classes.donateButton}>
-                  {i.buttonText}
-                </Button>
+                <Link to="/donate">
+                  <Button className={classes.donateButton}>
+                    {i.buttonText}
+                  </Button>
+                </Link>
+
               </Paper>
             </Grid>
             <Grid item >

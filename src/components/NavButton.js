@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 /**
  * Nav Button styled by Material-UI theme
@@ -9,10 +10,19 @@ import Button from '@material-ui/core/Button';
  * @param {*} props.variant - optional - contained or outlined
  */
 
-export default function NavButton({ children, href, ...rest }) {
+const useStyles = makeStyles(theme => ({
+  navBtnStyle: {
+    textDecoration:'none',
+  },
+
+}));
+export default function NavButton({ children, href }) {
+  const classes = useStyles()
   return (
-    <Button component={Link} to={href} {...rest}>
-      {children}
-    </Button>
+    <Link to={href} className={classes.navBtnStyle}>
+      <Button >
+        {children}
+      </Button>
+    </Link>
   );
 }

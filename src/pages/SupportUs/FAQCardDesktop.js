@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
+import { Link } from 'react-router-dom/';
 
 const FAQCardDeskTp = (props) => {
   const items = props.items;
@@ -33,11 +34,13 @@ const FAQCardDeskTp = (props) => {
                   {i.dsktpTxtLn2}
                 </Typography>
                 <Typography className={classes.faqLinkText}>
-                  View our <a className={classes.inLineLinkText} href="/faq">FAQ</a> to find answers or <a className={classes.inLineLinkText} href="mailto:civictechindex@hackforla.org">contact us.</a>
+                  View our {' '}  <Link to="/faq" className={classes.inLineLinkText}>FAQ</Link> to find answers or <a className={classes.inLineLinkText} href="mailto:civictechindex@hackforla.org">contact us.</a>
                 </Typography>
-                <Button href='/faq' className={classes.faqButton}>
-                  {i.buttonText}
-                </Button>
+                <Link to="/faq">
+                  <Button className={classes.faqButton}>
+                    {i.buttonText}
+                  </Button>
+                </Link>
               </Paper>
             </Grid>
             <Grid item >
