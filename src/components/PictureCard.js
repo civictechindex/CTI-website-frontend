@@ -8,19 +8,21 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   textStyle:{
     textAlign:'left',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.25rem',
       textAlign:'center',
     },
   },
-  item1: {
-    [theme.breakpoints.down('md')]: {
-      order:4,
+  item2_img: {
+    order:4,
+    [theme.breakpoints.down('sm')]: {
+      order: 3,
     },
   },
-  item2: {
-    [theme.breakpoints.down('md')]: {
-      order:3,
+  item2_txt: {
+    order:3,
+    [theme.breakpoints.down('sm')]: {
+      order: 4,
     },
   },
 }))
@@ -38,26 +40,26 @@ export default function PictureCard(props) {
 
   return (
     <>
-      <Box className='containerGray'>
+      <Box className='containerGray' pt='30px' pb='115px' >
         <Container>
-          <Grid container display="flex" justify="flex-start">
-            <Grid item xs={10} md={6} align='center' >
+          <Grid container display="flex" justify="flex-start" >
+            <Grid item xs={10} md={5} style={{ margin:'auto', order:1 }} align='center' >
               <img src={items[0].src} alt={items[0].alt} />
             </Grid>
-            <Grid item xs={10} md={5} style={{ margin:'auto' }} >
+            <Grid item xs={10} md={5} style={{ margin:'auto', order:2 }} >
               <Typography variant='h4' className={classes.textStyle} >{items[0].children}</Typography>
             </Grid>
-            <Grid item xs={10} md={5}  style={{ margin:'auto' }} align='center' className={classes.item1} >
-              <Typography variant='h4'className={classes.textStyle} >{items[1].children}</Typography>
-            </Grid>
-            <Grid item xs={10} md={5} align='center' className={classes.item2} >
+            <Grid item xs={10} md={5} style={{ margin:'auto' }} align='center' className={classes.item2_img} >
               <img src={items[1].src} alt={items[1].alt} />
             </Grid>
-            <Grid item xs={10} md={5} style={{ margin:'auto' }} align='center' >
+            <Grid item xs={10} md={5}  style={{ margin:'auto' }} className={classes.item2_txt} >
+              <Typography variant='h4' className={classes.textStyle} >{items[1].children}</Typography>
+            </Grid>
+            <Grid item xs={10} md={5} style={{ margin:'auto', order:5 }} align='center'>
               <img src={items[2].src} alt={items[2].alt} />
             </Grid>
-            <Grid item xs={10} md={5} style={{ margin:'auto' }} >
-              <Typography variant='h4'className={classes.textStyle} >{items[2].children}</Typography>
+            <Grid item xs={10} md={5} style={{ margin:'auto', order:6 }} >
+              <Typography variant='h4' className={classes.textStyle} >{items[2].children}</Typography>
             </Grid>
           </Grid>
         </Container>
