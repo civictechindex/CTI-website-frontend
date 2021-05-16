@@ -25,7 +25,7 @@ const IndvOrgPage = (props) => {
   const [notFound, setNotFound] = useState(true);
   const [dropdownTitle, setDropdownTitle] = useState('');
 
-  const pathName = (props.location.pathname).toLowerCase().replace("/organizations/", "");
+  const pathName = (props.location.pathname)?.toLowerCase()?.replace("/organizations/", "")?.trim();
   const theme = useTheme();
 
   const largeScreen = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true });
@@ -41,6 +41,10 @@ const IndvOrgPage = (props) => {
     setGithubLink('');
     setParentOrgs([]);
     setwebsiteUrlResults('');
+    if(pathName === ""){
+      setNotFound(true);
+      setIsPathChange(false);
+    }
   }, [pathName]);
 
   // Iterate each organization to check if it matches the input org name from the path
