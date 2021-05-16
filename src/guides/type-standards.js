@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from './Link';
+import Link from '../components/common/Link';
 
 const useStyles = makeStyles((theme) => ({
   textGridContainer: {
