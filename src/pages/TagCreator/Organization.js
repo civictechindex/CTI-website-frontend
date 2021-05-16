@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from 'react';
+import React,{ useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -7,41 +7,21 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AddOrgModal from '../../components/AddOrgModal';
 
-const Sleep=(delay = 0)=> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
-
-export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
+export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState([]);
+  const [currentOptions, setCurrentOptions] = useState(options);
+
   const loading = open && options.length === 0;
 
-  useEffect(() => {
-    let active = true;
-    if (!loading) {
-      return undefined;
+  const handleModalClose = (newOrg) => {
+    if (newOrg) {
+      setCurrentOptions([newOrg.name, ...currentOptions]);
     }
-    (async () => {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-      await Sleep(400)
-      const orgs =await (response.data).map((org) => org.name)
-      if (active) {
-        setOptions(["",...orgs]);
-      }
-    })();
-    return () => {
-      active = false;
-    };
-  }, [loading]);
-
-  useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+    setModalOpen(false);
+  };
 
   return (
     <>
@@ -59,7 +39,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
           }}
           getOptionSelected={(option, value) => option === value }
           getOptionLabel={(option) => option}
-          options={options}
+          options={currentOptions}
           autoComplete
           loading={loading}
           value={orgName}
@@ -81,8 +61,11 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
         />
       </Grid>
       <Grid item>
-        <Typography variant='body1'>Don’t see your organization? Click <Link >here</Link> to add it. </Typography>
+        <Typography variant='body1'>
+          Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
+        </Typography>
       </Grid>
+      <AddOrgModal open={modalOpen} onClose={handleModalClose} />
     </>
   )
 }
@@ -103,9 +86,7 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
       <Grid item>
-        <Typography variant='body1'>
-          <Link onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
-        </Typography>
+        <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>
   )

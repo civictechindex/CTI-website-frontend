@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
       height: '42px',
     },
   },
+  trendingContainerStyle: {
+    marginTop: '80px',
+    paddingBottom: '96px',
+  },
 }));
 
 const topicData = [
@@ -33,10 +37,8 @@ const topicData = [
 ];
 
 const TrendingTopicsSection = () => {
-
-
+  const classes = useStyles();
   const TrendingTopicList = () => {
-    const classes = useStyles();
     return (
       topicData.map((topic, key) => {
         return (
@@ -54,23 +56,18 @@ const TrendingTopicsSection = () => {
   }
 
   return (
-    <Grid container>
-      <Grid item xs={false} md={1} />
-      <Grid item xs={6} md={5}>
+    <Grid container className={classes.trendingContainerStyle}>
+      <Grid item lg={6}>
         <Typography variant='h3' color='textPrimary' gutterBottom>
-          How are people using the CTI?
+                    How are people using the CTI?
         </Typography>
         <Typography variant='h5' color='textSecondary' gutterBottom>
-          Trending Topics:
+                    Trending Topics:
         </Typography>
         <TrendingTopicList />
       </Grid>
-      <Grid item xs={6} md={5}>
-        <img width='100%' src='images/mag.svg' alt='Trending topics side graphic'></img>
-      </Grid>
-      <Grid item xs={false} md={1} />
     </Grid>
   );
-}
+};
 
-export default TrendingTopicsSection
+export default TrendingTopicsSection;

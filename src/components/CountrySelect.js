@@ -24,18 +24,29 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CountrySelect() {
+export default function CountrySelect({ onChange }) {
   const classes = useStyles();
+
+  const handleInputChange = (event, value) => {
+    event.preventDefault();
+    if (value) {
+      onChange(value);
+    } else {
+      onChange(event.target.value);
+    }
+  }
 
   return (
     <Autocomplete
       id="country-select-demo"
+      name="country"
       options={countries}
       classes={{
         option: classes.option,
       }}
       autoHighlight
       getOptionLabel={(option) => option.label}
+      onInputChange={handleInputChange}
       renderOption={(option) => (
         <React.Fragment>
           <span>{countryToFlag(option.code)}</span>
