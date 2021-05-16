@@ -29,7 +29,7 @@ const DropdownList = ({ header, links, route }) => {
       </Box>
       {open &&
         links.map((link) => {
-          return link.external ? (
+          return link.isExternal ? (
             <a style={{ textDecoration: 'none' }} href={link.route}>
               {link.header}
             </a>
