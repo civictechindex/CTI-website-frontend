@@ -1,9 +1,10 @@
-import * as React from 'react';
-import useStyles from './styles';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import NavLink from './NavLink';
 import NavSublink from './NavSublink';
 import SearchContainer from './SearchContainer';
-import { Link } from 'react-router-dom';
+import useStyles from './styles';
+
 
 const HeaderLarge = () => {
   const classes = useStyles();

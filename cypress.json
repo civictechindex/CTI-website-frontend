@@ -1,7 +1,8 @@
 {
   "baseUrl": "http://localhost:3000",
-  "defaultCommandTimeout": 20000,
+  "defaultCommandTimeout": 60000,
   "env": {
     "REACT_APP_API_URL": "https://test-civictechindexadmin.herokuapp.com"
-  }
+  },
+  "ignoreTestFiles": ["tag-creator.spec.js"]
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
     padding: '0 4px',
+    textDecoration:'underline',
     '&.MuiChip-outlined': {
       borderColor: theme.palette.outline.gray,
     },
@@ -19,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       height: '42px',
     },
+  },
+  trendingContainerStyle: {
+    marginTop: '80px',
+    paddingBottom: '96px',
   },
 }));
 
@@ -32,48 +37,37 @@ const topicData = [
 ];
 
 const TrendingTopicsSection = () => {
+  const classes = useStyles();
   const TrendingTopicList = () => {
     return (
       topicData.map((topic, key) => {
         return (
-          <TrendingTopicChip key={key}>
-            <Link to={{ pathname: topic.link, query: { search: topic.detail }}}>{topic.detail}</Link>
-          </TrendingTopicChip>
+          <Chip
+            key={key}
+            label={topic.detail}
+            component={RouterLink}
+            to={{ pathname: topic.link, query: { search: topic.detail }}}
+            clickable
+            className = {classes.homeTag}
+          />
         );
       })
     );
   }
 
-  const TrendingTopicChip = (props) => {
-    const classes = useStyles();
-    return (
-      <a href={props.href}>
-        <Chip
-          label={props.children}
-          className = {classes.homeTag}
-        />
-      </a>
-    );
-  }
-
   return (
-    <Grid container>
-      <Grid item xs={false} md={1} />
-      <Grid item xs={6} md={5}>
+    <Grid container className={classes.trendingContainerStyle}>
+      <Grid item lg={6}>
         <Typography variant='h3' color='textPrimary' gutterBottom>
-          How are people using the CTI?
+                    How are people using the CTI?
         </Typography>
         <Typography variant='h5' color='textSecondary' gutterBottom>
-          Trending Topics:
+                    Trending Topics:
         </Typography>
         <TrendingTopicList />
       </Grid>
-      <Grid item xs={6} md={5}>
-        <img width='100%' src='images/mag.svg' alt='Trending topics side graphic'></img>
-      </Grid>
-      <Grid item xs={false} md={1} />
     </Grid>
   );
-}
+};
 
-export default TrendingTopicsSection
+export default TrendingTopicsSection;

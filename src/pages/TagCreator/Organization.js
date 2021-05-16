@@ -1,14 +1,27 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import orgs from './orgs.json';
 import Link from '@material-ui/core/Link';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import AddOrgModal from '../../components/AddOrgModal';
 
-export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
+export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [currentOptions, setCurrentOptions] = useState(options);
+
+  const loading = open && options.length === 0;
+
+  const handleModalClose = (newOrg) => {
+    if (newOrg) {
+      setCurrentOptions([newOrg.name, ...currentOptions]);
+    }
+    setModalOpen(false);
+  };
 
   return (
     <>
@@ -16,23 +29,48 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName }) => {
         <p>Which Organization?</p>
         <Autocomplete
           id="organization"
-          options={orgs}
+          style={{ width: '100%' }}
+          open={open}
+          onOpen={() => {
+            setOpen(true);
+          }}
+          onClose={() => {
+            setOpen(false);
+          }}
+          getOptionSelected={(option, value) => option === value }
+          getOptionLabel={(option) => option}
+          options={currentOptions}
+          autoComplete
+          loading={loading}
           value={orgName}
           onChange={(e, v) => setOrgName(v)}
-          getOptionLabel={(option) => option}
-          style={{ width: '100%' }}
-          renderInput={(params) => <TextField {...params} variant="outlined" />}
+          renderInput={(params) =>(
+            <TextField {...params}
+              variant="outlined"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
+            />
+          )}
         />
       </Grid>
       <Grid item>
-        <Typography variant='body1'>Don’t see your organization? Click <Link >here</Link> to add it. </Typography>
+        <Typography variant='body1'>
+          Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
+        </Typography>
       </Grid>
+      <AddOrgModal open={modalOpen} onClose={handleModalClose} />
     </>
   )
 }
 
 export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
-
   const handleChangeOrg = () => {
     setDisplayState('')
   }
@@ -48,9 +86,7 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
       <Grid item>
-        <Typography variant='body1'>
-          <Link onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
-        </Typography>
+        <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>
   )

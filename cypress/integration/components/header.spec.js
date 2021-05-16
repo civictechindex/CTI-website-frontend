@@ -8,13 +8,13 @@ describe('Header component', () => {
     cy.findLink('Join').should('have.attr', 'href', '/tag-generator');
     cy.findLink('About').should('have.attr', 'href', '/about');
     cy.findLink('Radical Collaboration')
-      .should('have.attr', 'href', '/adding-projects-to-the-index')
+      .should('have.attr', 'href', '/support')
       .trigger('mouseover')
       .get('[data-cy=menuItem]')
       .within(() => {
         cy.contains('How to Do It');
         cy.contains('Donate');
-        cy.contains('Volunteer with us');
+        cy.contains('Volunteer with Us');
         cy.contains('FAQ');
       });
     cy.findLink('Organizations').should('have.attr', 'href', '/contributors/all').trigger('mouseover');

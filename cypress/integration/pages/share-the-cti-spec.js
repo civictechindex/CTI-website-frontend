@@ -20,9 +20,7 @@ describe('Share the CTI Page', () => {
     cy.contains('Follow us on Social Media')
   })
 
-  it('media info loads', () => {
-    cy.contains('Brand Assets & Graphics')
-  })
+
 
 
 })

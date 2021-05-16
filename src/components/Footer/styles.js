@@ -4,16 +4,13 @@ const useStyles = makeStyles(theme => ({
   containerFooter: {
     backgroundColor: '#0F1D2F',
     border: 'none',
+    paddingBottom:'64px',
   },
-  containerItem: {
+  subscribeSection: {
     padding: '0px 30px',
-  },
-  footerPadding: {
-    padding: '40px 5px 65px 5px',
   },
   dropdownHeader: {
     alignItems: 'center',
-    padding: '0px 30px',
     color: theme.palette.text.secondary,
     display: 'flex',
     justifyContent: 'space-between',
@@ -26,10 +23,11 @@ const useStyles = makeStyles(theme => ({
   },
   footerContainer: {
     position: "relative",
+    padding:'56px 51.5px 0 51.5px',
     display: "flex",
     height: "100%",
-    justifyContent: "space-around",
-    alignItems: "top",
+    maxWidth:'100vw',
+    justifyContent: "space-between",
     // info header links
     '& a:nth-child(1)': {
       fontWeight: 700,
@@ -61,29 +59,37 @@ const useStyles = makeStyles(theme => ({
     },
   },
   socialContainer: {
+    width:'208px',
+    display:'flex',
+    justifyContent:'space-between',
+    alignItems:'center',
     '& a': {
-      display: 'inline',
-      marginRight: '25px',
+      margin: 0,
     },
+
   },
   socialContainerLarge: {
     textAlign: 'center',
     '& a': {
-      marginBottom: theme.spacing(3),
+      marginBottom: theme.spacing(1.5),
     },
   },
-  subHeaderNewsletter: {
-    margin: '16px 0px 0px 0px',
+  subscribeSectionLarge:{
+    maxWidth:'293px',
   },
-  subHeaderNews: {
-    margin: '0px 40px 0px 0px',
+  subscribeSectionSmall:{
+    display:'flex',
+    justifyContent:'space-between',
   },
-  subHeaderEmail: {
-    margin: '16px 0px 0px 0px',
+  newsLetter:{
+    maxWidth:'403px',
   },
-  subSection: {
-    display: 'flex',
-    justify: "flex-end",
+  emailSubscribe: {
+    display:'flex',
+    justifyContent:'space-between',
+    '& button': {
+      marginLeft:'8px',
+    },
   },
   successMessage: {
     textAlign: 'center',
@@ -91,7 +97,21 @@ const useStyles = makeStyles(theme => ({
   textField: {
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
-    margin: '0px 8px 5px 0px',
+    marginBottom: '0px 8px 5px 0px',
+    width:'100%',
+  },
+  sectionPaddingSm: {
+    padding: '0px 10px 16px 0px',
+  },
+  sectionPaddingLg: {
+    padding: '0px 0px 10px 0px',
+  },
+  submitBtn:{
+    marginTop:'5px!important' ,
+    fontSize:'16px!important',
+  },
+  linkTypography:{
+    fontSize: '14px!important',
   },
 }));
 

@@ -1,5 +1,11 @@
 
 import React, { useState,useEffect,useRef } from 'react';
+import {
+  useQueryParam,
+  StringParam,
+  ArrayParam,
+  withDefault,
+} from 'use-query-params';
 import axios from 'axios';
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container';
@@ -10,8 +16,7 @@ import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organiza
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
 import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
 import useTheme from '@material-ui/core/styles/useTheme';
-
-
+import TagGeneratorInstructions from '../../components/TagGeneratorInstructions'
 
 /**
  * By removing matched text, we allow leeway in entering repository URL,
@@ -39,21 +44,21 @@ const usePrevious =(refValue) => {
   return ref.current;
 }
 
-
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
   const theme = useTheme();
-  const [displayState, setDisplayState] = useState("");
-  const [value, setValue] = useState('');
-  const [orgName, setOrgName] = useState('');
-  const [changeValue, setChangeValue] = useState('');
-  const [repositoryUrl, setRepositoryUrl] = useState('');
-  const [repositoryName, setRepositoryName] = useState('');
+  const [displayState, setDisplayState] = useQueryParam('displayState',withDefault(StringParam,''));
+  const [value, setValue] = useQueryParam('value',withDefault(StringParam,''));
+  const [orgName, setOrgName] = useQueryParam('orgName',withDefault(StringParam,''));
+  const [changeValue, setChangeValue] = useQueryParam('changeValue',withDefault(StringParam,''));
+  const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl',withDefault(StringParam,''));
+  const [repositoryName, setRepositoryName] = useQueryParam('repositoryName',withDefault(StringParam,''));
   const [topicSearchError, setTopicSearchError] = useState('');
-  const [tagsToAdd, setTagsToAdd] = useState([]);
-  const [names, setNames] = useState([]);
-  const [userTags, setUserTags] = useState([]);
-  const [orgTags, setOrgTags] = useState([]);
+  const [tagsToAdd, setTagsToAdd] = useQueryParam('tagsToAdd',withDefault(ArrayParam,[]));
+  const [currentTags, setCurrentTags] = useQueryParam('currentTags',withDefault(ArrayParam,[]));
+  const [userTags, setUserTags] = useQueryParam('userTags',withDefault(ArrayParam,[]));
+  const [orgTags, setOrgTags] = useQueryParam('orgTags',withDefault(ArrayParam,[]));
+  const [options, setOptions] = useState([]);
 
   const resetForm = () => {
     setValue('')
@@ -62,7 +67,7 @@ const TagCreator = () => {
     setRepositoryName('')
     setTopicSearchError('')
     setTagsToAdd([])
-    setNames([])
+    setCurrentTags([])
     setUserTags([])
     setOrgTags([])
     setChangeValue('')
@@ -70,24 +75,38 @@ const TagCreator = () => {
   }
 
   useEffect(() => {
+    let active = true;
+    axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+      .then(res => {
+        const orgs = (res.data).map((org) => org.name)
+        if (active) {
+          setOptions(["",...orgs]);
+        }
+      })
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
     const civicName = []
-    if (!names.includes("civictechindex")) {
+    if (!currentTags.includes("civictechindex")) {
       civicName.push("civictechindex")
     }
-    if (orgTags.length !== 0 && names.length !== 0){
-      const result = orgTags.filter(ot => !names.includes(ot))
-      setTagsToAdd([...userTags,...result,...civicName])
+    if (orgTags.length !== 0 && currentTags.length !== 0){
+      const result = orgTags.filter(ot => !currentTags.includes(ot))
+      setTagsToAdd([...civicName,...result,...userTags])
     }
     else
-      setTagsToAdd([...userTags,...orgTags,...civicName])
-  },[orgTags, names, setTagsToAdd, userTags])
+      setTagsToAdd([...civicName,...orgTags,...userTags])
+  },[orgTags, currentTags, setTagsToAdd, userTags])
 
   useEffect(() => {
     if (value === 'no'){
       setOrgName('')
       setOrgTags([])
     }
-  },[value])
+  },[setOrgName, setOrgTags, value])
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
@@ -133,7 +152,7 @@ const TagCreator = () => {
       })
         .then(res => {
           setTopicSearchError()
-          setNames(res.data.names)
+          setCurrentTags(res.data.names)
         }).catch(e => {
         /*
          * This should store the error state.
@@ -155,10 +174,12 @@ const TagCreator = () => {
     fontWeight: '400',
     color: theme.palette.secondary.main,
   }
+
+
   const OrgProjSection = () => {
     return (
       <>
-        <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles}/>
+        <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles} />
         <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </>
     )
@@ -167,7 +188,7 @@ const TagCreator = () => {
   const RadioYes = ({ setOrgName }) =>{
     return (
       <Grid container id='container-affiliated'>
-        <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName}/>
+        <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName} options={options}/>
         <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </Grid>
     )
@@ -187,22 +208,21 @@ const TagCreator = () => {
             setRepositoryUrl={setRepositoryUrl}
             topicSearchError={topicSearchError}
             setTopicSearchError={setTopicSearchError}
-            handleSubmit={handleSubmit}
-          />
+            handleSubmit={handleSubmit}/>
         </>
       )
     case "TopicTag":
       return (
         <>
           <OrgProjSection/>
-          <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
+          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
           <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}/>
         </>
       )
     case "AddTopicTags":
       return (
         <>
-          <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
+          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
           <AddTopicTagSection
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
@@ -214,7 +234,7 @@ const TagCreator = () => {
       return (
         <>
           <OrgProjSection/>
-          <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
+          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
           <NewTags tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
@@ -231,7 +251,7 @@ const TagCreator = () => {
       return (
         <>
           <OrgProjSection/>
-          <CurrentTopicTagSection names={names} repositoryName={repositoryName}/>
+          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
           <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState}
             repositoryName={repositoryName}
             repositoryUrl={repositoryUrl}
@@ -253,13 +273,14 @@ const TagCreator = () => {
   }
 
   return (
-    <Box className='pageContainer'>
+    <Box>
       <HeaderSection/>
-      <Box className='containerGray' >
+      <Box className='containerGray' style={{ paddingBottom:'30px' }} >
         <Container >
           {renderCurrentState()}
         </Container>
       </Box>
+      {(displayState === 'CopyPasteTags')?<TagGeneratorInstructions/>:null}
     </Box>
   )
 }

@@ -1,48 +1,57 @@
-import React, { useState } from 'react'
-import useStyles from './styles';
-import DropdownList from './DropdownList';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import MenuRounded from '@material-ui/icons/MenuRounded';
+import clsx from 'clsx';
+import IconButton from '@material-ui/core/IconButton';
 import ClearRounded from '@material-ui/icons/ClearRounded';
+import MenuRounded from '@material-ui/icons/MenuRounded';
+import DropdownList from './DropdownList';
 import SearchContainer from './SearchContainer';
+import useStyles from './styles';
 
-const HeaderSmall = ({ links }) => {
-    const classes = useStyles();
-    const [isBurgerOpen, setIsBurgerOpen] = useState(null);
-    const openBurger = () => {
-      setIsBurgerOpen(!isBurgerOpen);
-    };
+import { navigation } from '../../navigation';
 
-    return (
-        <nav className={classes.nav}>
-            <Link to="/home">
-                <img
-                className={classes.logo}
-                src="/images/cti-logo.svg"
-                alt="civic logo"
-                />
-            </Link>
-        <div
-            className={
-            isBurgerOpen
-                ? `${classes.flexContainer} ${classes.showMobileNav}`
-                : `${classes.flexContainer}`
-            }
-        >
-            <DropdownList header="Join" route="/tag-generator" links={links.join} />
-            <DropdownList header="About" route="/about" links={links.about} />
-            <DropdownList header="Organizations" route="/contributors/all" links={links.contribute} />
-            <DropdownList header="Radical Collaboration" route="/radicalcollaboration" links={links.collaborate} />
-            <SearchContainer />
-        </div>
-        <div onClick={openBurger} className={classes.mobileContainer}>
-            {(!isBurgerOpen) 
-                ? <MenuRounded data-cy="menuIcon" fontSize="large" /> 
-                : <ClearRounded data-cy="menuIcon" fontSize="large" />
-            }
-        </div>
-        </nav>
-    );
+const HeaderSmall = () => {
+  const classes = useStyles();
+  const [isBurgerOpen, setIsBurgerOpen] = useState(null);
+  const toggleBurger = () => {
+    setIsBurgerOpen((prevOpen) => !prevOpen);
+  };
+
+  return (
+    <nav className={classes.nav}>
+      <Link to='/home'>
+        <img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' />
+      </Link>
+      <div
+        className={clsx(classes.flexContainer, {
+          [classes.showMobileNav]: isBurgerOpen,
+          [classes.hideMobileNav]: !isBurgerOpen,
+        })}
+      >
+        {navigation.map((nav) => {
+          return (
+            <DropdownList
+              key={nav.id}
+              header={nav.header}
+              route={nav.route}
+              links={nav.subNavigation}
+              linkClickHandler={toggleBurger}
+            />
+          );
+        })}
+        <SearchContainer />
+      </div>
+      <div onClick={toggleBurger} className={classes.mobileContainer}>
+        <IconButton>
+          {!isBurgerOpen ? (
+            <MenuRounded data-cy='menuIcon' fontSize='large' />
+          ) : (
+            <ClearRounded data-cy='menuIcon' fontSize='large' />
+          )}
+        </IconButton>
+      </div>
+    </nav>
+  );
 };
 
 export default HeaderSmall;
