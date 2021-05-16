@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavLink as NaviLink, withRouter } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { useTheme, withStyles } from '@material-ui/core/styles';
 import { usePopupState, bindMenu, bindHover } from 'material-ui-popup-state/hooks';
 import Menu from 'material-ui-popup-state/HoverMenu';
 
@@ -19,6 +19,7 @@ const styles = () => ({
 
 const NavLink = ({ children, classes, header, matchPathParent, route }) => {
   const popupState = usePopupState({ variant: 'popper', popupId: 'navlink' });
+  const theme = useTheme();
 
   return (
     <>
@@ -32,32 +33,31 @@ const NavLink = ({ children, classes, header, matchPathParent, route }) => {
           return route === matchPathParent;
         }}
         activeStyle={{
-          color: '#0F1D2F',
+          color: theme.palette.primary.main,
           fontWeight: 'bold',
         }}
         classes={{ root: classes.link }}
       >
         {header}
       </Link>
-      {children && (
-        <Menu
-          {...bindMenu(popupState)}
-          getContentAnchorEl={null}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          classes={{ paper: classes.paper, list: classes.menu }}
-          PopoverClasses={{ paper: classes.popover }}
-          elevation={0}
-        >
-          <div>{children}</div>
-        </Menu>
-      )}
+      <Menu
+        {...bindMenu(popupState)}
+        onClick={popupState.close}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        classes={{ paper: classes.paper, list: classes.menu }}
+        PopoverClasses={{ paper: classes.popover }}
+        elevation={0}
+      >
+        <div>{children}</div>
+      </Menu>
     </>
   );
 };
