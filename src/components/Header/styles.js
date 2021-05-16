@@ -80,9 +80,13 @@ const useStyles = makeStyles((theme) => ({
       top: '19px',
       left: '36px',
     },
+    hideMobileNav: {
+      transform: 'translateY(0%)',
+      transitionDuration: theme.transitions.duration.leavingScreen,
+    },
     showMobileNav: {
       transform: 'translateY(100%)',
-      transition: 'transform 1s',
+      transitionDuration: theme.transitions.duration.enteringScreen,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
@@ -126,6 +130,12 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'space-between',
       '&:hover': {
         cursor: 'pointer',
+      },
+    },
+    collapse: {
+      '& .MuiListItem-dense': {
+        paddingBottom: 0,
+        paddingTop: 0,
       },
     },
   },
