@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link as RouterLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
     padding: '0 4px',
+    textDecoration:'underline',
     '&.MuiChip-outlined': {
       borderColor: theme.palette.outline.gray,
     },
@@ -38,28 +39,21 @@ const topicData = [
 const TrendingTopicsSection = () => {
   const classes = useStyles();
   const TrendingTopicList = () => {
-    return topicData.map((topic, key) => {
-      return (
-        <TrendingTopicChip key={key}>
-          <Link
-            to={{
-              pathname: topic.link,
-              query: { search: topic.detail },
-            }}>
-            {topic.detail}
-          </Link>
-        </TrendingTopicChip>
-      );
-    });
-  };
-
-  const TrendingTopicChip = (props) => {
     return (
-      <a href={props.href}>
-        <Chip label={props.children} className={classes.homeTag} />
-      </a>
+      topicData.map((topic, key) => {
+        return (
+          <Chip
+            key={key}
+            label={topic.detail}
+            component={RouterLink}
+            to={{ pathname: topic.link, query: { search: topic.detail }}}
+            clickable
+            className = {classes.homeTag}
+          />
+        );
+      })
     );
-  };
+  }
 
   return (
     <Grid container className={classes.trendingContainerStyle}>
