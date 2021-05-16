@@ -7,7 +7,13 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
+  gridStyle:{
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
+  },
   typoStyle: {
+    fontWeight:'400',
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
     },
@@ -17,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
 export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkStyles }) => {
   const classes = useStyles()
   return (
-    <Grid container direction="row" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-      <Grid item xs={12} sm={2}>
-        <Typography variant='body1' className={classes.typoStyle} >Project Repository URL:</Typography>
+    <Grid container direction="row" alignItems="center" spacing={2} style={{ paddingBottom: '32px' }}>
+      <Grid item>
+        <Typography variant='h6' className={classes.typoStyle}>Project Repository URL:</Typography>
       </Grid>
-      <Grid item data-cy='grid-repository-url' xs={10} sm={6}>
-        <Link variant='body1' className={classes.typoStyle} href={repositoryUrl} >{repositoryUrl}</Link>
+      <Grid item data-cy='grid-repository-url'>
+        <Link variant='h6' className={classes.typoStyle} href={repositoryUrl} >{repositoryUrl}</Link>
       </Grid>
-      <Grid item xs={2} sm={2}>
+      <Grid item>
         <Link id="change-url" component="button" variant='body1' onClick={()=>setDisplayState('ProjectUrl')} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>

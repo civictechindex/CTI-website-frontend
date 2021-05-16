@@ -11,13 +11,19 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   gridStyle:{
-    display:'flex',
-    flexDirection:'row',
-    alignItems:'center',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
   },
   typoStyle: {
     [theme.breakpoints.down('xs')]: {
-      fontSize: '24px',
+      fontSize: '1.5rem',
+    },
+  },
+  tStyle: {
+    fontWeight:'500',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.875rem',
     },
   },
 }))
@@ -77,17 +83,17 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
     setDisplayState('')
   }
   return (
-    <Grid container className={classes.gridStyle}  spacing={3} style={{ padding: '10px' }}>
-      <Grid item xs={12} sm={2}>
-        <Typography variant='body1'>Affliated Organization:</Typography>
+    <Grid container direction="row" alignItems="center" spacing={4} style={{ padding: '48px 0px' }}>
+      <Grid item className={classes.gridStyle} >
+        <Typography variant='h6' className={classes.tStyle} >Affliated Organization:</Typography>
       </Grid>
       {orgName ?
-        <Grid item xs={8} sm={6}>
+        <Grid item >
           <Typography variant='h3' className={classes.typoStyle}>{orgName}</Typography>
         </Grid> : <Grid item  style={{ paddingRight: '50px' }}>
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
-      <Grid item xs={4} sm={2}>
+      <Grid item >
         <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>
