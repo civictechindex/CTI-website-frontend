@@ -205,7 +205,7 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
           </Grid>
         </Grid>
       </Grid>
-      <Grid xs={12} sm={10}>
+      <Grid item xs={12} sm={10}>
         <Typography variant='h6' style={{  fontWeight: '300', fontStyle:'italic',paddingTop:'36px' }} className={classes.typoStyle}>Click each individual generated topic tag to copy it one at a time. Paste selected tag into your repository.</Typography>
       </Grid>
     </>
