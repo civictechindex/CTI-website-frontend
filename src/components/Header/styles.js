@@ -132,6 +132,12 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
       },
     },
+    collapse: {
+      '& .MuiListItem-dense': {
+        paddingBottom: 0,
+        paddingTop: 0,
+      },
+    },
   },
 }));
 

@@ -29,7 +29,15 @@ const HeaderSmall = () => {
         })}
       >
         {navigation.map((nav) => {
-          return <DropdownList key={nav.id} header={nav.header} route={nav.route} links={nav.subNavigation} />;
+          return (
+            <DropdownList
+              key={nav.id}
+              header={nav.header}
+              route={nav.route}
+              links={nav.subNavigation}
+              linkClickHandler={toggleBurger}
+            />
+          );
         })}
         <SearchContainer />
       </div>
