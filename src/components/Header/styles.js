@@ -80,6 +80,10 @@ const useStyles = makeStyles((theme) => ({
       top: '19px',
       left: '36px',
     },
+    hideMobileNav: {
+      transform: 'translateY(0%)',
+      transitionDuration: theme.transitions.duration.leavingScreen,
+    },
     showMobileNav: {
       transform: 'translateY(100%)',
       transitionDuration: theme.transitions.duration.enteringScreen,

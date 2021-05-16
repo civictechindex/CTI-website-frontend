@@ -25,6 +25,7 @@ const HeaderSmall = () => {
       <div
         className={clsx(classes.flexContainer, {
           [classes.showMobileNav]: isBurgerOpen,
+          [classes.hideMobileNav]: !isBurgerOpen,
         })}
       >
         {navigation.map((nav) => {
