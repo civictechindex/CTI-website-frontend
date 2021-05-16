@@ -26,7 +26,15 @@ const HeaderLarge = () => {
           return (
             <NavLink key={nav.id} header={nav.header} route={nav.route} matchPathParent={matchPathParent}>
               {nav.subNavigation.map((subNav) => {
-                return <NavSublink key={subNav.id} header={subNav.header} route={subNav.route} onMatchPath={handleMatchPath} />;
+                return (
+                  <NavSublink
+                    key={subNav.id}
+                    header={subNav.header}
+                    route={subNav.route}
+                    onMatchPath={handleMatchPath}
+                    isExternal={subNav.isExternal}
+                  />
+                );
               })}
             </NavLink>
           );
