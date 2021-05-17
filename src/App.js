@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
 import SearchProjects from './pages/SearchProjects';
+import SupportUs from './pages/SupportUs'
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
 import Error404 from './pages/Error404'
@@ -50,6 +51,7 @@ const App = () => {
             <Route exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} />
             <Route exact path='/radicalcollaboration/faq' component={Faq} />
             <Route exact path='/radicalcollaboration/contact' component={Contact} />
+            <Route exact path="/support" component={SupportUs} />
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />
