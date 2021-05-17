@@ -49,7 +49,7 @@ const App = () => {
             <RouteTitled exact path='/tag-generator' component={TagCreator} title='Tag Generator' />
             <Route exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} />
             <Route exact path='/radicalcollaboration/faq' component={Faq} />
-            <Route exact path="/support" component={SupportUs} />
+            <Route exact path="/radicalcollaboration" component={SupportUs} />
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />

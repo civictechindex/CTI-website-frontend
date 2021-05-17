@@ -13,7 +13,7 @@ import {
 const SupportUs = () => {
   const crumbs = [
     { name: 'Home', href: '/home' },
-    { name: 'Radical Collaboration', href: '/support' },
+    { name: 'Radical Collaboration', href: '/radicalcollaboration' },
   ];
 
   const Images = [
