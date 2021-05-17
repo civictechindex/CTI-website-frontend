@@ -1,11 +1,9 @@
 import React from 'react'
+import { Container } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import PhotoCardDesktop from './PhotoCardDesktop';
 import PhotoCardMobile from './PhotoCardMobile';
-import { makeStyles } from "@material-ui/core";
-import Box from '@material-ui/core/Box'
-import Container from "@material-ui/core/Container";
 import {
   GetStartedCard,
   NavBreadcrumbs,
@@ -64,44 +62,24 @@ const SupportUs = () => {
       dsktpTxtLn3: 'View our FAQ to find answers or contact us.',
     },
   ];
-  const useStyles = makeStyles(theme => ({
-    root: {
-      "& .MuiPaper-root": {
-        backgroundColor: 'transparent',
-      },
-    },
-  }));
-  const classes = useStyles();
   return (
-    <Box className='pageContainer'>
-      <Box className='containerDefault'>
-        <Container >
-          <NavBreadcrumbs crumbs={crumbs} style={{ fontColor: '#FEFEFE' }} />
-          <TitleSection>
-                  Your Help Goes a Long Way
-          </TitleSection>
-        </Container>
-      </Box>
-      <Box className='containerGray'>
-        <Container className={classes.root}>
-          <Hidden mdDown>
-            <PhotoCardDesktop items={Images} />
-          </Hidden>
-          <Hidden lgUp>
-            <PhotoCardMobile items={Images} />
-          </Hidden>
-        </Container>
-      </Box>
-      <Box className='containerWhite'>
-        <Container>
-          <GetStartedCard
-            headerTitle="Want to support in other ways?"
-            buttonText="Contact Us"
-            buttonHref="mailto:civictechindex@hackforla.org"
-          />
-        </Container>
-      </Box>
-    </Box>
+    <Container className="containerDefault">
+      <NavBreadcrumbs crumbs={crumbs} style={{ fontColor: '#FEFEFE' }} />
+      <TitleSection>
+                Your Help Goes a Long Way
+      </TitleSection>
+      <Hidden mdDown>
+        <PhotoCardDesktop items={Images} />
+      </Hidden>
+      <Hidden lgUp>
+        <PhotoCardMobile items={Images} />
+      </Hidden>
+      <GetStartedCard
+        headerTitle="Want to support in other ways?"
+        buttonText="Contact Us"
+        buttonHref="mailto:civictechindex@hackforla.org"
+      />
+    </Container>
   );
 }
 
