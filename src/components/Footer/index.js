@@ -137,6 +137,7 @@ const Footer = () => {
         external: true,
       },
       { key: 'faq', text: 'FAQ', to: '/radicalcollaboration/faq' },
+      { key: 'contact', text: 'Contact Us', to: '/radicalcollaboration/contact' },
     ],
   };
 
