@@ -81,6 +81,11 @@ const navigation = [
         header: 'FAQ',
         route: '/radicalcollaboration/faq',
       },
+      {
+        id: 'contact',
+        header: 'Contact Us',
+        route: '/radicalcollaboration/contact',
+      },
     ],
   },
 ];
