@@ -66,7 +66,6 @@ const App = () => {
             <Redirect from='/search' to='/projects' />
             <Redirect from='/support' to='/radicalcollaboration' />
             <Redirect from='/faq' to='/radicalcollaboration/faq' />
-            <Redirect from='/radicalcollaboration' to='/radicalcollaboration/faq' component={Faq} />
             <Redirect from='/guides' to='/guides/colors' />
             <Redirect from='/placeholder' to='/blank' />
             <Redirect from='/template' to='/blank' />
