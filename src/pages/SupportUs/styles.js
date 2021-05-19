@@ -181,7 +181,6 @@ const useStyles = makeStyles(theme => ({
   mobileImg: {
     width: '328px',
     height: '192px',
-    paddingTop:'13px',
   },
   mobileCardHeading: {
     color: '#004364',

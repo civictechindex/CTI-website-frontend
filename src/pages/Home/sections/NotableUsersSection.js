@@ -1,10 +1,10 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import NavButton from '../../../components/NavButton';
 import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import NavButton from '../../../components/NavButton';
+
 const notableUsers = [
   { alt: 'Code for All', link: '#', src: '/images/code-for-all.png' },
   { alt: 'Code for America', link: '#', src: '/images/code-for-america.svg' },
