@@ -1,3 +1,5 @@
+/* eslint-disable complexity */
+/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -5,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import axios from 'axios';
+import { Box } from '@material-ui/core';
 
 const SubscribeSection = ({ size }) => {
   const classes = useStyles();
@@ -62,16 +65,16 @@ const SubscribeSection = ({ size }) => {
 
   return (
     message === 'success' ? (
-      <div>
+      <Box>
         {messageSwitch(message)}
-      </div>
+      </Box>
     ) : (
-      <div className={classes.containerItem}>
-        <Grid container>
-          <Grid item sm={size === 'lg' ? 12 : 6}>
-            <Typography 
-              variant='body2' 
-              color='textSecondary' 
+      <Box >
+        <Grid container className={size === 'lg' ? classes.subscribeSectionLarge : classes.subscribeSectionSmall}  >
+          <Grid   className={size === 'lg' ? null : classes.newsLetter} >
+            <Typography
+              variant='body2'
+              color='textSecondary'
               className={size !== 'lg'
                 ? `${classes.sectionPaddingSm}`
                 : `${classes.sectionPaddingLg}`
@@ -79,45 +82,42 @@ const SubscribeSection = ({ size }) => {
             >
               Newsletter
             </Typography>
-            <Typography 
-              variant='body1' 
-              color='textSecondary' 
+            <Typography
+              variant='body1'
+              color='textSecondary'
               className={classes.sectionPaddingLg}
             >
               To receive updates about new projects and trending topics on the index, subscribe here.
             </Typography>
           </Grid>
-          <Grid container item sm={size === 'lg' ? 12 : 6}>
-            <form onSubmit={submitEmail}>
-              <Typography 
-                variant='body2' 
-                color='textSecondary' 
+          <form   onSubmit={submitEmail} >
+            <Typography
+              variant='body2'
+              color='textSecondary'
+              className={size !== 'lg'
+                ? `${classes.sectionPaddingSm}`
+                : `${classes.sectionPaddingLg}`
+              }>
+                E-mail
+            </Typography>
+            <Grid className={size === 'lg' ? null : classes.emailSubscribe} >
+              <TextField
+                onInput={(e) => setInputValue(e.target.value)}
+                placeholder='name@domain.com'
+                type='email'
+                variant='outlined'
                 className={size !== 'lg'
                   ? `${classes.sectionPaddingSm}`
                   : `${classes.sectionPaddingLg}`
-                }>
-                E-mail
-              </Typography>
-              <Grid item className={size !== 'lg' ? classes.emailSubscribe : null}>
-                <Grid item xs={12} className={classes.textField} >
-                  <TextField
-                    onInput={(e) => setInputValue(e.target.value)}
-                    placeholder='name@domain.com'
-                    type='email'
-                    variant='outlined'
-                    className={size !== 'lg'
-                      ? `${classes.sectionPaddingSm}`
-                      : `${classes.sectionPaddingLg}`
-                    }
-                  />
-                </Grid>
-                <Button color='primary' onClick={submitEmail}>Submit</Button>
-              </Grid>
-            </form>
-            {messageSwitch(message)}
-          </Grid>
+                }
+              />
+              <Button color='primary' onClick={submitEmail} className={classes.submitBtn}>Submit</Button>
+            </Grid>
+          </form>
+          {messageSwitch(message)}
+
         </Grid>
-      </div>
+      </Box>
     )
   );
 };
