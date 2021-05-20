@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
 
-const DonateCardDeskTp = (props) => {
+const DonateCardDesktop = (props) => {
   const items = props.items;
   const classes = useStyles();
   return (
@@ -63,4 +63,4 @@ const DonateCardDeskTp = (props) => {
     </>
   );
 }
-export default DonateCardDeskTp;
+export default DonateCardDesktop;

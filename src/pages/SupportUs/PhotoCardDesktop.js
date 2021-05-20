@@ -4,7 +4,7 @@ import ShareCardDesktop from './ShareCardDesktop'
 import VolunteerCardDesktop from './VolunteerCardDesktop'
 import FAQCardDesktop from './FAQCardDesktop'
 
-const PhotoCardDskTp = (props) => {
+const PhotoCardDesktop = (props) => {
   return (
     <>
       <DonateCardDesktop items={props.items} />
@@ -14,4 +14,5 @@ const PhotoCardDskTp = (props) => {
     </>
   );
 }
-export default PhotoCardDskTp;
+
+export default PhotoCardDesktop;

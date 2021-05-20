@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
 
-const FAQCardDeskTp = (props) => {
+const FAQCardDesktop = (props) => {
   const items = props.items;
   const classes = useStyles();
   return (
@@ -61,4 +61,5 @@ const FAQCardDeskTp = (props) => {
     </>
   );
 }
-export default FAQCardDeskTp;
+
+export default FAQCardDesktop;
