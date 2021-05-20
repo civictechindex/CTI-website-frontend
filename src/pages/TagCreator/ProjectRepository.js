@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   typoStyle: {
     fontWeight:'400',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '14px',
+      fontSize: '0.875rem',
     },
   },
 }))
@@ -24,11 +24,11 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkSty
   const classes = useStyles()
   return (
     <Grid container direction="row" alignItems="center" spacing={2} style={{ paddingBottom: '32px' }}>
-      <Grid item>
+      <Grid item className={classes.gridStyle}>
         <Typography variant='h6' className={classes.typoStyle}>Project Repository URL:</Typography>
       </Grid>
       <Grid item data-cy='grid-repository-url'>
-        <Link variant='h6' className={classes.typoStyle} href={repositoryUrl} >{repositoryUrl}</Link>
+        <Link variant='body1' className={classes.typoStyle} href={repositoryUrl} >{repositoryUrl}</Link>
       </Grid>
       <Grid item>
         <Link id="change-url" component="button" variant='body1' onClick={()=>setDisplayState('ProjectUrl')} underline='always' style={linkStyles} >change</Link>
@@ -41,8 +41,8 @@ export const ProjectRepositoryInput = ({ handleEnter, repositoryUrl,setRepositor
   return (
     <>
       <Grid data-cy='grid-repository' item xs={12} sm={12}>
-        <p>Project Repository URL</p>
-        <p style={{ fontSize: '10px' }}></p>
+        <Typography  variant='h6'>Project Repository URL</Typography>
+        <Typography variant='caption'></Typography>
         <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onChange={e => setRepositoryUrl(e.target.value)} variant="outlined" placeholder="https://github.com/hackforla/example" fullWidth />
       </Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>

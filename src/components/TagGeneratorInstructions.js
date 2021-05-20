@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/CardMedia';
 
 
 const useStyles = makeStyles(theme => ({
@@ -30,6 +31,16 @@ const useStyles = makeStyles(theme => ({
       fontSize:'1.5rem',
     },
   },
+  gridStyle:{
+    padding:'8px',
+    width:'285px',
+    [theme.breakpoints.up('sm')]: {
+      width:'270px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width:'265px',
+    },
+  },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -48,10 +59,10 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.outline.gray,
   },
   imgStyle:{
-    width:'275px',
+    width:'350px',
     padding:theme.spacing(1),
-    [theme.breakpoints.up('sm')]: {
-      width:'440px',
+    [theme.breakpoints.down('md')]: {
+      width:'250px',
     },
   },
   typoStyle: {
@@ -67,12 +78,12 @@ const BottomSection = () =>{
 
   const PaperComp = ({ text,btext,bhref }) =>{
     return (
-      <Grid style={{ padding:'30px 15px' }}>
+      <Grid item className={classes.gridStyle} >
         <Paper variant="outlined" className={classes.paper}>
-          <Grid style={{ padding:'15px 25px' }}>
-            <Typography variant='h6' className={classes.ptextStyle}>{text}</Typography>
+          <Grid style={{ padding:'16px' }}>
+            <Typography variant='body1' className={classes.ptextStyle}>{text}</Typography>
           </Grid>
-          <Grid style={{ padding:'15px' }}><Button href={bhref} className={classes.btnColor}>{btext}</Button></Grid>
+          <Grid><Button href={bhref} className={classes.btnColor}>{btext}</Button></Grid>
         </Paper>
       </Grid>
     )
@@ -88,11 +99,11 @@ const BottomSection = () =>{
             <Grid item md={6} style={{ padding: '24px 0px' }} >
               <Typography variant='h6' className={classes.ptextStyle}>Let us know when you&apos;ve added #civictechindex</Typography>
             </Grid>
-            <Grid>
+            <Grid style={{ paddingBottom: '32px' }}>
               <Button className={classes.btnStyle}>Added to Civic Tech Index</Button>
             </Grid>
           </Grid>
-          <Grid container direction="row" justify="center" style={{ padding:'30px' }}>
+          <Grid container direction="row" justify="center" style={{ paddingBottom: '30px' }}>
             <PaperComp text='Add Another Project' btext='Tag Generator' bhref='/tag-generator'/>
             <PaperComp text='Collaborate with us' btext='Learn More' bhref='/support'/>
           </Grid>
@@ -107,11 +118,17 @@ const HowToUse = () => {
   const StepComp =({ stepText,src,alt }) =>{
     return (
       <Grid container >
-        <Grid item xs={12} sm={4} md={6} style={{ padding:'8px 0px' }}>
+        <Grid item xs={6} style={{ padding:'8px 0px' }}>
           <Typography variant='h6' className={classes.typoStyle}>{stepText}</Typography>
         </Grid>
-        <Grid item xs={12} sm={8} md={6}>
-          <img className={classes.imgStyle} src={src} alt={alt} />
+        <Grid item xs={6} style={{ padding:'8px 0px' }}>
+          <CardMedia
+            className={classes.imgStyle}
+            component="img"
+            alt={alt}
+            image={src}
+            title={alt}
+          />
         </Grid>
       </Grid>
     )
