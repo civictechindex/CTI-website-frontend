@@ -52,11 +52,13 @@ export const IndvPageContainer = (props) => {
   const [dropDownListItem, setDropDownListItem] = useState('');
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState('best match');
+  const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false)
   const projectsPerPage = 4;
   const classes = useStyles();
 
   useEffect(() => {
     setLoading(true);
+    setIsProjectSearchFinish(false);
     setProjects([]);
     setBestMatchProjects([]);
     setLastUpdatedProjects([]);
@@ -102,7 +104,7 @@ export const IndvPageContainer = (props) => {
     if (props.projectSearchTopicsArr.length > 0) {
       // remove duplicate search topics
       let filteredArray = props.projectSearchTopicsArr
-      filteredArray = filteredArray.filter((x) => x !== undefined && x !== '');
+      filteredArray = filteredArray.filter((x) => x);
       const topicSet = new Set(filteredArray);
       topicSet.forEach(async (x) =>
         await axios
@@ -138,6 +140,7 @@ export const IndvPageContainer = (props) => {
               setStargazerProjects(stargazerSortedProjectsArr);
               setLastUpdatedProjects(lastUpdatedSortedProjectsArr);
               setPages(Math.ceil(bestMatchSortedProjectsArr.length / projectsPerPage));
+              setIsProjectSearchFinish(true);
             }
           })
           .catch(err => {
@@ -155,10 +158,10 @@ export const IndvPageContainer = (props) => {
     const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
     const items = currentProjects.map((i) => renderCard(i));
     setResults(items);
-    if (projects.length > 0) {
+    if (isProjectSearchFinish) {
       setLoading(false);
     }
-  }, [projects]);
+  }, [projects, isProjectSearchFinish]);
 
   // Using priorityQueue to sort result list.
   const getSortedProjectsArr = (sortMethod, bestMatchSortedProjectsArr) => {

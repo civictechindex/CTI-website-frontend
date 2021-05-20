@@ -41,7 +41,7 @@ const IndvOrgPage = (props) => {
     setGithubLink('');
     setParentOrgs([]);
     setwebsiteUrlResults('');
-    if(pathName === ""){
+    if (pathName === ""){
       setNotFound(true);
       setIsPathChange(false);
     }
@@ -66,9 +66,10 @@ const IndvOrgPage = (props) => {
           let imageUrl;
 
           // The matching criteria is matching one of these names from matchingNameArr
-          let matchingNameArr = [name, orgTag, githubName, modifiedName];
+          let matchingNameArr = [name, orgTag, githubName, modifiedName, orgTag?.toLowerCase(), githubName?.toLowerCase()];
           matchingNameArr = matchingNameArr.concat(alias);
-          matchingNameArr.filter((name) => name !== undefined && name !== '')
+          matchingNameArr.filter((name) => name);
+
           if (!matchingNameArr.includes(pathName)) {
             continue;
           }
@@ -76,7 +77,7 @@ const IndvOrgPage = (props) => {
           // Start grabing matching organization information.
           let projectSearchTopicsArr = [githubName, orgTag];
           projectSearchTopicsArr = projectSearchTopicsArr.concat(alias);
-
+          projectSearchTopicsArr.filter((topic) => topic)
           const { links } = x;
           const webisteLink = links.find(link => link.link_type === 'WebSite')?.url;
           const githubLink = links.find(link => link.link_type === 'GitHub')?.url;

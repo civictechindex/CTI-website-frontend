@@ -6,29 +6,42 @@ import Grid from '@material-ui/core/Grid';
 import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRounded';
 import githubColorDictionary from './data/gh-colors.json';
 import Avatar from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/styles';
 
-const issueStyles = {
-  fontSize: '13px',
-  fontStyle: 'normal',
-  fontWeight: '400',
+const useStyles = makeStyles((theme) => ({
+
+  select : {
+    [theme.breakpoints.down('xs')]: {
+      width: '55vw',
+    },
+  },
+  chipStyle : {
+    backgroundColor: '#F1F1F1', 
+    paddingLeft: '2px',
+  },
+  issueStyles : {
+    fontSize: '13px',
+    fontStyle: 'normal',
+    fontWeight: '400',
+  }
+}));
+
+const renderLanguageChip = (language,classes) => {
+  return <Chip size='small' className={classes.chipStyle} label={language} icon={<FiberManualRecordRoundedIcon style={{ color: githubColorDictionary[language] }} />} />;
 };
 
-const renderLanguageChip = (language) => {
-  return <Chip size='small' style={{ backgroundColor: '#F1F1F1' }} label={language} icon={<FiberManualRecordRoundedIcon style={{ color: githubColorDictionary[language] }} />} />;
-};
-
-const renderTopicTags = (topics) => {
+const renderTopicTags = (topics,classes) => {
   return topics.map((i) => {
-    return <Chip key={i} size='small' style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={i} />;
+    return <Chip key={i} size='small' className={classes.chipStyle}  label={i} />;
   });
 };
 
-const renderAffiliationsTopicsTags = (topics) => {
+const renderAffiliationsTopicsTags = (topics,classes) => {
   if (topics === null){
     return '';
   }
   return topics.map((i) => {
-    return <Chip key={i} size='small' avatar={<Avatar alt="Natacha" src="/images/github-topic-tag-logo.png" />} style={{ backgroundColor: '#F1F1F1', paddingLeft: '2px' }} label={i} />;
+    return <Chip key={i} size='small' avatar={<Avatar alt="Natacha" src="/images/github-topic-tag-logo.png" />} className={classes.chipStyle} label={i} />;
   });
 };
 
@@ -37,6 +50,7 @@ const renderAffiliationsTopicsTags = (topics) => {
  * @param {*} props
  */
 export default function ProjectCard(props) {
+  const classes = useStyles();
   return (
     <Card data-cy='project-card' variant='outlined'>
       <CardContent>
@@ -91,7 +105,7 @@ export default function ProjectCard(props) {
                   <span>Updated {props.lastUpdate} day(s) ago</span>
                 </Grid>
                 <Grid item xs={12} sm={2}>
-                  <span style={issueStyles}>
+                  <span className={classes.issueStyles}>
                     <a href={props.issuesUrl}>
                       <b>{props.issueCount}</b> Open Issues
                     </a>
@@ -101,18 +115,17 @@ export default function ProjectCard(props) {
 
               <Grid item xs={12} sm={12} style={{ paddingTop: '10px' }}>
                 <span>
-                  <b>Affiliations Topic Tags:</b> {renderAffiliationsTopicsTags(props.projectTags)}
-                </span>
-              </Grid>
-              <Grid item xs={12} sm={12} style={{ paddingTop: '10px' }}>
-                {/* TODO: Format */}
-                <span>
-                  <b>Programming Language(s):</b> {renderLanguageChip(props.projectLanguage)}{' '}
+                  <b>Affiliations Topic Tags:</b> {renderAffiliationsTopicsTags(props.projectTags, classes)}
                 </span>
               </Grid>
               <Grid item xs={12} sm={12} style={{ paddingTop: '10px' }}>
                 <span>
-                  <b>Topic Tags:</b> {renderTopicTags(props.topics)}
+                  <b>Programming Language(s):</b> {renderLanguageChip(props.projectLanguage, classes)}{' '}
+                </span>
+              </Grid>
+              <Grid item xs={12} sm={12} style={{ paddingTop: '10px' }}>
+                <span>
+                  <b>Topic Tags:</b> {renderTopicTags(props.topics,classes)}
                 </span>
               </Grid>
             </Grid>

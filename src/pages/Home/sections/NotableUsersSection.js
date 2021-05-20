@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import NavButton from '../../../components/NavButton';
+import { Link } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
 
 const notableUsers = [
   { alt: 'Code for All', link: '#', src: '/images/code-for-all.png' },
@@ -51,14 +53,14 @@ const NotableUsersSection = () => {
             alignItems='center'
             justify='center'
             style={{ height:'100%' }}>
-            <a href={"/organizations/"+props.alt.replaceAll(" ","")}>
+            <IconButton component={Link} to={"/organizations/"+props?.alt?.replaceAll(" ","")} >
               <img
                 style={{ top: '50%' }}
                 align='center'
                 alt={props.alt}
                 src={props.src}
               />
-            </a>
+            </IconButton>
           </Grid >
         </Grid>
       );
