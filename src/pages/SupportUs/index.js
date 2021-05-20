@@ -12,8 +12,8 @@ import {
 
 const SupportUs = () => {
   const crumbs = [
-    { name: "Home", href: "/home" },
-    { name: "Support Us", href: "/support" },
+    { name: 'Home', href: '/home' },
+    { name: 'Radical Collaboration', href: '/radicalcollaboration' },
   ];
 
   const Images = [
