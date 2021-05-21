@@ -7,6 +7,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.21.1",
+    "js-priority-queue": "^0.1.5",
     "material-ui-chip-input": "^2.0.0-beta.2",
     "material-ui-popup-state": "^1.7.1",
     "query-string": "^7.0.0",
