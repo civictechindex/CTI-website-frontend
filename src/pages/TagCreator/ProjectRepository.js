@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   gridStyle:{
     [theme.breakpoints.down('xs')]: {
-      width: '100%',
+      paddingBottom: '8px',
     },
   },
   typoStyle: {
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
 export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkStyles }) => {
   const classes = useStyles()
   return (
-    <Grid container direction="row" alignItems="center" spacing={2} style={{ paddingBottom: '32px' }}>
-      <Grid item className={classes.gridStyle}>
+    <Grid container direction="row" alignItems="center" style={{ paddingBottom: '32px' }}>
+      <Grid item xs={12} sm={3} className={classes.gridStyle} >
         <Typography variant='h6' className={classes.typoStyle}>Project Repository URL:</Typography>
       </Grid>
-      <Grid item data-cy='grid-repository-url'>
+      <Grid item xs={10} sm={7} data-cy='grid-repository-url'>
         <Link variant='body1' className={classes.typoStyle} href={repositoryUrl} >{repositoryUrl}</Link>
       </Grid>
-      <Grid item>
+      <Grid item xs={2}>
         <Link id="change-url" component="button" variant='body1' onClick={()=>setDisplayState('ProjectUrl')} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>

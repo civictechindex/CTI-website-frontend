@@ -12,9 +12,9 @@ import AddOrgModal from '../../components/AddOrgModal';
 
 const useStyles = makeStyles((theme) => ({
   gridStyle:{
-    paddingRight:'32px',
+    paddingRight: '8px',
     [theme.breakpoints.down('xs')]: {
-      width: '100%',
+      paddingBottom: '8px',
     },
   },
   typoStyle: {
@@ -98,17 +98,17 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
     setDisplayState('')
   }
   return (
-    <Grid container direction="row" alignItems="center" spacing={4} style={{ padding: '48px 0px 32px 0px' }}>
-      <Grid item className={classes.gridStyle} >
+    <Grid container direction="row" alignItems="center" style={{ padding: '48px 0px 32px 0px' }}>
+      <Grid item xs={12} sm={3} className={classes.gridStyle} >
         <Typography variant='h6' className={classes.tStyle} >Affliated Organization:</Typography>
       </Grid>
       {orgName ?
-        <Grid item>
+        <Grid item xs={10} sm={7}>
           <Typography variant='h3' className={classes.typoStyle}>{orgName}</Typography>
-        </Grid> : <Grid item  style={{ paddingRight: '50px' }}>
+        </Grid> : <Grid item xs={7} style={{ paddingRight: '50px' }}>
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
-      <Grid item >
+      <Grid item xs={2} >
         <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>

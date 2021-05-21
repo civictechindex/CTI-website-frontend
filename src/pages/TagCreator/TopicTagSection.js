@@ -195,13 +195,13 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
           <Typography variant='h6'>Here are the Topic Tags to add to {repositoryName}:</Typography>
         </Grid>
         <Grid container>
-          <Grid item sm={8} data-cy='copy-paste-tags' >
+          <Grid item data-cy='copy-paste-tags'>
             <Grid container direction="row" alignItems="center" >
               <TopicTag topicnames={tagsToAdd} variant='copypaste'/>
+              <Grid item  style={{ padding:'8px' }}>
+                <Link component="button" variant='body1' onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link>
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Link component="button" variant='body1' onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link>
           </Grid>
         </Grid>
       </Grid>
