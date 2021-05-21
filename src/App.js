@@ -7,6 +7,7 @@ import About from './pages/About';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
 import Faq from './pages/RadicalCollaboration/Faq';
+import IndvOrgPage from './pages/IndvOrganization';
 import Contact from './pages/RadicalCollaboration/Contact';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
@@ -51,6 +52,7 @@ const App = () => {
             <Route exact path="/radicalcollaboration" component={SupportUs} />
             <Route exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} />
             <Route exact path='/radicalcollaboration/faq' component={Faq} />
+            <Route exact path='/organizations/*' component={IndvOrgPage} />
             <Route exact path='/radicalcollaboration/contact' component={Contact} />
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/blank' component={Placeholder} />
