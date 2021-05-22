@@ -48,6 +48,7 @@ const useStyles = makeStyles(theme => ({
   },
   ptextStyle:{
     fontWeight:400,
+    textAlign:'center',
     [theme.breakpoints.down('xs')]: {
       fontSize: '0.875rem',
     },
@@ -93,10 +94,10 @@ const BottomSection = () =>{
       <Box className='containerWhite'>
         <Container>
           <Grid container direction="column" alignItems="center">
-            <Grid item md={6}  style={{ paddingTop: '48px' }}>
-              <Typography variant='h3' className={classes.txtStyle}> This project is so new we are celebrating every win</Typography>
+            <Grid item style={{ paddingTop: '48px' }}>
+              <Typography variant='h3' className={classes.txtStyle}> This project is so new,<br></br> we are celebrating every win</Typography>
             </Grid>
-            <Grid item md={6} style={{ padding: '24px 0px' }} >
+            <Grid item style={{ padding: '24px 0px' }} >
               <Typography variant='h6' className={classes.ptextStyle}>Let us know when you&apos;ve added #civictechindex</Typography>
             </Grid>
             <Grid style={{ paddingBottom: '32px' }}>
