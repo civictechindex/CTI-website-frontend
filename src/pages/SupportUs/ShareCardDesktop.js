@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 import useStyles from './styles.js';
 
 const ShareCardDesktop = (props) => {
@@ -32,7 +33,7 @@ const ShareCardDesktop = (props) => {
                 <Typography className={classes.rightDtpLine2}>
                   {i.dsktpTxtLn2}
                 </Typography>
-                <Button href='/radicalcollaboration/sharethecti' className={classes.buttonRight}>
+                <Button  component={Link} to='/radicalcollaboration/sharethecti'  className={classes.buttonRight}>
                   {i.buttonText}
                 </Button>
               </Paper>

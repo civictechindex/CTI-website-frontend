@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
 
@@ -37,7 +38,7 @@ const DonateCardDesktop = (props) => {
                 <Typography variant="h6" className={classes.footerTxt}>
                   {i.footerText}
                 </Typography>
-                <Button href="/donate" className={classes.donateButton}>
+                <Button component={Link} to="/donate"  className={classes.donateButton}>
                   {i.buttonText}
                 </Button>
               </Paper>
