@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
@@ -47,7 +48,12 @@ const BottomSection = () =>{
           <Grid style={{ padding:'15px 25px' }}>
             <Typography className={classes.ptextStyle}>{text}</Typography>
           </Grid>
-          <Grid style={{ padding:'15px' }}><Button href={bhref} className={classes.btnColor}>{btext}</Button></Grid>
+          <Grid style={{ padding:'15px' }}>
+            <Button component={Link} to={bhref} className={classes.btnColor}>
+              {btext}
+            </Button>
+
+          </Grid>
         </Paper>
       </Grid>
     )

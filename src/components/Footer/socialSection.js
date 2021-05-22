@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
+import Typography from '@material-ui/core/Typography';
 
 const SocialSection = ({ size }) => {
   const classes = useStyles()
@@ -17,15 +18,11 @@ const SocialSection = ({ size }) => {
         spacing={size !== 'lg' ? 4 : 0}
         className={size === 'lg' ? classes.socialContainerLarge : null}
       >
-        <Grid item xs={12}>
-          <a
-            href='/radicalcollaboration/sharethecti'
-            style={{ whiteSpace: 'nowrap' }}
-          >
-            Follow Us
-          </a>
+        <Grid item >
+          <Typography variant='h6' color='textSecondary' className={classes.linkTypography}>Follow Us</Typography>
         </Grid>
-        <Grid item xs={12} className={size !== 'lg' ? classes.socialContainer : null}>
+
+        <Grid item  className={size !== 'lg' ? classes.socialContainer : classes.socialIcons}>
           <a href='https://www.instagram.com/civictechindex'>
             <img src='/images/insta-logo.svg' alt='Instagram logo' />
           </a>
