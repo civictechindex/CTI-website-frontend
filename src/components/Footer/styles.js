@@ -62,7 +62,9 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       margin: 0,
     },
-
+  },
+  socialIcons: {
+    marginTop:'12px',
   },
   socialContainerLarge: {
     textAlign: 'center',
