@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
 
@@ -32,12 +33,15 @@ const FAQCardDeskTp = (props) => {
                 <Typography className={classes.faqRightDtpLine2}>
                   {i.dsktpTxtLn2}
                 </Typography>
+
                 <Typography className={classes.faqLinkText}>
-                  View our <a className={classes.inLineLinkText} href="/faq">FAQ</a> to find answers or <a className={classes.inLineLinkText} href="mailto:civictechindex@hackforla.org">contact us.</a>
+                  View our  <Link to="/faq">FAQ</Link>
+                   to find answers or <a className={classes.inLineLinkText} href="mailto:civictechindex@hackforla.org">contact us.</a>
                 </Typography>
-                <Button href='/faq' className={classes.faqButton}>
+                <Button component={Link} to='/faq' className={classes.faqButton}>
                   {i.buttonText}
                 </Button>
+
               </Paper>
             </Grid>
             <Grid item >
