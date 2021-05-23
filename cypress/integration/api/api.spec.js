@@ -3,24 +3,21 @@
 const TEST_EMAIL = 'me@example.com'
 
 describe('CTI API', () => {
-  beforeEach(() => {
-    // cy.request('POST', '/reset')
-  })
-
   before(() => {
     cy.log(`${Cypress.env('REACT_APP_API_URL')}`);
-  })
+  });
 
-  it('gets all contributors', () => {
-    cy.request(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`)
-      .its('body')
-      .should('have.length', 263)
-      .its('0')
-      .should('include', {
-        github_name: 'sfbrigade',
-      })
-      .and('have.property', 'id')
-      .should('match', /^[0-9]*$/);
+  it('get Hack For LA', () => {
+    cy.request(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/hack-for-la/`).then(
+      (response) => {
+        expect(response.status).to.eq(200);
+        expect(response.body).to.include({
+          slug: 'hack-for-la',
+          github_name: 'hackforla',
+        });
+        expect(response.body).to.have.property('id');
+      }
+    );
   });
 
   it('fails to subscribe existing email', () => {
@@ -32,9 +29,11 @@ describe('CTI API', () => {
         email_address: TEST_EMAIL,
         notification_type: 'test',
       },
-    }).should((response) => {
-      expect(response.status).to.eq(400);
-      expect(response.body[0]).to.contain(`We already have a subscription for ${TEST_EMAIL}`);
-    });
-  });
-})
+    }).then(
+      (response) => {
+        expect(response.status).to.eq(400);
+        expect(response.body[0]).to.contain(`We already have a subscription for ${TEST_EMAIL}`);
+      });
+    }
+  );
+});
