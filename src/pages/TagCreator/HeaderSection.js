@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs'
 import { TitleSection } from '../../components'
-
 import { makeStyles } from '@material-ui/core/styles'
 const crumbs = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
