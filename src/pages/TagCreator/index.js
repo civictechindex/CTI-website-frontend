@@ -17,6 +17,19 @@ import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectReposi
 import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
 import useTheme from '@material-ui/core/styles/useTheme';
 import TagGeneratorInstructions from '../../components/TagGeneratorInstructions'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+  containerPadding: {
+    paddingLeft:'100px',
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft:'40px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding:'0px 16px',
+    },
+  },
+}))
 
 /**
  * By removing matched text, we allow leeway in entering repository URL,
@@ -47,6 +60,7 @@ const usePrevious =(refValue) => {
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
   const theme = useTheme();
+  const classes = useStyles()
   const [displayState, setDisplayState] = useQueryParam('displayState',withDefault(StringParam,''));
   const [value, setValue] = useQueryParam('value',withDefault(StringParam,''));
   const [orgName, setOrgName] = useQueryParam('orgName',withDefault(StringParam,''));
@@ -276,7 +290,7 @@ const TagCreator = () => {
     <Box>
       <HeaderSection/>
       <Box className='containerGray' style={{ paddingBottom:'30px' }} >
-        <Container >
+        <Container className={classes.containerPadding} >
           {renderCurrentState()}
         </Container>
       </Box>
