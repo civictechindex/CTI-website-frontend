@@ -1,20 +1,14 @@
 import React from 'react'
-import { Container } from "@material-ui/core";
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
+import BottomCallToAction from '../../components/BottomCallToAction';
 import PhotoCardDesktop from './PhotoCardDesktop';
 import PhotoCardMobile from './PhotoCardMobile';
-import {
-  GetStartedCard,
-  NavBreadcrumbs,
-  TitleSection,
-} from '../../components';
+import HeaderSection from './HeaderSection';
 
 const SupportUs = () => {
-  const crumbs = [
-    { name: 'Home', href: '/home' },
-    { name: 'Radical Collaboration', href: '/radicalcollaboration' },
-  ];
 
   const Images = [
     {
@@ -64,23 +58,28 @@ const SupportUs = () => {
     },
   ];
   return (
-    <Container className="containerDefault">
-      <NavBreadcrumbs crumbs={crumbs} style={{ fontColor: '#FEFEFE' }} />
-      <TitleSection>
-                Your Help Goes a Long Way
-      </TitleSection>
-      <Hidden mdDown>
-        <PhotoCardDesktop items={Images} />
-      </Hidden>
-      <Hidden lgUp>
-        <PhotoCardMobile items={Images} />
-      </Hidden>
-      <GetStartedCard
-        headerTitle="Want to support in other ways?"
-        buttonText="Contact Us"
-        buttonHref="mailto:civictechindex@hackforla.org"
-      />
-    </Container>
+    <Box className='pageContainer'>
+      <Box className='containerDefault'>
+        <Container>
+          <HeaderSection />
+        </Container>
+      </Box>
+      <Box className='containerGray'>
+        <Container>
+          <Hidden mdDown>
+            <PhotoCardDesktop items={Images} />
+          </Hidden>
+          <Hidden lgUp>
+            <PhotoCardMobile items={Images} />
+          </Hidden>
+        </Container>
+      </Box>
+      <Box className='containerWhite'>
+        <Container>
+          <BottomCallToAction heading='Want to support in other ways?' />
+        </Container>
+      </Box>
+    </Box>
   );
 }
 
