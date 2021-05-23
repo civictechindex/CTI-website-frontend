@@ -7,7 +7,28 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles'
 import AddOrgModal from '../../components/AddOrgModal';
+
+const useStyles = makeStyles((theme) => ({
+  gridStyle:{
+    paddingRight: '8px',
+    [theme.breakpoints.down('xs')]: {
+      paddingBottom: '8px',
+    },
+  },
+  typoStyle: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.5rem',
+    },
+  },
+  tStyle: {
+    fontWeight:'500',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.875rem',
+    },
+  },
+}))
 
 export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -46,6 +67,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           onChange={(e, v) => setOrgName(v)}
           renderInput={(params) =>(
             <TextField {...params}
+              required
               variant="outlined"
               InputProps={{
                 ...params.InputProps,
@@ -71,21 +93,22 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
 }
 
 export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
+  const classes = useStyles()
   const handleChangeOrg = () => {
     setDisplayState('')
   }
   return (
-    <Grid container direction="row" alignItems="center" spacing={3} style={{ padding: '10px' }}>
-      <Grid item>
-        <Typography variant='body1'>Affliated Organization:</Typography>
+    <Grid container direction="row" alignItems="center" style={{ padding: '48px 0px 32px 0px' }}>
+      <Grid item xs={12} sm={3} className={classes.gridStyle} >
+        <Typography variant='h6' className={classes.tStyle} >Affliated Organization:</Typography>
       </Grid>
       {orgName ?
-        <Grid item>
-          <Typography variant='h3'>{orgName}</Typography>
-        </Grid> : <Grid item style={{ paddingRight: '50px' }}>
+        <Grid item xs={10} sm={7}>
+          <Typography variant='h3' className={classes.typoStyle}>{orgName}</Typography>
+        </Grid> : <Grid item xs={7} style={{ paddingRight: '50px' }}>
           <Typography variant='h3'>Unaffliated</Typography>
         </Grid>}
-      <Grid item>
+      <Grid item xs={2} >
         <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
       </Grid>
     </Grid>
