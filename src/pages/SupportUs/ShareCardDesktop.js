@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import useStyles from './styles.js';
 
-const ShareCardDeskTp = (props) => {
+const ShareCardDesktop = (props) => {
   const items = props.items;
   const classes = useStyles();
   return (
@@ -59,4 +59,5 @@ const ShareCardDeskTp = (props) => {
     </>
   );
 }
-export default ShareCardDeskTp;
+
+export default ShareCardDesktop;
