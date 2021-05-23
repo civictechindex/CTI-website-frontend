@@ -11,7 +11,7 @@ describe('CTI API', () => {
     cy.log(`${Cypress.env('REACT_APP_API_URL')}`);
   })
 
-  xit('gets all contributors', () => {
+  it('gets all contributors', () => {
     cy.request(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`)
       .its('body')
       .should('have.length', 263)

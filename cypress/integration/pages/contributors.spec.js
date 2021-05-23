@@ -9,7 +9,7 @@ describe('Contributors Page', () => {
     })
   })
 
-  xit('check Code for All', () => {
+  it('check Code for All', () => {
     cy.get('[class*=affiliatedOrgsContainer]').within(() => {
       cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1);
       cy.get('[href*=codeforall]').within(() => {
@@ -18,11 +18,11 @@ describe('Contributors Page', () => {
     });
   });
 
-  xit('load thumbnail wrappers', () => {
+  it('load thumbnail wrappers', () => {
     cy.get('[class*=thumbnailWrapper]').should('have.length', 27);
   });
 
-  xit('expands Code for America, find Code for Anchorage', () => {
+  it('expands Code for America, find Code for Anchorage', () => {
     cy.get('[href*=codeforamerica]')
       .parents('[class*=containerDropdown]')
       .within(() => {
