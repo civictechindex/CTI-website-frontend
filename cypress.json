@@ -4,5 +4,5 @@
   "env": {
     "REACT_APP_API_URL": "https://api-stage.civictechindex.org"
   },
-  "ignoreTestFiles": ["tag-creator.spec.js"]
+  "ignoreTestFiles": ["contributors.spec.js", "tag-creator.spec.js"]
 }

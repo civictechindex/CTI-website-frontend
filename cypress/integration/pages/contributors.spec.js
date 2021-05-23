@@ -5,24 +5,24 @@ describe('Contributors Page', () => {
 
   it('wait for affiliated orgs to load', () => {
     cy.get('[class*=affiliatedOrgsContainer]').within(() => {
-      cy.get('[class*=containerDropdown]', { timeout: 60000 }).should('have.length', 24);
+      cy.get('[class*=containerDropdown]').should('have.length', 24);
     })
   })
 
-  it('check Code for All', () => {
+  xit('check Code for All', () => {
     cy.get('[class*=affiliatedOrgsContainer]').within(() => {
-      cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1)
+      cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1);
       cy.get('[href*=codeforall]').within(() => {
-        cy.contains('Code for All')
-      })
-    })
-  })
+        cy.contains('Code for All');
+      });
+    });
+  });
 
-  it('load thumbnail wrappers', () => {
+  xit('load thumbnail wrappers', () => {
     cy.get('[class*=thumbnailWrapper]').should('have.length', 27);
   });
 
-  it('expands Code for America, find Code for Anchorage', () => {
+  xit('expands Code for America, find Code for Anchorage', () => {
     cy.get('[href*=codeforamerica]')
       .parents('[class*=containerDropdown]')
       .within(() => {
