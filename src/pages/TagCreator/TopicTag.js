@@ -12,15 +12,15 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 10px',
     '&.MuiChip-outlined': {
       borderColor: theme.palette.outline.gray,
+      [theme.breakpoints.down('md')]: {
+        height: '42px',
+      },
+      [theme.breakpoints.up('md')]: {
+        height: '48px',
+      },
     },
     '&.MuiChip-deletable svg': {
       color: theme.palette.outline.gray,
-    },
-    [theme.breakpoints.down('md')]: {
-      height: '42px',
-    },
-    [theme.breakpoints.up('md')]: {
-      height: '48px',
     },
   },
 }));
