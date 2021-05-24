@@ -4,7 +4,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   const CHANGE_AFFILIATED_ORGANIZATION = 'Hack for LA';
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311';
   const AFFILIATED_TEST_TAGS = ['code-for-boston', 'code-for-america', 'alexa', 'trash'];
-  const AFFILIATED_NEW_TAGS = ['tag1','code-for-all', 'civictechindex'];
+  const AFFILIATED_NEW_TAGS = ['civictechindex','code-for-all','tag1'];
   const UNAFFILIATED_NEW_TAGS = ['tag1','tag2', 'tag3'];
 
   const UNAFFILIATED_TEST_URL = 'https://github.com/civictechindex/CTI-website-frontend.git';
@@ -20,6 +20,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
 
   beforeEach(() => {
     cy.visit('/tag-generator');
+    cy.wait(2000)
   });
 
   it('loads', () => {
@@ -27,7 +28,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('loads correct 4 tags and affliate new tags for `codeforboston/voiceapp311` - affiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -68,7 +68,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('resets form in the middle of `codeforboston/voiceapp311` - affiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -86,7 +85,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('change the org from affiliated for `codeforboston/voiceapp311` to unaffiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -102,7 +100,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('change repository url from `codeforboston/voiceapp311` to `civictechindex/CTI-website-frontend`  - affiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -163,7 +160,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('change the org form unaffiliated for `civictechindex/CTI-website-frontend` to affiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
     cy.get('h3').contains('Unaffliated');
