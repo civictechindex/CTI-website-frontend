@@ -2,12 +2,11 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 
 export const useStyle = makeStyles((theme) => ({
   firstSectionWrapper: {
-    width: '100%',
     background: '#004364',
     color: '#FFE06D',
     boxSizing: 'border-box',
     backgroundImage: 'url("/images/CTI-Contributors-BG-1.png")',
-    minHeight: '57vh',
+    minHeight: '35vh',
     backgroundPositionY: 'bottom',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -20,6 +19,13 @@ export const useStyle = makeStyles((theme) => ({
     height: '20px',
     width: '100px',
   },
+  textStyle: {
+    color:'#FEFEFE',
+    fontSize: '24px',
+    textAlign:'center',
+    marginTop: '-1rem',
+  },
+  
   projectsLink: {
     margin: '0',
     paddingTop: '70px',
@@ -41,26 +47,25 @@ export const useStyle = makeStyles((theme) => ({
     boxSizing: 'border-box',
     color: theme.palette.secondary.dark,
     display: 'flex',
-    // justifyContent: 'space-between',
     fontSize: '1.3rem',
     '& h2': {
       width: '100%',
     },
   },
   unaffiliatedWrapper: {
-    marginLeft: theme.spacing(-3),
+    marginLeft: '116px',
     marginRight: theme.spacing(-3),
     textAlign: 'center',
     backgroundColor: theme.palette.grey[100],
     padding: '1rem 0',
     '& *': { color: theme.palette.secondary.dark },
     ' & h2': {
-      fontSize: '2.25rem',
+      fontZize: '28px',
+      color: '#004364',
       margin: 0,
     },
     '& p': {
-      fontWeight: 'bold',
-      fontSize: '1.5rem',
+     fontSize: '24px',
     },
   },
   unaffiliatedThumbnailsWrapper: {
@@ -68,34 +73,42 @@ export const useStyle = makeStyles((theme) => ({
     gridTemplateColumns: 'repeat(auto-fill,minmax(49%, 1fr))',
     gap: '0.5rem',
     padding: '1rem 0',
+    marginLeft: '74px',
   },
   unaffiliatedThumbnails: {
     border: '1px solid #BCBCBC',
     borderRadius: '4px',
+    marginLeft: '-10rem',
+    marginRight: '161px',
+
     flex: '1 1 23%',
     '& p': {
-      fontSize: '1.5rem',
-      fontWeight: 'bold',
+      fontSize: '24px',
       color: theme.palette.secondary.dark,
     },
   },
   affiliatedWrapper: {
     width: '100%',
-    backgroundColor: theme.palette.background.primary,
     padding: '1rem 0',
     textAlign: 'center',
     '& h2': {
-      //   padding: '1rem 0',
       margin: 0,
-      fontSize: '2.25rem',
+      fontZize: '28px',
+      color: theme.palette.secondary.dark,
     },
   },
   affiliatedThumbnailsWrapper: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill,minmax(23%, 1fr))',
-    margin: '1rem 0',
-    columnGap: '1rem',
-    rowGap: '0.5rem',
+    gridTemplateColumns: 'repeat(2, 0.45fr)',
+    margin: '1.5rem 0',
+    columnGap: '20px',
+    rowGap: '1.54rem',
+    marginLeft: '47px',
+  },
+  afflnThumbnails: {
+    border: "1px solid #bcbcbc",
+    width:"375px",
+    height:"64px",
   },
   affiliatedOrgsContainer: {
     '&h2, & h3': {
@@ -113,11 +126,11 @@ export const useStyle = makeStyles((theme) => ({
     height: '90vh',
   },
 
-  input: {
-    width: '85%',
-    borderRadius: '7px',
-    backgroundColor: theme.palette.background.default,
-    fontSize: '1.5rem',
+  unafflCount: {
+    fontSize: '28px',
+    paddingTop: '6px',
+    paddingLeft: '10px',
+    color:'#004364',
   },
   contributorsContainer: {
     boxSizing: 'border-box',
@@ -133,10 +146,12 @@ export const useStyle = makeStyles((theme) => ({
   },
   thumbnailWrapper: {
     minHeight: '5rem',
+    width: '375px',
+    height: '64px'  
   },
+ 
   thumbnails: {
     color: theme.palette.common.black,
-    backgroundColor: theme.palette.background.default,
     display: 'flex',
     textDecoration: 'none',
     borderRadius: '4px',
@@ -144,28 +159,54 @@ export const useStyle = makeStyles((theme) => ({
   },
   imageWrapper: {
     display: 'grid',
-    placeItems: 'center',
-    padding: '0.5rem',
+    paddingTop: '10px',
   },
   thumbnailImage: {
-    width: '100%',
-    maxWidth: '5rem',
+     width: '48px',
+     height: '48px',
+     paddingTop: '16px',
+     paddingLeft: '16px',
+     marginLeft: '-20px',
+  },
+  thumbnailImageresize: {
+    width: '30px',
+    height: '30px',
   },
   textWrapper: {
     display: 'flex',
     alignItems: 'center',
     flex: '3 1 75%',
     minHeight: '6rem',
+    "&:visited": {
+      color: "theme​.palette.​text.secondary",
+     },
   },
+  textWrapperNew: {
+     display: 'flex',
+    alignItems: 'center',
+    flex: '3 1 75%',
+    minHeight: '6rem',
+  },
+  
   thumbnailText: {
-    display: 'flex',
     alignItems: 'center',
     minHeight: '6rem',
-    color: theme.palette.primary.main,
+    paddingTop: '28px',
+    paddingLeft: '10px',
+  },
+  orgText: {
+    color:"#004364",
+    fontSize:'20px',
+    
+  },
+
+  blueColorText: {
+    color: "#FEFEFE",
+    fontSize:'24px',
   },
   textWrapperWithoutImage: {
     display: 'grid',
-    placeItems: 'center',
+    //placeItems: 'center',
     width: '100%',
   },
   thumbnailTextWithoutImage: {
@@ -173,7 +214,7 @@ export const useStyle = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '0 0.5rem',
     minHeight: '6rem',
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.dark,
   },
   codeForAllWrapper: {
     '& a': {
@@ -192,15 +233,88 @@ export const useStyle = makeStyles((theme) => ({
     '& p': {
       display: 'flex',
       color: theme.palette.secondary.dark,
+      fontSize: '28px',
+      marginLeft:'13px',
     },
-    width: '50%',
-    minHeight: '7rem',
+    width: '1005px',
     margin: '1rem auto',
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: theme.palette.background.default,
-    border: '1px solid #BCBCBC',
-    borderRadius: '4px',
     padding: '1rem',
+    marginLeft: '-3rem',
+    height:'80px',
+    backgroundColor:'theme​.palette.​background.default',
   },
+ 
+  indicator: {
+    backgroundColor: '#006B95'
+  },
+  tabVal: {
+   color: "theme​.palette.​text.disabled",
+    "&:hover": {
+      color: "#006B95",
+      opacity: 1
+    },
+    "&: $selected": {
+      color: "theme​.palette.​text.disabled",
+    },
+    
+  },
+  
+
+  button: {
+    width: '211px',
+    height: '44px',
+    borderRadius: '31px',
+    border: '1px solid',
+    borderColor: '#004364',
+    color: "#004364",
+    fontSize: '16px',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: theme.palette.background.default,
+    },
+    }, 
+
+  chkBoxStyle: {
+    color: '#6D6E74',
+    paddingLeft: '59rem',
+  },
+  "& .MuiTypography-body1" : {
+    color: '#004364',
+  },
+  afflblueColor: {
+    backgroundColor: "#004364",
+    color:"theme​.palette.​text.secondary",
+  },
+
+  afflWhiteBckg: {
+    backgroundColor: "#FFFFFF",
+    color:"#004364",
+  },
+
+  
+ blueColor: {
+   backgroundColor: "#004364",
+   color:"theme​.palette.​text.secondary",
+   '& img': {
+    marginRight: '0.5rem',
+    maxWidth: '6rem',
+    },
+    '& p': {
+      display: 'flex',
+      color: "white",
+      fontSize: '28px',
+      marginLeft:'13px',
+    },
+    width: '1005px',
+    margin: '2rem auto',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '1rem',
+    marginLeft: '-6rem',
+    height:'80px',
+ 
+  },
+ 
 }));

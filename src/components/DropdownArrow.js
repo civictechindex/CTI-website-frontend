@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 
-export const DropdownArrow = ({ setOpenFunction }) => {
+export const DropdownArrow  = ({ setOpenFunction }) => {
+
 
   const arrow = useRef(null);
 
@@ -8,18 +9,28 @@ export const DropdownArrow = ({ setOpenFunction }) => {
     chevron: {
       cursor: "pointer",
       margin: "auto 0 auto auto",
+      paddingTop: '10px',
+
     },
+
   };
+
+
   const handleClick = (setOpenFunction) => {
+
     if (!arrow.current.style.transform) {
       arrow.current.style.transform = "rotate(180deg)";
+
     } else {
       arrow.current.style.transform = "";
     }
     setOpenFunction((c) => !c);
   };
 
+
+
   return (
+
     <img
       id = "dropdownChevron"
       ref={arrow}
@@ -29,4 +40,5 @@ export const DropdownArrow = ({ setOpenFunction }) => {
       alt="dropdown chevron"
     />
   );
+
 };
