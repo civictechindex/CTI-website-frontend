@@ -4,13 +4,16 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
-// ISO 3166-1 alpha-2
-// ⚠️ No support for IE 11
+/*
+ * ISO 3166-1 alpha-2
+ * ⚠️ No support for IE 11
+ */
+
 function countryToFlag(isoCode) {
   return typeof String.fromCodePoint !== 'undefined'
     ? isoCode
-        .toUpperCase()
-        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
+      .toUpperCase()
+      .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
     : isoCode;
 }
 
@@ -59,7 +62,7 @@ export default function CountrySelect({ onChange }) {
           label=""
           id="filled-basic"
           variant="outlined"
-          height="10px"
+          size='small'
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill

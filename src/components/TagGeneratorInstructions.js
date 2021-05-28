@@ -4,22 +4,42 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/CardMedia';
 
 
 const useStyles = makeStyles(theme => ({
+  containerPadding: {
+    paddingLeft:'100px',
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft:'40px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      paddingLeft:'16px',
+    },
+  },
   btnStyle: {
-    width:'368px',
-    height: '56px',
     '& .MuiButton-label':{
       whiteSpace:'inherit',
     },
   },
   txtStyle:{
     textAlign: 'center',
-    fontWeight:400,
+    fontWeight:500,
+    [theme.breakpoints.down('xs')]: {
+      fontSize:'1.5rem',
+    },
+  },
+  gridStyle:{
+    padding:'8px',
+    width:'285px',
+    [theme.breakpoints.up('sm')]: {
+      width:'270px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width:'265px',
+    },
   },
   paper: {
     padding: theme.spacing(2),
@@ -27,14 +47,30 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '12px',
   },
   ptextStyle:{
-    fontSize: '18px',
-    fontWeight:500,
+    fontWeight:400,
+    textAlign:'center',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.875rem',
+    },
   },
   btnColor:{
     backgroundColor:theme.palette.background.default,
     border: '1px solid',
     borderColor: theme.palette.grey[400],
     color: theme.palette.outline.gray,
+  },
+  imgStyle:{
+    width:'350px',
+    padding:theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      width:'250px',
+    },
+  },
+  typoStyle: {
+    fontWeight:'400',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '14px',
+    },
   },
 }));
 
@@ -43,17 +79,12 @@ const BottomSection = () =>{
 
   const PaperComp = ({ text,btext,bhref }) =>{
     return (
-      <Grid style={{ padding:'30px 15px' }}>
+      <Grid item className={classes.gridStyle} >
         <Paper variant="outlined" className={classes.paper}>
-          <Grid style={{ padding:'15px 25px' }}>
-            <Typography className={classes.ptextStyle}>{text}</Typography>
+          <Grid style={{ padding:'16px' }}>
+            <Typography variant='body1' className={classes.ptextStyle}>{text}</Typography>
           </Grid>
-          <Grid style={{ padding:'15px' }}>
-            <Button component={Link} to={bhref} className={classes.btnColor}>
-              {btext}
-            </Button>
-
-          </Grid>
+          <Grid><Button href={bhref} className={classes.btnColor}>{btext}</Button></Grid>
         </Paper>
       </Grid>
     )
@@ -63,14 +94,17 @@ const BottomSection = () =>{
       <Box className='containerWhite'>
         <Container>
           <Grid container direction="column" alignItems="center">
-            <Grid item md={6}  style={{ padding: '48px' }}>
-              <Typography variant='h3' className={classes.txtStyle}> This project is so new we are celebrating every win</Typography>
+            <Grid item style={{ paddingTop: '48px' }}>
+              <Typography variant='h3' className={classes.txtStyle}> This project is so new,<br></br> we are celebrating every win</Typography>
             </Grid>
-            <Grid>
-              <Button className={classes.btnStyle}>Let us know when you&apos;ve added #civictechindex</Button>
+            <Grid item style={{ padding: '24px 0px' }} >
+              <Typography variant='h6' className={classes.ptextStyle}>Let us know when you&apos;ve added #civictechindex</Typography>
+            </Grid>
+            <Grid style={{ paddingBottom: '32px' }}>
+              <Button className={classes.btnStyle}>Added to Civic Tech Index</Button>
             </Grid>
           </Grid>
-          <Grid container direction="row" justify="center" style={{ padding:'30px' }}>
+          <Grid container direction="row" justify="center" style={{ paddingBottom: '30px' }}>
             <PaperComp text='Add Another Project' btext='Tag Generator' bhref='/tag-generator'/>
             <PaperComp text='Collaborate with us' btext='Learn More' bhref='/support'/>
           </Grid>
@@ -81,30 +115,37 @@ const BottomSection = () =>{
 }
 
 const HowToUse = () => {
+  const classes = useStyles()
   const StepComp =({ stepText,src,alt }) =>{
     return (
-      <>
-        <Grid item xs={12} md={6}>
-          <Typography variant='body1'>{stepText}</Typography>
+      <Grid container >
+        <Grid item xs={6} style={{ padding:'8px 0px' }}>
+          <Typography variant='h6' className={classes.typoStyle}>{stepText}</Typography>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <img src={src} alt={alt} />
+        <Grid item xs={6} style={{ padding:'8px 0px' }}>
+          <CardMedia
+            className={classes.imgStyle}
+            component="img"
+            alt={alt}
+            image={src}
+            title={alt}
+          />
         </Grid>
-      </>
+      </Grid>
     )
   }
 
   return (
     <>
       <Box className='containerGray'>
-        <Container>
+        <Container className={classes.containerPadding}>
           <Grid container >
-            <Grid item xs={12} style={{ padding:'70px 10px' }}>
-              <Typography variant='body1'> 1. Navigate to your project&apos;s repository in another browser to add your generated tags.</Typography>
+            <Grid item xs={12} style={{ padding:'24px 0px' }}>
+              <Typography variant='h6' className={classes.typoStyle}> 1. Navigate to your project&apos;s repository in another browser to add your generated tags.</Typography>
             </Grid>
-            <StepComp stepText='2. Under your project’s repository, click to paste your tags.' src='/images/step_2.png' alt='Step 2'/>
-            <StepComp stepText='3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.' src='/images/step_3.png' alt='Step 3'/>
-            <StepComp stepText='4. Repeat until you have finished adding all of your tags, then click Save Changes.' src='/images/step_4.png' alt='Step 4'/>
+            <StepComp stepText='2. Under your project’s repository, click to paste your tags.' src='/images/step_2.svg' alt='Step 2'/>
+            <StepComp stepText='3. Under &quot;Topics&quot;, paste the topic you want to add to your repository.' src='/images/step_3.svg' alt='Step 3'/>
+            <StepComp stepText='4. Repeat until you have finished adding all of your tags, then click Save Changes.' src='/images/step_4.svg' alt='Step 4'/>
           </Grid>
         </Container>
         <BottomSection/>

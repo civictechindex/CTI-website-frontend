@@ -2,6 +2,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   innerTextCardContainer: {
+    background: 'none',
     height: '448px',
     width: '608px',
   },
@@ -48,6 +49,7 @@ const useStyles = makeStyles(theme => ({
     width: '278px',
   },
   imgCard: {
+    background: 'none',
     top: '33px',
     position: 'absolute',
     height: '382px',
@@ -55,6 +57,7 @@ const useStyles = makeStyles(theme => ({
     left: '608px',
   },
   imgCardLeft: {
+    background: 'none',
     maxWidth: 1280,
     position: 'absolute',
     height: '382px',
@@ -70,6 +73,7 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
   },
   outerCard: {
+    background: 'none',
     position: 'relative',
     padding: '0px',
     width: '1184px',
@@ -166,13 +170,14 @@ const useStyles = makeStyles(theme => ({
     width: '225px',
   },
   innerCardMobile: {
+    background: 'none',
     maxWidth: 328,
     padding: '0px',
-    marginBottom: '5px',
   },
   innerTextCardContainerMobile: {
+    background: 'none',
     margin: 'auto',
-    marginBottom: '20px',
+    paddingTop: theme.spacing(4),
   },
   cardMediaMobile: {
     height: 192,
@@ -216,6 +221,8 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
     padding: '16px',
   },
-
+  headerSection: {
+    paddingBottom: '40px',
+  },
 }))
 export default useStyles
