@@ -1,14 +1,14 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
-import TitleSection from "../../components/TitleSection";
-import NavBreadcrumbs from "../../components/NavBreadcrumbs";
+import TitleSection from "../../../components/TitleSection";
+import NavBreadcrumbs from "../../../components/NavBreadcrumbs";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import FileUploadIcon from "../../icons/FileUploadIcon";
+import FileUploadIcon from "../../../icons/FileUploadIcon";
 
 const useStyles = makeStyles((theme) => ({
   headerStyle: {
@@ -134,7 +134,7 @@ const ContactForm = () => {
               ></TextField>
 
               <Typography variant="h3">
-                Your Project or Organization's GitHub URL{""}
+                Your Project or Organization&apos;s GitHub URL{""}
                 <span style={{ color: "red" }}>*</span>
               </Typography>
               <TextField id="github-url" placeholder="GitHub URL"></TextField>
