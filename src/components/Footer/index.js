@@ -128,7 +128,7 @@ const Footer = () => {
       {
         key: 'share',
         text: 'Share the CTI',
-        to: '/radicalcollaboration/sharethecti',
+        to: '/radicalcollaboration/share',
       },
       {
         key: 'volunteer',

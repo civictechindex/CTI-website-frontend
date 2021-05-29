@@ -6,6 +6,20 @@ import Chip from '@material-ui/core/Chip';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
+  sectionMainTitle:{
+    marginBottom:'32px',
+
+    [theme.breakpoints.down('md')]: {
+      marginBottom:'40px',
+    },
+
+  },
+  sectionSubTitle:{
+    marginBottom:'16px',
+    [theme.breakpoints.down('md')]: {
+      marginBottom:'31px',
+    },
+  },
   homeTag: {
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
@@ -58,10 +72,10 @@ const TrendingTopicsSection = () => {
   return (
     <Grid container className={classes.trendingContainerStyle}>
       <Grid item lg={6}>
-        <Typography variant='h3' color='textPrimary' gutterBottom>
+        <Typography variant='h3' color='textPrimary' className={classes.sectionMainTitle}>
                     How are people using the CTI?
         </Typography>
-        <Typography variant='h5' color='textSecondary' gutterBottom>
+        <Typography variant='h5' color='textSecondary' className={classes.sectionSubTitle}>
                     Trending Topics:
         </Typography>
         <TrendingTopicList />
