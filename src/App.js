@@ -4,20 +4,20 @@ import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
 import About from './pages/About';
+import Contact from './pages/RadicalCollaboration/Contact';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
 import Faq from './pages/RadicalCollaboration/Faq';
 import IndvOrgPage from './pages/IndvOrganization';
-import Contact from './pages/RadicalCollaboration/Contact';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
+import RadicalCollaboration from './pages/RadicalCollaboration'
 import SearchProjects from './pages/SearchProjects';
-import SupportUs from './pages/SupportUs'
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
 import Error404 from './pages/Error404'
-import ShareTheCti from './pages/RadicalCollaboration/ShareTheCti';
+import ShareTheCti from './pages/RadicalCollaboration/Share';
 import Guides from './guides/';
 import useStyles from './styles';
 
@@ -49,25 +49,27 @@ const App = () => {
             <Route exact path='/home' component={Home} />
             <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
             <RouteTitled exact path='/tag-generator' component={TagCreator} title='Tag Generator' />
-            <Route exact path="/radicalcollaboration" component={SupportUs} />
-            <Route exact path='/radicalcollaboration/sharethecti' component={ShareTheCti} />
-            <Route exact path='/radicalcollaboration/faq' component={Faq} />
+            <RouteTitled exact path='/radicalcollaboration' component={RadicalCollaboration} title='Radical Collaboration' />
+            <RouteTitled exact path='/radicalcollaboration/contact' component={Contact} title='Contact Us' />
+            <RouteTitled exact path='/radicalcollaboration/faq' component={Faq} title='FAQ' />
+            <RouteTitled exact path='/radicalcollaboration/share' component={ShareTheCti} title='Share the CTI' />
             <Route exact path='/organizations/*' component={IndvOrgPage} />
-            <Route exact path='/radicalcollaboration/contact' component={Contact} />
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />
             <Redirect from='/adding-projects' to='/adding-projects-to-the-index' />
+            <Redirect from='/contact' to='/radicalcollaboration/contact' />
+            <Redirect from='/donation' to='/donate' />
+            <Redirect from='/faq' to='/radicalcollaboration/faq' />
             <Redirect from='/how' to='/adding-projects-to-the-index' />
             <Redirect from='/how-to' to='/adding-projects-to-the-index' />
             <Redirect from='/how-to-use' to='/adding-projects-to-the-index' />
-            <Redirect from='/donation' to='/donate' />
-            <Redirect from='/taggenerator' to='/tag-generator' />
+            <Redirect from='/search' to='/projects' />
+            <Redirect from='/share' to='/radicalcollaboration/share' />
+            <Redirect from='/support' to='/radicalcollaboration' />
             <Redirect from='/tag-creator' to='/tag-generator' />
             <Redirect from='/tagcreator' to='/tag-generator' />
-            <Redirect from='/search' to='/projects' />
-            <Redirect from='/support' to='/radicalcollaboration' />
-            <Redirect from='/faq' to='/radicalcollaboration/faq' />
+            <Redirect from='/taggenerator' to='/tag-generator' />
             <Redirect from='/guides' to='/guides/colors' />
             <Redirect from='/placeholder' to='/blank' />
             <Redirect from='/template' to='/blank' />

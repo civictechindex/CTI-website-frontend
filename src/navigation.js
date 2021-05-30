@@ -68,7 +68,7 @@ const navigation = [
       {
         id: 'shareTheCti',
         header: 'Share the CTI',
-        route: '/radicalcollaboration/sharethecti',
+        route: '/radicalcollaboration/share',
       },
       {
         id: 'volunteerWithUs',
