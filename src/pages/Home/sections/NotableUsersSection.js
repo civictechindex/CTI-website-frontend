@@ -8,9 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 
 const notableUsers = [
   {
-    alt: 'Code for All',
-    link: 'https://codeforall.org/',
-    src: '/images/code-for-all.png',
+    alt: 'Hack for LA',
+    link: 'https://www.hackforla.org/',
+    src: '/images/hack-for-la.png',
   },
   {
     alt: 'Code for America',
@@ -18,34 +18,35 @@ const notableUsers = [
     src: '/images/code-for-america.svg',
   },
   {
-    alt: 'DemocracyLab',
-    link: 'https://www.democracylab.org/',
-    src: '/images/democracy-lab.svg',
-  },
-  {
-    alt: 'Hack for LA',
-    link: 'https://www.hackforla.org/',
-    src: '/images/hack-for-la.png',
-  },
-  {
     alt: 'OpenOakland',
     link: 'https://openoakland.org/',
     src: '/images/open-oakland.svg',
   },
   {
-    alt: 'Open San Diego',
-    link: 'https://opensandiego.org/',
-    src: '/images/open-san-diego.svg',
+    alt: 'Code for Tulsa',
+    link: 'https://www.meetup.com/Code-for-Tucson/',
+    src: '/images/code-for-tulsa.png',
+  },
+
+  {
+    alt: 'Code for Chapel Hill',
+    link: 'http://www.codeforchapelhill.com/',
+    src: '/images/code-for-chapel-hill.png',
   },
   {
-    alt: 'Open Savannah',
-    link: 'https://opensavannah.org/',
-    src: '/images/open-savannah.png',
+    alt: 'Code for PDX',
+    link: 'https://www.meetup.com/Code-for-PDX/',
+    src: '/images/code-for-PDX.png',
   },
   {
-    alt: 'Yale OpenLab',
-    link: 'https://openlab.yale.edu/',
-    src: '/images/yale-openlab.svg',
+    alt: 'Code for Buffalo',
+    link: 'https://www.codeforbuffalo.org/',
+    src: '/images/code-for-buffalo.png',
+  },
+  {
+    alt: 'BetaNYC',
+    link: 'https://beta.nyc/',
+    src: '/images/betanyc.png',
   },
 ];
 
