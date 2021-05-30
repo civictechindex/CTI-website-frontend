@@ -4,8 +4,9 @@ describe('Tag Generator Page (Tag Creator)', () => {
   const CHANGE_AFFILIATED_ORGANIZATION = 'Hack for LA';
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311';
   const AFFILIATED_TEST_TAGS = ['code-for-boston', 'code-for-america', 'alexa', 'trash'];
-  const AFFILIATED_NEW_TAGS = ['tag1','code-for-all', 'civictechindex'];
-  const UNAFFILIATED_NEW_TAGS = ['tag1','tag2', 'tag3'];
+  const AFFILIATED_NEW_TAGS = ['tag1', 'code-for-all', 'civictechindex'];
+  const UNAFFILIATED_NEW_TAGS = ['tag1', 'tag2', 'tag3'];
+  const expectedAffiliatedNewTags = ['civictechindex', 'tag1'];
 
   const UNAFFILIATED_TEST_URL = 'https://github.com/civictechindex/CTI-website-frontend.git';
   const UNAFFILIATED_TEST_TAGS = [
@@ -63,7 +64,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=copy-paste-tags]').within(() => {
       cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text();
-        expect(AFFILIATED_NEW_TAGS.indexOf(innerText)).to.be.eq(index);
+        expect(expectedAffiliatedNewTags.indexOf(innerText)).to.be.eq(index);
       });
     });
   });
