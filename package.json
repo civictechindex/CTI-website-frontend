@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
+    "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "axios": "^0.21.1",
     "js-priority-queue": "^0.1.5",
     "material-ui-chip-input": "^2.0.0-beta.2",
-    "material-ui-popup-state": "^1.7.1",
+    "material-ui-popup-state": "^1.8.3",
     "query-string": "^7.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -48,20 +48,20 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.12.5",
-    "@cypress/code-coverage": "^3.9.4",
+    "@babel/preset-react": "^7.13.13",
+    "@cypress/code-coverage": "^3.9.5",
     "@cypress/instrument-cra": "^1.4.0",
     "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
+    "@testing-library/react": "^11.2.7",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cypress": "^6.8.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-cypress": "^2.11.2",
-    "eslint-plugin-react": "^7.22.0",
-    "faker": "^5.5.1",
+    "eslint-plugin-cypress": "^2.11.3",
+    "eslint-plugin-react": "^7.23.2",
+    "faker": "^5.5.3",
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0",
-    "start-server-and-test": "^1.12.1"
+    "start-server-and-test": "^1.12.2"
   }
 }

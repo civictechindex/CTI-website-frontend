@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBreadcrumbs, TitleSection } from '../../components';
+import { NavBreadcrumbs, TitleSection } from '../../../components';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -79,7 +79,7 @@ const HeaderSection = () => {
   const crumbs = [
     { name: 'Home', href: '/home' },
     { name: 'Radical Collaboration', href: '/radicalcollaboration' },
-    { name: 'FAQ', href: '/radicalcollaboration/faq' },
+    { name: 'Share the CTI', href: '/radicalcollaboration/share' },
   ];
 
   return (
