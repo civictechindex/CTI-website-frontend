@@ -90,6 +90,7 @@ const TagCreator = () => {
 
   useEffect(() => {
     let active = true;
+    console.log(active)
     axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
       .then(res => {
         const orgs = (res.data).map((org) => org.name)
@@ -99,6 +100,7 @@ const TagCreator = () => {
       })
     return () => {
       active = false;
+      console.log(active)
     };
   }, []);
 
@@ -111,16 +113,19 @@ const TagCreator = () => {
       const result = orgTags.filter(ot => !currentTags.includes(ot))
       setTagsToAdd([...civicName,...result,...userTags])
     }
-    else
+    else {
       setTagsToAdd([...civicName,...orgTags,...userTags])
+    }
   },[orgTags, currentTags, setTagsToAdd, userTags])
 
-  useEffect(() => {
-    if (value === 'no'){
-      setOrgName('')
-      setOrgTags([])
-    }
-  },[setOrgName, setOrgTags, value])
+  /*
+   * useEffect(() => {
+   *   if (value === 'no'){
+   *     setOrgName('')
+   *     setOrgTags([])
+   *   }
+   * },[setOrgName, setOrgTags, value])
+   */
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
@@ -199,11 +204,12 @@ const TagCreator = () => {
     )
   }
 
-  const RadioYes = ({ setOrgName }) =>{
+  const RadioYes = ({ value,setOrgName }) =>{
     return (
       <Grid container id='container-affiliated'>
         <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName} options={options}/>
-        <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
+        <OrgChange value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
+          changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </Grid>
     )
   }
@@ -277,9 +283,9 @@ const TagCreator = () => {
         <>
           <AffiliationQuestionSection value={value} handleChange={handleChange}
             question={'Are you affiliated with an organization?'} />
-          {(value === 'yes')?<RadioYes setOrgName={setOrgName}/>:null}
-          {(value === 'no')?<OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}
-            setOrgName={setOrgName}/>:null}
+          {(value === 'yes')?<RadioYes value={value} setOrgName={setOrgName}/>:null}
+          {(value === 'no')?<OrgChange  value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
+            changeValue={changeValue} setDisplayState={setDisplayState}/>:null}
         </>
       )
     }
