@@ -214,12 +214,16 @@ export default function Contributors({ match }) {
           fontWeight: 'bold',
           textTransform: 'none',
           display: "flex",
+          '&$selected': {
+            color: '#006B95',
+          },
 
         },
         wrapper: {
           flexDirection: "row",
           width: "auto",
         },
+
       },
 
     },
@@ -229,6 +233,7 @@ export default function Contributors({ match }) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+
   };
 
 
@@ -305,7 +310,7 @@ export default function Contributors({ match }) {
               <FormGroup>
                 <FormControlLabel
                   control={<Checkbox onChange={handleChangeCheckbox} name="indexcontributor" className={classes.chkBoxStyle}/>}
-                  label="Index Contributor"
+                  label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>}
                 />
               </FormGroup>
             </Grid>

@@ -5,9 +5,8 @@ import Link from '@material-ui/core/Link';
 import CardMedia from '@material-ui/core/CardMedia';
 import Container from "@material-ui/core/Container";
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import { Typography } from "@material-ui/core";
-
+import Box from '@material-ui/core/Box';
 
 export const ContributorThumbnail = ({ organization, isOpen }) => {
   const classes = useStyle();
@@ -28,7 +27,7 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
 
 
     <>
-      <Container className={classes.thumbnailWrapper}>
+      <Container className={classes.thumbnailWrapper} component="span">
         {thumbnailInfo.organizationUrl ? (
 
           <Link
@@ -45,16 +44,16 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
                 isOpen={isOpen}
               />
             ) : (
-              <Grid className={classes.textWrapperWithoutImage} component="div">
-                <Grid className={classes.thumbnailTextWithoutImage}>
-                  <Typography className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>{organization.name ? organization.name : organization} </Typography>
+              <Grid className={classes.textWrapperWithoutImage} component="span">
+                <Grid className={classes.thumbnailTextWithoutImage} component="span">
+                  <Typography component="span" className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>{organization.name ? organization.name : organization} </Typography>
                 </Grid>
               </Grid>
             )}
           </Link>
         ) : (
-          <Grid className={classes.textWrapperWithoutImage} component="div">
-            <Typography> No URL Data for {organization.name} </Typography>
+          <Grid className={classes.textWrapperWithoutImage} component="span">
+            <Typography component="span"> No URL Data for {organization.name} </Typography>
           </Grid>
         )}
       </Container>
@@ -69,7 +68,7 @@ const Thumbnail = ({ thumbnailInfo, organization, isOpen }) => {
 
   return (
     <>
-      <Grid className={classes.imageWrapper} component="div">
+      <Grid className={classes.imageWrapper} component="span">
         <CardMedia
           component="img"
           src={thumbnailInfo.imageUrl}
@@ -84,9 +83,9 @@ const Thumbnail = ({ thumbnailInfo, organization, isOpen }) => {
         />
       </Grid>
 
-      <Grid data-cy="affthumbnailTextWrapper" className={classes.textWrapper}>
-        <Box  data-cy="affthumbnailText" className={classes.thumbnailText}>
-          <Typography  data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}> {organization.name ? organization.name : organization} </Typography>
+      <Grid data-cy="affthumbnailTextWrapper" className={classes.textWrapper} component="span">
+        <Box data-cy="affthumbnailText" className={classes.thumbnailText} component="span">
+          <Typography  component={'span'} data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}> {organization.name ? organization.name : organization} </Typography>
         </Box>
 
       </Grid>

@@ -44,21 +44,21 @@ const useStyles = makeStyles(theme => ({
 
   dropdownStyle : {
     maxWidth: '32%',
-    paddingTop:'29px',
-    paddingLeft: '157px',
+    paddingTop:'21px',
+    paddingLeft: '149px',
     fontSize:'24px',
     color:"#004364",
   },
+
   blueColorStyle : {
     maxWidth: '32%',
-    paddingTop:'29px',
-    paddingLeft: '157px',
+    paddingTop:'22px',
+    paddingLeft: '146px',
     fontSize:'24px',
     color:'#FEFEFE',
   },
 
 }));
-
 
 export const Dropdown = ({
   organization,

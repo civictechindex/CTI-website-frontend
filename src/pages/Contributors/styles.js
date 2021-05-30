@@ -159,7 +159,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   imageWrapper: {
     display: 'grid',
-    paddingTop: '10px',
+    paddingTop: '4px',
   },
   thumbnailImage: {
      width: '48px',
@@ -181,22 +181,16 @@ export const useStyle = makeStyles((theme) => ({
       color: "theme​.palette.​text.secondary",
      },
   },
-  textWrapperNew: {
-     display: 'flex',
-    alignItems: 'center',
-    flex: '3 1 75%',
-    minHeight: '6rem',
-  },
-  
+ 
   thumbnailText: {
     alignItems: 'center',
     minHeight: '6rem',
-    paddingTop: '28px',
-    paddingLeft: '10px',
+    paddingTop: '21px',
+    paddingLeft: '3px',
   },
   orgText: {
     color:"#004364",
-    fontSize:'20px',
+    fontSize:'24px',
     
   },
 
@@ -215,6 +209,9 @@ export const useStyle = makeStyles((theme) => ({
     padding: '0 0.5rem',
     minHeight: '6rem',
     color: theme.palette.secondary.dark,
+    paddingLeft: '46px',
+    marginTop:'-11px',
+
   },
   codeForAllWrapper: {
     '& a': {
@@ -255,13 +252,9 @@ export const useStyle = makeStyles((theme) => ({
       color: "#006B95",
       opacity: 1
     },
-    "&: $selected": {
-      color: "theme​.palette.​text.disabled",
-    },
     
   },
   
-
   button: {
     width: '211px',
     height: '44px',
@@ -280,20 +273,14 @@ export const useStyle = makeStyles((theme) => ({
     color: '#6D6E74',
     paddingLeft: '59rem',
   },
-  "& .MuiTypography-body1" : {
-    color: '#004364',
-  },
-  afflblueColor: {
-    backgroundColor: "#004364",
-    color:"theme​.palette.​text.secondary",
-  },
-
-  afflWhiteBckg: {
-    backgroundColor: "#FFFFFF",
-    color:"#004364",
-  },
 
   
+  formControlLabel: {
+
+    color: '#004364',
+    fontWeight: 'bold',
+  },
+ 
  blueColor: {
    backgroundColor: "#004364",
    color:"theme​.palette.​text.secondary",
@@ -316,5 +303,6 @@ export const useStyle = makeStyles((theme) => ({
     height:'80px',
  
   },
+
  
 }));

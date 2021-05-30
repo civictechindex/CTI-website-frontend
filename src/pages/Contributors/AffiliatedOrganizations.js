@@ -49,7 +49,7 @@ export const AffiliatedOrganizations = ({ organizations }) => {
 
   if (currentThumbnails) {
     return (
-      <Grid dropdownLength={currentThumbnails.length}>
+      <Grid dropdownlength={currentThumbnails.length}>
         {currentThumbnails.map((org, i) => {
           const childNode = org.isOpen ?  org.childNodes : org.childNodes.slice(0,8)
           return (
