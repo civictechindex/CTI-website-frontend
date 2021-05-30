@@ -8,7 +8,7 @@ import PhotoCardDesktop from './PhotoCardDesktop';
 import PhotoCardMobile from './PhotoCardMobile';
 import HeaderSection from './HeaderSection';
 
-const SupportUs = () => {
+const RadicalCollaboration = () => {
 
   const Images = [
     {
@@ -83,4 +83,4 @@ const SupportUs = () => {
   );
 }
 
-export default withWidth()(SupportUs);
+export default withWidth()(RadicalCollaboration);
