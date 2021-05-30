@@ -4,7 +4,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   const CHANGE_AFFILIATED_ORGANIZATION = 'Hack for LA';
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311';
   const AFFILIATED_TEST_TAGS = ['code-for-boston', 'code-for-america', 'alexa', 'trash'];
-  const AFFILIATED_NEW_TAGS = ['tag1', 'code-for-all', 'civictechindex'];
   const UNAFFILIATED_NEW_TAGS = ['tag1', 'tag2', 'tag3'];
   const expectedAffiliatedNewTags = ['civictechindex', 'tag1'];
 
@@ -171,10 +170,12 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=radio-no]');
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(CHANGE_AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization')
+        .click()
+        .type(CHANGE_AFFILIATED_ORGANIZATION)
+        .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(CHANGE_AFFILIATED_ORGANIZATION);
-
   });
 });
