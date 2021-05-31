@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import { GenericHeaderSection } from '../../../components'
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
@@ -41,10 +42,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '32px',
     },
   },
-  headerSectionStyle: {
-    paddingBottom: '103px',
-    paddingTop: '40px',
-  },
   starMediaSection: {
     height: '252px',
     marginBottom: '42px',
@@ -74,23 +71,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HeaderSection = () => {
-  const classes = useStyles();
-  const crumbs = [
-    { name: 'Home', href: '/home' },
-    { name: 'Radical Collaboration', href: '/radicalcollaboration' },
-    { name: 'Share the CTI', href: '/radicalcollaboration/share' },
-  ];
-
-  return (
-    <Box className='boxBackground'>
-      <Container container className={classes.headerSectionStyle}>
-        <NavBreadcrumbs crumbs={crumbs} />
-        <TitleSection>Share the CTI</TitleSection>
-      </Container>
-    </Box>
-  );
-};
 const StarMediaSection = () => {
   const classes = useStyles();
   return (
@@ -367,10 +347,15 @@ const ButtonSection = () => {
 
 export default function ShareTheCti() {
   const classes = useStyles();
+  const breadCrumbLinks = [
+    { name: 'Home', href: '/home' },
+    { name: 'Radical Collaboration', href: '/radicalcollaboration' },
+    { name: 'Share the CTI', href: '/radicalcollaboration/share' },
+  ];
 
   return (
     <Box>
-      <HeaderSection />
+      <GenericHeaderSection mainTitle ="Share the CTI" breadCrumbLinks ={breadCrumbLinks} lg='312px'/>
       <Container className={classes.containerStyle}>
         <Grid
           container
