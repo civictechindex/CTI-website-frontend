@@ -5,7 +5,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311';
   const AFFILIATED_TEST_TAGS = ['code-for-boston', 'code-for-america', 'alexa', 'trash'];
   const UNAFFILIATED_NEW_TAGS = ['tag1', 'tag2', 'tag3'];
-  const expectedAffiliatedNewTags = ['civictechindex', 'tag1'];
+  const expectedAffiliatedNewTags = ['civictechindex', 'code-for-all', 'tag1'];
 
   const UNAFFILIATED_TEST_URL = 'https://github.com/civictechindex/CTI-website-frontend.git';
   const UNAFFILIATED_TEST_TAGS = [
