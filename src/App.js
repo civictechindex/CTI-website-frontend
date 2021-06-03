@@ -4,6 +4,7 @@ import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
 import About from './pages/About';
+import AddOrganization from './pages/AddOrganization';
 import Contact from './pages/RadicalCollaboration/Contact';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
@@ -12,11 +13,11 @@ import IndvOrgPage from './pages/IndvOrganization';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
-import RadicalCollaboration from './pages/RadicalCollaboration'
+import RadicalCollaboration from './pages/RadicalCollaboration';
 import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
 import Placeholder from './pages/Placeholder';
-import Error404 from './pages/Error404'
+import Error404 from './pages/Error404';
 import ShareTheCti from './pages/RadicalCollaboration/Share';
 import Guides from './guides/';
 import useStyles from './styles';
@@ -24,14 +25,12 @@ import useStyles from './styles';
 const RouteTitled = ({ title, ...rest }) => {
   useEffect(() => {
     if (title) {
-      document.title = 'Civic Tech Index — ' + title
+      document.title = 'Civic Tech Index — ' + title;
     }
-  })
+  });
 
-  return (
-    <Route {...rest} />
-  )
-}
+  return <Route {...rest} />;
+};
 
 const App = () => {
   useStyles();
@@ -55,6 +54,7 @@ const App = () => {
             <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
             <Route exact path='/organizations/*' component={IndvOrgPage} />
             {/* test and error page routes begin */}
+            <RouteTitled exact path='/addorg' component={AddOrganization} title='AddOrganization'/>
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />
