@@ -283,6 +283,12 @@ const Projects = () => {
     }
   };
 
+  const handleSubmitClick = () => {
+    if (query) {
+      fetchProjects(query, true);
+    }
+  };
+
   const filterTags = selectedFilters.map((filter) => {
     return (
       <FilterTag
@@ -358,6 +364,7 @@ const Projects = () => {
         {!filterOpen &&
             <HeaderSection
               onLinkClick={() => setModalOpen(true)}
+              onSearchClick={handleSubmitClick}
               onSearchInput={setQuery}
               onSearchKeyPress={handleSubmit}
               searchQuery={query}
