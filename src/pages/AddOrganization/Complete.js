@@ -28,10 +28,10 @@ export class Complete extends Component {
                   style={{ fontSize: '72px', margin: '100px 0 0 0' }}
                 />
               </Grid>
-              <Typography variant='h1' style={{ color: '#004364' }}>
+              <Typography variant='h1' style={{ color: '#004364', fontSize: '46px' }}>
                 You're all set!
               </Typography>
-              <Typography variant='h1' style={{ color: '#004364' }}>
+              <Typography variant='h1' style={{ color: '#004364', fontSize: '46px' }}>
                 Thanks for contributing.
               </Typography>
             </Grid>
@@ -43,13 +43,14 @@ export class Complete extends Component {
             >
               <Grid item style={{ textAlign: 'center' }}>
                 <Button
-                  style={{ width: '270px', padding: '10px', margin: '12px', border: '#C4C4C4' }}
+                  href='/tag-generator'
+                  style={{ width: '270px', padding: '10px', margin: '12px' }}
                   variant='outlined'
-                  color='primary'
-                  border='black'
-                  //   onClick={this.continue}
+                  color='inherit'
                 >
-                  Homepage
+                  <Typography variant='body2' style={{ color: 'black' }}>
+                    Return to Tag Generator
+                  </Typography>
                 </Button>
               </Grid>
             </Grid>
