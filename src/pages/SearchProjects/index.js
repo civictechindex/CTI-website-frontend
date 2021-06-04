@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import PriorityQueue from 'js-priority-queue';
 
 import FilterSelector from './FilterSelector';
 import FilterTag from './FilterTag';
@@ -59,11 +60,12 @@ const defaultFilterList = [
   { category: 'pushed', name: '<1y', label: 'More than a year ago', selected: false },
 ]
 
+const calculateDaysSince = (updateTime) => {
+  const days = new Date() - new Date(updateTime);
+  return Math.round(days / (1000 * 3600 * 24));
+};
+
 const renderCard = (project) => {
-  const calculateDaysSince = (updateTime) => {
-    const days = new Date() - new Date(updateTime);
-    return Math.round(days / (1000 * 3600 * 24));
-  };
   return (
     <Box key={project.id} my={1}>
       <ProjectCard
@@ -191,10 +193,15 @@ const Projects = () => {
       })
       .then((res) => {
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
-        const items = res.data.items.map((i) => renderCard(i));
+        let rawProjectItems = res.data.items;
+        // Issue-626: Using priority queue to resolve the 'updated' sort issue from Github API.
+        if (sort==="updated"){
+          rawProjectItems = getSortedProjectCardSortedByUpdatedDate(rawProjectItems);
+        }
+        const items = rawProjectItems.map((i) => renderCard(i));
         setResultCountHeader(
           <ResultHeader
-            itemLength={res.data.items.length}
+            itemLength={rawProjectItems.length}
             onHeaderClick={handleFilterOpen}
             onSortChange={handleSortChange}
             queryStr={queryStr}
@@ -205,7 +212,7 @@ const Projects = () => {
         setFilterSelector(
           <FilterSelector
             filterList={filterList}
-            itemLength={res.data.items.length}
+            itemLength={rawProjectItems.length}
             onFilterChange={handleFilterChange}
             onFilterClose={handleFilterClose}
             queryStr={queryStr}
@@ -238,6 +245,19 @@ const Projects = () => {
         setFilterList(tempFilterList);
       });
   };
+
+  const getSortedProjectCardSortedByUpdatedDate = (projectCardArr) =>{
+    const sortedProjectsArr = [];
+    const priorityQueue = new PriorityQueue({ comparator: function (a, b) { return (calculateDaysSince(a.updated_at) - calculateDaysSince(b.updated_at)) } });
+
+    projectCardArr.map((i) => priorityQueue.queue(i));
+    const lengthOfPriorityQueue = priorityQueue.length;
+    for (let index = 0; index < lengthOfPriorityQueue; ++index) {
+      const project = priorityQueue.dequeue();
+      sortedProjectsArr.push(project);
+    }
+    return sortedProjectsArr;
+  }
 
   const handleFilterChange = (flt, deleteFlt) => {
     const tempList = filterList.map((filter) => {
