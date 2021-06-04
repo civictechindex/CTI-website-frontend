@@ -1,45 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import ProjectInfo from './ProjectInfo';
 import LocationMedia from './LocationMedia';
 import Complete from './Complete';
 import useStyles from './styles.js';
 
-export class AddOrgForm extends Component {
-  state = {
-    step: 1,
-    orgEmail: '',
-    orgName: '',
-    parentOrg: '',
-    websiteURL: '',
-    githubURL: '',
-    githubTag: '',
-    facebookURL: '',
-    twitterURL: '',
-    meetupURL: '',
-    city: '',
-    stateProvCo: '',
-    country: '',
-    orgEmailError: '',
-  };
+export const AddOrgForm = () => {
+    const [step, setStep] = useState(0)
+    const [orgEmail, setOrgEmail] = useState()
+    const [orgName, setOrgName] = useState()
+    const [parentOrg, setParentOrg] = useState()
+    const [websiteURL, setWebsiteURL] = useState()
+    const [githubURL, setGithubURL] = useState()
+    const [githubTag, setGithubTag] = useState()
+    const [facebookURL, setFacebookURL] = useState()
+    const [twitterURL, setTwitterURL] = useState()
+    const [meetupURL, setMeetupURL] = useState()
+    const [city, setCity] = useState()
+    const [stateProvCo, setStateProvCo] = useState()
+    const [country, setCountry] = useState()
+    const [orgEmailError, setOrgEmailError] = useState() 
+  
 
   // Proceed to next step
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step + 1,
-    });
+  const nextStep = () => {
+    setStep(step + 1);
   };
 
   // Go Back to previous step
-  prevStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step - 1,
-    });
+  const prevStep = () => {
+   setStep(step - 1);
   };
 
   // Handle fields change
-  handleChange = (input) => (e) => {
+  const handleChange = (e) => {
     this.setState({ [input]: e.target.value });
   };
 
@@ -59,45 +52,46 @@ export class AddOrgForm extends Component {
   //     return true;
   //   };
 
-  render() {
-    const { step } = this.state;
-    const {
-      orgEmail,
-      orgName,
-      parentOrg,
-      websiteURL,
-      githubURL,
-      githubTag,
-      facebookURL,
-      twitterURL,
-      meetupURL,
-      city,
-      stateProvCo,
-      country,
-      orgEmailError,
-    } = this.state;
-    const values = {
-      orgEmail,
-      orgName,
-      parentOrg,
-      websiteURL,
-      githubURL,
-      githubTag,
-      facebookURL,
-      twitterURL,
-      meetupURL,
-      city,
-      stateProvCo,
-      country,
-      orgEmailError,
-    };
 
-    switch (step) {
-      case 1:
+    // const { step } = this.state;
+    // const {
+    //   orgEmail,
+    //   orgName,
+    //   parentOrg,
+    //   websiteURL,
+    //   githubURL,
+    //   githubTag,
+    //   facebookURL,
+    //   twitterURL,
+    //   meetupURL,
+    //   city,
+    //   stateProvCo,
+    //   country,
+    //   orgEmailError,
+    // } = this.state;
+    // const values = {
+    //   orgEmail,
+    //   orgName,
+    //   parentOrg,
+    //   websiteURL,
+    //   githubURL,
+    //   githubTag,
+    //   facebookURL,
+    //   twitterURL,
+    //   meetupURL,
+    //   city,
+    //   stateProvCo,
+    //   country,
+    //   orgEmailError,
+    // };
+
+    const renderStep = () => {
+      switch (step) {
+      case 0:
         return (
           <ProjectInfo nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
         );
-      case 2:
+      case 1:
         return (
           <LocationMedia
             nextStep={this.nextStep}
@@ -106,10 +100,11 @@ export class AddOrgForm extends Component {
             values={values}
           />
         );
-      case 3:
-        return <Complete />;
+      case 2:
+        return ( 
+          <Complete />
+        );
     }
   }
-}
 
 export default AddOrgForm;

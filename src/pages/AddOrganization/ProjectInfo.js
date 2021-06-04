@@ -8,33 +8,9 @@ import useStyles from './styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
-export class ProjectInfo extends Component {
-  // Validate fields
-  // validate = () => {
-  //   let orgEmailError = '';
-
-  //   if (!this.state.orgEmail.includes('@')) {
-  //     orgEmailError = 'Invalid email entered';
-  //   }
-
-  //   if (orgEmailError) {
-  //     this.setState({ orgEmailError });
-  //     return false;
-  //   }
-
-  //   return true;
-  // };
-
-  continue = (e) => {
-    e.preventDefault();
-    // const isValid = this.validate();
-    // if (isValid) {
-    this.props.nextStep();
-    // }
-  };
-
-  render() {
-    const { values, handleChange } = this.props;
+const ProjectInfo = (
+  
+) => {
     return (
       <>
         <Box style={{ justifyContent: 'center' }}>
@@ -136,7 +112,6 @@ export class ProjectInfo extends Component {
         </Box>
       </>
     );
-  }
 }
 
 export default ProjectInfo;
