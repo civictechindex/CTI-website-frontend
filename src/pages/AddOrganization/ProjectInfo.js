@@ -116,7 +116,7 @@ export class ProjectInfo extends Component {
                   style={{ width: '250px', padding: '10px', margin: '12px' }}
                   variant='contained'
                   color='default'
-                  //   onClick={this.}
+                  href='/tag-generator'
                 >
                   Cancel
                 </Button>
