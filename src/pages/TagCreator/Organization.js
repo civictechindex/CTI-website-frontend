@@ -136,14 +136,14 @@ export const OrgChange = ({ orgName, setOrgTags, changeValue, setDisplayState })
     const topics = []
     if (orgName) {
       const og = orgName.replace(/ /g,"-").toLowerCase()
-      axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`+og,)
+      axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/${og}`,)
         .then(res => {
           const po = res.data.parents
           if (res.data.org_tag !== "") {
             topics.push(res.data.org_tag)
           }
-          if (po.length!==0){
-            po.map(p=>(p.org_tag !== "") ? topics.push(p.org_tag) : null)
+          if (po.length !== 0){
+            po.map(p =>(p.org_tag !== "") ? topics.push(p.org_tag) : null)
           }
           setOrgTags(topics)
         }).catch(e => {
