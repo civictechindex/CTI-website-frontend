@@ -1,3 +1,4 @@
+
 import React,{ useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -134,20 +135,16 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
   // eslint-disable-next-line complexity
   const handleSubmitOrg = () => {
     const topics = []
-    if (value === 'yes' && orgName === ''){
-      setOrgNameError(<p style={{ color: 'red' }}> Please select org name</p>)
-    }
-    else if (value === 'yes' && orgName !== "") {
-      axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/` + orgName,)
+    if (orgName) {
+      const og = orgName.replace(/ /g,"-").toLowerCase()
+      axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/${og}`,)
         .then(res => {
-          setOrgNameError()
-          let po = res.data.parent_organization
+          const po = res.data.parents
           if (res.data.org_tag !== "") {
             topics.push(res.data.org_tag)
           }
-          while (po != null) {
-            topics.push(po.org_tag)
-            po = po.parent_organization
+          if (po.length !== 0){
+            po.map(p =>(p.org_tag !== "") ? topics.push(p.org_tag) : null)
           }
           setOrgTags(topics)
         }).catch(e => {

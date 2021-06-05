@@ -78,7 +78,7 @@ const About = () => {
         <VideoSection />
         <MarketingSection />
       </Container>
-      <PictureCard items={pictureMarketingPoints} />
+      <PictureCard items={pictureMarketingPoints} style={{ padding: '0 115px' }}/>
       <GetStartedCard
         headerTitle='Ready to get started?'
         buttonText='Tag your Project'

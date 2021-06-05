@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '28px' ,
     },
 
-    padding:'64px 0 32px 0',
+    padding:'48px 0 32px 0',
     [theme.breakpoints.down('md')]: {
       '& h1':{
         fontSize: '24px' ,
       },
-      padding:'32px 0 32px 0',
+      padding:'16px 0 32px 0',
     },
   },
 }));

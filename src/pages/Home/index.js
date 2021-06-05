@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       height: '161.5px',
       marginBottom: '29.42px',
-      justifyContent:'space-between',
+      justifyContent: 'space-between',
       '& p': {
         width: '80%',
       },
@@ -33,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  localTitleSectionStyle:{
+  localTitleSectionStyle: {
     paddingTop: '120px',
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: '0',
+    [theme.breakpoints.down('md')]: {
+      paddingTop: '72px',
     },
   },
 }));
@@ -44,12 +44,23 @@ const useStyles = makeStyles((theme) => ({
 const MarketingSection = () => {
   const classes = useStyles();
   return (
-    <Grid container align="center" className={classes.marketingPointContainerStyle}>
-      <Typography variant='body1' color='textSecondary'>Requires no coding</Typography>
-      <Typography variant='body1' color='textSecondary'> Make your project more <br /> visible with GitHub’s open-source
-    communities</Typography>
-      <Typography variant='body1' color='textSecondary'> The Index is owned by <br />
-    all who use it</Typography>
+    <Grid
+      container
+      align='center'
+      className={classes.marketingPointContainerStyle}>
+      <Typography variant='body1' color='textSecondary'>
+                Requires no coding
+      </Typography>
+      <Typography variant='body1' color='textSecondary'>
+        {' '}
+                Make your project more <br /> visible with GitHub’s open-source
+                communities
+      </Typography>
+      <Typography variant='body1' color='textSecondary'>
+        {' '}
+                The Index is owned by <br />
+                all who use it
+      </Typography>
     </Grid>
   );
 };
@@ -57,7 +68,7 @@ const MarketingSection = () => {
 const CallToActionSection = () => {
   return (
     <Grid container style={{ paddingTop: '35px' }} justify='center'>
-      <Grid container justify="space-between" style={{ width:'392px' }} >
+      <Grid container justify='space-between' style={{ width: '392px' }}>
         <NavButton href='/tag-generator' color='primary'>
                     Tag your project
         </NavButton>
@@ -75,10 +86,12 @@ const Home = () => {
     <Box className='boxBackground'>
       <div className='containerWorld'>
         <Container>
-          <Box  component="div" className={classes.localTitleSectionStyle}>
-            <TitleSection >
-                        Join a worldwide movement to catalog every open source
-                        civic tech project.
+          <Box
+            component='div'
+            className={classes.localTitleSectionStyle}>
+            <TitleSection>
+                            Join a worldwide movement to catalog every open
+                            source civic tech project.
             </TitleSection>
           </Box>
           <MarketingSection />
