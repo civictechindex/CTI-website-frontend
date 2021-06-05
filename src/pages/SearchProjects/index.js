@@ -90,6 +90,7 @@ const Projects = () => {
   const classes = useStyles();
   const location = useLocation();
   const [backupFilterList, setBackupFilterList] = useState([]);
+  const [errorState, setErrorState] = useState(false);
   const [filterList, setFilterList] = useState(defaultFilterList);
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterSelector, setFilterSelector] = useState('');
@@ -190,6 +191,7 @@ const Projects = () => {
         params: params,
       })
       .then((res) => {
+        setErrorState(false);
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
         const items = res.data.items.map((i) => renderCard(i));
         setResultCountHeader(
@@ -217,7 +219,20 @@ const Projects = () => {
         setShowResults(true);
       })
       .catch(() => {
-        setShowResults(false);
+        setErrorState(true);
+        setResultCountHeader(null);
+        setFilterSelector(
+          <FilterSelector
+            filterList={filterList}
+            itemLength={0}
+            onFilterChange={handleFilterChange}
+            onFilterClose={handleFilterClose}
+            queryStr={queryStr}
+            totalCount={0}
+            variant={largeScreen ? 'large' : 'small'}
+          />
+        );
+        setResults([]);
       });
   };
 
@@ -321,6 +336,7 @@ const Projects = () => {
                 results={results}
                 pages={pages}
                 pageNum={pageNum}
+                errorState={errorState}
                 onPageChange={handlePageChange}
               />
             </Grid>
