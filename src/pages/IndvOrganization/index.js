@@ -58,16 +58,16 @@ const IndvOrgPage = (props) => {
             continue;
           }
           const name = x.name;
-          const alias = x.aliases;
+          const slug = x.slug;
           const orgTag = x.org_tag;
           const githubId = x.github_id;
           const githubName = x.github_name;
+          const url = x.url;
           const modifiedName =name?.replaceAll(" ", "").toLowerCase();
           let imageUrl;
 
           // The matching criteria is matching one of these names from matchingNameArr
-          let matchingNameArr = [name, orgTag, githubName, modifiedName, orgTag?.toLowerCase(), githubName?.toLowerCase()];
-          matchingNameArr = matchingNameArr.concat(alias);
+          const matchingNameArr = [name, slug, orgTag, githubName, modifiedName, orgTag?.toLowerCase(), githubName?.toLowerCase()];
           matchingNameArr.filter((name) => name);
 
           if (!matchingNameArr.includes(pathName)) {
@@ -76,7 +76,7 @@ const IndvOrgPage = (props) => {
 
           // Start grabing matching organization information.
           let projectSearchTopicsArr = [githubName, orgTag];
-          projectSearchTopicsArr = projectSearchTopicsArr.concat(alias);
+          projectSearchTopicsArr = projectSearchTopicsArr.concat(slug);
           projectSearchTopicsArr.filter((topic) => topic)
           const { links } = x;
           const webisteLink = links.find(link => link.link_type === 'WebSite')?.url;
@@ -97,38 +97,44 @@ const IndvOrgPage = (props) => {
           const crumbsInSmallScreen = [
             { name: 'Home', href: '/home' },
             { name: '...', href: '/contributors/all' },
-            { name: x.name, href: '/contributors/'+x.name?.replaceAll(" ", "").toLowerCase() },
+            { name: name, href: '/contributors/'+name?.replaceAll(" ", "").toLowerCase() },
           ];
 
           // Get the Parent organization list for breadcrumbs and Affiliations Topic Tags.
-          let po = x.parent_organization;
+          const setupBreadCrumbs = async ()=>{
+            await axios.get(url).then((res) => {
+              const po = res?.data.parents;
+              parentOrgs.push(name);
+              setDropdownTitle(name + " projects appear in other organization's repositories");
 
-          parentOrgs.push(x.name);
-          setDropdownTitle(x.name + " projects appear in other organization's repositories");
+              for (let j=po.length-1; j>=0; --j){
+                parentOrgs.push(po[j].name);
+              }
+              for (let i = parentOrgs.length - 1; i >= 0; --i) {
+                const parentOrg = parentOrgs[i];
+                let parentOrgPathName = parentOrg;
+                parentOrgPathName = parentOrg.replaceAll(" ", "").toLowerCase();
 
-          while (po != null) {
-            parentOrgs.push(po.name);
-            po = po.parent_organization;
+                const newCrumb = { name: `${parentOrg}`, href: `/organizations/${parentOrgPathName}` };
+                crumbs.push(newCrumb);
+              }
+
+              setCrumbs(crumbs);
+              setParentOrgs(parentOrgs)
+              setCrumbsInSmallScreen(crumbsInSmallScreen);
+              setShowHeaderResults(true);
+
+            });
           }
-          for (let i = parentOrgs.length - 1; i >= 0; --i) {
-            const parentOrg = parentOrgs[i];
-            let parentOrgPathName = parentOrg;
-            parentOrgPathName = parentOrg.replaceAll(" ", "").toLowerCase();
-            const newCrumb = { name: `${parentOrg}`, href: `/organizations/${parentOrgPathName}` };
-            crumbs.push(newCrumb);
-          }
+          setupBreadCrumbs();
 
-          setCrumbs(crumbs);
           setOrgName(orgTag);
           setNotFound(false);
           setImageUrl(imageUrl);
           setIsPathChange(false);
-          setParentOrgs(parentOrgs)
           setGithubLink(githubLink);
           setOrgGithubName(githubName);
           setwebsiteUrlResults(webisteLink);
-          setCrumbsInSmallScreen(crumbsInSmallScreen);
-          setShowHeaderResults(true);
           setProjectSearchTopicsArr(projectSearchTopicsArr);
           return false;
         }
@@ -146,6 +152,7 @@ const IndvOrgPage = (props) => {
     }
 
   }, [isPathChange, pathName]);
+
 
   return (
     (!notFound) ? (
