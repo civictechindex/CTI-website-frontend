@@ -10,7 +10,8 @@ import axios from 'axios';
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { HeaderSection } from './HeaderSection'
+import Typography from '@material-ui/core/Typography';
+import { GenericHeaderSection } from '../../components/'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organization'
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
@@ -18,7 +19,6 @@ import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,Cu
 import useTheme from '@material-ui/core/styles/useTheme';
 import TagGeneratorInstructions from '../../components/TagGeneratorInstructions'
 import { makeStyles } from '@material-ui/core/styles'
-
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
     paddingLeft:'100px',
@@ -73,6 +73,7 @@ const TagCreator = () => {
   const [userTags, setUserTags] = useQueryParam('userTags',withDefault(ArrayParam,[]));
   const [orgTags, setOrgTags] = useQueryParam('orgTags',withDefault(ArrayParam,[]));
   const [options, setOptions] = useState([]);
+  const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
   const resetForm = () => {
     setValue('')
@@ -292,7 +293,10 @@ const TagCreator = () => {
 
   return (
     <Box>
-      <HeaderSection/>
+      <GenericHeaderSection mainTitle ="Tag Generator" breadCrumbLinks ={breadCrumbLinks} lg='320px' md='304px' sm='304px' subText>
+        <Typography variant='h6' color='textSecondary' style={{ fontWeight:'500' , textAlign:'center' }} >Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
+      </GenericHeaderSection>
+
       <Box className='containerGray' style={{ paddingBottom:'30px' }} >
         <Container className={classes.containerPadding} >
           {renderCurrentState()}

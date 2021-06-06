@@ -6,10 +6,13 @@ import withWidth from '@material-ui/core/withWidth';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import PhotoCardDesktop from './PhotoCardDesktop';
 import PhotoCardMobile from './PhotoCardMobile';
-import HeaderSection from './HeaderSection';
 
+import { GenericHeaderSection } from '../../components/'
 const RadicalCollaboration = () => {
-
+  const breadCrumbLinks = [
+    { name: 'Home', href: '/home' },
+    { name: 'Radical Collaboration', href: '/radicalcollaboration' },
+  ];
   const Images = [
     {
       src: "/images/dsktp-photo-of-people-standing-near-window-3184427.png", alt: "team high fiving",
@@ -61,7 +64,7 @@ const RadicalCollaboration = () => {
     <Box className='pageContainer'>
       <Box className='containerDefault'>
         <Container>
-          <HeaderSection />
+          <GenericHeaderSection mainTitle ="Your help goes a long way" breadCrumbLinks ={breadCrumbLinks} lg='312px'/>
         </Container>
       </Box>
       <Box className='containerGray'>
