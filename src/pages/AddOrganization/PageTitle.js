@@ -1,10 +1,9 @@
 import React from 'react';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import NavBreadcrumbs from "../../components/NavBreadcrumbs.js";
-import { TitleSection } from '../../components'
-
+import NavBreadcrumbs from '../../components/NavBreadcrumbs.js';
+import { TitleSection } from '../../components';
 
 const breadCrumbLinks = [
   { href: '/home', name: 'Home' },
@@ -21,5 +20,5 @@ export const PageTitle = () => {
         </Grid>
       </Container>
     </Box>
-  )
-}
+  );
+};
