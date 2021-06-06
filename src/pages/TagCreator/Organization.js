@@ -1,3 +1,4 @@
+
 import React,{ useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -115,8 +116,8 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
   )
 }
 
-export const OrgChange = ({ orgName, setOrgTags, changeValue, setDisplayState }) => {
-
+export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, setDisplayState }) => {
+  const [orgNameError, setOrgNameError] = useState('');
   const handleChangeOrg = () => {
     if (changeValue === 'TopicTag') {
       setDisplayState('TopicTag')
@@ -131,18 +132,23 @@ export const OrgChange = ({ orgName, setOrgTags, changeValue, setDisplayState })
       setDisplayState('ProjectUrl')
     }
   }
+  // eslint-disable-next-line complexity
   const handleSubmitOrg = () => {
     const topics = []
-    if (orgName) {
-      axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/` + orgName,)
+    if (value === 'yes' && orgName === ""){
+      setOrgNameError(<p style={{ color: 'red' }}> Please select org name</p>)
+    }
+    else if (value === 'yes' && orgName !== "") {
+      let og = orgName.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+      og = og.replace(/ /g,"-").toLowerCase()
+      axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/${og}`,)
         .then(res => {
-          let po = res.data.parent_organization
+          const po = res.data.parents
           if (res.data.org_tag !== "") {
             topics.push(res.data.org_tag)
           }
-          while (po != null) {
-            topics.push(po.org_tag)
-            po = po.parent_organization
+          if (po.length !== 0){
+            po.map(p =>(p.org_tag !== "") ? topics.push(p.org_tag) : null)
           }
           setOrgTags(topics)
         }).catch(e => {
@@ -152,12 +158,15 @@ export const OrgChange = ({ orgName, setOrgTags, changeValue, setDisplayState })
            */
           console.log(e);
         })
+      handleChangeOrg()
     }
-
-    handleChangeOrg()
+    else if (value === 'no' && orgName === ''){
+      handleChangeOrg()
+    }
   }
   return (
     <Grid item xs={12} sm={12}>
+      {orgNameError}
       <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
     </Grid>
   )

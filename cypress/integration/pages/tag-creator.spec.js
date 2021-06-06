@@ -4,8 +4,8 @@ describe('Tag Generator Page (Tag Creator)', () => {
   const CHANGE_AFFILIATED_ORGANIZATION = 'Hack for LA';
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311';
   const AFFILIATED_TEST_TAGS = ['code-for-boston', 'code-for-america', 'alexa', 'trash'];
-  const AFFILIATED_NEW_TAGS = ['tag1','code-for-all', 'civictechindex'];
-  const UNAFFILIATED_NEW_TAGS = ['tag1','tag2', 'tag3'];
+  const UNAFFILIATED_NEW_TAGS = ['tag1', 'tag2', 'tag3'];
+  const expectedAffiliatedNewTags = ['civictechindex', 'code-for-all', 'tag1'];
 
   const UNAFFILIATED_TEST_URL = 'https://github.com/civictechindex/CTI-website-frontend.git';
   const UNAFFILIATED_TEST_TAGS = [
@@ -19,7 +19,9 @@ describe('Tag Generator Page (Tag Creator)', () => {
   ];
 
   beforeEach(() => {
+    cy.intercept('https://api-stage.civictechindex.org/api/organizations/').as('getOrganizations');
     cy.visit('/tag-generator');
+    cy.wait('@getOrganizations');
   });
 
   it('loads', () => {
@@ -27,7 +29,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('loads correct 4 tags and affliate new tags for `codeforboston/voiceapp311` - affiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -62,13 +63,12 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=copy-paste-tags]').within(() => {
       cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text();
-        expect(AFFILIATED_NEW_TAGS.indexOf(innerText)).to.be.eq(index);
+        expect(expectedAffiliatedNewTags.indexOf(innerText)).to.be.eq(index);
       });
     });
   });
 
   it('resets form in the middle of `codeforboston/voiceapp311` - affiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -86,7 +86,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('change the org from affiliated for `codeforboston/voiceapp311` to unaffiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -101,8 +100,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('#submitButton').click();
   });
 
-  it('change repository url from `codeforboston/voiceapp311` to `civictechindex/CTI-website-frontend`  - affiliated', () => {
-    cy.wait(10000)
+  it('change repository url from `codeforboston/voiceapp311` to `civictechindex/CTI-website-frontend` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -115,7 +113,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=grid-repository-url]').within(() => {
       cy.get('a').contains(AFFILIATED_TEST_URL);
     });
-    cy.get('#change-url').click();
+    cy.get('#change-url').click({ force: true });
     cy.get('#repository-url').clear().type(UNAFFILIATED_TEST_URL).type('{enter}');
     cy.get('a').contains(UNAFFILIATED_TEST_URL);
   });
@@ -163,7 +161,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
   });
 
   it('change the org form unaffiliated for `civictechindex/CTI-website-frontend` to affiliated', () => {
-    cy.wait(10000)
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
     cy.get('h3').contains('Unaffliated');
@@ -173,10 +170,12 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=radio-no]');
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(CHANGE_AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization')
+        .click()
+        .type(CHANGE_AFFILIATED_ORGANIZATION)
+        .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(CHANGE_AFFILIATED_ORGANIZATION);
-
   });
 });
