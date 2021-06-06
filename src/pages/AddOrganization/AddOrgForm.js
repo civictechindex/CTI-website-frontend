@@ -91,17 +91,9 @@ const AddOrgForm = () => {
     }
 
     setOrgEmailErr(orgEmailErr);
-    return isValid;
-
     setOrgNameErr(orgNameErr);
-    return isValid;
-
     setWebsiteURLErr(websiteURLErr);
-    return isValid;
-
     setGithubURLErr(githubURLErr);
-    return isValid;
-
     setGithubTagErr(githubTagErr);
     return isValid;
   };
