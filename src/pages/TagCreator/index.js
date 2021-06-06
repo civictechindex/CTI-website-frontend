@@ -90,7 +90,6 @@ const TagCreator = () => {
 
   useEffect(() => {
     let active = true;
-    console.log(active)
     axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
       .then(res => {
         const orgs = (res.data).map((org) => org.name)
@@ -100,7 +99,6 @@ const TagCreator = () => {
       })
     return () => {
       active = false;
-      console.log(active)
     };
   }, []);
 
@@ -118,14 +116,14 @@ const TagCreator = () => {
     }
   },[orgTags, currentTags, setTagsToAdd, userTags])
 
-  /*
-   * useEffect(() => {
-   *   if (value === 'no'){
-   *     setOrgName('')
-   *     setOrgTags([])
-   *   }
-   * },[setOrgName, setOrgTags, value])
-   */
+
+  useEffect(() => {
+    if (value === 'no'){
+      setOrgName('')
+      setOrgTags([])
+    }
+  },[setOrgName, setOrgTags, value])
+
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {

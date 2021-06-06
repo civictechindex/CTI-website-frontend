@@ -135,8 +135,12 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
   // eslint-disable-next-line complexity
   const handleSubmitOrg = () => {
     const topics = []
-    if (orgName) {
-      const og = orgName.replace(/ /g,"-").toLowerCase()
+    if (value === 'yes' && orgName === ""){
+      setOrgNameError(<p style={{ color: 'red' }}> Please select org name</p>)
+    }
+    else if (value === 'yes' && orgName !== "") {
+      let og = orgName.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+      og = og.replace(/ /g,"-").toLowerCase()
       axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/${og}`,)
         .then(res => {
           const po = res.data.parents
@@ -153,12 +157,10 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
            * Component should check for error state and resolve the correct response.
            */
           console.log(e);
-          setOrgNameError(<p style={{ color: 'red' }}> Please select org name</p>)
         })
       handleChangeOrg()
     }
     else if (value === 'no' && orgName === ''){
-      setOrgTags([])
       handleChangeOrg()
     }
   }
