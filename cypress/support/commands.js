@@ -25,12 +25,11 @@
  * -- This will overwrite an existing command --
  * Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
  */
+
 Cypress.Commands.add("clickLink", (label) => {
   cy.get("a").contains(label).click();
 });
+
 Cypress.Commands.add("findLink", (label) => {
   cy.get("a").contains(label);
 });
-// Cypress.Commands.add("shouldHaveAttribute", (label) => {
-//   cy.should("have.attr", "href", label);
-// });

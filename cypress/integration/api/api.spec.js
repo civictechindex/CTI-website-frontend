@@ -34,6 +34,5 @@ describe('CTI API', () => {
         expect(response.status).to.eq(400);
         expect(response.body[0]).to.contain(`We already have a subscription for ${TEST_EMAIL}`);
       });
-    }
-  );
+  });
 });
