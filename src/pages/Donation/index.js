@@ -6,16 +6,22 @@ import Typography from '@material-ui/core/Typography';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import Link from '../../components/common/Link';
 import useStyles from './styles.js';
-import { HeaderSection } from './HeaderSection';
+import { GenericHeaderSection } from '../../components/'
+
 
 const Donation = () => {
   const classes = useStyles();
+  const breadCrumbLinks = [
+    { href: '/home', name: 'Home' },
+    { href: '/radicalcollaboration/faq', name: 'Radical Collaboration' },
+    { href: '/donate', name: 'Make a Donation' },
+  ];
 
   return (
     <Box className='pageContainer'>
       <Box className='containerDefault'>
         <Container>
-          <HeaderSection />
+          <GenericHeaderSection mainTitle ="Make a Donation" breadCrumbLinks ={breadCrumbLinks} lg='312px'/>
         </Container>
       </Box>
       <Box className='containerGray'>
