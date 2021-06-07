@@ -18,28 +18,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ResultContainer = ({ results, pages, pageNum, onPageChange }) => {
+const ResultContainer = ({ results, pages, pageNum, onPageChange, errorState }) => {
   const classes = useStyles();
   return (
     <>
       {results}
-      {results.length === 0 ?
+      {errorState ?
         (<Box my={12} display='flex' justifyContent='center'>
           <Typography variant='body1' className={classes.message}>
-            <SearchRoundedIcon className={classes.messageIcon}/>
-            <i>Sorry, no results found.</i>
+            <i>We are experiencing technical issues. Please try again later.</i>
           </Typography>
         </Box>) :
-        (<Box my={3} display='flex' justifyContent='center'>
-          <Pagination
-            color='secondary'
-            count={pages}
-            defaultPage={1}
-            disabled={pages === 1}
-            onChange={(e, val) => onPageChange(val)}
-            page={pageNum}
-          />
-        </Box>)
+        results.length === 0 ?
+          (<Box my={12} display='flex' justifyContent='center'>
+            <Typography variant='body1' className={classes.message}>
+              <SearchRoundedIcon className={classes.messageIcon}/>
+              <i>Sorry, no results found.</i>
+            </Typography>
+          </Box>) :
+          (<Box my={3} display='flex' justifyContent='center'>
+            <Pagination
+              color='secondary'
+              count={pages}
+              defaultPage={1}
+              disabled={pages === 1}
+              onChange={(e, val) => onPageChange(val)}
+              page={pageNum}
+            />
+          </Box>)
       }
     </>
   );
