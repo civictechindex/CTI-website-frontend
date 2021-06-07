@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     height: '56px',
     marginRight: '-14px',
     width: '56px',
+    '&:hover': {
+      cursor: 'pointer',
+    }
   },
   input: {
     backgroundColor: theme.palette.background.default,
@@ -53,7 +56,7 @@ export default function SearchBar(props) {
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>
-            <SearchRoundedIcon className={classes.icon} />
+            <SearchRoundedIcon className={classes.icon} onClick={props.onIconClick} />
           </InputAdornment>
         ),
       }}
