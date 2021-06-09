@@ -5,5 +5,5 @@ import NavBreadcrumbs from './NavBreadcrumbs'
 import NavButton from './NavButton'
 import PictureCard from './PictureCard'
 import TitleSection from './TitleSection'
-
-export { Footer, GetStartedCard, Header, NavBreadcrumbs, NavButton, PictureCard, TitleSection };
+import GenericHeaderSection from './GenericHeaderSection'
+export { Footer, GetStartedCard, Header, NavBreadcrumbs, NavButton, PictureCard, TitleSection, GenericHeaderSection };

@@ -9,7 +9,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import _ from 'lodash';
 
-import { GetStartedCard, NavBreadcrumbs, TitleSection } from '../../../components';
+import { GetStartedCard,GenericHeaderSection } from '../../../components';
 import SearchBar from '../../SearchProjects/SearchBar';
 import FAQCard from '../../../components/FAQCard';
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 const Faq = () => {
-  const crumbs = [
+  const breadCrumbLinks = [
     { name: "Home", href: "/home" },
     { name: "Radical Collaboration", href: "/radicalcollaboration" },
     { name: "FAQ", href: "/radicalcollaboration/faq" },
@@ -73,17 +73,17 @@ const Faq = () => {
   return (
     <Box className='boxBackground'>
       <Container >
-        <NavBreadcrumbs crumbs={crumbs} color='primary' />
-        <TitleSection>How can we help?</TitleSection>
-        <Grid container justify='center' className={classes.searchBar}>
-          <Grid item xs={12} sm={9}>
-            <SearchBar
-              dataCy='search-faq'
-              onInput={handleInput}
-              placeholder="Search the Civic Tech Index"
-            />
+        <GenericHeaderSection mainTitle ="How can we help?" breadCrumbLinks ={breadCrumbLinks} lg='320px'>
+          <Grid container justify='center' className={classes.searchBar}>
+            <Grid item xs={12} sm={9}>
+              <SearchBar
+                dataCy='search-faq'
+                onInput={handleInput}
+                placeholder="Search the Civic Tech Index"
+              />
+            </Grid>
           </Grid>
-        </Grid>
+        </GenericHeaderSection>
       </Container>
       <FAQCard
         title={status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}

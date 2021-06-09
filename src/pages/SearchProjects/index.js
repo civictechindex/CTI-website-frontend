@@ -59,6 +59,8 @@ const defaultFilterList = [
   { category: 'pushed', name: '<1y', label: 'More than a year ago', selected: false },
 ]
 
+
+
 const renderCard = (project) => {
   const calculateDaysSince = (updateTime) => {
     const days = new Date() - new Date(updateTime);
@@ -90,6 +92,7 @@ const Projects = () => {
   const classes = useStyles();
   const location = useLocation();
   const [backupFilterList, setBackupFilterList] = useState([]);
+  const [errorState, setErrorState] = useState(false);
   const [filterList, setFilterList] = useState(defaultFilterList);
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterSelector, setFilterSelector] = useState('');
@@ -190,8 +193,10 @@ const Projects = () => {
         params: params,
       })
       .then((res) => {
+        setErrorState(false);
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
         const items = res.data.items.map((i) => renderCard(i));
+
         setResultCountHeader(
           <ResultHeader
             itemLength={res.data.items.length}
@@ -217,7 +222,20 @@ const Projects = () => {
         setShowResults(true);
       })
       .catch(() => {
-        setShowResults(false);
+        setErrorState(true);
+        setResultCountHeader(null);
+        setFilterSelector(
+          <FilterSelector
+            filterList={filterList}
+            itemLength={0}
+            onFilterChange={handleFilterChange}
+            onFilterClose={handleFilterClose}
+            queryStr={queryStr}
+            totalCount={0}
+            variant={largeScreen ? 'large' : 'small'}
+          />
+        );
+        setResults([]);
       });
   };
 
@@ -283,6 +301,12 @@ const Projects = () => {
     }
   };
 
+  const handleSubmitClick = () => {
+    if (query) {
+      fetchProjects(query, true);
+    }
+  };
+
   const filterTags = selectedFilters.map((filter) => {
     return (
       <FilterTag
@@ -315,6 +339,7 @@ const Projects = () => {
                 results={results}
                 pages={pages}
                 pageNum={pageNum}
+                errorState={errorState}
                 onPageChange={handlePageChange}
               />
             </Grid>
@@ -358,6 +383,7 @@ const Projects = () => {
         {!filterOpen &&
             <HeaderSection
               onLinkClick={() => setModalOpen(true)}
+              onSearchClick={handleSubmitClick}
               onSearchInput={setQuery}
               onSearchKeyPress={handleSubmit}
               searchQuery={query}

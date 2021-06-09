@@ -4,6 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
+  clear: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
   filters: {
     alignItems: 'center',
     display: 'flex',
@@ -26,6 +31,7 @@ const ResultFilters = ({ show, filterTags, onFilterChange }) => {
         <Typography
           variant='body1'
           color='secondary'
+          className={classes.clear}
           onClick={() => onFilterChange({ category: 'all' }, true)}
         >
           <b>Clear all</b>
