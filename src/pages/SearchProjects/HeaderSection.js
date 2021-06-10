@@ -31,6 +31,7 @@ const breadCrumbLinks = [
 
 const HeaderSection = ({
   onLinkClick,
+  onSearchClick,
   onSearchInput,
   onSearchKeyPress,
   searchQuery,
@@ -47,6 +48,7 @@ const HeaderSection = ({
           <Grid item xs={12} sm={9}>
             <SearchBar
               dataCy='search-projects'
+              onIconClick={onSearchClick}
               onInput={(e) => onSearchInput(e.target.value)}
               onKeyPress={onSearchKeyPress}
               placeholder='Search the Civic Tech Index'
