@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CountrySelect from './CountrySelect';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import StepOne from './StepOne';
 
 const AddOrgForm = () => {
   //State Variables
@@ -70,23 +71,22 @@ const AddOrgForm = () => {
     }
 
     if (orgName.length < 5) {
-      orgNameErr.isInvalid = "Please your organization's name.";
+      orgNameErr.isInvalid = 'Please an Organization Name.';
       isValid = false;
     }
 
     if (websiteURL.indexOf('www.')) {
-      websiteURLErr.isInvalid = 'Please enter a valid url. For example, "http://www.website.com".';
+      websiteURLErr.isInvalid = 'Website address is not valid. Please enter http:// or www....';
       isValid = false;
     }
 
     if (githubURL.indexOf('github.com/')) {
-      githubURLErr.isInvalid =
-        'Please enter a valid url. For example, "http://github.com/organization".';
+      githubURLErr.isInvalid = 'Website address is not valid. Please enter http:// or www....';
       isValid = false;
     }
 
     if (githubTag.length < 5) {
-      githubTagErr.isInvalid = "Please enter your organiation's github tag.";
+      githubTagErr.isInvalid = 'Please enter your GitHub Organiation tag.';
       isValid = false;
     }
 
@@ -96,141 +96,6 @@ const AddOrgForm = () => {
     setGithubURLErr(githubURLErr);
     setGithubTagErr(githubTagErr);
     return isValid;
-  };
-
-  const StepOne = () => {
-    return (
-      <>
-        <Box style={{ justifyContent: 'center' }}>
-          <Container style={{ maxWidth: '600px' }}>
-            <Grid container>
-              <Grid item style={{ textAlign: 'left', width: '50%', padding: '47px 0 0 0' }}>
-                <Typography variant='subtitle1'>Project Information</Typography>
-              </Grid>
-              <Grid item style={{ textAlign: 'right', width: '50%', padding: '47px 0 0 0' }}>
-                <Typography variant='subtitle1' style={{ color: '#004364' }}>
-                  <b>1</b>/2
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container direction='column'>
-              <LinearProgress variant='determinate' color='secondary' value={50} />
-              <Typography variant='h5' style={{ color: '#004364', padding: '27px 0 0 0' }}>
-                Organization Detail
-              </Typography>
-              <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
-                Organization Email
-              </Typography>
-              <TextField
-                name='orgEmail'
-                placeholder='Name@example.com'
-                value={orgEmail}
-                onChange={(event) => {
-                  setOrgEmail(event.target.value);
-                }}
-              />
-              {Object.keys(orgEmailErr).map((key) => {
-                return <div style={{ color: 'red' }}>{orgEmailErr[key]}</div>;
-              })}
-              <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
-                Organization Name:
-              </Typography>
-              <TextField
-                name='orgName'
-                value={orgName}
-                onChange={(event) => {
-                  setOrgName(event.target.value);
-                }}
-              />
-              {Object.keys(orgNameErr).map((key) => {
-                return <div style={{ color: 'red' }}>{orgNameErr[key]}</div>;
-              })}
-              <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
-                Parent Organization:
-              </Typography>
-              <TextField />
-              <Typography variant='h5' style={{ color: '#004364', padding: '50px 0 0 0' }}>
-                Organization URL
-              </Typography>
-              <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
-                Website URL:*
-              </Typography>
-              <TextField
-                placeholder='http://example.com...'
-                name='websiteURL'
-                value={websiteURL}
-                onChange={(event) => {
-                  setWebsiteURL(event.target.value);
-                }}
-              />
-              {Object.keys(websiteURLErr).map((key) => {
-                return <div style={{ color: 'red' }}>{websiteURLErr[key]}</div>;
-              })}
-              <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
-                Github URL:*
-              </Typography>
-              <TextField
-                placeholder='http://github.com/example...'
-                name='githubURL'
-                value={githubURL}
-                onChange={(event) => {
-                  setGithubURL(event.target.value);
-                }}
-              />
-              {Object.keys(githubURLErr).map((key) => {
-                return <div style={{ color: 'red' }}>{githubURLErr[key]}</div>;
-              })}
-              <Typography variant='h5' style={{ color: '#004364', padding: '50px 0 0 0' }}>
-                Your GitHub Organization Tags
-              </Typography>
-              <Typography variant='subtitle2' style={{ fontStyle: 'italic' }}>
-                This is the GitHub tag that your organization uses such as <br />
-                "code-for-america", "open-oakland" or "hack4la".
-              </Typography>
-              <TextField
-                placeholder='open-oakland'
-                name='githubTag'
-                value={githubTag}
-                onChange={(event) => {
-                  setGithubTag(event.target.value);
-                }}
-              />
-              {Object.keys(githubTagErr).map((key) => {
-                return <div style={{ color: 'red' }}>{githubTagErr[key]}</div>;
-              })}
-            </Grid>
-            {/* //Buttons */}
-            <Grid
-              container
-              justify='center'
-              alignItems='center'
-              style={{ padding: '40px 0 60px 0' }}
-            >
-              <Grid item style={{ textAlign: 'center' }}>
-                <Button
-                  style={{ width: '250px', padding: '10px', margin: '12px' }}
-                  variant='contained'
-                  color='default'
-                  href='/tag-generator'
-                >
-                  Cancel
-                </Button>
-              </Grid>
-              <Grid item style={{ textAlign: 'center' }}>
-                <Button
-                  style={{ width: '250px', padding: '10px', margin: '12px' }}
-                  variant='contained'
-                  color='secondary'
-                  onClick={onEnter}
-                >
-                  Next
-                </Button>
-              </Grid>
-            </Grid>
-          </Container>
-        </Box>
-      </>
-    );
   };
 
   const StepTwo = () => {
@@ -372,7 +237,7 @@ const AddOrgForm = () => {
 
   switch (step) {
     case 0:
-      return <StepOne />;
+      return <StepOne orgEmail={orgEmail} onOrgEmailChange={setOrgEmail} />;
     case 1:
       return <StepTwo />;
     case 2:
