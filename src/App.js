@@ -45,11 +45,11 @@ const App = () => {
             <RouteTitled exact path='/about' component={About} title='About' />
             <RouteTitled exact path='/about/contact' component={Contact} title='Contact Us' />
             <RouteTitled exact path='/about/faq' component={Faq} title='FAQ' />
-            <RouteTitled exact path='/contributors/:affiliation' component={Contributors} title='Organizations' />
+            <RouteTitled exact path='/organizations/:affiliation' component={Contributors} title='Organizations' />
             <RouteTitled exact path='/home' component={Home} title='Home' />
             <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
             <RouteTitled exact path='/join-index' component={TagCreator} title='Join the Index' />
-            <RouteTitled exact path='/join-index/adding-projects' component={HowToUse} title='How to Add Your Project' />
+            <RouteTitled exact path='/join-index/how-to-add' component={HowToUse} title='How to Add Your Project' />
             <RouteTitled exact path='/support' component={RadicalCollaboration} title='Collaborate with Us' />
             <RouteTitled exact path='/support/donate' component={Donation} title='Donate' />
             <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
@@ -59,16 +59,16 @@ const App = () => {
             <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />
             {/* test and error page routes end */}
-            <Redirect from='/add' to='/join-index/adding-projects' />
-            <Redirect from='/adding' to='/join-index/adding-projects' />
-            <Redirect from='/adding-projects' to='/join-index/adding-projects' />
+            <Redirect from='/add' to='/join-index/how-to-add' />
+            <Redirect from='/adding' to='/join-index/how-to-add' />
+            <Redirect from='/adding-projects' to='/join-index/how-to-add' />
             <Redirect from='/contact' to='/about/contact' />
             <Redirect from='/donate' to='/support/donate' />
             <Redirect from='/donation' to='/support/donate' />
             <Redirect from='/faq' to='/about/faq' />
-            <Redirect from='/how' to='/join-index/adding-projects' />
-            <Redirect from='/how-to' to='/join-index/adding-projects' />
-            <Redirect from='/how-to-use' to='/join-index/adding-projects' />
+            <Redirect from='/how' to='/join-index/how-to-add' />
+            <Redirect from='/how-to' to='/join-index/how-to-add' />
+            <Redirect from='/how-to-use' to='/join-index/how-to-add' />
             <Redirect from='/join' to='/join-index' />
             <Redirect from='/search' to='/projects' />
             <Redirect from='/share' to='/support/share' />

@@ -17,7 +17,7 @@ describe('Footer', () => {
 
   it('navigates to donate', () => {
     cy.get('[class*=containerFooter]').within(() => {
-      cy.contains('Radical Collaboration').click()
+      cy.contains('Collaborate with Us').click()
       cy.get('[href*=donate]').click()
     })
     cy.get('[class*=makeStyles-infoThank]')

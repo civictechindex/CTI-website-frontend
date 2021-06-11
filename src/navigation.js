@@ -7,7 +7,7 @@ const navigation = [
       {
         id: 'addProject',
         header: 'How to Add Your Project to the Index',
-        route: '/join-index/adding-projects',
+        route: '/join-index/how-to-add',
       },
     ],
   },
@@ -31,7 +31,7 @@ const navigation = [
   {
     id: 'organizations',
     header: 'Organizations',
-    route: '/contributors/all',
+    route: '/organizations/all',
     subNavigation: [],
   },
   {

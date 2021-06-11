@@ -13,8 +13,8 @@ const Donation = () => {
   const classes = useStyles();
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
-    { href: '/radicalcollaboration/faq', name: 'Radical Collaboration' },
-    { href: '/donate', name: 'Make a Donation' },
+    { href: '/support', name: 'Collaborate with Us' },
+    { href: '/support/donate', name: 'Donate' },
   ];
 
   return (
