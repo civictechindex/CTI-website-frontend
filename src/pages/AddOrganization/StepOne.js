@@ -9,6 +9,39 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
 const StepOne = (props) => {
+  const [orgEmailErr, setOrgEmailErr] = useState('');
+  const [orgNameErr, setOrgNameErr] = useState('');
+  const [websiteURLErr, setWebsiteURLErr] = useState('');
+  const [githubURLErr, setGithubURLErr] = useState('');
+  const [githubTagErr, setGithubTagErr] = useState('');
+  const formValidation = () => {
+    let isValid = true;
+    if (props.orgEmail == '') {
+      isValid = false;
+      setOrgEmailErr('Please enter a valid email address. For example, "janedoe@gmail.com".');
+    }
+    if (props.orgName.length < 5) {
+      isValid = false;
+      setOrgNameErr('Please enter an Organization Name.');
+    }
+    if (props.websiteURL.indexOf('www.')) {
+      isValid = false;
+      setWebsiteURLErr('Website address is not valid. Please enter http:// or www....');
+    }
+    if (props.githubURL.indexOf('github.com/')) {
+      isValid = false;
+      setGithubURLErr('Website address is not valid. Please enter http:// or www....');
+    }
+    if (props.githubTag.length < 5) {
+      isValid = false;
+      setGithubTagErr('Please enter your GitHub Organiation tag.');
+    }
+    if (isValid) {
+      props.onNext();
+    }
+    return;
+  };
+
   return (
     <>
       <Box style={{ justifyContent: 'center' }}>
@@ -32,6 +65,7 @@ const StepOne = (props) => {
               Organization Email
             </Typography>
             <TextField
+              type='email'
               placeholder='Name@example.com'
               name='orgEmail'
               value={props.orgEmail}
@@ -39,9 +73,7 @@ const StepOne = (props) => {
                 props.onOrgEmail(event.target.value);
               }}
             />
-            {/* {Object.keys(props.orgEmailErr).map((key) => {
-              return <div style={{ color: 'red' }}>{props.orgEmailErr[key]}</div>;
-            })} */}
+            {orgEmailErr && <Typography style={{ color: 'red' }}>{orgEmailErr}</Typography>}
             <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
               Organization Name:
             </Typography>
@@ -52,9 +84,7 @@ const StepOne = (props) => {
                 props.onOrgName(event.target.value);
               }}
             />
-            {/* {Object.keys(props.orgNameErr).map((key) => {
-              return <div style={{ color: 'red' }}>{props.orgNameErr[key]}</div>;
-            })} */}
+            {orgNameErr && <Typography style={{ color: 'red' }}>{orgNameErr}</Typography>}
             <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
               Parent Organization:
             </Typography>
@@ -66,30 +96,26 @@ const StepOne = (props) => {
               Website URL:*
             </Typography>
             <TextField
-              name='websiteURL'
               placeholder='http://example.com...'
+              name='websiteURL'
               value={props.websiteURL}
               onChange={(event) => {
                 props.onWebsiteURL(event.target.value);
               }}
             />
-            {/* {Object.keys(props.websiteURLErr).map((key) => {
-              return <div style={{ color: 'red' }}>{props.websiteURLErr[key]}</div>;
-            })} */}
+            {websiteURLErr && <Typography style={{ color: 'red' }}>{websiteURLErr}</Typography>}
             <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
               Github URL:*
             </Typography>
             <TextField
-              name='githubURL'
               placeholder='http://github.com/example...'
+              name='githubURL'
               value={props.githubURL}
               onChange={(event) => {
                 props.onGithubURL(event.target.value);
               }}
             />
-            {/* {Object.keys(props.githubURLErr).map((key) => {
-              return <div style={{ color: 'red' }}>{props.githubURLErr[key]}</div>;
-            })} */}
+            {githubURLErr && <Typography style={{ color: 'red' }}>{githubURLErr}</Typography>}
             <Typography variant='h5' style={{ color: '#004364', padding: '50px 0 0 0' }}>
               Your GitHub Organization Tags
             </Typography>
@@ -105,9 +131,7 @@ const StepOne = (props) => {
                 props.onGithubTag(event.target.value);
               }}
             />
-            {/* {Object.keys(props.githubTagErr).map((key) => {
-              return <div style={{ color: 'red' }}>{props.githubTagErr[key]}</div>;
-            })} */}
+            {githubTagErr && <Typography style={{ color: 'red' }}>{githubTagErr}</Typography>}
           </Grid>
           {/* //Buttons */}
           <Grid container justify='center' alignItems='center' style={{ padding: '40px 0 60px 0' }}>
@@ -126,7 +150,7 @@ const StepOne = (props) => {
                 style={{ width: '250px', padding: '10px', margin: '12px' }}
                 variant='contained'
                 color='secondary'
-                // onClick={onEnter}
+                onClick={formValidation}
               >
                 Next
               </Button>

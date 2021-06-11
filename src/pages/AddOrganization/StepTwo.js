@@ -110,7 +110,7 @@ const StepTwo = (props) => {
                 style={{ width: '250px', padding: '10px', margin: '12px' }}
                 variant='contained'
                 color='secondary'
-                // onClick={handleNext}
+                onClick={props.onSubmit}
               >
                 Submit
               </Button>
