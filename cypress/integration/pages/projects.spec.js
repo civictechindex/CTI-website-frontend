@@ -22,7 +22,7 @@ describe('Projects Page (Search Projects)', () => {
     cy.get('[data-cy=search-tips').within(() => {
       cy.get('p').first().contains('Need more search results?');
       cy.get('a').last().click();
-      cy.url().should('include', '/tag-generator');
+      cy.url().should('include', '/join-index');
     });
   });
 
