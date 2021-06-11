@@ -1,7 +1,5 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
-import TitleSection from "../../../components/TitleSection";
-import NavBreadcrumbs from "../../../components/NavBreadcrumbs";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -10,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FileUploadIcon from "../../../icons/FileUploadIcon";
 
+import { GenericHeaderSection } from '../../../components/'
 const useStyles = makeStyles((theme) => ({
   headerStyle: {
     textAlign: "center",
@@ -53,35 +52,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HeaderSection = () => {
-  const classes = useStyles();
-  const crumbs = [
-    { name: "Home", href: "/home" },
-    { name: "Radical Collaboration", href: "/support" },
-    { name: "Contact Us", href: "/radicalcollaboration/contact" },
-  ];
 
-  return (
-    <Box className="containerDefault">
-      <Container>
-        <NavBreadcrumbs crumbs={crumbs} />
-        <TitleSection>Contact Us</TitleSection>
-        <Grid container justify="center" className={classes.headerStyle}>
-          <Grid item xs={12} md={10}>
-            <Typography variant="h6">
-              We would love to hear your thoughts or feedback on how we can
-              improve your experience with the Civic Tech Index!
-            </Typography>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-  );
-};
 
 const ContactForm = () => {
   const classes = useStyles();
-
   return (
     <Box className="containerGray">
       <Container>
@@ -161,9 +135,26 @@ const ContactForm = () => {
 };
 
 const Contact = () => {
+  const classes = useStyles();
+  const breadCrumbLinks = [
+    { name: "Home", href: "/home" },
+    { name: "Radical Collaboration", href: "/support" },
+    { name: "Contact Us", href: "/radicalcollaboration/contact" },
+  ];
+
   return (
     <Box>
-      <HeaderSection />
+      <GenericHeaderSection mainTitle ="Contact Us" breadCrumbLinks ={breadCrumbLinks} lg='322px'>
+        <Grid container justify="center" className={classes.headerStyle}>
+          <Grid item xs={12} md={10}>
+            <Typography variant="h6">
+                We would love to hear your thoughts or feedback on how we can
+                improve your experience with the Civic Tech Index!
+            </Typography>
+          </Grid>
+        </Grid>
+      </GenericHeaderSection>
+
       <ContactForm />
     </Box>
   );

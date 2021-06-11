@@ -10,7 +10,8 @@ import axios from 'axios';
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { HeaderSection } from './HeaderSection'
+import Typography from '@material-ui/core/Typography';
+import { GenericHeaderSection } from '../../components/'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
 import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organization'
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
@@ -18,7 +19,6 @@ import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,Cu
 import useTheme from '@material-ui/core/styles/useTheme';
 import TagGeneratorInstructions from '../../components/TagGeneratorInstructions'
 import { makeStyles } from '@material-ui/core/styles'
-
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
     paddingLeft:'100px',
@@ -73,6 +73,7 @@ const TagCreator = () => {
   const [userTags, setUserTags] = useQueryParam('userTags',withDefault(ArrayParam,[]));
   const [orgTags, setOrgTags] = useQueryParam('orgTags',withDefault(ArrayParam,[]));
   const [options, setOptions] = useState([]);
+  const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
 
   const resetForm = () => {
     setValue('')
@@ -111,9 +112,11 @@ const TagCreator = () => {
       const result = orgTags.filter(ot => !currentTags.includes(ot))
       setTagsToAdd([...civicName,...result,...userTags])
     }
-    else
+    else {
       setTagsToAdd([...civicName,...orgTags,...userTags])
+    }
   },[orgTags, currentTags, setTagsToAdd, userTags])
+
 
   useEffect(() => {
     if (value === 'no'){
@@ -121,6 +124,7 @@ const TagCreator = () => {
       setOrgTags([])
     }
   },[setOrgName, setOrgTags, value])
+
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
@@ -199,11 +203,12 @@ const TagCreator = () => {
     )
   }
 
-  const RadioYes = ({ setOrgName }) =>{
+  const RadioYes = ({ value,setOrgName }) =>{
     return (
       <Grid container id='container-affiliated'>
         <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName} options={options}/>
-        <OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
+        <OrgChange value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
+          changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </Grid>
     )
   }
@@ -277,9 +282,9 @@ const TagCreator = () => {
         <>
           <AffiliationQuestionSection value={value} handleChange={handleChange}
             question={'Are you affiliated with an organization?'} />
-          {(value === 'yes')?<RadioYes setOrgName={setOrgName}/>:null}
-          {(value === 'no')?<OrgChange orgName={orgName} setOrgTags={setOrgTags} changeValue={changeValue} setDisplayState={setDisplayState}
-            setOrgName={setOrgName}/>:null}
+          {(value === 'yes')?<RadioYes value={value} setOrgName={setOrgName}/>:null}
+          {(value === 'no')?<OrgChange  value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
+            changeValue={changeValue} setDisplayState={setDisplayState}/>:null}
         </>
       )
     }
@@ -288,7 +293,10 @@ const TagCreator = () => {
 
   return (
     <Box>
-      <HeaderSection/>
+      <GenericHeaderSection mainTitle ="Tag Generator" breadCrumbLinks ={breadCrumbLinks} lg='320px' md='304px' sm='304px' subText>
+        <Typography variant='h6' color='textSecondary' style={{ fontWeight:'500' , textAlign:'center' }} >Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
+      </GenericHeaderSection>
+
       <Box className='containerGray' style={{ paddingBottom:'30px' }} >
         <Container className={classes.containerPadding} >
           {renderCurrentState()}
