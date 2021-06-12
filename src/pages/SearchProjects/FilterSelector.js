@@ -281,7 +281,7 @@ const FilterSelector = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const languageFilterList = props.filterList.filter((filter) => filter.category === 'language')
-  const lastUpdatedFilterList = props.filterList.filter((filter) => filter.category === 'pushed');
+  // const lastUpdatedFilterList = props.filterList.filter((filter) => filter.category === 'pushed');
   const affiliationFilterList = props.filterList.filter((filter) => filter.category === 'topic');
 
   const handleClick = () => {
