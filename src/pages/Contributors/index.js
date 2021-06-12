@@ -119,8 +119,8 @@ export default function Contributors({ match }) {
           <div className={classes.sectionContainer}>
             <NavBreadcrumbs
               crumbs={[
-                { name: "Home", href: "/" },
-                { name: "Contributors", href: "/contributors" },
+                { name: "Home", href: "/home" },
+                { name: "Organizations", href: "/organizations/all" },
               ]}
             />
           </div>

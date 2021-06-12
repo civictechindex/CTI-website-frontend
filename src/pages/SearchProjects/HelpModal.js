@@ -78,7 +78,7 @@ const HelpModal = ({ modalOpen, onClose }) => {
         <Typography variant='body2'>Don&apos;t see your project repository in the search results?</Typography>
         <Typography variant='body1'>
           Use the{' '}
-          <Link to='/tag-generator' underline='always'>
+          <Link to='/join-index' underline='always'>
             tag generator tool
           </Link>{' '}
           to add your project to the Civic Tech Index.
