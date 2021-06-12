@@ -2,29 +2,20 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles';
 
-// ISO 3166-1 alpha-2
-// ⚠️ No support for IE 11
-function countryToFlag(isoCode) {
+/*
+ * ISO 3166-1 alpha-2
+ * ⚠️ No support for IE 11
+ */
+const countryToFlag = (isoCode) => {
   return typeof String.fromCodePoint !== 'undefined'
-    ? isoCode
-        .toUpperCase()
-        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
+    ? String.fromCodePoint(...[...isoCode.toUpperCase()]
+      .map((char) => 127397 + char.charCodeAt()))
     : isoCode;
-}
+};
 
-const useStyles = makeStyles({
-  option: {
-    fontSize: 14,
-    '& > span': {
-      marginRight: 10,
-      fontSize: 14,
-    },
-  },
-});
-
-export default function CountrySelect({ onChange }) {
+const CountrySelect = ({ onChange }) => {
   const classes = useStyles();
 
   const handleInputChange = (event, value) => {
@@ -48,10 +39,9 @@ export default function CountrySelect({ onChange }) {
       getOptionLabel={(option) => option.label}
       onInputChange={handleInputChange}
       renderOption={(option) => (
-        <React.Fragment>
-          <span>{countryToFlag(option.code)}</span>
-          {option.label} ({option.code}) +{option.phone}
-        </React.Fragment>
+        <span>
+          {countryToFlag(option.code)} {option.label} +{option.phone}
+        </span>
       )}
       renderInput={(params) => (
         <TextField
@@ -68,7 +58,7 @@ export default function CountrySelect({ onChange }) {
       )}
     />
   );
-}
+};
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
 const countries = [
@@ -321,3 +311,5 @@ const countries = [
   { code: 'ZM', label: 'Zambia', phone: '260' },
   { code: 'ZW', label: 'Zimbabwe', phone: '263' },
 ];
+
+export default CountrySelect;

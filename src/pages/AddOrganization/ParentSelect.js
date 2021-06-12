@@ -1,15 +1,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles';
 
-const useStyles = makeStyles({
-  option: {
-    fontSize: 14,
-  },
-});
-
-export default function ParentSelect({ onChange, orgList }) {
+const ParentSelect = ({ onChange, orgList }) => {
   const classes = useStyles();
 
   const handleInputChange = (event, value) => {
@@ -32,9 +26,7 @@ export default function ParentSelect({ onChange, orgList }) {
       autoHighlight
       getOptionLabel={(option) => String(option.id)}
       onInputChange={handleInputChange}
-      renderOption={(option) => (
-        `${option.name} (${option.id})`
-      )}
+      renderOption={(option) => `${option.name} (${option.id})`}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -50,4 +42,6 @@ export default function ParentSelect({ onChange, orgList }) {
       )}
     />
   );
-}
+};
+
+export default ParentSelect;

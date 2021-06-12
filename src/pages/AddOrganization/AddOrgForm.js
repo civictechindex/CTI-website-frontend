@@ -6,7 +6,6 @@ import StepTwo from './StepTwo';
 import Complete from './Complete';
 
 const AddOrgForm = () => {
-  //State Variables
   const [step, setStep] = useState(0);
   const [orgEmail, setOrgEmail] = useState();
   const [orgName, setOrgName] = useState();
@@ -28,7 +27,6 @@ const AddOrgForm = () => {
       setParentOrgList(response.data);
     });
   }, []);
-
 
   const handleNext = () => {
     if (step < 2) {
@@ -68,10 +66,6 @@ const AddOrgForm = () => {
     }
   };
 
-  const handleCountryChange = (value) => {
-    setCountry(value);
-  };
-
   const renderStep = () => {
     switch (step) {
     case 0:
@@ -105,7 +99,7 @@ const AddOrgForm = () => {
           onCity={setCity}
           stateProvCo={stateProvCo}
           onStateProvCo={setStateProvCo}
-          onCountryChange={handleCountryChange}
+          onCountryChange={setCountry}
           onPrev={handlePrev}
           onSubmit={handleSubmit}
         />
@@ -125,6 +119,8 @@ const AddOrgForm = () => {
           onGithubURL={setGithubURL}
           githubTag={githubTag}
           onGithubTag={setGithubTag}
+          parentOrgList={parentOrgList}
+          onParentOrgChange={setParentOrg}
           onNext={handleNext}
         />
       );
