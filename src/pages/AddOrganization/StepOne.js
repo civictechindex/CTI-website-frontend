@@ -4,9 +4,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import useStyles from './styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import ParentSelect from './ParentSelect';
 
 const StepOne = (props) => {
   const [orgEmailErr, setOrgEmailErr] = useState('');
@@ -16,30 +16,42 @@ const StepOne = (props) => {
   const [githubTagErr, setGithubTagErr] = useState('');
   const formValidation = () => {
     let isValid = true;
-    if (props.orgEmail == '') {
+    let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(props.orgEmail)) {
       isValid = false;
       setOrgEmailErr('Please enter a valid email address. For example, "janedoe@gmail.com".');
+    } else {
+      setOrgEmailErr('');
     }
-    if (props.orgName.length < 5) {
+    if (!props.orgName) {
       isValid = false;
       setOrgNameErr('Please enter an Organization Name.');
+    } else {
+      setOrgNameErr('');
     }
-    if (props.websiteURL.indexOf('www.')) {
+    re = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+    if (!re.test(props.websiteURL)) {
       isValid = false;
-      setWebsiteURLErr('Website address is not valid. Please enter http:// or www....');
+      setWebsiteURLErr('Website address is not valid. Please enter http(s)://... or www...');
+    } else {
+      setWebsiteURLErr('');
     }
-    if (props.githubURL.indexOf('github.com/')) {
+    re = /^(?:https:\/\/)?(?:www\.)?github.com\/[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+    if (!re.test(props.githubURL)) {
       isValid = false;
-      setGithubURLErr('Website address is not valid. Please enter http:// or www....');
+      setGithubURLErr('Github address is not valid. Please enter https://github.com/... or www.github.com/...');
+    } else {
+      setGithubURLErr('');
     }
-    if (props.githubTag.length < 5) {
+    if (!props.githubTag) {
       isValid = false;
       setGithubTagErr('Please enter your GitHub Organiation tag.');
+    } else {
+      setGithubTagErr('');
     }
     if (isValid) {
       props.onNext();
     }
-    return;
   };
 
   return (
@@ -86,9 +98,13 @@ const StepOne = (props) => {
             />
             {orgNameErr && <Typography style={{ color: 'red' }}>{orgNameErr}</Typography>}
             <Typography variant='subtitle1' style={{ padding: '31px 0 0 0' }}>
-              Parent Organization:
+              Parent Organization ID:
             </Typography>
-            <TextField />
+            <ParentSelect
+              orgList={props.parentOrgList}
+              onChange={props.onParentOrgChange}
+              style={{ width: '100%' }}
+            />
             <Typography variant='h5' style={{ color: '#004364', padding: '50px 0 0 0' }}>
               Organization URL
             </Typography>

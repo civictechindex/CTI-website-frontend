@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import Complete from './Complete';
 
 const AddOrgForm = () => {
   //State Variables
-  const [orgProps, setOrgProps] = useState({});
   const [step, setStep] = useState(0);
   const [orgEmail, setOrgEmail] = useState();
   const [orgName, setOrgName] = useState();
   const [parentOrg, setParentOrg] = useState();
+  const [parentOrgList, setParentOrgList] = useState([]);
   const [websiteURL, setWebsiteURL] = useState();
   const [githubURL, setGithubURL] = useState();
   const [githubTag, setGithubTag] = useState();
@@ -19,31 +21,59 @@ const AddOrgForm = () => {
   const [city, setCity] = useState();
   const [stateProvCo, setStateProvCo] = useState();
   const [country, setCountry] = useState();
-  // // Proceed to next step
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+    .then((response) => {
+      setParentOrgList(response.data);
+    });
+  }, []);
+
+
   const handleNext = () => {
-    setStep((prevStep) => prevStep + 1);
+    if (step < 2) {
+      setStep(step + 1);
+    }
   };
-  // // Go Back to previous step
+
   const handlePrev = () => {
-    setStep((prevStep) => prevStep - 1);
-  };
-  // Submit
-  const handleSubmit = () => {
-    // Add API call here
-    setStep((prevStep) => prevStep + 1);
+    if (step > 0) {
+      setStep(step - 1);
+    }
   };
 
-  // Handles country input dropdown
-  // const handleCountryChange = (country) => {
-  //   setOrgProps({ ...orgProps, country: country });
-  // };
-  // Handles all field input changes
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setOrgProps({ ...orgProps, [name]: value });
-  // };
+  const handleSubmit = async () => {
+    const orgProps = {
+      name: orgName,
+      github_url: githubURL,
+      website_url: websiteURL,
+      organization_email: orgEmail,
+      org_tag: githubTag,
+    };
+    if (parentOrg) { orgProps.parent_organization = parentOrg }
+    if (facebookURL) { orgProps.facebook_url = facebookURL }
+    if (twitterURL) { orgProps.twitter_url = twitterURL }
+    if (meetupURL) { orgProps.meetup_url = meetupURL }
+    if (city) { orgProps.city = city }
+    if (stateProvCo) { orgProps.state = stateProvCo }
+    if (country) { orgProps.country = country }
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/organizations/`,
+        orgProps
+      );
+      setStep(2);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
-  switch (step) {
+  const handleCountryChange = (value) => {
+    setCountry(value);
+  };
+
+  const renderStep = () => {
+    switch (step) {
     case 0:
       return (
         <StepOne
@@ -57,6 +87,8 @@ const AddOrgForm = () => {
           onGithubURL={setGithubURL}
           githubTag={githubTag}
           onGithubTag={setGithubTag}
+          parentOrgList={parentOrgList}
+          onParentOrgChange={setParentOrg}
           onNext={handleNext}
         />
       );
@@ -73,12 +105,33 @@ const AddOrgForm = () => {
           onCity={setCity}
           stateProvCo={stateProvCo}
           onStateProvCo={setStateProvCo}
+          onCountryChange={handleCountryChange}
+          onPrev={handlePrev}
           onSubmit={handleSubmit}
         />
       );
     case 2:
       return <Complete />;
-  }
+    default:
+      return (
+        <StepOne
+          orgEmail={orgEmail}
+          onOrgEmail={setOrgEmail}
+          orgName={orgName}
+          onOrgName={setOrgName}
+          websiteURL={websiteURL}
+          onWebsiteURL={setWebsiteURL}
+          githubURL={githubURL}
+          onGithubURL={setGithubURL}
+          githubTag={githubTag}
+          onGithubTag={setGithubTag}
+          onNext={handleNext}
+        />
+      );
+    }
+  };
+
+  return renderStep();
 };
 
 export default AddOrgForm;

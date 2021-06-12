@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import useStyles from './styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CountrySelect from './CountrySelect';
@@ -89,7 +88,7 @@ const StepTwo = (props) => {
               Country:
             </Typography>
             <CountrySelect
-              // onChange={handleCountryChange}
+              onChange={props.onCountryChange}
               style={{ width: '100%' }}
             />
           </Grid>
@@ -100,7 +99,7 @@ const StepTwo = (props) => {
                 style={{ width: '250px', padding: '10px', margin: '12px' }}
                 variant='contained'
                 color='default'
-                // onClick={handlePrev}
+                onClick={props.onPrev}
               >
                 Back
               </Button>
