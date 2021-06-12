@@ -22,8 +22,8 @@ const useStyles = makeStyles({
 const Faq = () => {
   const breadCrumbLinks = [
     { name: "Home", href: "/home" },
-    { name: "Radical Collaboration", href: "/radicalcollaboration" },
-    { name: "FAQ", href: "/radicalcollaboration/faq" },
+    { name: "About", href: "/about" },
+    { name: "FAQ", href: "/about/faq" },
   ];
   const [data, setData] = useState([]);
   const [pageNum, setPageNum] = useState(1);

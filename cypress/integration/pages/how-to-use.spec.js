@@ -1,6 +1,6 @@
 describe('How To Use Page (Adding Projects to the Index)', () => {
   before(() => {
-    cy.visit('/adding-projects-to-the-index')
+    cy.visit('/join-index/how-to-add')
   })
 
   it('header section loads', () => {
