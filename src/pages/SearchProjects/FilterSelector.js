@@ -307,13 +307,13 @@ const FilterSelector = (props) => {
       onChange: handleListChange,
       showViewMore: true,
     },
-    {
-      category: 'LastUpdated',
-      filterList: lastUpdatedFilterList,
-      label: 'Last Updated:',
-      onChange: handleListChange,
-      showViewMore: false,
-    },
+    // {
+    //   category: 'LastUpdated',
+    //   filterList: lastUpdatedFilterList,
+    //   label: 'Last Updated:',
+    //   onChange: handleListChange,
+    //   showViewMore: false,
+    // },
   ];
 
   const filterDropdowns = filterPropsList.map((filterProps) => {
