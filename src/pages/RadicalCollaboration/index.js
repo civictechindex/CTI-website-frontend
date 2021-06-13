@@ -11,7 +11,7 @@ import { GenericHeaderSection } from '../../components/'
 const RadicalCollaboration = () => {
   const breadCrumbLinks = [
     { name: 'Home', href: '/home' },
-    { name: 'Radical Collaboration', href: '/radicalcollaboration' },
+    { name: 'Collaborate with Us', href: '/support' },
   ];
   const Images = [
     {

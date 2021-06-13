@@ -5,7 +5,7 @@ describe('FAQ Page', () => {
     'Civic technology, or civic tech, enhances the relationship between the people and government with software for communications, decision-making, service delivery, and political process. It includes information and communications technology supporting government with software built by community-led teams of volunteers, nonprofits, consultants, and private companies as well as embedded tech teams working within government';
 
   before(() => {
-    cy.visit('/radicalcollaboration/faq')
+    cy.visit('/about/faq')
   })
 
   it('title section loads', () => {

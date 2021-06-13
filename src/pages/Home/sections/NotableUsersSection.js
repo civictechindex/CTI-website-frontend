@@ -4,32 +4,64 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import NavButton from '../../../components/NavButton';
-import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 
 const notableUsers = [
-  { alt: 'Code for All', link: '#', src: '/images/code-for-all.png' },
-  { alt: 'Code for America', link: '#', src: '/images/code-for-america.svg' },
-  { alt: 'DemocracyLab', link: '#', src: '/images/democracy-lab.svg' },
-  { alt: 'Hack for LA', link: '#', src: '/images/hack-for-la.png' },
-  { alt: 'OpenOakland', link: '#', src: '/images/open-oakland.svg' },
-  { alt: 'Open San Diego', link: '#', src: '/images/open-san-diego.svg' },
-  { alt: 'Open Savannah', link: '#', src: '/images/open-savannah.png' },
-  { alt: 'Yale OpenLab', link: '#', src: '/images/yale-openlab.svg' },
+  {
+    alt: 'Hack for LA',
+    link: 'https://www.hackforla.org/',
+    src: '/images/hack-for-la.png',
+  },
+  {
+    alt: 'Code for America',
+    link: 'https://www.codeforamerica.org/',
+    src: '/images/code-for-america.svg',
+  },
+  {
+    alt: 'OpenOakland',
+    link: 'https://openoakland.org/',
+    src: '/images/open-oakland.svg',
+  },
+  {
+    alt: 'Code for Tulsa',
+    link: 'https://www.meetup.com/Code-for-Tucson/',
+    src: '/images/code-for-tulsa.png',
+  },
+
+  {
+    alt: 'Code for Chapel Hill',
+    link: 'http://www.codeforchapelhill.com/',
+    src: '/images/code-for-chapel-hill.png',
+  },
+  {
+    alt: 'Code for PDX',
+    link: 'https://www.meetup.com/Code-for-PDX/',
+    src: '/images/code-for-PDX.png',
+  },
+  {
+    alt: 'Code for Buffalo',
+    link: 'https://www.codeforbuffalo.org/',
+    src: '/images/code-for-buffalo.png',
+  },
+  {
+    alt: 'BetaNYC',
+    link: 'https://beta.nyc/',
+    src: '/images/betanyc.png',
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
-  sectionTitle:{
-    '& h1':{
-      fontSize: '28px' ,
+  sectionTitle: {
+    '& h1': {
+      fontSize: '28px',
     },
 
-    padding:'48px 0 32px 0',
+    padding: '48px 0 32px 0',
     [theme.breakpoints.down('md')]: {
-      '& h1':{
-        fontSize: '24px' ,
+      '& h1': {
+        fontSize: '24px',
       },
-      padding:'16px 0 32px 0',
+      padding: '16px 0 32px 0',
     },
   },
 }));
@@ -39,7 +71,10 @@ const NotableUsersSection = () => {
   const SectionTitle = () => {
     return (
       <Grid item lg={12} md={12} sm={12} className={classes.sectionTitle}>
-        <Typography  variant='h1' align='center' > See how the Civic Tech Index is used by:</Typography>
+        <Typography variant='h1' align='center'>
+          {' '}
+                    See how the Civic Tech Index is used by:
+        </Typography>
       </Grid>
     );
   };
@@ -47,13 +82,15 @@ const NotableUsersSection = () => {
   const LogoList = () => {
     const LogoItem = (props) => {
       return (
-        <Grid item  lg ={3} md={3} xs={6} style={{ height: '120px' }}>
+        <Grid item lg={3} md={3} xs={6} style={{ height: '120px' }}>
           <Grid
             container
             alignItems='center'
             justify='center'
-            style={{ height:'100%' }}>
-            <IconButton component={Link} to={"/organizations/"+props?.alt?.replaceAll(" ","")} >
+            style={{ height: '100%' }}>
+            <IconButton
+              href={props.link
+              }>
               <img
                 style={{ top: '50%' }}
                 align='center'
@@ -61,7 +98,7 @@ const NotableUsersSection = () => {
                 src={props.src}
               />
             </IconButton>
-          </Grid >
+          </Grid>
         </Grid>
       );
     };
