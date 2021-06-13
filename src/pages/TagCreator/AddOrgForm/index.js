@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Container from '@material-ui/core/Container';
+import Modal from '@material-ui/core/Modal';
 
+import useStyles from './styles';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import Complete from './Complete';
 
-const AddOrgForm = () => {
+const AddOrgForm = ({ open, onClose, onNewOrg }) => {
+  const classes = useStyles();
   const [step, setStep] = useState(0);
   const [orgEmail, setOrgEmail] = useState();
   const [orgName, setOrgName] = useState();
@@ -40,6 +44,23 @@ const AddOrgForm = () => {
     }
   };
 
+  const handleClose = () => {
+    setStep(0);
+    setOrgEmail('');
+    setOrgName('');
+    setParentOrg('');
+    setWebsiteURL('');
+    setGithubURL('');
+    setGithubTag('');
+    setFacebookURL('');
+    setTwitterURL('');
+    setMeetupURL('');
+    setCity('');
+    setStateProvCo('');
+    setCountry('');
+    onClose();
+  };
+
   const handleSubmit = async () => {
     const orgProps = {
       name: orgName,
@@ -56,11 +77,12 @@ const AddOrgForm = () => {
     if (stateProvCo) { orgProps.state = stateProvCo }
     if (country) { orgProps.country = country }
     try {
-      await axios.post(
+      const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/organizations/`,
         orgProps
       );
-      setStep(2);
+      setStep(0);
+      onNewOrg(response.data);
     } catch (error) {
       console.log(error.response);
     }
@@ -83,6 +105,7 @@ const AddOrgForm = () => {
           onGithubTag={setGithubTag}
           parentOrgList={parentOrgList}
           onParentOrgChange={setParentOrg}
+          onCancel={handleClose}
           onNext={handleNext}
         />
       );
@@ -105,7 +128,7 @@ const AddOrgForm = () => {
         />
       );
     case 2:
-      return <Complete />;
+      return <Complete onClose={handleClose} />;
     default:
       return (
         <StepOne
@@ -127,7 +150,13 @@ const AddOrgForm = () => {
     }
   };
 
-  return renderStep();
+  return (
+    <Modal open={open} onBackdropClick={handleClose}>
+      <Container className={classes.container}>
+        {renderStep()}
+      </Container>
+    </Modal>
+  );
 };
 
 export default AddOrgForm;

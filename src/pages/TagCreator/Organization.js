@@ -9,7 +9,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles'
-import AddOrgModal from '../../components/AddOrgModal';
+import AddOrgForm from './AddOrgForm';
 
 const useStyles = makeStyles((theme) => ({
   gridStyle:{
@@ -38,11 +38,12 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
 
   const loading = open && options.length === 0;
 
-  const handleModalClose = (newOrg) => {
-    if (newOrg) {
-      setCurrentOptions([newOrg.name, ...currentOptions]);
-    }
+  const handleModalClose = () => {
     setModalOpen(false);
+  };
+
+  const handleNewOrg = (org) => {
+    setCurrentOptions([org.name, ...currentOptions]);
   };
 
   return (
@@ -88,7 +89,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
         </Typography>
       </Grid>
-      <AddOrgModal open={modalOpen} onClose={handleModalClose} />
+      <AddOrgForm open={modalOpen} onClose={handleModalClose} onNewOrg={handleNewOrg}/>
     </>
   )
 }

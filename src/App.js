@@ -4,7 +4,6 @@ import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
 import About from './pages/About';
-import AddOrganization from './pages/AddOrganization';
 import Contact from './pages/RadicalCollaboration/Contact';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
@@ -16,7 +15,6 @@ import Landing from './pages/Landing';
 import RadicalCollaboration from './pages/RadicalCollaboration';
 import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
-import Placeholder from './pages/Placeholder';
 import Error404 from './pages/Error404';
 import ShareTheCti from './pages/RadicalCollaboration/Share';
 import Guides from './guides/';
@@ -54,9 +52,7 @@ const App = () => {
             <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
             <Route exact path='/organizations/*' component={IndvOrgPage} />
             {/* test and error page routes begin */}
-            <RouteTitled exact path='/addorg' component={AddOrganization} title='AddOrganization'/>
             <Route path='/guides/:guide' component={Guides} />
-            <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />
             {/* test and error page routes end */}
             <Redirect from='/add' to='/join-index/how-to-add' />
@@ -74,6 +70,7 @@ const App = () => {
             <Redirect from='/share' to='/support/share' />
             <Redirect from='/tag-creator' to='/join-index' />
             <Redirect from='/tagcreator' to='/join-index' />
+            <Redirect from='/tag-generator' to='/join-index' />
             <Redirect from='/taggenerator' to='/join-index' />
             {/* test and error page redirect begin */}
             <Redirect from='/guides' to='/guides/colors' />
