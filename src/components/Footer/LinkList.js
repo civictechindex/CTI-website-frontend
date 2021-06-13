@@ -18,13 +18,13 @@ const LinkList = ({ header, links, route }) => {
         {header}
       </Typography>
       {links.map((link) => {
-        return link.external ? (
-          <a key={link.key} href={link.to}>
-            {link.text}
+        return link.isExternal ? (
+          <a key={link.id} href={link.route}>
+            {link.header}
           </a>
         ) : (
-          <Link key={link.key} to={link.to}>
-            {link.text}
+          <Link key={link.id} to={link.route}>
+            {link.header}
           </Link>
         );
       })}

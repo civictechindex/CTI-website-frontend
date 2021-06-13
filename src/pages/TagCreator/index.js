@@ -73,7 +73,7 @@ const TagCreator = () => {
   const [userTags, setUserTags] = useQueryParam('userTags',withDefault(ArrayParam,[]));
   const [orgTags, setOrgTags] = useQueryParam('orgTags',withDefault(ArrayParam,[]));
   const [options, setOptions] = useState([]);
-  const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/tag-generator', name: 'Tag Generator' }]
+  const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/join-index', name: 'Join the Index' }]
 
   const resetForm = () => {
     setValue('')
@@ -171,6 +171,7 @@ const TagCreator = () => {
         .then(res => {
           setTopicSearchError()
           setCurrentTags(res.data.names)
+          handleChangeProjectRepository()
         }).catch(e => {
         /*
          * This should store the error state.
@@ -180,7 +181,9 @@ const TagCreator = () => {
           setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
         })
     }
-    handleChangeProjectRepository()
+    else {
+      handleChangeProjectRepository()
+    }
   }
   const handleChangeChip = (chips) =>{
     let chipsArr = []
