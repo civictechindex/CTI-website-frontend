@@ -73,7 +73,7 @@ const About = () => {
       <GetStartedCard
         headerTitle='Ready to get started?'
         buttonText='Tag your Project'
-        buttonHref='/tag-generator'
+        buttonHref='/join-index'
       />
     </Box>
   );

@@ -171,6 +171,7 @@ const TagCreator = () => {
         .then(res => {
           setTopicSearchError()
           setCurrentTags(res.data.names)
+          handleChangeProjectRepository()
         }).catch(e => {
         /*
          * This should store the error state.
@@ -180,7 +181,9 @@ const TagCreator = () => {
           setTopicSearchError(<p style={{ color: 'red' }}>Cannot find repository. Please check the name and try again</p>)
         })
     }
-    handleChangeProjectRepository()
+    else {
+      handleChangeProjectRepository()
+    }
   }
   const handleChangeChip = (chips) =>{
     let chipsArr = []
