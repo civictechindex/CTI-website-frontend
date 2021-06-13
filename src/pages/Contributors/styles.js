@@ -1,6 +1,6 @@
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
-export const useStyle = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme) => ({
   firstSectionWrapper: {
     background: '#004364',
     color: '#FFE06D',
@@ -20,12 +20,12 @@ export const useStyle = makeStyles((theme) => ({
     width: '100px',
   },
   textStyle: {
-    color:'#FEFEFE',
+    color: '#FEFEFE',
     fontSize: '24px',
-    textAlign:'center',
+    textAlign: 'center',
     marginTop: '-1rem',
   },
-  
+
   projectsLink: {
     margin: '0',
     paddingTop: '70px',
@@ -65,7 +65,7 @@ export const useStyle = makeStyles((theme) => ({
       margin: 0,
     },
     '& p': {
-     fontSize: '24px',
+      fontSize: '24px',
     },
   },
   unaffiliatedThumbnailsWrapper: {
@@ -106,9 +106,9 @@ export const useStyle = makeStyles((theme) => ({
     marginLeft: '47px',
   },
   afflnThumbnails: {
-    border: "1px solid #bcbcbc",
-    width:"375px",
-    height:"64px",
+    border: '1px solid #bcbcbc',
+    width: '375px',
+    height: '64px',
   },
   affiliatedOrgsContainer: {
     '&h2, & h3': {
@@ -130,7 +130,7 @@ export const useStyle = makeStyles((theme) => ({
     fontSize: '28px',
     paddingTop: '6px',
     paddingLeft: '10px',
-    color:'#004364',
+    color: '#004364',
   },
   contributorsContainer: {
     boxSizing: 'border-box',
@@ -147,9 +147,9 @@ export const useStyle = makeStyles((theme) => ({
   thumbnailWrapper: {
     minHeight: '5rem',
     width: '375px',
-    height: '64px'  
+    height: '64px',
   },
- 
+
   thumbnails: {
     color: theme.palette.common.black,
     display: 'flex',
@@ -162,11 +162,11 @@ export const useStyle = makeStyles((theme) => ({
     paddingTop: '4px',
   },
   thumbnailImage: {
-     width: '48px',
-     height: '48px',
-     paddingTop: '16px',
-     paddingLeft: '16px',
-     marginLeft: '-20px',
+    width: '48px',
+    height: '48px',
+    paddingTop: '16px',
+    paddingLeft: '16px',
+    marginLeft: '-20px',
   },
   thumbnailImageresize: {
     width: '30px',
@@ -177,11 +177,11 @@ export const useStyle = makeStyles((theme) => ({
     alignItems: 'center',
     flex: '3 1 75%',
     minHeight: '6rem',
-    "&:visited": {
-      color: "theme​.palette.​text.secondary",
-     },
+    '&:visited': {
+      color: 'theme​.palette.​text.secondary',
+    },
   },
- 
+
   thumbnailText: {
     alignItems: 'center',
     minHeight: '6rem',
@@ -189,14 +189,13 @@ export const useStyle = makeStyles((theme) => ({
     paddingLeft: '3px',
   },
   orgText: {
-    color:"#004364",
-    fontSize:'24px',
-    
+    color: '#004364',
+    fontSize: '24px',
   },
 
   blueColorText: {
-    color: "#FEFEFE",
-    fontSize:'24px',
+    color: '#FEFEFE',
+    fontSize: '24px',
   },
   textWrapperWithoutImage: {
     display: 'grid',
@@ -210,8 +209,7 @@ export const useStyle = makeStyles((theme) => ({
     minHeight: '6rem',
     color: theme.palette.secondary.dark,
     paddingLeft: '46px',
-    marginTop:'-11px',
-
+    marginTop: '-11px',
   },
   codeForAllWrapper: {
     '& a': {
@@ -231,7 +229,7 @@ export const useStyle = makeStyles((theme) => ({
       display: 'flex',
       color: theme.palette.secondary.dark,
       fontSize: '28px',
-      marginLeft:'13px',
+      marginLeft: '13px',
     },
     width: '1005px',
     margin: '1rem auto',
@@ -239,60 +237,57 @@ export const useStyle = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '1rem',
     marginLeft: '-3rem',
-    height:'80px',
-    backgroundColor:'theme​.palette.​background.default',
+    height: '80px',
+    backgroundColor: 'theme​.palette.​background.default',
   },
- 
+
   indicator: {
-    backgroundColor: '#006B95'
+    backgroundColor: '#006B95',
   },
   tabVal: {
-   color: "theme​.palette.​text.disabled",
-    "&:hover": {
-      color: "#006B95",
-      opacity: 1
+    color: 'theme​.palette.​text.disabled',
+    '&:hover': {
+      color: '#006B95',
+      opacity: 1,
     },
-    
   },
-  
+
   button: {
     width: '211px',
     height: '44px',
     borderRadius: '31px',
     border: '1px solid',
     borderColor: '#004364',
-    color: "#004364",
+    color: '#004364',
     fontSize: '16px',
     backgroundColor: 'transparent',
     '&:hover': {
       backgroundColor: theme.palette.background.default,
     },
-    }, 
+  },
 
   chkBoxStyle: {
     color: '#6D6E74',
     paddingLeft: '59rem',
   },
 
-  
   formControlLabel: {
-
     color: '#004364',
     fontWeight: 'bold',
   },
- 
- blueColor: {
-   backgroundColor: "#004364",
-   color:"theme​.palette.​text.secondary",
-   '& img': {
-    marginRight: '0.5rem',
-    maxWidth: '6rem',
+
+  blueColor: {
+    backgroundColor: '#004364',
+    color: 'theme​.palette.​text.secondary',
+    '& img': {
+      marginRight: '0.5rem',
+      maxWidth: '6rem',
     },
     '& p': {
       display: 'flex',
-      color: "white",
+      color: 'white',
       fontSize: '28px',
-      marginLeft:'13px',
+      marginLeft: '13px',
     },
     width: '1005px',
     margin: '2rem auto',
@@ -300,9 +295,6 @@ export const useStyle = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '1rem',
     marginLeft: '-6rem',
-    height:'80px',
- 
+    height: '80px',
   },
-
- 
 }));

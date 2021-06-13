@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Dropdown } from "../../components/Dropdown";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
-import { useStyle } from "./styles.js";
+import { useStyles } from "./styles.js";
 import { Typography } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 export const AffiliatedOrganizations = ({ organizations }) => {
-  const classes = useStyle();
+  const classes = useStyles();
 
 
   const parentOrg =organizations['Code for All'].filter(item => item);

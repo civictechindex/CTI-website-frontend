@@ -15,7 +15,7 @@ import NavBreadcrumbs from "../../components/NavBreadcrumbs";
 import { DropdownArrow } from "../../components/DropdownArrow.js";
 import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
-import { useStyle } from "./styles.js";
+import { useStyles } from "./styles.js";
 import GetStartedCard from '../../components/GetStartedCard'
 import { TitleSection } from '../../components'
 import Grid from '@material-ui/core/Grid';
@@ -57,7 +57,7 @@ export default function Contributors({ match }) {
 
   const affiliation = match.params.affiliation;
 
-  const classes = useStyle();
+  const classes = useStyles();
 
   const [organizations, setOrganizations] = useState([]);
   const [organizationNamesList, setOrganizationNamesList] = useState([]);
@@ -471,7 +471,7 @@ const Affiliation = ({ organizations, inputValue, classes, affiliation }) => {
     }
   }
 };
-const useStyles = makeStyles(theme => ({
+const useStylesTopCallToAction = makeStyles(theme => ({
   root:
   {
 
@@ -516,7 +516,7 @@ const TopCallToAction = ({
   inputPlaceholder,
   setInputValue,
 }) => {
-  const classes = useStyles();
+  const classes = useStylesTopCallToAction();
 
 
   return (
