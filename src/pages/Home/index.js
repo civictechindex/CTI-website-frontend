@@ -72,8 +72,13 @@ const CallToActionSection = () => {
   return (
     <Grid container style={{ paddingTop: '35px' }} justify='center'>
       <Grid container justify='space-between' style={{ width: '392px' }}>
+<<<<<<< HEAD
         <NavButton href='/tag-generator' color='primary'>
           Tag your project
+=======
+        <NavButton href='/join-index' color='primary'>
+                    Tag your project
+>>>>>>> main
         </NavButton>
         <NavButton href='/about' variant='outlined'>
           Learn more
@@ -106,7 +111,7 @@ const Home = () => {
       <GetStartedCard
         headerTitle='Ready to get started?'
         buttonText='Tag your Project'
-        buttonHref='/tag-generator'
+        buttonHref='/join-index'
       />
     </Box>
   );
