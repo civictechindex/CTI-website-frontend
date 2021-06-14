@@ -51,6 +51,7 @@ const MarketingSection = () => {
       align='center'
       className={classes.marketingPointContainerStyle}
     >
+      <Grid item xs={1} md={2} lg={1}/>
       <Typography variant='body1' color='textSecondary'>
         Requires no coding
       </Typography>
@@ -64,6 +65,7 @@ const MarketingSection = () => {
         The Index is owned by <br />
         all who use it
       </Typography>
+      <Grid item xs={1} md={2} lg={1}/>
     </Grid>
   );
 };
