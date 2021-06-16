@@ -20,7 +20,7 @@ const StepTwo = (props) => {
       <Typography variant='h5' className={classes.heading}>Social Media URL (optional)</Typography>
       <Typography variant='subtitle1' className={classes.label}>Facebook URL:</Typography>
       <TextField
-        placeholder='http://facebook.com/example...'
+        placeholder='https://facebook.com/example...'
         value={props.facebookURL}
         onChange={(event) => {
           props.onFacebookURL(event.target.value);
@@ -28,7 +28,7 @@ const StepTwo = (props) => {
       />
       <Typography variant='subtitle1' className={classes.label}>Twitter URL:</Typography>
       <TextField
-        placeholder='http://twitter.com/example...'
+        placeholder='https://twitter.com/example...'
         value={props.twitterURL}
         onChange={(event) => {
           props.onTwitterURL(event.target.value);

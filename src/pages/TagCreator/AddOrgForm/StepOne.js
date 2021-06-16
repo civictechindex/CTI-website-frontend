@@ -95,7 +95,7 @@ const StepOne = (props) => {
       <Typography color='error'>{websiteURLErr}</Typography>
       <Typography variant='subtitle1' className={classes.label}>Github URL:*</Typography>
       <TextField
-        placeholder='http://github.com/example...'
+        placeholder='https://github.com/example...'
         value={props.githubURL}
         onChange={(event) => {
           props.onGithubURL(event.target.value);
