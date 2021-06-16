@@ -11,17 +11,17 @@ import Complete from './Complete';
 const AddOrgForm = ({ open, onClose, onNewOrg }) => {
   const classes = useStyles();
   const [step, setStep] = useState(0);
-  const [orgEmail, setOrgEmail] = useState();
-  const [orgName, setOrgName] = useState();
   const [parentOrg, setParentOrg] = useState();
+  const [orgEmail, setOrgEmail] = useState('');
+  const [orgName, setOrgName] = useState('');
   const [parentOrgList, setParentOrgList] = useState([]);
-  const [websiteURL, setWebsiteURL] = useState();
-  const [githubURL, setGithubURL] = useState();
-  const [githubTag, setGithubTag] = useState();
-  const [facebookURL, setFacebookURL] = useState();
-  const [twitterURL, setTwitterURL] = useState();
-  const [meetupURL, setMeetupURL] = useState();
-  const [city, setCity] = useState();
+  const [websiteURL, setWebsiteURL] = useState('');
+  const [githubURL, setGithubURL] = useState('');
+  const [githubTag, setGithubTag] = useState('');
+  const [facebookURL, setFacebookURL] = useState('');
+  const [twitterURL, setTwitterURL] = useState('');
+  const [meetupURL, setMeetupURL] = useState('');
+  const [city, setCity] = useState('');
   const [stateProvCo, setStateProvCo] = useState();
   const [country, setCountry] = useState();
 
