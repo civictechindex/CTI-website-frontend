@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles'
 import AddOrgForm from './AddOrgForm';
 
@@ -89,7 +90,11 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
         </Typography>
       </Grid>
-      <AddOrgForm open={modalOpen} onClose={handleModalClose} onNewOrg={handleNewOrg}/>
+      <Modal open={modalOpen}>
+        <DialogContent>
+          <AddOrgForm onClose={handleModalClose} onNewOrg={handleNewOrg}/>
+        </DialogContent>
+      </Modal>
     </>
   )
 }

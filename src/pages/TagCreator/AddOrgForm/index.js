@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
-import Modal from '@material-ui/core/Modal';
 
 import useStyles from './styles';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import Complete from './Complete';
 
-const AddOrgForm = ({ open, onClose, onNewOrg }) => {
+const AddOrgForm = React.forwardRef(({ open, onClose, onNewOrg }, ref) => {
   const classes = useStyles();
   const [step, setStep] = useState(0);
   const [parentOrg, setParentOrg] = useState();
@@ -151,12 +150,12 @@ const AddOrgForm = ({ open, onClose, onNewOrg }) => {
   };
 
   return (
-    <Modal open={open} onBackdropClick={handleClose}>
-      <Container className={classes.container}>
+      <Container className={classes.container} ref={ref}>
         {renderStep()}
       </Container>
-    </Modal>
   );
-};
+});
+
+AddOrgForm.displayName = "AddOrgForm";
 
 export default AddOrgForm;
