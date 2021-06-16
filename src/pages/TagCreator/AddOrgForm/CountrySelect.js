@@ -49,7 +49,7 @@ const CountrySelect = ({ onChange }) => {
           label=''
           id='filled-basic'
           variant='outlined'
-          size='large'
+          size='medium'
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill
