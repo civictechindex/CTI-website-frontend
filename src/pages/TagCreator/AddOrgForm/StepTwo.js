@@ -60,7 +60,7 @@ const StepTwo = (props) => {
       <Typography variant='subtitle1' className={classes.label}>Country:</Typography>
       <CountrySelect onChange={props.onCountryChange} />
       <Box className={classes.buttons}>
-        <Button variant='contained' color='default' onClicks={props.onPrev}>Back</Button>
+        <Button variant='contained' color='default' onClick={props.onPrev}>Back</Button>
         <Button variant='contained' color='secondary' onClick={props.onSubmit}>Next</Button>
       </Box>
     </>
