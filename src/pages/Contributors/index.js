@@ -12,9 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import NavBreadcrumbs from "../../components/NavBreadcrumbs";
-import { DropdownArrow } from "../../components/DropdownArrow.js";
-import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
-import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
 import { useStyle } from "./styles.js";
 import GetStartedCard from '../../components/GetStartedCard'
 import { TitleSection } from '../../components'
@@ -28,7 +25,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-
+import { Affiliated  } from "./Affiliated";
+import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
 
 // eslint-disable-next-line
 function TabPanel(props) {
@@ -57,6 +55,9 @@ export default function Contributors({ match }) {
 
   const affiliation = match.params.affiliation;
 
+  const searchaffiliation = match.params.searchaffiliation;
+
+
   const classes = useStyle();
 
   const [organizations, setOrganizations] = useState([]);
@@ -71,12 +72,16 @@ export default function Contributors({ match }) {
 
   const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
   const [unaffiliated, getAffiliatedNames] = useState([]);
   const [unaffiliatedCount, getunaffiliatedCount] = useState(0);
   const [affiliatedCount, getaffiliatedCount] = useState(0);
+  const [organizationData, getOrganizationData] = useState([]);
 
-  let count1 =0, count2 =0;
+  const [searchCount, setsearchCount] = useState(false);
 
+
+  let count1 =0, count2 =0,totalaffiliatedCount=0,totalunaffiliatedCount=0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,13 +91,16 @@ export default function Contributors({ match }) {
 
       const organization = result.data;
 
+
       const sorted = organization.sort((a, b) => a.id - b.id);
       setOrganizations(sorted);
 
     };
 
     fetchData();
+
   }, []);
+
 
   useEffect(() => {
     const createAffiliatedOrganizations = () =>
@@ -107,15 +115,20 @@ export default function Contributors({ match }) {
         if (!affiliated["Code for All"]) {
           affiliated["Code for All"] = [];
         }
-        if (affiliated["Code for All"]) {
+        if (affiliated["Code for All"])
+        {
+
           affiliated["Code for All"].push(organizations[organization.id - 2]);
           affiliated[organization.name] = [organization];
 
         }
 
+
+
       };
 
       const addToUnaffiliated = (organization) => {
+
 
         if (affiliated["unaffiliated"]) {
           affiliated["unaffiliated"].push(organization);
@@ -129,48 +142,71 @@ export default function Contributors({ match }) {
       };
 
 
-
       for (const org of organizations)
       {
         names.push(org.name);
         const orgName = org.name.toLowerCase().replace(/\s/g, "");
-
-
-
-        if ((!inputValue || orgName.includes(input)))
+        if (!inputValue || orgName.includes(input))
         {
           if (org.affiliated === false)
           {
-
             count1++;
             addToUnaffiliated(org);
-
           }
-          else
+          else if (org.affiliated === true)
           {
-
             count2++;
             addToAffiliated(org);
           }
         }
+        getOrganizationData(organizations);
+
       }
+
 
       if (count1 !== 0 || count2 !== 0)
       {
 
-        getunaffiliatedCount(count1);
-        getaffiliatedCount(count2);
+        if (inputValue !== '')
+        {
+          getunaffiliatedCount(count1);
+          getaffiliatedCount(count2);
+
+          setsearchCount(true);
+
+
+        }
 
       }
 
       setAffiliatedOrganizationsObject(affiliated);
       setOrganizationNamesList(names.sort());
 
-
     };
-    createAffiliatedOrganizations();
-  }, [organizations, inputValue, count1,count2]);
 
+    createAffiliatedOrganizations();
+  }, [organizations, inputValue, count1,count2,searchaffiliation,organizationData,searchCount,unaffiliatedCount,affiliatedCount]);
+
+
+  if (organizationData.length >0)
+  {
+
+    for (const orgdata of organizationData)
+    {
+
+      if (orgdata.depth  === 3 || orgdata.depth === 4)
+      {
+        totalaffiliatedCount++;
+
+      }
+      if (orgdata.depth  === 2 && orgdata.name !== 'Code for All')
+      {
+        totalunaffiliatedCount++;
+      }
+    }
+
+
+  }
 
 
   useEffect(() => {
@@ -188,6 +224,8 @@ export default function Contributors({ match }) {
       setAfflnSepOpen(false);
     }
   }, [affiliation]);
+
+
 
   // Tab Code
 
@@ -238,15 +276,15 @@ export default function Contributors({ match }) {
 
 
   // CheckBox Code
-  const [state, setState] = React.useState({
-    indexContributor: true,
 
-  });
 
-  const handleChangeCheckbox = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const [checkboxValue, setIsTrue] = useState(false);
+
+
+  const checkBoxChange = (event) => {
+    const target = event.target.checked;
+    setIsTrue(target);
   };
-
 
 
   return (
@@ -272,13 +310,6 @@ export default function Contributors({ match }) {
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 inputPlaceholder="Search for an organization"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <SearchRoundedIcon className={classes.icon} />
-                    </InputAdornment>
-                  ),
-                }}
               />
             </Grid>
           </Grid>
@@ -287,6 +318,8 @@ export default function Contributors({ match }) {
       <Box className='containerGray'>
 
         <Container>
+
+
           <MuiThemeProvider theme={theme}>
             <AppBar position="static" color="default" elevation={0}>
               <Tabs
@@ -297,145 +330,77 @@ export default function Contributors({ match }) {
                 classes={{ indicator: classes.indicator }}
               >
 
-                <Tab label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({unaffiliatedCount + affiliatedCount })</span></>} icon="All" {...a11yProps(0)} className={classes.tabVal} />
+                <Tab label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalunaffiliatedCount + totalaffiliatedCount })</span></>} icon="All" {...a11yProps(0)} className={classes.tabVal} />
                 <Tab  icon="Unaffiliated"  label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</span></>} className={classes.tabVal} {...a11yProps(1)} />
-                <Tab  icon="Affiliated" label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({affiliatedCount})</span></>} className={classes.tabVal} {...a11yProps(2)} />
+                <Tab  icon="Affiliated" label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalaffiliatedCount})</span></>} className={classes.tabVal} {...a11yProps(2)} />
               </Tabs>
             </AppBar>
           </MuiThemeProvider>
+
 
 
           <Grid index={value}>
             <Grid>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox onChange={handleChangeCheckbox} name="indexcontributor" className={classes.chkBoxStyle}/>}
-                  label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>}
-                />
+                  control={
+                    <Checkbox className={classes.chkBoxStyle}
+                      onChange={checkBoxChange} defaultChecked={false}
+                    />
+                  }
+                  label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>} />
               </FormGroup>
             </Grid>
+
             <TabPanel value={value} index={0}>
-              <Grid className={classes.unaffiliatedWrapper}>
-                <Grid className={classes.sectionContainer}>
-                  <Box component="div" className={classes.affiliation}>
-                    <Typography variant='h2' color='primary' component={'span'} style={{ paddingLeft: '82px', fontSize: '28px' }}>
-                        Unaffiliated Organizations  ({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0} / {affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0} )
-                    </Typography>
-                  </Box>
-                  <Box>
-                    {unaffiliatedOpen && (
-                      <Affiliation
-                        organizations={affiliatedOrganizationsObject["unaffiliated"]}
-                        inputValue={inputValue}
-                        unaffiliated={unaffiliated}
-                        classes={classes}
-                        affiliation="unaffiliated"
-                      />
-                    )}
-                  </Box>
-                </Grid>
-              </Grid>
-              <Grid className={classes.affiliatedWrapper}>
-                <Grid className={classes.sectionContainer}>
-                  <Box className={classes.affiliation}>
-                    <Typography variant='h2' color='primary' component={'span'} style={{ paddingLeft: '166px', color: '#004364',fontSize: '28px' }}>
-                        Affiliated Organizations ({affiliatedCount} / {affiliatedCount} )
-                    </Typography>
-                  </Box>
-
-                  <Grid className={classes.affiliatedOrgsContainer}>
-                    <Box className={affiliatedOpen ? `${classes.blueColor} ` : `${classes.codeForAllWrapper}`}>
-                      <img
-                        src="/images/Code_for_All.png"
-                        alt="code for all logo"
-                        style={{ marginRight: "10px" }}
-                      />
-                      <a style={{ textDecoration: "none" }}href={"https://codeforall.org"}  target="_blank"  rel="noreferrer noopener" >
-                        <Typography variant='body2' className={classes.codeforAllText}>Code for All  ( {affiliatedCount} / {affiliatedCount} )</Typography>
-                      </a>
-                      <DropdownArrow  setOpenFunction={setAffiliatedOpen}  />
-
-
-                    </Box>
-                    <Box style={{ marginLeft: '-46px',width: '928px' }}>
-
-                      {affiliatedOpen && (
-                        <Affiliation
-                          organizations={affiliatedOrganizationsObject}
-                          inputValue={inputValue}
-                          classes={classes}
-                          affiliation="affiliated"
-
-                        />
-                      )}
-                    </Box>
-
-
-                  </Grid>
-
-
-                </Grid>
-              </Grid>
+              <UnaffiliatedOrganizations
+                organization={affiliatedOrganizationsObject["unaffiliated"]}
+                unaffiliatedOpen= {unaffiliatedOpen}
+                searchCount={searchCount}
+                unaffiliated={unaffiliated}
+                unaffiliatedCount={unaffiliatedCount}
+                totalunaffiliatedCount={totalunaffiliatedCount}
+                checkboxValue={checkboxValue}
+              />
+              <Affiliated
+                organizations={affiliatedOrganizationsObject}
+                inputValue={inputValue}
+                classes={classes}
+                affiliation="affiliated"
+                affiliatedOpen={affiliatedOpen}
+                organizationData={organizationData}
+                affiliatedSepOpen= {affiliatedSepOpen}
+                searchCount={searchCount}
+                affiliatedCount={affiliatedCount}
+                totalaffiliatedCount={totalaffiliatedCount}
+                setAfflnSepOpen={setAfflnSepOpen}
+                checkboxValue={checkboxValue}
+              />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <div className={classes.unaffiliatedWrapper}>
-                <div className={classes.sectionContainer}>
-                  <div className={classes.affiliation}>
-                    <Typography variant='h2' color='primary'>
-                          Unaffiliated Organizations  ({unaffiliatedCount} / {unaffiliatedCount} )
-                    </Typography>
-                  </div>
-                  <div>
-                    {unaffiliatedOpen && (
-                      <Affiliation
-                        organizations={affiliatedOrganizationsObject["unaffiliated"]}
-                        inputValue={inputValue}
-                        classes={classes}
-                        affiliation="unaffiliated"
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
+              <UnaffiliatedOrganizations
+                organization={affiliatedOrganizationsObject["unaffiliated"]}
+                unaffiliatedOpen= {unaffiliatedOpen}
+                searchCount={searchCount}
+                unaffiliatedCount={unaffiliatedCount}
+                totalunaffiliatedCount={totalunaffiliatedCount}
+                checkboxValue={checkboxValue}
+              />
             </TabPanel>
             <TabPanel value={value} index={2}>
-
-
-              <Grid className={classes.affiliatedWrapper}>
-                <Grid className={classes.sectionContainer}>
-                  <Box className={classes.affiliation}>
-                    <Typography variant='h2' color='primary'>
-                        Affiliated Organizations ({affiliatedCount} / {affiliatedCount})
-                    </Typography>
-
-                  </Box>
-                  <Grid>
-                    <Box className={affiliatedSepOpen ? `${classes.blueColor} ` : `${classes.codeForAllWrapper}`}>
-                      <img
-                        src="/images/Code_for_All.png"
-                        alt="code for all logo"
-                      />
-                      <Typography variant='body2'>Code for All ( {affiliatedCount} / {affiliatedCount} )</Typography>
-                      <DropdownArrow setOpenFunction={setAfflnSepOpen}  />
-                    </Box>
-                    <Box style={{ marginLeft: '-46px',width: '928px' }}>
-
-                      {affiliatedSepOpen && (
-                        <Affiliation
-                          organizations={affiliatedOrganizationsObject}
-                          inputValue={inputValue}
-                          classes={classes}
-                          affiliation="affiliated"
-                        />
-                      )}
-                    </Box>
-
-                  </Grid>
-
-
-                </Grid>
-              </Grid>
-
+              <Affiliated
+                organizations={affiliatedOrganizationsObject}
+                inputValue={inputValue}
+                classes={classes}
+                affiliation="affiliated"
+                organizationData={organizationData}
+                affiliatedSepOpen= {affiliatedSepOpen}
+                searchCount={searchCount}
+                affiliatedCount={affiliatedCount}
+                totalaffiliatedCount={totalaffiliatedCount}
+                setAfflnSepOpen={setAfflnSepOpen}
+                checkboxValue={checkboxValue}
+              />
             </TabPanel>
           </Grid>
         </Container>
@@ -457,20 +422,34 @@ export default function Contributors({ match }) {
   );
 }
 
-const Affiliation = ({ organizations, inputValue, classes, affiliation }) => {
+/*
+ *const Affiliation = ({ organizations, inputValue, classes, affiliation}) => {
+ *
+ *const data = JSON.parse(localStorage.getItem('organizationData1'));
+ *
+ *const checkboxdata = localStorage.getItem('checkBoxData');
+ *
+ *
+ *
+ *if (!organizations && !inputValue) {
+ *  return <h3 className={classes.loaders}>Loading...</h3>;
+ *} else if (!organizations && inputValue) {
+ *  return <h3 className={classes.loaders}>No Results</h3>;
+ *}
+ *else {
+ *  if (affiliation === "unaffiliated") {
+ *    return <UnaffiliatedOrganizations unAffiliatedOrgs={organizations} />;
+ *  } else {
+ *
+ *    return <AffiliatedOrganizations organizations={organizations} inputValue={inputValue} data={data} checkboxdata={checkboxdata}  />;
+ *   }
+ *}
+ *
+ *
+ *};
+ */
 
-  if (!organizations && !inputValue) {
-    return <h3 className={classes.loaders}>Loading...</h3>;
-  } else if (!organizations && inputValue) {
-    return <h3 className={classes.loaders}>No Results</h3>;
-  } else {
-    if (affiliation === "unaffiliated") {
-      return <UnaffiliatedOrganizations unAffiliatedOrgs={organizations} />;
-    } else {
-      return <AffiliatedOrganizations organizations={organizations} />;
-    }
-  }
-};
+
 const useStyles = makeStyles(theme => ({
   root:
   {
@@ -508,46 +487,52 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
+
 const TopCallToAction = ({
-  heading,
-  tagline,
   input,
   options,
   inputPlaceholder,
   setInputValue,
 }) => {
   const classes = useStyles();
+  const [selectedValue, changeInputVal] = useState(input)
 
+  const handleClick = () => {
+    setInputValue(selectedValue)
+  };
 
   return (
-    <Autocomplete
-      id="free-solo"
-      freeSolo
-      inputValue={input}
-      onInputChange={(e, newValue) => setInputValue(() => newValue)}
-      options={options}
-      className={classes.root}
-      disableClearable
-      forcePopupIcon={false}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          placeholder={inputPlaceholder}
-          className={classes.input}
-          variant="outlined"
-          InputProps={{
-            ...params.InputProps,
-            type: "search",
-            endAdornment: (
-              <InputAdornment position='end'>
-                <SearchRoundedIcon className={classes.icon} />
+    <Grid>
+      <Autocomplete
+        id="free-solo"
+        freeSolo
+        inputValue={input}
+        onInputChange={(e, newValue) => changeInputVal(newValue)}
+        options={options}
+        className={classes.root}
+        disableClearable
+        forcePopupIcon={false}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder={inputPlaceholder}
+            className={classes.input}
+            variant="outlined"
+            InputProps={{
+              ...params.InputProps,
+              type: "search",
 
-              </InputAdornment>
-            ),
-          }}
-        />
-      )}
-    />
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <SearchRoundedIcon onClick={handleClick} className={classes.icon} />
 
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
+      />
+
+    </Grid>
   );
 };

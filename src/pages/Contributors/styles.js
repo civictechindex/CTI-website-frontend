@@ -139,6 +139,13 @@ export const useStyle = makeStyles((theme) => ({
     gap: '0.7rem',
     alignContent: 'flex-start',
   },
+  noargText: {
+     fontStyle: 'italic',
+     paddingRight:'240px',
+     paddingTop: '30px',
+  },
+
+
   loaders: {
     fontSize: '2rem',
     textAlign: 'center',
@@ -272,6 +279,12 @@ export const useStyle = makeStyles((theme) => ({
   chkBoxStyle: {
     color: '#6D6E74',
     paddingLeft: '59rem',
+    '&:hover': {
+      background: 'transparent',
+    },
+    '&:selected': {
+      background: 'transparent',
+    },
   },
 
   
