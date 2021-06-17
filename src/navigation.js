@@ -1,13 +1,13 @@
 const navigation = [
   {
     id: 'join',
-    header: 'Join',
-    route: '/tag-generator',
+    header: 'Join the Index',
+    route: '/join-index',
     subNavigation: [
       {
-        id: 'overview',
-        header: 'Tag Generator',
-        route: '/tag-generator',
+        id: 'addProject',
+        header: 'How to Add Your Project to the Index',
+        route: '/join-index/how-to-add',
       },
     ],
   },
@@ -17,74 +17,43 @@ const navigation = [
     route: '/about',
     subNavigation: [
       {
-        id: 'overview',
-        header: 'About',
-        route: '/about',
+        id: 'faq',
+        header: 'FAQ',
+        route: '/about/faq',
+      },
+      {
+        id: 'contact',
+        header: 'Contact Us',
+        route: '/about/contact',
       },
     ],
   },
   {
     id: 'organizations',
     header: 'Organizations',
-    route: '/contributors/all',
-    subNavigation: [
-      {
-        id: 'indexContributors',
-        header: 'Index Contributors',
-        route: '/contributors/all',
-      },
-      {
-        id: 'unaffiliated',
-        header: 'Unaffiliated',
-        route: '/contributors/unaffiliated',
-      },
-      {
-        id: 'affiliated',
-        header: 'Affiliated',
-        route: '/contributors/affiliated',
-      },
-    ],
+    route: '/organizations/all',
+    subNavigation: [],
   },
   {
-    id: 'radicalCollaboration',
-    header: 'Radical Collaboration',
+    id: 'collaborate',
+    header: 'Collaborate with Us',
     route: '/support',
     subNavigation: [
       {
-        id: 'collaborateWithUs',
-        header: 'Collaborate with Us',
-        route: '/support',
-      },
-      {
-        id: 'howToDoIt',
-        header: 'How to Do It',
-        route: '/adding-projects-to-the-index',
-      },
-      {
         id: 'donate',
         header: 'Donate',
-        route: '/donate',
+        route: '/support/donate',
       },
       {
-        id: 'shareTheCti',
+        id: 'share',
         header: 'Share the CTI',
-        route: '/radicalcollaboration/share',
+        route: '/support/share',
       },
       {
-        id: 'volunteerWithUs',
+        id: 'volunteer',
         header: 'Volunteer with Us',
         route: 'https://www.hackforla.org/projects/civic-tech-index',
         isExternal: true,
-      },
-      {
-        id: 'faq',
-        header: 'FAQ',
-        route: '/radicalcollaboration/faq',
-      },
-      {
-        id: 'contact',
-        header: 'Contact Us',
-        route: '/radicalcollaboration/contact',
       },
     ],
   },

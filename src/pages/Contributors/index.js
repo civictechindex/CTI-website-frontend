@@ -311,6 +311,65 @@ export default function Contributors({ match }) {
                 <FormControlLabel
                   control={<Checkbox onChange={handleChangeCheckbox} name="indexcontributor" className={classes.chkBoxStyle}/>}
                   label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>}
+
+    <Box className='containerDefault'>
+      <Container>
+        <div className={classes.firstSectionWrapper}>
+          <div className={classes.sectionContainer}>
+            <NavBreadcrumbs
+              crumbs={[
+                { name: "Home", href: "/home" },
+                { name: "Organizations", href: "/organizations/all" },
+              ]}
+            />
+          </div>
+          <div className={classes.sectionContainer}>
+            <TopCallToAction
+              heading="Index Contributors"
+              tagline="Check out our partners who have contributed to the Civic Tech Index"
+              options={organizationNamesList}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              inputPlaceholder="Search for an organization"
+            />
+          </div>
+        </div>
+        <div className={classes.unaffiliatedWrapper}>
+          <div className={classes.sectionContainer}>
+            <div className={classes.affiliation}>
+              <Typography variant='h2' color='primary'>
+              Unaffiliated Contributors
+              </Typography>
+              <DropdownArrow setOpenFunction={setUnaffiliatedOpen} />
+            </div>
+            <div>
+              {unaffiliatedOpen && (
+                <Affiliation
+                  organizations={affiliatedOrganizationsObject["unaffiliated"]}
+                  inputValue={inputValue}
+                  classes={classes}
+                  affiliation="unaffiliated"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+        <div className={classes.affiliatedWrapper}>
+          <div className={classes.sectionContainer}>
+            <div className={classes.affiliation}>
+              <Typography variant='h2' color='textPrimary'>
+              Affiliated Contributors
+              </Typography>
+              <DropdownArrow setOpenFunction={setAffiliatedOpen} />
+            </div>
+            <div className={classes.affiliatedOrgsContainer}>
+              {affiliatedOpen && (
+                <Affiliation
+                  organizations={affiliatedOrganizationsObject}
+                  inputValue={inputValue}
+                  classes={classes}
+                  affiliation="affiliated"
+
                 />
               </FormGroup>
             </Grid>

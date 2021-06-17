@@ -20,7 +20,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
 
   beforeEach(() => {
     cy.intercept('https://api-stage.civictechindex.org/api/organizations/').as('getOrganizations');
-    cy.visit('/tag-generator');
+    cy.visit('/join-index');
     cy.wait('@getOrganizations');
   });
 

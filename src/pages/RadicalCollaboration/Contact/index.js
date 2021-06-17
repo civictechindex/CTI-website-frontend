@@ -138,8 +138,8 @@ const Contact = () => {
   const classes = useStyles();
   const breadCrumbLinks = [
     { name: "Home", href: "/home" },
-    { name: "Radical Collaboration", href: "/support" },
-    { name: "Contact Us", href: "/radicalcollaboration/contact" },
+    { name: "About", href: "/about" },
+    { name: "Contact Us", href: "/about/contact" },
   ];
 
   return (
