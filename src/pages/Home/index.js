@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     '& p': {
       width: '29.3%',
     },
+    align: 'center',
     [theme.breakpoints.down('md')]: {
       fontSize: '16px',
     },
@@ -59,7 +60,7 @@ const MarketingSection = () => {
       </Typography>
       <Typography variant='body1' color='textSecondary'>
         {' '}
-        Make your project more <br /> visible with GitHub’s open-source
+        Make your project more <br /> visible with GitHub’s open-source <br />
         communities
       </Typography>
       <Typography variant='body1' color='textSecondary'>
