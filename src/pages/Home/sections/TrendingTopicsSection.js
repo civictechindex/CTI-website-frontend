@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
   trendingContainerStyle: {
     marginTop: '80px',
     paddingBottom: '96px',
+    width: '50%',
+    marginLeft: '5%',
   },
 }));
 
@@ -71,7 +73,7 @@ const TrendingTopicsSection = () => {
 
   return (
     <Grid container className={classes.trendingContainerStyle}>
-      <Grid item lg={6}>
+      <Grid item lg={10}>
         <Typography variant='h3' color='textPrimary' className={classes.sectionMainTitle}>
                     How are people using the CTI?
         </Typography>

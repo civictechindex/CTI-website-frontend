@@ -100,7 +100,6 @@ const Home = () => {
                 alignItems='center'
                 justify='center'
                 className={classes.localTitleSectionStyle}>
-
                 <Grid item xs={10} md={8} lg={10}>
                   <Typography variant='h1' className={classes.localTitleStyle}>
                     Join a worldwide movement to catalog every open source civic tech
@@ -111,7 +110,6 @@ const Home = () => {
                             source civic tech project.
                   </TitleSection> */}
                 </Grid>
-
               </Grid>
             </Box>
             <MarketingSection />
