@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
       marginBottom:'40px',
       fontSize: '31px',
     },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '28px',
+    },
 
   },
   sectionSubTitle:{
@@ -41,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '96px',
     width: '50%',
     marginLeft: '5%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
 }));
 

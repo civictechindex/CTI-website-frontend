@@ -4,9 +4,8 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-// import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
-import { GetStartedCard, NavButton, TitleSection } from '../../components';
+import { GetStartedCard, NavButton } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
 import TrendingTopicsSection from './sections/TrendingTopicsSection';
 import Typography from '@material-ui/core/Typography';
@@ -23,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '16px',
     },
     [theme.breakpoints.down('sm')]: {
+      paddingTop: '35px',
       flexDirection: 'column',
       width: '100%',
       height: '161.5px',
@@ -44,8 +44,20 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     justifyContent: 'center',
     fontSize: '55px',
+    '& br': {
+      display: 'none',
+    },
     [theme.breakpoints.down('md')]: {
       fontSize: '34px',
+      '& br': {
+        display: 'none',
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '28px',
+      '& br': {
+        display: 'block',
+      },
     },
   },
 }));
@@ -103,15 +115,11 @@ const Home = () => {
                 alignItems='center'
                 justify='center'
                 className={classes.localTitleSectionStyle}>
-                <Grid item xs={10} md={8} lg={10}>
+                <Grid item xs={11} md={8} lg={10}>
                   <Typography variant='h1' className={classes.localTitleStyle}>
-                    Join a worldwide movement to catalog every open source civic tech
+                    Join a worldwide movement to catalog every open source <br/> civic tech
                     project.
                   </Typography>
-                  {/* <TitleSection className={classes.localTitleStyle}>
-                            Join a worldwide movement to catalog every open
-                            source civic tech project.
-                  </TitleSection> */}
                 </Grid>
               </Grid>
             </Box>
