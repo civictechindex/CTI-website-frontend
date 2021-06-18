@@ -95,20 +95,18 @@ const Home = () => {
       <div className='containerWorld'>
         <Container disableGutters='true'>
           <Box component='div'>
-            <Hidden mdDown>
-              <Grid container align='center'
-                justify='center'
-                className={classes.localTitleSectionStyle}>
-                <Grid item xs={1} md={2} lg={2} />
-                <Grid item xs={10} md={8} lg={8}>
-                  <Typography variant='h1' className={classes.localTitleStyle}>
+            <Grid container alignItems='center'
+              justify='center'
+              className={classes.localTitleSectionStyle}>
+              <Grid item xs={1} md={2} lg={2} />
+              <Grid item xs={10} md={8} lg={8}>
+                <Typography variant='h1' className={classes.localTitleStyle}>
                     Join a worldwide movement to catalog every open source civic tech
                     project.
-                  </Typography>
-                </Grid>
-                <Grid item xs={1} md={2} lg={2} />
+                </Typography>
               </Grid>
-            </Hidden>
+              <Grid item xs={1} md={2} lg={2} />
+            </Grid>
           </Box>
           <MarketingSection />
           <CallToActionSection />
