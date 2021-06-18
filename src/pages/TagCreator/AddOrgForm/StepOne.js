@@ -67,41 +67,45 @@ const StepOne = (props) => {
       <TextField
         type='email'
         placeholder='Name@example.com'
+        error={orgEmailErr.length > 0}
+        helperText={orgEmailErr}
         value={props.orgEmail}
         onChange={(event) => {
           props.onOrgEmail(event.target.value);
         }}
       />
-      <Typography color='error'>{orgEmailErr}</Typography>
       <Typography variant='subtitle1' className={classes.label}>Organization Name:</Typography>
       <TextField
         value={props.orgName}
+        error={orgNameErr.length > 0}
+        helperText={orgNameErr}
         onChange={(event) => {
           props.onOrgName(event.target.value);
         }}
       />
-      <Typography color='error'>{orgNameErr}</Typography>
       <Typography variant='subtitle1' className={classes.label}>Parent Organization ID:</Typography>
       <ParentSelect orgList={props.parentOrgList} onChange={props.onParentOrgChange}/>
       <Typography variant='h5' className={classes.heading}>Organization URL</Typography>
       <Typography variant='subtitle1' className={classes.label}>Website URL:*</Typography>
       <TextField
         placeholder='http://example.com...'
+        error={websiteURLErr.length > 0}
+        helperText={websiteURLErr}
         value={props.websiteURL}
         onChange={(event) => {
           props.onWebsiteURL(event.target.value);
         }}
       />
-      <Typography color='error'>{websiteURLErr}</Typography>
       <Typography variant='subtitle1' className={classes.label}>Github URL:*</Typography>
       <TextField
         placeholder='https://github.com/example...'
+        error={githubURLErr.length > 0}
+        helperText={githubURLErr}
         value={props.githubURL}
         onChange={(event) => {
           props.onGithubURL(event.target.value);
         }}
       />
-      <Typography color='error'>{githubURLErr}</Typography>
       <Typography variant='h5' className={classes.heading}>Your GitHub Organization Tags</Typography>
       <Typography variant='subtitle2' className={classes.info}>
         This is the GitHub tag that your organization uses such as <br />
@@ -109,12 +113,13 @@ const StepOne = (props) => {
       </Typography>
       <TextField
         placeholder='open-oakland'
+        error={githubTagErr.length > 0}
+        helperText={githubTagErr}
         value={props.githubTag}
         onChange={(event) => {
           props.onGithubTag(event.target.value);
         }}
       />
-      <Typography color='error'>{githubTagErr}</Typography>
       <Box className={classes.buttons}>
         <Button variant='contained' color='default' onClick={props.onCancel}>Cancel</Button>
         <Button variant='contained' color='secondary' onClick={formValidation}>Next</Button>

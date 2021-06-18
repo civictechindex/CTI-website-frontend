@@ -2,6 +2,7 @@
 import React,{ useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
+import DialogContent from '@material-ui/core/DialogContent';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';

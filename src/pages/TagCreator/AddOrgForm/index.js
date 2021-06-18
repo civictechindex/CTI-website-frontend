@@ -7,7 +7,7 @@ import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import Complete from './Complete';
 
-const AddOrgForm = React.forwardRef(({ open, onClose, onNewOrg }, ref) => {
+const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
   const classes = useStyles();
   const [step, setStep] = useState(0);
   const [parentOrg, setParentOrg] = useState();
