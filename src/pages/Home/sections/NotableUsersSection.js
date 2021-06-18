@@ -133,14 +133,19 @@ const NotableUsersSection = () => {
       alignItems='center'
       justify='center'
       style={{ padding: '64.24px 0 0 0' }}>
-      <Paper>
-        <Grid container justify='center'>
-          <SectionTitle />
-          <LogoList />
-          <MoreContributors />
-        </Grid>
-      </Paper>
+      <Grid item xs={1} md={2} lg={1} />
+      <Grid item xs={10} md={8} lg={10}>
+        <Paper>
+          <Grid container justify='center'>
+            <SectionTitle />
+            <LogoList />
+            <MoreContributors />
+          </Grid>
+        </Paper>
+      </Grid>
+      <Grid item xs={1} md={2} lg={1} />
     </Grid>
+
   );
 };
 

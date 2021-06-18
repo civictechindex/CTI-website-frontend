@@ -4,7 +4,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
+// import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import { GetStartedCard, NavButton } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
@@ -42,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
   localTitleStyle:{
     color: theme.palette.warning.main,
+    width: '100%',
+    textAlign: 'center',
   },
 }));
 
@@ -54,7 +56,6 @@ const MarketingSection = () => {
       justify='center'
       className={classes.marketingPointContainerStyle}
     >
-      <Grid item xs={1} md={2} lg={1} />
       <Typography variant='body1' color='textSecondary'>
         Requires no coding
       </Typography>
@@ -68,7 +69,6 @@ const MarketingSection = () => {
         The Index is owned by <br />
         all who use it
       </Typography>
-      <Grid item xs={1} md={2} lg={1}/>
     </Grid>
   );
 };
@@ -91,35 +91,38 @@ const CallToActionSection = () => {
 const Home = () => {
   const classes = useStyles();
   return (
-    <Box className='boxBackground'>
-      <div className='containerWorld'>
-        <Container disableGutters='true'>
-          <Box component='div'>
-            <Grid container alignItems='center'
-              justify='center'
-              className={classes.localTitleSectionStyle}>
-              <Grid item xs={1} md={2} lg={2} />
-              <Grid item xs={10} md={8} lg={8}>
-                <Typography variant='h1' className={classes.localTitleStyle}>
+    <>
+      <Box className='boxBackground'>
+        <div className='containerWorld'>
+          <Container disableGutters='true'>
+            <Box component='div'>
+              <Grid container
+                alignItems='center'
+                justify='center'
+                className={classes.localTitleSectionStyle}>
+
+                <Grid item xs={10} md={8} lg={11}>
+                  <Typography variant='h1' className={classes.localTitleStyle}>
                     Join a worldwide movement to catalog every open source civic tech
                     project.
-                </Typography>
+                  </Typography>
+                </Grid>
+
               </Grid>
-              <Grid item xs={1} md={2} lg={2} />
-            </Grid>
-          </Box>
-          <MarketingSection />
-          <CallToActionSection />
-          <NotableUsersSection />
-          <TrendingTopicsSection />
-        </Container>
-      </div>
-      <GetStartedCard
-        headerTitle='Ready to get started?'
-        buttonText='Tag your Project'
-        buttonHref='/join-index'
-      />
-    </Box>
+            </Box>
+            <MarketingSection />
+            <CallToActionSection />
+            <NotableUsersSection />
+            <TrendingTopicsSection />
+          </Container>
+        </div>
+        <GetStartedCard
+          headerTitle='Ready to get started?'
+          buttonText='Tag your Project'
+          buttonHref='/join-index'
+        />
+      </Box>
+    </>
   );
 };
 Home.propTypes = {
