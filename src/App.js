@@ -12,11 +12,10 @@ import IndvOrgPage from './pages/IndvOrganization';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
-import RadicalCollaboration from './pages/RadicalCollaboration'
+import RadicalCollaboration from './pages/RadicalCollaboration';
 import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
-import Placeholder from './pages/Placeholder';
-import Error404 from './pages/Error404'
+import Error404 from './pages/Error404';
 import ShareTheCti from './pages/RadicalCollaboration/Share';
 import Guides from './guides/';
 import useStyles from './styles';
@@ -24,14 +23,12 @@ import useStyles from './styles';
 const RouteTitled = ({ title, ...rest }) => {
   useEffect(() => {
     if (title) {
-      document.title = 'Civic Tech Index — ' + title
+      document.title = 'Civic Tech Index — ' + title;
     }
-  })
+  });
 
-  return (
-    <Route {...rest} />
-  )
-}
+  return <Route {...rest} />;
+};
 
 const App = () => {
   useStyles();
@@ -56,7 +53,6 @@ const App = () => {
             <Route exact path='/organizations/*' component={IndvOrgPage} />
             {/* test and error page routes begin */}
             <Route path='/guides/:guide' component={Guides} />
-            <Route path='/blank' component={Placeholder} />
             <Route path='/404' component={Error404} />
             {/* test and error page routes end */}
             <Redirect from='/add' to='/join-index/how-to-add' />
@@ -74,6 +70,7 @@ const App = () => {
             <Redirect from='/share' to='/support/share' />
             <Redirect from='/tag-creator' to='/join-index' />
             <Redirect from='/tagcreator' to='/join-index' />
+            <Redirect from='/tag-generator' to='/join-index' />
             <Redirect from='/taggenerator' to='/join-index' />
             {/* test and error page redirect begin */}
             <Redirect from='/guides' to='/guides/colors' />
