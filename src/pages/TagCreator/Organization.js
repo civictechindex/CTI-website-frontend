@@ -2,14 +2,16 @@
 import React,{ useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
+import DialogContent from '@material-ui/core/DialogContent';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles'
-import AddOrgModal from '../../components/AddOrgModal';
+import AddOrgForm from './AddOrgForm';
 
 const useStyles = makeStyles((theme) => ({
   gridStyle:{
@@ -38,11 +40,12 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
 
   const loading = open && options.length === 0;
 
-  const handleModalClose = (newOrg) => {
-    if (newOrg) {
-      setCurrentOptions([newOrg.name, ...currentOptions]);
-    }
+  const handleModalClose = () => {
     setModalOpen(false);
+  };
+
+  const handleNewOrg = (org) => {
+    setCurrentOptions([org.name, ...currentOptions]);
   };
 
   return (
@@ -88,7 +91,11 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
         </Typography>
       </Grid>
-      <AddOrgModal open={modalOpen} onClose={handleModalClose} />
+      <Modal open={modalOpen}>
+        <DialogContent>
+          <AddOrgForm onClose={handleModalClose} onNewOrg={handleNewOrg}/>
+        </DialogContent>
+      </Modal>
     </>
   )
 }
