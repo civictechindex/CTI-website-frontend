@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     '& p': {
       width: '29.3%',
     },
-    align: 'center',
     [theme.breakpoints.down('md')]: {
       fontSize: '16px',
     },
