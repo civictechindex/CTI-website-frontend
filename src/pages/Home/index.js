@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 // import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
-import { GetStartedCard, NavButton } from '../../components';
+import { GetStartedCard, NavButton, TitleSection } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
 import TrendingTopicsSection from './sections/TrendingTopicsSection';
 import Typography from '@material-ui/core/Typography';
@@ -38,12 +38,12 @@ const useStyles = makeStyles((theme) => ({
   },
   localTitleSectionStyle: {
     paddingTop: '5%',
-    width: '113%',
   },
   localTitleStyle:{
     color: theme.palette.warning.main,
-    width: '100%',
     textAlign: 'center',
+    justifyContent: 'center',
+    fontSize: '55px',
   },
 }));
 
@@ -101,11 +101,15 @@ const Home = () => {
                 justify='center'
                 className={classes.localTitleSectionStyle}>
 
-                <Grid item xs={10} md={8} lg={11}>
+                <Grid item xs={10} md={8} lg={10}>
                   <Typography variant='h1' className={classes.localTitleStyle}>
                     Join a worldwide movement to catalog every open source civic tech
                     project.
                   </Typography>
+                  {/* <TitleSection className={classes.localTitleStyle}>
+                            Join a worldwide movement to catalog every open
+                            source civic tech project.
+                  </TitleSection> */}
                 </Grid>
 
               </Grid>
