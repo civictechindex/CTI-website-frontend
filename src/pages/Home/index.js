@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     justifyContent: 'center',
     fontSize: '55px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '34px',
+    },
   },
 }));
 
