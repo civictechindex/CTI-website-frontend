@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     '& p': {
       width: '29.3%',
     },
+    textAlign: 'center',
     [theme.breakpoints.down('md')]: {
       fontSize: '16px',
     },
@@ -49,11 +50,11 @@ const MarketingSection = () => {
   return (
     <Grid
       container
-      align='center'
+      alignItems='center'
       justify='center'
       className={classes.marketingPointContainerStyle}
     >
-      <Grid item xs={1} md={2} lg={1}/>
+      <Grid item xs={1} md={2} lg={1} />
       <Typography variant='body1' color='textSecondary'>
         Requires no coding
       </Typography>
