@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '8px',
     },
   },
+  modalStyle: {
+    overflow: 'scroll',
+  },
   typoStyle: {
     [theme.breakpoints.down('xs')]: {
       fontSize: '1.5rem',
@@ -33,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) => {
+export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setOptions }) => {
+  const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [currentOptions, setCurrentOptions] = useState(options);
 
   const loading = open && options.length === 0;
 
@@ -45,7 +48,9 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
   };
 
   const handleNewOrg = (org) => {
-    setCurrentOptions([org.name, ...currentOptions]);
+    options.shift();
+    setOptions(["", org.name, ...options]);
+    setOrgName(org.name);
   };
 
   return (
@@ -64,7 +69,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           }}
           getOptionSelected={(option, value) => option === value }
           getOptionLabel={(option) => option}
-          options={currentOptions}
+          options={options}
           autoComplete
           loading={loading}
           value={orgName}
@@ -91,7 +96,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
         </Typography>
       </Grid>
-      <Modal open={modalOpen}>
+      <Modal open={modalOpen} className={classes.modalStyle}>
         <DialogContent>
           <AddOrgForm onClose={handleModalClose} onNewOrg={handleNewOrg}/>
         </DialogContent>

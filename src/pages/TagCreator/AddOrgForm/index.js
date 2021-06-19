@@ -80,7 +80,7 @@ const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
         `${process.env.REACT_APP_API_URL}/api/organizations/`,
         orgProps
       );
-      setStep(0);
+      setStep(2);
       onNewOrg(response.data);
     } catch (error) {
       console.log(error.response);

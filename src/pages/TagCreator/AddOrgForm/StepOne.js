@@ -10,13 +10,12 @@ import ParentSelect from './ParentSelect';
 const StepOne = (props) => {
   const classes = useStyles();
   const [orgEmailErr, setOrgEmailErr] = useState('');
-  const [orgNameErr, setOrgNameErr] = useState('');
   const [websiteURLErr, setWebsiteURLErr] = useState('');
   const [githubURLErr, setGithubURLErr] = useState('');
-  const [githubTagErr, setGithubTagErr] = useState('');
 
   const formValidation = () => {
     let isValid = true;
+    // regex to pattern match email
     let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(props.orgEmail)) {
       isValid = false;
@@ -24,31 +23,21 @@ const StepOne = (props) => {
     } else {
       setOrgEmailErr('');
     }
-    if (!props.orgName) {
-      isValid = false;
-      setOrgNameErr('Please enter an Organization Name.');
-    } else {
-      setOrgNameErr('');
-    }
-    re = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+    // regex to pattern match website URL
+    re = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
     if (!re.test(props.websiteURL)) {
       isValid = false;
       setWebsiteURLErr('Website address is not valid. Please enter http(s)://... or www...');
     } else {
       setWebsiteURLErr('');
     }
-    re = /^(?:https:\/\/)?(?:www\.)?github.com\/[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+    // regex to pattern match github URL
+    re = /^(?:https:\/\/)?(?:www.)?github.com\/[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
     if (!re.test(props.githubURL)) {
       isValid = false;
       setGithubURLErr('Github address is not valid. Please enter https://github.com/... or www.github.com/...');
     } else {
       setGithubURLErr('');
-    }
-    if (!props.githubTag) {
-      isValid = false;
-      setGithubTagErr('Please enter your GitHub Organiation tag.');
-    } else {
-      setGithubTagErr('');
     }
     if (isValid) {
       props.onNext();
@@ -63,7 +52,7 @@ const StepOne = (props) => {
       </Box>
       <LinearProgress variant='determinate' color='secondary' value={50} />
       <Typography variant='h5' className={classes.heading}>Organization Detail</Typography>
-      <Typography variant='subtitle1' className={classes.label}>Organization Email:</Typography>
+      <Typography variant='subtitle1' className={classes.label}>*Organization Email:</Typography>
       <TextField
         type='email'
         placeholder='Name@example.com'
@@ -74,11 +63,9 @@ const StepOne = (props) => {
           props.onOrgEmail(event.target.value);
         }}
       />
-      <Typography variant='subtitle1' className={classes.label}>Organization Name:</Typography>
+      <Typography variant='subtitle1' className={classes.label}>*Organization Name:</Typography>
       <TextField
         value={props.orgName}
-        error={orgNameErr.length > 0}
-        helperText={orgNameErr}
         onChange={(event) => {
           props.onOrgName(event.target.value);
         }}
@@ -86,7 +73,7 @@ const StepOne = (props) => {
       <Typography variant='subtitle1' className={classes.label}>Parent Organization ID:</Typography>
       <ParentSelect orgList={props.parentOrgList} onChange={props.onParentOrgChange}/>
       <Typography variant='h5' className={classes.heading}>Organization URL</Typography>
-      <Typography variant='subtitle1' className={classes.label}>Website URL:*</Typography>
+      <Typography variant='subtitle1' className={classes.label}>*Website URL:</Typography>
       <TextField
         placeholder='http://example.com...'
         error={websiteURLErr.length > 0}
@@ -96,7 +83,7 @@ const StepOne = (props) => {
           props.onWebsiteURL(event.target.value);
         }}
       />
-      <Typography variant='subtitle1' className={classes.label}>Github URL:*</Typography>
+      <Typography variant='subtitle1' className={classes.label}>*Github URL:</Typography>
       <TextField
         placeholder='https://github.com/example...'
         error={githubURLErr.length > 0}
@@ -113,8 +100,6 @@ const StepOne = (props) => {
       </Typography>
       <TextField
         placeholder='open-oakland'
-        error={githubTagErr.length > 0}
-        helperText={githubTagErr}
         value={props.githubTag}
         onChange={(event) => {
           props.onGithubTag(event.target.value);
@@ -122,7 +107,14 @@ const StepOne = (props) => {
       />
       <Box className={classes.buttons}>
         <Button variant='contained' color='default' onClick={props.onCancel}>Cancel</Button>
-        <Button variant='contained' color='secondary' onClick={formValidation}>Next</Button>
+        <Button
+          variant='contained'
+          color='secondary'
+          disabled={!(props.orgEmail && props.orgName && props.githubTag && props.websiteURL && props.githubURL)}
+          onClick={formValidation}
+        >
+          Next
+        </Button>
       </Box>
     </>
   );

@@ -61,7 +61,7 @@ const StepTwo = (props) => {
       <CountrySelect onChange={props.onCountryChange} />
       <Box className={classes.buttons}>
         <Button variant='contained' color='default' onClick={props.onPrev}>Back</Button>
-        <Button variant='contained' color='secondary' onClick={props.onSubmit}>Next</Button>
+        <Button variant='contained' color='secondary' onClick={props.onSubmit}>Submit</Button>
       </Box>
     </>
   );
