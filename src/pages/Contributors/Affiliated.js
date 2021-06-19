@@ -8,7 +8,7 @@ import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
 /* eslint complexity: [0, 0]*/
 export const Affiliated = (props) => {
   const { organizations, inputValue, classes, organizationData, affiliatedSepOpen,  searchCount, affiliatedCount, totalaffiliatedCount, setAfflnSepOpen, checkboxValue } = props
-  return <Grid className={classes.affiliatedWrapper}>
+  return <Grid className={classes.affiliatedWrapper} data-cy='affiliated-wrapper'>
     <Grid className={classes.sectionContainer}>
       <Box className={classes.affiliation}>
         <Typography variant='h2' color='primary' component={'span'} style={{ paddingLeft: '166px', color: '#004364',fontSize: '28px' }}>

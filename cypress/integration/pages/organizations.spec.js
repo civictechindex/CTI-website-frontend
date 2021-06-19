@@ -18,7 +18,7 @@ describe('Organizations Page', () => {
   });
 
   it('loads grandparentOrg', () => {
-    cy.get('[class*=affiliatedOrgsContainer]').within(() => {
+    cy.get('[data-cy=affiliated-wrapper]').within(() => {
       cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1);
       cy.get('[href*=codeforall]').within(() => {
         cy.contains(grandparentOrg);
