@@ -1,4 +1,4 @@
-describe('Organizations Page', () => {
+describe('Organizations Page (fka Contributors Page)', () => {
   const grandparentOrg = 'Code for All';
   const parentOrg = 'Code for America';
   const affiliatedOrg = 'Code for Las Vegas';
@@ -9,15 +9,18 @@ describe('Organizations Page', () => {
     cy.wait('@getOrganizations');
   });
 
-  it('loads page with affiliated & unaffiliated orgs', () => {
+  it('Loads with 2 Unaffiliated thumbs, Affiliated heading', () => {
     cy.get('h1').contains('Organizations');
-    cy.get('[class*=affiliation]').within(() => {
+    cy.get('[class*=unaffiliatedWrapper]').within(() => {
       cy.contains('Unaffiliated Organizations');
+      cy.get('[class*=thumbnailWrapper]').should('have.length', 2);
+    })
+    cy.get('[class*=affiliated]').within(() => {
       cy.contains('Affiliated Organizations');
     });
   });
 
-  it('loads grandparentOrg', () => {
+  it('Loads grandparentOrg with 8 children, finds parentOrg, affiliatedOrg', () => {
     cy.get('[data-cy=affiliated-wrapper]').within(() => {
       cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1);
       cy.get('[href*=codeforall]').within(() => {
@@ -25,17 +28,7 @@ describe('Organizations Page', () => {
       });
       cy.get('#dropdownChevron').click();
       cy.get('[data-cy=contributor-thumbnail]').should('have.length', 8);
-    });
-  });
-
-  it('loads thumbnail wrappers', () => {
-    cy.get('[class*=thumbnailWrapper]').should('have.length', 2);
-  });
-
-  it('expands parentOrg, finds affiliatedOrg', () => {
-    cy.get('#dropdownChevron').click();
-
-    cy.get('[class*=thumbnailText]')
+      cy.get('[class*=thumbnailText]')
       .contains(parentOrg)
       .get('[class*=afflDropdown]')
       .within(() => {
@@ -46,5 +39,11 @@ describe('Organizations Page', () => {
       .within(() => {
         cy.get('[data-cy=thumbnailTextInfn]').contains(affiliatedOrg);
       });
+
+    });
   });
+
+  it('Finds affiliatedOrg via search', () => {
+    //
+  })
 });
