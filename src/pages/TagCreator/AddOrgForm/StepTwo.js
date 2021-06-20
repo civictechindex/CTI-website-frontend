@@ -1,9 +1,10 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import CountrySelect from './CountrySelect';
 
@@ -73,7 +74,12 @@ const StepTwo = (props) => {
       <CountrySelect onChange={props.onCountryChange} />
       <Box className={classes.buttons}>
         <Button variant='contained' color='default' onClick={props.onPrev}>Back</Button>
-        <Button variant='contained' color='secondary' onClick={props.onSubmit}>Submit</Button>
+        <Tooltip
+          title='Once your org is submitted, you can return to the Tag Generator and add it to the CTI.'
+          aria-label='submit'
+        >
+          <Button variant='contained' color='secondary' onClick={props.onSubmit}>Submit</Button>
+        </Tooltip>
       </Box>
     </>
   );
