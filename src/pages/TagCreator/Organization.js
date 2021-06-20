@@ -43,14 +43,13 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setO
 
   const loading = open && options.length === 0;
 
-  const handleModalClose = () => {
+  const handleModalClose = (newOrg) => {
     setModalOpen(false);
-  };
-
-  const handleNewOrg = (org) => {
-    options.shift();
-    setOptions(["", org.name, ...options]);
-    setOrgName(org.name);
+    if (newOrg) {
+      options.shift();
+      setOptions(["", newOrg, ...options]);
+      setOrgName(newOrg);
+    }
   };
 
   return (
@@ -98,7 +97,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setO
       </Grid>
       <Modal open={modalOpen} className={classes.modalStyle}>
         <DialogContent>
-          <AddOrgForm onClose={handleModalClose} onNewOrg={handleNewOrg}/>
+          <AddOrgForm onClose={handleModalClose} />
         </DialogContent>
       </Modal>
     </>
