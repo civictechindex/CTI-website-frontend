@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
+import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import { makeStyles } from '@material-ui/core/styles';
 
 export const DropdownArrow  = ({ setOpenFunction }) => {
@@ -47,7 +47,7 @@ export const DropdownArrow  = ({ setOpenFunction }) => {
   return (
 
     <>
-      <ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}
+      <ExpandMoreRoundedIcon id = "dropdownChevron" ref={arrow}
         className={colorStyle ? `${classes.clickDropDown} ` : `${classes.chevron}`}
         onClick={()=>handleClick(setOpenFunction)}
         alt="/images/Chevron.png" />

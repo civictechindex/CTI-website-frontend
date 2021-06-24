@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ContributorThumbnail } from './ContributorThumbnail';
 import { DropdownArrow } from './DropdownArrow';
 import Grid from '@material-ui/core/Grid';
+import clsx from 'clsx';
 
 
 const useStyles = makeStyles(theme => ({
@@ -17,27 +18,20 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     boxSizing: 'border-box',
     border: '1px solid #BCBCBC',
-    borderRadius: '4px',
+    borderRadius: '6px',
     paddingRight: '26.5rem',
     width:'928px',
     height:'80px',
   },
-
+  blueColor:{
+    backgroundColor: theme.palette.secondary.dark,
+  },
   chevron: {
     cursor: 'pointer',
     fontSize: '1.3rem',
   },
-  blueColor: {
-    backgroundColor: "#004364",
-    color:"theme​.palette.​text.secondary",
-    display: 'flex',
-    alignItems: 'center',
-    paddingRight: '26.5rem',
-    width:'928px',
-  },
-
   afflDropdown: {
-    paddingLeft: '365px',
+    paddingLeft: '485px',
     width: '18px',
     height: '30px',
   },
@@ -80,8 +74,9 @@ export const Dropdown = ({
 
     <Grid onClick={openColor} className="containerDropdown">
       {dropdownLength ? (
-        <Box className={colorStyle ? `${classes.blueColor} ` : `${classes.dropdown}`}>
-
+        <Box className={clsx(classes.dropdown, {
+          [classes.blueColor]: colorStyle === true,
+        })}>
           <Grid container>
             <Grid item xs={4}>
               <ContributorThumbnail organization={organization}  isOpen={colorStyle} />
@@ -91,11 +86,7 @@ export const Dropdown = ({
             </Grid>
           </Grid>
           <Grid>
-
-
             <Typography variant='body2' className={classes.afflDropdown}><DropdownArrow className={classes.thumbnailOpen} setOpenFunction={setOpen} /></Typography>
-
-
           </Grid>
         </Box>
       ) : null}

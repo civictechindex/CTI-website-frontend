@@ -10,12 +10,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronLeftRoundedIcon from '@material-ui/icons/ChevronLeftRounded';
 import ExpandLessRoundedIcon from '@material-ui/icons/ExpandLessRounded';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
-
-import CheckBoxOutlineBlankIcon from '../../icons/CheckBoxOutlineBlankIcon';
+import CheckBoxOutlineBlankRoundedIcon from '@material-ui/icons/CheckBoxOutlineBlankRounded';
 import Link from '../../components/common/Link';
 
 const DARK_BLUE = '#0F1D2F';
@@ -77,7 +75,7 @@ const localTheme = {
   props: {
     MuiCheckbox: {
       color: 'primary',
-      icon: <CheckBoxOutlineBlankIcon />,
+      icon: <CheckBoxOutlineBlankRoundedIcon />,
       size: 'small',
     },
   },
@@ -348,7 +346,7 @@ const FilterSelector = (props) => {
   return (
     <ThemeProvider theme={themeMerge}>
       <Box className={classes.filterSection}>
-        <ChevronLeftIcon className={classes.backArrow} onClick={() => {props.onFilterClose(true)}} />
+        <ChevronLeftRoundedIcon className={classes.backArrow} onClick={() => {props.onFilterClose(true)}} />
         <Grid container>
           <Grid item xs={false} sm={2} />
           <Grid item xs={12} sm={8}>

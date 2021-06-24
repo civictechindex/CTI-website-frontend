@@ -12,7 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import NavBreadcrumbs from "../../components/NavBreadcrumbs";
-import { useStyle } from "./styles.js";
 import GetStartedCard from '../../components/GetStartedCard'
 import { TitleSection } from '../../components'
 import Grid from '@material-ui/core/Grid';
@@ -28,6 +27,82 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Affiliated  } from "./Affiliated";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
 
+
+const useStyles = makeStyles((theme) => ({
+  firstSectionWrapper: {
+    backgroundColor: theme.palette.secondary.dark,
+    boxSizing: 'border-box',
+    backgroundImage: 'url("/images/CTI-Contributors-BG-1.png")',
+    minHeight: '35vh',
+    backgroundPositionY: 'bottom',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    textAlign: 'center',
+    '& h1': {
+      fontSize: '3rem',
+    },
+    borderRadius:'6px',
+  },
+  textStyle: {
+    color: theme.palette.text.secondary,
+    fontSize: '24px',
+    textAlign:'center',
+    marginTop: '-1rem',
+  },
+  indicator: {
+    backgroundColor: '#006B95',
+  },
+  tabVal: {
+    color: "theme​.palette.​text.disabled",
+    "&:hover": {
+      color: "#006B95",
+      opacity: 1,
+    },
+  },
+  chkBoxStyle: {
+    color: theme.palette.outline,
+    paddingLeft: '59rem',
+    '&:hover': {
+      background: 'transparent',
+    },
+    '&:selected': {
+      background: 'transparent',
+    },
+  },
+  formControlLabel: {
+    color: theme.palette.background.primary,
+    fontWeight: 'bold',
+  },
+  root:
+  {
+    "& .MuiAutocomplete-inputRoot": {
+      paddingRight: '14px',
+    },
+  },
+  icon: {
+    backgroundColor: theme.palette.secondary.main,
+    borderBottomRightRadius: '4px',
+    borderTopRightRadius: '4px',
+    color: theme.palette.text.secondary,
+    height: '56px',
+    marginRight: '-14px',
+    width: '51px',
+  },
+  input: {
+    width: '945px',
+    height: '64px',
+    borderRadius: '7px',
+    fontSize: '1.5rem',
+    paddingBottom: '4em',
+    paddingTop: '15px',
+  },
+  "& .MuiSvgIcon-root": {
+    root: {
+      width: 168,
+      height: 168,
+    },
+  },
+}));
 // eslint-disable-next-line
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,30 +129,19 @@ function TabPanel(props) {
 export default function Contributors({ match }) {
 
   const affiliation = match.params.affiliation;
-
   const searchaffiliation = match.params.searchaffiliation;
-
-
-  const classes = useStyle();
-
+  const classes = useStyles();
   const [organizations, setOrganizations] = useState([]);
   const [organizationNamesList, setOrganizationNamesList] = useState([]);
-
   const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
-
   const [affiliatedOpen, setAffiliatedOpen] = useState(false);
-
   const [affiliatedSepOpen, setAfflnSepOpen] = useState(false);
-
-
   const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-
   const [unaffiliated, getAffiliatedNames] = useState([]);
   const [unaffiliatedCount, getunaffiliatedCount] = useState(0);
   const [affiliatedCount, getaffiliatedCount] = useState(0);
   const [organizationData, getOrganizationData] = useState([]);
-
   const [searchCount, setsearchCount] = useState(false);
 
 
@@ -85,22 +149,13 @@ export default function Contributors({ match }) {
 
   useEffect(() => {
     const fetchData = async () => {
-
-
       const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-
       const organization = result.data;
-
-
       const sorted = organization.sort((a, b) => a.id - b.id);
       setOrganizations(sorted);
-
     };
-
     fetchData();
-
   }, []);
-
 
   useEffect(() => {
     const createAffiliatedOrganizations = () =>
@@ -111,37 +166,25 @@ export default function Contributors({ match }) {
       const names = [];
 
       const addToAffiliated = (organization) => {
-
         if (!affiliated["Code for All"]) {
           affiliated["Code for All"] = [];
         }
         if (affiliated["Code for All"])
         {
-
           affiliated["Code for All"].push(organizations[organization.id - 2]);
           affiliated[organization.name] = [organization];
-
         }
-
-
-
       };
 
       const addToUnaffiliated = (organization) => {
-
-
         if (affiliated["unaffiliated"]) {
           affiliated["unaffiliated"].push(organization);
         }
         else {
           affiliated["unaffiliated"] = [organization];
         }
-
         getAffiliatedNames(organization);
-
       };
-
-
       for (const org of organizations)
       {
         names.push(org.name);
@@ -162,38 +205,25 @@ export default function Contributors({ match }) {
         getOrganizationData(organizations);
 
       }
-
-
       if (count1 !== 0 || count2 !== 0)
       {
-
         if (inputValue !== '')
         {
           getunaffiliatedCount(count1);
           getaffiliatedCount(count2);
-
           setsearchCount(true);
-
-
         }
-
       }
-
       setAffiliatedOrganizationsObject(affiliated);
       setOrganizationNamesList(names.sort());
-
     };
-
     createAffiliatedOrganizations();
   }, [organizations, inputValue, count1,count2,searchaffiliation,organizationData,searchCount,unaffiliatedCount,affiliatedCount]);
 
-
   if (organizationData.length >0)
   {
-
     for (const orgdata of organizationData)
     {
-
       if (orgdata.depth  === 3 || orgdata.depth === 4)
       {
         totalaffiliatedCount++;
@@ -204,8 +234,6 @@ export default function Contributors({ match }) {
         totalunaffiliatedCount++;
       }
     }
-
-
   }
 
 
@@ -243,7 +271,6 @@ export default function Contributors({ match }) {
   }
 
   const theme = createMuiTheme({
-
     overrides: {
       MuiTab: {
         "root": {
@@ -255,15 +282,12 @@ export default function Contributors({ match }) {
           '&$selected': {
             color: '#006B95',
           },
-
         },
         wrapper: {
           flexDirection: "row",
           width: "auto",
         },
-
       },
-
     },
   });
 
@@ -271,7 +295,6 @@ export default function Contributors({ match }) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-
   };
 
 
@@ -279,8 +302,6 @@ export default function Contributors({ match }) {
 
 
   const [checkboxValue, setIsTrue] = useState(false);
-
-
   const checkBoxChange = (event) => {
     const target = event.target.checked;
     setIsTrue(target);
@@ -316,10 +337,7 @@ export default function Contributors({ match }) {
         </Container>
       </Box>
       <Box className='containerGray'>
-
         <Container>
-
-
           <MuiThemeProvider theme={theme}>
             <AppBar position="static" color="default" elevation={0}>
               <Tabs
@@ -336,9 +354,6 @@ export default function Contributors({ match }) {
               </Tabs>
             </AppBar>
           </MuiThemeProvider>
-
-
-
           <Grid index={value}>
             <Grid>
               <FormGroup>
@@ -421,46 +436,6 @@ export default function Contributors({ match }) {
 
   );
 }
-
-
-
-const useStyles = makeStyles(theme => ({
-  root:
-  {
-
-    "& .MuiAutocomplete-inputRoot": {
-      paddingRight: '14px',
-
-    },
-
-  },
-  icon: {
-    backgroundColor: theme.palette.secondary.main,
-    borderBottomRightRadius: '4px',
-    borderTopRightRadius: '4px',
-    color: theme.palette.text.secondary,
-    height: '56px',
-    marginRight: '-14px',
-    width: '51px',
-  },
-  input: {
-    width: '945px',
-    height: '64px',
-    borderRadius: '7px',
-    fontSize: '1.5rem',
-    paddingBottom: '4em',
-    paddingTop: '15px',
-  },
-  "& .MuiSvgIcon-root": {
-    root: {
-      width: 168,
-      height: 168,
-    },
-  },
-
-
-}));
-
 
 const TopCallToAction = ({
   input,

@@ -4,15 +4,46 @@
 import React, { useState } from "react";
 import { Dropdown } from "../../components/Dropdown";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
-import { useStyle } from "./styles.js";
 import { Typography } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import makeStyles from '@material-ui/core/styles/makeStyles'
+
+const useStyles = makeStyles((theme) => ({
+  affiliatedThumbnailsWrapper: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 0.45fr)',
+    margin: '1.5rem 0',
+    columnGap: '20px',
+    rowGap: '1.54rem',
+    marginLeft: '47px',
+  },
+  button: {
+    width: '211px',
+    height: '44px',
+    borderRadius: '31px',
+    border: '1px solid',
+    borderColor: '#004364',
+    color: "#004364",
+    fontSize: '16px',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
+  afflnThumbnails: {
+    backgroundColor: theme.palette.background.default,
+    border: "1px solid #bcbcbc",
+    borderRadius:'6px',
+    width:"375px",
+    height:"64px",
+  },
+}));
 
 
 export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue }) => {
 
-  const classes = useStyle();
+  const classes = useStyles();
   const parentfilterData = data;
   const parentOrg =organizations['Code for All'].filter(item => item);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { makeStyles } from '@material-ui/styles';
 
 import Link from '../../components/common/Link';
@@ -60,7 +60,7 @@ const HelpModal = ({ modalOpen, onClose }) => {
       <Box className={classes.searchTips} data-cy='search-tips'>
         <Typography variant='h4' id='search-tips-title'>
           Search Tips
-          <CloseIcon className={classes.close} onClick={onClose} />
+          <CloseRoundedIcon className={classes.close} onClick={onClose} />
         </Typography>
         <br />
         <br />

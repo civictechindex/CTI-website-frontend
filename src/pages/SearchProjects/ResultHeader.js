@@ -6,7 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import FilterListRoundedIcon from '@material-ui/icons/FilterListRounded';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +37,7 @@ const ResultHeader = (props) => {
       <Box display='flex' justifyContent='space-between' alignItems='center' mb={2}>
         {props.variant === 'large' ? resultCount : (
           <Button className={classes.button} onClick={props.onHeaderClick}>
-            <FilterListIcon />Filter
+            <FilterListRoundedIcon />Filter
           </Button>
         )}
         <FormControl variant='outlined'>
