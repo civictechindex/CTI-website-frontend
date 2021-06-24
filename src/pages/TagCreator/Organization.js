@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '8px',
     },
   },
+  link: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
   modalStyle: {
     overflow: 'scroll',
   },
@@ -92,7 +97,9 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setO
       </Grid>
       <Grid item>
         <Typography variant='body1'>
-          Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
+          Don’t see your organization? Click&nbsp;
+          <Link id='add-org-link' className={classes.link} onClick={() => setModalOpen(true)}><b>here</b></Link>
+          &nbsp;to add it.
         </Typography>
       </Grid>
       <Modal open={modalOpen} className={classes.modalStyle}>

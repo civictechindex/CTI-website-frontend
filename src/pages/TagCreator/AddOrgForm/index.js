@@ -7,6 +7,7 @@ import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import Complete from './Complete';
 
+// eslint-disable-next-line max-lines-per-function
 const AddOrgForm = React.forwardRef(({ onClose }, ref) => {
   const classes = useStyles();
   const [step, setStep] = useState(0);
@@ -27,9 +28,9 @@ const AddOrgForm = React.forwardRef(({ onClose }, ref) => {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-    .then((response) => {
-      setParentOrgList(response.data);
-    });
+      .then((response) => {
+        setParentOrgList(response.data);
+      });
   }, []);
 
   const handleNext = () => {
@@ -165,9 +166,9 @@ const AddOrgForm = React.forwardRef(({ onClose }, ref) => {
   };
 
   return (
-      <Container className={classes.container} ref={ref}>
-        {renderStep()}
-      </Container>
+    <Container className={classes.dialogContainer} ref={ref}>
+      {renderStep()}
+    </Container>
   );
 });
 
