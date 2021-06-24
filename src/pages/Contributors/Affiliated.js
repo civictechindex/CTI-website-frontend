@@ -115,8 +115,6 @@ export const Affiliated = (props) => {
       </Grid>
     </Grid>
   </Grid>
-
-
 };
 
 export default Affiliated;
