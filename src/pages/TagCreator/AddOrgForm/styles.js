@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(3),
     textAlign: 'right',
   },
-  container: {
+  dialogContainer: {
     backgroundColor: theme.palette.background.default,
     marginTop: theme.spacing(6),
     maxWidth: '40rem',
