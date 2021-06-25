@@ -1,10 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import withWidth from '@material-ui/core/withWidth';
 import { GetStartedCard, NavButton } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
 import TrendingTopicsSection from './sections/TrendingTopicsSection';
@@ -15,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '18px',
     paddingTop: '8px',
     '& p': {
-      width: '29.3%',
+      width: '30%',
     },
     textAlign: 'center',
     [theme.breakpoints.down('md')]: {
@@ -25,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '35px',
       flexDirection: 'column',
       width: '100%',
-      height: '161.5px',
-      marginBottom: '29.42px',
+      height: '162px',
+      marginBottom: '30px',
       justifyContent: 'space-between',
       '& p': {
         width: '80%',
@@ -54,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     [theme.breakpoints.down('sm')]: {
-      fontSize: '28px',
+      fontSize: '37px',
       '& br': {
         display: 'block',
       },
@@ -91,7 +89,7 @@ const MarketingSection = () => {
 const CallToActionSection = () => {
   return (
     <Grid container style={{ paddingTop: '35px' }} justify='center'>
-      <Grid container justify='space-between' style={{ width: '392px' }}>
+      <Grid container justify='space-around' style={{ width: '392px' }}>
         <NavButton href='/join-index' color='primary'>
                     Tag your project
         </NavButton>
@@ -138,8 +136,5 @@ const Home = () => {
     </>
   );
 };
-Home.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
-};
 
-export default withWidth()(Home);
+export default Home;
