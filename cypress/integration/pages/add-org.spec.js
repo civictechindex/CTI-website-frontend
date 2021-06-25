@@ -18,31 +18,33 @@ describe('Add Organization Workflow', () => {
   const INVALID_FACEBOOK_URL = 'https://facebook.com/asdf';
 
   before(() => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations')
     cy.visit('/join-index');
+    cy.wait('@getOrganizations')
     cy.get('[data-cy=radio-yes]').click();
-    cy.wait(300);
+    cy.wait(100);
   });
 
   it('loads first step and returns to tag generator', () => {
     cy.get('#container-affiliated').within(() => {
       cy.get('#add-org-link').click();
     });
-    cy.wait(300);
+    cy.wait(100);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=makeStyles-progress]').contains('Project Information');
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
       cy.get('button').eq(2).click();
     });
-    cy.wait(300);
+    cy.wait(100);
     cy.get('h1').contains('Tag Generator');
-    cy.wait(300);
+    cy.wait(100);
   });
 
   it('loads first step and enables the next step button', () => {
     cy.get('#container-affiliated').within(() => {
       cy.get('#add-org-link').click();
     });
-    cy.wait(300)
+    cy.wait(100)
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('button').eq(3).should('be.disabled');
       cy.get('input').eq(0).type(VALID_EMAIL);
@@ -58,12 +60,12 @@ describe('Add Organization Workflow', () => {
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('button').eq(3).click();
     });
-    cy.wait(300);
+    cy.wait(100);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '100');
       cy.get('button').eq(2).click();
     });
-    cy.wait(300);
+    cy.wait(100);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
     });
@@ -73,7 +75,7 @@ describe('Add Organization Workflow', () => {
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('button').eq(3).click();
     });
-    cy.wait(300);
+    cy.wait(100);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('button').eq(3).click();
     });
@@ -92,7 +94,7 @@ describe('Add Organization Workflow', () => {
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
       cy.get('button').eq(3).click();
     });
-    cy.wait(300);
+    cy.wait(100);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '100');
     });
@@ -131,7 +133,7 @@ describe('Add Organization Workflow', () => {
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('button').click();
     });
-    cy.wait(300);
+    cy.wait(100);
     cy.get('h1').contains('Tag Generator');
     cy.get('#organization').should('have.value', VALID_NAME);
   });
