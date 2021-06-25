@@ -20,6 +20,14 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '8px',
     },
   },
+  link: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  modalStyle: {
+    overflow: 'scroll',
+  },
   typoStyle: {
     [theme.breakpoints.down('xs')]: {
       fontSize: '1.5rem',
@@ -33,19 +41,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) => {
+export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setOptions }) => {
+  const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [currentOptions, setCurrentOptions] = useState(options);
 
   const loading = open && options.length === 0;
 
-  const handleModalClose = () => {
+  const handleModalClose = (newOrg) => {
     setModalOpen(false);
-  };
-
-  const handleNewOrg = (org) => {
-    setCurrentOptions([org.name, ...currentOptions]);
+    if (newOrg) {
+      options.shift();
+      setOptions(["", newOrg, ...options]);
+      setOrgName(newOrg);
+    }
   };
 
   return (
@@ -64,7 +73,7 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
           }}
           getOptionSelected={(option, value) => option === value }
           getOptionLabel={(option) => option}
-          options={currentOptions}
+          options={options}
           autoComplete
           loading={loading}
           value={orgName}
@@ -88,12 +97,14 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options }) =>
       </Grid>
       <Grid item>
         <Typography variant='body1'>
-          Don’t see your organization? Click <Link onClick={() => setModalOpen(true)}><b>here</b></Link> to add it.
+          Don’t see your organization? Click&nbsp;
+          <Link id='add-org-link' className={classes.link} onClick={() => setModalOpen(true)}><b>here</b></Link>
+          &nbsp;to add it.
         </Typography>
       </Grid>
-      <Modal open={modalOpen}>
+      <Modal open={modalOpen} className={classes.modalStyle}>
         <DialogContent>
-          <AddOrgForm onClose={handleModalClose} onNewOrg={handleNewOrg}/>
+          <AddOrgForm onClose={handleModalClose} />
         </DialogContent>
       </Modal>
     </>

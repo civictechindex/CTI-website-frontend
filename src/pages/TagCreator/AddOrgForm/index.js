@@ -7,28 +7,30 @@ import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import Complete from './Complete';
 
-const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
+// eslint-disable-next-line max-lines-per-function
+const AddOrgForm = React.forwardRef(({ onClose }, ref) => {
   const classes = useStyles();
   const [step, setStep] = useState(0);
-  const [parentOrg, setParentOrg] = useState();
+  const [apiErrors, setApiErrors] = useState({});
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState();
+  const [facebookUrl, setFacebookUrl] = useState('');
+  const [githubTag, setGithubTag] = useState('');
+  const [githubUrl, setGithubUrl] = useState('');
+  const [meetupUrl, setMeetupUrl] = useState('');
   const [orgEmail, setOrgEmail] = useState('');
   const [orgName, setOrgName] = useState('');
+  const [parentOrg, setParentOrg] = useState();
   const [parentOrgList, setParentOrgList] = useState([]);
-  const [websiteURL, setWebsiteURL] = useState('');
-  const [githubURL, setGithubURL] = useState('');
-  const [githubTag, setGithubTag] = useState('');
-  const [facebookURL, setFacebookURL] = useState('');
-  const [twitterURL, setTwitterURL] = useState('');
-  const [meetupURL, setMeetupURL] = useState('');
-  const [city, setCity] = useState('');
-  const [stateProvCo, setStateProvCo] = useState();
-  const [country, setCountry] = useState();
+  const [stateProvCo, setStateProvCo] = useState('');
+  const [twitterUrl, setTwitterUrl] = useState('');
+  const [websiteUrl, setWebsiteUrl] = useState('');
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-    .then((response) => {
-      setParentOrgList(response.data);
-    });
+      .then((response) => {
+        setParentOrgList(response.data);
+      });
   }, []);
 
   const handleNext = () => {
@@ -44,46 +46,54 @@ const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
   };
 
   const handleClose = () => {
+    if (step === 2) {
+      onClose(orgName);
+    } else {
+      onClose();
+    }
+
     setStep(0);
+    setApiErrors({});
     setOrgEmail('');
     setOrgName('');
     setParentOrg('');
-    setWebsiteURL('');
-    setGithubURL('');
+    setWebsiteUrl('');
+    setGithubUrl('');
     setGithubTag('');
-    setFacebookURL('');
-    setTwitterURL('');
-    setMeetupURL('');
+    setFacebookUrl('');
+    setTwitterUrl('');
+    setMeetupUrl('');
     setCity('');
     setStateProvCo('');
     setCountry('');
-    onClose();
   };
 
   const handleSubmit = async () => {
     const orgProps = {
       name: orgName,
-      github_url: githubURL,
-      website_url: websiteURL,
+      github_url: githubUrl,
+      website_url: websiteUrl,
       organization_email: orgEmail,
       org_tag: githubTag,
     };
     if (parentOrg) { orgProps.parent_organization = parentOrg }
-    if (facebookURL) { orgProps.facebook_url = facebookURL }
-    if (twitterURL) { orgProps.twitter_url = twitterURL }
-    if (meetupURL) { orgProps.meetup_url = meetupURL }
+    if (facebookUrl) { orgProps.facebook_url = facebookUrl }
+    if (twitterUrl) { orgProps.twitter_url = twitterUrl }
+    if (meetupUrl) { orgProps.meetup_url = meetupUrl }
     if (city) { orgProps.city = city }
     if (stateProvCo) { orgProps.state = stateProvCo }
     if (country) { orgProps.country = country }
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/organizations/`,
-        orgProps
-      );
-      setStep(0);
-      onNewOrg(response.data);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/organizations/`, orgProps);
+      setStep(2);
     } catch (error) {
-      console.log(error.response);
+      const errors = error.response.data;
+      if (errors.name || errors.github_url || errors.website_url || errors.organization_email || errors.org_tag) {
+        setStep(0);
+      } else {
+        setStep(1);
+      }
+      setApiErrors(errors);
     }
   };
 
@@ -92,14 +102,16 @@ const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
     case 0:
       return (
         <StepOne
+          apiErrors={apiErrors}
+          setApiErrors={setApiErrors}
           orgEmail={orgEmail}
           onOrgEmail={setOrgEmail}
           orgName={orgName}
           onOrgName={setOrgName}
-          websiteURL={websiteURL}
-          onWebsiteURL={setWebsiteURL}
-          githubURL={githubURL}
-          onGithubURL={setGithubURL}
+          websiteUrl={websiteUrl}
+          onWebsiteUrl={setWebsiteUrl}
+          githubUrl={githubUrl}
+          onGithubUrl={setGithubUrl}
           githubTag={githubTag}
           onGithubTag={setGithubTag}
           parentOrgList={parentOrgList}
@@ -111,12 +123,14 @@ const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
     case 1:
       return (
         <StepTwo
-          facebookURL={facebookURL}
-          onFacebookURL={setFacebookURL}
-          twitterURL={twitterURL}
-          onTwitterURL={setTwitterURL}
-          meetupURL={meetupURL}
-          onMeetupURL={setMeetupURL}
+          apiErrors={apiErrors}
+          setApiErrors={setApiErrors}
+          facebookUrl={facebookUrl}
+          onFacebookUrl={setFacebookUrl}
+          twitterUrl={twitterUrl}
+          onTwitterUrl={setTwitterUrl}
+          meetupUrl={meetupUrl}
+          onMeetupUrl={setMeetupUrl}
           city={city}
           onCity={setCity}
           stateProvCo={stateProvCo}
@@ -131,14 +145,16 @@ const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
     default:
       return (
         <StepOne
+          apiErrors={apiErrors}
+          setApiErrors={setApiErrors}
           orgEmail={orgEmail}
           onOrgEmail={setOrgEmail}
           orgName={orgName}
           onOrgName={setOrgName}
-          websiteURL={websiteURL}
-          onWebsiteURL={setWebsiteURL}
-          githubURL={githubURL}
-          onGithubURL={setGithubURL}
+          websiteUrl={websiteUrl}
+          onWebsiteUrl={setWebsiteUrl}
+          githubUrl={githubUrl}
+          onGithubUrl={setGithubUrl}
           githubTag={githubTag}
           onGithubTag={setGithubTag}
           parentOrgList={parentOrgList}
@@ -150,9 +166,9 @@ const AddOrgForm = React.forwardRef(({ onClose, onNewOrg }, ref) => {
   };
 
   return (
-      <Container className={classes.container} ref={ref}>
-        {renderStep()}
-      </Container>
+    <Container className={classes.dialogContainer} ref={ref}>
+      {renderStep()}
+    </Container>
   );
 });
 

@@ -209,7 +209,7 @@ const TagCreator = () => {
   const RadioYes = ({ value,setOrgName }) =>{
     return (
       <Grid container id='container-affiliated'>
-        <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName} options={options}/>
+        <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName} options={options} setOptions={setOptions}/>
         <OrgChange value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
           changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </Grid>
