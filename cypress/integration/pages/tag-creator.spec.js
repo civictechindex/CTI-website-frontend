@@ -24,11 +24,8 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.wait('@getOrganizations');
   });
 
-  it('loads', () => {
+  it('loads page with correct 4 tags and affliate new tags for `codeforboston/voiceapp311` - affiliated', () => {
     cy.get('h1').contains('Tag Generator');
-  });
-
-  it('loads correct 4 tags and affliate new tags for `codeforboston/voiceapp311` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
@@ -115,7 +112,9 @@ describe('Tag Generator Page (Tag Creator)', () => {
     });
     cy.get('#change-url').click({ force: true });
     cy.get('#repository-url').clear().type(UNAFFILIATED_TEST_URL).type('{enter}');
-    cy.get('a').contains(UNAFFILIATED_TEST_URL);
+    cy.get('[data-cy=grid-repository-url]').within(() => {
+      cy.get('a').contains(UNAFFILIATED_TEST_URL);
+    });
   });
 
   it('loads correct 7 tags and new tags for `civictechindex/CTI-website-frontend` - unaffiliated', () => {

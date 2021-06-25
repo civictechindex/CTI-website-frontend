@@ -25,7 +25,7 @@ export const useStyle = makeStyles((theme) => ({
     textAlign:'center',
     marginTop: '-1rem',
   },
-  
+
   projectsLink: {
     margin: '0',
     paddingTop: '70px',
@@ -154,9 +154,9 @@ export const useStyle = makeStyles((theme) => ({
   thumbnailWrapper: {
     minHeight: '5rem',
     width: '375px',
-    height: '64px'  
+    height: '64px'
   },
- 
+
   thumbnails: {
     color: theme.palette.common.black,
     display: 'flex',
@@ -188,7 +188,7 @@ export const useStyle = makeStyles((theme) => ({
       color: "theme​.palette.​text.secondary",
      },
   },
- 
+
   thumbnailText: {
     alignItems: 'center',
     minHeight: '6rem',
@@ -198,7 +198,7 @@ export const useStyle = makeStyles((theme) => ({
   orgText: {
     color:"#004364",
     fontSize:'24px',
-    
+
   },
 
   blueColorText: {
@@ -249,7 +249,7 @@ export const useStyle = makeStyles((theme) => ({
     height:'80px',
     backgroundColor:'theme​.palette.​background.default',
   },
- 
+
   indicator: {
     backgroundColor: '#006B95'
   },
@@ -259,9 +259,9 @@ export const useStyle = makeStyles((theme) => ({
       color: "#006B95",
       opacity: 1
     },
-    
+
   },
-  
+
   button: {
     width: '211px',
     height: '44px',
@@ -274,7 +274,7 @@ export const useStyle = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.background.default,
     },
-    }, 
+    },
 
   chkBoxStyle: {
     color: '#6D6E74',
@@ -287,13 +287,13 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
 
-  
+
   formControlLabel: {
 
     color: '#004364',
     fontWeight: 'bold',
   },
- 
+
  blueColor: {
    backgroundColor: "#004364",
    color:"theme​.palette.​text.secondary",
@@ -314,8 +314,8 @@ export const useStyle = makeStyles((theme) => ({
     padding: '1rem',
     marginLeft: '-6rem',
     height:'80px',
- 
+
   },
 
- 
+
 }));

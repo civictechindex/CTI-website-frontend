@@ -80,7 +80,7 @@ export const Dropdown = ({
 
     <Grid onClick={openColor} className="containerDropdown">
       {dropdownLength ? (
-        <Box className={colorStyle ? `${classes.blueColor} ` : `${classes.dropdown}`}>
+        <Box className={colorStyle ? `${classes.blueColor} ` : `${classes.dropdown}`} data-cy="contributor-thumbnail">
 
           <Grid container>
             <Grid item xs={4}>
