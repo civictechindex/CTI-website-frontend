@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -27,6 +26,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Affiliated  } from "./Affiliated";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
+import IconButton from '@material-ui/core/IconButton';
 
 // eslint-disable-next-line
 function TabPanel(props) {
@@ -305,7 +305,7 @@ export default function Contributors({ match }) {
             </Grid>
             <Grid item xs={12}>
 
-              <TopCallToAction
+              <OrganizationSearch
                 options={organizationNamesList}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -417,96 +417,105 @@ export default function Contributors({ match }) {
         </Container>
       </Box>
     </Box>
-
-
   );
 }
 
-
-
-const useStyles = makeStyles(theme => ({
-  root:
-  {
-
-    "& .MuiAutocomplete-inputRoot": {
-      paddingRight: '14px',
-
-    },
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+  },
+  autocomplete: {
   },
   icon: {
     backgroundColor: theme.palette.secondary.main,
-    borderBottomRightRadius: '4px',
-    borderTopRightRadius: '4px',
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 4,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 4,
     color: theme.palette.text.secondary,
-    height: '56px',
-    marginRight: '-14px',
-    width: '51px',
+    height: 64,
   },
   input: {
-    width: '945px',
-    height: '64px',
-    borderRadius: '7px',
-    fontSize: '1.5rem',
-    paddingBottom: '4em',
-    paddingTop: '15px',
-  },
-  "& .MuiSvgIcon-root": {
-    root: {
-      width: 168,
-      height: 168,
+    "& .MuiOutlinedInput-root": {
+      borderBottomLeftRadius: 4,
+      borderBottomRightRadius: 0,
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 0,
+      height: 64,
     },
   },
-
-
 }));
 
-
-const TopCallToAction = ({
-  input,
-  options,
-  inputPlaceholder,
-  setInputValue,
-}) => {
+/* Autocomplete inputValue = text displayed while value = selected option */
+const OrganizationSearch = (props) => {
+  const {
+    inputPlaceholder,
+    inputValue: topLevelInputValue,
+    options,
+    setInputValue: setTopLevelInputValue,
+  } = props;
   const classes = useStyles();
-  const [selectedValue, changeInputVal] = useState(input)
+  const [value, setValue] = useState(null);
+  const [inputValue, setInputValue] = useState(topLevelInputValue);
 
-  const handleClick = () => {
-    setInputValue(selectedValue)
+  const handleClick = (event) => {
+    console.log(event.target);
+  };
+
+  const handleInputChange = (event, value, reason) => {
+    setInputValue(value);
+    setTopLevelInputValue(value);
+  };
+
+  const handleChange = (event, value, reason) => {
+    if (reason === 'select-option') {
+      setValue(value);
+    } else {
+      console.log('handleChange value:', value);
+      console.log('handleChange reason:', reason);
+    }
   };
 
   return (
-    <Grid>
-      <Autocomplete
-        id="free-solo"
-        freeSolo
-        inputValue={input}
-        onInputChange={(e, newValue) => changeInputVal(newValue)}
-        options={options}
-        className={classes.root}
-        disableClearable
-        forcePopupIcon={false}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            placeholder={inputPlaceholder}
-            className={classes.input}
-            variant="outlined"
-            InputProps={{
-              ...params.InputProps,
-              type: "search",
-
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <SearchRoundedIcon onClick={handleClick} className={classes.icon} />
-
-                </InputAdornment>
-              ),
-            }}
+    <Grid container>
+      <Grid item xs={1} />
+      <Grid item xs={10}>
+        <Box display='flex' alignItems='center' className={classes.root}>
+          <Autocomplete
+            className={classes.autocomplete}
+            disableClearable
+            forcePopupIcon={false}
+            freeSolo
+            fullWidth
+            handleHomeEndKeys
+            inputValue={inputValue}
+            onChange={handleChange}
+            onInputChange={handleInputChange}
+            options={options}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.input}
+                InputProps={{
+                  ...params.InputProps,
+                  type: 'search',
+                }}
+                placeholder={inputPlaceholder}
+              />
+            )}
+            selectOnFocus
+            value={value}
           />
-        )}
-      />
-
+          <IconButton
+            type='submit'
+            onClick={handleClick}
+            className={classes.icon}
+            aria-label='search'
+          >
+            <SearchRoundedIcon fontSize='large' />
+          </IconButton>
+        </Box>
+      </Grid>
+      <Grid item xs={1} />
     </Grid>
   );
 };
