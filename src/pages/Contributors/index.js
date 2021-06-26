@@ -445,7 +445,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/* Autocomplete inputValue = text displayed while value = selected option */
+/* Autocomplete `inputValue` is text displayed, `value` is selected option */
 const OrganizationSearch = (props) => {
   const {
     inputPlaceholder,
@@ -469,6 +469,9 @@ const OrganizationSearch = (props) => {
   const handleChange = (event, value, reason) => {
     if (reason === 'select-option') {
       setValue(value);
+    } else if (reason === 'clear') {
+      setInputValue('');
+      setValue(null);
     } else {
       console.log('handleChange value:', value);
       console.log('handleChange reason:', reason);
@@ -482,7 +485,6 @@ const OrganizationSearch = (props) => {
         <Box display='flex' alignItems='center' className={classes.root}>
           <Autocomplete
             className={classes.autocomplete}
-            disableClearable
             forcePopupIcon={false}
             freeSolo
             fullWidth
