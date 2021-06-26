@@ -6,16 +6,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import NavBreadcrumbs from "../../components/NavBreadcrumbs";
 import { useStyle } from "./styles.js";
 import GetStartedCard from '../../components/GetStartedCard'
 import { TitleSection } from '../../components'
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -26,7 +22,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Affiliated  } from "./Affiliated";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
-import IconButton from '@material-ui/core/IconButton';
+import OrganizationSearch from "./OrganizationSearch";
 
 // eslint-disable-next-line
 function TabPanel(props) {
@@ -419,105 +415,3 @@ export default function Contributors({ match }) {
     </Box>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-  },
-  autocomplete: {
-  },
-  icon: {
-    backgroundColor: theme.palette.secondary.main,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 4,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 4,
-    color: theme.palette.text.secondary,
-    height: 64,
-  },
-  input: {
-    "& .MuiOutlinedInput-root": {
-      borderBottomLeftRadius: 4,
-      borderBottomRightRadius: 0,
-      borderTopLeftRadius: 4,
-      borderTopRightRadius: 0,
-      height: 64,
-    },
-  },
-}));
-
-/* Autocomplete `inputValue` is text displayed, `value` is selected option */
-const OrganizationSearch = (props) => {
-  const {
-    inputPlaceholder,
-    inputValue: topLevelInputValue,
-    options,
-    setInputValue: setTopLevelInputValue,
-  } = props;
-  const classes = useStyles();
-  const [value, setValue] = useState(null);
-  const [inputValue, setInputValue] = useState(topLevelInputValue);
-
-  const handleClick = (event) => {
-    console.log(event.target);
-  };
-
-  const handleInputChange = (event, value, reason) => {
-    setInputValue(value);
-    setTopLevelInputValue(value);
-  };
-
-  const handleChange = (event, value, reason) => {
-    if (reason === 'select-option') {
-      setValue(value);
-    } else if (reason === 'clear') {
-      setInputValue('');
-      setValue(null);
-    } else {
-      console.log('handleChange value:', value);
-      console.log('handleChange reason:', reason);
-    }
-  };
-
-  return (
-    <Grid container>
-      <Grid item xs={1} />
-      <Grid item xs={10}>
-        <Box display='flex' alignItems='center' className={classes.root}>
-          <Autocomplete
-            className={classes.autocomplete}
-            forcePopupIcon={false}
-            freeSolo
-            fullWidth
-            handleHomeEndKeys
-            inputValue={inputValue}
-            onChange={handleChange}
-            onInputChange={handleInputChange}
-            options={options}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.input}
-                InputProps={{
-                  ...params.InputProps,
-                  type: 'search',
-                }}
-                placeholder={inputPlaceholder}
-              />
-            )}
-            selectOnFocus
-            value={value}
-          />
-          <IconButton
-            type='submit'
-            onClick={handleClick}
-            className={classes.icon}
-            aria-label='search'
-          >
-            <SearchRoundedIcon fontSize='large' />
-          </IconButton>
-        </Box>
-      </Grid>
-      <Grid item xs={1} />
-    </Grid>
-  );
-};
