@@ -18,7 +18,9 @@ describe('Add Organization Workflow', () => {
   const INVALID_FACEBOOK_URL = 'https://facebook.com/asdf';
 
   before(() => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations')
     cy.visit('/join-index');
+    cy.wait('@getOrganizations')
     cy.get('[data-cy=radio-yes]').click();
     cy.wait(100);
   });
@@ -77,7 +79,7 @@ describe('Add Organization Workflow', () => {
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('button').eq(3).click();
     });
-    cy.wait(300);
+    cy.wait(500);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
       cy.get('[class*=MuiFormHelperText]').eq(0).contains('We already have an organization');
@@ -107,7 +109,7 @@ describe('Add Organization Workflow', () => {
       cy.get('input').eq(4).type(VALID_STATE);
       cy.get('button').eq(3).click();
     });
-    cy.wait(300);
+    cy.wait(500);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=MuiFormHelperText]').eq(0).contains('Not a valid Facebook URL');
       cy.get('[class*=MuiFormHelperText]').eq(1).contains('Enter a valid URL');
@@ -121,7 +123,7 @@ describe('Add Organization Workflow', () => {
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
       cy.get('button').eq(3).click();
     });
-    cy.wait(300);
+    cy.wait(500);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=makeStyles-complete]').contains('Complete');
     });
