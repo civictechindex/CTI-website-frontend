@@ -29,17 +29,23 @@ describe('Add Organization Workflow', () => {
 
   it('loads first step and returns to tag generator', () => {
     cy.get('#container-affiliated').within(() => {
+      cy.get('#organization').should('be.empty');
       cy.get('#add-org-link').click();
     });
     cy.wait(100);
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('[class*=makeStyles-progress]').contains('Project Information');
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
+      cy.get('input').eq(0).type(INVALID_URL);
+      cy.get('input').eq(1).type(INVALID_URL);
+      cy.get('input').eq(3).type(INVALID_URL);
       cy.get('button').eq(2).click();
     });
     cy.wait(100);
     cy.get('h1').contains('Tag Generator');
-    cy.wait(100);
+    cy.get('#container-affiliated').within(() => {
+      cy.get('#organization').should('be.empty');
+    });
   });
 
   it('loads first step and enables the next step button', () => {
@@ -48,6 +54,12 @@ describe('Add Organization Workflow', () => {
     });
     cy.wait(100)
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
+      cy.get('input').eq(0).should('be.empty');
+      cy.get('input').eq(1).should('be.empty');
+      cy.get('input').eq(2).should('be.empty');
+      cy.get('input').eq(3).should('be.empty');
+      cy.get('input').eq(4).should('be.empty');
+      cy.get('input').eq(5).should('be.empty');
       cy.get('button').eq(3).should('be.disabled');
       cy.get('input').eq(0).type(VALID_EMAIL);
       cy.get('input').eq(1).type(DUPLICATE_NAME);
@@ -144,5 +156,40 @@ describe('Add Organization Workflow', () => {
     cy.wait(100);
     cy.get('h1').contains('Tag Generator');
     cy.get('#organization').should('have.value', VALID_NAME);
+  });
+
+  it('loads first step and checks all fields are empty', () => {
+    cy.get('#container-affiliated').within(() => {
+      cy.get('#add-org-link').click();
+    });
+    cy.wait(100);
+    cy.get('[class*=makeStyles-dialogContainer]').within(() => {
+      cy.get('input').eq(0).should('be.empty');
+      cy.get('input').eq(1).should('be.empty');
+      cy.get('input').eq(2).should('be.empty');
+      cy.get('input').eq(3).should('be.empty');
+      cy.get('input').eq(4).should('be.empty');
+      cy.get('input').eq(5).should('be.empty');
+    });
+  });
+
+  it('loads next step and checks all fields are empty', () => {
+    cy.get('[class*=makeStyles-dialogContainer]').within(() => {
+      cy.get('input').eq(0).type(VALID_EMAIL);
+      cy.get('input').eq(1).type(VALID_NAME);
+      cy.get('input').eq(3).type(VALID_WEBSITE_URL);
+      cy.get('input').eq(4).type(VALID_GITHUB_URL);
+      cy.get('input').eq(5).type(VALID_TAG);
+      cy.get('button').eq(3).click();
+    });
+    cy.wait(100);
+    cy.get('[class*=makeStyles-dialogContainer]').within(() => {
+      cy.get('input').eq(0).should('be.empty');
+      cy.get('input').eq(1).should('be.empty');
+      cy.get('input').eq(2).should('be.empty');
+      cy.get('input').eq(3).should('be.empty');
+      cy.get('input').eq(4).should('be.empty');
+      cy.get('input').eq(5).should('be.empty');
+    });
   });
 });
