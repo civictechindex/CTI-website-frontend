@@ -51,9 +51,6 @@ describe('Add Organization Workflow', () => {
       cy.get('button').eq(3).should('be.disabled');
       cy.get('input').eq(0).type(VALID_EMAIL);
       cy.get('input').eq(1).type(DUPLICATE_NAME);
-      cy.get('input').eq(2).type(AUTOCOMPLETE_ORG);
-      cy.wait(100);
-      cy.get('input').eq(2).type('{downarrow}{downarrow}{enter}');
       cy.get('input').eq(3).type(INVALID_URL);
       cy.get('input').eq(4).type(VALID_GITHUB_URL);
       cy.get('input').eq(5).type(VALID_TAG);
@@ -95,6 +92,9 @@ describe('Add Organization Workflow', () => {
   it('corrects data in the first step and loads next step', () => {
     cy.get('[class*=makeStyles-dialogContainer]').within(() => {
       cy.get('input').eq(1).clear().type(VALID_NAME);
+      cy.get('input').eq(2).type(AUTOCOMPLETE_ORG);
+      cy.wait(100);
+      cy.get('input').eq(2).type('{downarrow}{downarrow}{enter}');
       cy.get('input').eq(3).clear().type(VALID_WEBSITE_URL);
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
       cy.get('button').eq(3).click();
