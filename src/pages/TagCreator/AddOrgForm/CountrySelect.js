@@ -15,46 +15,29 @@ const countryToFlag = (isoCode) => {
     : isoCode;
 };
 
-const CountrySelect = ({ onChange }) => {
+const CountrySelect = ({ country, onChange }) => {
   const classes = useStyles();
-
-  const handleInputChange = (event, value) => {
-    event.preventDefault();
-    if (value) {
-      onChange(value);
-    } else {
-      onChange(event.target.value);
-    }
-  };
 
   return (
     <Autocomplete
-      id='country-select-demo'
-      name='country'
-      options={countries}
-      classes={{
-        option: classes.option,
-      }}
-      autoHighlight
+      autoComplete
       getOptionLabel={(option) => option.label}
-      onInputChange={handleInputChange}
+      getOptionSelected={(option, value) => option.label === value.label }
+      onChange={(event, value) => onChange(value)}
+      options={countries}
+      value={country}
+      renderInput={(params) => (
+        <TextField
+          className={classes.field}
+          label='Country'
+          variant='outlined'
+          {...params}
+        />
+      )}
       renderOption={(option) => (
         <span>
           {countryToFlag(option.code)} {option.label} +{option.phone}
         </span>
-      )}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label=''
-          id='filled-basic'
-          variant='outlined'
-          size='medium'
-          inputProps={{
-            ...params.inputProps,
-            autoComplete: 'new-password', // disable autocomplete and autofill
-          }}
-        />
       )}
     />
   );
