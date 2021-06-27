@@ -8,10 +8,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-  },
-  autocomplete: {
-  },
   icon: {
     backgroundColor: theme.palette.secondary.main,
     borderBottomLeftRadius: 0,
@@ -45,7 +41,7 @@ const OrganizationSearch = (props) => {
   const [inputValue, setInputValue] = useState(topLevelInputValue);
 
   const handleClick = (event) => {
-    console.log(event.target);
+    // is there anything to do upon clicking the magnifying glass?
   };
 
   const handleInputChange = (event, value, reason) => {
@@ -59,9 +55,6 @@ const OrganizationSearch = (props) => {
     } else if (reason === 'clear') {
       setInputValue('');
       setValue(null);
-    } else {
-      console.log('handleChange value:', value);
-      console.log('handleChange reason:', reason);
     }
   };
 
@@ -69,9 +62,8 @@ const OrganizationSearch = (props) => {
     <Grid container>
       <Grid item xs={1} />
       <Grid item xs={10}>
-        <Box display='flex' alignItems='center' className={classes.root}>
+        <Box display='flex' alignItems='center'>
           <Autocomplete
-            className={classes.autocomplete}
             forcePopupIcon={false}
             freeSolo
             fullWidth
