@@ -1,7 +1,8 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 
 export const DropdownThumbnail = ({ organizations }) => {
-  const styles = {
+  const styles  = makeStyles(theme => ({
     thumbnailsContainer: {
       boxSizing: 'border-box',
       display: 'flex',
@@ -23,11 +24,11 @@ export const DropdownThumbnail = ({ organizations }) => {
       margin: '.5rem',
     },
     imagePlaceholderText: {
-      color: '#004364',
+      color: theme.palette.secondary.dark,
       textAlign: 'center',
       padding: '.5rem',
     },
-  }
+  }));
   return (
     <div style={styles.thumbnailsContainer}>
       {organizations ? organizations.map((child, indexSubchild) => {
