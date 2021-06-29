@@ -77,10 +77,10 @@ console.log(arrow)
             { searchCount ? `(${affiliatedCount}/${totalaffiliatedCount})`  : ` (${totalaffiliatedCount})` }
           </Typography>
         </Box>
-        <Box flexGrow={1}></Box>
-        <Box>
+        <Box flexGrow={1}><DropdownArrow handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen} setAfflnSepOpen={setAfflnSepOpen} /></Box>
+        {/* <Box>
           <DropdownArrow handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen} setAfflnSepOpen={setAfflnSepOpen} />
-        </Box>
+        </Box> */}
       </Box>
       <Grid style={{ margin: 'auto',width: '928px' }}>
         {affiliatedSepOpen && (

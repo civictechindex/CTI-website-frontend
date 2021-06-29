@@ -1,4 +1,5 @@
 import React,{ useRef }  from "react";
+import Button from '@material-ui/core/Button';
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -6,14 +7,26 @@ import clsx from 'clsx';
 export const DropdownArrow  = ({ affiliatedSepOpen,setAfflnSepOpen }) => {
 
   const useStyles = makeStyles(theme => ({
+    buttonStyle:{
+      width:'100%',
+      backgroundColor: theme.palette.background.default,
+      '&.MuiButtonBase-root': {
+        backgroundColor: theme.palette.background.default,
+        //opacity: '0',
+      },
+    },
+    blueButtonStyle:{
+      //backgroundColor: theme.palette.secondary.dark,
+      '&.MuiButtonBase-root': {
+        backgroundColor: theme.palette.secondary.dark,
+        //opacity: '0',
+      },
+    },
     chevron: {
       cursor: "pointer",
-      margin: "auto 0 auto auto",
-      paddingTop: '10px',
       width: '53px',
       height: '45px',
       color: theme.palette.secondary.dark,
-      marginTop: '-10px',
     },
     clickDropDown: {
       color: theme.palette.background.default,
@@ -37,12 +50,23 @@ export const DropdownArrow  = ({ affiliatedSepOpen,setAfflnSepOpen }) => {
 
   return (
     <>
-      <ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}
+      <Button
+        //className={classes.buttonStyle}
+        className={clsx(classes.buttonStyle, {
+          [classes.blueButtonStyle]: affiliatedSepOpen=== true,
+        })}
+        endIcon={<ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}  className={clsx(classes.chevron, {
+          [classes.clickDropDown]: affiliatedSepOpen=== true,
+        })} />}
+        onClick={()=>handleClickArrow(setAfflnSepOpen)}
+      >
+      </Button>
+      {/* <ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}
         className={clsx(classes.chevron, {
           [classes.clickDropDown]: affiliatedSepOpen=== true,
         })}
         onClick={()=>handleClickArrow(setAfflnSepOpen)}
-        alt="/images/Chevron.png" />
+        alt="/images/Chevron.png" /> */}
     </>
   );
 
