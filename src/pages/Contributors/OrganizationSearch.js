@@ -8,6 +8,10 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    paddingBottom: 32,
+    paddingTop: 16,
+  },
   icon: {
     backgroundColor: theme.palette.secondary.main,
     borderBottomLeftRadius: 0,
@@ -69,7 +73,7 @@ const OrganizationSearch = (props) => {
   };
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <Grid item xs={1} />
       <Grid item xs={10}>
         <Box display='flex' alignItems='center'>
