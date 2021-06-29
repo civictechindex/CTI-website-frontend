@@ -36,7 +36,7 @@ export const useStyle = makeStyles((theme) => ({
     textAlign:'center',
     marginTop: '-1rem',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '14px',
+      fontSize: 16,
     },
   },
   
