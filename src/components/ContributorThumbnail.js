@@ -8,9 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import Box from '@material-ui/core/Box';
 
-export const ContributorThumbnail = ({ organization, isOpen }) => {
+export const ContributorThumbnail = ({ organization, isOpen, isChildThumbnail }) => {
   const classes = useStyle();
-
 
   const [thumbnailInfo, setThumbnailInfo] = useState({});
 
@@ -27,7 +26,24 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
 
 
     <>
-      <Container className={classes.thumbnailWrapper} component="span">
+      <Container className={isChildThumbnail ? `${classes.altThumbnailWrapper}` : `${classes.thumbnailWrapper}`} component="span">
+        {organization.cti_contributor && (
+          <Box className={classes.contributorThumbnailWrapper}>
+
+            <CardMedia
+              component="img"
+              src='/images/contributor-icon.png'
+              className={classes.contributorThumbnailImage}
+              onError={(e) =>
+              // eslint-disable-next-line no-console
+                console.log(`${e}: error with ${organization.name} image`)
+                // Before MVP: Refactor as on-website error/generic case.
+              }
+              alt={`${organization.name} logo`}
+              loading="lazy"
+            />
+          </Box>)
+        }
         {thumbnailInfo.organizationUrl ? (
 
           <Link
@@ -56,6 +72,10 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
             <Typography component="span"> No URL Data for {organization.name} </Typography>
           </Grid>
         )}
+
+
+
+
       </Container>
     </>
   );
@@ -65,7 +85,9 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
 
 const Thumbnail = ({ thumbnailInfo, organization, isOpen }) => {
   const classes = useStyle();
-
+  if (thumbnailInfo.imageUrl.includes('undefined') || thumbnailInfo.imageUrl.includes('scontent')){
+    thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
+  }
   return (
     <>
       <Grid className={classes.imageWrapper} component="span">
@@ -87,10 +109,7 @@ const Thumbnail = ({ thumbnailInfo, organization, isOpen }) => {
         <Box data-cy="affthumbnailText" className={classes.thumbnailText} component="span">
           <Typography  component={'span'} data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}> {organization.name ? organization.name : organization} </Typography>
         </Box>
-
       </Grid>
-
-
     </>
   );
 };

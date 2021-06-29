@@ -84,7 +84,7 @@ export const Dropdown = ({
 
           <Grid container>
             <Grid item xs={4}>
-              <ContributorThumbnail organization={organization}  isOpen={colorStyle} />
+              <ContributorThumbnail organization={organization}  isOpen={colorStyle} isChildThumbnail={false}/>
             </Grid>
             <Grid item xs={4} className={colorStyle ? `${classes.blueColorStyle} ` : `${classes.dropdownStyle}`}>
                 ({dropdownLength})

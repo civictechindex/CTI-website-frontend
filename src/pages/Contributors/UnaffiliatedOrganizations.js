@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
 import { useStyle } from "./styles.js";
 import Typography from '@material-ui/core/Typography';
@@ -8,11 +8,13 @@ import Box from "@material-ui/core/Box";
 export const UnaffiliatedOrganizations = (props) => {
   const { searchCount, unaffiliatedCount, totalunaffiliatedCount, unaffiliatedOpen, organization, checkboxValue } = props;
   const classes = useStyle();
+  const [isChildThumbnail] = useState(true);
+
   return (
     <Grid className={classes.unaffiliatedWrapper}>
-      <Grid className={classes.sectionContainer}>
+      <Grid className={classes.unaffiliatedSectionContainer}>
         <Box component="div" className={classes.affiliation}>
-          <Typography variant='h2' color='primary' component={'span'} style={{ paddingLeft: '82px', fontSize: '28px' }}>
+          <Typography variant='h2' color='primary' component={'span'} style={{ margin: 'auto', fontSize: '28px' }}>
 
                           Unaffiliated Organizations
             {searchCount ? `(${unaffiliatedCount}/${totalunaffiliatedCount})`  : `(${totalunaffiliatedCount})`   }
@@ -28,6 +30,7 @@ export const UnaffiliatedOrganizations = (props) => {
                   <Typography className={classes.unaffiliatedThumbnails} key={index} component="div">
                     <ContributorThumbnail
                       organization={org}
+                      isChildThumbnail= {isChildThumbnail}
                     ></ContributorThumbnail>
                   </Typography>
                 ))}
