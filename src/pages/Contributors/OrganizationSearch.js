@@ -16,17 +16,24 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: 4,
     color: theme.palette.text.secondary,
     height: 64,
+    [theme.breakpoints.down('sm')]: {
+      height: 48,
+    },
     '&:hover': {
       backgroundColor: theme.palette.secondary.main,
     },
   },
   input: {
-    "& .MuiOutlinedInput-root": {
+    '& .MuiOutlinedInput-root': {
       borderBottomLeftRadius: 4,
       borderBottomRightRadius: 0,
       borderTopLeftRadius: 4,
       borderTopRightRadius: 0,
       height: 64,
+      [theme.breakpoints.down('sm')]: {
+        height: 48,
+        padding: 4,
+      },
     },
   },
 }));
