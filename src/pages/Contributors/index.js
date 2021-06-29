@@ -6,17 +6,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import NavBreadcrumbs from "../../components/NavBreadcrumbs";
 import { useStyle } from "./styles.js";
 import GetStartedCard from '../../components/GetStartedCard'
 import { TitleSection } from '../../components'
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -27,6 +22,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Affiliated  } from "./Affiliated";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
+import OrganizationSearch from "./OrganizationSearch";
 
 // eslint-disable-next-line
 function TabPanel(props) {
@@ -305,7 +301,7 @@ export default function Contributors({ match }) {
             </Grid>
             <Grid item xs={12}>
 
-              <TopCallToAction
+              <OrganizationSearch
                 options={organizationNamesList}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -417,96 +413,5 @@ export default function Contributors({ match }) {
         </Container>
       </Box>
     </Box>
-
-
   );
 }
-
-
-
-const useStyles = makeStyles(theme => ({
-  root:
-  {
-
-    "& .MuiAutocomplete-inputRoot": {
-      paddingRight: '14px',
-
-    },
-
-  },
-  icon: {
-    backgroundColor: theme.palette.secondary.main,
-    borderBottomRightRadius: '4px',
-    borderTopRightRadius: '4px',
-    color: theme.palette.text.secondary,
-    height: '56px',
-    marginRight: '-14px',
-    width: '51px',
-  },
-  input: {
-    width: '945px',
-    height: '64px',
-    borderRadius: '7px',
-    fontSize: '1.5rem',
-    paddingBottom: '4em',
-    paddingTop: '15px',
-  },
-  "& .MuiSvgIcon-root": {
-    root: {
-      width: 168,
-      height: 168,
-    },
-  },
-
-
-}));
-
-
-const TopCallToAction = ({
-  input,
-  options,
-  inputPlaceholder,
-  setInputValue,
-}) => {
-  const classes = useStyles();
-  const [selectedValue, changeInputVal] = useState(input)
-
-  const handleClick = () => {
-    setInputValue(selectedValue)
-  };
-
-  return (
-    <Grid>
-      <Autocomplete
-        id="free-solo"
-        freeSolo
-        inputValue={input}
-        onInputChange={(e, newValue) => changeInputVal(newValue)}
-        options={options}
-        className={classes.root}
-        disableClearable
-        forcePopupIcon={false}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            placeholder={inputPlaceholder}
-            className={classes.input}
-            variant="outlined"
-            InputProps={{
-              ...params.InputProps,
-              type: "search",
-
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <SearchRoundedIcon onClick={handleClick} className={classes.icon} />
-
-                </InputAdornment>
-              ),
-            }}
-          />
-        )}
-      />
-
-    </Grid>
-  );
-};
