@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { makeStyles } from "@material-ui/core";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 const useStyles = makeStyles((theme) => ({
