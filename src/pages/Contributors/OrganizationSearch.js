@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
-import { makeStyles } from "@material-ui/core";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    paddingBottom: 32,
+    paddingTop: 16,
+  },
   icon: {
     backgroundColor: theme.palette.secondary.main,
     borderBottomLeftRadius: 0,
@@ -16,14 +20,24 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: 4,
     color: theme.palette.text.secondary,
     height: 64,
+    [theme.breakpoints.down('sm')]: {
+      height: 48,
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+    },
   },
   input: {
-    "& .MuiOutlinedInput-root": {
+    '& .MuiOutlinedInput-root': {
       borderBottomLeftRadius: 4,
       borderBottomRightRadius: 0,
       borderTopLeftRadius: 4,
       borderTopRightRadius: 0,
       height: 64,
+      [theme.breakpoints.down('sm')]: {
+        height: 48,
+        padding: 4,
+      },
     },
   },
 }));
@@ -59,7 +73,7 @@ const OrganizationSearch = (props) => {
   };
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <Grid item xs={1} />
       <Grid item xs={10}>
         <Box display='flex' alignItems='center'>

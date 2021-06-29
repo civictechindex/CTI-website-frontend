@@ -300,10 +300,9 @@ export default function Contributors({ match }) {
           <Grid container>
             <TitleSection>Organizations</TitleSection>
             <Grid item xs={12}>
-              <Typography color='textSecondary' className={classes.textStyle}>Check out our partners who have contributed to the Civic Tech Index</Typography>
+              <Typography color='textSecondary' className={classes.textStyle} gutterBottom>Check out our partners who have contributed to the Civic Tech Index</Typography>
             </Grid>
             <Grid item xs={12}>
-
               <OrganizationSearch
                 options={organizationNamesList}
                 inputValue={inputValue}
