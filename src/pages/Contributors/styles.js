@@ -476,28 +476,25 @@ export const useStyle = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
 
-  blueColor: {
-    backgroundColor: "#004364",
-    color:"theme​.palette.​text.secondary",
-    '& img': {
-      marginRight: '0.5rem',
-      maxWidth: '6rem',
-    },
-    '& p': {
-      display: 'flex',
-      color: "white",
-      fontSize: '28px',
-      marginLeft:'13px',
-    },
-    width: '1005px',
-    margin: '2rem auto',
-    display: 'flex',
-    alignItems: 'center',
-    padding: '1rem',
-    marginLeft: '-6rem',
-    height:'80px',
+  // blueColor: {
+  //   backgroundColor: "#004364",
+  //   color:"theme​.palette.​text.secondary",
+  //   '& img': {
+  //     marginRight: '0.5rem',
+  //     maxWidth: '6rem',
+  //   },
+  //   '& p': {
+  //     display: 'flex',
+  //     color: "white",
+  //     fontSize: '28px',
+  //     marginLeft:'13px',
+  //   },
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   padding: '1rem',
+  //   height:'80px',
 
-  },
+  // },
 
   altThumbnailWrapper: {
     height: '64px',
@@ -522,4 +519,7 @@ export const useStyle = makeStyles((theme) => ({
     float: 'right',
     marginRight: '-24px',
   },
+  childAffiliated: {
+    marginLeft: '100px',
+ },
 }));
