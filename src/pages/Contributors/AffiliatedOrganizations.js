@@ -8,7 +8,7 @@ import { useStyle } from "./styles.js";
 import { Typography } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
+import Box from "@material-ui/core/Box";
 
 export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue }) => {
 
@@ -88,13 +88,13 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
           return (
             <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length > 0 ? true : false}>
               {childNode.length > 0 ? (
-                <div className={classes.affiliatedThumbnailsWrapper}>
+                <Box className={classes.affiliatedThumbnailsWrapper}>
                   {childNode.map((child, idx) => {
                     return <Typography className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
                       <ContributorThumbnail organization={child} />
                     </Typography>
                   })}
-                </div>
+                </Box>
               ) : null}
 
 
