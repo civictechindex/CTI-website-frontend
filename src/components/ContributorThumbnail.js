@@ -8,7 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import Box from '@material-ui/core/Box';
 
-export const ContributorThumbnail = ({ organization, isOpen }) => {
+
+export const ContributorThumbnail = ({ organization, isOpen,dropdownLength }) => {
   const classes = useStyle();
 
 
@@ -20,8 +21,6 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
     setThumbnailInfo(getOrganizationLinks(organization));
 
   }, [organization]);
-
-
 
   return (
 
@@ -42,11 +41,15 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
                 thumbnailInfo={thumbnailInfo}
                 organization={organization}
                 isOpen={isOpen}
+                dropdownLength={dropdownLength}
               />
             ) : (
               <Grid className={classes.textWrapperWithoutImage} component="span">
                 <Grid className={classes.thumbnailTextWithoutImage} component="span">
-                  <Typography component="span" className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>{organization.name ? organization.name : organization} </Typography>
+                  <Typography component="span" className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
+                    {organization.name ? organization.name : organization}
+                    <span style={{ paddingLeft: "1px" }}> { dropdownLength ? `(${dropdownLength})`  : ` `   }  </span>
+                  </Typography>
                 </Grid>
               </Grid>
             )}
@@ -63,7 +66,7 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
 
 
 
-const Thumbnail = ({ thumbnailInfo, organization, isOpen }) => {
+const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength }) => {
   const classes = useStyle();
 
   return (
@@ -85,7 +88,12 @@ const Thumbnail = ({ thumbnailInfo, organization, isOpen }) => {
 
       <Grid data-cy="affthumbnailTextWrapper" className={classes.textWrapper} component="span">
         <Box data-cy="affthumbnailText" className={classes.thumbnailText} component="span">
-          <Typography  component={'span'} data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}> {organization.name ? organization.name : organization} </Typography>
+
+          <Typography  component={'span'} data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
+            {organization.name ? organization.name : organization}
+
+            <span style={{ paddingLeft: "1px" }}> { dropdownLength ? `(${dropdownLength})`  : ` `   }  </span>
+          </Typography>
         </Box>
 
       </Grid>
