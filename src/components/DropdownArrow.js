@@ -9,14 +9,14 @@ export const DropdownArrow  = ({ setOpenFunction }) => {
   const [colorStyle, setColor] = useState(false);
 
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     chevron: {
       cursor: "pointer",
       margin: "auto 0 auto auto",
       paddingTop: '10px',
       width: '53px',
       height: '45px',
-      color: '#004364',
+      color: theme.palette.secondary.dark,
       marginTop: '-10px',
     },
     clickDropDown: {
@@ -24,7 +24,7 @@ export const DropdownArrow  = ({ setOpenFunction }) => {
       paddingTop: '10px',
       width: '53px',
       height: '45px',
-      color: '#FEFEFE',
+      color: theme.palette.text.secondary,
 
     },
   }));
@@ -32,7 +32,6 @@ export const DropdownArrow  = ({ setOpenFunction }) => {
   const handleClick = (setOpenFunction) => {
 
     setColor(!colorStyle);
-
     if (!arrow.current.style.transform) {
       arrow.current.style.transform = "rotate(180deg)";
 

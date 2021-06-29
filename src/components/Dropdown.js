@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys */
-
 import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ContributorThumbnail } from './ContributorThumbnail';
 import { DropdownArrow } from './DropdownArrow';
 import Grid from '@material-ui/core/Grid';
-
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   dropdown: {
@@ -18,46 +16,36 @@ const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     border: '1px solid #BCBCBC',
     borderRadius: '4px',
-    paddingRight: '26.5rem',
-    width:'928px',
+    paddingRight: '71px',
+    width:'1014px',
     height:'80px',
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '-57px',
+      width: '756px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '-83px',
+      width: '473px',
+      height: '64px',
+    },
   },
-
+  blueColor: {
+    backgroundColor: theme.palette.secondary.dark,
+    color: theme.palette.text.secondary,
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '-83px',
+      width: '473px',
+      height: '64px',
+    },
+  },
   chevron: {
     cursor: 'pointer',
     fontSize: '1.3rem',
   },
-  blueColor: {
-    backgroundColor: "#004364",
-    color:"theme​.palette.​text.secondary",
-    display: 'flex',
-    alignItems: 'center',
-    paddingRight: '26.5rem',
-    width:'928px',
-  },
-
   afflDropdown: {
-    paddingLeft: '365px',
     width: '18px',
     height: '30px',
   },
-
-  dropdownStyle : {
-    maxWidth: '32%',
-    paddingTop:'21px',
-    paddingLeft: '149px',
-    fontSize:'24px',
-    color:"#004364",
-  },
-
-  blueColorStyle : {
-    maxWidth: '32%',
-    paddingTop:'22px',
-    paddingLeft: '146px',
-    fontSize:'24px',
-    color:'#FEFEFE',
-  },
-
 }));
 
 export const Dropdown = ({
@@ -67,7 +55,6 @@ export const Dropdown = ({
   isOpen,
 }) => {
   const [open, setOpen] = useState(false);
-
   const [colorStyle, setColor] = useState(false);
   const classes = useStyles();
 
@@ -75,27 +62,18 @@ export const Dropdown = ({
     setColor(!colorStyle);
   };
 
-
   return (
 
     <Grid onClick={openColor} className="containerDropdown">
       {dropdownLength ? (
-        <Box className={colorStyle ? `${classes.blueColor} ` : `${classes.dropdown}`}>
-
+        <Box className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
           <Grid container>
             <Grid item xs={4}>
-              <ContributorThumbnail organization={organization}  isOpen={colorStyle} isChildThumbnail={false}/>
-            </Grid>
-            <Grid item xs={4} className={colorStyle ? `${classes.blueColorStyle} ` : `${classes.dropdownStyle}`}>
-                ({dropdownLength})
+              <ContributorThumbnail organization={organization} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
             </Grid>
           </Grid>
           <Grid>
-
-
             <Typography variant='body2' className={classes.afflDropdown}><DropdownArrow className={classes.thumbnailOpen} setOpenFunction={setOpen} /></Typography>
-
-
           </Grid>
         </Box>
       ) : null}
@@ -105,3 +83,4 @@ export const Dropdown = ({
 
   );
 };
+export default Dropdown;

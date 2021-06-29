@@ -240,6 +240,8 @@ export default function Contributors({ match }) {
 
   const theme = createMuiTheme({
 
+
+
     overrides: {
       MuiTab: {
         "root": {
@@ -248,6 +250,7 @@ export default function Contributors({ match }) {
           fontWeight: 'bold',
           textTransform: 'none',
           display: "flex",
+
           '&$selected': {
             color: '#006B95',
           },
@@ -297,10 +300,9 @@ export default function Contributors({ match }) {
           <Grid container>
             <TitleSection>Organizations</TitleSection>
             <Grid item xs={12}>
-              <Typography color='textSecondary' className={classes.textStyle}>Check out our partners who have contributed to the Civic Tech Index</Typography>
+              <Typography color='textSecondary' className={classes.textStyle} gutterBottom>Check out our partners who have contributed to the Civic Tech Index</Typography>
             </Grid>
             <Grid item xs={12}>
-
               <OrganizationSearch
                 options={organizationNamesList}
                 inputValue={inputValue}
@@ -326,9 +328,9 @@ export default function Contributors({ match }) {
                 classes={{ indicator: classes.indicator }}
               >
 
-                <Tab label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalunaffiliatedCount + totalaffiliatedCount })</span></>} icon="All" {...a11yProps(0)} className={classes.tabVal} />
-                <Tab  icon="Unaffiliated"  label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</span></>} className={classes.tabVal} {...a11yProps(1)} />
-                <Tab  icon="Affiliated" label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalaffiliatedCount})</span></>} className={classes.tabVal} {...a11yProps(2)} />
+                <Tab label={<>({totalunaffiliatedCount + totalaffiliatedCount })</>} icon="All" {...a11yProps(0)} className={classes.tabVal} />
+                <Tab  icon="Unaffiliated"  label={<>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} className={classes.tabVal} {...a11yProps(1)} />
+                <Tab  icon="Affiliated" label={<>({totalaffiliatedCount})</>} className={classes.tabVal} {...a11yProps(2)} />
               </Tabs>
             </AppBar>
           </MuiThemeProvider>

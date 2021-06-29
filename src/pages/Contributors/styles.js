@@ -2,7 +2,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 
 export const useStyle = makeStyles((theme) => ({
   firstSectionWrapper: {
-    background: '#004364',
+    background: theme.palette.secondary.dark,
     color: '#FFE06D',
     boxSizing: 'border-box',
     backgroundImage: 'url("/images/CTI-Contributors-BG-1.png")',
@@ -14,16 +14,30 @@ export const useStyle = makeStyles((theme) => ({
     '& h1': {
       fontSize: '3rem',
     },
+   [theme.breakpoints.up('md')]: {
+      minHeight: '25vh',
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '32px',
+      minHeight: '28vh',
+    },
+    [theme.breakpoints.down('xl')]: {
+      minHeight: '16vh',
+    },
   },
+ 
   banner: {
     height: '20px',
     width: '100px',
   },
   textStyle: {
-    color:'#FEFEFE',
+    color:theme.palette.text.secondary,
     fontSize: '24px',
     textAlign:'center',
     marginTop: '-1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 16,
+    },
   },
 
   projectsLink: {
@@ -52,34 +66,92 @@ export const useStyle = makeStyles((theme) => ({
       width: '100%',
     },
   },
+
+  afflText: {
+     paddingLeft: '363px', 
+     fontSize: '28px', 
+     paddingBottom: '20px',
+     color: theme.palette.secondary.dark,
+     [theme.breakpoints.down('md')]: {
+      paddingLeft: '255px',
+      fontSize: '24px',
+      paddingBottom: '20px',
+    },
+    [theme.breakpoints.down('sm')]: {
+     fontSize:'20px',
+     paddingLeft:'120px',
+    },
+  },
+  unAfflText: {
+    paddingLeft: '366px', 
+    fontSize: '28px',
+    [theme.breakpoints.down('md')]: {
+      paddingLeft: '255px',
+      fontSize: '24px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '20px',
+      paddingLeft: '123px',
+    },
+  },
+ 
+  
   unaffiliatedWrapper: {
+   
     textAlign: 'center',
     backgroundColor: theme.palette.grey[100],
     padding: '1rem 0',
     '& *': { color: theme.palette.secondary.dark },
     ' & h2': {
       fontZize: '28px',
-      color: '#004364',
+      color: theme.palette.secondary.dark,
       margin: 0,
     },
     '& p': {
       fontSize: '24px',
     },
+    [theme.breakpoints.down('sm')]: {
+      width: '476px',
+    },
+    
   },
   unaffiliatedThumbnailsWrapper: {
-    display: 'grid',
+    display: 'flex',
     gridTemplateColumns: 'repeat(auto-fill,minmax(49%, 1fr))',
-    gap: '0.5rem',
+    gap: '1.5rem',
     padding: '1rem 0',
+    marginLeft: '44px', //dfdf
+    paddingTop: '31px', //dfdfdfd
+    [theme.breakpoints.down('sm')]: {
+      paddingBottom: '30px',
+      marginLeft: '-34px',
+      display: 'flex',
+    },
+    [theme.breakpoints.down('md')]: {
+       marginLeft: '-30px',
+    },
+   
   },
   unaffiliatedThumbnails: {
     border: '1px solid #BCBCBC',
     borderRadius: '4px',
+    // paddingLeft: '10px', //it has in the incomming branch
+    backgroundColor: theme.palette.background.default,
+    width: '496px',
+    // height: '80px',
 
     flex: '1 1 23%',
     '& p': {
       fontSize: '24px',
       color: theme.palette.secondary.dark,
+    },
+    [theme.breakpoints.down('md')]: {
+      width:'408px',
+      height: '80px',
+     },
+    [theme.breakpoints.down('sm')]: {
+     width:'276px',
+     height: '56px',
     },
   },
   affiliatedWrapper: {
@@ -98,12 +170,28 @@ export const useStyle = makeStyles((theme) => ({
     margin: '1.5rem 0',
     columnGap: '20px',
     rowGap: '1.54rem',
-    marginLeft: '47px',
+    marginLeft: '64px',
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '1px',
+      rowGap: '0.44rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '-71px',
+      rowGap: '0.44rem',
+    },
   },
   afflnThumbnails: {
     border: "1px solid #bcbcbc",
     width:"375px",
     height:"64px",
+    [theme.breakpoints.down('md')]: {
+      width: '270px',
+      height: '60px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '220px',
+      height:'48px',
+    },
   },
   affiliatedOrgsContainer: {
     '&h2, & h3': {
@@ -125,7 +213,7 @@ export const useStyle = makeStyles((theme) => ({
     fontSize: '28px',
     paddingTop: '6px',
     paddingLeft: '10px',
-    color:'#004364',
+    color:theme.palette.secondary.dark,
   },
   contributorsContainer: {
     boxSizing: 'border-box',
@@ -135,9 +223,9 @@ export const useStyle = makeStyles((theme) => ({
     alignContent: 'flex-start',
   },
   noargText: {
-    fontStyle: 'italic',
-    paddingRight:'240px',
-    paddingTop: '30px',
+     fontStyle: 'italic',
+     paddingRight:'100px', //paddingRight:'240px',
+     paddingTop: '30px',
   },
 
 
@@ -148,10 +236,14 @@ export const useStyle = makeStyles((theme) => ({
   },
   thumbnailWrapper: {
     minHeight: '5rem',
-    width: '375px',
-    height: '64px',
-  },
+  //   width: '375px',
+  //   height: '64px',
+  // },
 
+    width: '496px',
+    height: '80px', 
+   },
+ 
   thumbnails: {
     color: theme.palette.common.black,
     display: 'flex',
@@ -161,13 +253,29 @@ export const useStyle = makeStyles((theme) => ({
   },
   imageWrapper: {
     display: 'grid',
-    paddingTop: '6px',
+    paddingTop: '5px',
   },
   thumbnailImage: {
     width: '48px',
     height: '48px',
     marginLeft: '-20px',
+     [theme.breakpoints.down('sm')]: {
+      width: '32px',
+      height: '32px',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '48px',
+      height: '48px',
+    },
   },
+  thumbnailOpenImage: {
+    width: '32px',
+    height: '32px',
+    paddingTop: '16px',
+    paddingLeft: '16px',
+    marginLeft: '-20px',
+  },
+
   thumbnailImageresize: {
     width: '30px',
     height: '30px',
@@ -182,22 +290,44 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
 
+ 
   thumbnailText: {
     alignItems: 'center',
     minHeight: '6rem',
     paddingTop: '15px',
     paddingLeft: '3px',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '15px',
+    },
+    [theme.breakpoints.down('md')]: {
+      paddingTop: '22px',
+    },
   },
   orgText: {
-    color:"#004364",
+    color:theme.palette.secondary.dark,
     fontSize:'24px',
     fontWeight: 'bold',
     whiteSpace: 'nowrap',
+    [theme.breakpoints.down('md')]: {
+      fontSize:'18px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize:'20px',
+    },
+  },
+  childThumbnails: {
+    marginLeft: '-2rem',
   },
 
   blueColorText: {
-    color: "#FEFEFE",
+    color: theme.palette.text.secondary,
     fontSize:'24px',
+    [theme.breakpoints.down('md')]: {
+      fontSize:'18px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize:'20px',
+    },
   },
   textWrapperWithoutImage: {
     display: 'grid',
@@ -231,43 +361,96 @@ export const useStyle = makeStyles((theme) => ({
       display: 'flex',
       color: theme.palette.secondary.dark,
       fontSize: '28px',
-      marginLeft:'13px',
+      marginLeft:'5px',
+      [theme.breakpoints.up('sm')]: {
+         fontSize: '20px',
+      },
+      [theme.breakpoints.up('xs')]: {
+        fontSize: '24px',
+     },
     },
-    width: '1005px',
+    '& h4': {
+      paddingLeft:'24px',
+      color: theme.palette.secondary.dark,
+    },
+    width: '1139px',
     margin: '1rem auto',
     display: 'flex',
     alignItems: 'center',
     padding: '1rem',
-    marginLeft: '-3rem',
+    marginLeft: '3rem',
     height:'80px',
-    backgroundColor:theme.palette.background.default,
+    backgroundColor: theme.palette.background.default,
+    [theme.breakpoints.down('md')]: {
+      width: '885px',
+      marginLeft: '-1.25rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '-25px',
+      width:'568px',
+      height: '64px',
+    },
+
   },
 
+  blueColor: {
+   backgroundColor: theme.palette.secondary.dark,
+    '& h4': {
+      color: theme.palette.text.secondary,
+    },
+    
+  },
+  
+  codeforallImg: {
+   width:'56px',
+   height:'56px',
+   [theme.breakpoints.up('sm')]: {
+    width:'48px',
+    height: '48px',
+  },
+  },
   indicator: {
     backgroundColor: '#006B95',
   },
   tabVal: {
-    color: "theme​.palette.​text.disabled",
+   color: "theme​.palette.​text.disabled",
+   [theme.breakpoints.down('sm')]: {
+     fontSize: '18px',
+  },  
+  [theme.breakpoints.up('md')]: {
+      fontSize: '28px',
+  },
+  
     "&:hover": {
       color: "#006B95",
       opacity: 1,
     },
 
   },
-
+ 
   button: {
     width: '211px',
     height: '44px',
     borderRadius: '31px',
     border: '1px solid',
-    borderColor: '#004364',
-    color: "#004364",
+    borderColor: theme.palette.secondary.dark,
+    color: theme.palette.secondary.dark,
     fontSize: '16px',
+    marginLeft: '-118px',
     backgroundColor: 'transparent',
     '&:hover': {
       backgroundColor: theme.palette.background.default,
     },
-  },
+      [theme.breakpoints.down('md')]: {
+        width: '118px',
+        height: '31px',
+        marginLeft: '-143.5px',
+    },  
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '-93.5px',
+  }, 
+
+    }, 
 
   chkBoxStyle: {
     color: '#6D6E74',
@@ -278,12 +461,18 @@ export const useStyle = makeStyles((theme) => ({
     '&:selected': {
       background: 'transparent',
     },
+    [theme.breakpoints.down('md')]: {
+     paddingLeft: '45rem',
+    },  
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '23rem',
+     }, 
   },
 
 
   formControlLabel: {
 
-    color: '#004364',
+    color: theme.palette.secondary.dark,
     fontWeight: 'bold',
   },
 
