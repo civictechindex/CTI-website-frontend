@@ -79,7 +79,7 @@ console.log(arrow)
         </Box>
         <Box flexGrow={1}></Box>
         <Box>
-          <DropdownArrow handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen} />
+          <DropdownArrow handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen} setAfflnSepOpen={setAfflnSepOpen} />
         </Box>
       </Box>
       <Grid style={{ margin: 'auto',width: '928px' }}>

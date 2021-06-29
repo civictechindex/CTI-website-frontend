@@ -1,9 +1,9 @@
-import React from "react";
+import React,{ useRef }  from "react";
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
-export const DropdownArrow  = ({ handleClickArrow,arrow,affiliatedSepOpen }) => {
+export const DropdownArrow  = ({ affiliatedSepOpen,setAfflnSepOpen }) => {
 
   const useStyles = makeStyles(theme => ({
     chevron: {
@@ -22,6 +22,18 @@ export const DropdownArrow  = ({ handleClickArrow,arrow,affiliatedSepOpen }) => 
 
 
   const classes = useStyles();
+  const arrow = useRef(null);
+
+  const handleClickArrow = (setAfflnSepOpen) => {
+    console.log(arrow)
+    if (!arrow.current.style.transform) {
+      arrow.current.style.transform = "rotate(180deg)";
+
+    } else {
+      arrow.current.style.transform = "";
+    }
+    setAfflnSepOpen((c) => !c);
+  };
 
   return (
     <>
@@ -29,7 +41,7 @@ export const DropdownArrow  = ({ handleClickArrow,arrow,affiliatedSepOpen }) => 
         className={clsx(classes.chevron, {
           [classes.clickDropDown]: affiliatedSepOpen=== true,
         })}
-        onClick={handleClickArrow}
+        onClick={()=>handleClickArrow(setAfflnSepOpen)}
         alt="/images/Chevron.png" />
     </>
   );
