@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 
-export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue }) => {
+export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue,handleClickArrow,arrow,affiliatedSepOpen }) => {
 
   const classes = useStyle();
   const parentfilterData = data;
@@ -86,7 +86,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
           const childNode = org.isOpen ?  org.childNodes : org.childNodes.slice(0,8)
 
           return (
-            <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length > 0 ? true : false}>
+            <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length > 0 ? true : false}  handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen}  >
               {childNode.length > 0 ? (
                 <div className={classes.affiliatedThumbnailsWrapper}>
                   {childNode.map((child, idx) => {

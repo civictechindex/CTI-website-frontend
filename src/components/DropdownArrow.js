@@ -1,13 +1,9 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
-export const DropdownArrow  = ({ setOpenFunction }) => {
-
-
-  const arrow = useRef(null);
-  const [colorStyle, setColor] = useState(false);
-
+export const DropdownArrow  = ({ handleClickArrow,arrow,affiliatedSepOpen }) => {
 
   const useStyles = makeStyles(theme => ({
     chevron: {
@@ -16,44 +12,25 @@ export const DropdownArrow  = ({ setOpenFunction }) => {
       paddingTop: '10px',
       width: '53px',
       height: '45px',
-      color: '#004364',
+      color: theme.palette.secondary.dark,
       marginTop: '-10px',
     },
     clickDropDown: {
-      margin: "auto 0 auto auto",
-      paddingTop: '10px',
-      width: '53px',
-      height: '45px',
-      color: '#FEFEFE',
-
+      color: theme.palette.background.default,
     },
   }));
 
-  const handleClick = (setOpenFunction) => {
-
-    setColor(!colorStyle);
-
-    if (!arrow.current.style.transform) {
-      arrow.current.style.transform = "rotate(180deg)";
-
-    } else {
-      arrow.current.style.transform = "";
-    }
-    setOpenFunction((c) => !c);
-  };
 
   const classes = useStyles();
 
   return (
-
     <>
       <ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}
-        className={colorStyle ? `${classes.clickDropDown} ` : `${classes.chevron}`}
-        onClick={()=>handleClick(setOpenFunction)}
+        className={clsx(classes.chevron, {
+          [classes.clickDropDown]: affiliatedSepOpen=== true,
+        })}
+        onClick={handleClickArrow}
         alt="/images/Chevron.png" />
-
-
-
     </>
   );
 

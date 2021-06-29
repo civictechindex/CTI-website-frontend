@@ -15,10 +15,7 @@ export const ContributorThumbnail = ({ organization, isOpen }) => {
   const [thumbnailInfo, setThumbnailInfo] = useState({});
 
   useEffect(() => {
-
-
     setThumbnailInfo(getOrganizationLinks(organization));
-
   }, [organization]);
 
 
@@ -85,7 +82,7 @@ const Thumbnail = ({ thumbnailInfo, organization, isOpen }) => {
 
       <Grid data-cy="affthumbnailTextWrapper" className={classes.textWrapper} component="span">
         <Box data-cy="affthumbnailText" className={classes.thumbnailText} component="span">
-          <Typography  component={'span'} data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}> {organization.name ? organization.name : organization} </Typography>
+          <Typography component="span" data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}> {organization.name ? organization.name : organization} </Typography>
         </Box>
 
       </Grid>

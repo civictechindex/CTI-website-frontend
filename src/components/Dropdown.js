@@ -1,13 +1,11 @@
 /* eslint-disable sort-keys */
 
 import React, { useState } from 'react';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { ContributorThumbnail } from './ContributorThumbnail';
 import { DropdownArrow } from './DropdownArrow';
 import Grid from '@material-ui/core/Grid';
-
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   dropdown: {
@@ -17,44 +15,34 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     boxSizing: 'border-box',
     border: '1px solid #BCBCBC',
-    borderRadius: '4px',
+    borderRadius: '6px',
     paddingRight: '26.5rem',
     width:'928px',
     height:'80px',
   },
-
+  blueColor:{
+    backgroundColor: theme.palette.secondary.dark,
+  },
   chevron: {
     cursor: 'pointer',
     fontSize: '1.3rem',
   },
-  blueColor: {
-    backgroundColor: "#004364",
-    color:"theme​.palette.​text.secondary",
-    display: 'flex',
-    alignItems: 'center',
-    paddingRight: '26.5rem',
-    width:'928px',
-  },
-
   afflDropdown: {
-    paddingLeft: '365px',
+    paddingLeft: '400px',
     width: '18px',
     height: '30px',
   },
 
   dropdownStyle : {
-    maxWidth: '32%',
-    paddingTop:'21px',
-    paddingLeft: '149px',
+    /*
+     * maxWidth: '32%',
+     * paddingTop:'21px',
+     * paddingLeft: '149px',
+     */
     fontSize:'24px',
     color:"#004364",
   },
-
   blueColorStyle : {
-    maxWidth: '32%',
-    paddingTop:'22px',
-    paddingLeft: '146px',
-    fontSize:'24px',
     color:'#FEFEFE',
   },
 
@@ -65,6 +53,9 @@ export const Dropdown = ({
   children,
   dropdownLength,
   isOpen,
+  handleClickArrow,
+  arrow,
+  affiliatedSepOpen,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -78,26 +69,22 @@ export const Dropdown = ({
 
   return (
 
-    <Grid onClick={openColor} className="containerDropdown">
+    <Grid onClick={openColor}>
       {dropdownLength ? (
-        <Box className={colorStyle ? `${classes.blueColor} ` : `${classes.dropdown}`}>
-
-          <Grid container>
-            <Grid item xs={4}>
-              <ContributorThumbnail organization={organization}  isOpen={colorStyle} />
-            </Grid>
-            <Grid item xs={4} className={colorStyle ? `${classes.blueColorStyle} ` : `${classes.dropdownStyle}`}>
-                ({dropdownLength})
-            </Grid>
+        <Grid className={clsx(classes.dropdown, {
+          [classes.blueColor]: colorStyle === true,
+        })}>
+          <Grid item >
+            <ContributorThumbnail organization={organization}  isOpen={colorStyle} />
           </Grid>
-          <Grid>
-
-
-            <Typography variant='body2' className={classes.afflDropdown}><DropdownArrow className={classes.thumbnailOpen} setOpenFunction={setOpen} /></Typography>
-
-
+          <Grid item  className={clsx(classes.dropdownStyle, {
+            [classes.blueColorStyle]: colorStyle === true,
+          }) }>({dropdownLength})
           </Grid>
-        </Box>
+          <Grid className={classes.afflDropdown}>
+            <DropdownArrow className={classes.thumbnailOpen} handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen}/>
+          </Grid>
+        </Grid>
       ) : null}
       {open && children}
 

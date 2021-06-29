@@ -25,7 +25,7 @@ export const useStyle = makeStyles((theme) => ({
     textAlign:'center',
     marginTop: '-1rem',
   },
-  
+
   projectsLink: {
     margin: '0',
     paddingTop: '70px',
@@ -65,7 +65,7 @@ export const useStyle = makeStyles((theme) => ({
       margin: 0,
     },
     '& p': {
-     fontSize: '24px',
+      fontSize: '24px',
     },
   },
   unaffiliatedThumbnailsWrapper: {
@@ -95,6 +95,34 @@ export const useStyle = makeStyles((theme) => ({
       margin: 0,
       fontZize: '28px',
       color: theme.palette.secondary.dark,
+    },
+  },
+  codeForAllWrapper: {
+    width: '1005px',
+    margin: '2rem auto',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '12px 16px',
+    marginLeft: '-6rem',
+    height:'80px',
+    backgroundColor: theme.palette.background.default,
+    borderRadius: '6px',
+    '& a': {
+      textDecoration: 'none',
+    },
+    '& img': {
+      marginRight: '0.5rem',
+      maxWidth: '6rem',
+    },
+    '& h4': {
+      paddingLeft:'24px',
+      color: theme.palette.secondary.dark,
+    },
+  },
+  blueColor:{
+    backgroundColor: theme.palette.secondary.dark,
+    '& h4': {
+      color: theme.palette.text.secondary,
     },
   },
   affiliatedThumbnailsWrapper: {
@@ -140,12 +168,10 @@ export const useStyle = makeStyles((theme) => ({
     alignContent: 'flex-start',
   },
   noargText: {
-     fontStyle: 'italic',
-     paddingRight:'240px',
-     paddingTop: '30px',
+    fontStyle: 'italic',
+    paddingRight:'240px',
+    paddingTop: '30px',
   },
-
-
   loaders: {
     fontSize: '2rem',
     textAlign: 'center',
@@ -154,9 +180,9 @@ export const useStyle = makeStyles((theme) => ({
   thumbnailWrapper: {
     minHeight: '5rem',
     width: '375px',
-    height: '64px'  
+    height: '64px',
   },
- 
+
   thumbnails: {
     color: theme.palette.common.black,
     display: 'flex',
@@ -166,14 +192,14 @@ export const useStyle = makeStyles((theme) => ({
   },
   imageWrapper: {
     display: 'grid',
-    paddingTop: '4px',
+    padding: '12px 16px',
   },
   thumbnailImage: {
-     width: '48px',
-     height: '48px',
-     paddingTop: '16px',
-     paddingLeft: '16px',
-     marginLeft: '-20px',
+    width: '56px',
+    height: '56px',
+    // paddingTop: '12px',
+    // paddingLeft: '12px',
+    // marginLeft: '-20px',
   },
   thumbnailImageresize: {
     width: '30px',
@@ -186,9 +212,9 @@ export const useStyle = makeStyles((theme) => ({
     minHeight: '6rem',
     "&:visited": {
       color: "theme​.palette.​text.secondary",
-     },
+    },
   },
- 
+
   thumbnailText: {
     alignItems: 'center',
     minHeight: '6rem',
@@ -198,7 +224,7 @@ export const useStyle = makeStyles((theme) => ({
   orgText: {
     color:"#004364",
     fontSize:'24px',
-    
+
   },
 
   blueColorText: {
@@ -207,7 +233,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   textWrapperWithoutImage: {
     display: 'grid',
-    //placeItems: 'center',
+    // placeItems: 'center',
     width: '100%',
   },
   thumbnailTextWithoutImage: {
@@ -220,48 +246,19 @@ export const useStyle = makeStyles((theme) => ({
     marginTop:'-11px',
 
   },
-  codeForAllWrapper: {
-    '& a': {
-      alignItems: 'center',
-      marginRight: '0.5rem',
-      display: 'flex',
-      textDecoration: 'none',
-      '& p': {
-        color: theme.palette.secondary.dark,
-      },
-      '& img': {
-        marginRight: '0.5rem',
-        maxWidth: '6rem',
-      },
-    },
-    '& p': {
-      display: 'flex',
-      color: theme.palette.secondary.dark,
-      fontSize: '28px',
-      marginLeft:'13px',
-    },
-    width: '1005px',
-    margin: '1rem auto',
-    display: 'flex',
-    alignItems: 'center',
-    padding: '1rem',
-    marginLeft: '-3rem',
-    height:'80px',
-    backgroundColor:'theme​.palette.​background.default',
-  },
- 
+
   indicator: {
-    backgroundColor: '#006B95'
+    backgroundColor: '#006B95',
   },
   tabVal: {
-   color: "theme​.palette.​text.disabled",
+    color: "theme​.palette.​text.disabled",
     "&:hover": {
       color: "#006B95",
-      opacity: 1
+      opacity: 1,
     },
-    
+
   },
-  
+
   button: {
     width: '211px',
     height: '44px',
@@ -274,7 +271,7 @@ export const useStyle = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.background.default,
     },
-    }, 
+  },
 
   chkBoxStyle: {
     color: '#6D6E74',
@@ -287,35 +284,11 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
 
-  
+
   formControlLabel: {
 
     color: '#004364',
     fontWeight: 'bold',
   },
- 
- blueColor: {
-   backgroundColor: "#004364",
-   color:"theme​.palette.​text.secondary",
-   '& img': {
-    marginRight: '0.5rem',
-    maxWidth: '6rem',
-    },
-    '& p': {
-      display: 'flex',
-      color: "white",
-      fontSize: '28px',
-      marginLeft:'13px',
-    },
-    width: '1005px',
-    margin: '2rem auto',
-    display: 'flex',
-    alignItems: 'center',
-    padding: '1rem',
-    marginLeft: '-6rem',
-    height:'80px',
- 
-  },
 
- 
 }));
