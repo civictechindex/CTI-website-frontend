@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: 4,
     color: theme.palette.text.secondary,
     height: 64,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+    },
   },
   input: {
     "& .MuiOutlinedInput-root": {
