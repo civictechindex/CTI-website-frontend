@@ -12,7 +12,7 @@ export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isC
   const classes = useStyle();
 
   const [thumbnailInfo, setThumbnailInfo] = useState({});
-
+  
   useEffect(() => {
 
 
@@ -90,13 +90,22 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength }) => {
   if (thumbnailInfo.imageUrl.includes('undefined') || thumbnailInfo.imageUrl.includes('scontent')){
     thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
   }
+  var thumbnailImageStyle = classes.thumbnailImage;
+  var thumbnailTextStyle = classes.thumbnailText;
+  var textWrapperStyle = classes.textWrapper;
+  console.log(dropdownLength)
+  if(organization.affiliated && dropdownLength > 0){
+    thumbnailImageStyle = classes.unaffiliatedThumbnailImage;
+    thumbnailTextStyle = classes.dropdownThumbnailText;
+    textWrapperStyle = classes.dropdownTextWrapper;
+  }
   return (
     <>
       <Grid className={classes.imageWrapper} component="span">
         <CardMedia
           component="img"
           src={thumbnailInfo.imageUrl}
-          className={classes.thumbnailImage}
+          className={thumbnailImageStyle}
           onError={(e) =>
             // eslint-disable-next-line no-console
             console.log(`${e}: error with ${organization.name} image`)
@@ -107,8 +116,8 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength }) => {
         />
       </Grid>
 
-      <Grid data-cy="affthumbnailTextWrapper" className={classes.textWrapper} component="span">
-        <Box data-cy="affthumbnailText" className={classes.thumbnailText} component="span">
+      <Grid data-cy="affthumbnailTextWrapper" className={textWrapperStyle} component="span">
+        <Box data-cy="affthumbnailText" className={thumbnailTextStyle} component="span">
 
           <Typography  component={'span'} data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
             {organization.name ? organization.name : organization}

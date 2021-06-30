@@ -133,12 +133,9 @@ export const useStyle = makeStyles((theme) => ({
    
   },
   unaffiliatedThumbnails: {
-    border: '1px solid #BCBCBC',
     borderRadius: '4px',
-    // paddingLeft: '10px', //it has in the incomming branch
-    backgroundColor: theme.palette.background.default,
+    // backgroundColor: theme.palette.background.default,
     width: '496px',
-    // height: '80px',
 
     flex: '1 1 23%',
     '& p': {
@@ -170,7 +167,7 @@ export const useStyle = makeStyles((theme) => ({
     margin: '1.5rem 0',
     columnGap: '20px',
     rowGap: '1.54rem',
-    marginLeft: '64px',
+    marginLeft: '45px',
     [theme.breakpoints.down('md')]: {
       marginLeft: '1px',
       rowGap: '0.44rem',
@@ -181,8 +178,6 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
   afflnThumbnails: {
-    border: "1px solid #bcbcbc",
-    width:"375px",
     height:"64px",
     [theme.breakpoints.down('md')]: {
       width: '270px',
@@ -295,7 +290,7 @@ export const useStyle = makeStyles((theme) => ({
     alignItems: 'center',
     minHeight: '6rem',
     paddingTop: '15px',
-    paddingLeft: '3px',
+    paddingLeft: '6px',
     [theme.breakpoints.down('sm')]: {
       paddingTop: '15px',
     },
@@ -312,7 +307,7 @@ export const useStyle = makeStyles((theme) => ({
       fontSize:'18px',
     },
     [theme.breakpoints.up('sm')]: {
-      fontSize:'20px',
+      fontSize:'24px',
     },
   },
   childThumbnails: {
@@ -322,11 +317,12 @@ export const useStyle = makeStyles((theme) => ({
   blueColorText: {
     color: theme.palette.text.secondary,
     fontSize:'24px',
+    fontWeight: '700',
     [theme.breakpoints.down('md')]: {
       fontSize:'18px',
     },
     [theme.breakpoints.up('sm')]: {
-      fontSize:'20px',
+      fontSize:'24px',
     },
   },
   textWrapperWithoutImage: {
@@ -476,26 +472,6 @@ export const useStyle = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
 
-  // blueColor: {
-  //   backgroundColor: "#004364",
-  //   color:"theme​.palette.​text.secondary",
-  //   '& img': {
-  //     marginRight: '0.5rem',
-  //     maxWidth: '6rem',
-  //   },
-  //   '& p': {
-  //     display: 'flex',
-  //     color: "white",
-  //     fontSize: '28px',
-  //     marginLeft:'13px',
-  //   },
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   padding: '1rem',
-  //   height:'80px',
-
-  // },
-
   altThumbnailWrapper: {
     height: '64px',
     backgroundColor: "white",
@@ -522,4 +498,31 @@ export const useStyle = makeStyles((theme) => ({
   childAffiliated: {
     marginLeft: '100px',
  },
+ unaffiliatedThumbnailImage: {
+  width: '56px',
+  height: '56px',
+  marginTop: '8px',
+  marginLeft: '-10px'
+},
+dropdownThumbnailText: {
+  alignItems: 'center',
+  minHeight: '6rem',
+  paddingTop: '24px',
+  paddingLeft: '6px',
+  margin: 'auto',
+  position: 'absolute',
+  [theme.breakpoints.down('sm')]: {
+    paddingTop: '15px',
+  },
+  [theme.breakpoints.down('md')]: {
+    paddingTop: '22px',
+  },
+  dropdownTextWrapper:{
+    display: 'flex',
+    alignItems: 'center',
+    flex: '3 1 75%',
+    minHeight: '6rem',
+    marginTop: '30px'
+  }
+},
 }));
