@@ -10,9 +10,6 @@ export const DropdownArrow  = ({ gp,affiliatedSepOpen,setAfflnSepOpen,setOpen,co
     buttonStyle:{
       width:'100%',
       backgroundColor: theme.palette.background.default,
-      '&:hover': {
-        backgroundColor: theme.palette.background.default,
-      },
       '&.MuiButtonBase-root': {
         backgroundColor: theme.palette.background.default,
       },
