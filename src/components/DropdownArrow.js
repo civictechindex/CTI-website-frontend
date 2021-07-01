@@ -1,25 +1,29 @@
-import React,{ useRef }  from "react";
+import React,{ useState,useRef }  from "react";
 import Button from '@material-ui/core/Button';
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
-export const DropdownArrow  = ({ affiliatedSepOpen,setAfflnSepOpen }) => {
+export const DropdownArrow  = ({ gp,affiliatedSepOpen,setAfflnSepOpen,setOpen,colorStyle }) => {
 
   const useStyles = makeStyles(theme => ({
     buttonStyle:{
       width:'100%',
       backgroundColor: theme.palette.background.default,
+      '&:hover': {
+        backgroundColor: theme.palette.background.default,
+      },
       '&.MuiButtonBase-root': {
         backgroundColor: theme.palette.background.default,
-        //opacity: '0',
+      },
+      '&.MuiButton-label':{
+        paddingLeft:'650px',
+        marginRight:'0px',
       },
     },
     blueButtonStyle:{
-      //backgroundColor: theme.palette.secondary.dark,
       '&.MuiButtonBase-root': {
         backgroundColor: theme.palette.secondary.dark,
-        //opacity: '0',
       },
     },
     chevron: {
@@ -36,37 +40,49 @@ export const DropdownArrow  = ({ affiliatedSepOpen,setAfflnSepOpen }) => {
 
   const classes = useStyles();
   const arrow = useRef(null);
+  const [arrowColor, setArrowColor] = useState(false);
 
-  const handleClickArrow = (setAfflnSepOpen) => {
-    console.log(arrow)
+  const arrowStyle = () =>{
     if (!arrow.current.style.transform) {
       arrow.current.style.transform = "rotate(180deg)";
 
     } else {
       arrow.current.style.transform = "";
     }
+  }
+
+  const handleClickButtonGp = (setAfflnSepOpen) => {
+    setArrowColor(!arrowColor);
+    arrowStyle();
     setAfflnSepOpen((c) => !c);
   };
-
+  const handleClickButton = (setOpen) => {
+    setArrowColor(!arrowColor);
+    arrowStyle();
+    setOpen((c) => !c);
+  };
   return (
     <>
-      <Button
-        //className={classes.buttonStyle}
+      {gp ? <Button
         className={clsx(classes.buttonStyle, {
           [classes.blueButtonStyle]: affiliatedSepOpen=== true,
         })}
         endIcon={<ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}  className={clsx(classes.chevron, {
-          [classes.clickDropDown]: affiliatedSepOpen=== true,
+          [classes.clickDropDown]: arrowColor === true,
         })} />}
-        onClick={()=>handleClickArrow(setAfflnSepOpen)}
+        onClick={()=>handleClickButtonGp(setAfflnSepOpen)}
       >
-      </Button>
-      {/* <ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}
-        className={clsx(classes.chevron, {
-          [classes.clickDropDown]: affiliatedSepOpen=== true,
+      </Button> : <Button
+        className={clsx(classes.buttonStyle, {
+          [classes.blueButtonStyle]: colorStyle=== true,
         })}
-        onClick={()=>handleClickArrow(setAfflnSepOpen)}
-        alt="/images/Chevron.png" /> */}
+        endIcon={<ExpandMoreOutlinedIcon id = "dropdownChevron" ref={arrow}  className={clsx(classes.chevron, {
+          [classes.clickDropDown]: arrowColor === true,
+        })} />}
+        onClick={()=>handleClickButton(setOpen)}
+      >
+      </Button> }
+
     </>
   );
 

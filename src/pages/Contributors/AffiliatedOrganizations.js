@@ -81,7 +81,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
   if (currentThumbnails &&  inputValue.length === 0) {
     return (
-      <Grid dropdownlength={currentThumbnails.length}>
+      <Grid className={classes.containerDropdown} dropdownlength={currentThumbnails.length}>
         {currentThumbnails.map((org, i) => {
           const childNode = org.isOpen ?  org.childNodes : org.childNodes.slice(0,8)
 
@@ -99,11 +99,12 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
 
               {org.childNodes.length > 8 ? (
-                <Button data-cy="viewBtnClick" id="viewAllButton" className={classes.button}  onClick={() => {
-                  const data = [...currentThumbnails]
-                  data[i].isOpen = data[i].isOpen ? false : true;
-                  setCurrentThumbnails(data)
-                }}> View All </Button>
+                <Grid style={{ margin:'auto' }}>
+                  <Button data-cy="viewBtnClick" id="viewAllButton" className={classes.button}  onClick={() => {
+                    const data = [...currentThumbnails]
+                    data[i].isOpen = data[i].isOpen ? false : true;
+                    setCurrentThumbnails(data)
+                  }}> View All </Button></Grid>
               ) : null}
             </Dropdown>
           );

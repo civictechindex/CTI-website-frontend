@@ -1,4 +1,4 @@
-import React,{ useRef } from "react";
+import React,{ useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import { DropdownArrow } from "../../components/DropdownArrow.js";
 import Grid from '@material-ui/core/Grid';
@@ -39,23 +39,17 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.text.secondary,
     },
   },
+  dropDownGrid:{
+    margin: 'auto',
+    width: '1005px',
+    backgroundColor: theme.palette.background.default,
+  }
 }));
 /* eslint complexity: [0, 0]*/
 export const Affiliated = (props) => {
   const { organizations, inputValue, classes, organizationData, affiliatedSepOpen,  searchCount, affiliatedCount, totalaffiliatedCount, setAfflnSepOpen, checkboxValue } = props
   const classesLocal = useStyles()
-  const arrow = useRef(null);
-
-  const handleClickArrow = () => {
-console.log(arrow)
-    if (!arrow.current.style.transform) {
-      arrow.current.style.transform = "rotate(180deg)";
-
-    } else {
-      arrow.current.style.transform = "";
-    }
-    setAfflnSepOpen((c) => !c);
-  };
+  const [gp, setGp] = useState(true);
 
   return (
     <Grid>
@@ -77,16 +71,12 @@ console.log(arrow)
             { searchCount ? `(${affiliatedCount}/${totalaffiliatedCount})`  : ` (${totalaffiliatedCount})` }
           </Typography>
         </Box>
-        <Box flexGrow={1}><DropdownArrow handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen} setAfflnSepOpen={setAfflnSepOpen} /></Box>
-        {/* <Box>
-          <DropdownArrow handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen} setAfflnSepOpen={setAfflnSepOpen} />
-        </Box> */}
+        <Box flexGrow={1}><DropdownArrow affiliatedSepOpen={affiliatedSepOpen} setAfflnSepOpen={setAfflnSepOpen} gp={gp} setGp={setGp} /></Box>
       </Box>
-      <Grid style={{ margin: 'auto',width: '928px' }}>
+      <Grid className={classesLocal.dropDownGrid}>
         {affiliatedSepOpen && (
           !organizations['Code for All'] ? !inputValue ? <h3 className={classes.loaders}>Loading...</h3> : <h3 className={classes.loaders}>No Results</h3>
-            : <AffiliatedOrganizations organizations={organizations} inputValue={inputValue} data={organizationData} checkboxValue={checkboxValue}
-              handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen}  />
+            : <AffiliatedOrganizations organizations={organizations} inputValue={inputValue} data={organizationData} checkboxValue={checkboxValue}  />
         )}
       </Grid>
     </Grid>

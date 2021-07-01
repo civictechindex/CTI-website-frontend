@@ -125,6 +125,10 @@ export const useStyle = makeStyles((theme) => ({
       color: theme.palette.text.secondary,
     },
   },
+  containerDropdown:{
+    backgroundColor: theme.palette.secondary.default,
+    paddingTop:'8px',
+  },
   affiliatedThumbnailsWrapper: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 0.45fr)',
@@ -197,9 +201,11 @@ export const useStyle = makeStyles((theme) => ({
   thumbnailImage: {
     width: '56px',
     height: '56px',
-    // paddingTop: '12px',
-    // paddingLeft: '12px',
-    // marginLeft: '-20px',
+    /*
+     * paddingTop: '12px',
+     * paddingLeft: '12px',
+     * marginLeft: '-20px',
+     */
   },
   thumbnailImageresize: {
     width: '30px',
