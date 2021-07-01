@@ -8,14 +8,14 @@ import { useStyle } from "./styles.js";
 import { Typography } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
+import Box from "@material-ui/core/Box";
 
 export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue,handleClickArrow,arrow,affiliatedSepOpen }) => {
 
   const classes = useStyle();
   const parentfilterData = data;
+  const [isChildThumbnail] = useState(true);
   const parentOrg =organizations['Code for All'].filter(item => item);
-
   const getParentData = () => {
     const parentdata = [];
     let flag = false;
@@ -88,13 +88,16 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
           return (
             <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length > 0 ? true : false}  handleClickArrow={handleClickArrow} arrow={arrow} affiliatedSepOpen={affiliatedSepOpen}  >
               {childNode.length > 0 ? (
-                <div className={classes.affiliatedThumbnailsWrapper}>
+                <Box className={classes.affiliatedThumbnailsWrapper}>
                   {childNode.map((child, idx) => {
                     return <Typography className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
-                      <ContributorThumbnail organization={child} />
+                      <ContributorThumbnail
+                        organization={child}
+                        isChildThumbnail= {isChildThumbnail}
+                      ></ContributorThumbnail>
                     </Typography>
                   })}
-                </div>
+                </Box>
               ) : null}
 
 
@@ -122,7 +125,10 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
           return (<div className={classes.affiliatedThumbnailsWrapper} key={`affiliatedThumbnailsWrapper_${i}`}>
             <Typography className={classes.afflnThumbnails} key={i}>
-              <ContributorThumbnail organization={searchDataItems} />
+              <ContributorThumbnail
+                organization={searchDataItems}
+                isChildThumbnail={isChildThumbnail} >
+              </ContributorThumbnail>
             </Typography>
           </div>
           );

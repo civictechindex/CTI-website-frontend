@@ -2,20 +2,30 @@ const navigation = [
   {
     id: 'join',
     header: 'Join the Index',
-    route: '/join-index',
+    route: '#',
     subNavigation: [
       {
+        id: 'tagYourProject',
+        header: 'Tag Your Project',
+        route: '/join-index',
+      },
+      {
         id: 'addProject',
-        header: 'How to Add Your Project to the Index',
+        header: 'How to Add Your Project',
         route: '/join-index/how-to-add',
       },
     ],
   },
   {
-    id: 'about',
-    header: 'About',
-    route: '/about',
+    id: 'overview',
+    header: 'Overview',
+    route: '#',
     subNavigation: [
+      {
+        id: 'about',
+        header: 'About',
+        route: '/about',
+      },
       {
         id: 'faq',
         header: 'FAQ',
@@ -29,16 +39,27 @@ const navigation = [
     ],
   },
   {
-    id: 'organizations',
-    header: 'Organizations',
-    route: '/organizations/all',
-    subNavigation: [],
+    id: 'civicTechPartners',
+    header: 'Civic Tech Partners',
+    route: '#',
+    subNavigation: [
+      {
+        id: 'organizations',
+        header: 'View Organizations',
+        route: '/organizations/all',
+      },
+    ],
   },
   {
-    id: 'collaborate',
-    header: 'Collaborate with Us',
-    route: '/support',
+    id: 'suportTheInx',
+    header: 'Support the Index',
+    route: '#',
     subNavigation: [
+      {
+        id: 'collaborate',
+        header: 'Collaborate with Us',
+        route: '/support',
+      },
       {
         id: 'donate',
         header: 'Donate',

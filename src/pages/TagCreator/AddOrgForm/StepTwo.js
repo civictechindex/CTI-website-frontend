@@ -13,7 +13,6 @@ const StepTwo = (props) => {
   const facebookUrlApiErr = props.apiErrors.facebook_url;
   const twitterUrlApiErr = props.apiErrors.twitter_url;
   const meetupUrlApiErr = props.apiErrors.meetup_url;
-
   return (
     <>
       <Box className={classes.progress}>
@@ -21,57 +20,65 @@ const StepTwo = (props) => {
         <Typography variant='subtitle1'><b>2/2</b></Typography>
       </Box>
       <LinearProgress variant='determinate' color='secondary' value={100} />
-      <Typography variant='h5' className={classes.heading}>Social Media URL (optional)</Typography>
-      <Typography variant='subtitle1' className={classes.label}>Facebook URL:</Typography>
+      <Typography variant='h5' className={classes.heading}>
+        Social Media URL <Box component='span' fontWeight='normal'>(optional)</Box>
+      </Typography>
       <TextField
-        placeholder='https://facebook.com/example...'
-        error={facebookUrlApiErr}
+        className={classes.field}
+        error={!!facebookUrlApiErr}
         helperText={facebookUrlApiErr}
-        value={props.facebookUrl}
+        label='Facebook URL'
         onChange={(event) => {
           props.onFacebookUrl(event.target.value);
           props.setApiErrors({ ...props.apiErrors, facebook_url: '' });
         }}
+        placeholder='https://facebook.com/example...'
+        value={props.facebookUrl}
       />
-      <Typography variant='subtitle1' className={classes.label}>Twitter URL:</Typography>
       <TextField
-        placeholder='https://twitter.com/example...'
-        error={twitterUrlApiErr}
+        className={classes.field}
+        error={!!twitterUrlApiErr}
         helperText={twitterUrlApiErr}
-        value={props.twitterUrl}
+        label='Twitter URL'
+        placeholder='https://twitter.com/example...'
         onChange={(event) => {
           props.onTwitterUrl(event.target.value);
           props.setApiErrors({ ...props.apiErrors, twitter_url: '' });
         }}
+        value={props.twitterUrl}
       />
-      <Typography variant='subtitle1' className={classes.label}>MeetUp URL:</Typography>
       <TextField
-        placeholder='http://meetup.com/example...'
-        error={meetupUrlApiErr}
+        className={classes.field}
+        error={!!meetupUrlApiErr}
         helperText={meetupUrlApiErr}
-        value={props.meetupUrl}
+        label='Meetup URL'
         onChange={(event) => {
           props.onMeetupUrl(event.target.value);
           props.setApiErrors({ ...props.apiErrors, meetup_url: '' });
         }}
+        placeholder='http://meetup.com/example...'
+        value={props.meetupUrl}
       />
-      <Typography variant='h5' className={classes.heading}>Location</Typography>
-      <Typography variant='subtitle1' className={classes.label}>City:</Typography>
+      <Typography variant='h5' className={classes.heading}>
+        Location <Box component='span' fontWeight='normal'>(optional)</Box>
+      </Typography>
       <TextField
-        value={props.city}
+        className={classes.field}
+        label='City'
         onChange={(event) => {
           props.onCity(event.target.value);
         }}
+        value={props.city}
       />
-      <Typography variant='subtitle1' className={classes.label}>State:</Typography>
       <TextField
-        value={props.stateProvCo}
+        className={classes.field}
+        label='State'
         onChange={(event) => {
           props.onStateProvCo(event.target.value);
         }}
+        value={props.stateProvCo}
       />
-      <Typography variant='subtitle1' className={classes.label}>Country:</Typography>
-      <CountrySelect onChange={props.onCountryChange} />
+      <CountrySelect country={props.country} onChange={props.onCountryChange} />
       <Box className={classes.buttons}>
         <Button variant='contained' color='default' onClick={props.onPrev}>Back</Button>
         <Tooltip

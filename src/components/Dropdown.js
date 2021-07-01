@@ -17,8 +17,13 @@ const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     border: '1px solid #BCBCBC',
     borderRadius: '4px',
+<<<<<<< HEAD
     padding: '12px 0px 12px 0px',
     width:'928px',
+=======
+    paddingRight: '71px',
+    width:'1014px',
+>>>>>>> main
     height:'80px',
     [theme.breakpoints.down('md')]: {
       marginLeft: '-57px',
