@@ -69,7 +69,7 @@ export const Dropdown = ({
         <Box className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
           <Grid container>
             <Grid item xs={4}>
-              <ContributorThumbnail organization={organization} dropdownLength={dropdownLength} isOpen={colorStyle} />
+              <ContributorThumbnail organization={organization} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
             </Grid>
           </Grid>
           <Grid>

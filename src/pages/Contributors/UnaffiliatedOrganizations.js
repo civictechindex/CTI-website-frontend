@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
 import { useStyle } from "./styles.js";
 import Typography from '@material-ui/core/Typography';
@@ -7,6 +7,8 @@ import Box from "@material-ui/core/Box";
 export const UnaffiliatedOrganizations = (props) => {
   const { searchCount, unaffiliatedCount, totalunaffiliatedCount, unaffiliatedOpen, organization, checkboxValue } = props;
   const classes = useStyle();
+  const [isChildThumbnail] = useState(true);
+
   return (
     <Box className={classes.unaffiliatedWrapper}>
 
@@ -27,6 +29,7 @@ export const UnaffiliatedOrganizations = (props) => {
                 <Typography className={classes.unaffiliatedThumbnails} key={index} component="span">
                   <ContributorThumbnail
                     organization={org}
+                    isChildThumbnail={isChildThumbnail}
                   ></ContributorThumbnail>
                 </Typography>
               ))}

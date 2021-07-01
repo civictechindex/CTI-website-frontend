@@ -8,13 +8,11 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import Box from '@material-ui/core/Box';
 
-
-export const ContributorThumbnail = ({ organization, isOpen,dropdownLength }) => {
+export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isChildThumbnail }) => {
   const classes = useStyle();
 
-
   const [thumbnailInfo, setThumbnailInfo] = useState({});
-
+  
   useEffect(() => {
 
 
@@ -26,7 +24,24 @@ export const ContributorThumbnail = ({ organization, isOpen,dropdownLength }) =>
 
 
     <>
-      <Container className={classes.thumbnailWrapper} component="span">
+      <Container className={isChildThumbnail ? `${classes.altThumbnailWrapper}` : `${classes.thumbnailWrapper}`} component="span">
+        {organization.cti_contributor && (
+          <Box className={classes.contributorThumbnailWrapper}>
+
+            <CardMedia
+              component="img"
+              src='/images/contributor-icon.png'
+              className={classes.contributorThumbnailImage}
+              onError={(e) =>
+              // eslint-disable-next-line no-console
+                console.log(`${e}: error with ${organization.name} image`)
+                // Before MVP: Refactor as on-website error/generic case.
+              }
+              alt={`${organization.name} logo`}
+              loading="lazy"
+            />
+          </Box>)
+        }
         {thumbnailInfo.organizationUrl ? (
 
           <Link
@@ -59,6 +74,10 @@ export const ContributorThumbnail = ({ organization, isOpen,dropdownLength }) =>
             <Typography component="span"> No URL Data for {organization.name} </Typography>
           </Grid>
         )}
+
+
+
+
       </Container>
     </>
   );
@@ -68,14 +87,25 @@ export const ContributorThumbnail = ({ organization, isOpen,dropdownLength }) =>
 
 const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength }) => {
   const classes = useStyle();
-
+  if (thumbnailInfo.imageUrl.includes('undefined') || thumbnailInfo.imageUrl.includes('scontent')){
+    thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
+  }
+  var thumbnailImageStyle = classes.thumbnailImage;
+  var thumbnailTextStyle = classes.thumbnailText;
+  var textWrapperStyle = classes.textWrapper;
+  console.log(dropdownLength)
+  if(organization.affiliated && dropdownLength > 0){
+    thumbnailImageStyle = classes.unaffiliatedThumbnailImage;
+    thumbnailTextStyle = classes.dropdownThumbnailText;
+    textWrapperStyle = classes.dropdownTextWrapper;
+  }
   return (
     <>
       <Grid className={classes.imageWrapper} component="span">
         <CardMedia
           component="img"
           src={thumbnailInfo.imageUrl}
-          className={classes.thumbnailImage}
+          className={thumbnailImageStyle}
           onError={(e) =>
             // eslint-disable-next-line no-console
             console.log(`${e}: error with ${organization.name} image`)
@@ -86,8 +116,8 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength }) => {
         />
       </Grid>
 
-      <Grid data-cy="affthumbnailTextWrapper" className={classes.textWrapper} component="span">
-        <Box data-cy="affthumbnailText" className={classes.thumbnailText} component="span">
+      <Grid data-cy="affthumbnailTextWrapper" className={textWrapperStyle} component="span">
+        <Box data-cy="affthumbnailText" className={thumbnailTextStyle} component="span">
 
           <Typography  component={'span'} data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
             {organization.name ? organization.name : organization}
@@ -95,10 +125,7 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength }) => {
             <span style={{ paddingLeft: "1px" }}> { dropdownLength ? `(${dropdownLength})`  : ` `   }  </span>
           </Typography>
         </Box>
-
       </Grid>
-
-
     </>
   );
 };
