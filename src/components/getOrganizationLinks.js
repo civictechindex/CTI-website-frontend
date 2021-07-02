@@ -21,7 +21,7 @@ const getImageFromOrg = (organization) => {
   if (organization.image_url) {
     return organization.image_url;
   } else {
-    return null;
+    return '/images/default-github-repo-image.png';
   }
 }
 
@@ -31,7 +31,7 @@ const getLinksFromOrg = (organization) => {
   } else {
     // no links, either from github, or on organization object
     console.log(`No links available for ${organization.name}`);
-    return null;
+    return '/images/default-github-repo-image.png';
   }
 }
 
