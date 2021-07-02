@@ -14,8 +14,8 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
   const classes = useStyle();
   const parentfilterData = data;
+  const [isChildThumbnail] = useState(true);
   const parentOrg =organizations['Code for All'].filter(item => item);
-
   const getParentData = () => {
     const parentdata = [];
     let flag = false;
@@ -91,7 +91,10 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
                 <Box className={classes.affiliatedThumbnailsWrapper}>
                   {childNode.map((child, idx) => {
                     return <Typography className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
-                      <ContributorThumbnail organization={child} />
+                      <ContributorThumbnail
+                        organization={child}
+                        isChildThumbnail= {isChildThumbnail}
+                      ></ContributorThumbnail>
                     </Typography>
                   })}
                 </Box>
@@ -121,7 +124,10 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
           return (<div className={classes.affiliatedThumbnailsWrapper} key={`affiliatedThumbnailsWrapper_${i}`}>
             <Typography className={classes.afflnThumbnails} key={i}>
-              <ContributorThumbnail organization={searchDataItems} />
+              <ContributorThumbnail
+                organization={searchDataItems}
+                isChildThumbnail={isChildThumbnail} >
+              </ContributorThumbnail>
             </Typography>
           </div>
           );
