@@ -7,7 +7,7 @@ import Menu from 'material-ui-popup-state/HoverMenu';
 
 const styles = () => ({
   link: {
-
+    color: theme.palette.primary.main,
     "&:hover": {
       fontWeight: 700,
     },
