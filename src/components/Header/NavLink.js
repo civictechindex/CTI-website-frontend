@@ -7,7 +7,6 @@ import Menu from 'material-ui-popup-state/HoverMenu';
 
 const styles = () => ({
   link: {
-    color: theme.palette.primary.main,
     "&:hover": {
       fontWeight: 700,
     },
@@ -25,7 +24,6 @@ const styles = () => ({
 
 const NavLink = ({ children, classes, header, matchPathParent, route }) => {
   const popupState = usePopupState({ variant: 'popper', popupId: 'navlink' });
-
   return (
     <>
       <Link
