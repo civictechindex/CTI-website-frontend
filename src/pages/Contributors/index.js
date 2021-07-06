@@ -37,7 +37,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box style={{ padding :'24px 0 24px 0' }}>
           <Box>{children}</Box>
         </Box>
       )}
@@ -204,12 +204,9 @@ export default function Contributors({ match }) {
   }
 
   const theme = createMuiTheme({
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> main
     overrides: {
       MuiTab: {
         "root": {
@@ -288,16 +285,10 @@ export default function Contributors({ match }) {
                 className={classes.tabs}
                 classes={{ indicator: classes.indicator }}
               >
-<<<<<<< HEAD
-                <Tab label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalunaffiliatedCount + totalaffiliatedCount })</span></>} icon="All" {...a11yProps(0)} className={classes.tabVal} />
-                <Tab  icon="Unaffiliated"  label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</span></>} className={classes.tabVal} {...a11yProps(1)} />
-                <Tab  icon="Affiliated" label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalaffiliatedCount})</span></>} className={classes.tabVal} {...a11yProps(2)} />
-=======
 
                 <Tab label={<>({totalunaffiliatedCount + totalaffiliatedCount })</>} icon="All" {...a11yProps(0)} className={classes.tabVal} />
                 <Tab  icon="Unaffiliated"  label={<>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} className={classes.tabVal} {...a11yProps(1)} />
                 <Tab  icon="Affiliated" label={<>({totalaffiliatedCount})</>} className={classes.tabVal} {...a11yProps(2)} />
->>>>>>> main
               </Tabs>
             </AppBar>
           </MuiThemeProvider>

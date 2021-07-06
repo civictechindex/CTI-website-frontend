@@ -14,7 +14,7 @@ export const useStyle = makeStyles((theme) => ({
     '& h1': {
       fontSize: '3rem',
     },
-   [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('md')]: {
       minHeight: '25vh',
     },
     [theme.breakpoints.down('sm')]: {
@@ -25,7 +25,7 @@ export const useStyle = makeStyles((theme) => ({
       minHeight: '16vh',
     },
   },
- 
+
   banner: {
     height: '20px',
     width: '100px',
@@ -68,22 +68,22 @@ export const useStyle = makeStyles((theme) => ({
   },
 
   afflText: {
-     paddingLeft: '363px', 
-     fontSize: '28px', 
-     paddingBottom: '20px',
-     color: theme.palette.secondary.dark,
-     [theme.breakpoints.down('md')]: {
+    paddingLeft: '363px',
+    fontSize: '28px',
+    paddingBottom: '20px',
+    color: theme.palette.secondary.dark,
+    [theme.breakpoints.down('md')]: {
       paddingLeft: '255px',
       fontSize: '24px',
       paddingBottom: '20px',
     },
     [theme.breakpoints.down('sm')]: {
-     fontSize:'20px',
-     paddingLeft:'120px',
+      fontSize:'20px',
+      paddingLeft:'120px',
     },
   },
   unAfflText: {
-    paddingLeft: '366px', 
+    paddingLeft: '366px',
     fontSize: '28px',
     [theme.breakpoints.down('md')]: {
       paddingLeft: '255px',
@@ -94,10 +94,10 @@ export const useStyle = makeStyles((theme) => ({
       paddingLeft: '123px',
     },
   },
- 
-  
+
+
   unaffiliatedWrapper: {
-   
+
     textAlign: 'center',
     backgroundColor: theme.palette.grey[100],
     padding: '1rem 0',
@@ -109,31 +109,28 @@ export const useStyle = makeStyles((theme) => ({
     },
     '& p': {
       fontSize: '24px',
-<<<<<<< HEAD
-=======
     },
     [theme.breakpoints.down('sm')]: {
       width: '476px',
->>>>>>> main
     },
-    
+
   },
   unaffiliatedThumbnailsWrapper: {
     display: 'flex',
     gridTemplateColumns: 'repeat(auto-fill,minmax(49%, 1fr))',
     gap: '1.5rem',
     padding: '1rem 0',
-    marginLeft: '44px', //dfdf
-    paddingTop: '31px', //dfdfdfd
+    marginLeft: '44px', // dfdf
+    paddingTop: '31px', // dfdfdfd
     [theme.breakpoints.down('sm')]: {
       paddingBottom: '30px',
       marginLeft: '-34px',
       display: 'flex',
     },
     [theme.breakpoints.down('md')]: {
-       marginLeft: '-30px',
+      marginLeft: '-30px',
     },
-   
+
   },
   unaffiliatedThumbnails: {
     borderRadius: '4px',
@@ -148,10 +145,10 @@ export const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       width:'408px',
       height: '80px',
-     },
+    },
     [theme.breakpoints.down('sm')]: {
-     width:'276px',
-     height: '56px',
+      width:'276px',
+      height: '56px',
     },
   },
   affiliatedWrapper: {
@@ -161,28 +158,6 @@ export const useStyle = makeStyles((theme) => ({
     '& h2': {
       margin: 0,
       fontZize: '28px',
-      color: theme.palette.secondary.dark,
-    },
-  },
-  codeForAllWrapper: {
-    width: '1005px',
-    margin: '2rem auto',
-    display: 'flex',
-    alignItems: 'center',
-    padding: '12px 16px',
-    marginLeft: '-6rem',
-    height:'80px',
-    backgroundColor: theme.palette.background.default,
-    borderRadius: '6px',
-    '& a': {
-      textDecoration: 'none',
-    },
-    '& img': {
-      marginRight: '0.5rem',
-      maxWidth: '6rem',
-    },
-    '& h4': {
-      paddingLeft:'24px',
       color: theme.palette.secondary.dark,
     },
   },
@@ -253,15 +228,9 @@ export const useStyle = makeStyles((theme) => ({
     alignContent: 'flex-start',
   },
   noargText: {
-<<<<<<< HEAD
     fontStyle: 'italic',
-    paddingRight:'240px',
+    paddingRight:'100px', // paddingRight:'240px',
     paddingTop: '30px',
-=======
-     fontStyle: 'italic',
-     paddingRight:'100px', //paddingRight:'240px',
-     paddingTop: '30px',
->>>>>>> main
   },
   loaders: {
     fontSize: '2rem',
@@ -270,21 +239,21 @@ export const useStyle = makeStyles((theme) => ({
   },
   thumbnailWrapper: {
     minHeight: '5rem',
-<<<<<<< HEAD
-    width: '375px',
-    height: '64px',
-  },
-
-=======
-  //   width: '375px',
-  //   height: '64px',
-  // },
+    /*
+     *   width: '375px',
+     *   height: '64px',
+     * },
+     */
 
     width: '496px',
-    height: '80px', 
-   },
- 
->>>>>>> main
+    height: '80px',
+  },
+  altThumbnailWrapper: {
+    height: '64px',
+    backgroundColor: "white",
+    borderRadius: '6px',
+    border: '1px solid #6D6E74',
+  },
   thumbnails: {
     color: theme.palette.common.black,
     display: 'flex',
@@ -294,25 +263,13 @@ export const useStyle = makeStyles((theme) => ({
   },
   imageWrapper: {
     display: 'grid',
-<<<<<<< HEAD
-    padding: '12px 16px',
-  },
-  thumbnailImage: {
-    width: '56px',
-    height: '56px',
-    /*
-     * paddingTop: '12px',
-     * paddingLeft: '12px',
-     * marginLeft: '-20px',
-     */
-=======
     paddingTop: '5px',
   },
   thumbnailImage: {
     width: '48px',
     height: '48px',
     marginLeft: '-20px',
-     [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '32px',
       height: '32px',
     },
@@ -327,7 +284,6 @@ export const useStyle = makeStyles((theme) => ({
     paddingTop: '16px',
     paddingLeft: '16px',
     marginLeft: '-20px',
->>>>>>> main
   },
 
   thumbnailImageresize: {
@@ -344,10 +300,7 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
 
-<<<<<<< HEAD
-=======
- 
->>>>>>> main
+
   thumbnailText: {
     alignItems: 'center',
     minHeight: '6rem',
@@ -363,9 +316,6 @@ export const useStyle = makeStyles((theme) => ({
   orgText: {
     color:theme.palette.secondary.dark,
     fontSize:'24px',
-<<<<<<< HEAD
-
-=======
     fontWeight: 'bold',
     whiteSpace: 'nowrap',
     [theme.breakpoints.down('md')]: {
@@ -377,7 +327,6 @@ export const useStyle = makeStyles((theme) => ({
   },
   childThumbnails: {
     marginLeft: '-2rem',
->>>>>>> main
   },
 
   blueColorText: {
@@ -393,10 +342,6 @@ export const useStyle = makeStyles((theme) => ({
   },
   textWrapperWithoutImage: {
     display: 'grid',
-<<<<<<< HEAD
-    // placeItems: 'center',
-=======
->>>>>>> main
     width: '100%',
   },
   thumbnailTextWithoutImage: {
@@ -409,9 +354,6 @@ export const useStyle = makeStyles((theme) => ({
     marginTop:'-11px',
 
   },
-<<<<<<< HEAD
-
-=======
   codeForAllWrapper: {
     '& a': {
       alignItems: 'center',
@@ -432,11 +374,11 @@ export const useStyle = makeStyles((theme) => ({
       fontSize: '28px',
       marginLeft:'5px',
       [theme.breakpoints.up('sm')]: {
-         fontSize: '20px',
+        fontSize: '20px',
       },
       [theme.breakpoints.up('xs')]: {
         fontSize: '24px',
-     },
+      },
     },
     '& h4': {
       paddingLeft:'24px',
@@ -461,51 +403,33 @@ export const useStyle = makeStyles((theme) => ({
     },
 
   },
-
-  blueColor: {
-   backgroundColor: theme.palette.secondary.dark,
-    '& h4': {
-      color: theme.palette.text.secondary,
-    },
-    
-  },
-  
   codeforallImg: {
-   width:'56px',
-   height:'56px',
-   [theme.breakpoints.up('sm')]: {
-    width:'48px',
-    height: '48px',
+    width:'56px',
+    height:'56px',
+    [theme.breakpoints.up('sm')]: {
+      width:'48px',
+      height: '48px',
+    },
   },
-  },
->>>>>>> main
   indicator: {
     backgroundColor: '#006B95',
   },
   tabVal: {
-<<<<<<< HEAD
     color: "theme​.palette.​text.disabled",
-=======
-   color: "theme​.palette.​text.disabled",
-   [theme.breakpoints.down('sm')]: {
-     fontSize: '18px',
-  },  
-  [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('md')]: {
       fontSize: '28px',
-  },
-  
->>>>>>> main
+    },
+
     "&:hover": {
       color: "#006B95",
       opacity: 1,
     },
 
   },
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> main
   button: {
     width: '211px',
     height: '44px',
@@ -514,25 +438,21 @@ export const useStyle = makeStyles((theme) => ({
     borderColor: theme.palette.secondary.dark,
     color: theme.palette.secondary.dark,
     fontSize: '16px',
-    marginLeft: '-118px',
+    marginLeft: '350px',
     backgroundColor: 'transparent',
     '&:hover': {
       backgroundColor: theme.palette.background.default,
     },
-<<<<<<< HEAD
-  },
-=======
-      [theme.breakpoints.down('md')]: {
-        width: '118px',
-        height: '31px',
-        marginLeft: '-143.5px',
-    },  
+    [theme.breakpoints.down('md')]: {
+      width: '118px',
+      height: '31px',
+      marginLeft: '-143.5px',
+    },
     [theme.breakpoints.down('sm')]: {
       marginLeft: '-93.5px',
-  }, 
+    },
 
-    }, 
->>>>>>> main
+  },
 
   chkBoxStyle: {
     color: '#6D6E74',
@@ -544,11 +464,11 @@ export const useStyle = makeStyles((theme) => ({
       background: 'transparent',
     },
     [theme.breakpoints.down('md')]: {
-     paddingLeft: '45rem',
-    },  
+      paddingLeft: '45rem',
+    },
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '23rem',
-     }, 
+    },
   },
 
 
@@ -558,14 +478,7 @@ export const useStyle = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
 
-<<<<<<< HEAD
-=======
-  altThumbnailWrapper: {
-    height: '64px',
-    backgroundColor: "white",
-    borderRadius: '6px',
-    border: '1px solid #6D6E74',
-  },
+
   unaffiliatedSectionContainer: {
     fontFamily: theme.typography.fontFamily,
     boxSizing: 'border-box',
@@ -585,33 +498,32 @@ export const useStyle = makeStyles((theme) => ({
   },
   childAffiliated: {
     marginLeft: '100px',
- },
- unaffiliatedThumbnailImage: {
-  width: '56px',
-  height: '56px',
-  marginTop: '8px',
-  marginLeft: '-10px'
-},
-dropdownThumbnailText: {
-  alignItems: 'center',
-  minHeight: '6rem',
-  paddingTop: '24px',
-  paddingLeft: '6px',
-  margin: 'auto',
-  position: 'absolute',
-  [theme.breakpoints.down('sm')]: {
-    paddingTop: '15px',
   },
-  [theme.breakpoints.down('md')]: {
-    paddingTop: '22px',
+  unaffiliatedThumbnailImage: {
+    width: '56px',
+    height: '56px',
+    marginTop: '8px',
+    marginLeft: '-10px',
   },
-  dropdownTextWrapper:{
-    display: 'flex',
+  dropdownThumbnailText: {
     alignItems: 'center',
-    flex: '3 1 75%',
     minHeight: '6rem',
-    marginTop: '30px'
-  }
-},
->>>>>>> main
+    paddingTop: '24px',
+    paddingLeft: '6px',
+    margin: 'auto',
+    position: 'absolute',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '15px',
+    },
+    [theme.breakpoints.down('md')]: {
+      paddingTop: '22px',
+    },
+    dropdownTextWrapper:{
+      display: 'flex',
+      alignItems: 'center',
+      flex: '3 1 75%',
+      minHeight: '6rem',
+      marginTop: '30px',
+    },
+  },
 }));

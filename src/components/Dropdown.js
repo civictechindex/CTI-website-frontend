@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { ContributorThumbnail } from './ContributorThumbnail';
 import { DropdownArrow } from './DropdownArrow';
@@ -10,28 +8,16 @@ import clsx from 'clsx';
 const useStyles = makeStyles(theme => ({
 
   dropdown: {
-    margin: '16px auto',
+    margin: '24px auto',
     display: 'flex',
     alignItems: 'center',
     backgroundColor: theme.palette.background.default,
     boxSizing: 'border-box',
     border: '1px solid #BCBCBC',
-    borderRadius: '4px',
-<<<<<<< HEAD
-    padding: '12px 0px 12px 0px',
-    width:'928px',
-=======
-    paddingRight: '71px',
-    width:'1014px',
->>>>>>> main
+    borderRadius: '6px',
     height:'80px',
-    [theme.breakpoints.down('md')]: {
-      marginLeft: '-57px',
-      width: '756px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '-83px',
-      width: '473px',
+    padding:'12px 16px',
+    [theme.breakpoints.down('xs')]: {
       height: '64px',
     },
   },
@@ -39,18 +25,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.dark,
     color: theme.palette.text.secondary,
     [theme.breakpoints.down('sm')]: {
-      marginLeft: '-83px',
-      width: '473px',
       height: '64px',
     },
   },
-  chevron: {
-    cursor: 'pointer',
-    fontSize: '1.3rem',
-  },
-  afflDropdown: {
-    width: '18px',
-    height: '30px',
+  flexGrid:{
+    flexGrow: 1,
   },
 }));
 
@@ -72,14 +51,15 @@ export const Dropdown = ({
 
     <Grid onClick={openColor} >
       {dropdownLength ? (
-        <Box className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
-          <Box>
+        <Grid item xs={10} className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
+          <Grid>
             <ContributorThumbnail organization={organization} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
-          </Box>
-          <Box flexGrow={1}>
+          </Grid>
+          <Grid className={classes.flexGrid}></Grid>
+          <Grid>
             <DropdownArrow className={classes.thumbnailOpen} setOpen={setOpen} colorStyle={colorStyle} />
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       ) : null}
       {open && children}
 
