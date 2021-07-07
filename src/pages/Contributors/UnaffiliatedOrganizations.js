@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
     width: '496px',
     height:'80px',
     borderRadius: '6px',
-    border:'1px solid #6D6E74',
+    border:'1px solid',
+    borderColor:theme.palette.outline.gray,
     margin:'8px',
     '& p': {
       fontSize:'24px',
