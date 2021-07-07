@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
   },
   flexGrid:{
     flexGrow: 1,
+    justifyContent: 'flex-end',
   },
 }));
 
@@ -39,29 +40,30 @@ export const Dropdown = ({
   dropdownLength,
   isOpen,
 }) => {
-  const [open, setOpen] = useState(false);
+  const [openChild, setOpenChild] = useState(false);
   const [colorStyle, setColor] = useState(false);
   const classes = useStyles();
 
-  const openColor = () => {
+  const handleOpen = () => {
+    setOpenChild(!openChild);
     setColor(!colorStyle);
   };
 
   return (
 
-    <Grid onClick={openColor} >
+    <Grid >
       {dropdownLength ? (
         <Grid item xs={10} className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
           <Grid>
             <ContributorThumbnail organization={organization} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
           </Grid>
           <Grid className={classes.flexGrid}></Grid>
-          <Grid>
-            <DropdownArrow className={classes.thumbnailOpen} setOpen={setOpen} colorStyle={colorStyle} />
+          <Grid item container className={classes.flexGrid} onClick={handleOpen} >
+            <DropdownArrow  open={openChild} handleArrow={handleOpen} />
           </Grid>
         </Grid>
       ) : null}
-      {open && children}
+      {openChild && children}
 
     </Grid>
 

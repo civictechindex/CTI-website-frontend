@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   flexGrid:{
     flexGrow: 1,
+    justifyContent: 'flex-end',
   },
   dropDownGrid:{
     margin: 'auto',
@@ -53,8 +54,11 @@ const useStyles = makeStyles((theme) => ({
 export const Affiliated = (props) => {
   const { organizations, inputValue, classes, organizationData, affiliatedSepOpen,  searchCount, affiliatedCount, totalaffiliatedCount, setAfflnSepOpen, checkboxValue } = props
   const classesLocal = useStyles()
-  const [gp, setGp] = useState(true);
-
+  const [gp, setGp] = useState(false);
+  const handleClickGrid = () => {
+    setGp(!gp)
+    setAfflnSepOpen(!affiliatedSepOpen);
+  };
   return (
     <Grid >
       <Grid style={{ padding:'40px' }}>
@@ -70,13 +74,14 @@ export const Affiliated = (props) => {
           <img src="/images/Code_for_All.png" alt="code for all logo" />
         </Grid>
         <Grid>
-          <Typography variant='h4'>
+          <Typography variant='h4' noWrap>
             <Link href="https://codeforall.org"  target="_blank"  rel="noreferrer noopener">Code for All</Link>
             { searchCount ? `(${affiliatedCount}/${totalaffiliatedCount})`  : ` (${totalaffiliatedCount})` }
           </Typography>
         </Grid>
-        <Grid  className={classesLocal.flexGrid}></Grid>
-        <Grid><DropdownArrow affiliatedSepOpen={affiliatedSepOpen} setAfflnSepOpen={setAfflnSepOpen} gp={gp} setGp={setGp} /></Grid>
+        <Grid item container className={classesLocal.flexGrid} onClick={handleClickGrid}>
+          <DropdownArrow open={gp} handleArrow={handleClickGrid} />
+        </Grid>
       </Grid>
       <Grid >
         {affiliatedSepOpen && (
