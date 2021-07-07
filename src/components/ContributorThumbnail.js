@@ -111,7 +111,7 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
       </Grid>
 
       <Grid item data-cy="affthumbnailText" className={classes.affthumbnailText}>
-        <Typography variant={isChildThumbnail ? 'body1':'h6'}  data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
+        <Typography variant={isChildThumbnail ? 'body1':'h6'} noWrap  data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
           <Link
             href={thumbnailInfo.organizationUrl}
             target="_blank"

@@ -57,7 +57,7 @@ export const Affiliated = (props) => {
   const [gp, setGp] = useState(false);
   const handleClickGrid = () => {
     setGp(!gp)
-    setAfflnSepOpen(!affiliatedSepOpen);
+    setAfflnSepOpen(true);
   };
   return (
     <Grid >
@@ -68,7 +68,7 @@ export const Affiliated = (props) => {
         </Typography>
       </Grid>
       <Grid item xs={12} sm={10} className={clsx(classesLocal.gpGrid, {
-        [classesLocal.blueColor]: affiliatedSepOpen === true,
+        [classesLocal.blueColor]: gp === true,
       })} >
         <Grid>
           <img src="/images/Code_for_All.png" alt="code for all logo" />
@@ -84,7 +84,7 @@ export const Affiliated = (props) => {
         </Grid>
       </Grid>
       <Grid >
-        {affiliatedSepOpen && (
+        {affiliatedSepOpen && gp && (
           !organizations['Code for All'] ? !inputValue ? <h3 className={classes.loaders}>Loading...</h3> : <h3 className={classes.loaders}>No Results</h3>
             :<Grid item xs={12} sm={10} className={classesLocal.dropDownGrid}>
               <AffiliatedOrganizations organizations={organizations} inputValue={inputValue} data={organizationData} checkboxValue={checkboxValue}  />
