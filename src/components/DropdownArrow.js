@@ -2,11 +2,11 @@ import React, { useRef, useState } from "react";
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
-export const DropdownArrow  = ({ setOpenFunction }) => {
+export const DropdownArrow  = ({ setOpenFunction, isOpen }) => {
 
 
   const arrow = useRef(null);
-  const [colorStyle, setColor] = useState(false);
+  const [colorStyle, setColor] = useState(isOpen ? true : false);
 
 
   const useStyles = makeStyles((theme) => ({

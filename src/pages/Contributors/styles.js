@@ -13,6 +13,9 @@ export const useStyle = makeStyles((theme) => ({
     textAlign: 'center',
     '& h1': {
       fontSize: '3rem',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '2rem',
+      },
     },
    [theme.breakpoints.up('md')]: {
       minHeight: '25vh',
@@ -34,9 +37,11 @@ export const useStyle = makeStyles((theme) => ({
     color:theme.palette.text.secondary,
     fontSize: '24px',
     textAlign:'center',
-    marginTop: '-1rem',
-    [theme.breakpoints.down('sm')]: {
+   [theme.breakpoints.down('sm')]: {
       fontSize: 16,
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 14,
     },
   },
 
@@ -68,30 +73,52 @@ export const useStyle = makeStyles((theme) => ({
   },
 
   afflText: {
-     paddingLeft: '363px', 
-     fontSize: '28px', 
+    fontSize: '28px', 
      paddingBottom: '20px',
      color: theme.palette.secondary.dark,
+     marginLeft:'31%',
      [theme.breakpoints.down('md')]: {
-      paddingLeft: '255px',
       fontSize: '24px',
       paddingBottom: '20px',
+      marginLeft:'23%',
     },
     [theme.breakpoints.down('sm')]: {
-     fontSize:'20px',
-     paddingLeft:'120px',
+     fontSize:'22px',
+     marginLeft:'23%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '21px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '22px',
+      marginLeft: '27%',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '28px',
+      marginLeft: '32%',
     },
   },
   unAfflText: {
-    paddingLeft: '366px', 
+    marginLeft: '31%',
     fontSize: '28px',
     [theme.breakpoints.down('md')]: {
-      paddingLeft: '255px',
       fontSize: '24px',
     },
     [theme.breakpoints.down('sm')]: {
-      fontSize: '20px',
-      paddingLeft: '123px',
+      fontSize: '22px',
+      marginLeft: '23%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '21px',
+      marginLeft: '22%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '22px',
+      marginLeft: '27%',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '28px',
+      marginLeft: '32%',
     },
   },
  
@@ -110,10 +137,6 @@ export const useStyle = makeStyles((theme) => ({
     '& p': {
       fontSize: '24px',
     },
-    [theme.breakpoints.down('sm')]: {
-      width: '476px',
-    },
-    
   },
   unaffiliatedThumbnailsWrapper: {
     display: 'flex',
@@ -124,17 +147,13 @@ export const useStyle = makeStyles((theme) => ({
     paddingTop: '31px', //dfdfdfd
     [theme.breakpoints.down('sm')]: {
       paddingBottom: '30px',
-      marginLeft: '-34px',
       display: 'flex',
+      marginLeft: '4px',
     },
-    [theme.breakpoints.down('md')]: {
-       marginLeft: '-30px',
-    },
-   
+  
   },
   unaffiliatedThumbnails: {
     borderRadius: '4px',
-    // backgroundColor: theme.palette.background.default,
     width: '496px',
 
     flex: '1 1 23%',
@@ -150,6 +169,7 @@ export const useStyle = makeStyles((theme) => ({
      width:'276px',
      height: '56px',
     },
+  
   },
   affiliatedWrapper: {
     width: '100%',
@@ -167,25 +187,27 @@ export const useStyle = makeStyles((theme) => ({
     margin: '1.5rem 0',
     columnGap: '20px',
     rowGap: '1.54rem',
-    marginLeft: '45px',
-    [theme.breakpoints.down('md')]: {
-      marginLeft: '1px',
-      rowGap: '0.44rem',
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '-71px',
-      rowGap: '0.44rem',
+    marginLeft: '7%',
+    /*[theme.breakpoints.only('sm')]: {
+      marginLeft: '5%',
+      rowGap: '1.44rem',
+    },*/
+    [theme.breakpoints.only('md')]: {
+      marginLeft: '17%',
+      rowGap: '1.44rem',
     },
   },
   afflnThumbnails: {
     height:"64px",
+    width: "375px",
+   
     [theme.breakpoints.down('md')]: {
       width: '270px',
       height: '60px',
     },
     [theme.breakpoints.down('sm')]: {
       width: '220px',
-      height:'48px',
+      height:'55px',
     },
   },
   affiliatedOrgsContainer: {
@@ -219,7 +241,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   noargText: {
      fontStyle: 'italic',
-     paddingRight:'100px', //paddingRight:'240px',
+     paddingRight:'100px', 
      paddingTop: '30px',
   },
 
@@ -231,10 +253,6 @@ export const useStyle = makeStyles((theme) => ({
   },
   thumbnailWrapper: {
     minHeight: '5rem',
-  //   width: '375px',
-  //   height: '64px',
-  // },
-
     width: '496px',
     height: '80px', 
    },
@@ -248,19 +266,24 @@ export const useStyle = makeStyles((theme) => ({
   },
   imageWrapper: {
     display: 'grid',
-    paddingTop: '5px',
+    paddingTop: '13px',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '13px',
+    },
   },
   thumbnailImage: {
     width: '48px',
     height: '48px',
-    marginLeft: '-20px',
+    marginLeft: '2px',
+    marginRight: '5px',
      [theme.breakpoints.down('sm')]: {
       width: '32px',
       height: '32px',
     },
     [theme.breakpoints.down('md')]: {
-      width: '48px',
-      height: '48px',
+      width: '32px',
+      height: '32px',
+      marginLeft: '-14px',
     },
   },
   thumbnailOpenImage: {
@@ -268,7 +291,6 @@ export const useStyle = makeStyles((theme) => ({
     height: '32px',
     paddingTop: '16px',
     paddingLeft: '16px',
-    marginLeft: '-20px',
   },
 
   thumbnailImageresize: {
@@ -291,29 +313,27 @@ export const useStyle = makeStyles((theme) => ({
     minHeight: '6rem',
     paddingTop: '15px',
     paddingLeft: '6px',
+    fontSize:'24px',
     [theme.breakpoints.down('sm')]: {
       paddingTop: '15px',
     },
     [theme.breakpoints.down('md')]: {
-      paddingTop: '22px',
+      paddingTop: '9px',
     },
   },
   orgText: {
     color:theme.palette.secondary.dark,
-    fontSize:'24px',
+    fontSize:'22px',
     fontWeight: 'bold',
     whiteSpace: 'nowrap',
     [theme.breakpoints.down('md')]: {
-      fontSize:'18px',
+      fontSize:'13px',
     },
-    [theme.breakpoints.up('sm')]: {
-      fontSize:'24px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize:'13px',
     },
   },
-  childThumbnails: {
-    marginLeft: '-2rem',
-  },
-
+ 
   blueColorText: {
     color: theme.palette.text.secondary,
     fontSize:'24px',
@@ -321,8 +341,8 @@ export const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize:'18px',
     },
-    [theme.breakpoints.up('sm')]: {
-      fontSize:'24px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize:'15px',
     },
   },
   textWrapperWithoutImage: {
@@ -336,8 +356,6 @@ export const useStyle = makeStyles((theme) => ({
     minHeight: '6rem',
     color: theme.palette.secondary.dark,
     paddingLeft: '46px',
-    marginTop:'-11px',
-
   },
   codeForAllWrapper: {
     '& a': {
@@ -369,25 +387,15 @@ export const useStyle = makeStyles((theme) => ({
       paddingLeft:'24px',
       color: theme.palette.secondary.dark,
     },
-    width: '1139px',
-    margin: '1rem auto',
     display: 'flex',
     alignItems: 'center',
     padding: '1rem',
-    marginLeft: '3rem',
     height:'80px',
     backgroundColor: theme.palette.background.default,
-    [theme.breakpoints.down('md')]: {
-      width: '885px',
-      marginLeft: '-1.25rem',
-    },
     [theme.breakpoints.down('sm')]: {
-      marginLeft: '-25px',
-      width:'568px',
       height: '64px',
     },
-
-  },
+   },
 
   blueColor: {
    backgroundColor: theme.palette.secondary.dark,
@@ -396,7 +404,11 @@ export const useStyle = makeStyles((theme) => ({
     },
     
   },
-  
+  affiliatedorgWrapper: {
+    backgroundColor: theme.palette.background.default,
+    marginLeft: '3%',
+    paddingBottom: '1.5px',
+  },
   codeforallImg: {
    width:'56px',
    height:'56px',
@@ -407,23 +419,46 @@ export const useStyle = makeStyles((theme) => ({
   },
   indicator: {
     backgroundColor: '#006B95',
+    color: "#006B95",
   },
   tabVal: {
    color: "theme​.palette.​text.disabled",
-   [theme.breakpoints.down('sm')]: {
-     fontSize: '18px',
-  },  
-  [theme.breakpoints.up('md')]: {
-      fontSize: '28px',
-  },
-  
-    "&:hover": {
-      color: "#006B95",
-      opacity: 1,
-    },
-
+   fontWeight: 'bold',
+   textTransform: 'none',
+   fontSize: '32px',
+   "&:hover": {
+    color: "#006B95",
+    opacity: 1,
   },
  
+},
+
+
+tabRoot: {
+  color: "theme​.palette.​text.disabled",
+  fontWeight: 'bold',
+  textTransform: 'none',
+  fontSize: '32px',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '19px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '22px',
+ },  
+ [theme.breakpoints.down('xs')]: {
+   fontSize: '13px',
+},
+  "&:hover": {
+    color: "#006B95",
+    opacity: 1
+  },
+  "&$tabSelected": {
+    color: "#006B95",
+  },
+},
+tabSelected: {},
+
+
   button: {
     width: '211px',
     height: '44px',
@@ -432,37 +467,36 @@ export const useStyle = makeStyles((theme) => ({
     borderColor: theme.palette.secondary.dark,
     color: theme.palette.secondary.dark,
     fontSize: '16px',
-    marginLeft: '-118px',
     backgroundColor: 'transparent',
+    marginLeft: '38%',
     '&:hover': {
       backgroundColor: theme.palette.background.default,
     },
-      [theme.breakpoints.down('md')]: {
+     [theme.breakpoints.down('md')]: {
         width: '118px',
         height: '31px',
-        marginLeft: '-143.5px',
-    },  
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '-93.5px',
-  }, 
-
+        marginRight: '10px',
+    }, 
+   
     }, 
 
   chkBoxStyle: {
     color: '#6D6E74',
-    paddingLeft: '59rem',
-    '&:hover': {
+    marginLeft: '84%',
+     '&:hover': {
       background: 'transparent',
     },
     '&:selected': {
       background: 'transparent',
     },
     [theme.breakpoints.down('md')]: {
-     paddingLeft: '45rem',
+      marginLeft: '67%',
     },  
     [theme.breakpoints.down('sm')]: {
-      paddingLeft: '23rem',
+     // paddingLeft: '28rem',
+
      }, 
+     
   },
 
 
@@ -470,6 +504,12 @@ export const useStyle = makeStyles((theme) => ({
 
     color: theme.palette.secondary.dark,
     fontWeight: 'bold',
+    [theme.breakpoints.down('xs')]: {
+      fontSize:'12px',
+     }, 
+     [theme.breakpoints.down('md')]: {
+      fontSize:'15px',
+     }, 
   },
 
   altThumbnailWrapper: {
@@ -493,16 +533,16 @@ export const useStyle = makeStyles((theme) => ({
   },
   contributorThumbnailWrapper: {
     float: 'right',
-    marginRight: '-24px',
   },
   childAffiliated: {
     marginLeft: '100px',
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '0%',
+     }, 
  },
  unaffiliatedThumbnailImage: {
   width: '56px',
   height: '56px',
-  marginTop: '8px',
-  marginLeft: '-10px'
 },
 dropdownThumbnailText: {
   alignItems: 'center',
@@ -511,6 +551,7 @@ dropdownThumbnailText: {
   paddingLeft: '6px',
   margin: 'auto',
   position: 'absolute',
+  fontSize: '20px',
   [theme.breakpoints.down('sm')]: {
     paddingTop: '15px',
   },

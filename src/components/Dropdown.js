@@ -17,26 +17,27 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #BCBCBC',
     borderRadius: '4px',
     paddingRight: '71px',
-    width:'1014px',
     height:'80px',
-    [theme.breakpoints.down('md')]: {
-      marginLeft: '-57px',
-      width: '756px',
+    [theme.breakpoints.up('md')]: {
+      marginLeft: '7%',
     },
     [theme.breakpoints.down('sm')]: {
-      marginLeft: '-83px',
-      width: '473px',
+      marginLeft: '1%',
       height: '64px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: '7%',
+      height: '64px',
+      marginRight: '7%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: '1%',
+      marginRight: '8%',
     },
   },
   blueColor: {
     backgroundColor: theme.palette.secondary.dark,
     color: theme.palette.text.secondary,
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '-83px',
-      width: '473px',
-      height: '64px',
-    },
   },
   chevron: {
     cursor: 'pointer',
@@ -53,27 +54,31 @@ export const Dropdown = ({
   children,
   dropdownLength,
   isOpen,
+
 }) => {
-  const [open, setOpen] = useState(false);
-  const [colorStyle, setColor] = useState(false);
+  const [open, setOpen] = useState(isOpen ? true : false);
+  const [colorStyle, setColor] = useState(isOpen ? true : false);
   const classes = useStyles();
 
   const openColor = () => {
     setColor(!colorStyle);
+
   };
 
   return (
 
     <Grid onClick={openColor} className="containerDropdown">
       {dropdownLength ? (
-        <Box className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
+        <Box className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })}>
           <Grid container>
             <Grid item xs={4}>
               <ContributorThumbnail organization={organization} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
             </Grid>
           </Grid>
           <Grid>
-            <Typography variant='body2' className={classes.afflDropdown}><DropdownArrow className={classes.thumbnailOpen} setOpenFunction={setOpen} /></Typography>
+            <Typography variant='body2' className={classes.afflDropdown}>
+              <DropdownArrow className={classes.thumbnailOpen} setOpenFunction={setOpen} isOpen={isOpen}/>
+            </Typography>
           </Grid>
         </Box>
       ) : null}

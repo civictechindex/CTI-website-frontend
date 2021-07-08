@@ -14,17 +14,19 @@ export const Affiliated = (props) => {
   const { organizations, inputValue,organizationData, affiliatedSepOpen,  searchCount, affiliatedCount, totalaffiliatedCount, setAfflnSepOpen, checkboxValue } = props
   const classes = useStyle();
 
-  return <Grid className={classes.affiliatedWrapper}>
+  return <>
+    <Grid className={classes.affiliatedWrapper}>
 
-    <Box className={classes.affiliation}>
-      <Typography variant='h2' color='primary' component={'span'} className={classes.afflText}>
+      <Box className={classes.affiliation}>
+        <Typography variant='h2' color='primary' component={'span'} className={classes.afflText}>
 
           Affiliated Organizations
-        <span style={{ paddingLeft: "1px" }}>  { searchCount ? `(${affiliatedCount}/${totalaffiliatedCount})`  : `(${totalaffiliatedCount})`   } </span>
-      </Typography>
+          <span style={{ paddingLeft: "1px" }}>  { searchCount ? `(${affiliatedCount}/${totalaffiliatedCount})`  : `(${totalaffiliatedCount})`   } </span>
+        </Typography>
 
-    </Box>
-    <Grid>
+      </Box>
+    </Grid>
+    <Grid className={classes.affiliatedorgWrapper}>
       <Box className={clsx(classes.codeForAllWrapper, { [classes.blueColor]: affiliatedSepOpen === true })}>
         <img
           src="/images/Code_for_All.png"
@@ -50,7 +52,8 @@ export const Affiliated = (props) => {
       </Box>
 
     </Grid>
-  </Grid>
+
+  </>
 };
 
 export default Affiliated;

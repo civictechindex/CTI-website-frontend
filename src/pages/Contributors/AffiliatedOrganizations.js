@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "../../components/Dropdown";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
 import { useStyle } from "./styles.js";
@@ -10,16 +10,17 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
 
-export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue }) => {
+export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue,dropdownLength }) => {
 
   const classes = useStyle();
   const parentfilterData = data;
   const [isChildThumbnail] = useState(true);
-  const parentOrg =organizations['Code for All'].filter(item => item);
-  const getParentData = () => {
-    const parentdata = [];
-    let flag = false;
 
+
+
+  const getParentData = () => {
+    const parentOrg =organizations['Code for All'].filter(item => item);
+    const parentdata = [];
 
     parentOrg.forEach((data)=>{
       if (data.depth === 3){
@@ -29,10 +30,9 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
       }
       if (data.depth === 4){
         let obj =  parentdata.find((d)=> (data.path).includes(d.path));
-        if (inputValue !== '')
+        if (inputValue !== '' && inputValue !== null)
         {
           const newobj =  parentfilterData.find((d)=> data.path.includes(d.path) && d.depth === 3);
-          flag = true;
           const exist = parentdata.find((d)=> newobj.path === d.path);
           if (!exist){
             newobj['childNodes'] = [];
@@ -62,14 +62,16 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
       }
 
     })
-    if (flag){
-      inputValue = '';
-    }
     return parentdata
   }
 
 
   const [currentThumbnails, setCurrentThumbnails] = useState(getParentData);
+
+  useEffect(()=>{
+    setCurrentThumbnails(getParentData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[inputValue, organizations,parentfilterData,checkboxValue])
 
   const getChildrenLength = (org) => {
     if (org.childNodes.length > 0) {
@@ -86,9 +88,9 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
           const childNode = org.isOpen ?  org.childNodes : org.childNodes.slice(0,8)
 
           return (
-            <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length > 0 ? true : false}>
+            <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)}>
               {childNode.length > 0 ? (
-                <Box className={classes.affiliatedThumbnailsWrapper}>
+                <Box className={classes.affiliatedThumbnailsWrapper}  lg={12} md={12} sm={12}>
                   {childNode.map((child, idx) => {
                     return <Typography className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
                       <ContributorThumbnail
@@ -102,7 +104,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
 
               {org.childNodes.length > 8 ? (
-                <Button data-cy="viewBtnClick" id="viewAllButton" className={classes.button}  onClick={() => {
+                <Button item xs={12} sm={6} lg={3} data-cy="viewBtnClick" id="viewAllButton" className={classes.button}  onClick={() => {
                   const data = [...currentThumbnails]
                   data[i].isOpen = data[i].isOpen ? false : true;
                   setCurrentThumbnails(data)
@@ -116,24 +118,49 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
     );
 
   }
-  else if (currentThumbnails && inputValue !== null) {
+
+  else if (currentThumbnails && inputValue.length > 0 && inputValue !== '' && inputValue !== null)
+  {
 
     return (
       <Grid dropdownLength={currentThumbnails.length}>
-        {currentThumbnails.map((searchDataItems, i) => {
 
-          return (<div className={classes.affiliatedThumbnailsWrapper} key={`affiliatedThumbnailsWrapper_${i}`}>
-            <Typography className={classes.afflnThumbnails} key={i}>
-              <ContributorThumbnail
-                organization={searchDataItems}
-                isChildThumbnail={isChildThumbnail} >
-              </ContributorThumbnail>
-            </Typography>
-          </div>
+        {currentThumbnails.map((org, i) => {
+
+          return (
+            <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length <= 5 ? true : false}>
+              <Box className={classes.affiliatedThumbnailsWrapper}>
+                { org.childNodes.length === 0 ?
+
+                  <Typography className={classes.afflnThumbnails}>
+                    <ContributorThumbnail
+                      organization={org}
+                      isChildThumbnail= {isChildThumbnail}
+                    ></ContributorThumbnail>
+                  </Typography>
+
+
+                  :
+                  <>
+                    {org.childNodes.map((child, idx) => {
+
+                      return <Typography className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
+                        <ContributorThumbnail
+                          organization={child}
+                          isChildThumbnail= {isChildThumbnail}
+                        ></ContributorThumbnail>
+                      </Typography>
+                    })}
+                  </>
+                }
+              </Box>
+            </Dropdown>
+
           );
         })}
       </Grid>
     );
+
   }
 }
 
