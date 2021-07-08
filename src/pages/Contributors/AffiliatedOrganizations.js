@@ -18,17 +18,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     flexWrap:'wrap',
     justifyContent:'center',
-    // width:'928px',
     margin:'auto',
-    /*
-     * [theme.breakpoints.down('sm')]: {
-     *   width: '756px',
-     * },
-     * [theme.breakpoints.down('xs')]: {
-     *   width: '473px',
-     * },
-     */
-
   },
   afflnThumbnails: {
     width: '375px',
