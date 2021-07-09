@@ -37,7 +37,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box style={{ padding :'24px 0 24px 0' }}>
           <Box>{children}</Box>
         </Box>
       )}
@@ -81,20 +81,12 @@ export default function Contributors({ match }) {
 
   useEffect(() => {
     const fetchData = async () => {
-
-
       const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-
       const organization = result.data;
-
-
       const sorted = organization.sort((a, b) => a.id - b.id);
       setOrganizations(sorted);
-
     };
-
     fetchData();
-
   }, []);
 
 
@@ -105,36 +97,25 @@ export default function Contributors({ match }) {
       const affiliated = Object.create(null);
       // iterate through the json response
       const names = [];
-
       const addToAffiliated = (organization) => {
-
         if (!affiliated["Code for All"]) {
           affiliated["Code for All"] = [];
         }
         if (affiliated["Code for All"])
         {
-
           affiliated["Code for All"].push(organizations[organization.id - 2]);
           affiliated[organization.name] = [organization];
-
         }
-
-
-
       };
 
       const addToUnaffiliated = (organization) => {
-
-
         if (affiliated["unaffiliated"]) {
           affiliated["unaffiliated"].push(organization);
         }
         else {
           affiliated["unaffiliated"] = [organization];
         }
-
         getAffiliatedNames(organization);
-
       };
 
 
@@ -156,52 +137,38 @@ export default function Contributors({ match }) {
           }
         }
         getOrganizationData(organizations);
-
       }
 
 
       if (count1 !== 0 || count2 !== 0)
       {
-
         if (inputValue !== '')
         {
           getunaffiliatedCount(count1);
           getaffiliatedCount(count2);
-
           setsearchCount(true);
-
-
         }
-
       }
-
       setAffiliatedOrganizationsObject(affiliated);
       setOrganizationNamesList(names.sort());
-
     };
-
     createAffiliatedOrganizations();
   }, [organizations, inputValue, count1,count2,searchaffiliation,organizationData,searchCount,unaffiliatedCount,affiliatedCount]);
 
 
   if (organizationData.length >0)
   {
-
     for (const orgdata of organizationData)
     {
-
       if (orgdata.depth  === 3 || orgdata.depth === 4)
       {
         totalaffiliatedCount++;
-
       }
       if (orgdata.depth  === 2 && orgdata.name !== 'Code for All')
       {
         totalunaffiliatedCount++;
       }
     }
-
-
   }
 
 
@@ -220,8 +187,6 @@ export default function Contributors({ match }) {
       setAfflnSepOpen(false);
     }
   }, [affiliation]);
-
-
 
   // Tab Code
 
@@ -267,7 +232,6 @@ export default function Contributors({ match }) {
   });
 
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
 
@@ -278,8 +242,6 @@ export default function Contributors({ match }) {
 
 
   const [checkboxValue, setIsTrue] = useState(false);
-
-
   const checkBoxChange = (event) => {
     const target = event.target.checked;
     setIsTrue(target);
@@ -287,7 +249,6 @@ export default function Contributors({ match }) {
 
 
   return (
-
     <Box className='pageContainer'>
       <Box className='containerDefault'>
         <Container className={classes.firstSectionWrapper}>
@@ -314,10 +275,7 @@ export default function Contributors({ match }) {
         </Container>
       </Box>
       <Box className='containerGray'>
-
         <Container>
-
-
           <MuiThemeProvider theme={theme}>
             <AppBar position="static" color="default" elevation={0}>
               <Tabs
