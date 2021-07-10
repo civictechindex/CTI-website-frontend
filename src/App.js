@@ -7,16 +7,17 @@ import About from './pages/About';
 import Contact from './pages/RadicalCollaboration/Contact';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
+import Error404 from './pages/Error404';
 import Faq from './pages/RadicalCollaboration/Faq';
-import IndvOrgPage from './pages/IndvOrganization';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
+import IndvOrgPage from './pages/IndvOrganization';
 import Landing from './pages/Landing';
+import Organizations from './pages/Organizations';
 import RadicalCollaboration from './pages/RadicalCollaboration';
 import SearchProjects from './pages/SearchProjects';
-import TagCreator from './pages/TagCreator';
-import Error404 from './pages/Error404';
 import ShareTheCti from './pages/RadicalCollaboration/Share';
+import TagCreator from './pages/TagCreator';
 import Guides from './guides/';
 import useStyles from './styles';
 
@@ -42,7 +43,8 @@ const App = () => {
             <RouteTitled exact path='/about' component={About} title='About' />
             <RouteTitled exact path='/about/contact' component={Contact} title='Contact Us' />
             <RouteTitled exact path='/about/faq' component={Faq} title='FAQ' />
-            <RouteTitled exact path='/organizations/:affiliation' component={Contributors} title='Organizations' />
+            <RouteTitled exact path='/contributors/:affiliation' component={Contributors} title='Contributors (old)' />
+            <RouteTitled exact path='/organizations/:affiliation' component={Organizations} title='Organizations' />
             <RouteTitled exact path='/home' component={Home} title='Home' />
             <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
             <RouteTitled exact path='/join-index' component={TagCreator} title='Join the Index' />
