@@ -18,8 +18,16 @@ import GetStartedCard from '../../components/GetStartedCard';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs';
 import TitleSection from '../../components/TitleSection';
 
-import OrganizationSearch from './OrganizationSearch';
+import OrgSearch from './OrgSearch';
+import UnaffiliatedOrganizations from './UnaffiliatedOrganizations';
 import { useStyles } from './styles.js';
+
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
 
 const Organizations = (props) => {
   const {
@@ -33,48 +41,67 @@ const Organizations = (props) => {
   const [inputValue, setInputValue] = useState('');
   const [organizations, setOrganizations] = useState([]);
   const [organizationNamesList, setOrganizationNamesList] = useState([]);
+  const [filteredAffiliatedOrgs, setFilteredAffiliatedOrgs] = useState([]);
+  const [filteredUnaffiliatedOrgs, setFilteredUnaffiliatedOrgs] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/organizations/`
-      );
-      const organization = result.data;
-      const sorted = organization.sort((a, b) => a.id - b.id);
-      setOrganizations(sorted);
-    };
-    fetchData();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+      .then((response) => {
+        const organizations = response.data;
+        setOrganizations(organizations);
+        const names = organizations.map((org) => org.name);
+        setOrganizationNamesList(names.sort());
+        let affiliated = [];
+        let unaffiliated = [];
+        organizations.forEach((org) => {
+          if (org.affiliated) {
+            affiliated.push(org);
+          } else {
+            unaffiliated.push(org);
+          }
+        });
+        setFilteredAffiliatedOrgs(affiliated);
+        setFilteredUnaffiliatedOrgs(unaffiliated);
+      })
+      .catch((error) => {
+        console.log('Error fetching organizations');
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
-    const names = organizations.map((org) => org.name);
-    setOrganizationNamesList(names.sort());
-  }, [organizations]);
-
-  useEffect(() => {
-    if (affiliation === 'unaffiliated') {
-      setTabValue(1);
-    } else if (affiliation === 'affiliated') {
-      setTabValue(2);
+    if (affiliation) {
+      setTabValue(affiliation);
     } else {
-      setTabValue(0);
+      setTabValue("all");
     }
   }, [affiliation]);
 
-  // eslint-disable-next-line
-  function a11yProps(index) {
-    return {
-      id: `full-width-tab-${index}`,
-      'aria-controls': `full-width-tabpanel-${index}`,
-    };
-  }
+  useEffect(() => {
+    const filterText = inputValue.toLowerCase().replace(/\s/g, '');
+    let affiliated = [];
+    let unaffiliated = [];
+    organizations.forEach((org) => {
+      if (
+        inputValue.length === 0 ||
+        org.name.toLowerCase().replace(/\s/g, '').includes(filterText)
+      ) {
+        if (org.affiliated) {
+          affiliated.push(org);
+        } else {
+          unaffiliated.push(org);
+        }
+      }
+    });
+    setFilteredAffiliatedOrgs(affiliated);
+    setFilteredUnaffiliatedOrgs(unaffiliated);
+  }, [inputValue, organizations]);
 
-  const [tabValue, setTabValue] = useState(0);
+  const [tabValue, setTabValue] = useState("all");
   const handleTabChange = (event, newValue) => {
-    const newUrlPart =
-      newValue === 0 ? 'all' : newValue === 1 ? 'unaffiliated' : 'affiliated';
     setTabValue(newValue);
-    history.push(`/organizations/${newUrlPart}`);
+    history.push(`/organizations/${newValue}`);
   };
 
   return (
@@ -100,7 +127,7 @@ const Organizations = (props) => {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <OrganizationSearch
+              <OrgSearch
                 options={organizationNamesList}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -122,43 +149,45 @@ const Organizations = (props) => {
                 classes={{ indicator: classes.indicator }}
               >
                 <Tab
-                  // label={`All (${totalunaffiliatedCount + totalaffiliatedCount})`}
-                  label={`All (0)`}
+                  label={`All (${
+                    filteredAffiliatedOrgs.length +
+                    filteredUnaffiliatedOrgs.length
+                  })`}
                   classes={{
                     root: classes.tabRoot,
                     selected: classes.tabSelected,
                   }}
-                  {...a11yProps(0)}
+                  value="all"
+                  {...a11yProps("all")}
                 />
                 <Tab
-                  // label={`Unaffiliated (${
-                  //   affiliatedOrganizationsObject['unaffiliated']?.length || 0
-                  // })`}
-                  label={`Unaffiliated (0)`}
+                  label={`Unaffiliated (${filteredUnaffiliatedOrgs.length})`}
                   classes={{
                     root: classes.tabRoot,
                     selected: classes.tabSelected,
                   }}
-                  {...a11yProps(1)}
+                  value="unaffiliated"
+                  {...a11yProps("unaffiliated")}
                 />
                 <Tab
-                  // label={`Affiliated (${totalaffiliatedCount})`}
-                  label={`Affiliated (0)`}
+                  label={`Affiliated (${filteredAffiliatedOrgs.length})`}
                   classes={{
                     root: classes.tabRoot,
                     selected: classes.tabSelected,
                   }}
-                  {...a11yProps(2)}
+                  value="affiliated"
+                  {...a11yProps("affiliated")}
                 />
               </Tabs>
             </AppBar>
-            <TabPanel value={0} className={classes.tabPanel}>
+            <TabPanel value='all' className={classes.tabPanel}>
               All TBD / {affiliation}
+              <UnaffiliatedOrganizations organizations={filteredUnaffiliatedOrgs} />
             </TabPanel>
-            <TabPanel value={1} className={classes.tabPanel}>
-              Unaffiliated TBD
+            <TabPanel value='unaffiliated' className={classes.tabPanel}>
+              <UnaffiliatedOrganizations organizations={filteredUnaffiliatedOrgs} />
             </TabPanel>
-            <TabPanel value={2} className={classes.tabPanel}>
+            <TabPanel value='affiliated' className={classes.tabPanel}>
               Affiliated TBD
             </TabPanel>
           </TabContext>

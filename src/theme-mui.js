@@ -1,11 +1,10 @@
-/* eslint-disable sort-keys */
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import deepmerge from '@material-ui/utils/deepmerge';
 import {
   DARK_BLUE,
   TEAL,
   LIGHT_BLUE,
-  LIGHT_BLUE_HOVER,
+  // LIGHT_BLUE_HOVER,
   LIGHT_BLUE_VARIANT,
   YELLOW,
   WHITE,

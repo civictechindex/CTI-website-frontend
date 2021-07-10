@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /* Autocomplete `inputValue` is text displayed, `value` is selected option */
-const OrganizationSearch = (props) => {
+const OrgSearch = (props) => {
   const {
     inputPlaceholder,
     inputValue: topLevelInputValue,
@@ -116,4 +116,4 @@ const OrganizationSearch = (props) => {
   );
 };
 
-export default OrganizationSearch;
+export default OrgSearch;
