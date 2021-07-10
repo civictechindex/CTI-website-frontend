@@ -73,7 +73,17 @@ export const useStyle = makeStyles((theme) => ({
     },
 
   },
-
+  tabRoot: {
+    color: "theme​.palette.​text.disabled",
+    fontWeight: 'bold',
+    textTransform: 'none',
+    fontSize: '32px',
+    "&$tabSelected": {
+      color: "#006B95",
+    },
+  },
+  tabSelected: {},
+  
   chkBoxStyle: {
     color: '#6D6E74',
     paddingLeft: '59rem',
