@@ -111,56 +111,58 @@ const Organizations = (props) => {
         </Container>
       </Box>
       <Box className='containerGray'>
-        <TabContext value={tabValue}>
-          <AppBar position='static' color='default' elevation={0}>
-            <Tabs
-              value={tabValue}
-              onChange={handleTabChange}
-              variant='fullWidth'
-              className={classes.tabs}
-              classes={{ indicator: classes.indicator }}
-            >
-              <Tab
-                // label={`All (${totalunaffiliatedCount + totalaffiliatedCount})`}
-                label={`All`}
-                classes={{
-                  root: classes.tabRoot,
-                  selected: classes.tabSelected,
-                }}
-                {...a11yProps(0)}
-              />
-              <Tab
-                // label={`Unaffiliated (${
-                //   affiliatedOrganizationsObject['unaffiliated']?.length || 0
-                // })`}
-                label={`Unaffiliated`}
-                classes={{
-                  root: classes.tabRoot,
-                  selected: classes.tabSelected,
-                }}
-                {...a11yProps(1)}
-              />
-              <Tab
-                // label={`Affiliated (${totalaffiliatedCount})`}
-                label={`Affiliated`}
-                classes={{
-                  root: classes.tabRoot,
-                  selected: classes.tabSelected,
-                }}
-                {...a11yProps(2)}
-              />
-            </Tabs>
-          </AppBar>
-          <TabPanel value={tabValue} index={0} className={classes.tabPanel}>
-            All TBD / {affiliation}
-          </TabPanel>
-          <TabPanel value={tabValue} index={1} className={classes.tabPanel}>
-            Unaffiliated TBD
-          </TabPanel>
-          <TabPanel value={tabValue} index={2} className={classes.tabPanel}>
-            Affiliated TBD
-          </TabPanel>
-        </TabContext>
+        <Container>
+          <TabContext value={tabValue}>
+            <AppBar position='static' color='default' elevation={0}>
+              <Tabs
+                value={tabValue}
+                onChange={handleTabChange}
+                variant='fullWidth'
+                className={classes.tabs}
+                classes={{ indicator: classes.indicator }}
+              >
+                <Tab
+                  // label={`All (${totalunaffiliatedCount + totalaffiliatedCount})`}
+                  label={`All (0)`}
+                  classes={{
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected,
+                  }}
+                  {...a11yProps(0)}
+                />
+                <Tab
+                  // label={`Unaffiliated (${
+                  //   affiliatedOrganizationsObject['unaffiliated']?.length || 0
+                  // })`}
+                  label={`Unaffiliated (0)`}
+                  classes={{
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected,
+                  }}
+                  {...a11yProps(1)}
+                />
+                <Tab
+                  // label={`Affiliated (${totalaffiliatedCount})`}
+                  label={`Affiliated (0)`}
+                  classes={{
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected,
+                  }}
+                  {...a11yProps(2)}
+                />
+              </Tabs>
+            </AppBar>
+            <TabPanel value={0} className={classes.tabPanel}>
+              All TBD / {affiliation}
+            </TabPanel>
+            <TabPanel value={1} className={classes.tabPanel}>
+              Unaffiliated TBD
+            </TabPanel>
+            <TabPanel value={2} className={classes.tabPanel}>
+              Affiliated TBD
+            </TabPanel>
+          </TabContext>
+        </Container>
       </Box>
       <Box className='containerWhite'>
         <Container>

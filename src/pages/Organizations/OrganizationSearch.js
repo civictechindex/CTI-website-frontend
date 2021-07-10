@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
       borderBottomRightRadius: 0,
       borderTopLeftRadius: 4,
       borderTopRightRadius: 0,
+      fontSize: 20,
       height: 64,
       [theme.breakpoints.down('sm')]: {
         height: 48,
