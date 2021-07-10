@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(6),
     maxWidth: '40rem',
   },
+  field: {
+    marginTop: theme.spacing(3),
+  },
   heading: {
     color: theme.palette.secondary.dark,
     paddingTop: theme.spacing(5),
@@ -35,9 +38,6 @@ const useStyles = makeStyles((theme) => ({
   infoLarge: {
     color: theme.palette.secondary.dark,
     fontSize: '3rem',
-  },
-  label: {
-    paddingTop: theme.spacing(2),
   },
   progress: {
     display: 'flex',

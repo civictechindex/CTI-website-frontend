@@ -6,17 +6,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import NavBreadcrumbs from "../../components/NavBreadcrumbs";
 import { useStyle } from "./styles.js";
 import GetStartedCard from '../../components/GetStartedCard'
 import { TitleSection } from '../../components'
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -24,9 +19,9 @@ import Tab from "@material-ui/core/Tab";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Affiliated  } from "./Affiliated";
 import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
+import OrganizationSearch from "./OrganizationSearch";
 
 // eslint-disable-next-line
 function TabPanel(props) {
@@ -41,7 +36,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box style={{ padding :'24px 0 24px 0' }}>
           <Box>{children}</Box>
         </Box>
       )}
@@ -85,20 +80,12 @@ export default function Contributors({ match }) {
 
   useEffect(() => {
     const fetchData = async () => {
-
-
       const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-
       const organization = result.data;
-
-
       const sorted = organization.sort((a, b) => a.id - b.id);
       setOrganizations(sorted);
-
     };
-
     fetchData();
-
   }, []);
 
 
@@ -109,36 +96,25 @@ export default function Contributors({ match }) {
       const affiliated = Object.create(null);
       // iterate through the json response
       const names = [];
-
       const addToAffiliated = (organization) => {
-
         if (!affiliated["Code for All"]) {
           affiliated["Code for All"] = [];
         }
         if (affiliated["Code for All"])
         {
-
           affiliated["Code for All"].push(organizations[organization.id - 2]);
           affiliated[organization.name] = [organization];
-
         }
-
-
-
       };
 
       const addToUnaffiliated = (organization) => {
-
-
         if (affiliated["unaffiliated"]) {
           affiliated["unaffiliated"].push(organization);
         }
         else {
           affiliated["unaffiliated"] = [organization];
         }
-
         getAffiliatedNames(organization);
-
       };
 
 
@@ -160,52 +136,38 @@ export default function Contributors({ match }) {
           }
         }
         getOrganizationData(organizations);
-
       }
 
 
       if (count1 !== 0 || count2 !== 0)
       {
-
         if (inputValue !== '')
         {
           getunaffiliatedCount(count1);
           getaffiliatedCount(count2);
-
           setsearchCount(true);
-
-
         }
-
       }
-
       setAffiliatedOrganizationsObject(affiliated);
       setOrganizationNamesList(names.sort());
-
     };
-
     createAffiliatedOrganizations();
   }, [organizations, inputValue, count1,count2,searchaffiliation,organizationData,searchCount,unaffiliatedCount,affiliatedCount]);
 
 
   if (organizationData.length >0)
   {
-
     for (const orgdata of organizationData)
     {
-
       if (orgdata.depth  === 3 || orgdata.depth === 4)
       {
         totalaffiliatedCount++;
-
       }
       if (orgdata.depth  === 2 && orgdata.name !== 'Code for All')
       {
         totalunaffiliatedCount++;
       }
     }
-
-
   }
 
 
@@ -225,8 +187,6 @@ export default function Contributors({ match }) {
     }
   }, [affiliation]);
 
-
-
   // Tab Code
 
   TabPanel.propTypes = {
@@ -242,33 +202,9 @@ export default function Contributors({ match }) {
     };
   }
 
-  const theme = createMuiTheme({
 
-    overrides: {
-      MuiTab: {
-        "root": {
-          color: 'theme​.palette.​text.disabled',
-          fontSize: '32px',
-          fontWeight: 'bold',
-          textTransform: 'none',
-          display: "flex",
-          '&$selected': {
-            color: '#006B95',
-          },
-
-        },
-        wrapper: {
-          flexDirection: "row",
-          width: "auto",
-        },
-
-      },
-
-    },
-  });
 
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
 
@@ -279,8 +215,6 @@ export default function Contributors({ match }) {
 
 
   const [checkboxValue, setIsTrue] = useState(false);
-
-
   const checkBoxChange = (event) => {
     const target = event.target.checked;
     setIsTrue(target);
@@ -288,7 +222,6 @@ export default function Contributors({ match }) {
 
 
   return (
-
     <Box className='pageContainer'>
       <Box className='containerDefault'>
         <Container className={classes.firstSectionWrapper}>
@@ -301,11 +234,10 @@ export default function Contributors({ match }) {
           <Grid container>
             <TitleSection>Organizations</TitleSection>
             <Grid item xs={12}>
-              <Typography color='textSecondary' className={classes.textStyle}>Check out our partners who have contributed to the Civic Tech Index</Typography>
+              <Typography color='textSecondary' className={classes.textStyle} gutterBottom>Check out our partners who have contributed to the Civic Tech Index</Typography>
             </Grid>
             <Grid item xs={12}>
-
-              <TopCallToAction
+              <OrganizationSearch
                 options={organizationNamesList}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -316,29 +248,21 @@ export default function Contributors({ match }) {
         </Container>
       </Box>
       <Box className='containerGray'>
-
         <Container>
+          <AppBar position="static" color="default" elevation={0}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              variant="fullWidth"
+              className={classes.tabs}
+              classes={{ indicator: classes.indicator }}
+            >
 
-
-          <MuiThemeProvider theme={theme}>
-            <AppBar position="static" color="default" elevation={0}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                variant="fullWidth"
-                className={classes.tabs}
-                classes={{ indicator: classes.indicator }}
-              >
-
-                <Tab label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalunaffiliatedCount + totalaffiliatedCount })</span></>} icon="All" {...a11yProps(0)} className={classes.tabVal} />
-                <Tab  icon="Unaffiliated"  label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</span></>} className={classes.tabVal} {...a11yProps(1)} />
-                <Tab  icon="Affiliated" label={<><span  style={{ display:'flex',alignItems:'center', paddingLeft: '10px' }}>({totalaffiliatedCount})</span></>} className={classes.tabVal} {...a11yProps(2)} />
-              </Tabs>
-            </AppBar>
-          </MuiThemeProvider>
-
-
-
+              <Tab label={<>({totalunaffiliatedCount + totalaffiliatedCount })</>} icon="All" {...a11yProps(0)} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
+              <Tab  icon="Unaffiliated"  label={<>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(1)} />
+              <Tab  icon="Affiliated" label={<>({totalaffiliatedCount})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(2)} />
+            </Tabs>
+          </AppBar>
           <Grid index={value}>
             <Grid>
               <FormGroup>
@@ -417,96 +341,5 @@ export default function Contributors({ match }) {
         </Container>
       </Box>
     </Box>
-
-
   );
 }
-
-
-
-const useStyles = makeStyles(theme => ({
-  root:
-  {
-
-    "& .MuiAutocomplete-inputRoot": {
-      paddingRight: '14px',
-
-    },
-
-  },
-  icon: {
-    backgroundColor: theme.palette.secondary.main,
-    borderBottomRightRadius: '4px',
-    borderTopRightRadius: '4px',
-    color: theme.palette.text.secondary,
-    height: '56px',
-    marginRight: '-14px',
-    width: '51px',
-  },
-  input: {
-    width: '945px',
-    height: '64px',
-    borderRadius: '7px',
-    fontSize: '1.5rem',
-    paddingBottom: '4em',
-    paddingTop: '15px',
-  },
-  "& .MuiSvgIcon-root": {
-    root: {
-      width: 168,
-      height: 168,
-    },
-  },
-
-
-}));
-
-
-const TopCallToAction = ({
-  input,
-  options,
-  inputPlaceholder,
-  setInputValue,
-}) => {
-  const classes = useStyles();
-  const [selectedValue, changeInputVal] = useState(input)
-
-  const handleClick = () => {
-    setInputValue(selectedValue)
-  };
-
-  return (
-    <Grid>
-      <Autocomplete
-        id="free-solo"
-        freeSolo
-        inputValue={input}
-        onInputChange={(e, newValue) => changeInputVal(newValue)}
-        options={options}
-        className={classes.root}
-        disableClearable
-        forcePopupIcon={false}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            placeholder={inputPlaceholder}
-            className={classes.input}
-            variant="outlined"
-            InputProps={{
-              ...params.InputProps,
-              type: "search",
-
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <SearchRoundedIcon onClick={handleClick} className={classes.icon} />
-
-                </InputAdornment>
-              ),
-            }}
-          />
-        )}
-      />
-
-    </Grid>
-  );
-};

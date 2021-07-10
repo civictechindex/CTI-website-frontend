@@ -3,41 +3,23 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useStyles from './styles';
 
-const ParentSelect = ({ onChange, orgList }) => {
+const ParentSelect = ({ org, orgList, onChange }) => {
   const classes = useStyles();
-
-  const handleInputChange = (event, value) => {
-    event.preventDefault();
-    if (value) {
-      onChange(value);
-    } else {
-      onChange(event.target.value);
-    }
-  };
 
   return (
     <Autocomplete
-      id='parent-org-select'
-      name='parent-org'
+      autoComplete
+      getOptionLabel={(option) => option.name}
+      getOptionSelected={(option, value) => option.name === value.name }
+      onChange={(event, value) => onChange(value)}
       options={orgList}
-      classes={{
-        option: classes.option,
-      }}
-      autoHighlight
-      getOptionLabel={(option) => String(option.id)}
-      onInputChange={handleInputChange}
-      renderOption={(option) => `${option.name} (${option.id})`}
+      value={org}
       renderInput={(params) => (
         <TextField
-          {...params}
-          label=''
-          id='filled-basic'
+          className={classes.field}
+          label='Parent Organization'
           variant='outlined'
-          size='medium'
-          inputProps={{
-            ...params.inputProps,
-            autoComplete: 'new-password', // disable autocomplete and autofill
-          }}
+          {...params}
         />
       )}
     />
