@@ -13,7 +13,7 @@ const theme = createMuiTheme(themeMui);
 
 WebFont.load({
   google: {
-    families: ['Work Sans:400,700', 'Source Code Pro:400'],
+    families: ['Work Sans:400,500,700', 'Source Code Pro:400'],
   },
 });
 
