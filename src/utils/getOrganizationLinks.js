@@ -1,18 +1,30 @@
-import getOrgId from './getOrgId.js';
+import { names } from '../components/data/orgs.js';
 
-const getGithubInfo = (organization) => {
-  const githubInfo = { imageUrl: null, organizationUrl: null };
-  const { links } = organization;
-  if (links) {
-    const githubLink = links.find((link) => link.link_type === 'GitHub');
-    if (githubLink) {
-      const id = getOrgId(githubLink.url);
-      const imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
-      githubInfo.imageUrl = imageUrl;
-      githubInfo.organizationUrl = githubLink.url;
+/** githubUrl comes in a few flavors
+ *  and we always want to extract 'foo' before getting orgId:
+ * - https://github.com/foo
+ * - https://github.com/foo/
+ * - https://github.com/topics/foo
+ * - https://github.com/foo/bar
+ */
+const getOrgId = (githubUrl) => {
+  let orgname;
+  const restOfGithubUrl = githubUrl.split('https://github.com/')[1];
+  if (restOfGithubUrl) {
+    if (restOfGithubUrl.indexOf('topics') > -1) {
+      orgname = restOfGithubUrl.split('/')[1];
+    } else if (restOfGithubUrl.includes('/')) {
+      orgname = restOfGithubUrl.split('/')[0];
+    } else {
+      orgname = restOfGithubUrl;
+    }
+    const org = orgname.replace(/\s/g, '').trim().toLowerCase();
+    const id = names.get(org);
+    if (id) {
+      return id;
     }
   }
-  return githubInfo;
+  return null;
 };
 
 const getImageFromOrg = (organization) => {
@@ -23,31 +35,37 @@ const getImageFromOrg = (organization) => {
   }
 };
 
-const getLinksFromOrg = (organization) => {
+const getLinkFromOrg = (organization) => {
   if (organization.links && organization.links.length) {
     return organization.links[0].url;
-  } else {
-    // no links, either from github, or on organization object
-    console.log(`No links available for ${organization.name}`);
-    return '/images/default-github-repo-image.png';
   }
+  return null;
 };
 
-const getOrganizationLinks = (organization) => {
-  const thumbnailInfo = getGithubInfo(organization);
-
-  // check for empty results from getGithubInfo
-  if (!thumbnailInfo.imageUrl) {
-    console.log(`No GitHub image available for ${organization.name}`);
-    thumbnailInfo.imageUrl = getImageFromOrg(organization);
+/* returns { imageUrl, organizationUrl } */
+const getOrganizationLinks = (org) => {
+  // if org name includes Chicago
+  if (org.name.indexOf('Chicago') > -1) {
+    console.log({ org } );
   }
-
-  if (!thumbnailInfo.organizationUrl) {
-    console.log(`No GitHub URL available for ${organization.name}`);
-    thumbnailInfo.organizationUrl = getLinksFromOrg(organization);
+  let imageUrl = null;
+  let organizationUrl = null;
+  const { links } = org;
+  if (links) {
+    const githubLink = links.find(link => link.link_type === 'GitHub');
+    if (githubLink) {
+      const { url } = githubLink;
+      const id = getOrgId(url);
+      if (id) {
+        imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
+        organizationUrl = url;
+        return { imageUrl, organizationUrl };
+      }
+    }
   }
-
-  return thumbnailInfo;
+  imageUrl = getImageFromOrg(org);
+  organizationUrl = getLinkFromOrg(org);
+  return { imageUrl, organizationUrl };
 };
 
 export default getOrganizationLinks;

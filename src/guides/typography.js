@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   stylesInUse: {
     backgroundColor: theme.palette.background.secondary,
     marginBottom: theme.spacing(4),
-    maxWidth: 500,
+    maxWidth: 800,
     width: '100%'
   }
 }))
@@ -24,40 +24,40 @@ const ShowTypography = () => {
       <Card className={classes.stylesInUse}>
         <CardContent>
           <Typography variant='h1' color='primary' gutterBottom>
-            h1. Styles In Use
+            h1. Styles In Use (3rem/48px)
           </Typography>
           <Typography variant='h2' color='textPrimary' gutterBottom>
-            h2. Heading
+            h2. Heading (2.5rem/40px)
           </Typography>
           <Typography variant='h3' color='secondary' gutterBottom>
-            h3. Heading
+            h3. Heading (2rem/32px)
           </Typography>
           <Typography variant='h4' color='textSecondary' gutterBottom>
-            h4. Heading
+            h4. Heading (1.75rem/28px)
           </Typography>
           <Typography variant='h5'>
-            h5. Heading
+            h5. Heading (1.5rem/24px)
           </Typography>
           <Typography variant='body1' gutterBottom>
-            body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+            body1. (1rem/16px) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
             unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
             dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
           </Typography>
           <Typography variant='h6'>
-            h6. Heading
+            h6. Heading (1.25rem/20px)
           </Typography>
           <Typography variant='body1' color='error' gutterBottom>
-            body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+            body1. (1rem/16px) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
             unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
             dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
           </Typography>
           <Typography variant='caption' display='block' gutterBottom>
-            caption text
+            caption text (0.875rem/14px)
           </Typography>
         </CardContent>
       </Card>
       <Paper variant='outlined' square>
-        <Typography variant='h1' component='h2'>h1. Material-UI Styles Not Used</Typography>
+        <Typography variant='h1' component='h2'>Material-UI Styles Not Used</Typography>
         <Typography variant='subtitle1' gutterBottom>
           subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
         </Typography>

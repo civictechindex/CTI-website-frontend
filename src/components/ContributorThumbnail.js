@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isChildThumbnail }) => {
+const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isChildThumbnail }) => {
   const classes = useStyles();
 
   const [thumbnailInfo, setThumbnailInfo] = useState({});
@@ -124,3 +124,5 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
     </Grid>
   );
 };
+
+export default ContributorThumbnail;

@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Dropdown } from "../../components/Dropdown";
-import { ContributorThumbnail } from "../../components/ContributorThumbnail";
+import ContributorThumbnail from "../../components/ContributorThumbnail";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles'

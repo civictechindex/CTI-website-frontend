@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ContributorThumbnail } from "../../components/ContributorThumbnail";
+import ContributorThumbnail from "../../components/ContributorThumbnail";
 
 import Typography from '@material-ui/core/Typography';
 import Box from "@material-ui/core/Box";

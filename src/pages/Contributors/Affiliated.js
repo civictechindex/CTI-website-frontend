@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 import Typography from "@material-ui/core/Typography";
-import { DropdownArrow } from "../../components/DropdownArrow.js";
+import DropdownArrow from "../../components/DropdownArrow.js";
 import Grid from '@material-ui/core/Grid';
 import { AffiliatedOrganizations } from "./AffiliatedOrganizations";
 import clsx from 'clsx';

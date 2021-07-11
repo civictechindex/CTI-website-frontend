@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { ContributorThumbnail } from './ContributorThumbnail';
-import { DropdownArrow } from './DropdownArrow';
+import ContributorThumbnail from './ContributorThumbnail';
+import DropdownArrow from './DropdownArrow';
 import Grid from '@material-ui/core/Grid';
 import clsx from 'clsx';
 

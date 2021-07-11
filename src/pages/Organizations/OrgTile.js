@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import getOrganizationLinks from '../../utils/getOrganizationLinks';
+import OrgImage from './OrgImage';
 
 const useStyles = makeStyles((theme) => ({
   tileBorder: {
@@ -43,12 +44,13 @@ const useStyles = makeStyles((theme) => ({
   },
   orgText: {
     color: theme.palette.secondary.dark,
-    fontSize: 24,
     paddingLeft: 8,
     width: 'calc(100% - 24px)',
     '& a, & a:visited': {
       color: theme.palette.secondary.dark,
-    },
+      fontSize: (props) => (props.size === 'medium' ? 20 : 24),
+      fontWeight: (props) => (props.size === 'medium' ? 500 : 700),
+      },
     [theme.breakpoints.down('sm')]: {
       fontSize: 18,
       paddingLeft: 8,
@@ -83,7 +85,7 @@ const OrgTile = ({ borderless = false, organization, size = 'medium' }) => {
       alignItems='center'
     >
       <Box className={classes.imageWrapper}>
-        <img
+        <OrgImage
           alt={`${organization.name} logo`}
           className={classes.tileImage}
           src={tileLinks.imageUrl}
