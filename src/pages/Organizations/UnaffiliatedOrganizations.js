@@ -19,6 +19,7 @@ const UnaffiliatedOrganizations = (props) => {
         {organizations.map((org, index) => (
           <Grid
             item
+            key={org.id}
             xs={index === organizations.length && lastChildIsOdd ? 12 : 6}
           >
             <OrgTile key={org.id} organization={org} size='large' />

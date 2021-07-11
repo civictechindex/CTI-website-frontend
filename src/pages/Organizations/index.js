@@ -18,6 +18,7 @@ import GetStartedCard from '../../components/GetStartedCard';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs';
 import TitleSection from '../../components/TitleSection';
 
+import AffiliatedOrganizations from './AffiliatedOrganizations';
 import OrgSearch from './OrgSearch';
 import UnaffiliatedOrganizations from './UnaffiliatedOrganizations';
 import { useStyles } from './styles.js';
@@ -74,7 +75,7 @@ const Organizations = (props) => {
     if (affiliation) {
       setTabValue(affiliation);
     } else {
-      setTabValue("all");
+      setTabValue('all');
     }
   }, [affiliation]);
 
@@ -98,7 +99,7 @@ const Organizations = (props) => {
     setFilteredUnaffiliatedOrgs(unaffiliated);
   }, [inputValue, organizations]);
 
-  const [tabValue, setTabValue] = useState("all");
+  const [tabValue, setTabValue] = useState('all');
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
     history.push(`/organizations/${newValue}`);
@@ -157,8 +158,8 @@ const Organizations = (props) => {
                     root: classes.tabRoot,
                     selected: classes.tabSelected,
                   }}
-                  value="all"
-                  {...a11yProps("all")}
+                  value='all'
+                  {...a11yProps('all')}
                 />
                 <Tab
                   label={`Unaffiliated (${filteredUnaffiliatedOrgs.length})`}
@@ -166,8 +167,8 @@ const Organizations = (props) => {
                     root: classes.tabRoot,
                     selected: classes.tabSelected,
                   }}
-                  value="unaffiliated"
-                  {...a11yProps("unaffiliated")}
+                  value='unaffiliated'
+                  {...a11yProps('unaffiliated')}
                 />
                 <Tab
                   label={`Affiliated (${filteredAffiliatedOrgs.length})`}
@@ -175,20 +176,24 @@ const Organizations = (props) => {
                     root: classes.tabRoot,
                     selected: classes.tabSelected,
                   }}
-                  value="affiliated"
-                  {...a11yProps("affiliated")}
+                  value='affiliated'
+                  {...a11yProps('affiliated')}
                 />
               </Tabs>
             </AppBar>
             <TabPanel value='all' className={classes.tabPanel}>
-              All TBD / {affiliation}
-              <UnaffiliatedOrganizations organizations={filteredUnaffiliatedOrgs} />
+              <UnaffiliatedOrganizations
+                organizations={filteredUnaffiliatedOrgs}
+              />
+              <AffiliatedOrganizations organizations={filteredAffiliatedOrgs} />
             </TabPanel>
             <TabPanel value='unaffiliated' className={classes.tabPanel}>
-              <UnaffiliatedOrganizations organizations={filteredUnaffiliatedOrgs} />
+              <UnaffiliatedOrganizations
+                organizations={filteredUnaffiliatedOrgs}
+              />
             </TabPanel>
             <TabPanel value='affiliated' className={classes.tabPanel}>
-              Affiliated TBD
+              <AffiliatedOrganizations organizations={filteredAffiliatedOrgs} />
             </TabPanel>
           </TabContext>
         </Container>
@@ -198,7 +203,7 @@ const Organizations = (props) => {
           <GetStartedCard
             headerTitle='Want to add your organization?'
             buttonText='Tag your project'
-            buttonHref='/taggenerator'
+            buttonHref='/join-index'
           />
         </Container>
       </Box>

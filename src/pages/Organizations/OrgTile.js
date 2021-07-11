@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
@@ -7,22 +8,22 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import getOrganizationLinks from '../../utils/getOrganizationLinks';
 
 const useStyles = makeStyles((theme) => ({
-  thumbnailWrapper: {
-    alignItems: 'center',
-    backgroundColor: theme.palette.background.default,
+  tileBorder: {
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     borderRadius: '6px',
+  },
+  tileWrapper: {
+    alignItems: 'center',
+    backgroundColor: theme.palette.background.default,
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
     height: (props) => (props.size === 'medium' ? 64 : 80),
     padding: 8,
     [theme.breakpoints.down('sm')]: {
       height: (props) => (props.size === 'medium' ? 48 : 56),
     },
   },
-  thumbnailImage: {
+  tileImage: {
     height: (props) => (props.size === 'medium' ? 32 : 48),
     width: (props) => (props.size === 'medium' ? 32 : 48),
     [theme.breakpoints.down('sm')]: {
@@ -59,10 +60,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OrgTile = ({ organization, size = 'medium' }) => {
-  const classes = useStyles({ size });
+const OrgTile = ({ borderless = false, organization, size = 'medium' }) => {
+  const classes = useStyles({ borderless, size });
 
-  const [tileLinks, setTileLinks] = useState({});
+  const [tileLinks, setTileLinks] = useState({
+    imageUrl: '/images/default-github-repo-image.png',
+  });
 
   useEffect(() => {
     const links = getOrganizationLinks(organization);
@@ -73,11 +76,16 @@ const OrgTile = ({ organization, size = 'medium' }) => {
   }, [organization]);
 
   return (
-    <Box className={classes.thumbnailWrapper} alignItems='center'>
+    <Box
+      className={clsx(classes.tileWrapper, {
+        [classes.tileBorder]: !borderless,
+      })}
+      alignItems='center'
+    >
       <Box className={classes.imageWrapper}>
         <img
           alt={`${organization.name} logo`}
-          className={classes.thumbnailImage}
+          className={classes.tileImage}
           src={tileLinks.imageUrl}
         />
       </Box>
@@ -97,6 +105,7 @@ const OrgTile = ({ organization, size = 'medium' }) => {
 };
 
 OrgTile.propTypes = {
+  borderless: PropTypes.bool,
   organization: PropTypes.object.isRequired,
   size: PropTypes.oneOf(['medium', 'large']),
 };
