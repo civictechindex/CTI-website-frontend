@@ -228,7 +228,7 @@ export default function Contributors({ match }) {
           <NavBreadcrumbs
             crumbs={[
               { name: "Home", href: "/" },
-              { name: "Organizations", href: "/contributors" },
+              { name: "Civic Tech Partners", href: "/organizations/all" },
             ]}
           />
           <Grid container>
