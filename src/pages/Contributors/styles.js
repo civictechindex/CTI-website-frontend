@@ -1,5 +1,7 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
+const DARK_GRAY = '#6D6E74';
+
 export const useStyle = makeStyles((theme) => ({
   firstSectionWrapper: {
     background: theme.palette.secondary.dark,
@@ -58,8 +60,9 @@ export const useStyle = makeStyles((theme) => ({
   indicator: {
     backgroundColor: '#006B95',
   },
+ 
   tabVal: {
-    color: "theme​.palette.​text.disabled",
+    color: DARK_GRAY,
     [theme.breakpoints.down('sm')]: {
       fontSize: '18px',
     },
@@ -74,7 +77,7 @@ export const useStyle = makeStyles((theme) => ({
 
   },
   tabRoot: {
-    color: "theme​.palette.​text.disabled",
+    color: DARK_GRAY,
     fontWeight: 'bold',
     textTransform: 'none',
     fontSize: '32px',
@@ -85,7 +88,7 @@ export const useStyle = makeStyles((theme) => ({
   tabSelected: {},
   
   chkBoxStyle: {
-    color: '#6D6E74',
+    color: DARK_GRAY,
     paddingLeft: '59rem',
     '&:hover': {
       background: 'transparent',
