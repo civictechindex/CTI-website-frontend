@@ -52,6 +52,9 @@ export default function Contributors({ match }) {
 
   const searchaffiliation = match.params.searchaffiliation;
 
+  console.log("Affiliation: " + affiliation);
+  console.log("searchaffiliation: " + searchaffiliation);
+
 
   const classes = useStyle();
 
@@ -227,7 +230,7 @@ export default function Contributors({ match }) {
         <Container className={classes.firstSectionWrapper}>
           <NavBreadcrumbs
             crumbs={[
-              { name: "Home", href: "/" },
+              { name: "Home", href: "/home" },
               { name: "Civic Tech Partners", href: "/organizations/all" },
             ]}
           />
