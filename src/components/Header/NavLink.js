@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { NavLink as NaviLink, withRouter } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import { useTheme, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { usePopupState, bindMenu, bindHover } from 'material-ui-popup-state/hooks';
 import Menu from 'material-ui-popup-state/HoverMenu';
 
 const styles = () => ({
+  link: {
+    "&:hover": {
+      fontWeight: 700,
+    },
+  },
   menu: {
     padding: '0',
   },
@@ -19,8 +24,6 @@ const styles = () => ({
 
 const NavLink = ({ children, classes, header, matchPathParent, route }) => {
   const popupState = usePopupState({ variant: 'popper', popupId: 'navlink' });
-  const theme = useTheme();
-
   return (
     <>
       <Link
@@ -31,10 +34,6 @@ const NavLink = ({ children, classes, header, matchPathParent, route }) => {
         exact
         isActive={() => {
           return route === matchPathParent;
-        }}
-        activeStyle={{
-          color: theme.palette.primary.main,
-          fontWeight: 'bold',
         }}
         classes={{ root: classes.link }}
       >
