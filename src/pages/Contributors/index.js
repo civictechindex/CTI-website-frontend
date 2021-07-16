@@ -52,10 +52,6 @@ export default function Contributors({ match }) {
 
   const searchaffiliation = match.params.searchaffiliation;
 
-  console.log("Affiliation: " + affiliation);
-  console.log("searchaffiliation: " + searchaffiliation);
-
-
   const classes = useStyle();
 
   const [organizations, setOrganizations] = useState([]);
