@@ -277,7 +277,7 @@ const MediaInfo = () => {
                   color: '#0D99C6',
                   textDecoration: ' none',
                 }}
-                href='/'>
+                href='/contact'>
                 {' '}
                                 contact us
               </a>{' '}

@@ -79,7 +79,7 @@ const RadicalCollaboration = () => {
       </Box>
       <Box className='containerWhite'>
         <Container>
-          <BottomCallToAction heading='Want to support in other ways?' />
+          <BottomCallToAction heading='Want to support in other ways?' buttonHref='/contact' />
         </Container>
       </Box>
     </Box>

@@ -91,7 +91,7 @@ const Faq = () => {
         currentPageNum={pageNum}
         onPageChange={handlePageNumChange}
       />
-      <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contactus" />
+      <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contact" />
     </Box>
   );
 }
