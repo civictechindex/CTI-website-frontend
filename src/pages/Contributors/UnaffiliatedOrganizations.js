@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   unaffiliatedThumbnailsWrapper: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent:'center',
     width:'100%',
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     display: 'flex',
     alignItems: 'center',
-    width: '496px',
+    width: '1008px',
     height:'80px',
     borderRadius: '6px',
     border:'1px solid',
@@ -35,14 +36,14 @@ const useStyles = makeStyles((theme) => ({
       fontSize:'24px',
     },
     [theme.breakpoints.down('sm')]: {
-      width:'440px',
+      // width:'440px',
       height: '80px',
       '& p': {
         fontSize:'18px',
       },
     },
     [theme.breakpoints.down('xs')]: {
-      width:'276px',
+      // width:'276px',
       height: '64px',
       '& p': {
         fontSize:'18px',
