@@ -10,7 +10,7 @@ import { useTheme } from '@material-ui/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import '../../styles.css';
 
-const IndvOrgPage = (props) => {
+const IndvOrgPage = ({ match }) => {
   const [showHeaderResults, setShowHeaderResults] = useState(false);
   const [websiteUrlResults, setwebsiteUrlResults] = useState('');
   const [orgName, setOrgName] = useState('');
@@ -25,7 +25,7 @@ const IndvOrgPage = (props) => {
   const [notFound, setNotFound] = useState(true);
   const [dropdownTitle, setDropdownTitle] = useState('');
 
-  const pathName = (props.location.pathname)?.toLowerCase()?.replace("/organizations/", "")?.trim();
+  const pathName = (match.params.name)?.toLowerCase()?.trim();
   const theme = useTheme();
 
   const largeScreen = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true });
