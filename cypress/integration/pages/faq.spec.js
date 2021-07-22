@@ -2,9 +2,9 @@ describe('FAQ Page', () => {
   const SEARCH = 'organization';
   const Q1 = 'Can I add multiple projects';
   const Q2 = "Our organization doesn't have a parent organization";
-  const A1 = 'Yes, Please follow the link to add multiple projects';
+  const A1 = 'Yes, Please follow the <a href="http://civictechindex.org/join-index?tagsToAdd=civictechindex">link</a> to add multiple projects.';
   const A2 =
-    'You can still be a part of Civic tech index, even if your organization is unaffiliated';
+    'You can still be a part of Civic tech index, even if your organization is <a href="http://civictechindex.org/organizations/all">unaffiliated</a>';
 
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/`).as('getFaqs');
