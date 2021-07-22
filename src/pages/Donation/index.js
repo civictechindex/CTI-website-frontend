@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import Link from '../../components/common/Link';
 import useStyles from './styles.js';
-import { GenericHeaderSection } from '../../components/'
-
+import { GenericHeaderSection } from '../../components/';
 
 const Donation = () => {
   const classes = useStyles();
@@ -20,7 +19,11 @@ const Donation = () => {
     <Box className='pageContainer'>
       <Box className='containerDefault'>
         <Container>
-          <GenericHeaderSection mainTitle ="Make a Donation" breadCrumbLinks ={breadCrumbLinks} lg='312px'/>
+          <GenericHeaderSection
+            mainTitle='Make a Donation'
+            breadCrumbLinks={breadCrumbLinks}
+            addPad
+          />
         </Container>
       </Box>
       <Box className='containerGray'>
@@ -60,6 +63,6 @@ const Donation = () => {
       </Box>
     </Box>
   );
-}
+};
 
 export default Donation;

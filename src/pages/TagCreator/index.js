@@ -301,7 +301,7 @@ const TagCreator = () => {
 
   return (
     <Box>
-      <GenericHeaderSection mainTitle ="Tag Generator" breadCrumbLinks ={breadCrumbLinks} lg='320px' md='304px' sm='304px' subText>
+      <GenericHeaderSection mainTitle ='Tag Generator' breadCrumbLinks ={breadCrumbLinks} subText>
         <Typography variant='h6' color='textSecondary' style={{ fontWeight:'500' , textAlign:'center' }} >Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
       </GenericHeaderSection>
 
