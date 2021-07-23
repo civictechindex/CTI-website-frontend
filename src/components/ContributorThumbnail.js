@@ -50,11 +50,11 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft:'8px',
     },
   },
-  contributorIcon: {
-    marginTop: '2%',
-    marginRight: '2%',
-    width: '14.39px',
-    height: '14.39px',
+  grandparentIcon: {
+    marginTop: '9%',
+    marginLeft: '13%',
+    width: '42px',
+    height: '42px',
   },
   contributorItem: {
     display: 'grid',
@@ -75,9 +75,13 @@ const useStyles = makeStyles((theme) => ({
     width: '38px',
     height: '38px',
   },
+  contributorIcon: {
+    width: '24px',
+    height: '24px',
+  },
 }));
 
-export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isChildThumbnail }) => {
+export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isChildThumbnail,checkboxValue }) => {
   const classes = useStyles();
 
   const [thumbnailInfo, setThumbnailInfo] = useState({});
@@ -97,6 +101,7 @@ export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isC
             isOpen={isOpen}
             dropdownLength={dropdownLength}
             isChildThumbnail={isChildThumbnail}
+            checkboxValue={checkboxValue}
           />
         )  : (
           <Grid className={classes.textWrapperWithoutImage} component="span">
@@ -108,7 +113,9 @@ export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isC
   );
 };
 
-const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChildThumbnail }) => {
+const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChildThumbnail, checkboxValue }) => {
+
+
   const classes = useStyles();
   if (thumbnailInfo.imageUrl.includes('undefined') || thumbnailInfo.imageUrl.includes('scontent')){
     thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
@@ -130,15 +137,26 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
   {
     thumbnailImageStyle = classes.thumbnailChildImage;
   }
+
   return (
+
     <>
-      <Box className={classes.contributorItem} item xs={4} justify="flex-end">{ organization.cti_contributor  ? <img className={classes.contributorIcon} src='/images/contributor-icon.png' alt="contributor-icon" />  : ``   }</Box>
+      <Box className={classes.contributorItem}>
+
+        {(organization.depth === 4  && checkboxValue &&  organization.cti_contributor)  ?
+
+          <img className={classes.contributorIcon} src='/images/Child_contributed.svg' alt="contributor-icon" />
+          :
+          " "
+        }
+
+
+      </Box>
       <Grid className={thumbnailWrapperStyle} item container xs={4}>
         <Grid item className={classes.imageWrapper}>
           <CardMedia
             component="img"
             src={thumbnailInfo.imageUrl}
-            // className={classes.thumbnailImage}
             className={thumbnailImageStyle}
             onError={(e) =>
             // eslint-disable-next-line no-console
@@ -159,6 +177,16 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
             >{organization.name ? organization.name : organization}
             </Link> { dropdownLength ? `(${dropdownLength})`  : ` `   }
           </Typography>
+
+        </Grid>
+        <Grid>
+          <Typography>
+            {(organization.depth === 3  && checkboxValue)  ?
+              <img className={classes.grandparentIcon} src='/images/Gparent_contributed.svg' alt="contributor-icon" /> : " "
+
+            }
+          </Typography>
+
         </Grid>
       </Grid>
 

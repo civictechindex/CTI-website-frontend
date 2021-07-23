@@ -40,7 +40,7 @@ export const Dropdown = ({
   children,
   dropdownLength,
   isOpen,
-
+  checkboxValue,
 }) => {
   const [openChild, setOpenChild] = useState(isOpen ? true : false);
   const [colorStyle, setColor] = useState(isOpen ? true : false);
@@ -52,22 +52,23 @@ export const Dropdown = ({
   };
 
 
-
   useEffect(()=>{
     setOpenChild(isOpen);
     setColor(isOpen);
   },[isOpen])
+
+
   return (
 
     <Grid>
       {dropdownLength ? (
         <Grid item xs={10} className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
           <Grid>
-            <ContributorThumbnail organization={organization} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
+            <ContributorThumbnail organization={organization}  checkboxValue={checkboxValue} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
           </Grid>
           <Grid className={classes.flexGrid}></Grid>
           <Grid item container className={classes.flexGrid} onClick={handleOpen}>
-            <DropdownArrow  open={openChild} setOpenFunction={setOpenChild}  handleArrow={handleOpen}/>
+            <DropdownArrow  open={openChild} setOpenFunction={setOpenChild}  handleArrow={handleOpen} />
           </Grid>
         </Grid>
       ) : null}
