@@ -9,7 +9,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import _ from 'lodash';
 
-import { GetStartedCard,GenericHeaderSection } from '../../../components';
+import { GetStartedCard, GenericHeaderSection } from '../../../components';
 import SearchBar from '../../SearchProjects/SearchBar';
 import FAQCard from '../../../components/FAQCard';
 
@@ -21,8 +21,8 @@ const useStyles = makeStyles({
 
 const Faq = () => {
   const breadCrumbLinks = [
-    { name: "Home", href: "/home" },
-    { name: "FAQ", href: "/about/faq" },
+    { name: 'Home', href: '/home' },
+    { name: 'FAQ', href: '/about/faq' },
   ];
   const [data, setData] = useState([]);
   const [pageNum, setPageNum] = useState(1);
@@ -49,15 +49,18 @@ const Faq = () => {
     setData(res.data.results);
     setTotalCount(res.data.count);
     setStatus(params.search ? 'fetchedSearch' : 'fetchedFaq');
-  }
+  };
 
-  const debounce = useCallback(_.debounce((value) => {
-    getFAQData(value, true);
-  }, 300), []);
+  const debounce = useCallback(
+    _.debounce((value) => {
+      getFAQData(value, true);
+    }, 300),
+    []
+  );
 
   useEffect(() => {
     getFAQData(query, false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNum, largeScreen]);
 
   const handleInput = (event) => {
@@ -71,14 +74,14 @@ const Faq = () => {
 
   return (
     <Box className='boxBackground'>
-      <Container >
-        <GenericHeaderSection mainTitle ="How can we help?" breadCrumbLinks ={breadCrumbLinks} lg='320px'>
+      <Container>
+        <GenericHeaderSection mainTitle='How can we help?' breadCrumbLinks={breadCrumbLinks}>
           <Grid container justify='center' className={classes.searchBar}>
             <Grid item xs={12} sm={9}>
               <SearchBar
                 dataCy='search-faq'
                 onInput={handleInput}
-                placeholder="Search the Civic Tech Index"
+                placeholder='Search the Civic Tech Index'
               />
             </Grid>
           </Grid>
@@ -94,6 +97,6 @@ const Faq = () => {
       <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contact" />
     </Box>
   );
-}
+};
 
 export default Faq;
