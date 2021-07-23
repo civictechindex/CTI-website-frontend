@@ -13,7 +13,7 @@ const About = () => {
   ];
 
   const useStyles = makeStyles((theme) => ({
-    subTextStyle: {
+    subHeaderStyle: {
       fontWeight: '700',
       textAlign: 'center',
       padding: '48px 0',
@@ -71,7 +71,7 @@ const About = () => {
         breadCrumbLinks={breadCrumbLinks}
       >
         <VideoSection />
-        <Typography variant='h5' color='textSecondary' className={classes.subTextStyle}>
+        <Typography variant='h5' color='textSecondary' className={classes.subHeaderStyle}>
           With your help, we can create a continuously updated repository for all civic tech
           enthusiasts to find open source projects to model, connect with, and learn from.
         </Typography>

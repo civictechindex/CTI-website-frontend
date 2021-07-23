@@ -2,11 +2,10 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { NavBreadcrumbs, TitleSection } from './index';
 import { makeStyles } from '@material-ui/core/styles';
 
-const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks, subText, addPad }) => {
+const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks, addPad }) => {
   const useStyles = makeStyles((theme) => ({
     headerContainerStyle: {
       height: 'auto',
@@ -22,11 +21,6 @@ const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks, subText, a
       <Container className={classes.headerContainerStyle} display='flex' alignContent='center'>
         <NavBreadcrumbs crumbs={breadCrumbLinks} />
         <Grid container justify='center' display='flex' alignContent='center'>
-          {subText && (
-            <Typography variant='h4' fontFamily='Space Mono' color='textSecondary'>
-              Civic Tech Index
-            </Typography>
-          )}
           {addPad && <Container className={classes.addPad} />}
           <TitleSection>{mainTitle}</TitleSection>
           {children}
