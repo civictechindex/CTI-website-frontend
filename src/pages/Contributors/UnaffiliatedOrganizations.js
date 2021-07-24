@@ -15,39 +15,20 @@ const useStyles = makeStyles((theme) => ({
     fontSize:'24px',
     marginLeft: '38%',
   },
-  unaffiliatedThumbnailsWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent:'center',
-    width:'100%',
-  },
   unaffiliatedThumbnails: {
     backgroundColor: theme.palette.background.default,
     display: 'flex',
     alignItems: 'center',
-    width: '1008px',
+    margin: '16px auto',
     height:'80px',
     borderRadius: '6px',
     border:'1px solid',
     borderColor:theme.palette.outline.gray,
-    margin:'8px',
-    '& p': {
-      fontSize:'24px',
-    },
     [theme.breakpoints.down('sm')]: {
-      // width:'440px',
       height: '80px',
-      '& p': {
-        fontSize:'18px',
-      },
     },
     [theme.breakpoints.down('xs')]: {
-      // width:'276px',
       height: '64px',
-      '& p': {
-        fontSize:'18px',
-      },
     },
   },
 }));
@@ -55,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export const UnaffiliatedOrganizations = (props) => {
   const { searchCount, unaffiliatedCount, totalunaffiliatedCount, unaffiliatedOpen, organization, checkboxValue } = props;
   const classes = useStyles();
-  const [isChildThumbnail] = useState(true);
+  const [isChildThumbnail] = useState(false);
 
   return (
     <Grid>
@@ -71,9 +52,9 @@ export const UnaffiliatedOrganizations = (props) => {
         :
         <Grid>
           {unaffiliatedOpen && (
-            <Grid  className={classes.unaffiliatedThumbnailsWrapper}>
+            <Grid>
               {organization && organization.map((org, index) => (
-                <Grid className={classes.unaffiliatedThumbnails} key={index}>
+                <Grid item xs={12} sm={10} className={classes.unaffiliatedThumbnails} key={index}>
                   <ContributorThumbnail
                     organization={org}
                     isChildThumbnail={isChildThumbnail}
