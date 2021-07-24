@@ -127,7 +127,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
   )
 }
 
-export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,linkStyles,repoChangeAlert })=>{
+export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,linkStyles })=>{
   const classes = useStyles();
   const handleResetForm = () => {
     resetForm()
@@ -169,7 +169,7 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,link
   )
 }
 
-export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl,linkStyles,repoChangeAlert }) =>{
+export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl,linkStyles }) =>{
   const classes = useStyles();
   const clipboard = useClipboard({
     copiedTimeout: 600,

@@ -275,8 +275,7 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
-            linkStyles={linkStyles}
-            repoChangeAlert={repoChangeAlert}/>
+            linkStyles={linkStyles}/>
         </>
       )
     case "ChangeRepository":
@@ -303,8 +302,7 @@ const TagCreator = () => {
           <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState}
             repositoryName={repositoryName}
             repositoryUrl={repositoryUrl}
-            linkStyles={linkStyles}
-            repoChangeAlert={repoChangeAlert}/>
+            linkStyles={linkStyles}/>
         </>
       )
     default:
