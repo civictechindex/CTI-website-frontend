@@ -127,7 +127,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
   )
 }
 
-export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,linkStyles })=>{
+export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,linkStyles,repoChangeAlert })=>{
   const classes = useStyles();
   const handleResetForm = () => {
     resetForm()
@@ -169,7 +169,7 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,link
   )
 }
 
-export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl,linkStyles }) =>{
+export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,repositoryUrl,linkStyles,repoChangeAlert }) =>{
   const classes = useStyles();
   const clipboard = useClipboard({
     copiedTimeout: 600,
@@ -213,11 +213,12 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
 }
 
 
-export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue }) =>{
+export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue,repoChangeAlert,setRepoChangeAlert }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
     if (changeValue === 'CopyPasteTags'){
       setDisplayState('CopyPasteTags')
+      setRepoChangeAlert()
     }
     else
       setDisplayState('GenerateTags')
@@ -228,6 +229,7 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChi
   }
   return (
     <>
+      <Grid style={{ paddingTop: '10px' }}><Typography variant='body1' style={{ color: 'red' }}>{repoChangeAlert}</Typography></Grid>
       <Grid style={{ padding:'20px' }}>
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
