@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { GenericHeaderSection } from '../../../components'
+import { GenericHeaderSection } from '../../../components';
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
@@ -77,7 +77,8 @@ const StarMediaSection = () => {
       container
       alignItems='center'
       justify='space-between'
-      className={classes.starMediaSection}>
+      className={classes.starMediaSection}
+    >
       <Grid
         item
         container
@@ -85,13 +86,12 @@ const StarMediaSection = () => {
         alignItems='center'
         xs={12}
         md={3}
-        className={classes.starMediaStyle}>
+        className={classes.starMediaStyle}
+      >
         <Grid item style={{ paddingBottom: ' 32px 0 32px' }}>
           <img src='/images/image3.svg' alt='StarCount logo' />
         </Grid>
-        <Typography variant='h6'>
-                    Don’t forget to star our repository
-        </Typography>
+        <Typography variant='h6'>Don’t forget to star our repository</Typography>
       </Grid>
       <Grid
         item
@@ -101,16 +101,12 @@ const StarMediaSection = () => {
         justify='space-around'
         xs={12}
         md={3}
-        className={classes.starMediaStyle}>
+        className={classes.starMediaStyle}
+      >
         <Grid item>
-          <img
-            src='/images/Medium_logo_Monogram.svg'
-            alt='Medium logo'
-          />
+          <img src='/images/Medium_logo_Monogram.svg' alt='Medium logo' />
         </Grid>
-        <Typography variant='h6'>
-                    Mention or write about us on Medium
-        </Typography>
+        <Typography variant='h6'>Mention or write about us on Medium</Typography>
       </Grid>
       <Grid
         item
@@ -119,13 +115,13 @@ const StarMediaSection = () => {
         alignItems='center'
         xs={12}
         md={3}
-        className={classes.starMediaStyle}>
+        className={classes.starMediaStyle}
+      >
         <Grid item style={{ padding: ' 16px 0 32px' }}>
           <img src='/images/mail.png' alt='Mail logo' />
         </Grid>
         <Typography variant='h6'>
-                    Send an email to your project admin with suggested tags for
-                    your repository
+          Send an email to your project admin with suggested tags for your repository
         </Typography>
       </Grid>
     </Grid>
@@ -134,11 +130,7 @@ const StarMediaSection = () => {
 const SocialMediaPostSection = () => {
   const classes = useStyles();
   return (
-    <Grid
-      container
-      alignItems='center'
-      justify='center'
-      style={{ marginTop: '24px' }}>
+    <Grid container alignItems='center' justify='center' style={{ marginTop: '24px' }}>
       <Grid item>
         <img
           src='/images/CTI-Twitter-latest.png'
@@ -159,51 +151,38 @@ const SocialMediaSection = () => {
           alignItems='center'
           justify='center'
           direction='column'
-          className={classes.socialMediaSectionStyle}>
+          className={classes.socialMediaSectionStyle}
+        >
           <Typography
             variant='h3'
             color='Primary'
             style={{
               marginBottom: '24px',
-            }}>
-                        Follow us on Social Media
+            }}
+          >
+            Follow us on Social Media
           </Typography>
           <Typography
             variant='h6'
             color='Primary'
             style={{
               marginBottom: '48px',
-            }}>
-                        #Civictechindex
+            }}
+          >
+            #Civictechindex
           </Typography>
-          <Grid
-            container
-            alignItems='center'
-            justify='space-between'
-            style={{ maxWidth: '576px' }}>
+          <Grid container alignItems='center' justify='space-between' style={{ maxWidth: '576px' }}>
             <a href='https://www.instagram.com/civictechindex'>
-              <img
-                src='/images/insta-logo-variant.png'
-                alt='Instagram logo'
-              />
+              <img src='/images/insta-logo-variant.png' alt='Instagram logo' />
             </a>
             <a href='https://twitter.com/civictechindex'>
-              <img
-                src='/images/twitter-logo-variant.png'
-                alt='Twitter logo'
-              />
+              <img src='/images/twitter-logo-variant.png' alt='Twitter logo' />
             </a>
             <a href='https://www.facebook.com/civictechindex'>
-              <img
-                src='/images/fb-logo-variant.png'
-                alt='Facebook logo'
-              />
+              <img src='/images/fb-logo-variant.png' alt='Facebook logo' />
             </a>
             <a href='https://github.com/civictechindex'>
-              <img
-                src='/images/github-logo-variant.png'
-                alt='GitHub logo'
-              />
+              <img src='/images/github-logo-variant.png' alt='GitHub logo' />
             </a>
           </Grid>
         </Grid>
@@ -225,74 +204,44 @@ const MediaInfo = () => {
           lg={6}
           sm={12}
           md={12}
-          style={{ marginBottom: '32px' }}>
+          style={{ marginBottom: '32px' }}
+        >
           <Box>
-            <Typography
-              variant='h4'
-              color='Primary'
-              style={{ marginBottom: '32px' }}>
-                            Use our Logo on your Project!
+            <Typography variant='h4' color='Primary' style={{ marginBottom: '32px' }}>
+              Use our Logo on your Project!
             </Typography>
-            <Typography
-              variant='h6'
-              color='Primary'
-              style={{ marginBottom: '16px' }}>
-                            If you have done the following:
+            <Typography variant='h6' color='Primary' style={{ marginBottom: '16px' }}>
+              If you have done the following:
             </Typography>
 
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}>
-                            • Your have listed your project on Civic Tech Index
+            <Typography variant='body1' color='Primary' style={{ paddingBottom: '15px' }}>
+              • Your have listed your project on Civic Tech Index
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}>
-                            • You have added the topic tag
-                            &quot;civictechindex&quot;to your project repository
+            <Typography variant='body1' color='Primary' style={{ paddingBottom: '15px' }}>
+              • You have added the topic tag &quot;civictechindex&quot;to your project repository
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}>
-                            • You have developed your own interface to search
-                            the Index
+            <Typography variant='body1' color='Primary' style={{ paddingBottom: '15px' }}>
+              • You have developed your own interface to search the Index
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}>
-                            • In articles or social media posts featuring Civic
-                            Tech Index.
+            <Typography variant='body1' color='Primary' style={{ paddingBottom: '15px' }}>
+              • In articles or social media posts featuring Civic Tech Index.
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}>
-                            • For all other uses, please
+            <Typography variant='body1' color='Primary' style={{ paddingBottom: '15px' }}>
+              • For all other uses, please
               <a
                 style={{
                   color: '#0D99C6',
                   textDecoration: ' none',
                 }}
-                href='/'>
+                href='/contact'>
                 {' '}
-                                contact us
+                contact us
               </a>{' '}
-                            for permission.
+              for permission.
             </Typography>
           </Box>
         </Grid>
-        <Grid
-          container
-          direction='column'
-          alignItems='center'
-          item
-          lg={6}
-          sm={12}
-          md={12}>
+        <Grid container direction='column' alignItems='center' item lg={6} sm={12} md={12}>
           <CtiImageSection />
           <ButtonSection />
         </Grid>
@@ -305,40 +254,25 @@ const CtiImageSection = () => {
   const classes = useStyles();
   return (
     <Grid container justify='space-evenly'>
-      <img
-        src='/images/Rectangle55.png'
-        alt='CTI  logo'
-        className={classes.ctiImageStyle}
-      />
-      <img
-        src='/images/Rectangle51.png'
-        alt='Facebook logo'
-        className={classes.ctiSquareStyle}
-      />
-      <img
-        src='/images/Rectangle53.png'
-        alt='CTI logo'
-        className={classes.ctiImageStyle}
-      />
+      <img src='/images/Rectangle55.png' alt='CTI  logo' className={classes.ctiImageStyle} />
+      <img src='/images/Rectangle51.png' alt='Facebook logo' className={classes.ctiSquareStyle} />
+      <img src='/images/Rectangle53.png' alt='CTI logo' className={classes.ctiImageStyle} />
     </Grid>
   );
 };
 
 const ButtonSection = () => {
   return (
-    <Grid
-      container
-      direction='column'
-      alignItems='center'
-      style={{ marginTop: '48px' }}>
+    <Grid container direction='column' alignItems='center' style={{ marginTop: '48px' }}>
       <Button
         href='https://drive.google.com/drive/folders/1EORoPWmALLXJCfHyDXJemYpO5HvnMzPN'
-        target='blank'>
-                Download the CTI Assets Kit
+        target='blank'
+      >
+        Download the CTI Assets Kit
       </Button>
 
       <Typography variant='body1' style={{ marginTop: '18px' }}>
-                (All sizes & formats listed above in a .zip file)
+        (All sizes & formats listed above in a .zip file)
       </Typography>
     </Grid>
   );
@@ -353,7 +287,7 @@ export default function ShareTheCti() {
 
   return (
     <Box>
-      <GenericHeaderSection mainTitle ="Share the CTI" breadCrumbLinks ={breadCrumbLinks} lg='312px'/>
+      <GenericHeaderSection mainTitle='Share the CTI' breadCrumbLinks={breadCrumbLinks} addPad />
       <Container className={classes.containerStyle}>
         <Grid
           container
@@ -363,9 +297,10 @@ export default function ShareTheCti() {
           style={{
             padding: '64px 0 47px 0',
             textAlign: 'center',
-          }}>
+          }}
+        >
           <Typography variant='h3' color='Primary'>
-                        Tell others about us!
+            Tell others about us!
           </Typography>
           <Typography
             variant='h5'
@@ -374,17 +309,14 @@ export default function ShareTheCti() {
               fontWeight: '400',
               fontSize: '20px',
               marginTop: '8px',
-            }}>
-                        Here are some suggested content to share with your
-                        networks.
+            }}
+          >
+            Here are some suggested content to share with your networks.
           </Typography>
         </Grid>
         <StarMediaSection />
-        <Typography
-          variant='h3'
-          color='Primary'
-          style={{ textAlign: 'center' }}>
-                    Latest Updates from the CTI
+        <Typography variant='h3' color='Primary' style={{ textAlign: 'center' }}>
+          Latest Updates from the CTI
         </Typography>
         <SocialMediaPostSection />
       </Container>

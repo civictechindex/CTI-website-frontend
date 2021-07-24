@@ -128,6 +128,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[inputValue, organizations,parentfilterData,checkboxValue])
 
+
   const getChildrenLength = (org) => {
     if (org.childNodes.length > 0) {
       return org.childNodes.length;
@@ -143,7 +144,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
         {currentThumbnails.map((org, i) => {
           const childNode = org.isOpen ?  org.childNodes : org.childNodes.slice(0,8)
           return (
-            <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={false}>
+            <Dropdown checkboxValue={checkboxValue} organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={false}>
               <Grid container alignItems='center' style={{ margin:'auto' }} >
                 {childNode.length > 0 ? (
                   <Grid item container xs={10} className={classes.affiliatedThumbnailsWrapper}>
@@ -152,6 +153,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
                         <ContributorThumbnail
                           organization={child}
                           isChildThumbnail= {isChildThumbnail}
+                          checkboxValue= {checkboxValue}
                         ></ContributorThumbnail>
                       </Grid>
                     })}

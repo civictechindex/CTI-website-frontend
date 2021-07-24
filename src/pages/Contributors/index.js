@@ -263,18 +263,16 @@ export default function Contributors({ match }) {
             </Tabs>
           </AppBar>
           <Grid index={value}>
-            <Grid>
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox className={classes.chkBoxStyle}
-                      onChange={checkBoxChange} defaultChecked={false}
-                      style={{ backgroundColor: 'transparent' }}
-                    />
-                  }
-                  label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>} />
-              </FormGroup>
-            </Grid>
+            <FormGroup className={classes.checkBox}>
+              <FormControlLabel
+                control={
+                  <Checkbox className={classes.chkBoxStyle}
+                    onChange={checkBoxChange} defaultChecked={false}
+                    style={{ backgroundColor: 'transparent' }}
+                  />
+                }
+                label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>} />
+            </FormGroup>
 
             <TabPanel value={value} index={0}>
               <UnaffiliatedOrganizations

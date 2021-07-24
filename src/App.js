@@ -50,7 +50,7 @@ const App = () => {
             <RouteTitled exact path='/support' component={RadicalCollaboration} title='Collaborate with Us' />
             <RouteTitled exact path='/support/donate' component={Donation} title='Donate' />
             <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
-            <Route exact path='/organizations/*' component={IndvOrgPage} />
+            <Route exact path='/organization/:name' component={IndvOrgPage} />
             {/* test and error page routes begin */}
             <Route path='/guides/:guide' component={Guides} />
             <Route path='/404' component={Error404} />

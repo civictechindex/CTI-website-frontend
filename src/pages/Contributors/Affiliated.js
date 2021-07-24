@@ -7,6 +7,8 @@ import clsx from 'clsx';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles'
 
+
+
 const useStyles = makeStyles((theme) => ({
   titleStyle: {
     color: theme.palette.secondary.dark,
@@ -55,6 +57,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     padding:'24px 0px',
   },
+  contributorIcon: {
+    marginTop: '24%',
+    width: '42px',
+    height: '42px',
+    marginLeft: '29%',
+  },
+  contributorItem: {
+    display: 'grid',
+    justifyContent: 'right',
+    marginRight: '2%',
+    marginTop: '18%',
+  },
 }));
 /* eslint complexity: [0, 0]*/
 export const Affiliated = (props) => {
@@ -65,6 +79,7 @@ export const Affiliated = (props) => {
     setGp(!gp)
     setAfflnSepOpen(true);
   };
+
   return (
     <Grid >
       <Grid style={{ padding:'40px' }}>
@@ -77,13 +92,21 @@ export const Affiliated = (props) => {
         [classesLocal.blueColor]: gp === true,
       })} >
         <Grid>
-          <img src="/images/Code_for_All.png" alt="code for all logo" />
+          <img src="/images/code_for_All.png" alt="code for all logo" />
         </Grid>
         <Grid>
           <Typography variant='h4' noWrap>
             <Link href="https://codeforall.org"  target="_blank"  rel="noreferrer noopener">Code for All</Link>
             { searchCount ? `(${affiliatedCount}/${totalaffiliatedCount})`  : ` (${totalaffiliatedCount})` }
           </Typography>
+        </Grid>
+        <Grid>
+          { checkboxValue  ?
+            <Typography>
+              <img className={classesLocal.contributorIcon} src='/images/Gparent_contributed.svg' alt="contributor-icon" />
+            </Typography>
+            : " "
+          }
         </Grid>
         <Grid item container className={classesLocal.flexGrid} onClick={handleClickGrid}>
           <DropdownArrow open={gp} handleArrow={handleClickGrid} />
