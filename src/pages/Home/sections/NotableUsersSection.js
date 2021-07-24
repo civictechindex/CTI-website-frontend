@@ -24,7 +24,7 @@ const notableUsers = [
   },
   {
     alt: 'Code for Tulsa',
-    link: 'https://www.meetup.com/Code-for-Tucson/',
+    link: 'https://codefortulsa.org/',
     src: '/images/code-for-tulsa.png',
   },
 

@@ -96,9 +96,8 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
   )
 }
 
-export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,handleChangeChip }) =>{
+export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,handleChangeChip,chipInputValue,handleUpdateChipInput }) =>{
   const classes = useStyles();
-
   const handleGenerateTag = () =>{
     setChangeValue('GenerateTags')
     setDisplayState('GenerateTags')
@@ -116,6 +115,8 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
           fullWidth
           placeholder='Add topic tag'
           onChange={(chips) => handleChangeChip(chips)}
+          onUpdateInput={handleUpdateChipInput}
+          inputValue={chipInputValue}
           className = {classes.addTag}
         />
       </Grid>
@@ -212,8 +213,7 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
   )
 }
 
-
-export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue,repoChangeAlert,setRepoChangeAlert }) =>{
+export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue,chipInputValue,handleUpdateChipInput,repoChangeAlert,setRepoChangeAlert }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
     if (changeValue === 'CopyPasteTags'){
@@ -239,6 +239,8 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChi
           fullWidth
           placeholder='Add topic tag'
           onChange={(chips) => handleChangeChip(chips)}
+          onUpdateInput={handleUpdateChipInput}
+          inputValue={chipInputValue}
           className = {classes.addTag}
         />
       </Grid>

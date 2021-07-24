@@ -50,7 +50,7 @@ const Donation = () => {
               <img
                 alt='A gif demonstrating the use of the donation form'
                 className={classes.infoGif}
-                src='./images/CTI-Donate-to-HfLA.gif'
+                src='../images/CTI-Donate-to-HfLA.gif'
               />
             </Grid>
           </Grid>
