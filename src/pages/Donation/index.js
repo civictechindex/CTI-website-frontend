@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import Link from '../../components/common/Link';
 import useStyles from './styles.js';
-import { GenericHeaderSection } from '../../components/'
-
+import { GenericHeaderSection } from '../../components/';
 
 const Donation = () => {
   const classes = useStyles();
@@ -20,7 +19,11 @@ const Donation = () => {
     <Box className='pageContainer'>
       <Box className='containerDefault'>
         <Container>
-          <GenericHeaderSection mainTitle ="Make a Donation" breadCrumbLinks ={breadCrumbLinks} lg='312px'/>
+          <GenericHeaderSection
+            mainTitle='Make a Donation'
+            breadCrumbLinks={breadCrumbLinks}
+            addPad
+          />
         </Container>
       </Box>
       <Box className='containerGray'>
@@ -47,7 +50,7 @@ const Donation = () => {
               <img
                 alt='A gif demonstrating the use of the donation form'
                 className={classes.infoGif}
-                src='./images/CTI-Donate-to-HfLA.gif'
+                src='../images/CTI-Donate-to-HfLA.gif'
               />
             </Grid>
           </Grid>
@@ -55,11 +58,11 @@ const Donation = () => {
       </Box>
       <Box className='containerWhite'>
         <Container>
-          <BottomCallToAction heading='Want to support in other ways?' />
+          <BottomCallToAction heading='Want to support in other ways?' buttonHref='/contact'/>
         </Container>
       </Box>
     </Box>
   );
-}
+};
 
 export default Donation;

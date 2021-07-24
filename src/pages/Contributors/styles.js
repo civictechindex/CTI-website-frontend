@@ -75,30 +75,40 @@ export const useStyle = makeStyles((theme) => ({
 
   },
   tabRoot: {
-    color: DARK_GRAY,
-    fontWeight: 'bold',
-    textTransform: 'none',
-    fontSize: '32px',
+   "&.MuiTab-root" : {
+      fontSize: '32px',
+      color: DARK_GRAY,
+      fontWeight: 'bold',
+      textTransform: 'none',
+    },
     "&$tabSelected": {
       color: "#006B95",
     },
   },
   tabSelected: {},
   
+ 
   chkBoxStyle: {
-    color: DARK_GRAY,
-    paddingLeft: '59rem',
-    [theme.breakpoints.down('md')]: {
+   "& .MuiSvgIcon-root": {
+       width: '24px',
+       height: '24px',
+       color: DARK_GRAY,
+    },
+  
+   [theme.breakpoints.down('md')]: {
       paddingLeft: '45rem',
     },
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '23rem',
     },
   },
-  
+  checkBox: {
+    marginLeft: '9%',
+    marginTop: '2%',
+  },
   formControlLabel: {
     color: theme.palette.secondary.dark,
-    fontWeight: 'bold',
+    fontSize:'24px',
   },
-
+  
 }));
