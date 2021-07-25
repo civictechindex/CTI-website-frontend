@@ -74,7 +74,7 @@ const TagCreator = () => {
   const [userTags, setUserTags] = useQueryParam('userTags',withDefault(ArrayParam,[]));
   const [orgTags, setOrgTags] = useQueryParam('orgTags',withDefault(ArrayParam,[]));
   const [options, setOptions] = useState([]);
-  const [repoChangeAlert, setRepoChangeAlert] = useState();
+  const [repoChangeAlert, setRepoChangeAlert] = useState('');
   const [chipInputValue, setChipInputValue] = useState('');
   const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/join-index', name: 'Tag Your Project' }]
 
