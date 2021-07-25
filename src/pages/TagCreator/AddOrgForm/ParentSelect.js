@@ -1,11 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import useStyles from './styles';
 
 const ParentSelect = ({ org, orgList, onChange }) => {
-  const classes = useStyles();
-
   return (
     <Autocomplete
       autoComplete
@@ -16,7 +13,6 @@ const ParentSelect = ({ org, orgList, onChange }) => {
       value={org}
       renderInput={(params) => (
         <TextField
-          className={classes.field}
           label='Parent Organization'
           variant='outlined'
           {...params}
