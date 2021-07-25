@@ -16,7 +16,6 @@ const ParentSelect = ({ org, orgList, onChange }) => {
       value={org}
       renderInput={(params) => (
         <TextField
-          className={classes.field}
           label='Parent Organization'
           variant='outlined'
           {...params}

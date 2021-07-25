@@ -6,7 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import HelpIcon from '@material-ui/icons/Help';
 import useStyles from './styles';
 import ParentSelect from './ParentSelect';
 
@@ -17,6 +19,10 @@ const StepOne = (props) => {
   const orgEmailApiErr = props.apiErrors.organization_email;
   const orgNameApiErr = props.apiErrors.name;
   const websiteUrlApiErr = props.apiErrors.website_url;
+  const parentHelpInfo = `A parent organization is an organization like Code For America or Code for All. 
+    It's an umbrella organization that oversees your individual orgnanization.`
+  const tagHelpInfo = `This is the Github tag that your organization uses such as 
+    “code-for-america”, “open-oakland” or “hack4la”.`
   return (
     <>
       <DialogTitle>
@@ -57,6 +63,9 @@ const StepOne = (props) => {
           required
           value={props.orgName}
         />
+        <Tooltip title={parentHelpInfo}>
+          <HelpIcon color='secondary' className={classes.field} />
+        </Tooltip>
         <ParentSelect org={props.parentOrg} orgList={props.parentOrgList} onChange={props.onParentOrg} />
         <Typography variant='h5' className={classes.heading}>Organization URL</Typography>
         <TextField
@@ -85,13 +94,15 @@ const StepOne = (props) => {
           required
           value={props.githubUrl}
         />
-        <Typography variant='h5' className={classes.heading}>Your GitHub Organization Tags</Typography>
-        <Typography variant='subtitle2' className={classes.info}>
-          This is the GitHub tag that your organization uses such as <br />
-          &quot;code-for-america&quot;, &quot;open-oakland&quot; or &quot;hack4la&quot;.
+        <Typography variant='h5' className={classes.heading}>
+          Your GitHub Organization Tags
+          <Tooltip title={tagHelpInfo}>
+            <HelpIcon color='secondary' />
+          </Tooltip>
         </Typography>
         <TextField
-          label='GitHub Tag'
+          className={classes.field}
+          label='GitHub Tag(s)'
           onChange={(event) => {
             props.onGithubTag(event.target.value);
             props.setApiErrors({ ...props.apiErrors, org_tag: '' });

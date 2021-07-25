@@ -203,6 +203,14 @@ const themeSettings = {
         width: '100%',
       },
     },
+    MuiTooltip: {
+      tooltip: {
+        backgroundColor: DARK_BLUE,
+        color: WHITE,
+        fontSize: '1rem',
+        fontStyle: 'italic',
+      },
+    },
     MuiTypography: {
       root: {
         '& a': {
