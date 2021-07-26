@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
     padding:'8px',
     flexWrap:'nowrap',
     position: 'relative',
-    marginTop: '-6%',
   },
   thumbnailChildImage: {
     width: '38px',
