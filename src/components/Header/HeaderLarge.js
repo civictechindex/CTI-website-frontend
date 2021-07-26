@@ -24,7 +24,7 @@ const HeaderLarge = () => {
       <div className={classes.flexContainer}>
         {navigation.map((nav) => {
           return (
-            <NavLink key={nav.id} header={nav.header} route={nav.route} matchPathParent={matchPathParent}>
+            <NavLink key={nav.id} id={nav.id} header={nav.header} route={nav.route} matchPathParent={matchPathParent}>
               {nav.subNavigation.map((subNav) => {
                 return (
                   <NavSublink
