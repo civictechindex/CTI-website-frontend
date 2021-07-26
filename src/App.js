@@ -66,6 +66,7 @@ const App = () => {
             <Redirect from='/how-to' to='/join-index/how-to-add' />
             <Redirect from='/how-to-use' to='/join-index/how-to-add' />
             <Redirect from='/join' to='/join-index' />
+            <Redirect from='/organizations' to='/organizations/all' />
             <Redirect from='/search' to='/projects' />
             <Redirect from='/share' to='/support/share' />
             <Redirect from='/tag-creator' to='/join-index' />
