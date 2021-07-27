@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import NavLink from './NavLink';
 import NavSublink from './NavSublink';
 import SearchContainer from './SearchContainer';
 import useStyles from './styles';
 
-import { navigation, findSubNavParent } from '../../navigation';
+import { navigation } from '../../navigation';
 
 const HeaderLarge = () => {
   const classes = useStyles();
-  const [matchPathParent, setMatchPathParent] = useState(null);
-
-  const handleMatchPath = (route) => {
-    const parent = findSubNavParent(route);
-    setMatchPathParent(parent);
-  };
 
   return (
     <nav className={classes.nav}>
@@ -24,14 +18,13 @@ const HeaderLarge = () => {
       <div className={classes.flexContainer}>
         {navigation.map((nav) => {
           return (
-            <NavLink key={nav.id} header={nav.header} route={nav.route} matchPathParent={matchPathParent}>
+            <NavLink key={nav.id} id={nav.id} header={nav.header} route={nav.route}>
               {nav.subNavigation.map((subNav) => {
                 return (
                   <NavSublink
                     key={subNav.id}
                     header={subNav.header}
                     route={subNav.route}
-                    onMatchPath={handleMatchPath}
                     isExternal={subNav.isExternal}
                   />
                 );

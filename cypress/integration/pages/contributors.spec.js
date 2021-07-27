@@ -1,6 +1,6 @@
 describe('Contributors Page', () => {
   before(() => {
-    cy.visit('/contributors/all')
+    cy.visit('/organizations/all')
   })
 
   it('wait for affiliated orgs to load', () => {

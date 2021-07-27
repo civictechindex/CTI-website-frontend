@@ -14,11 +14,7 @@ const styles = (theme) => ({
   },
 });
 
-const NavSublink = ({ classes, header, isExternal = false, location, onMatchPath, route }) => {
-  if (location.pathname.split('/')[1] === route.split('/')[1]) {
-    onMatchPath(route);
-  }
-
+const NavSublink = ({ classes, header, isExternal = false, route }) => {
   return (
     <>
       {isExternal ? (
