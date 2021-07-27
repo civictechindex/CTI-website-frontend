@@ -84,19 +84,16 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
       }
       if (data.depth === 4){
         let obj =  parentdata.find((d)=> (data.path).includes(d.path));
-        if (inputValue !== '')
-        {
-          const newobj =  parentfilterData.find((d)=> data.path.includes(d.path) && d.depth === 3);
+        const newobj =  parentfilterData.find((d)=> data.path.includes(d.path) && d.depth === 3);
 
-          const exist = parentdata.find((d)=> newobj.path === d.path);
-          if (!exist){
-            newobj['childNodes'] = [];
-            newobj['isOpen'] = false;
-            obj = newobj;
-            parentdata.push(obj)
-          } else {
-            obj = exist;
-          }
+        const exist = parentdata.find((d)=> newobj.path === d.path);
+        if (!exist){
+          newobj['childNodes'] = [];
+          newobj['isOpen'] = false;
+          obj = newobj;
+          parentdata.push(obj)
+        } else {
+          obj = exist;
         }
 
         if (obj){
@@ -158,7 +155,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
                       </Grid>
                     })}
                   </Grid>
-                ) : null}
+                ) :  <ContributorThumbnail isChildThumbnail= {isChildThumbnail} organization={org} checkboxValue= {checkboxValue} />}
                 {org.childNodes.length > 8 ? (
                   <Grid item container xs={10}  style={{ margin:'auto', paddingTop:'16px' }}>
                     <Button data-cy="viewBtnClick" id="viewAllButton" className={classes.button}  onClick={() => {
@@ -178,7 +175,7 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
   }
   else if (currentThumbnails && inputValue !== null && inputValue.length > 0 && inputValue !== '') {
     return (
-      <Grid className={classes.thumbnailGrid} dropdownLength={currentThumbnails.length}>
+      <Grid className={classes.thumbnailGrid}>
         {currentThumbnails.map((org, i) => {
           // console.log(org.childNodes.length, "org.childNodes.length");
           return (
@@ -186,19 +183,14 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
               <Box className={classes.affiliatedThumbnailsWrapper}>
                 { org.childNodes.length === 0 ?
 
-                  <Typography className={classes.afflnThumbnails}>
-                    <ContributorThumbnail
-                      organization={org}
-                      isChildThumbnail= {isChildThumbnail}
-                    ></ContributorThumbnail>
-                  </Typography>
+                  " "
 
 
                   :
                   <>
                     {org.childNodes.map((child, idx) => {
 
-                      return <Typography className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
+                      return <Typography component="div" className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
                         <ContributorThumbnail
                           organization={child}
                           isChildThumbnail= {isChildThumbnail}

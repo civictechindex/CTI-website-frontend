@@ -61,7 +61,7 @@ export const Dropdown = ({
   return (
 
     <Grid>
-      {dropdownLength ? (
+      {dropdownLength > 0 ? (
         <Grid item xs={10} className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
           <Grid>
             <ContributorThumbnail organization={organization}  checkboxValue={checkboxValue} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
@@ -71,7 +71,14 @@ export const Dropdown = ({
             <DropdownArrow  open={openChild} setOpenFunction={setOpenChild}  handleArrow={handleOpen} />
           </Grid>
         </Grid>
-      ) : null}
+      )
+
+        :
+        <Grid item xs={10} className={classes.dropdown}>
+          <ContributorThumbnail organization={organization}  checkboxValue={checkboxValue} isChildThumbnail={false}/>
+        </Grid>
+
+      }
       {openChild && children}
 
     </Grid>
