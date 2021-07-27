@@ -227,9 +227,6 @@ const TagCreator = () => {
     fontWeight: '400',
     color: theme.palette.secondary.main,
   }
-  const errorStyle = {
-    color:theme.palette.error.main,
-  }
 
   const OrgProjSection = () => {
     return (
@@ -245,7 +242,7 @@ const TagCreator = () => {
       <Grid container id='container-affiliated'>
         <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName} options={options} setOptions={setOptions}/>
         <OrgChange value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
-          changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles} errorStyle={errorStyle}/>
+          changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles}/>
       </Grid>
     )
   }
@@ -264,8 +261,7 @@ const TagCreator = () => {
             setRepositoryUrl={setRepositoryUrl}
             topicSearchError={topicSearchError}
             setTopicSearchError={setTopicSearchError}
-            handleSubmit={handleSubmit}
-            errorStyle={errorStyle}/>
+            handleSubmit={handleSubmit}/>
         </>
       )
     case "TopicTag":
@@ -309,7 +305,7 @@ const TagCreator = () => {
           <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
           <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
             resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue}
-            repoChangeAlert={repoChangeAlert} setRepoChangeAlert={setRepoChangeAlert} errorStyle={errorStyle}/>
+            repoChangeAlert={repoChangeAlert} setRepoChangeAlert={setRepoChangeAlert}/>
         </>
       )
     case "AddMoreTags":

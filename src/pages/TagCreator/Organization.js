@@ -128,7 +128,7 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
   )
 }
 
-export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, setDisplayState,errorStyle }) => {
+export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, setDisplayState }) => {
   const [orgNameError, setOrgNameError] = useState('');
   const handleChangeOrg = () => {
     if (changeValue === 'TopicTag') {
@@ -178,7 +178,7 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
   }
   return (
     <Grid item xs={12} sm={12}>
-      <Typography variant='body1' style={errorStyle}>{orgNameError}</Typography>
+      <Typography variant='body1' color='error'>{orgNameError}</Typography>
       <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
     </Grid>
   )

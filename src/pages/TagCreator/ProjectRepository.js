@@ -38,7 +38,7 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkSty
 }
 
 export const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, topicSearchError, 
-  setTopicSearchError, handleSubmit,errorStyle }) => {
+  setTopicSearchError, handleSubmit }) => {
   const handleChange = (e) =>{
     setRepositoryUrl(e.target.value)
     setTopicSearchError('')
@@ -51,7 +51,7 @@ export const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setReposito
       <Grid data-cy='grid-repository'>
         <TextField id="repository-url" onKeyPress={handleEnter} value={repositoryUrl} onChange={handleChange} variant="outlined" placeholder="https://github.com/hackforla/example" fullWidth />
       </Grid>
-      <Grid style={{ paddingTop: '10px' }}><Typography variant='body1' style={errorStyle}>{topicSearchError}</Typography></Grid>
+      <Grid style={{ paddingTop: '10px' }}><Typography variant='body1' color='error'>{topicSearchError}</Typography></Grid>
       <Grid item xs={12} sm={12} style={{ padding: '20px', width: '100%', margin: '0 auto' }}>
         <Grid align='center'><Button onClick={handleSubmit} id='projectButton'>Find Project</Button></Grid>
       </Grid>

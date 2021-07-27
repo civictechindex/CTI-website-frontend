@@ -215,7 +215,7 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
 }
 
 export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue,
-  chipInputValue,handleUpdateChipInput,repoChangeAlert,setRepoChangeAlert,errorStyle }) =>{
+  chipInputValue,handleUpdateChipInput,repoChangeAlert,setRepoChangeAlert }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
     if (changeValue === 'CopyPasteTags'){
@@ -231,7 +231,7 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChi
   }
   return (
     <>
-      <Grid style={{ paddingTop: '10px' }}><Typography variant='body1' style={errorStyle}>{repoChangeAlert}</Typography></Grid>
+      <Grid style={{ paddingTop: '10px' }}><Typography variant='body1' color='error'>{repoChangeAlert}</Typography></Grid>
       <Grid style={{ padding:'20px' }}>
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
