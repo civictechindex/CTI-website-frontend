@@ -3,6 +3,7 @@
 /* eslint-disable sort-keys */
 
 import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -48,32 +49,24 @@ function TabPanel(props) {
 
 export default function Contributors({ match }) {
 
+  const classes = useStyle();
+  const location = useLocation();
   const affiliation = match.params.affiliation;
-
   const searchaffiliation = match.params.searchaffiliation;
 
-  const classes = useStyle();
-
-  const [organizations, setOrganizations] = useState([]);
-  const [organizationNamesList, setOrganizationNamesList] = useState([]);
-
-  const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
-
+  const [affiliatedCount, getaffiliatedCount] = useState(0);
   const [affiliatedOpen, setAffiliatedOpen] = useState(false);
-
+  const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
   const [affiliatedSepOpen, setAfflnSepOpen] = useState(false);
-
-
-  const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
+  const [showIndexContrib, setShowIndexContrib] = useState(false);
   const [inputValue, setInputValue] = useState("");
-
+  const [organizations, setOrganizations] = useState([]);
+  const [organizationData, getOrganizationData] = useState([]);
+  const [organizationNamesList, setOrganizationNamesList] = useState([]);
+  const [searchCount, setsearchCount] = useState(false);
   const [unaffiliated, getAffiliatedNames] = useState([]);
   const [unaffiliatedCount, getunaffiliatedCount] = useState(0);
-  const [affiliatedCount, getaffiliatedCount] = useState(0);
-  const [organizationData, getOrganizationData] = useState([]);
-
-  const [searchCount, setsearchCount] = useState(false);
-
+  const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
 
   let count1 =0, count2 =0,totalaffiliatedCount=0,totalunaffiliatedCount=0;
 
@@ -87,6 +80,11 @@ export default function Contributors({ match }) {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (location.query) {
+      setShowIndexContrib(location.query.contributor);
+    }
+  }, [location]);
 
   useEffect(() => {
     const createAffiliatedOrganizations = () =>
@@ -209,17 +207,6 @@ export default function Contributors({ match }) {
 
   };
 
-
-  // CheckBox Code
-
-
-  const [checkboxValue, setIsTrue] = useState(false);
-  const checkBoxChange = (event) => {
-    const target = event.target.checked;
-    setIsTrue(target);
-  };
-
-
   return (
     <Box className='pageContainer'>
       <Box className='containerDefault'>
@@ -267,7 +254,7 @@ export default function Contributors({ match }) {
               <FormControlLabel
                 control={
                   <Checkbox className={classes.chkBoxStyle}
-                    onChange={checkBoxChange} defaultChecked={false}
+                    onChange={(e) => {setShowIndexContrib(e.target.checked)}} checked={showIndexContrib}
                     style={{ backgroundColor: 'transparent' }}
                   />
                 }
@@ -282,7 +269,7 @@ export default function Contributors({ match }) {
                 unaffiliated={unaffiliated}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalunaffiliatedCount}
-                checkboxValue={checkboxValue}
+                checkboxValue={showIndexContrib}
               />
               <Affiliated
                 organizations={affiliatedOrganizationsObject}
@@ -296,7 +283,7 @@ export default function Contributors({ match }) {
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalaffiliatedCount}
                 setAfflnSepOpen={setAfflnSepOpen}
-                checkboxValue={checkboxValue}
+                checkboxValue={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={value} index={1}>
@@ -306,7 +293,7 @@ export default function Contributors({ match }) {
                 searchCount={searchCount}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalunaffiliatedCount}
-                checkboxValue={checkboxValue}
+                checkboxValue={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={value} index={2}>
@@ -321,7 +308,7 @@ export default function Contributors({ match }) {
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalaffiliatedCount}
                 setAfflnSepOpen={setAfflnSepOpen}
-                checkboxValue={checkboxValue}
+                checkboxValue={showIndexContrib}
               />
             </TabPanel>
           </Grid>
