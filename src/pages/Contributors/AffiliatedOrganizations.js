@@ -70,38 +70,49 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
   const classes = useStyles();
   const parentfilterData = data;
-  const [isChildThumbnail] = useState(true);
+  const isChildThumbnail = true;
 
-  const getParentData = () => {
-    const parentOrg =organizations['Code for All'].filter(item => item);
+
+  const sortOn = (sortingObject) =>{
+    return function(a, b){
+      return a[sortingObject].toLowerCase().localeCompare(b[sortingObject].toLowerCase());
+    }
+  }
+
+    const getParentData = () => {
+    const organizationArray = organizations['Code for All'].filter(item => item);
+
     const parentdata = [];
 
-    parentOrg.forEach((data)=>{
+    organizationArray.forEach((data)=>{
+
       if (data.depth === 3){
         data['childNodes'] = [];
         data['isOpen'] = false;
-        parentdata.push(data);
+        parentdata.sort(sortOn("name")).push(data);
       }
       if (data.depth === 4){
-        let obj =  parentdata.find((d)=> (data.path).includes(d.path));
-        const newobj =  parentfilterData.find((d)=> data.path.includes(d.path) && d.depth === 3);
+        let parentChildobj =  parentdata.find((d)=> (data.path).includes(d.path));
 
-        const exist = parentdata.find((d)=> newobj.path === d.path);
+        const mapsearchedChildParent =  parentfilterData.find((d)=> data.path.includes(d.path) && d.depth === 3);
+
+        const exist = parentdata.find((d)=> mapsearchedChildParent.path === d.path);
+
         if (!exist){
-          newobj['childNodes'] = [];
-          newobj['isOpen'] = false;
-          obj = newobj;
-          parentdata.push(obj)
+          mapsearchedChildParent['childNodes'] = [];
+          mapsearchedChildParent['isOpen'] = false;
+          parentChildobj = mapsearchedChildParent;
+          parentdata.push(mapsearchedChildParent)
         } else {
-          obj = exist;
+          parentChildobj = exist;
         }
 
-        if (obj){
+        if (parentChildobj){
           if (checkboxValue && data['cti_contributor']){
-            obj.childNodes.push(data);
+            parentChildobj.childNodes.push(data);
           }
           if (!checkboxValue){
-            obj.childNodes.push(data);
+            parentChildobj.childNodes.push(data);
           }
 
         }
@@ -136,10 +147,12 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
 
 
   if (currentThumbnails &&  inputValue.length === 0) {
+
     return (
       <Grid className={classes.thumbnailGrid} dropdownlength={currentThumbnails.length}>
         {currentThumbnails.map((org, i) => {
-          const childNode = org.isOpen ?  org.childNodes : org.childNodes.slice(0,8)
+          const childSort = org.childNodes.sort(sortOn("name"));
+          const childNode = org.isOpen ?  childSort :  childSort.slice(0,8)
           return (
             <Dropdown checkboxValue={checkboxValue} organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={false}>
               <Grid container alignItems='center' style={{ margin:'auto' }} >
@@ -177,7 +190,6 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
     return (
       <Grid className={classes.thumbnailGrid}>
         {currentThumbnails.map((org, i) => {
-          // console.log(org.childNodes.length, "org.childNodes.length");
           return (
             <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length <= 5 ? true : false}>
               <Box className={classes.affiliatedThumbnailsWrapper}>

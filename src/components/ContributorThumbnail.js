@@ -71,8 +71,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   thumbnailChildImage: {
-    width: '38px',
-    height: '38px',
+    width: '32px',
+    height: '32px',
   },
   contributorIcon: {
     width: '24px',
@@ -121,6 +121,8 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
   }
 
   let thumbnailImageStyle,thumbnailWrapperStyle;
+
+
   if (organization.cti_contributor){
     thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
   }
@@ -128,14 +130,20 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
   {
     thumbnailWrapperStyle = classes.thumbnailWrapper;
   }
-  if (organization.affiliated && dropdownLength > 0){
+
+  if (organization.affiliated &&  organization.depth === 3)
+  {
 
     thumbnailImageStyle = classes.thumbnailImage;
   }
-  else
-  {
+  else if (organization.depth === 4){
     thumbnailImageStyle = classes.thumbnailChildImage;
   }
+  else if (organization.depth === 2)
+  {
+    thumbnailImageStyle = classes.thumbnailImage;
+  }
+
 
   return (
 
@@ -149,9 +157,8 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
           " "
         }
 
-
       </Box>
-      <Grid className={thumbnailWrapperStyle} item container xs={4}>
+      <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
           <CardMedia
             component="img"
@@ -168,7 +175,7 @@ const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChild
         </Grid>
 
         <Grid item data-cy="affthumbnailText" className={classes.affthumbnailText}>
-          <Typography variant={isChildThumbnail ? 'body1':'h5'} noWrap  data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
+          <Typography variant={isChildThumbnail ? 'body1':'h6'} noWrap  data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
             <Link
               href={thumbnailInfo.organizationUrl}
               target="_blank"

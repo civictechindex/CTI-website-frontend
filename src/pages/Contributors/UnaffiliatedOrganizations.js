@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import { ContributorThumbnail } from "../../components/ContributorThumbnail";
 
 import Typography from '@material-ui/core/Typography';
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export const UnaffiliatedOrganizations = (props) => {
   const { searchCount, unaffiliatedCount, totalunaffiliatedCount, unaffiliatedOpen, organization, checkboxValue } = props;
   const classes = useStyles();
-  const [isChildThumbnail] = useState(false);
+  const isChildThumbnail = false;
 
   return (
     <Grid>
