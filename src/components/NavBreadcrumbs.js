@@ -1,7 +1,7 @@
 import React from 'react';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import createMuiTheme from '@material-ui/core/styles/createMuiStrictModeTheme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 
