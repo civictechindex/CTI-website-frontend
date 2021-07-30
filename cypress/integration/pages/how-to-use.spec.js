@@ -1,15 +1,13 @@
-describe('How To Use Page (Adding Projects to the Index)', () => {
+describe('How To Add Page', () => {
   before(() => {
-    cy.visit('/join-index/how-to-add')
-  })
+    cy.visit('/join-index/how-to-add');
+  });
 
   it('header section loads', () => {
-    cy.contains('Tag Generator')
-  })
+    cy.contains('How to Add Your Project');
+  });
 
-  it('footer section loads', () => {
-    cy.contains('Add Another Project')
-  })
-
-})
-
+  it('middle section loads', () => {
+    cy.contains('Repeat until you have finished adding all of your tags');
+  });
+});
