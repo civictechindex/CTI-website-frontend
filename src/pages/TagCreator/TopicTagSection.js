@@ -233,7 +233,7 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,changeValue,han
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid>
-      <ChipInput
+        <ChipInput
           fullWidth
           placeholder='Add topic tag'
           onAdd={(chip) => handleAdd(chip)}
