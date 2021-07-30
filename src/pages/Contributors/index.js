@@ -64,9 +64,11 @@ export default function Contributors({ match }) {
   const [organizationData, getOrganizationData] = useState([]);
   const [organizationNamesList, setOrganizationNamesList] = useState([]);
   const [searchCount, setsearchCount] = useState(false);
+  const [tabValue, setTabValue] = useState(0);
   const [unaffiliated, getAffiliatedNames] = useState([]);
   const [unaffiliatedCount, getunaffiliatedCount] = useState(0);
   const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
+
 
   let count1 =0, count2 =0,totalaffiliatedCount=0,totalunaffiliatedCount=0;
 
@@ -81,6 +83,11 @@ export default function Contributors({ match }) {
   }, []);
 
   useEffect(() => {
+    if (location.pathname.indexOf('unaffiliated') > -1) {
+      setTabValue(1);
+    } else if (location.pathname.indexOf('affiliated') > -1) {
+      setTabValue(2);
+    }
     if (location.query) {
       setShowIndexContrib(location.query.contributor);
     }
@@ -199,14 +206,6 @@ export default function Contributors({ match }) {
     };
   }
 
-
-
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-
-  };
-
   return (
     <Box className='pageContainer'>
       <Box className='containerDefault'>
@@ -237,19 +236,18 @@ export default function Contributors({ match }) {
         <Container>
           <AppBar position="static" color="default" elevation={0}>
             <Tabs
-              value={value}
-              onChange={handleChange}
+              value={tabValue}
+              onChange={(e, val) => setTabValue(val)}
               variant="fullWidth"
               className={classes.tabs}
               classes={{ indicator: classes.indicator }}
             >
-
               <Tab label={<>({totalunaffiliatedCount + totalaffiliatedCount })</>} icon="All" {...a11yProps(0)} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
               <Tab  icon="Unaffiliated"  label={<>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(1)} />
               <Tab  icon="Affiliated" label={<>({totalaffiliatedCount})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(2)} />
             </Tabs>
           </AppBar>
-          <Grid index={value}>
+          <Grid index={tabValue}>
             <FormGroup className={classes.checkBox}>
               <FormControlLabel
                 control={
@@ -261,7 +259,7 @@ export default function Contributors({ match }) {
                 label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>} />
             </FormGroup>
 
-            <TabPanel value={value} index={0}>
+            <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
                 unaffiliatedOpen= {unaffiliatedOpen}
@@ -286,7 +284,7 @@ export default function Contributors({ match }) {
                 checkboxValue={showIndexContrib}
               />
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
                 unaffiliatedOpen= {unaffiliatedOpen}
@@ -296,7 +294,7 @@ export default function Contributors({ match }) {
                 checkboxValue={showIndexContrib}
               />
             </TabPanel>
-            <TabPanel value={value} index={2}>
+            <TabPanel value={tabValue} index={2}>
               <Affiliated
                 organizations={affiliatedOrganizationsObject}
                 inputValue={inputValue}
