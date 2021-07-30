@@ -95,6 +95,19 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
   )
 }
 
+export const ChipInputSection = ({ handleAdd,handleDelete,userTags,classAddTag }) =>{
+  return (
+    <ChipInput
+      fullWidth
+      placeholder='Add topic tag'
+      onAdd={(chip) => handleAdd(chip)}
+      onDelete={(deletedChip) => handleDelete(deletedChip)}
+      value={userTags}
+      className = {classAddTag}
+    />
+  )
+}
+
 export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,userTags,handleAdd,handleDelete }) =>{
   const classes = useStyles();
   const handleGenerateTag = () =>{
@@ -110,14 +123,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,us
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid data-cy='add-topic-tags'>
-        <ChipInput
-          fullWidth
-          placeholder='Add topic tag'
-          onAdd={(chip) => handleAdd(chip)}
-          onDelete={(deletedChip) => handleDelete(deletedChip)}
-          value={userTags}
-          className = {classes.addTag}
-        />
+        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} classAddTag={classes.addTag} />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleGenerateTag} id='generateTagsButton'>Generate Tags</Button></Grid>
@@ -233,14 +239,7 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,changeValue,han
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid>
-        <ChipInput
-          fullWidth
-          placeholder='Add topic tag'
-          onAdd={(chip) => handleAdd(chip)}
-          onDelete={(deletedChip) => handleDelete(deletedChip)}
-          value={userTags}
-          className = {classes.addTag}
-        />
+        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} classAddTag={classes.addTag} />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleAddMoreTags}>Generate Tags</Button></Grid>
