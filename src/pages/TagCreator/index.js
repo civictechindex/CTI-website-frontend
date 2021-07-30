@@ -76,6 +76,7 @@ const TagCreator = () => {
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
   const [chipInputValue, setChipInputValue] = useState('');
+  const [chipsValue, setChipsValue] = useState([]);
   const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/join-index', name: 'Tag Your Project' }]
 
   const resetForm = () => {
@@ -204,12 +205,27 @@ const TagCreator = () => {
   const handleUpdateChipInput = (e) => {
     // this chip input replaces spaces with - in chip values
     let inputValue = e.target.value;
+    console.log(inputValue)
     if (inputValue.slice(-1) !== ' ') {
       inputValue = inputValue.replace(/\s+/g, '-');
     }
+    inputValue = inputValue.replace(/['`~!@#$%^&*()_|+=?;:'".<>\\{\\}\\[\]\\\\/]/gi, '');
     setChipInputValue(inputValue);
   }
-
+  const handleAdd = (chip) => {
+    setChipsValue([...chipsValue,...chip])
+  }
+  const beforeAdd = (chip) => {
+    const chipStr=''
+    console.log(chip)
+    if (chip.includes(',')){
+      // console.log(chip)
+      const inputChipArr=chipStr.split(',')
+      for (let i=0; i<inputChipArr.length; i++){
+        handleAdd(inputChipArr[i])
+      }
+    }
+  }
   const handleChangeChip = (chips) =>{
     let chipsArr = []
     // Removes - in the end of chip
@@ -283,7 +299,10 @@ const TagCreator = () => {
             handleChangeChip={handleChangeChip}
             chipInputValue={chipInputValue}
             setChipInputValue={setChipInputValue}
-            handleUpdateChipInput={handleUpdateChipInput}/>
+            setChipsValue={setChipsValue}
+            handleUpdateChipInput={handleUpdateChipInput}
+            handleAdd={handleAdd}
+            beforeAdd={beforeAdd}/>
         </>
       )
     case "GenerateTags":
@@ -314,7 +333,8 @@ const TagCreator = () => {
           resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue}
           setRepoChangeAlert={setRepoChangeAlert}
           chipInputValue={chipInputValue}
-          handleUpdateChipInput={handleUpdateChipInput}/>
+          handleUpdateChipInput={handleUpdateChipInput}
+          handleAdd={handleAdd}/>
       )
     case "CopyPasteTags":
       return (
