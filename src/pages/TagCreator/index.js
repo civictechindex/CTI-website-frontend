@@ -278,12 +278,9 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
-            chipInputValue={chipInputValue}
-            setChipInputValue={setChipInputValue}
-            handleAdd={handleAdd}
-            handleDelete={handleDelete}
             userTags={userTags}
-            setUserTags={setUserTags}/>
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}/>
         </>
       )
     case "GenerateTags":
@@ -303,19 +300,26 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
-          <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
-            resetForm={resetForm} changeValue={changeValue}
-            repoChangeAlert={repoChangeAlert} setRepoChangeAlert={setRepoChangeAlert}/>
+          <AddMoreTags userTags={userTags}
+            setDisplayState={setDisplayState}
+            resetForm={resetForm}
+            changeValue={changeValue}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+            repoChangeAlert={repoChangeAlert}
+            setRepoChangeAlert={setRepoChangeAlert}/>
         </>
       )
     case "AddMoreTags":
       return (
-        <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
-          resetForm={resetForm} changeValue={changeValue}
-          setRepoChangeAlert={setRepoChangeAlert}
-          chipInputValue={chipInputValue}
+        <AddMoreTags userTags={userTags}
+          setDisplayState={setDisplayState}
+          resetForm={resetForm}
+          changeValue={changeValue}
           handleAdd={handleAdd}
-          handleDelete={handleDelete}/>
+          handleDelete={handleDelete}
+          repoChangeAlert={repoChangeAlert}
+          setRepoChangeAlert={setRepoChangeAlert}/>
       )
     case "CopyPasteTags":
       return (
