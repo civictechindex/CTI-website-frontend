@@ -23,11 +23,9 @@ const useStyles = makeStyles((theme) => ({
       },
       [theme.breakpoints.down('md')]: {
         height: '42px',
-        width:'180px',
       },
       [theme.breakpoints.up('md')]: {
         height: '48px',
-        width:'215px',
       },
     },
   },
@@ -97,8 +95,7 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
   )
 }
 
-export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,handleChangeChip,chipInputValue,
-  handleUpdateChipInput,handleAdd,beforeAdd,chipsValue }) =>{
+export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,userTags,handleAdd,handleDelete }) =>{
   const classes = useStyles();
   const handleGenerateTag = () =>{
     setChangeValue('GenerateTags')
@@ -117,11 +114,8 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
           fullWidth
           placeholder='Add topic tag'
           onAdd={(chip) => handleAdd(chip)}
-          chipRenderer={(chip) => beforeAdd(chip)}
-          onChange={(chips) => handleChangeChip(chips)}
-          onUpdateInput={handleUpdateChipInput}
-          inputValue={chipInputValue}
-          value={chipsValue}
+          onDelete={(deletedChip) => handleDelete(deletedChip)}
+          value={userTags}
           className = {classes.addTag}
         />
       </Grid>
@@ -218,8 +212,7 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
   )
 }
 
-export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue,
-  chipInputValue,handleUpdateChipInput,repoChangeAlert,setRepoChangeAlert,handleAdd }) =>{
+export const AddMoreTags = ({ userTags,setDisplayState,resetForm,changeValue,handleAdd,handleDelete,repoChangeAlert,setRepoChangeAlert }) =>{
   const classes = useStyles();
   const handleAddMoreTags = () =>{
     if (changeValue === 'CopyPasteTags'){
@@ -240,14 +233,12 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChi
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid>
-        <ChipInput
-          defaultValue={userTags}
+      <ChipInput
           fullWidth
           placeholder='Add topic tag'
           onAdd={(chip) => handleAdd(chip)}
-          onChange={(chips) => handleChangeChip(chips)}
-          onUpdateInput={handleUpdateChipInput}
-          value={chipInputValue}
+          onDelete={(deletedChip) => handleDelete(deletedChip)}
+          value={userTags}
           className = {classes.addTag}
         />
       </Grid>
