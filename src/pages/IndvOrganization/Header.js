@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React from 'react';
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -7,14 +7,6 @@ import NavBreadcrumbs from '../../components/NavBreadcrumbs';
 import { TitleSection } from '../../components';
 
 export const Header = (props) => {
-  const [validImageUrl, setValidImageUrl] = useState("");
-
-  //Set up default Github Image if image Url is empty.
-  if (props.imageUrl){
-    setValidImageUrl(props.imageUrl);
-  } else {  
-    setValidImageUrl('/images/default-github-repo-image.png');
-  }
 
   return (
     props.showHeaderResults ? (
@@ -24,7 +16,7 @@ export const Header = (props) => {
           <Grid container>
             <Grid item xs={12}>
               <Grid item xs={12} sm={12}>
-                <a href={props.githubLink}><img alt="logo" style={{ display: 'block', margin: 'auto' }} src={validImageUrl} width='133.2px' /></a>
+                <a href={props.githubLink}><img alt="logo" style={{ display: 'block', margin: 'auto' }} src={props.imageUrl} width='133.2px' /></a>
               </Grid>
             </Grid>
             <TitleSection>{props.orgName}</TitleSection>

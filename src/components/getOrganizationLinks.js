@@ -3,11 +3,10 @@
 import { getOrgId } from "./getOrgId.js";
 
 const getGithubInfo = (organization) => {
-  const githubInfo = { imageUrl: null, organizationUrl: null, indvOrgUrl: null };
+  const githubInfo = { imageUrl: null, organizationUrl: null };
   const { links } = organization;
   if (links) {
     const githubLink = links.find(link => link.link_type === 'GitHub')
-    githubInfo.indvOrgUrl = "/organization/" + organization.slug;
     if (githubLink) {
       const id = getOrgId(githubLink.url);
       const imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;

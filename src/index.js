@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import WebFont from 'webfontloader';
-import createMuiTheme from '@material-ui/core/styles/createMuiStrictModeTheme';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { ThemeProvider } from '@material-ui/core/styles/';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import GA4React from 'ga-4-react';
