@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-lines-per-function
 describe('Contributors Page', () => {
   // Commenting out these test cases since the organizations page is still in progress
   /*
@@ -51,8 +52,38 @@ describe('Contributors Page', () => {
 
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
+    cy.visit('/organizations/');
+    cy.wait('@getOrganizations');
+  });
+
+  it('should show all orgs tab selected', () => {
+    cy.get('[class*=MuiTabs-flexContainer]').within(() => {
+      cy.get('button').eq(0).invoke('attr', 'aria-selected').should('eq', 'true');
+      cy.get('button').eq(1).invoke('attr', 'aria-selected').should('eq', 'false');
+      cy.get('button').eq(2).invoke('attr', 'aria-selected').should('eq', 'false');
+    });
+  });
+
+  it('should navigate to unaffiliated and show unaffiliated orgs tab selected', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
+    cy.visit('/organizations/unaffiliated');
+    cy.wait('@getOrganizations');
+    cy.get('[class*=MuiTabs-flexContainer]').within(() => {
+      cy.get('button').eq(0).invoke('attr', 'aria-selected').should('eq', 'false');
+      cy.get('button').eq(1).invoke('attr', 'aria-selected').should('eq', 'true');
+      cy.get('button').eq(2).invoke('attr', 'aria-selected').should('eq', 'false');
+    });
+  });
+
+  it('should navigate to affiliated and show affiliated orgs tab selected', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
     cy.visit('/organizations/affiliated');
     cy.wait('@getOrganizations');
+    cy.get('[class*=MuiTabs-flexContainer]').within(() => {
+      cy.get('button').eq(0).invoke('attr', 'aria-selected').should('eq', 'false');
+      cy.get('button').eq(1).invoke('attr', 'aria-selected').should('eq', 'false');
+      cy.get('button').eq(2).invoke('attr', 'aria-selected').should('eq', 'true');
+    });
   });
 
   it('should not show index contributor indicators', () => {
