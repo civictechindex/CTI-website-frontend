@@ -96,7 +96,7 @@ export const Affiliated = (props) => {
         </Grid>
         <Grid>
           <Typography variant='h4' noWrap>
-            <Link href="https://codeforall.org"  target="_blank"  rel="noreferrer noopener">Code for All</Link>
+            <Link href="/organization/code-for-all"  target="_blank"  rel="noreferrer noopener">Code for All</Link>
             { searchCount ? `(${affiliatedCount}/${totalaffiliatedCount})`  : ` (${totalaffiliatedCount})` }
           </Typography>
         </Grid>
