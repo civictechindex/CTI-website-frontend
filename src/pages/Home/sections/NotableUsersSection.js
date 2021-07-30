@@ -119,8 +119,8 @@ const NotableUsersSection = () => {
     return (
       <Grid item xs={12} style={{ padding: '30px' }}>
         <div align='center'>
-          <NavButton href='/organizations/affiliated' color='primary'>
-                        View contributors
+          <NavButton color='primary' href={{ pathname: '/organizations/affiliated', query: { contributor: true }}}>
+            View contributors
           </NavButton>
         </div>
       </Grid>

@@ -3,6 +3,5 @@
   "defaultCommandTimeout": 60000,
   "env": {
     "REACT_APP_API_URL": "https://api.civictechindex.org"
-  },
-  "ignoreTestFiles": ["contributors.spec.js"]
+  }
 }
