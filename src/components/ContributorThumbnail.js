@@ -1,12 +1,12 @@
 /* eslint-disable complexity */
 import React, { useEffect, useState } from 'react';
-import { getOrganizationLinks } from './getOrganizationLinks.js';
-import Link from '@material-ui/core/Link';
+import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import { getOrganizationLinks } from './getOrganizationLinks.js';
 
 const useStyles = makeStyles((theme) => ({
   thumbnailWrapper: {
@@ -88,7 +88,6 @@ export const ContributorThumbnail = ({
   checkboxValue,
 }) => {
   const classes = useStyles();
-
   const [thumbnailInfo, setThumbnailInfo] = useState({});
 
   useEffect(() => {
@@ -129,21 +128,18 @@ const Thumbnail = ({
   checkboxValue,
 }) => {
   const classes = useStyles();
+  let thumbnailImageStyle, thumbnailWrapperStyle;
   if (
     thumbnailInfo.imageUrl.includes('undefined') ||
     thumbnailInfo.imageUrl.includes('scontent')
   ) {
     thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
   }
-
-  let thumbnailImageStyle, thumbnailWrapperStyle;
-
   if (organization.cti_contributor) {
     thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
   } else {
     thumbnailWrapperStyle = classes.thumbnailWrapper;
   }
-
   if (organization.affiliated && organization.depth === 3) {
     thumbnailImageStyle = classes.thumbnailImage;
   } else if (organization.depth === 4) {
@@ -151,21 +147,20 @@ const Thumbnail = ({
   } else if (organization.depth === 2) {
     thumbnailImageStyle = classes.thumbnailImage;
   }
-
   return (
     <>
       <Box className={classes.contributorItem}>
         {organization.depth === 4 &&
         checkboxValue &&
         organization.cti_contributor ? (
-          <img
-            className={classes.contributorIcon}
-            src='/images/Child_contributed.svg'
-            alt='contributor-icon'
-          />
-        ) : (
-          ' '
-        )}
+            <img
+              className={classes.contributorIcon}
+              src='/images/Child_contributed.svg'
+              alt='contributor-icon'
+            />
+          ) : (
+            ' '
+          )}
       </Box>
       <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
@@ -183,7 +178,6 @@ const Thumbnail = ({
             loading='lazy'
           />
         </Grid>
-
         <Grid
           item
           data-cy='affthumbnailText'
