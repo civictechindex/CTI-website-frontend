@@ -1,20 +1,20 @@
 /* eslint-disable complexity */
-import React, { useEffect, useState } from "react";
-import { getOrganizationLinks } from "./getOrganizationLinks.js";
+import React, { useEffect, useState } from 'react';
+import { getOrganizationLinks } from './getOrganizationLinks.js';
 import Link from '@material-ui/core/Link';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from "@material-ui/core";
+import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   thumbnailWrapper: {
     display: 'flex',
-    flexDirection:'row',
+    flexDirection: 'row',
     alignItems: 'center',
-    padding:'8px',
-    flexWrap:'nowrap',
+    padding: '8px',
+    flexWrap: 'nowrap',
   },
   thumbnailImage: {
     width: '48px',
@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   orgText: {
-    paddingLeft:'9px',
-    color:theme.palette.secondary.dark,
+    paddingLeft: '9px',
+    color: theme.palette.secondary.dark,
     '& a:link': {
       color: theme.palette.secondary.dark,
     },
@@ -34,11 +34,11 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.secondary.dark,
     },
     [theme.breakpoints.down('xs')]: {
-      paddingLeft:'8px',
+      paddingLeft: '8px',
     },
   },
   blueColorText: {
-    paddingLeft:'16px',
+    paddingLeft: '16px',
     color: theme.palette.text.secondary,
     '& a:link': {
       color: theme.palette.text.secondary,
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.text.secondary,
     },
     [theme.breakpoints.down('xs')]: {
-      paddingLeft:'8px',
+      paddingLeft: '8px',
     },
   },
   grandparentIcon: {
@@ -64,10 +64,10 @@ const useStyles = makeStyles((theme) => ({
   },
   thumbnailWrapperContributor: {
     display: 'flex',
-    flexDirection:'row',
+    flexDirection: 'row',
     alignItems: 'center',
-    padding:'8px',
-    flexWrap:'nowrap',
+    padding: '8px',
+    flexWrap: 'nowrap',
     position: 'relative',
   },
   thumbnailChildImage: {
@@ -80,7 +80,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isChildThumbnail,checkboxValue }) => {
+export const ContributorThumbnail = ({
+  organization,
+  isOpen,
+  dropdownLength,
+  isChildThumbnail,
+  checkboxValue,
+}) => {
   const classes = useStyles();
 
   const [thumbnailInfo, setThumbnailInfo] = useState({});
@@ -93,7 +99,6 @@ export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isC
     <>
       <Box>
         {thumbnailInfo.organizationUrl ? (
-
           <Thumbnail
             thumbnailInfo={thumbnailInfo}
             organization={organization}
@@ -102,9 +107,12 @@ export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isC
             isChildThumbnail={isChildThumbnail}
             checkboxValue={checkboxValue}
           />
-        )  : (
-          <Grid className={classes.textWrapperWithoutImage} component="span">
-            <Typography component="span"> No URL Data for {organization.name} </Typography>
+        ) : (
+          <Grid className={classes.textWrapperWithoutImage} component='span'>
+            <Typography component='span'>
+              {' '}
+              No URL Data for {organization.name}{' '}
+            </Typography>
           </Grid>
         )}
       </Box>
@@ -112,90 +120,107 @@ export const ContributorThumbnail = ({ organization, isOpen, dropdownLength, isC
   );
 };
 
-const Thumbnail = ({  thumbnailInfo, organization, isOpen,dropdownLength,isChildThumbnail, checkboxValue }) => {
-
-
+const Thumbnail = ({
+  thumbnailInfo,
+  organization,
+  isOpen,
+  dropdownLength,
+  isChildThumbnail,
+  checkboxValue,
+}) => {
   const classes = useStyles();
-  if (thumbnailInfo.imageUrl.includes('undefined') || thumbnailInfo.imageUrl.includes('scontent')){
+  if (
+    thumbnailInfo.imageUrl.includes('undefined') ||
+    thumbnailInfo.imageUrl.includes('scontent')
+  ) {
     thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
   }
 
-  let thumbnailImageStyle,thumbnailWrapperStyle;
+  let thumbnailImageStyle, thumbnailWrapperStyle;
 
-
-  if (organization.cti_contributor){
+  if (organization.cti_contributor) {
     thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
-  }
-  else
-  {
+  } else {
     thumbnailWrapperStyle = classes.thumbnailWrapper;
   }
 
-  if (organization.affiliated &&  organization.depth === 3)
-  {
-
+  if (organization.affiliated && organization.depth === 3) {
     thumbnailImageStyle = classes.thumbnailImage;
-  }
-  else if (organization.depth === 4){
+  } else if (organization.depth === 4) {
     thumbnailImageStyle = classes.thumbnailChildImage;
-  }
-  else if (organization.depth === 2)
-  {
+  } else if (organization.depth === 2) {
     thumbnailImageStyle = classes.thumbnailImage;
   }
-
 
   return (
-
     <>
       <Box className={classes.contributorItem}>
-
-        {(organization.depth === 4  && checkboxValue &&  organization.cti_contributor)  ?
-
-          <img className={classes.contributorIcon} src='/images/Child_contributed.svg' alt="contributor-icon" />
-          :
-          " "
-        }
-
+        {organization.depth === 4 &&
+        checkboxValue &&
+        organization.cti_contributor ? (
+          <img
+            className={classes.contributorIcon}
+            src='/images/Child_contributed.svg'
+            alt='contributor-icon'
+          />
+        ) : (
+          ' '
+        )}
       </Box>
       <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
           <CardMedia
-            component="img"
+            component='img'
             src={thumbnailInfo.imageUrl}
             className={thumbnailImageStyle}
-            onError={(e) =>
-            // eslint-disable-next-line no-console
-              console.log(`${e}: error with ${organization.name} image`)
-            // Before MVP: Refactor as on-website error/generic case.
+            onError={
+              (e) =>
+                // eslint-disable-next-line no-console
+                console.log(`${e}: error with ${organization.name} image`)
+              // Before MVP: Refactor as on-website error/generic case.
             }
             alt={`${organization.name} logo`}
-            loading="lazy"
+            loading='lazy'
           />
         </Grid>
 
-        <Grid item data-cy="affthumbnailText" className={classes.affthumbnailText}>
-          <Typography variant={isChildThumbnail ? 'body1':'h6'} noWrap  data-cy='thumbnailTextInfn' className={isOpen ? `${classes.blueColorText}` : `${classes.orgText}`}>
+        <Grid
+          item
+          data-cy='affthumbnailText'
+          className={classes.affthumbnailText}
+        >
+          <Typography
+            variant={isChildThumbnail ? 'body1' : 'h6'}
+            noWrap
+            data-cy='thumbnailTextInfn'
+            className={
+              isOpen ? `${classes.blueColorText}` : `${classes.orgText}`
+            }
+          >
             <Link
               href={thumbnailInfo.organizationUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-            >{organization.name ? organization.name : organization}
-            </Link> { dropdownLength ? `(${dropdownLength})`  : ` `   }
+              target='_blank'
+              rel='noreferrer noopener'
+            >
+              {organization.name ? organization.name : organization}
+            </Link>{' '}
+            {dropdownLength ? `(${dropdownLength})` : ` `}
           </Typography>
-
         </Grid>
         <Grid>
           <Typography>
-            {(organization.depth === 3  && checkboxValue)  ?
-              <img className={classes.grandparentIcon} src='/images/Gparent_contributed.svg' alt="contributor-icon" /> : " "
-
-            }
+            {organization.depth === 3 && checkboxValue ? (
+              <img
+                className={classes.grandparentIcon}
+                src='/images/Gparent_contributed.svg'
+                alt='contributor-icon'
+              />
+            ) : (
+              ' '
+            )}
           </Typography>
-
         </Grid>
       </Grid>
-
     </>
   );
 };

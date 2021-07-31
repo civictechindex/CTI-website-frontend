@@ -1,55 +1,55 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 
-import React, { useState, useEffect } from "react";
-import { Dropdown } from "../../components/Dropdown";
-import { ContributorThumbnail } from "../../components/ContributorThumbnail";
+import React, { useState, useEffect } from 'react';
+import { Dropdown } from '../../components/Dropdown';
+import { ContributorThumbnail } from '../../components/ContributorThumbnail';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import Box from "@material-ui/core/Box";
-import { Typography } from "@material-ui/core";
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Box from '@material-ui/core/Box';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  thumbnailGrid:{
-    paddingBottom:'24px',
+  thumbnailGrid: {
+    paddingBottom: '24px',
   },
   affiliatedThumbnailsWrapper: {
-    display:'flex',
+    display: 'flex',
     alignContent: 'center',
     alignItems: 'center',
-    flexWrap:'wrap',
-    justifyContent:'center',
-    margin:'auto',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    margin: 'auto',
   },
   afflnThumbnails: {
     width: '375px',
-    height:'64px',
+    height: '64px',
     borderRadius: '6px',
     border: '1px solid',
-    borderColor:theme.palette.outline.gray,
-    margin:'8px',
+    borderColor: theme.palette.outline.gray,
+    margin: '8px',
     [theme.breakpoints.down('md')]: {
       width: '270px',
       height: '60px',
       '& p': {
-        fontSize:'20px',
-        fontWeight:'500',
+        fontSize: '20px',
+        fontWeight: '500',
       },
     },
     [theme.breakpoints.down('sm')]: {
       width: '220px',
-      height:'54px',
+      height: '54px',
       '& p': {
-        fontWeight:'500',
-        fontSize:'14px',
+        fontWeight: '500',
+        fontSize: '14px',
       },
     },
   },
   button: {
     width: '211px',
     height: '44px',
-    margin:'auto',
+    margin: 'auto',
     borderRadius: '31px',
     border: '1px solid',
     borderColor: theme.palette.secondary.dark,
@@ -66,76 +66,84 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AffiliatedOrganizations = ({ organizations , inputValue, data, checkboxValue }) => {
-
+export const AffiliatedOrganizations = ({
+  organizations,
+  inputValue,
+  organizationData,
+  checkboxValue,
+}) => {
   const classes = useStyles();
-  const parentfilterData = data;
+  const parentfilterData = organizationData;
   const isChildThumbnail = true;
+  let organizationArray;
+  let parentdata;
+  let parentChildobj;
+  let mapsearchedChildParent;
 
+  const sortOn = (sortingObject) => {
+    return function (a, b) {
+      return a[sortingObject]
+        .toLowerCase()
+        .localeCompare(b[sortingObject].toLowerCase());
+    };
+  };
 
-  const sortOn = (sortingObject) =>{
-    return function(a, b){
-      return a[sortingObject].toLowerCase().localeCompare(b[sortingObject].toLowerCase());
-    }
-  }
+  const getParentData = () => {
+    organizationArray = organizations['Code for All'].filter((item) => item);
 
-    const getParentData = () => {
-    const organizationArray = organizations['Code for All'].filter(item => item);
+    parentdata = [];
 
-    const parentdata = [];
-
-    organizationArray.forEach((data)=>{
-
-      if (data.depth === 3){
-        data['childNodes'] = [];
-        data['isOpen'] = false;
-        parentdata.sort(sortOn("name")).push(data);
+    organizationArray.forEach((organizationData) => {
+      if (organizationData.depth === 3) {
+        organizationData['childNodes'] = [];
+        organizationData['isOpen'] = false;
+        parentdata.sort(sortOn('name')).push(organizationData);
       }
-      if (data.depth === 4){
-        let parentChildobj =  parentdata.find((d)=> (data.path).includes(d.path));
+      if (organizationData.depth === 4) {
+        parentChildobj = parentdata.find((d) =>
+          organizationData.path.includes(d.path)
+        );
 
-        const mapsearchedChildParent =  parentfilterData.find((d)=> data.path.includes(d.path) && d.depth === 3);
+        mapsearchedChildParent = parentfilterData.find(
+          (d) => organizationData.path.includes(d.path) && d.depth === 3
+        );
 
-        const exist = parentdata.find((d)=> mapsearchedChildParent.path === d.path);
+        const exist = parentdata.find(
+          (d) => mapsearchedChildParent.path === d.path
+        );
 
-        if (!exist){
+        if (!exist) {
           mapsearchedChildParent['childNodes'] = [];
           mapsearchedChildParent['isOpen'] = false;
           parentChildobj = mapsearchedChildParent;
-          parentdata.push(mapsearchedChildParent)
+          parentdata.push(mapsearchedChildParent);
         } else {
           parentChildobj = exist;
         }
 
-        if (parentChildobj){
-          if (checkboxValue && data['cti_contributor']){
-            parentChildobj.childNodes.push(data);
+        if (parentChildobj) {
+          if (checkboxValue && organizationData['cti_contributor']) {
+            parentChildobj.childNodes.push(organizationData);
           }
-          if (!checkboxValue){
-            parentChildobj.childNodes.push(data);
+          if (!checkboxValue) {
+            parentChildobj.childNodes.push(organizationData);
           }
-
-        }
-        else
-        {
-          data['childNodes'] = [];
-          data['isOpen'] = false;
-          parentdata.push(data);
+        } else {
+          organizationData['childNodes'] = [];
+          organizationData['isOpen'] = false;
+          parentdata.push(organizationData);
         }
       }
-
-    })
-    return parentdata
-  }
-
+    });
+    return parentdata;
+  };
 
   const [currentThumbnails, setCurrentThumbnails] = useState(getParentData);
 
-  useEffect(()=>{
+  useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[inputValue, organizations,parentfilterData,checkboxValue])
-
+  }, [inputValue, organizations, parentfilterData, checkboxValue]);
 
   const getChildrenLength = (org) => {
     if (org.childNodes.length > 0) {
@@ -145,81 +153,126 @@ export const AffiliatedOrganizations = ({ organizations , inputValue, data, chec
     }
   };
 
-
-  if (currentThumbnails &&  inputValue.length === 0) {
-
+  let childSort;
+  let childNode;
+  if (currentThumbnails && inputValue.length === 0) {
     return (
-      <Grid className={classes.thumbnailGrid} dropdownlength={currentThumbnails.length}>
+      <Grid
+        className={classes.thumbnailGrid}
+        dropdownlength={currentThumbnails.length}
+      >
         {currentThumbnails.map((org, i) => {
-          const childSort = org.childNodes.sort(sortOn("name"));
-          const childNode = org.isOpen ?  childSort :  childSort.slice(0,8)
+          childSort = org.childNodes.sort(sortOn('name'));
+          childNode = org.isOpen ? childSort : childSort.slice(0, 8);
           return (
-            <Dropdown checkboxValue={checkboxValue} organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={false}>
-              <Grid container alignItems='center' style={{ margin:'auto' }} >
+            <Dropdown
+              checkboxValue={checkboxValue}
+              organization={org}
+              key={`affiliatedThumbnailsWrapper_${i}`}
+              dropdownLength={getChildrenLength(org)}
+              isOpen={false}
+            >
+              <Grid container alignItems='center' style={{ margin: 'auto' }}>
                 {childNode.length > 0 ? (
-                  <Grid item container xs={10} className={classes.affiliatedThumbnailsWrapper}>
+                  <Grid
+                    item
+                    container
+                    xs={10}
+                    className={classes.affiliatedThumbnailsWrapper}
+                  >
                     {childNode.map((child, idx) => {
-                      return <Grid item className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
-                        <ContributorThumbnail
-                          organization={child}
-                          isChildThumbnail= {isChildThumbnail}
-                          checkboxValue= {checkboxValue}
-                        ></ContributorThumbnail>
-                      </Grid>
+                      return (
+                        <Grid
+                          item
+                          className={classes.afflnThumbnails}
+                          key={`affiliatedThumbnail_child_${i}_${idx}`}
+                        >
+                          <ContributorThumbnail
+                            organization={child}
+                            isChildThumbnail={isChildThumbnail}
+                            checkboxValue={checkboxValue}
+                          ></ContributorThumbnail>
+                        </Grid>
+                      );
                     })}
                   </Grid>
-                ) :  <ContributorThumbnail isChildThumbnail= {isChildThumbnail} organization={org} checkboxValue= {checkboxValue} />}
+                ) : (
+                  <ContributorThumbnail
+                    isChildThumbnail={isChildThumbnail}
+                    organization={org}
+                    checkboxValue={checkboxValue}
+                  />
+                )}
                 {org.childNodes.length > 8 ? (
-                  <Grid item container xs={10}  style={{ margin:'auto', paddingTop:'16px' }}>
-                    <Button data-cy="viewBtnClick" id="viewAllButton" className={classes.button}  onClick={() => {
-                      const data = [...currentThumbnails]
-                      data[i].isOpen = data[i].isOpen ? false : true;
-                      setCurrentThumbnails(data)
-                    }}> View All </Button></Grid>
+                  <Grid
+                    item
+                    container
+                    xs={10}
+                    style={{ margin: 'auto', paddingTop: '16px' }}
+                  >
+                    <Button
+                      data-cy='viewBtnClick'
+                      id='viewAllButton'
+                      className={classes.button}
+                      onClick={() => {
+                        const data = [...currentThumbnails];
+                        data[i].isOpen = data[i].isOpen ? false : true;
+                        setCurrentThumbnails(data);
+                      }}
+                    >
+                      {' '}
+                      View All{' '}
+                    </Button>
+                  </Grid>
                 ) : null}
               </Grid>
             </Dropdown>
           );
-
         })}
       </Grid>
     );
-
-  }
-  else if (currentThumbnails && inputValue !== null && inputValue.length > 0 && inputValue !== '') {
+  } else if (
+    currentThumbnails &&
+    inputValue !== null &&
+    inputValue.length > 0 &&
+    inputValue !== ''
+  ) {
     return (
       <Grid className={classes.thumbnailGrid}>
         {currentThumbnails.map((org, i) => {
           return (
-            <Dropdown organization={org} key={`affiliatedThumbnailsWrapper_${i}`} dropdownLength={getChildrenLength(org)} isOpen={org.childNodes.length <= 5 ? true : false}>
+            <Dropdown
+              organization={org}
+              key={`affiliatedThumbnailsWrapper_${i}`}
+              dropdownLength={getChildrenLength(org)}
+              isOpen={org.childNodes.length <= 5 ? true : false}
+            >
               <Box className={classes.affiliatedThumbnailsWrapper}>
-                { org.childNodes.length === 0 ?
-
-                  " "
-
-
-                  :
+                {org.childNodes.length === 0 ? (
+                  ' '
+                ) : (
                   <>
                     {org.childNodes.map((child, idx) => {
-
-                      return <Typography component="div" className={classes.afflnThumbnails} key={`affiliatedThumbnail_child_${i}_${idx}`}>
-                        <ContributorThumbnail
-                          organization={child}
-                          isChildThumbnail= {isChildThumbnail}
-                        ></ContributorThumbnail>
-                      </Typography>
+                      return (
+                        <Typography
+                          component='div'
+                          className={classes.afflnThumbnails}
+                          key={`affiliatedThumbnail_child_${i}_${idx}`}
+                        >
+                          <ContributorThumbnail
+                            organization={child}
+                            isChildThumbnail={isChildThumbnail}
+                          ></ContributorThumbnail>
+                        </Typography>
+                      );
                     })}
                   </>
-                }
+                )}
               </Box>
             </Dropdown>
-
           );
-
-
         })}
       </Grid>
     );
   }
-}
-
+};
