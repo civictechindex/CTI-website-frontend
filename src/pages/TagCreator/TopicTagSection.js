@@ -96,6 +96,7 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
 }
 
 export const ChipInputSection = ({ handleAdd,handleDelete,userTags,classAddTag }) =>{
+  const classes = useStyles();
   return (
     <ChipInput
       fullWidth
@@ -103,13 +104,12 @@ export const ChipInputSection = ({ handleAdd,handleDelete,userTags,classAddTag }
       onAdd={(chip) => handleAdd(chip)}
       onDelete={(deletedChip) => handleDelete(deletedChip)}
       value={userTags}
-      className = {classAddTag}
+      className = {classes.addTag}
     />
   )
 }
 
 export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,userTags,handleAdd,handleDelete }) =>{
-  const classes = useStyles();
   const handleGenerateTag = () =>{
     setChangeValue('GenerateTags')
     setDisplayState('GenerateTags')
@@ -123,7 +123,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,us
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid data-cy='add-topic-tags'>
-        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} classAddTag={classes.addTag} />
+        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleGenerateTag} id='generateTagsButton'>Generate Tags</Button></Grid>
@@ -219,7 +219,6 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
 }
 
 export const AddMoreTags = ({ userTags,setDisplayState,resetForm,changeValue,handleAdd,handleDelete,repoChangeAlert,setRepoChangeAlert }) =>{
-  const classes = useStyles();
   const handleAddMoreTags = () =>{
     if (changeValue === 'CopyPasteTags'){
       setDisplayState('CopyPasteTags')
@@ -239,7 +238,7 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,changeValue,han
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid>
-        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} classAddTag={classes.addTag} />
+        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleAddMoreTags}>Generate Tags</Button></Grid>
