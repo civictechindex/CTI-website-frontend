@@ -1,29 +1,28 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/styles';
+import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
 import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRounded';
 import githubColorDictionary from './data/gh-colors.json';
-import Avatar from '@material-ui/core/Avatar';
-import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
-
   select : {
     [theme.breakpoints.down('xs')]: {
       width: '55vw',
     },
   },
   chipStyle : {
-    backgroundColor: '#F1F1F1', 
+    backgroundColor: '#F1F1F1',
     paddingLeft: '2px',
   },
   issueStyles : {
     fontSize: '13px',
     fontStyle: 'normal',
     fontWeight: '400',
-  }
+  },
 }));
 
 const renderLanguageChip = (language,classes) => {
