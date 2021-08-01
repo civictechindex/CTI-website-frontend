@@ -95,7 +95,7 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
   )
 }
 
-export const ChipInputSection = ({ handleAdd,handleDelete,userTags,classAddTag }) =>{
+export const ChipInputSection = ({ handleAdd,handleDelete,userTags }) =>{
   const classes = useStyles();
   return (
     <ChipInput
@@ -224,8 +224,10 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,changeValue,han
       setDisplayState('CopyPasteTags')
       setRepoChangeAlert('')
     }
-    else
+    else {
       setDisplayState('GenerateTags')
+      setRepoChangeAlert('')
+    }
   }
 
   const handleResetForm = () => {

@@ -89,6 +89,7 @@ const TagCreator = () => {
     setOrgTags([])
     setChangeValue('')
     setDisplayState('')
+    setRepoChangeAlert('')
   }
 
   useEffect(() => {
