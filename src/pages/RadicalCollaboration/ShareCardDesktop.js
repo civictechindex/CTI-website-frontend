@@ -33,7 +33,7 @@ const ShareCardDesktop = (props) => {
                 <Typography className={classes.rightDtpLine2}>
                   {i.dsktpTxtLn2}
                 </Typography>
-                <Button  component={Link} to='/radicalcollaboration/share'  className={classes.buttonRight}>
+                <Button  component={Link} to='/support/share'  className={classes.buttonRight}>
                   {i.buttonText}
                 </Button>
               </Paper>

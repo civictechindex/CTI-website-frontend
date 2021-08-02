@@ -23,11 +23,9 @@ const useStyles = makeStyles((theme) => ({
       },
       [theme.breakpoints.down('md')]: {
         height: '42px',
-        width:'180px',
       },
       [theme.breakpoints.up('md')]: {
         height: '48px',
-        width:'215px',
       },
     },
   },
@@ -97,8 +95,21 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
   )
 }
 
-export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,handleChangeChip,chipInputValue,handleUpdateChipInput }) =>{
+export const ChipInputSection = ({ handleAdd,handleDelete,userTags }) =>{
   const classes = useStyles();
+  return (
+    <ChipInput
+      fullWidth
+      placeholder='Add topic tag'
+      onAdd={(chip) => handleAdd(chip)}
+      onDelete={(deletedChip) => handleDelete(deletedChip)}
+      value={userTags}
+      className = {classes.addTag}
+    />
+  )
+}
+
+export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,userTags,handleAdd,handleDelete }) =>{
   const handleGenerateTag = () =>{
     setChangeValue('GenerateTags')
     setDisplayState('GenerateTags')
@@ -112,14 +123,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,ha
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid data-cy='add-topic-tags'>
-        <ChipInput
-          fullWidth
-          placeholder='Add topic tag'
-          onChange={(chips) => handleChangeChip(chips)}
-          onUpdateInput={handleUpdateChipInput}
-          inputValue={chipInputValue}
-          className = {classes.addTag}
-        />
+        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleGenerateTag} id='generateTagsButton'>Generate Tags</Button></Grid>
@@ -214,16 +218,16 @@ export const CopyPasteTags = ({ tagsToAdd,setDisplayState,repositoryName,reposit
   )
 }
 
-export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChip,changeValue,
-  chipInputValue,handleUpdateChipInput,repoChangeAlert,setRepoChangeAlert }) =>{
-  const classes = useStyles();
+export const AddMoreTags = ({ userTags,setDisplayState,resetForm,changeValue,handleAdd,handleDelete,repoChangeAlert,setRepoChangeAlert }) =>{
   const handleAddMoreTags = () =>{
     if (changeValue === 'CopyPasteTags'){
       setDisplayState('CopyPasteTags')
       setRepoChangeAlert('')
     }
-    else
+    else {
       setDisplayState('GenerateTags')
+      setRepoChangeAlert('')
+    }
   }
 
   const handleResetForm = () => {
@@ -236,15 +240,7 @@ export const AddMoreTags = ({ userTags,setDisplayState,resetForm,handleChangeChi
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
       </Grid>
       <Grid>
-        <ChipInput
-          defaultValue={userTags}
-          fullWidth
-          placeholder='Add topic tag'
-          onChange={(chips) => handleChangeChip(chips)}
-          onUpdateInput={handleUpdateChipInput}
-          inputValue={chipInputValue}
-          className = {classes.addTag}
-        />
+        <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleAddMoreTags}>Generate Tags</Button></Grid>

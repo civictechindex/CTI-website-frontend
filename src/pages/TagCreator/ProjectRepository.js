@@ -37,7 +37,7 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkSty
   )
 }
 
-export const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, topicSearchError, 
+export const ProjectRepositoryInput = ({ handleEnter, repositoryUrl, setRepositoryUrl, topicSearchError,
   setTopicSearchError, handleSubmit }) => {
   const handleChange = (e) =>{
     setRepositoryUrl(e.target.value)
