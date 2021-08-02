@@ -1,3 +1,4 @@
+/* eslint-disable multiline-comment-style */
 import React, { useState } from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
