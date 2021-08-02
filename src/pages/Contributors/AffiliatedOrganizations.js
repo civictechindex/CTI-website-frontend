@@ -73,18 +73,23 @@ export const AffiliatedOrganizations = ({
   checkboxValue,
 }) => {
   const classes = useStyles();
-  const parentfilterData = organizationData;
+
   const isChildThumbnail = true;
   let organizationArray;
   let parentdata;
   let parentChildobj;
   let mapsearchedChildParent;
 
-  const sortOn = (sortingObject) => {
+  const sortFn = (sortingObject) => {
     return function (a, b) {
-      return a[sortingObject]
-        .toLowerCase()
-        .localeCompare(b[sortingObject].toLowerCase());
+      if (a[sortingObject].toLowerCase() > b[sortingObject].toLowerCase()) {
+        return 1;
+      } else if (
+        a[sortingObject].toLowerCase() < b[sortingObject].toLowerCase()
+      ) {
+        return -1;
+      }
+      return 0;
     };
   };
 
@@ -93,19 +98,17 @@ export const AffiliatedOrganizations = ({
 
     parentdata = [];
 
-    organizationArray.forEach((organizationData) => {
-      if (organizationData.depth === 3) {
-        organizationData['childNodes'] = [];
-        organizationData['isOpen'] = false;
-        parentdata.sort(sortOn('name')).push(organizationData);
+    organizationArray.forEach((org) => {
+      if (org.depth === 3) {
+        org['childNodes'] = [];
+        org['isOpen'] = false;
+        parentdata.push(org);
       }
-      if (organizationData.depth === 4) {
-        parentChildobj = parentdata.find((d) =>
-          organizationData.path.includes(d.path)
-        );
+      if (org.depth === 4) {
+        parentChildobj = parentdata.find((d) => org.path.includes(d.path));
 
-        mapsearchedChildParent = parentfilterData.find(
-          (d) => organizationData.path.includes(d.path) && d.depth === 3
+        mapsearchedChildParent = organizationData.find(
+          (d) => org.path.includes(d.path) && d.depth === 3
         );
 
         const exist = parentdata.find(
@@ -122,19 +125,20 @@ export const AffiliatedOrganizations = ({
         }
 
         if (parentChildobj) {
-          if (checkboxValue && organizationData['cti_contributor']) {
-            parentChildobj.childNodes.push(organizationData);
+          if (checkboxValue && org['cti_contributor']) {
+            parentChildobj.childNodes.push(org);
           }
           if (!checkboxValue) {
-            parentChildobj.childNodes.push(organizationData);
+            parentChildobj.childNodes.push(org);
           }
         } else {
-          organizationData['childNodes'] = [];
-          organizationData['isOpen'] = false;
-          parentdata.push(organizationData);
+          org['childNodes'] = [];
+          org['isOpen'] = false;
+          parentdata.push(org);
         }
       }
     });
+    parentdata.sort(sortFn('name'));
     return parentdata;
   };
 
@@ -143,7 +147,7 @@ export const AffiliatedOrganizations = ({
   useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, organizations, parentfilterData, checkboxValue]);
+  }, [inputValue, organizations, organizationData, checkboxValue]);
 
   const getChildrenLength = (org) => {
     if (org.childNodes.length > 0) {
@@ -162,7 +166,7 @@ export const AffiliatedOrganizations = ({
         dropdownlength={currentThumbnails.length}
       >
         {currentThumbnails.map((org, i) => {
-          childSort = org.childNodes.sort(sortOn('name'));
+          childSort = org.childNodes.sort(sortFn('name'));
           childNode = org.isOpen ? childSort : childSort.slice(0, 8);
           return (
             <Dropdown
