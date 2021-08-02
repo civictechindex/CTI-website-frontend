@@ -75,7 +75,6 @@ const TagCreator = () => {
   const [orgTags, setOrgTags] = useQueryParam('orgTags',withDefault(ArrayParam,[]));
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
-  const [chipInputValue, setChipInputValue] = useState('');
   const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/join-index', name: 'Tag Your Project' }]
 
   const resetForm = () => {
@@ -90,6 +89,7 @@ const TagCreator = () => {
     setOrgTags([])
     setChangeValue('')
     setDisplayState('')
+    setRepoChangeAlert('')
   }
 
   useEffect(() => {
@@ -201,26 +201,24 @@ const TagCreator = () => {
 
   }
 
-  const handleUpdateChipInput = (e) => {
-    // this chip input replaces spaces with - in chip values
-    let inputValue = e.target.value;
-    if (inputValue.slice(-1) !== ' ') {
-      inputValue = inputValue.replace(/\s+/g, '-');
+  const handleAdd = (chip) => {
+    chip = chip.toLowerCase().trim().replaceAll(" ", "-")
+    chip = chip.replace(/['`~!@#$%^&*()_|+=?;:'".<>\\{\\}\\[\]\\\\/]/gi, '');
+    while (chip.startsWith("-")){
+      chip = chip.slice(1)
     }
-    setChipInputValue(inputValue);
+    while (chip.endsWith("-")){
+      chip = chip.slice(0,-1)
+    }
+    if (chip.includes(',')){
+      const inputChipArr=chip.split(',')
+      setUserTags([...new Set([...userTags,...inputChipArr])])
+    }
+    else
+      setUserTags([...new Set([...userTags,chip])])
   }
-
-  const handleChangeChip = (chips) =>{
-    let chipsArr = []
-    // Removes - in the end of chip
-    chipsArr = chips.map(chip =>{
-      while (chip.endsWith("-")){
-        chip = chip.slice(0,-1)
-      }
-      return chip
-    })
-    setUserTags(chipsArr)
-    setChipInputValue('')
+  const handleDelete = (deletedChip) => {
+    setUserTags(userTags.filter((c) => c !== deletedChip))
   }
 
   const linkStyles = {
@@ -280,10 +278,9 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
-            handleChangeChip={handleChangeChip}
-            chipInputValue={chipInputValue}
-            setChipInputValue={setChipInputValue}
-            handleUpdateChipInput={handleUpdateChipInput}/>
+            userTags={userTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}/>
         </>
       )
     case "GenerateTags":
@@ -303,18 +300,26 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
-          <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
-            resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue}
-            repoChangeAlert={repoChangeAlert} setRepoChangeAlert={setRepoChangeAlert}/>
+          <AddMoreTags userTags={userTags}
+            setDisplayState={setDisplayState}
+            resetForm={resetForm}
+            changeValue={changeValue}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+            repoChangeAlert={repoChangeAlert}
+            setRepoChangeAlert={setRepoChangeAlert}/>
         </>
       )
     case "AddMoreTags":
       return (
-        <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
-          resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue}
-          setRepoChangeAlert={setRepoChangeAlert}
-          chipInputValue={chipInputValue}
-          handleUpdateChipInput={handleUpdateChipInput}/>
+        <AddMoreTags userTags={userTags}
+          setDisplayState={setDisplayState}
+          resetForm={resetForm}
+          changeValue={changeValue}
+          handleAdd={handleAdd}
+          handleDelete={handleDelete}
+          repoChangeAlert={repoChangeAlert}
+          setRepoChangeAlert={setRepoChangeAlert}/>
       )
     case "CopyPasteTags":
       return (

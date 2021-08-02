@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 describe('Tag Generator Page (Tag Creator)', () => {
   const AFFILIATED_ORGANIZATION = 'Code for Boston';
   const CHANGE_AFFILIATED_ORGANIZATION = 'Hack for LA';
@@ -8,7 +9,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     'alexa',
     'trash',
   ];
-  const UNAFFILIATED_NEW_TAGS = ['tag1', 'tag2', 'tag3'];
+  const UNAFFILIATED_NEW_TAGS = ['new-tag','tag1', 'tag2', 'tag3'];
   const expectedAffiliatedNewTags = ['civictechindex', 'code-for-all', 'tag1'];
   const UNAFFILIATED_TEST_URL =
     'https://github.com/civictechindex/CTI-website-frontend.git';
@@ -155,13 +156,16 @@ describe('Tag Generator Page (Tag Creator)', () => {
         expect(UNAFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index);
       });
     });
-    cy.get('[data-cy=add-topic-tags').type('tag1').type('{enter}');
-    cy.get('[data-cy=add-topic-tags').type('tag2').type('{enter}');
-    cy.get('[data-cy=add-topic-tags').type('tag3').type('{enter}');
+    cy.get('[data-cy=add-topic-tags').type('new tag').type('{enter}');
+    cy.get('[data-cy=add-topic-tags').type('tag1>').type('{enter}');
+    cy.get('[data-cy=add-topic-tags').type('tag2,tag3').type('{enter}');
     cy.get('#generateTagsButton').click();
     cy.get('p').contains('New tags to add to your repository');
     cy.get('[data-cy=new-tags]').within(() => {
+      cy.get('[data-cy=topic-tag] span').contains('new-tag');
       cy.get('[data-cy=topic-tag] span').contains('tag1');
+      cy.get('[data-cy=topic-tag] span').contains('tag2');
+      cy.get('[data-cy=topic-tag] span').contains('tag3');
     });
     cy.get('#add-tags-button').click();
     cy.get('[data-cy=copy-paste-tags]').within(() => {
