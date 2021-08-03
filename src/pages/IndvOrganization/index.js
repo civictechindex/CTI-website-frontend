@@ -111,7 +111,7 @@ const IndvOrgPage = ({ match }) => {
               for (let j=po.length-1; j>=0; --j){
                 parentOrgs.push(po[j].name);
               }
-             
+
               setCrumbs(crumbs);
               setParentOrgs(parentOrgs)
               setCrumbsInSmallScreen(crumbsInSmallScreen);
