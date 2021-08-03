@@ -1,4 +1,4 @@
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@material-ui/core/styles/makeStyles';
 const DARK_GRAY = '#6D6E74';
 
 export const useStyle = makeStyles((theme) => ({
@@ -32,9 +32,9 @@ export const useStyle = makeStyles((theme) => ({
     width: '100px',
   },
   textStyle: {
-    color:theme.palette.text.secondary,
+    color: theme.palette.text.secondary,
     fontSize: '24px',
-    textAlign:'center',
+    textAlign: 'center',
     marginTop: '-1rem',
     [theme.breakpoints.down('sm')]: {
       fontSize: 16,
@@ -68,34 +68,32 @@ export const useStyle = makeStyles((theme) => ({
       fontSize: '28px',
     },
 
-    "&:hover": {
-      color: "#006B95",
+    '&:hover': {
+      color: '#006B95',
       opacity: 1,
     },
-
   },
   tabRoot: {
-   "&.MuiTab-root" : {
+    '&.MuiTab-root': {
       fontSize: '32px',
       color: DARK_GRAY,
       fontWeight: 'bold',
       textTransform: 'none',
     },
-    "&$tabSelected": {
-      color: "#006B95",
+    '&$tabSelected': {
+      color: '#006B95',
     },
   },
   tabSelected: {},
-  
- 
+
   chkBoxStyle: {
-   "& .MuiSvgIcon-root": {
-       width: '24px',
-       height: '24px',
-       color: DARK_GRAY,
+    '& .MuiSvgIcon-root': {
+      width: '24px',
+      height: '24px',
+      color: DARK_GRAY,
     },
-  
-   [theme.breakpoints.down('md')]: {
+
+    [theme.breakpoints.down('md')]: {
       paddingLeft: '45rem',
     },
     [theme.breakpoints.down('sm')]: {
@@ -108,7 +106,6 @@ export const useStyle = makeStyles((theme) => ({
   },
   formControlLabel: {
     color: theme.palette.secondary.dark,
-    fontSize:'24px',
+    fontSize: '24px',
   },
-  
 }));
