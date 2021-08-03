@@ -1,28 +1,47 @@
 import React from 'react';
+import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
-import useStyles from './styles';
 import Typography from '@material-ui/core/Typography';
+import useStyles from './styles';
 
 const SocialSection = ({ size }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div
-      className={size !== 'lg'
-        ? `${classes.sectionPaddingSm}`
-        : `${classes.containerItem}`
-      }
+      className={clsx({
+        [classes.sectionPaddingSm]: size !== 'lg',
+        [classes.containerItem]: size === 'lg',
+      })}
     >
       <Grid
-        container direction='column'
+        container
+        direction='column'
         spacing={size !== 'lg' ? 4 : 0}
-        className={size === 'lg' ? classes.socialContainerLarge : null}
+        className={clsx({
+          [classes.socialContainerLarge]: size === 'lg',
+        })}
       >
-        <Grid item >
-          <Typography variant='body2' color='textSecondary' className={size !== 'lg' ? classes.followTypographySm : classes.followTypographyLg}>Follow Us</Typography>
+        <Grid item>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            className={clsx({
+              [classes.followTypographySm]: size !== 'lg',
+              [classes.followTypographyLg]: size === 'lg',
+            })}
+          >
+            Follow Us
+          </Typography>
         </Grid>
 
-        <Grid item  className={size !== 'lg' ? classes.socialContainer : classes.socialIcons}>
+        <Grid
+          item
+          className={clsx({
+            [classes.socialContainer]: size !== 'lg',
+            [classes.socialIcons]: size === 'lg',
+          })}
+        >
           <a href='https://www.instagram.com/civictechindex'>
             <img src='/images/insta-logo.svg' alt='Instagram logo' />
           </a>
@@ -38,7 +57,7 @@ const SocialSection = ({ size }) => {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 };
 
 export default SocialSection;

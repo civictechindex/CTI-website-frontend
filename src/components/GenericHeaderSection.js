@@ -5,23 +5,19 @@ import Grid from '@material-ui/core/Grid';
 import { NavBreadcrumbs, TitleSection } from './index';
 import { makeStyles } from '@material-ui/core/styles';
 
-const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks, addPad }) => {
+const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks }) => {
   const useStyles = makeStyles((theme) => ({
     headerContainerStyle: {
       height: 'auto',
-    },
-    addPad: {
-      minHeight: '32px',
     },
   }));
   const classes = useStyles();
 
   return (
-    <Box className='boxBackground' minHeight='300px' display='flex' alignContent='center'>
-      <Container className={classes.headerContainerStyle} display='flex' alignContent='center'>
+    <Box className='boxBackground' minHeight='300px'>
+      <Container className={classes.headerContainerStyle}>
         <NavBreadcrumbs crumbs={breadCrumbLinks} />
-        <Grid container justify='center' display='flex' alignContent='center'>
-          {addPad && <Container className={classes.addPad} />}
+        <Grid container justify='center'>
           <TitleSection>{mainTitle}</TitleSection>
           {children}
         </Grid>

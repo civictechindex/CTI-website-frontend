@@ -74,7 +74,6 @@ const RadicalCollaboration = () => {
           <GenericHeaderSection
             mainTitle='Your help goes a long way'
             breadCrumbLinks={breadCrumbLinks}
-            addPad
           />
         </Container>
       </Box>

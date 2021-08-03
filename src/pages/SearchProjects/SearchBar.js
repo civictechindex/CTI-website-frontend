@@ -4,24 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import { makeStyles } from '@material-ui/core/styles';
 
-/**
- * Simple search.
- *
- * FIXME: Should the functions for search be defined here?
- *       const [query, setQuery] = useState('');
- *       const [results, setResults] = useState('');
- *
- *       const handleSubmit = (event) => {
- *          if (event.key === 'Enter') { console.log(query); } };
- *
- * <SearchBar value={query} onInput={e => setQuery(e.target.value)} placeholder="Search the Civic Tech Index" onKeyPress={handleSubmit} />
- *
- * @param {*} value Value of the input passed into the SearchBar. You'll want to pass a state variable here
- * @param {*} onInput Supply hook for value state changes
- * @param {String} placeholder Default placeholder value
- * @param {function} onKeyPress Listens for enter value.
- */
-
 const useStyles = makeStyles((theme) => ({
   icon: {
     backgroundColor: theme.palette.secondary.main,
@@ -33,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     width: '56px',
     '&:hover': {
       cursor: 'pointer',
-    }
+    },
   },
   input: {
     backgroundColor: theme.palette.background.default,

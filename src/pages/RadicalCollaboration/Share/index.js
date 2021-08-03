@@ -287,7 +287,7 @@ export default function ShareTheCti() {
 
   return (
     <Box>
-      <GenericHeaderSection mainTitle='Share the CTI' breadCrumbLinks={breadCrumbLinks} addPad />
+      <GenericHeaderSection mainTitle='Share the CTI' breadCrumbLinks={breadCrumbLinks} />
       <Container className={classes.containerStyle}>
         <Grid
           container
