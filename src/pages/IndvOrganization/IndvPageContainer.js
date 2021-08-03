@@ -240,16 +240,17 @@ export const IndvPageContainer = (props) => {
                 pages={pages}
                 pageNum={pageNum}
                 onPageChange={handlePageChange}
-              />) : (
-                errorState ? <Box my={12} display='flex' justifyContent='center'>
+              />
+            ) : errorState ? (
+              <Box my={12} display='flex' justifyContent='center'>
                 <Typography variant='body1' className={classes.message}>
                   <i>We are experiencing technical issues. Please try again later.</i>
                 </Typography>
-                </Box>
-                :
-                <Box my={12} display='flex' justifyContent='center'>
-                  <CircularProgress color="secondary" />
-                </Box>
+              </Box>
+            ) : (
+              <Box my={12} display='flex' justifyContent='center'>
+                <CircularProgress color='secondary' />
+              </Box>
             )}
           </Container>
         </Grid>
