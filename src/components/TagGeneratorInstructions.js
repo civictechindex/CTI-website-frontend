@@ -68,7 +68,6 @@ const HowToUse = () => {
             <GenericHeaderSection
               mainTitle='How to Add Your Project'
               breadCrumbLinks={breadCrumbLinks}
-              addPad
             />
           </Container>
         </Box>
