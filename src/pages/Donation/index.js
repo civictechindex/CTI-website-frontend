@@ -22,7 +22,6 @@ const Donation = () => {
           <GenericHeaderSection
             mainTitle='Make a Donation'
             breadCrumbLinks={breadCrumbLinks}
-            addPad
           />
         </Container>
       </Box>
