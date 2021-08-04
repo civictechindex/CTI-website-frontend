@@ -112,7 +112,7 @@ export const Affiliated = (props) => {
         </Grid>
         <Grid>
           <Typography variant='h4' noWrap>
-            <Link
+              <Link
               href='https://codeforall.org'
               target='_blank'
               rel='noreferrer noopener'

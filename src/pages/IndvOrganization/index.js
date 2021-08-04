@@ -83,7 +83,8 @@ const IndvOrgPage = ({ match }) => {
           const githubLink = links.find(link => link.link_type === 'GitHub')?.url;
 
           if (githubId === null) {
-            imageUrl = x.image_url;
+            //Set up default Github Image if image Url is empty.
+            imageUrl = x.image_url ? x.image_url : `/images/default-github-repo-image.png`;
           } else {
             imageUrl = `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
           }
@@ -111,7 +112,7 @@ const IndvOrgPage = ({ match }) => {
               for (let j=po.length-1; j>=0; --j){
                 parentOrgs.push(po[j].name);
               }
-             
+
               setCrumbs(crumbs);
               setParentOrgs(parentOrgs)
               setCrumbsInSmallScreen(crumbsInSmallScreen);

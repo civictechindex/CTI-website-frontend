@@ -81,11 +81,11 @@ const useStyles = makeStyles((theme) => ({
     '.boxBackground': {
       backgroundColor: theme.palette.background.primary,
     },
-    '.indv-header-bg':{
+    '.indv-header-bg': {
       backgroundImage: 'url(/images/indv-org-page-bg.png)',
       minHeight: '512px',
       maxHeight: '580px',
-    }
+    },
   },
 }));
 

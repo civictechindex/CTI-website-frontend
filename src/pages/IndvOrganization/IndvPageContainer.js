@@ -52,12 +52,14 @@ export const IndvPageContainer = (props) => {
   const [dropDownListItem, setDropDownListItem] = useState('');
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState('best match');
-  const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false)
+  const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false);
+  const [errorState, setErrorState] = useState(false);
   const projectsPerPage = 4;
   const classes = useStyles();
 
   useEffect(() => {
     setLoading(true);
+    setErrorState(false);
     setIsProjectSearchFinish(false);
     setProjects([]);
     setBestMatchProjects([]);
@@ -92,7 +94,7 @@ export const IndvPageContainer = (props) => {
           setDropDownListItem(resList);
         })
         .catch(err => {
-          setProjects([]);
+          setErrorState(true);
         })
     }
 
@@ -144,7 +146,7 @@ export const IndvPageContainer = (props) => {
             }
           })
           .catch(err => {
-            setProjects([]);
+            setErrorState(true);
           })
       );
     }
@@ -238,9 +240,16 @@ export const IndvPageContainer = (props) => {
                 pages={pages}
                 pageNum={pageNum}
                 onPageChange={handlePageChange}
-              />) : (
+              />
+            ) : errorState ? (
               <Box my={12} display='flex' justifyContent='center'>
-                <CircularProgress color="secondary" />
+                <Typography variant='body1' className={classes.message}>
+                  <i>We are experiencing technical issues. Please try again later.</i>
+                </Typography>
+              </Box>
+            ) : (
+              <Box my={12} display='flex' justifyContent='center'>
+                <CircularProgress color='secondary' />
               </Box>
             )}
           </Container>

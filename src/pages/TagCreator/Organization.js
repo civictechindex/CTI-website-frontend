@@ -163,13 +163,14 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
             po.map(p =>(p.org_tag !== "") ? topics.push(p.org_tag) : null)
           }
           setOrgTags(topics)
-        }).catch(e => {
+        })
+        .catch((e) => {
           /*
            * This should store the error state.
            * Component should check for error state and resolve the correct response.
            */
-          console.log(e);
-        })
+          console.log(e); // eslint-disable-line no-console
+        });
       handleChangeOrg()
     }
     else if (value === 'no' && orgName === ''){
