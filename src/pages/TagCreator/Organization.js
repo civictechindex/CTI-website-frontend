@@ -180,7 +180,7 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
   return (
     <Grid item xs={12} sm={12}>
       <Typography variant='body1' color='error'>{orgNameError}</Typography>
-      <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
+      <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>{(value === 'yes')?'Submit Organization':'Next'}</Button></Grid>
     </Grid>
   )
 }

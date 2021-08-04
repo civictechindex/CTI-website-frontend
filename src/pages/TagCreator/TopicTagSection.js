@@ -88,7 +88,7 @@ export const AddTagsQuestion = ({ resetForm,setDisplayState,setChangeValue }) =>
     <>
       <AffiliationQuestionSection value={addTagValue} handleChange={handleChangeTag} question={"Do you want to add more tags specific to your project's subject area to increase visibility?"} />
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={showAddTopicTag} id='generate-button'>Generate Tags</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={showAddTopicTag} id='generate-button'>Add Tag(s)</Button></Grid>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm} id='reset-form-button'>Reset Form</Button></Grid>
       </Grid>
     </>
@@ -126,7 +126,7 @@ export const AddTopicTagSection = ({ setDisplayState,setChangeValue,resetForm,us
         <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} />
       </Grid>
       <Grid container direction="row" justify="center" alignItems="center" spacing={3} style={{ padding:'10px' }}>
-        <Grid item style={{ padding:'10px' }}><Button onClick={handleGenerateTag} id='generateTagsButton'>Generate Tags</Button></Grid>
+        <Grid item style={{ padding:'10px' }}><Button onClick={handleGenerateTag} id='generateTagsButton'>Add Tag(s)</Button></Grid>
         <Grid item style={{ padding:'10px' }}><Button onClick={handleResetForm} id='reset-form-button'>Reset Form</Button></Grid>
       </Grid>
     </>
@@ -155,14 +155,14 @@ export const NewTags =({ resetForm,setDisplayState,tagsToAdd,setChangeValue,link
             </Grid>
           </Grid>
           <Grid item sm={4}>
-            <Link component="button" variant='body1' onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More tags</Link>
+            <Link component="button" variant='body1' onClick={()=>setDisplayState('AddMoreTags')} underline='always' style={linkStyles} >Add More/Change Tags</Link>
           </Grid>
         </Grid>
       </Grid>
       <Grid container direction='row' justify='center' alignItems='center' spacing={3} style={{ padding: '10px' }}>
         <Grid item style={{ padding: '10px' }}>
           <Button onClick={handleAddTags} id='add-tags-button'>
-            Add these tags to your repo
+            Add Tag(s) to Repository
           </Button>
         </Grid>
         <Grid item style={{ padding: '10px' }}>
