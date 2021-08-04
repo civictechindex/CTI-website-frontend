@@ -80,13 +80,11 @@ export const AffiliatedOrganizations = ({
   let parentChildobj;
   let mapsearchedChildParent;
 
-  const sortFn = (sortingObject) => {
+  const sortFn = (sortKey) => {
     return function (a, b) {
-      if (a[sortingObject].toLowerCase() > b[sortingObject].toLowerCase()) {
+      if (a[sortKey].toLowerCase() > b[sortKey].toLowerCase()) {
         return 1;
-      } else if (
-        a[sortingObject].toLowerCase() < b[sortingObject].toLowerCase()
-      ) {
+      } else if (a[sortKey].toLowerCase() < b[sortKey].toLowerCase()) {
         return -1;
       }
       return 0;
