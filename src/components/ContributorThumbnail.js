@@ -191,7 +191,7 @@ const Thumbnail = ({
               isOpen ? `${classes.blueColorText}` : `${classes.orgText}`
             }
           >
-           <Link
+            <Link
               href={thumbnailInfo.organizationUrl}
               target='_blank'
               rel='noreferrer noopener'
