@@ -55,9 +55,8 @@ export default function Contributors({ match }) {
   const searchaffiliation = match.params.searchaffiliation;
 
   const [affiliatedCount, getaffiliatedCount] = useState(0);
-  const [affiliatedOpen, setAffiliatedOpen] = useState(false);
   const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
-  const [affiliatedSepOpen, setAfflnSepOpen] = useState(false);
+  const [affiliatedItems, setAfflnItems] = useState(false);
   const [showIndexContrib, setShowIndexContrib] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [organizations, setOrganizations] = useState([]);
@@ -65,9 +64,8 @@ export default function Contributors({ match }) {
   const [organizationNamesList, setOrganizationNamesList] = useState([]);
   const [searchCount, setsearchCount] = useState(false);
   const [tabValue, setTabValue] = useState(0);
-  const [unaffiliated, getAffiliatedNames] = useState([]);
   const [unaffiliatedCount, getunaffiliatedCount] = useState(0);
-  const [unaffiliatedOpen, setUnaffiliatedOpen] = useState(false);
+  const [unaffiliatedItems, setUnaffiliatedItems] = useState(false);
 
 
   let count1 =0, count2 =0,totalaffiliatedCount=0,totalunaffiliatedCount=0;
@@ -118,7 +116,6 @@ export default function Contributors({ match }) {
         else {
           affiliated["unaffiliated"] = [organization];
         }
-        getAffiliatedNames(organization);
       };
 
 
@@ -177,19 +174,17 @@ export default function Contributors({ match }) {
 
   useEffect(() => {
     if (affiliation === "unaffiliated") {
-      setUnaffiliatedOpen(true);
-      setAffiliatedOpen(false);
-      setAfflnSepOpen(false);
+      setUnaffiliatedItems(true);
+      setAfflnItems(false);
     } else if (affiliation === "affiliated") {
-      setAffiliatedOpen(true);
-      setUnaffiliatedOpen(false);
-      setAfflnSepOpen(true);
+      setUnaffiliatedItems(false);
+      setAfflnItems(true);
     } else {
-      setAffiliatedOpen(false);
-      setUnaffiliatedOpen(true);
-      setAfflnSepOpen(false);
+      setUnaffiliatedItems(true);
+      setAfflnItems(false);
     }
   }, [affiliation]);
+
 
   // Tab Code
 
@@ -262,9 +257,8 @@ export default function Contributors({ match }) {
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
-                unaffiliatedOpen= {unaffiliatedOpen}
+                unaffiliatedItems= {unaffiliatedItems}
                 searchCount={searchCount}
-                unaffiliated={unaffiliated}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalunaffiliatedCount}
                 checkboxValue={showIndexContrib}
@@ -274,20 +268,19 @@ export default function Contributors({ match }) {
                 inputValue={inputValue}
                 classes={classes}
                 affiliation="affiliated"
-                affiliatedOpen={affiliatedOpen}
                 organizationData={organizationData}
-                affiliatedSepOpen= {affiliatedSepOpen}
+                affiliatedItems= {affiliatedItems}
                 searchCount={searchCount}
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalaffiliatedCount}
-                setAfflnSepOpen={setAfflnSepOpen}
+                setAfflnItems={setAfflnItems}
                 checkboxValue={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
-                unaffiliatedOpen= {unaffiliatedOpen}
+                unaffiliatedItems= {unaffiliatedItems}
                 searchCount={searchCount}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalunaffiliatedCount}
@@ -301,11 +294,11 @@ export default function Contributors({ match }) {
                 classes={classes}
                 affiliation="affiliated"
                 organizationData={organizationData}
-                affiliatedSepOpen= {affiliatedSepOpen}
+                affiliatedItems= {affiliatedItems}
                 searchCount={searchCount}
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalaffiliatedCount}
-                setAfflnSepOpen={setAfflnSepOpen}
+                setAfflnItems={setAfflnItems}
                 checkboxValue={showIndexContrib}
               />
             </TabPanel>

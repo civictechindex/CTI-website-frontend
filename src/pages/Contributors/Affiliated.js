@@ -75,20 +75,19 @@ export const Affiliated = (props) => {
     inputValue,
     classes,
     organizationData,
-    affiliatedSepOpen,
+    affiliatedItems,
     searchCount,
     affiliatedCount,
     totalaffiliatedCount,
-    setAfflnSepOpen,
+    setAfflnItems,
     checkboxValue,
   } = props;
   const classesLocal = useStyles();
   const [gp, setGp] = useState(false);
   const handleClickGrid = () => {
     setGp(!gp);
-    setAfflnSepOpen(true);
+    setAfflnItems(true);
   };
-
   return (
     <Grid>
       <Grid style={{ padding: '40px' }}>
@@ -147,7 +146,7 @@ export const Affiliated = (props) => {
         </Grid>
       </Grid>
       <Grid>
-        {affiliatedSepOpen &&
+        {affiliatedItems &&
           gp &&
           (!organizations['Code for All'] ? (
             !inputValue ? (
