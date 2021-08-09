@@ -1,59 +1,10 @@
 // eslint-disable-next-line max-lines-per-function
 describe('Contributors Page', () => {
-  // Commenting out these test cases since the organizations page is still in progress
-  /*
-   * before(() => {
-   *   cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
-   *   cy.visit('/organizations/all');
-   *   cy.wait('@getOrganizations');
-   * });
-   */
-
-  /*
-   * it('check that affiliated orgs have loaded', () => {
-   *   cy.get('[class*=affiliatedOrgsContainer]').within(() => {
-   *     cy.get('[class*=containerDropdown]').should('have.length', 24);
-   *   })
-   * })
-   */
-
-  /*
-   * it('check Code for All', () => {
-   *   cy.get('[class*=affiliatedOrgsContainer]').within(() => {
-   *     cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1)
-   *     cy.get('[href*=codeforall]').within(() => {
-   *       cy.contains('Code for All')
-   *     })
-   *   })
-   * })
-   */
-
-  /*
-   * it('load thumbnail wrappers', () => {
-   *   cy.get('[class*=thumbnailWrapper]').should('have.length', 27);
-   * });
-   */
-
-  /*
-   * it('expands Code for America, find Code for Anchorage', () => {
-   *   cy.get('[href*=codeforamerica]')
-   *     .parents('[class*=containerDropdown]')
-   *     .within(() => {
-   *       cy.get('#dropdownChevron').click();
-   *     });
-   *   cy.get('[href*=codeforamerica]')
-   *     .parents('[class*=containerDropdown]')
-   *     .within(() => {
-   *       cy.contains('Code for Anchorage');
-   *       cy.get('[class*=makeStyles-thumbnailWrapper]').should('have.length', 86);
-   *     });
-   * });
-   */
-
   before(() => {
-    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
+      fixture: 'orgs.json'
+    });
     cy.visit('/organizations/');
-    cy.wait('@getOrganizations');
   });
 
   it('should show all orgs tab selected', () => {
@@ -65,9 +16,7 @@ describe('Contributors Page', () => {
   });
 
   it('should navigate to unaffiliated and show unaffiliated orgs tab selected', () => {
-    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
     cy.visit('/organizations/unaffiliated');
-    cy.wait('@getOrganizations');
     cy.get('[class*=MuiTabs-flexContainer]').within(() => {
       cy.get('button').eq(0).invoke('attr', 'aria-selected').should('eq', 'false');
       cy.get('button').eq(1).invoke('attr', 'aria-selected').should('eq', 'true');
@@ -76,9 +25,7 @@ describe('Contributors Page', () => {
   });
 
   it('should navigate to affiliated and show affiliated orgs tab selected', () => {
-    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
     cy.visit('/organizations/affiliated');
-    cy.wait('@getOrganizations');
     cy.get('[class*=MuiTabs-flexContainer]').within(() => {
       cy.get('button').eq(0).invoke('attr', 'aria-selected').should('eq', 'false');
       cy.get('button').eq(1).invoke('attr', 'aria-selected').should('eq', 'false');
@@ -124,3 +71,47 @@ describe('Contributors Page', () => {
     });
   });
 });
+
+  // Commenting out these test cases since the organizations page is still in progress
+  /*
+   * it('check that affiliated orgs have loaded', () => {
+   *   cy.get('[class*=affiliatedOrgsContainer]').within(() => {
+   *     cy.get('[class*=containerDropdown]').should('have.length', 24);
+   *   })
+   * })
+   */
+
+  /*
+   * it('check Code for All', () => {
+   *   cy.get('[class*=affiliatedOrgsContainer]').within(() => {
+   *     cy.get('[class*=makeStyles-codeForAll]').should('have.length', 1)
+   *     cy.get('[href*=codeforall]').within(() => {
+   *       cy.contains('Code for All')
+   *     })
+   *   })
+   * })
+   */
+
+  /*
+   * it('load thumbnail wrappers', () => {
+   *   cy.get('[class*=thumbnailWrapper]').should('have.length', 27);
+   * });
+   */
+
+  /*
+   * it('expands Code for America, find Code for Anchorage', () => {
+   *   cy.get('[href*=codeforamerica]')
+   *     .parents('[class*=containerDropdown]')
+   *     .within(() => {
+   *       cy.get('#dropdownChevron').click();
+   *     });
+   *   cy.get('[href*=codeforamerica]')
+   *     .parents('[class*=containerDropdown]')
+   *     .within(() => {
+   *       cy.contains('Code for Anchorage');
+   *       cy.get('[class*=makeStyles-thumbnailWrapper]').should('have.length', 86);
+   *     });
+   * });
+   */
+
+
