@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@material-ui/core/Box'
 import axios from 'axios';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
@@ -22,22 +21,63 @@ const calculateDaysSince = (updateTime) => {
   return Math.round(days / (1000 * 3600 * 24));
 };
 
-const renderListItem = (project) => {
+const renderListItem = (project, classes) => {
   const urlText = project.html_url.replaceAll("https://github.com/", "");
+
   return (
     <ListItem key={project.id}>
-      <a href={project.html_url} style={{ fontWeight: 'bold', textAlign: 'center' }}>{urlText}</a>
+      <a href={project.html_url} className={classes.dropdownOptionLinkStyle}>{urlText}</a>
     </ListItem>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
-
-  select: {
-    [theme.breakpoints.down('xs')]: {
-      width: '55vw',
+  centerContainerStyle: {
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '32px',
+      marginRight: '32px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '16px',
+      marginRight: '16px',
     },
   },
+  allSubmittedProjectSectionStyle: {
+    marginTop: '32px',
+    marginBottom: '12px',
+    [theme.breakpoints.down('md')]: {
+      marginTop: '32px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '26px',
+    },
+  },
+  contentContainerStyle:{
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: '806px',
+      margin: 'auto',
+    },
+    [theme.breakpoints.down('md')]: {
+      minWidth: '896px',
+      maxWidth: '1279px',
+      margin: 'auto',
+    },
+    [theme.breakpoints.down('sm')]: {
+      minWidth: '568px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      minWidth: '0px',
+    },
+  },
+  dropdownOptionLinkStyle: {
+    fontWeight: '700',
+    fontFamily: 'Work Sans',
+    fontSize: '16px',
+    color: '#0D99C6',
+    fontStyle: 'normal',
+    lineHeight: '21px',
+  },
+
 }));
 
 
@@ -85,9 +125,9 @@ export const IndvPageContainer = (props) => {
         })
         .then((res) => {
           const resList = [];
-          res.data.items.filter((filter) => !filter.full_name.includes(props.orgGithubName) && filter.full_name !== undefined)
-            .map((i) => {
-              resList.push(renderListItem(i));
+          res.data.items.filter((project) => !project.full_name.includes(props.orgGithubName) && project.full_name !== undefined)
+            .map((otherProjectItem) => {
+              resList.push(renderListItem(otherProjectItem,classes));
               return null;
             });
 
@@ -98,7 +138,7 @@ export const IndvPageContainer = (props) => {
         })
     }
 
-  }, [props.orgGithubName]);
+  }, [classes, props.orgGithubName]);
 
   // Loading the Submitted projects searched by element from its projectSearchTopicsArr
   useEffect(() => {
@@ -106,21 +146,21 @@ export const IndvPageContainer = (props) => {
     if (props.projectSearchTopicsArr.length > 0) {
       // remove duplicate search topics
       let filteredArray = props.projectSearchTopicsArr
-      filteredArray = filteredArray.filter((x) => x);
+      filteredArray = filteredArray.filter((elem) => elem);
       const topicSet = new Set(filteredArray);
-      topicSet.forEach(async (x) =>
+      topicSet.forEach(async (topic) =>
         await axios
           .get(`https://api.github.com/search/repositories`, {
             headers: { Accept: "application/vnd.github.mercy-preview+json" },
             params: {
-              q: 'topic:civictechindex ' + x,
+              q: 'topic:civictechindex ' + topic,
               sort: 'best match',
               order: 'desc',
               per_page: 100,
             },
           })
           .then((res) => {
-            repoMap.set(x, res.data.items);
+            repoMap.set(topic, res.data.items);
             if (repoMap.size === topicSet.size) {
               const repoKeyArr = [];
               const bestMatchSortedProjectsArr = [];
@@ -207,55 +247,50 @@ export const IndvPageContainer = (props) => {
 
   return (
     <>
-      <Grid container>
-        <Grid item xs={1} sm={2} />
-        <Grid item xs={10} sm={8} >
-          <Container fixed maxWidth={props.largeScreen ? "lg" : "md"}>
-            <Grid >
-              <OtherProjectsDropdown dropdownTitle={props.dropdownTitle} dropDownListItem={dropDownListItem} />
-            </Grid>
-            <Box display='flex' justifyContent='space-between' alignItems='center' style={{ paddingTop: "2rem" }}>
-              <Typography variant='h5'>
+      <Grid className={classes.contentContainerStyle}>
+        <Grid item className={classes.centerContainerStyle}>
+          {dropDownListItem.length > 0 ? <OtherProjectsDropdown dropdownTitle={props.dropdownTitle} dropDownListItem={dropDownListItem} /> : ""}
+          <Box display='flex' justifyContent='space-between' alignItems='center' className={classes.allSubmittedProjectSectionStyle}>
+            <Typography variant='h5'>
                 All Submitted Projects:
+            </Typography>
+            <FormControl variant='outlined'>
+              <InputLabel id='sort-select-label'>Sort</InputLabel>
+              <Select
+                labelId='sort-select-label'
+                label='Sort'
+                defaultValue='best match'
+                value={sort}
+                onChange={(e) => handleSortChange(e.target.value)}
+              >
+                <MenuItem value='best match'>Best Match</MenuItem>
+                <MenuItem value='updated'>Last Updated</MenuItem>
+                <MenuItem value='stars'>Stargazer Count</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          {!loading ? (
+            <ResultContainer
+              results={results}
+              pages={pages}
+              pageNum={pageNum}
+              onPageChange={handlePageChange}
+            />
+          ) : errorState ? (
+            <Box my={12} display='flex' justifyContent='center'>
+              <Typography variant='h5' className={classes.message}>
+                <i>We are experiencing technical issues. Please try again later.</i>
               </Typography>
-              <FormControl variant='outlined'>
-                <InputLabel id='sort-select-label'>Sort</InputLabel>
-                <Select
-                  labelId='sort-select-label'
-                  label='Sort'
-                  defaultValue='best match'
-                  value={sort}
-                  className={classes.select}
-                  onChange={(e) => handleSortChange(e.target.value)}
-                >
-                  <MenuItem value='best match'>Best Match</MenuItem>
-                  <MenuItem value='updated'>Last Updated</MenuItem>
-                  <MenuItem value='stars'>Stargazer Count</MenuItem>
-                </Select>
-              </FormControl>
             </Box>
-            {!loading ? (
-              <ResultContainer
-                results={results}
-                pages={pages}
-                pageNum={pageNum}
-                onPageChange={handlePageChange}
-              />
-            ) : errorState ? (
-              <Box my={12} display='flex' justifyContent='center'>
-                <Typography variant='body1' className={classes.message}>
-                  <i>We are experiencing technical issues. Please try again later.</i>
-                </Typography>
-              </Box>
-            ) : (
-              <Box my={12} display='flex' justifyContent='center'>
-                <CircularProgress color='secondary' />
-              </Box>
-            )}
-          </Container>
+          ) : (
+            <Box my={12} display='flex' justifyContent='center'>
+              <CircularProgress color='secondary' />
+            </Box>
+          )}
         </Grid>
-        <Grid item xs={1} sm={2} />
       </Grid>
+
+
     </>
   )
 }

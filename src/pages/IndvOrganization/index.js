@@ -6,8 +6,6 @@ import { Header } from './Header';
 import Error404 from '../Error404';
 import { IndvPageContainer } from './IndvPageContainer';
 import Box from '@material-ui/core/Box';
-import { useTheme } from '@material-ui/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import '../../styles.css';
 
 const IndvOrgPage = ({ match }) => {
@@ -19,16 +17,12 @@ const IndvOrgPage = ({ match }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [parentOrgs, setParentOrgs] = useState([]);
   const [projectSearchTopicsArr, setProjectSearchTopicsArr] = useState([]);
-  const [crumbs, setCrumbs] = useState([]);
-  const [crumbsInSmallScreen, setCrumbsInSmallScreen] = useState([]);
+  const [breadCrumbs, setBreadCrumbs] = useState([]);
   const [isPathChange, setIsPathChange] = useState(false);
   const [notFound, setNotFound] = useState(true);
   const [dropdownTitle, setDropdownTitle] = useState('');
 
   const pathName = (match.params.name)?.toLowerCase()?.trim();
-  const theme = useTheme();
-
-  const largeScreen = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true });
 
   // Reset variables when the path changes.
   useEffect(() => {
@@ -53,16 +47,16 @@ const IndvOrgPage = ({ match }) => {
       await axios.get(
         `${process.env.REACT_APP_API_URL}/api/organizations/`
       ).then((res) => {
-        for (const x of res.data.values()) {
-          if (x === undefined || x === '') {
+        for (const org of res.data.values()) {
+          if (org === undefined || org === '') {
             continue;
           }
-          const name = x.name;
-          const slug = x.slug;
-          const orgTag = x.org_tag;
-          const githubId = x.github_id;
-          const githubName = x.github_name;
-          const url = x.url;
+          const name = org.name;
+          const slug = org.slug;
+          const orgTag = org.org_tag;
+          const githubId = org.github_id;
+          const githubName = org.github_name;
+          const url = org.url;
           const modifiedName =name?.replaceAll(" ", "").toLowerCase();
           let imageUrl;
 
@@ -78,13 +72,12 @@ const IndvOrgPage = ({ match }) => {
           let projectSearchTopicsArr = [githubName, orgTag];
           projectSearchTopicsArr = projectSearchTopicsArr.concat(slug);
           projectSearchTopicsArr.filter((topic) => topic)
-          const { links } = x;
+          const { links } = org;
           const webisteLink = links.find(link => link.link_type === 'WebSite')?.url;
           const githubLink = links.find(link => link.link_type === 'GitHub')?.url;
 
           if (githubId === null) {
-            //Set up default Github Image if image Url is empty.
-            imageUrl = x.image_url ? x.image_url : `/images/default-github-repo-image.png`;
+            imageUrl = org.image_url;
           } else {
             imageUrl = `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
           }
@@ -93,36 +86,30 @@ const IndvOrgPage = ({ match }) => {
           const parentOrgs = [];
           const crumbs = [
             { name: 'Home', href: '/home' },
-            { name: 'Civic Tech Partners', href: '/organizations/all' },
-            { name: name, href: '/organizations/'+name?.replaceAll(" ", "").toLowerCase() },
-          ];
-          const crumbsInSmallScreen = [
-            { name: 'Home', href: '/home' },
-            { name: '...', href: '/organizations/all' },
+            { name: 'View Organization', href: '/organizations/all' },
             { name: name, href: '/organizations/'+name?.replaceAll(" ", "").toLowerCase() },
           ];
 
           // Get the Parent organization list for breadcrumbs and Affiliations Topic Tags.
           const setupBreadCrumbs = async ()=>{
             await axios.get(url).then((res) => {
-              const po = res?.data.parents;
+              const parentOrgArr = res?.data.parents;
               parentOrgs.push(name);
               setDropdownTitle(name + " projects appear in other organization's repositories");
 
-              for (let j=po.length-1; j>=0; --j){
-                parentOrgs.push(po[j].name);
+              for (let j=parentOrgArr.length-1; j>=0; --j){
+                parentOrgs.push(parentOrgArr[j].name);
               }
 
-              setCrumbs(crumbs);
+              setBreadCrumbs(crumbs);
               setParentOrgs(parentOrgs)
-              setCrumbsInSmallScreen(crumbsInSmallScreen);
               setShowHeaderResults(true);
 
             });
           }
           setupBreadCrumbs();
 
-          setOrgName(orgTag);
+          setOrgName(name);
           setNotFound(false);
           setImageUrl(imageUrl);
           setIsPathChange(false);
@@ -151,7 +138,7 @@ const IndvOrgPage = ({ match }) => {
   return (
     (!notFound) ? (
       <Box className='containerGray'>
-        <Header crumbs={largeScreen ? crumbs : crumbsInSmallScreen}
+        <Header crumbs={breadCrumbs}
           showHeaderResults={showHeaderResults} githubLink={githubLink}
           imageUrl={imageUrl} websiteUrlResults={websiteUrlResults} orgName={orgName}
         />
