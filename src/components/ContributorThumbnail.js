@@ -179,7 +179,7 @@ const Thumbnail = ({
             }
           >
             <Link
-              href={thumbnailInfo.organizationUrl}
+              href={`/organization/${organization.slug}`}
               target='_blank'
               rel='noreferrer noopener'
             >
