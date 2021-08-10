@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       height: '64px',
     },
   },
-  blueColor: {
+  open: {
     backgroundColor: theme.palette.secondary.dark,
     '& h4': {
       color: theme.palette.text.secondary,
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   dropDownGrid: {
     margin: 'auto',
     backgroundColor: theme.palette.background.default,
-    padding: '24px 0px',
+    padding: '1px 0px',
   },
   contributorIcon: {
     marginTop: '24%',
@@ -104,7 +104,7 @@ export const Affiliated = (props) => {
         xs={12}
         sm={10}
         className={clsx(classesLocal.gpGrid, {
-          [classesLocal.blueColor]: gp === true,
+          [classesLocal.open]: gp === true,
         })}
       >
         <Grid>
