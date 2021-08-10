@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 
 import React, { useState,useEffect,useRef } from 'react';
@@ -113,12 +114,12 @@ const TagCreator = () => {
     }
     if (orgTags.length !== 0 && currentTags.length !== 0){
       const result = orgTags.filter(ot => !currentTags.includes(ot))
-      setTagsToAdd([...civicName,...result,...userTags])
+      setTagsToAdd([...civicName,...result])
     }
     else {
-      setTagsToAdd([...civicName,...orgTags,...userTags])
+      setTagsToAdd([...civicName,...orgTags])
     }
-  },[orgTags, currentTags, setTagsToAdd, userTags])
+  },[orgTags, currentTags, setTagsToAdd])
 
 
   useEffect(() => {
@@ -267,7 +268,10 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
-          <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}/>
+          <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}
+            userTags={userTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}/>
         </>
       )
     case "AddTopicTags":
@@ -292,7 +296,11 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
-            linkStyles={linkStyles}/>
+            linkStyles={linkStyles}
+            userTags={userTags}
+            setUserTags={setUserTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}/>
         </>
       )
     case "ChangeRepository":
@@ -327,6 +335,7 @@ const TagCreator = () => {
           <OrgProjSection/>
           <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
           <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState}
+            userTags={userTags}
             repositoryName={repositoryName}
             repositoryUrl={repositoryUrl}
             linkStyles={linkStyles}/>
