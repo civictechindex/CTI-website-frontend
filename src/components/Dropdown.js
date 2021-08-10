@@ -22,9 +22,10 @@ const useStyles = makeStyles(theme => ({
       height: '64px',
     },
   },
-  blueColor: {
+  open: {
     backgroundColor: theme.palette.secondary.dark,
     color: theme.palette.text.secondary,
+    marginBottom: 0,
     [theme.breakpoints.down('sm')]: {
       height: '64px',
     },
@@ -62,7 +63,7 @@ export const Dropdown = ({
 
     <Grid>
       {dropdownLength > 0 ? (
-        <Grid item xs={10} className={clsx(classes.dropdown, { [classes.blueColor]: colorStyle === true })} >
+        <Grid item xs={10} className={clsx(classes.dropdown, { [classes.open]: colorStyle === true })} >
           <Grid>
             <ContributorThumbnail organization={organization}  checkboxValue={checkboxValue} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
           </Grid>
