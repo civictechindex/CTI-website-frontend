@@ -33,6 +33,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   textStyle: {
     color: theme.palette.text.secondary,
+    fontWeight: 700,
     fontSize: '24px',
     textAlign: 'center',
     marginTop: '-1rem',
