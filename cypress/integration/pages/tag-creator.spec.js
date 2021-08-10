@@ -44,7 +44,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
-    cy.get('h3').contains(AFFILIATED_ORGANIZATION);
+    cy.get('h6').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -52,29 +52,21 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{enter}');
     });
     cy.get('[data-cy=current-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
+      cy.get('[data-cy=generated-topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text();
         expect(AFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index);
       });
     });
     cy.get('[data-cy=radio-yes]').click();
-    cy.get('#generate-button').click();
-    cy.get('p').contains('Current topic tags on voiceapp311');
-    cy.get('[data-cy=current-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
-        const innerText = $el.text();
-        expect(AFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index);
-      });
-    });
     cy.get('[data-cy=add-topic-tags').type('tag1').type('{enter}');
-    cy.get('#generateTagsButton').click();
+    cy.get('#addTagsButton').click();
     cy.get('p').contains('New tags to add to your repository');
     cy.get('[data-cy=new-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').contains('tag1');
+      cy.get('[data-cy=deletable-topic-tag] span').contains('tag1');
     });
     cy.get('#add-tags-button').click();
     cy.get('[data-cy=copy-paste-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
+      cy.get('[data-cy=copy-paste-topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text();
         expect(expectedAffiliatedNewTags.indexOf(innerText)).to.be.eq(index);
       });
@@ -90,7 +82,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
-    cy.get('h3').contains(AFFILIATED_ORGANIZATION);
+    cy.get('h6').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -134,7 +126,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('loads correct 7 tags and new tags for `civictechindex/CTI-website-frontend` - unaffiliated', () => {
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
-    cy.get('h3').contains('Unaffliated');
+    cy.get('h6').contains('Unaffliated');
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -142,34 +134,26 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{enter}');
     });
     cy.get('[data-cy=current-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
+      cy.get('[data-cy=generated-topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text();
         expect(UNAFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index);
       });
     });
     cy.get('[data-cy=radio-yes]').click();
-    cy.get('#generate-button').click();
-    cy.get('p').contains('Current topic tags on CTI-website-frontend');
-    cy.get('[data-cy=current-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
-        const innerText = $el.text();
-        expect(UNAFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index);
-      });
-    });
     cy.get('[data-cy=add-topic-tags').type('new tag').type('{enter}');
     cy.get('[data-cy=add-topic-tags').type('tag1>').type('{enter}');
     cy.get('[data-cy=add-topic-tags').type('tag2,tag3').type('{enter}');
-    cy.get('#generateTagsButton').click();
+    cy.get('#addTagsButton').click();
     cy.get('p').contains('New tags to add to your repository');
     cy.get('[data-cy=new-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').contains('new-tag');
-      cy.get('[data-cy=topic-tag] span').contains('tag1');
-      cy.get('[data-cy=topic-tag] span').contains('tag2');
-      cy.get('[data-cy=topic-tag] span').contains('tag3');
+      cy.get('[data-cy=deletable-topic-tag] span').contains('new-tag');
+      cy.get('[data-cy=deletable-topic-tag] span').contains('tag1');
+      cy.get('[data-cy=deletable-topic-tag] span').contains('tag2');
+      cy.get('[data-cy=deletable-topic-tag] span').contains('tag3');
     });
     cy.get('#add-tags-button').click();
     cy.get('[data-cy=copy-paste-tags]').within(() => {
-      cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
+      cy.get('[data-cy=copy-paste-topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text();
         expect(UNAFFILIATED_NEW_TAGS.indexOf(innerText)).to.be.eq(index);
       });
@@ -179,7 +163,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('change the org form unaffiliated for `civictechindex/CTI-website-frontend` to affiliated', () => {
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
-    cy.get('h3').contains('Unaffliated');
+    cy.get('h6').contains('Unaffliated');
     cy.get('#change-org').click();
     cy.contains('Are you affiliated with an organization?');
     cy.get('[data-cy=radio-yes]');
@@ -192,6 +176,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
-    cy.get('h3').contains(CHANGE_AFFILIATED_ORGANIZATION);
+    cy.get('h6').contains(CHANGE_AFFILIATED_ORGANIZATION);
   });
 });

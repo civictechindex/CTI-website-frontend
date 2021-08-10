@@ -28,7 +28,7 @@ export const ProjectRepositorySection = ({ repositoryUrl,setDisplayState,linkSty
         <Typography variant='h6' className={classes.typoStyle}>Project Repository URL:</Typography>
       </Grid>
       <Grid item xs={10} sm={7} data-cy='grid-repository-url'>
-        <Link variant='body1' className={classes.typoStyle} href={repositoryUrl} >{repositoryUrl}</Link>
+        <Link variant='h6' href={repositoryUrl} >{repositoryUrl}</Link>
       </Grid>
       <Grid item xs={2}>
         <Link id="change-url" component="button" variant='body1' onClick={()=>setDisplayState('ProjectUrl')} underline='always' style={linkStyles} >change</Link>
