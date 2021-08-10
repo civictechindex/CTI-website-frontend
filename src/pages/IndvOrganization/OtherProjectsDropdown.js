@@ -42,14 +42,28 @@ export const OtherProjectsDropdown = (props) => {
   };
 
   return (
-    <List dense disablePadding className={classes.list} >
-      <ListItem button onClick={handleClick} className={classes.dropdownBtnStyle}>
-        <ListItemText primary={<Typography className={classes.dropdownTitleStyle}>{props.dropdownTitle}</Typography>} />
+    <List dense disablePadding className={classes.list}>
+      <ListItem
+        button
+        onClick={handleClick}
+        className={classes.dropdownBtnStyle}
+      >
+        <ListItemText
+          primary={
+            <Typography className={classes.dropdownTitleStyle}>
+              {props.dropdownTitle}
+            </Typography>
+          }
+        />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout='auto'>
-        {props.dropDownListItem.length !== 0 ? (props.dropDownListItem) : (
-          <a href="/#" className={classes.dropdownOptionLinkStyle}>No Project Url Found.</a>
+        {props.dropDownListItem.length !== 0 ? (
+          props.dropDownListItem
+        ) : (
+          <a href='/#' className={classes.dropdownOptionLinkStyle}>
+            No Project Url Found.
+          </a>
         )}
       </Collapse>
     </List>
