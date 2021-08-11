@@ -66,25 +66,24 @@ export const UnaffiliatedOrganizations = (props) => {
         </Box>
       ) : (
         <Grid>
-          {
-            <Grid>
-              {organization &&
-                organization.map((org, index) => (
-                  <Grid
-                    item
-                    xs={12}
-                    sm={10}
-                    className={classes.unaffiliatedThumbnails}
-                    key={index}
-                  >
-                    <ContributorThumbnail
-                      organization={org}
-                      isChildThumbnail={isChildThumbnail}
-                    ></ContributorThumbnail>
-                  </Grid>
-                ))}
-            </Grid>
-          }
+          <Grid>
+            {organization &&
+              organization.map((org, index) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={10}
+                  className={classes.unaffiliatedThumbnails}
+                  key={index}
+                >
+                  <ContributorThumbnail
+                    organization={org}
+                    isChildThumbnail={isChildThumbnail}
+                  ></ContributorThumbnail>
+                </Grid>
+              ))
+            }
+          </Grid>
         </Grid>
       )}
     </Grid>
