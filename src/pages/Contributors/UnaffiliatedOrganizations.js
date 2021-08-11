@@ -38,7 +38,6 @@ export const UnaffiliatedOrganizations = (props) => {
     searchCount,
     unaffiliatedCount,
     totalunaffiliatedCount,
-    unaffiliatedItems,
     organization,
     checkboxValue,
   } = props;
@@ -67,7 +66,7 @@ export const UnaffiliatedOrganizations = (props) => {
         </Box>
       ) : (
         <Grid>
-          {unaffiliatedItems && (
+          {
             <Grid>
               {organization &&
                 organization.map((org, index) => (
@@ -85,7 +84,7 @@ export const UnaffiliatedOrganizations = (props) => {
                   </Grid>
                 ))}
             </Grid>
-          )}
+          }
         </Grid>
       )}
     </Grid>

@@ -51,12 +51,10 @@ export default function Contributors({ match }) {
 
   const classes = useStyle();
   const location = useLocation();
-  const affiliation = match.params.affiliation;
   const searchaffiliation = match.params.searchaffiliation;
 
   const [affiliatedCount, getaffiliatedCount] = useState(0);
   const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
-  const [affiliatedItems, setAfflnItems] = useState(false);
   const [showIndexContrib, setShowIndexContrib] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [organizations, setOrganizations] = useState([]);
@@ -65,7 +63,6 @@ export default function Contributors({ match }) {
   const [searchCount, setsearchCount] = useState(false);
   const [tabValue, setTabValue] = useState(0);
   const [unaffiliatedCount, getunaffiliatedCount] = useState(0);
-  const [unaffiliatedItems, setUnaffiliatedItems] = useState(false);
 
 
   let count1 =0, count2 =0,totalaffiliatedCount=0,totalunaffiliatedCount=0;
@@ -171,21 +168,6 @@ export default function Contributors({ match }) {
     }
   }
 
-
-  useEffect(() => {
-    if (affiliation === "unaffiliated") {
-      setUnaffiliatedItems(true);
-      setAfflnItems(false);
-    } else if (affiliation === "affiliated") {
-      setUnaffiliatedItems(false);
-      setAfflnItems(true);
-    } else {
-      setUnaffiliatedItems(true);
-      setAfflnItems(false);
-    }
-  }, [affiliation]);
-
-
   // Tab Code
 
   TabPanel.propTypes = {
@@ -257,7 +239,6 @@ export default function Contributors({ match }) {
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
-                unaffiliatedItems= {unaffiliatedItems}
                 searchCount={searchCount}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalunaffiliatedCount}
@@ -269,18 +250,15 @@ export default function Contributors({ match }) {
                 classes={classes}
                 affiliation="affiliated"
                 organizationData={organizationData}
-                affiliatedItems= {affiliatedItems}
                 searchCount={searchCount}
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalaffiliatedCount}
-                setAfflnItems={setAfflnItems}
                 checkboxValue={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
-                unaffiliatedItems= {unaffiliatedItems}
                 searchCount={searchCount}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalunaffiliatedCount}
@@ -294,11 +272,9 @@ export default function Contributors({ match }) {
                 classes={classes}
                 affiliation="affiliated"
                 organizationData={organizationData}
-                affiliatedItems= {affiliatedItems}
                 searchCount={searchCount}
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalaffiliatedCount}
-                setAfflnItems={setAfflnItems}
                 checkboxValue={showIndexContrib}
               />
             </TabPanel>

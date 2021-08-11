@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '15px',
+    padding: '17px',
     flexWrap: 'nowrap',
   },
   thumbnailImage: {
@@ -58,15 +58,14 @@ const useStyles = makeStyles((theme) => ({
   },
   contributorItem: {
     display: 'grid',
-    justifyContent: 'right',
-    marginTop: '-32px',
-    marginRight: '-4px',
+    position:'absolute',
+    marginLeft: '349px',
   },
   thumbnailWrapperContributor: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '12px',
+    padding: '17px',
     flexWrap: 'nowrap',
     position: 'relative',
   },
@@ -149,7 +148,20 @@ const Thumbnail = ({
   }
   return (
     <>
-      <Grid className={thumbnailWrapperStyle} container>
+      <Box className={classes.contributorItem}>
+        {organization.depth === 4 &&
+        checkboxValue &&
+        organization.cti_contributor ? (
+            <img
+              className={classes.contributorIcon}
+              src='/images/Child_contributed.svg'
+              alt='contributor-icon'
+            />
+          ) : (
+            null
+          )}
+      </Box>
+      <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
           <CardMedia
             component='img'
@@ -187,15 +199,6 @@ const Thumbnail = ({
             </Link>{' '}
             {dropdownLength ? `(${dropdownLength})` : ` `}
           </Typography>
-        </Grid>
-        <Grid className={classes.contributorItem} container justify="flex-end">
-          {(organization.depth === 4  && checkboxValue &&  organization.cti_contributor)  ?
-
-            <img className={classes.contributorIcon} src='/images/Child_contributed.svg' alt="contributor-icon" />
-            :
-            " "
-          }
-
         </Grid>
         <Grid>
           <Typography>
