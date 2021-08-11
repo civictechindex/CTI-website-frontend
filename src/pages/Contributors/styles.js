@@ -68,7 +68,6 @@ export const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '28px',
     },
-
     '&:hover': {
       color: '#006B95',
       opacity: 1,
@@ -82,7 +81,10 @@ export const useStyle = makeStyles((theme) => ({
       textTransform: 'none',
     },
     '&$tabSelected': {
-      color: '#006B95',
+      color: '#0D99C6',
+      borderStyle: 'none none solid none',
+      borderColor: '#0D99C6',
+      borderWidth: '5px',
     },
   },
   tabSelected: {},
