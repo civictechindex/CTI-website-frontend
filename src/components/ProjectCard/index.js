@@ -89,6 +89,111 @@ const renderGithubInfoTags = (classes, props) => {
     </Grid>
   );
 };
+
+const renderProjectLinkSection = (classes, props, isSmallScreen) => {
+  return (
+    <>
+      <Grid container className={classes.projectLinkSectionStyle}>
+        {/* Project Logo */}
+        <Grid>
+          <Typography component='a' href={props.organizationUrl}>
+            <img
+              alt='logo'
+              className={classes.logoImageStyle}
+              src={props.organizationAvatarUrl}
+            />
+          </Typography>
+        </Grid>
+        <Grid md={9} className={classes.projectUrlContainerStyle}>
+          <Typography
+            component='a'
+            variant='h6'
+            data-cy='project-url'
+            className={classes.projectUrlStyle}
+            href={props.projectUrl}
+          >
+            {props.ownerName}/{props.projectName}
+          </Typography>
+        </Grid>
+        {/* Remove the github info tag if it is in small screen */}
+        {!isSmallScreen && renderGithubInfoTags(classes, props)}
+      </Grid>
+      {/* Added github info tags on a new separate line if it is in small screen*/}
+      {isSmallScreen && renderGithubInfoTags(classes, props)}
+    </>
+  );
+};
+
+const renderProjectDetailSection = (classes, props) => {
+  return (
+    <Grid container className={classes.projectDetailsContainerStyle}>
+      <Grid className={classes.projectDescGridWidthStyle}>
+        <Typography className={classes.projectDescContainerStyle}>
+          {props.projectDescription}
+        </Typography>
+      </Grid>
+      <Grid className={classes.projectLinkContainerStyle}>
+        <Typography
+          component='a'
+          href={props.homepage}
+          className={classes.projectLinkStyle}
+        >
+          <img alt='link' src='/images/link.svg' />
+          {props.homepage}
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
+const renderUpdateIssuesSection = (classes, props) => {
+  return (
+    <Grid className={classes.updateAndIssuesContainerStyle}>
+      <Typography componenet='span' className={classes.issueAndUpdateStyle}>
+        Updated {props.lastUpdate} day(s) ago
+      </Typography>
+      <Typography
+        componenet='a'
+        href={props.issuesUrl}
+        className={classes.issueAndUpdateStyle}
+      >
+        <span>{props.issueCount} Open Issues</span>
+      </Typography>
+    </Grid>
+  );
+};
+
+const renderTopicTagsSection = (classes, props) => {
+  return (
+    <>
+      <Grid className={classes.topicTagGridStyle}>
+        <Typography component='span' className={classes.topicTagTitleStyle}>
+          Affiliations Topic Tags:
+        </Typography>
+        <span className={classes.topicTagSpanContainerStyle}>
+          {renderAffiliationsTopicsTags(props.projectTags, classes)}
+        </span>
+      </Grid>
+      <Grid className={classes.topicTagGridStyle}>
+        <Typography component='span' className={classes.topicTagTitleStyle}>
+          Programming Language(s):
+        </Typography>
+        <span className={classes.topicTagSpanContainerStyle}>
+          {renderLanguageChip(props.projectLanguage, classes)}
+        </span>
+      </Grid>
+      <Grid className={classes.topicTagGridStyle}>
+        <Typography component='span' className={classes.topicTagTitleStyle}>
+          Topic Tags:
+        </Typography>
+        <span className={classes.topicTagSpanContainerStyle}>
+          {renderTopicTags(props.topics, classes)}
+        </span>
+      </Grid>
+    </>
+  );
+};
+
 /**
  *
  * @param {*} props
@@ -104,95 +209,14 @@ export default function ProjectCard(props) {
   return (
     <Card data-cy='project-card' className={classes.cardContainerStyle}>
       <CardContent>
-        {/* Project Title, Watch and Star buttons */}
-        <Grid container className={classes.projectLinkSectionStyle}>
-          {/* Project Logo */}
-          <Grid>
-            <Typography component='a' href={props.organizationUrl}>
-              <img
-                alt='logo'
-                className={classes.logoImageStyle}
-                src={props.organizationAvatarUrl}
-              />
-            </Typography>
-          </Grid>
-          <Grid md={9} className={classes.projectUrlContainerStyle}>
-            <Typography
-              component='a'
-              variant='h6'
-              data-cy='project-url'
-              className={classes.projectUrlStyle}
-              href={props.projectUrl}
-            >
-              <b>
-                {props.ownerName}/{props.projectName}
-              </b>
-            </Typography>
-          </Grid>
-          {/* Remove the github info tag if it is in small screen */}
-          {isSmallScreen ? '' : renderGithubInfoTags(classes, props)}
-        </Grid>
-        {/* Added github info tags on a new separate line if it is in small screen */}
-        {isSmallScreen ? renderGithubInfoTags(classes, props) : ''}
+        {/* Project Title, Link, Watch and Star Tags */}
+        {renderProjectLinkSection(classes, props, isSmallScreen)}
         {/* Description & Project Link */}
-        <Grid container className={classes.projectDetailsContainerStyle}>
-          <Grid className={classes.projectDescGridWidthStyle}>
-            <Typography className={classes.projectDescContainerStyle}>
-              {props.projectDescription}
-            </Typography>
-          </Grid>
-          <Grid className={classes.projectLinkContainerStyle}>
-            <Typography
-              component='a'
-              href={props.homepage}
-              className={classes.projectLinkStyle}
-            >
-              <img alt='link' src='/images/link.svg' />
-              {props.homepage}
-            </Typography>
-          </Grid>
-        </Grid>
+        {renderProjectDetailSection(classes, props)}
+        {/* Update & Issue Count and Affiliation, Programming Language, Topic Tag */}
         <Grid className={classes.projectTagInfoContainerStyle}>
-          {/* Update & Issue Count */}
-          <Grid className={classes.updateAndIssuesContainerStyle}>
-            <Typography
-              componenet='span'
-              className={classes.issueAndUpdateStyle}
-            >
-              Updated {props.lastUpdate} day(s) ago
-            </Typography>
-            <Typography
-              componenet='a'
-              href={props.issuesUrl}
-              className={classes.issueAndUpdateStyle}
-            >
-              <span>{props.issueCount} Open Issues</span>
-            </Typography>
-          </Grid>
-          <Grid className={classes.topicTagGridStyle}>
-            <Typography component='span' className={classes.topicTagTitleStyle}>
-              Affiliations Topic Tags:
-            </Typography>
-            <span className={classes.topicTagSpanContainerStyle}>
-              {renderAffiliationsTopicsTags(props.projectTags, classes)}
-            </span>
-          </Grid>
-          <Grid className={classes.topicTagGridStyle}>
-            <Typography component='span' className={classes.topicTagTitleStyle}>
-              Programming Language(s):
-            </Typography>
-            <span className={classes.topicTagSpanContainerStyle}>
-              {renderLanguageChip(props.projectLanguage, classes)}
-            </span>
-          </Grid>
-          <Grid className={classes.topicTagGridStyle}>
-            <Typography component='span' className={classes.topicTagTitleStyle}>
-              Topic Tags:
-            </Typography>
-            <span className={classes.topicTagSpanContainerStyle}>
-              {renderTopicTags(props.topics, classes)}
-            </span>
-          </Grid>
+          {renderUpdateIssuesSection(classes, props)}
+          {renderTopicTagsSection(classes, props)}
         </Grid>
       </CardContent>
     </Card>

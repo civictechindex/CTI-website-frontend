@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   projectUrlStyle: {
     color: '#0F1D2F',
     wordBreak: 'break-word',
+    weight: 'bold',
   },
   githubIconContainerStyle: {
     margin: 'auto',
