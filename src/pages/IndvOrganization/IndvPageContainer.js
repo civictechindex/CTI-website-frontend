@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   contentContainerStyle: {
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '806px',
+      margin: 'auto',
+    },
     [theme.breakpoints.down('lg')]: {
       maxWidth: '806px',
       margin: 'auto',
