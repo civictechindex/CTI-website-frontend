@@ -1,32 +1,88 @@
 import React from 'react';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs';
-import { TitleSection } from '../../components';
+import HeaderTitle from './HeaderTitle';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const DARK_BLUE = '#0F1D2F';
+const useStyles = makeStyles((theme) => ({
+  indvOrgBackgroundImgStyle: {
+    backgroundImage: 'url(/images/indv-org-page-bg.png)',
+    minHeight: '580px',
+    [theme.breakpoints.down('md')]: {
+      minHeight: '512px',
+    },
+  },
+  logImgStyle: {
+    display: 'block',
+    margin: 'auto',
+    width: '133.2px',
+    [theme.breakpoints.down('md')]: {
+      width: '100.8px',
+    },
+  },
+  headerLinkStyle: {
+    color: '#FEFEFE',
+    textDecoration: 'inherit',
+    wordBreak: 'break-word',
+  },
+  headerLinkGridStyle: {
+    textAlign: 'center',
+    marginTop: '16px',
+    lineHeight: '30px',
+  },
+  breadCrumbContainerStyle: {
+    paddingBottom: '63.4px',
+    [theme.breakpoints.down('md')]: {
+      paddingBottom: '61.6px',
+    },
+  },
+  headerTitleGridStyle: {
+    marginTop: '39.4px',
+    lineHeight: '60px',
+    [theme.breakpoints.down('md')]: {
+      marginTop: '37.6px',
+      lineHeight: '50px',
+    },
+  },
+}));
 
 export const Header = (props) => {
-
-  return (
-    props.showHeaderResults ? (
-      <Box className='indv-header-bg'>
-        <Container style={{ paddingBottom:'40px' }}>
-          <NavBreadcrumbs crumbs={props.crumbs} color="#0F1D2F" />
-          <Grid container>
-            <Grid item xs={12}>
-              <Grid item xs={12} sm={12}>
-                <a href={props.githubLink}><img alt="logo" style={{ display: 'block', margin: 'auto' }} src={props.imageUrl} width='133.2px' /></a>
-              </Grid>
-            </Grid>
-            <TitleSection>{props.orgName}</TitleSection>
-            <Grid item xs={12}>
-              <Typography variant="h4" component="h4" align="center" color="inherit"><a href={props.websiteUrlResults} style={{ color: 'white', textDecoration: 'inherit' }}>{props.websiteUrlResults}</a></Typography>
-              <Typography variant="h4" component="h4" align="center" color="inherit"><a href={props.githubLink} style={{ color: 'white', textDecoration: 'inherit' }}>{props.githubLink}</a></Typography>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>) : (<Box className='indv-header-bg'/>)
-
-  )
-}
+  const classes = useStyles();
+  return props.showHeaderResults ? (
+    <Box className={classes.indvOrgBackgroundImgStyle}>
+      <Container className={classes.breadCrumbContainerStyle}>
+        <NavBreadcrumbs crumbs={props.crumbs} color={DARK_BLUE} />
+      </Container>
+      <img alt='logo' className={classes.logImgStyle} src={props.imageUrl} />
+      <Grid className={classes.headerTitleGridStyle}>
+        <HeaderTitle>{props.orgName}</HeaderTitle>
+      </Grid>
+      <Grid className={classes.headerLinkGridStyle}>
+        <Typography
+          component='a'
+          variant='h5'
+          className={classes.headerLinkStyle}
+          href={props.websiteUrlResults}
+        >
+          {props.websiteUrlResults}
+        </Typography>
+      </Grid>
+      <Grid className={classes.headerLinkGridStyle}>
+        <Typography
+          component='a'
+          variant='h5'
+          className={classes.headerLinkStyle}
+          href={props.githubLink}
+        >
+          {props.githubLink}
+        </Typography>
+      </Grid>
+    </Box>
+  ) : (
+    <Box className={classes.indvOrgBackgroundImgLargeScreen} />
+  );
+};
