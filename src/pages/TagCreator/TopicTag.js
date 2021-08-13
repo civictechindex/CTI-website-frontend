@@ -118,6 +118,8 @@ export const DeletableTopicTag = ({ userTags,handleDelete }) => {
 }
 
 export const ChipInputSection = ({ handleAdd,handleDelete,userTags }) =>{
+  const chipKeys = ["Enter"," "]
+  const chipKeyCodes=[13,32]
   const classes = useStyles();
   return (
     <ChipInput
@@ -127,6 +129,8 @@ export const ChipInputSection = ({ handleAdd,handleDelete,userTags }) =>{
       onDelete={(deletedChip) => handleDelete(deletedChip)}
       value={userTags}
       className = {classes.addTag}
+      newChipKeys={chipKeys}
+      newChipKeyCodes={chipKeyCodes}
     />
   )
 }

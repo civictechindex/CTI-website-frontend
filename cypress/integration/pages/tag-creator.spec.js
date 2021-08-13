@@ -9,7 +9,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     'alexa',
     'trash',
   ];
-  const UNAFFILIATED_NEW_TAGS = ['new-tag','tag1', 'tag2', 'tag3'];
+  const UNAFFILIATED_NEW_TAGS = ['new-tag','tag1', 'tag2', 'tag3','tag4'];
   const expectedAffiliatedNewTags = ['civictechindex', 'code-for-all', 'tag1'];
   const UNAFFILIATED_TEST_URL =
     'https://github.com/civictechindex/CTI-website-frontend.git';
@@ -140,9 +140,10 @@ describe('Tag Generator Page (Tag Creator)', () => {
       });
     });
     cy.get('[data-cy=radio-yes]').click();
-    cy.get('[data-cy=add-topic-tags').type('new tag').type('{enter}');
+    cy.get('[data-cy=add-topic-tags').type('new-tag').type('{enter}');
     cy.get('[data-cy=add-topic-tags').type('tag1>').type('{enter}');
-    cy.get('[data-cy=add-topic-tags').type('tag2,tag3').type('{enter}');
+    cy.get('[data-cy=add-topic-tags').type('tag2 tag3').type('{enter}');
+    cy.get('[data-cy=add-topic-tags').type('tag3,tag4').type('{enter}');
     cy.get('#addTagsButton').click();
     cy.get('p').contains('New tags to add to your repository');
     cy.get('[data-cy=new-tags]').within(() => {
@@ -150,6 +151,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
       cy.get('[data-cy=deletable-topic-tag] span').contains('tag1');
       cy.get('[data-cy=deletable-topic-tag] span').contains('tag2');
       cy.get('[data-cy=deletable-topic-tag] span').contains('tag3');
+      cy.get('[data-cy=deletable-topic-tag] span').contains('tag4');
     });
     cy.get('#add-tags-button').click();
     cy.get('[data-cy=copy-paste-tags]').within(() => {

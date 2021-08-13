@@ -203,7 +203,7 @@ const TagCreator = () => {
   }
 
   const handleAdd = (chip) => {
-    chip = chip.toLowerCase().trim().replaceAll(" ", "-")
+    chip = chip.toLowerCase()
     chip = chip.replace(/['`~!@#$%^&*()_|+=?;:'".<>\\{\\}\\[\]\\\\/]/gi, '');
     while (chip.startsWith("-")){
       chip = chip.slice(1)
