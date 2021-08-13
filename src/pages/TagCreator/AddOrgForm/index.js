@@ -19,6 +19,7 @@ const AddOrgForm = React.forwardRef(({ open, onClose }, ref) => {
   const [orgEmail, setOrgEmail] = useState('');
   const [orgName, setOrgName] = useState('');
   const [parentOrg, setParentOrg] = useState({ id: '', name: '' });
+  const [parentOrgName, setParentOrgName] = useState('');
   const [parentOrgList, setParentOrgList] = useState([]);
   const [stateProvCo, setStateProvCo] = useState('');
   const [twitterUrl, setTwitterUrl] = useState('');
@@ -53,7 +54,7 @@ const AddOrgForm = React.forwardRef(({ open, onClose }, ref) => {
     setApiErrors({});
     setOrgEmail('');
     setOrgName('');
-    setParentOrg({ id: '', name: '' })
+    setParentOrg({ id: '', name: '' });
     setWebsiteUrl('');
     setGithubUrl('');
     setGithubTag('');
@@ -80,7 +81,11 @@ const AddOrgForm = React.forwardRef(({ open, onClose }, ref) => {
     if (city) { orgProps.city = city }
     if (stateProvCo) { orgProps.state = stateProvCo }
     if (country.label) { orgProps.country = country.label }
-    if (parentOrg.id) { orgProps.parent_organization = parentOrg.id }
+    if (parentOrgName) {
+      orgProps.parent_organization_name = parentOrgName;
+    } else if (parentOrg.id) {
+      orgProps.parent_organization = parentOrg.id;
+    }
     if (facebookUrl) {
       orgProps.facebook_url = facebookUrl.indexOf('https://') < 0 ? 'https://' + facebookUrl : facebookUrl;
     }
@@ -104,6 +109,15 @@ const AddOrgForm = React.forwardRef(({ open, onClose }, ref) => {
     }
   };
 
+  const handleParentOrg = (org) => {
+    if (typeof org === 'object' && org !== null) {
+      setParentOrg(org);
+      setParentOrgName('');
+    } else {
+      setParentOrgName(org);
+    }
+  }
+
   const renderStep = () => {
     const stepOne = <StepOne
       apiErrors={apiErrors}
@@ -119,7 +133,7 @@ const AddOrgForm = React.forwardRef(({ open, onClose }, ref) => {
       githubTag={githubTag}
       onGithubTag={setGithubTag}
       parentOrg={parentOrg}
-      onParentOrg={setParentOrg}
+      onParentOrg={handleParentOrg}
       parentOrgList={parentOrgList}
       onCancel={handleClose}
       onNext={handleNext}
