@@ -199,25 +199,23 @@ const TagCreator = () => {
     else  {
       handleChangeProjectRepository()
     }
-
   }
 
   const handleAdd = (chip) => {
-    chip = chip.toLowerCase()
+    chip = chip.toLowerCase();
     chip = chip.replace(/['`~!@#$%^&*()_|+=?;:'".<>\\{\\}\\[\]\\\\/]/gi, '');
-    while (chip.startsWith("-")){
-      chip = chip.slice(1)
+    while (chip.startsWith('-')) {
+      chip = chip.slice(1);
     }
-    while (chip.endsWith("-")){
-      chip = chip.slice(0,-1)
+    while (chip.endsWith('-')) {
+      chip = chip.slice(0, -1);
     }
-    if (chip.includes(',')){
-      const inputChipArr=chip.split(',')
-      setUserTags([...new Set([...userTags,...inputChipArr])])
-    }
-    else
-      setUserTags([...new Set([...userTags,chip])])
-  }
+    if (chip.includes(',')) {
+      const inputChipArr = chip.split(',');
+      setUserTags([...new Set([...userTags, ...inputChipArr])]);
+    } else setUserTags([...new Set([...userTags, chip])]);
+  };
+
   const handleDelete = (deletedChip) => {
     setUserTags(userTags.filter((c) => c !== deletedChip))
   }
@@ -245,7 +243,6 @@ const TagCreator = () => {
       </Grid>
     )
   }
-
 
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
