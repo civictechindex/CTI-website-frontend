@@ -110,5 +110,6 @@ export const useStyle = makeStyles((theme) => ({
   formControlLabel: {
     color: theme.palette.secondary.dark,
     fontSize: '24px',
+    fontWeight: 700,
   },
 }));
