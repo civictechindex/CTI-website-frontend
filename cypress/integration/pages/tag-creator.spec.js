@@ -9,7 +9,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     'alexa',
     'trash',
   ];
-  const UNAFFILIATED_NEW_TAGS = ['new-tag','tag1', 'tag2', 'tag3','tag4'];
+  const UNAFFILIATED_NEW_TAGS = ['new-tag', 'tag1', 'tag2', 'tag3', 'tag4'];
   const expectedAffiliatedNewTags = ['civictechindex', 'code-for-all', 'tag1'];
   const UNAFFILIATED_TEST_URL =
     'https://github.com/civictechindex/CTI-website-frontend.git';
@@ -66,10 +66,12 @@ describe('Tag Generator Page (Tag Creator)', () => {
     });
     cy.get('#add-tags-button').click();
     cy.get('[data-cy=copy-paste-tags]').within(() => {
-      cy.get('[data-cy=copy-paste-topic-tag] span').each(($el, index, $list) => {
-        const innerText = $el.text();
-        expect(expectedAffiliatedNewTags.indexOf(innerText)).to.be.eq(index);
-      });
+      cy.get('[data-cy=copy-paste-topic-tag] span').each(
+        ($el, index, $list) => {
+          const innerText = $el.text();
+          expect(expectedAffiliatedNewTags.indexOf(innerText)).to.be.eq(index);
+        }
+      );
     });
   });
 
@@ -155,10 +157,12 @@ describe('Tag Generator Page (Tag Creator)', () => {
     });
     cy.get('#add-tags-button').click();
     cy.get('[data-cy=copy-paste-tags]').within(() => {
-      cy.get('[data-cy=copy-paste-topic-tag] span').each(($el, index, $list) => {
-        const innerText = $el.text();
-        expect(UNAFFILIATED_NEW_TAGS.indexOf(innerText)).to.be.eq(index);
-      });
+      cy.get('[data-cy=copy-paste-topic-tag] span').each(
+        ($el, index, $list) => {
+          const innerText = $el.text();
+          expect(UNAFFILIATED_NEW_TAGS.indexOf(innerText)).to.be.eq(index);
+        }
+      );
     });
   });
 
