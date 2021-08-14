@@ -121,9 +121,10 @@ export const Affiliated = (props) => {
           {checkboxValue ? (
             <Typography>
               <img
+                alt='contributor-icon'
+                data-cy='contributor-icon'
                 className={classesLocal.contributorIcon}
                 src='/images/Gparent_contributed.svg'
-                alt='contributor-icon'
               />
             </Typography>
           ) : (

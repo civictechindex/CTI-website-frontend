@@ -61,7 +61,7 @@ export const Dropdown = ({
 
   return (
 
-    <Grid>
+    <Grid data-cy='thumbnail-dropdown'>
       {dropdownLength > 0 ? (
         <Grid item xs={10} className={clsx(classes.dropdown, { [classes.open]: colorStyle === true })} >
           <Grid>

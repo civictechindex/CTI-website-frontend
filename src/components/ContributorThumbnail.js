@@ -152,14 +152,13 @@ const Thumbnail = ({
         {organization.depth === 4 &&
         checkboxValue &&
         organization.cti_contributor ? (
-            <img
-              className={classes.contributorIcon}
-              src='/images/Child_contributed.svg'
-              alt='contributor-icon'
-            />
-          ) : (
-            null
-          )}
+          <img
+            alt='contributor-icon'
+            data-cy='contributor-icon'
+            className={classes.contributorIcon}
+            src='/images/Child_contributed.svg'
+          />
+        ) : null}
       </Box>
       <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
@@ -204,9 +203,10 @@ const Thumbnail = ({
           <Typography>
             {organization.depth === 3 && checkboxValue ? (
               <img
+                alt='contributor-icon'
+                data-cy='contributor-icon'
                 className={classes.grandparentIcon}
                 src='/images/Gparent_contributed.svg'
-                alt='contributor-icon'
               />
             ) : (
               ' '
