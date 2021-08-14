@@ -117,9 +117,9 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
       </Grid>
       {orgName ?
         <Grid item xs={10} sm={7}>
-          <Typography variant='h3' className={classes.typoStyle}>{orgName}</Typography>
+          <Typography variant='h6' className={classes.typoStyle}>{orgName}</Typography>
         </Grid> : <Grid item xs={7} style={{ paddingRight: '50px' }}>
-          <Typography variant='h3'>Unaffliated</Typography>
+          <Typography variant='h6'>Unaffliated</Typography>
         </Grid>}
       <Grid item xs={2} >
         <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>
@@ -180,7 +180,7 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
   return (
     <Grid item xs={12} sm={12}>
       <Typography variant='body1' color='error'>{orgNameError}</Typography>
-      <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
+      <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>{(value === 'yes')?'Submit Organization':'Next'}</Button></Grid>
     </Grid>
   )
 }

@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    justifyContent: 'center',
     margin: 'auto',
   },
   afflnThumbnails: {
@@ -147,14 +146,6 @@ export const AffiliatedOrganizations = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue, organizations, organizationData, checkboxValue]);
 
-  const getChildrenLength = (org) => {
-    if (org.childNodes.length > 0) {
-      return org.childNodes.length;
-    } else {
-      return 0;
-    }
-  };
-
   let childSort;
   let childNode;
   if (currentThumbnails && inputValue.length === 0) {
@@ -171,10 +162,10 @@ export const AffiliatedOrganizations = ({
               checkboxValue={checkboxValue}
               organization={org}
               key={`affiliatedThumbnailsWrapper_${i}`}
-              dropdownLength={getChildrenLength(org)}
+              dropdownLength={org.childNodes.length}
               isOpen={false}
             >
-              <Grid container alignItems='center' style={{ margin: 'auto' }}>
+              <Grid container alignItems='center'>
                 {childNode.length > 0 ? (
                   <Grid
                     item
@@ -193,7 +184,7 @@ export const AffiliatedOrganizations = ({
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
                             checkboxValue={checkboxValue}
-                          ></ContributorThumbnail>
+                          />
                         </Grid>
                       );
                     })}
@@ -218,12 +209,11 @@ export const AffiliatedOrganizations = ({
                       className={classes.button}
                       onClick={() => {
                         const data = [...currentThumbnails];
-                        data[i].isOpen = data[i].isOpen ? false : true;
+                        data[i].isOpen = !data[i].isOpen;
                         setCurrentThumbnails(data);
                       }}
                     >
-                      {' '}
-                      View All{' '}
+                      {currentThumbnails[i].isOpen ? 'View Less' : 'View All'}
                     </Button>
                   </Grid>
                 ) : null}
@@ -246,7 +236,7 @@ export const AffiliatedOrganizations = ({
             <Dropdown
               organization={org}
               key={`affiliatedThumbnailsWrapper_${i}`}
-              dropdownLength={getChildrenLength(org)}
+              dropdownLength={org.childNodes.length}
               isOpen={org.childNodes.length <= 5 ? true : false}
             >
               <Box className={classes.affiliatedThumbnailsWrapper}>

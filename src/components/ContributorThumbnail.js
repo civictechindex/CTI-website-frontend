@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '8px',
+    padding: '17px',
     flexWrap: 'nowrap',
   },
   thumbnailImage: {
@@ -58,15 +58,14 @@ const useStyles = makeStyles((theme) => ({
   },
   contributorItem: {
     display: 'grid',
-    justifyContent: 'right',
-    marginRight: '2%',
-    marginTop: '2%',
+    position:'absolute',
+    marginLeft: '349px',
   },
   thumbnailWrapperContributor: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '8px',
+    padding: '17px',
     flexWrap: 'nowrap',
     position: 'relative',
   },
@@ -159,7 +158,7 @@ const Thumbnail = ({
               alt='contributor-icon'
             />
           ) : (
-            ' '
+            null
           )}
       </Box>
       <Grid className={thumbnailWrapperStyle}>

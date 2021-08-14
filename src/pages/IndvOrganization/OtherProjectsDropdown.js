@@ -10,8 +10,27 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    width: '100%',
+    minHeight: '72px',
+    marginTop: '32px',
     backgroundColor: theme.palette.background.paper,
+  },
+  dropdownBtnStyle: {
+    minHeight: '72px',
+  },
+  dropdownTitleStyle: {
+    fontWeight: '700',
+    fontFamily: 'Work Sans',
+    fontSize: '18px',
+    lineHeight: '22px',
+    color: '#0F1D2F',
+  },
+  dropdownOptionLinkStyle: {
+    fontWeight: '700',
+    fontFamily: 'Work Sans',
+    fontSize: '16px',
+    color: '#0D99C6',
+    fontStyle: 'normal',
+    lineHeight: '21px',
   },
 }));
 export const OtherProjectsDropdown = (props) => {
@@ -23,14 +42,28 @@ export const OtherProjectsDropdown = (props) => {
   };
 
   return (
-    <List dense disablePadding className={classes.list} >
-      <ListItem button onClick={handleClick}  >
-        <ListItemText primary={<Typography type="body2" style={{ fontWeight: 'bold', padding: '.5rem', color: 'black' }}>{props.dropdownTitle}</Typography>} />
+    <List dense disablePadding className={classes.list}>
+      <ListItem
+        button
+        onClick={handleClick}
+        className={classes.dropdownBtnStyle}
+      >
+        <ListItemText
+          primary={
+            <Typography className={classes.dropdownTitleStyle}>
+              {props.dropdownTitle}
+            </Typography>
+          }
+        />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout='auto'>
-        {props.dropDownListItem.length !== 0 ? (props.dropDownListItem) : (
-          <a href="/#" style={{ fontWeight: 'bold', textAlign: 'center', padding: "2rem" }}>No Project Url Found.</a>
+        {props.dropDownListItem.length !== 0 ? (
+          props.dropDownListItem
+        ) : (
+          <a href='/#' className={classes.dropdownOptionLinkStyle}>
+            No Project Url Found.
+          </a>
         )}
       </Collapse>
     </List>

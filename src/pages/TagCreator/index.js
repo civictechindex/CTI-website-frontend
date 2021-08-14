@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 
 import React, { useState,useEffect,useRef } from 'react';
@@ -18,7 +19,7 @@ import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organiza
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
 import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
 import useTheme from '@material-ui/core/styles/useTheme';
-import TagGeneratorInstructions from '../../components/TagGeneratorInstructions'
+import Instructions from './Instructions'
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
@@ -113,12 +114,12 @@ const TagCreator = () => {
     }
     if (orgTags.length !== 0 && currentTags.length !== 0){
       const result = orgTags.filter(ot => !currentTags.includes(ot))
-      setTagsToAdd([...civicName,...result,...userTags])
+      setTagsToAdd([...civicName,...result])
     }
     else {
-      setTagsToAdd([...civicName,...orgTags,...userTags])
+      setTagsToAdd([...civicName,...orgTags])
     }
-  },[orgTags, currentTags, setTagsToAdd, userTags])
+  },[orgTags, currentTags, setTagsToAdd])
 
 
   useEffect(() => {
@@ -198,25 +199,23 @@ const TagCreator = () => {
     else  {
       handleChangeProjectRepository()
     }
-
   }
 
   const handleAdd = (chip) => {
-    chip = chip.toLowerCase().trim().replaceAll(" ", "-")
+    chip = chip.toLowerCase();
     chip = chip.replace(/['`~!@#$%^&*()_|+=?;:'".<>\\{\\}\\[\]\\\\/]/gi, '');
-    while (chip.startsWith("-")){
-      chip = chip.slice(1)
+    while (chip.startsWith('-')) {
+      chip = chip.slice(1);
     }
-    while (chip.endsWith("-")){
-      chip = chip.slice(0,-1)
+    while (chip.endsWith('-')) {
+      chip = chip.slice(0, -1);
     }
-    if (chip.includes(',')){
-      const inputChipArr=chip.split(',')
-      setUserTags([...new Set([...userTags,...inputChipArr])])
-    }
-    else
-      setUserTags([...new Set([...userTags,chip])])
-  }
+    if (chip.includes(',')) {
+      const inputChipArr = chip.split(',');
+      setUserTags([...new Set([...userTags, ...inputChipArr])]);
+    } else setUserTags([...new Set([...userTags, chip])]);
+  };
+
   const handleDelete = (deletedChip) => {
     setUserTags(userTags.filter((c) => c !== deletedChip))
   }
@@ -245,7 +244,6 @@ const TagCreator = () => {
     )
   }
 
-
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
     switch (displayState) {
@@ -267,7 +265,10 @@ const TagCreator = () => {
         <>
           <OrgProjSection/>
           <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
-          <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}/>
+          <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}
+            userTags={userTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}/>
         </>
       )
     case "AddTopicTags":
@@ -292,7 +293,11 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
-            linkStyles={linkStyles}/>
+            linkStyles={linkStyles}
+            userTags={userTags}
+            setUserTags={setUserTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}/>
         </>
       )
     case "ChangeRepository":
@@ -327,6 +332,7 @@ const TagCreator = () => {
           <OrgProjSection/>
           <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
           <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState}
+            userTags={userTags}
             repositoryName={repositoryName}
             repositoryUrl={repositoryUrl}
             linkStyles={linkStyles}/>
@@ -357,7 +363,7 @@ const TagCreator = () => {
           {renderCurrentState()}
         </Container>
       </Box>
-      {(displayState === 'CopyPasteTags')?<TagGeneratorInstructions/>:null}
+      {(displayState === 'CopyPasteTags')?<Instructions/>:null}
     </Box>
   )
 }
