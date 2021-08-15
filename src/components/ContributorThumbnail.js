@@ -178,13 +178,12 @@ const Thumbnail = ({
         </Grid>
         <Grid
           item
-          data-cy='affthumbnailText'
           className={classes.affthumbnailText}
         >
           <Typography
             variant={isChildThumbnail ? 'body1' : 'h6'}
             noWrap
-            data-cy='thumbnailTextInfn'
+            data-cy='contributor-thumbnail-text'
             className={
               isOpen ? `${classes.blueColorText}` : `${classes.orgText}`
             }

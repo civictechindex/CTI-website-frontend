@@ -35,6 +35,18 @@ describe('Contributors Page (using API)', () => {
         });
     });
   });
+
+  it('should find affiliatedOrg via search', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
+    cy.visit('/organizations/affiliated');
+    cy.wait('@getOrganizations');
+    cy.get('[data-cy=organization-search]').type(affiliatedOrg);
+    cy.get('[class*=makeStyles-gpGrid]').click();
+    cy.get('[data-cy=affiliated-organizations]').within(() => {
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
+      cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
+    });
+  });
 });
 
 describe('Contributors Page (using fixture)', () => {

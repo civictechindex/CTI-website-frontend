@@ -90,6 +90,7 @@ const OrganizationSearch = (props) => {
               <TextField
                 {...params}
                 className={classes.input}
+                data-cy='organization-search'
                 InputProps={{
                   ...params.InputProps,
                   type: 'search',
