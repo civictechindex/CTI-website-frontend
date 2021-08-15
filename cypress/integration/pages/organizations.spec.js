@@ -5,8 +5,9 @@ describe('Contributors Page (using API)', () => {
   const parentOrg = 'Code for America';
   const affiliatedOrg = 'Code for ABQ';
   const affiliatedOrgPartial = 'ABQ';
+  const parentOrgCount = 24;
 
-  it('should load grandparentOrg, 24 children, parentOrg, affiliatedOrg', () => {
+  it(`should load grandparentOrg, ${parentOrgCount} children, parentOrg, affiliatedOrg`, () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
     cy.visit('/organizations/all');
     cy.wait('@getOrganizations');
@@ -15,7 +16,7 @@ describe('Contributors Page (using API)', () => {
     cy.get('[href*=codeforall]').should('have.length', 1);
     cy.get('[data-cy=code-for-all-chevron]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
-      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 24);
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount);
       cy.get('[data-cy=thumbnail-dropdown]')
         .contains(parentOrg)
         .parentsUntil('[data-cy=thumbnail-dropdown]')
