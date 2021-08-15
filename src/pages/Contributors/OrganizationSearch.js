@@ -43,16 +43,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /* Autocomplete `inputValue` is text displayed, `value` is selected option */
-const OrganizationSearch = (props) => {
-  const {
-    inputPlaceholder,
-    inputValue: topLevelInputValue,
-    options,
-    setInputValue: setTopLevelInputValue,
-  } = props;
+const OrganizationSearch = ({
+  inputValue,
+  options,
+  setInputValue,
+}) => {
   const classes = useStyles();
+  const placeholder = 'Search for an organization';
   const [value, setValue] = useState(null);
-  const [inputValue, setInputValue] = useState(topLevelInputValue);
 
   const handleClick = (event) => {
     // is there anything to do upon clicking the magnifying glass?
@@ -60,7 +58,6 @@ const OrganizationSearch = (props) => {
 
   const handleInputChange = (event, value, reason) => {
     setInputValue(value);
-    setTopLevelInputValue(value);
   };
 
   const handleChange = (event, value, reason) => {
@@ -94,7 +91,7 @@ const OrganizationSearch = (props) => {
                   ...params.InputProps,
                   type: 'search',
                 }}
-                placeholder={inputPlaceholder}
+                placeholder={placeholder}
               />
             )}
             selectOnFocus

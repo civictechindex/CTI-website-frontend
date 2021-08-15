@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const UnaffiliatedOrganizations = (props) => {
   const {
-    searchCount,
-    unaffiliatedCount,
-    totalunaffiliatedCount,
+    filtersActive,
     organization,
-    checkboxValue,
+    showIndexContrib,
+    totalunaffiliatedCount,
+    unaffiliatedCount,
   } = props;
   const classes = useStyles();
   const isChildThumbnail = false;
@@ -51,13 +51,13 @@ export const UnaffiliatedOrganizations = (props) => {
           Unaffiliated Organizations
           <span style={{ paddingLeft: '1px' }}>
             {' '}
-            {searchCount
+            {filtersActive
               ? `(${unaffiliatedCount}/${totalunaffiliatedCount})`
               : `(${totalunaffiliatedCount})`}{' '}
           </span>
         </Typography>
       </Grid>
-      {checkboxValue ? (
+      {showIndexContrib ? (
         <Box>
           <Typography color='primary' className={classes.noargText}>
             {' '}
