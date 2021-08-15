@@ -27,13 +27,11 @@ describe('Contributors Page (using API)', () => {
       cy.get('[class*=thumbnailText]')
         .contains(parentOrg)
         .get('[class*=afflDropdown]')
-        .within(() => {
-          cy.get('#dropdownChevron').first().click();
-        });
       cy.get('[data-cy=affthumbnailTextWrapper]')
         .get('[data-cy=affthumbnailText]')
         .within(() => {
           cy.get('[data-cy=thumbnailTextInfn]').contains(affiliatedOrg);
+          cy.get('[data-cy=dropdown-chevron]').click();
         });
     });
   });
