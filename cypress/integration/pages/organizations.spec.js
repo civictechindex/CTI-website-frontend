@@ -247,7 +247,15 @@ describe('Contributors Page (using fixture)', () => {
   it('should show index contributor indicators', () => {
     cy.visit('/organizations/affiliated');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').check();
+    cy.get('[class*=makeStyles-gpGrid]').within(() => {
+      cy.get('[class*=contributorIcon]').should('exist');
+    });
     cy.get('[class*=makeStyles-gpGrid]').click();
     cy.get('[data-cy=contributor-icon]').should('have.length', 25); // TODO: adjust this number after bug fix
+    cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
+      cy.contains('Code for America').parent().parent().parent().within(() => {
+        cy.get('[class*=makeStyles-grandparentIcon]').should('exist');
+      });
+    });
   });
 });

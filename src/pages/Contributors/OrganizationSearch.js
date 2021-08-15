@@ -84,7 +84,7 @@ const OrganizationSearch = (props) => {
             handleHomeEndKeys
             inputValue={inputValue}
             ListboxProps={{
-              ['data-cy']: 'organization-search-list'
+              'data-cy': 'organization-search-list'
             }}
             onChange={handleChange}
             onInputChange={handleInputChange}
