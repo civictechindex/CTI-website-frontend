@@ -9,7 +9,7 @@ const calculateDaysSince = (updateTime) => {
 
 export const renderCard = (project) => {
   return (
-    <Grid item style={{ paddingTop: '10px' }} key={project.id}>
+    <Grid item style={{ paddingTop: '12px' }}  key={project.id}>
       {' '}
       <ProjectCard
         projectUrl={project.html_url}
