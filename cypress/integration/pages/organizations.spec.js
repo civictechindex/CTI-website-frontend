@@ -17,12 +17,7 @@ describe('Contributors Page (using API)', () => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 24);
       cy.get('[data-cy=thumbnail-dropdown]')
         .contains(parentOrg)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
+        .parentsUntil('[data-cy=thumbnail-dropdown]')
         .within(() => {
           cy.get('[data-cy=dropdown-chevron]').click();
         });
