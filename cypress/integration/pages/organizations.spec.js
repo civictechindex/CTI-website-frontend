@@ -1,5 +1,10 @@
 // eslint-disable-next-line max-lines-per-function
+
 describe('Contributors Page (using API)', () => {
+  const grandparentOrg = 'Code for All';
+  const parentOrg = 'Code for America';
+  const affiliatedOrg = 'Code for ABQ';
+
   it('should visit organizations page from home page link', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
       'getOrganizations'
@@ -11,6 +16,26 @@ describe('Contributors Page (using API)', () => {
       'contain',
       'Want to add your organization'
     );
+  });
+
+  it('Loads grandparentOrg with 24 children, finds parentOrg and an affiliatedOrg', () => {
+    cy.contains(grandparentOrg).should('have.length', 1);
+    cy.get('[href*=codeforall]').should('have.length', 1);
+    cy.get('[data-cy=code-for-all-chevron]').click();
+    cy.get('[data-cy=affiliated-organizations]').within(() => {
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 24);
+      cy.get('[class*=thumbnailText]')
+        .contains(parentOrg)
+        .get('[class*=afflDropdown]')
+        .within(() => {
+          cy.get('#dropdownChevron').first().click();
+        });
+      cy.get('[data-cy=affthumbnailTextWrapper]')
+        .get('[data-cy=affthumbnailText]')
+        .within(() => {
+          cy.get('[data-cy=thumbnailTextInfn]').contains(affiliatedOrg);
+        });
+    });
   });
 });
 

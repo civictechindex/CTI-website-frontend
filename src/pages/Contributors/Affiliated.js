@@ -135,6 +135,7 @@ export const Affiliated = (props) => {
           item
           container
           className={classesLocal.flexGrid}
+          data-cy='code-for-all-chevron'
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
           <DropdownArrow open={dropdownOpen} handleArrow={() => setDropdownOpen(!dropdownOpen)} />
