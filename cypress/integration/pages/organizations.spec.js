@@ -4,6 +4,7 @@ describe('Contributors Page (using API)', () => {
   const grandparentOrg = 'Code for All';
   const parentOrg = 'Code for America';
   const affiliatedOrg = 'Code for ABQ';
+  const affiliatedOrgPartial = 'ABQ';
 
   it('should load grandparentOrg, 24 children, parentOrg, affiliatedOrg', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
@@ -30,6 +31,28 @@ describe('Contributors Page (using API)', () => {
     cy.visit('/organizations/affiliated');
     cy.wait('@getOrganizations');
     cy.get('[data-cy=organization-search]').type(affiliatedOrg);
+    cy.get('[class*=makeStyles-gpGrid]').click();
+    cy.get('[data-cy=affiliated-organizations]').within(() => {
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
+      cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
+    });
+    cy.get('[class*=endAdornment]').click().within(() => {
+      cy.get('button').click();
+    });
+    cy.get('[data-cy=affiliated-organizations]').within(() => {
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount);
+    });
+  });
+
+  it('should find affiliatedOrg via partial search', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
+      'getOrganizations'
+    );
+    cy.visit('/organizations/affiliated');
+    cy.wait('@getOrganizations');
+    cy.get('[data-cy=organization-search]').type(affiliatedOrgPartial);
+    cy.get('[data-cy=organization-search-list]').should('have.length', 1);
+    cy.get('[data-cy=organization-search-list]').click();
     cy.get('[class*=makeStyles-gpGrid]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);

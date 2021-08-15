@@ -83,6 +83,9 @@ const OrganizationSearch = (props) => {
             fullWidth
             handleHomeEndKeys
             inputValue={inputValue}
+            ListboxProps={{
+              ['data-cy']: 'organization-search-list'
+            }}
             onChange={handleChange}
             onInputChange={handleInputChange}
             options={options}
