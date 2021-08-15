@@ -5,34 +5,28 @@ describe('Contributors Page (using API)', () => {
   const parentOrg = 'Code for America';
   const affiliatedOrg = 'Code for ABQ';
 
-  it('should visit organizations page from home page link', () => {
-    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
-      'getOrganizations'
-    );
-    cy.visit('/home');
-    cy.contains('View contributors').click();
+  it('should load grandparentOrg, 24 children, parentOrg, affiliatedOrg', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
+    cy.visit('/organizations/all');
     cy.wait('@getOrganizations');
-    cy.get('[class*=pageContainer]').should(
-      'contain',
-      'Want to add your organization'
-    );
-  });
-
-  it('Loads grandparentOrg with 24 children, finds parentOrg and an affiliatedOrg', () => {
+    cy.get('[data-cy=index-contributors-checkbox] input:checkbox').uncheck();
     cy.contains(grandparentOrg).should('have.length', 1);
     cy.get('[href*=codeforall]').should('have.length', 1);
     cy.get('[data-cy=code-for-all-chevron]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 24);
-      cy.get('[class*=thumbnailText]')
+      cy.get('[data-cy=thumbnail-dropdown]')
         .contains(parentOrg)
-        .get('[class*=afflDropdown]')
-      cy.get('[data-cy=affthumbnailTextWrapper]')
-        .get('[data-cy=affthumbnailText]')
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
         .within(() => {
-          cy.get('[data-cy=thumbnailTextInfn]').contains(affiliatedOrg);
           cy.get('[data-cy=dropdown-chevron]').click();
         });
+      cy.contains(affiliatedOrg);
     });
   });
 
@@ -47,6 +41,19 @@ describe('Contributors Page (using API)', () => {
       cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
     });
   });
+
+  it('should visit organizations page from home page link', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
+      'getOrganizations'
+    );
+    cy.visit('/home');
+    cy.contains('View contributors').click();
+    cy.wait('@getOrganizations');
+    cy.get('[class*=pageContainer]').should(
+      'contain',
+      'Want to add your organization'
+    );
+  });
 });
 
 describe('Contributors Page (using fixture)', () => {
@@ -57,7 +64,7 @@ describe('Contributors Page (using fixture)', () => {
     cy.visit('/organizations/');
   });
 
-  it('check that affiliated orgs have loaded', () => {
+  it('should load 24 affiliated orgs', () => {
     cy.get('[class*=makeStyles-gpGrid]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 24);
@@ -220,7 +227,7 @@ describe('Contributors Page (using fixture)', () => {
 
   it('should show index contributor indicators', () => {
     cy.visit('/organizations/affiliated');
-    cy.get('[data-cy=index-contributors-checkbox]').click();
+    cy.get('[data-cy=index-contributors-checkbox] input:checkbox').check();
     cy.get('[class*=makeStyles-gpGrid]').click();
     cy.get('[data-cy=contributor-icon]').should('have.length', 25); // TODO: adjust this number after bug fix
   });

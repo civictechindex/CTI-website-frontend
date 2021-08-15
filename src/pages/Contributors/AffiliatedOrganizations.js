@@ -255,7 +255,7 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                          ></ContributorThumbnail>
+                          />
                         </Typography>
                       );
                     })}
