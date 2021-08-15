@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
-/* eslint-disable sort-keys */
 
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
@@ -45,13 +44,9 @@ function TabPanel(props) {
   );
 }
 
-
-
 export default function Contributors() {
-
   const classes = useStyle();
   const location = useLocation();
-
   const [affiliatedCount, setAffiliatedCount] = useState(0);
   const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
   const [inputValue, setInputValue] = useState("");
@@ -112,7 +107,6 @@ export default function Contributors() {
         affiliated["Code for All"].push(organization);
         affiliated[organization.name] = [organization];
       };
-
       const addToUnaffiliated = (organization) => {
         if (affiliated["unaffiliated"]) {
           affiliated["unaffiliated"].push(organization);
@@ -143,9 +137,6 @@ export default function Contributors() {
     };
     createAffiliatedOrganizations();
   }, [inputValue, organizations, showIndexContrib]);
-
-  // Tab Code
-
   TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
@@ -255,9 +246,7 @@ export default function Contributors() {
             </TabPanel>
           </Grid>
         </Container>
-
       </Box>
-
       <Box className='containerWhite'>
         <Container>
           <GetStartedCard
