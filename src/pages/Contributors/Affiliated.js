@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
   titleStyle: {
     color: theme.palette.secondary.dark,
     textAlign: 'center',
+    [theme.breakpoints.between('xs','sm')]: {
+      fontSize: '14px',
+    },
   },
   gpGrid: {
     display: 'flex',
@@ -21,8 +24,18 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '6px',
     padding: '8px 16px',
     '& h4': {
-      paddingLeft: '24px',
+      paddingLeft: '10px',
       color: theme.palette.secondary.dark,
+      [theme.breakpoints.between('xs','sm')]: {
+        fontSize: '15px',
+      },
+      [theme.breakpoints.up('md')]: {
+        fontSize: '18px',
+      },
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '24px',
+        paddinglLeft: '10px',
+      },
     },
     '& a:link': {
       color: theme.palette.secondary.dark,
@@ -30,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
     '& a:visited': {
       color: theme.palette.secondary.dark,
     },
-    [theme.breakpoints.down('xs')]: {
-      height: '64px',
+    [theme.breakpoints.down('sm')]: {
+      height: '43px',
     },
   },
   open: {
@@ -50,6 +63,24 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     justifyContent: 'flex-end',
   },
+  codeforAllIcon: {
+    [theme.breakpoints.down('sm')]: {
+      width: '30px',
+      height: '30px',
+    },
+  },
+  codeforallText: {
+    fontSize:'24px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '12px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '24px',
+    },
+  },
   dropDownGrid: {
     margin: 'auto',
     backgroundColor: theme.palette.background.default,
@@ -60,6 +91,10 @@ const useStyles = makeStyles((theme) => ({
     width: '42px',
     height: '42px',
     marginLeft: '29%',
+    [theme.breakpoints.down('sm')]: {
+      width: '23px',
+      height: '23px',
+    },
   },
   contributorItem: {
     display: 'grid',
@@ -101,10 +136,10 @@ export const Affiliated = (props) => {
         })}
       >
         <Grid>
-          <img src='/images/code_for_All.png' alt='code for all logo' />
+          <img src='/images/code_for_All.png' alt='code for all logo' className={classesLocal.codeforAllIcon}/>
         </Grid>
         <Grid>
-          <Typography variant='h4' noWrap>
+          <Typography variant='h4' noWrap className={classesLocal.codeforallText}>
             <Link
               href='/organization/code-for-all'
               target='_blank'

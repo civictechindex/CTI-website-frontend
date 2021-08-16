@@ -10,10 +10,26 @@ const useStyles = makeStyles((theme) => ({
   unAfflText: {
     color: theme.palette.secondary.dark,
     textAlign: 'center',
+    [theme.breakpoints.between('xs','sm')]: {
+      fontSize: '14px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '1.75rem',
+    },
   },
   noargText: {
     fontSize: '24px',
     marginLeft: '38%',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '15px',
+      marginLeft: '22%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: '40%',
+    },
   },
   unaffiliatedThumbnails: {
     backgroundColor: theme.palette.background.default,
@@ -25,10 +41,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     [theme.breakpoints.down('sm')]: {
-      height: '80px',
-    },
-    [theme.breakpoints.down('xs')]: {
-      height: '64px',
+      height: '47px',
     },
   },
 }));
