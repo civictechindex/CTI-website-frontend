@@ -32,6 +32,7 @@ describe('FAQ Page (using fixture)', () => {
   });
 
   it('default faq list is loaded', () => {
+    cy.get('[data-cy=faq-question]').should('have.length', 10);
     cy.get('[data-cy=faq-question]')
       .first()
       .contains(Q1)
