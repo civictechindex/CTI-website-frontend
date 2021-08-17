@@ -10,6 +10,7 @@ describe('Projects Page (Search Projects)', () => {
 
   beforeEach(() => {
     cy.visit('/projects');
+    cy.viewport(1280, 768);
   });
 
   it('loads', () => {
