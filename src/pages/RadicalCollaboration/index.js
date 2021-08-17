@@ -69,8 +69,8 @@ const RadicalCollaboration = () => {
   ];
   return (
     <Box className='pageContainer'>
-      <Box className='containerDefault'>
-        <Container>
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
           <GenericHeaderSection
             mainTitle='Your help goes a long way'
             breadCrumbLinks={breadCrumbLinks}
@@ -89,7 +89,10 @@ const RadicalCollaboration = () => {
       </Box>
       <Box className='containerWhite'>
         <Container>
-          <BottomCallToAction heading='Want to support in other ways?' buttonHref='/contact' />
+          <BottomCallToAction
+            heading='Want to support in other ways?'
+            buttonHref='/contact'
+          />
         </Container>
       </Box>
     </Box>

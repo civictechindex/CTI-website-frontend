@@ -23,9 +23,11 @@ import Instructions from './Instructions'
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
-    paddingLeft: '100px',
+    paddingLeft: 100,
+    paddingRight: 100,
     [theme.breakpoints.down('sm')]: {
-      paddingLeft: '40px',
+      paddingLeft: 40,
+      paddingRight: 40,
     },
     [theme.breakpoints.down('xs')]: {
       padding: '0px 16px',
@@ -343,11 +345,20 @@ const TagCreator = () => {
 
   return (
     <Box>
-      <GenericHeaderSection mainTitle='Tag Generator' breadCrumbLinks={breadCrumbLinks}>
-        <Typography variant='h6' color='textSecondary' style={{ fontWeight: '500', textAlign: 'center' }} >Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
-      </GenericHeaderSection>
-
-      <Box className='containerGray' style={{ paddingBottom: '30px' }} >
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
+          <GenericHeaderSection mainTitle ='Tag Generator' breadCrumbLinks =    {breadCrumbLinks}>
+            <Typography
+              variant='h6'
+              color='textSecondary'
+              style={{ fontWeight:'500' , textAlign:'center' }}
+            >
+              Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.
+            </Typography>
+          </GenericHeaderSection>
+        </Container>
+      </Box>
+      <Box className='containerGray' style={{ paddingBottom:'30px' }} >
         <Container className={classes.containerPadding} >
           {renderCurrentState()}
         </Container>
