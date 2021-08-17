@@ -198,7 +198,7 @@ const Projects = () => {
       .then((res) => {
         setErrorState(false);
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
-        const items = res.data.items.map((i) => renderCard(i, classes));
+        const items = res.data.items.map((project) => renderCard(project, classes));
 
         setResultCountHeader(
           <ResultHeader
