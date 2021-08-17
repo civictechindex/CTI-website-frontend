@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   projectCardBorder: {
     border: '1px solid #BCBCBC',
-  }
+  },
 }));
 
 const defaultFilterList = [
