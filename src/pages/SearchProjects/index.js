@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
   resultSection: {
     alignSelf: 'flex-start',
   },
+  projectCardBorder: {
+    border: '1px solid #BCBCBC',
+  },
 }));
 
 const defaultFilterList = [
@@ -61,13 +64,13 @@ const defaultFilterList = [
 
 
 
-const renderCard = (project) => {
+const renderCard = (project, classes) => {
   const calculateDaysSince = (updateTime) => {
     const days = new Date() - new Date(updateTime);
     return Math.round(days / (1000 * 3600 * 24));
   };
   return (
-    <Box key={project.id} my={1}>
+    <Box key={project.id} my={1} className={classes.projectCardBorder}>
       <ProjectCard
         projectUrl={project.html_url}
         organizationUrl={project.owner.html_url}
@@ -107,7 +110,7 @@ const Projects = () => {
   const [sort, setSort] = useState('best match');
 
   const theme = useTheme();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true });
+  const largeScreen = useMediaQuery(theme.breakpoints.up('lg'), { noSsr: true });
   const itemsPerPage = largeScreen ? 10 : 5;
 
   /*
@@ -195,7 +198,7 @@ const Projects = () => {
       .then((res) => {
         setErrorState(false);
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
-        const items = res.data.items.map((i) => renderCard(i));
+        const items = res.data.items.map((project) => renderCard(project, classes));
 
         setResultCountHeader(
           <ResultHeader

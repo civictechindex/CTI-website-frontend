@@ -161,7 +161,7 @@ export default function Contributors() {
             ]}
           />
           <Grid container>
-            <TitleSection>Organizations</TitleSection>
+            <TitleSection>Civic Tech Partners</TitleSection>
             <Grid item xs={12}>
               <Typography color='textSecondary' className={classes.textStyle} gutterBottom>Check out our partners who have contributed to the Civic Tech Index</Typography>
             </Grid>

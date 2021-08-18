@@ -36,6 +36,7 @@ describe('Projects Page (Search Projects)', () => {
   });
 
   it('loads more when you click View More', () => {
+    cy.viewport(1280, 768);
     cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
     cy.get('[data-cy=view-Languages').click();
     cy.contains('C++');

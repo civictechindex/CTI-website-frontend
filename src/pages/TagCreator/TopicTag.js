@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CopyPasteIcon from '../../icons/CopyPasteIcon';
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export const GeneratedTopicTag = (props) => {
   const classes = useStyles();
   const topicArray = props.topicnames || []
-  return topicArray.map((data,key) =>  {
+  return topicArray.map((data, key) => {
     return (
       <Grid key={key} data-cy='generated-topic-tag'>
         <Chip
@@ -65,24 +65,24 @@ export const ClickableTopicTag = (props) => {
 
 export const CopyPasteTopicTag = (props) => {
   const classes = useStyles();
-  const [cValue,setCvalue]=useState()
+  const [cValue, setCvalue] = useState()
   const clipboard = useClipboard({
     copiedTimeout: 600,
   });
-  const handleDelete = (data,key) => () => {
+  const handleDelete = (data, key) => () => {
     clipboard.copy(data);
     setCvalue(key)
   };
   const topicArray = props.topicnames || []
-  const ChipArray = topicArray.map((data,key) => {
+  const ChipArray = topicArray.map((data, key) => {
     return (
       <Grid key={key} data-cy='copy-paste-topic-tag'>
         <Chip
           key={key}
           variant='outlined'
           className={classes.topicTag}
-          label={(clipboard.copied && cValue === key)?'copied':data}
-          onDelete={handleDelete(data,key)}
+          label={(clipboard.copied && cValue === key) ? 'copied' : data}
+          onDelete={handleDelete(data, key)}
           deleteIcon={<CopyPasteIcon />}
           {...props}
         />
@@ -97,10 +97,10 @@ export const CopyPasteTopicTag = (props) => {
 
 };
 
-export const DeletableTopicTag = ({ userTags,handleDelete }) => {
+export const DeletableTopicTag = ({ userTags, handleDelete }) => {
   const classes = useStyles();
   const topicArray = userTags || []
-  return topicArray.map((data,key) =>  {
+  return topicArray.map((data, key) => {
     return (
       <Grid key={key} data-cy='deletable-topic-tag'>
         <Chip
@@ -108,7 +108,7 @@ export const DeletableTopicTag = ({ userTags,handleDelete }) => {
           variant='outlined'
           className={classes.topicTag}
           label={data}
-          onDelete={()=>handleDelete(data)}
+          onDelete={() => handleDelete(data)}
         />
       </Grid>
     );
@@ -122,7 +122,8 @@ export const ChipInputSection = ({ handleAdd, handleDelete, userTags }) => {
   return (
     <ChipInput
       fullWidth
-      placeholder='Add topic tag'
+      placeholder='| Add topic tag'
+      alwaysShowPlaceholder={true}
       onAdd={(chip) => handleAdd(chip)}
       onDelete={(deletedChip) => handleDelete(deletedChip)}
       value={userTags}

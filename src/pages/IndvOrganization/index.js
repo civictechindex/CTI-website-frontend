@@ -102,7 +102,7 @@ const IndvOrgPage = ({ match }) => {
               {
                 name: name,
                 href:
-                  '/organizations/' + name?.replaceAll(' ', '').toLowerCase(),
+                  '/organization/' + name?.replaceAll(' ', '').toLowerCase(),
               },
             ];
 

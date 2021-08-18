@@ -33,7 +33,9 @@ const Faq = () => {
   const apiUrl = `${process.env.REACT_APP_API_URL}/api/faqs/`;
 
   const theme = useTheme();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });
+  const largeScreen = useMediaQuery(theme.breakpoints.up('sm'), {
+    noSsr: true,
+  });
 
   const getFAQData = async (currentQuery, resetPageNum) => {
     const params = {
@@ -74,8 +76,11 @@ const Faq = () => {
 
   return (
     <Box className='boxBackground'>
-      <Container>
-        <GenericHeaderSection mainTitle='How can we help?' breadCrumbLinks={breadCrumbLinks}>
+      <Container className='containerDefault'>
+        <GenericHeaderSection
+          mainTitle='How can we help?'
+          breadCrumbLinks={breadCrumbLinks}
+        >
           <Grid container justify='center' className={classes.searchBar}>
             <Grid item xs={12} sm={9}>
               <SearchBar
@@ -88,13 +93,17 @@ const Faq = () => {
         </GenericHeaderSection>
       </Container>
       <FAQCard
-        title={status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
+        title={ status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
         faqs={data}
         pages={Math.ceil(totalCount / (largeScreen ? 10 : 5))}
         currentPageNum={pageNum}
         onPageChange={handlePageNumChange}
       />
-      <GetStartedCard headerTitle="Can’t find an answer?" buttonText="Contact Us" buttonHref="/contact" />
+      <GetStartedCard
+        headerTitle='Can’t find an answer?'
+        buttonText='Contact Us'
+        buttonHref='/contact'
+      />
     </Box>
   );
 };

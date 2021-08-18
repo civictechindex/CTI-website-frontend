@@ -49,9 +49,14 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setO
   const handleDialogClose = (newOrg) => {
     setDialogOpen(false);
     if (newOrg) {
-      options.shift();
-      setOptions(["", newOrg, ...options]);
+      setOptions([newOrg, ...options]);
       setOrgName(newOrg);
+    }
+  };
+
+  const handleOrgChange = (event, value) => {
+    if (value !== null) {
+      setOrgName(value);
     }
   };
 
@@ -69,13 +74,13 @@ export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setO
           onClose={() => {
             setOpen(false);
           }}
-          getOptionSelected={(option, value) => option === value }
-          getOptionLabel={(option) => option}
+          getOptionSelected={(option, value) => value === '' || option === value}
+          getOptionLabel={(option) => option || ''}
           options={options}
           autoComplete
           loading={loading}
-          value={orgName}
-          onChange={(e, v) => setOrgName(v)}
+          value={orgName || null}
+          onChange={handleOrgChange}
           renderInput={(params) =>(
             <TextField {...params}
               required

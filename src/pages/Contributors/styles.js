@@ -33,6 +33,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   textStyle: {
     color: theme.palette.text.secondary,
+    fontWeight: 700,
     fontSize: '24px',
     textAlign: 'center',
     marginTop: '-1rem',
@@ -67,7 +68,6 @@ export const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '28px',
     },
-
     '&:hover': {
       color: '#006B95',
       opacity: 1,
@@ -107,5 +107,6 @@ export const useStyle = makeStyles((theme) => ({
   formControlLabel: {
     color: theme.palette.secondary.dark,
     fontSize: '24px',
+    fontWeight: 700,
   },
 }));
