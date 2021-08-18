@@ -101,7 +101,7 @@ const TagCreator = () => {
       .then(res => {
         const orgs = (res.data).map((org) => org.name)
         if (active) {
-          setOptions(["", ...orgs]);
+          setOptions(orgs);
         }
       })
     return () => {
