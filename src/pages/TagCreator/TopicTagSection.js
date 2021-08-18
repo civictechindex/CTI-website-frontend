@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import { useClipboard } from 'use-clipboard-copy';
+import SettingsGearIcon from '../../icons/SettingsGearIcon';
 
 const useStyles = makeStyles((theme) => ({
   tagGridStyle:{
@@ -161,7 +162,7 @@ export const CopyPasteTags = ({ tagsToAdd,userTags,setDisplayState,repositoryNam
         <Typography variant='h6' style={{  fontWeight: '400' }} className={classes.typoStyle} >We recommend having your <Link target="_blank" href={repositoryUrl} >project’s repository</Link> open in another browser for ease of convenience. </Typography>
       </Grid>
       <Grid item xs={12} sm={10} style={{ paddingBottom:'20px' }}>
-        <Typography variant='h6' style={{  fontWeight: '400' }} className={classes.typoStyle}>If you don’t see the (Github Gear icon) button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
+        <Typography variant='h6' style={{  fontWeight: '400' }} className={classes.typoStyle}>If you don’t see the <SettingsGearIcon/>  button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
         Please click <Link component="button" variant='h6' onClick={()=>handleQueryParamLink()} underline='always' style={linkStyles}>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
       </Grid>
       <Grid>

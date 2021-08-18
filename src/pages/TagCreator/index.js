@@ -19,7 +19,7 @@ import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organiza
 import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
 import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
 import useTheme from '@material-ui/core/styles/useTheme';
-import TagGeneratorInstructions from '../../components/TagGeneratorInstructions'
+import Instructions from './Instructions'
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
@@ -199,25 +199,23 @@ const TagCreator = () => {
     else  {
       handleChangeProjectRepository()
     }
-
   }
 
   const handleAdd = (chip) => {
-    chip = chip.toLowerCase().trim().replaceAll(" ", "-")
+    chip = chip.toLowerCase();
     chip = chip.replace(/['`~!@#$%^&*()_|+=?;:'".<>\\{\\}\\[\]\\\\/]/gi, '');
-    while (chip.startsWith("-")){
-      chip = chip.slice(1)
+    while (chip.startsWith('-')) {
+      chip = chip.slice(1);
     }
-    while (chip.endsWith("-")){
-      chip = chip.slice(0,-1)
+    while (chip.endsWith('-')) {
+      chip = chip.slice(0, -1);
     }
-    if (chip.includes(',')){
-      const inputChipArr=chip.split(',')
-      setUserTags([...new Set([...userTags,...inputChipArr])])
-    }
-    else
-      setUserTags([...new Set([...userTags,chip])])
-  }
+    if (chip.includes(',')) {
+      const inputChipArr = chip.split(',');
+      setUserTags([...new Set([...userTags, ...inputChipArr])]);
+    } else setUserTags([...new Set([...userTags, chip])]);
+  };
+
   const handleDelete = (deletedChip) => {
     setUserTags(userTags.filter((c) => c !== deletedChip))
   }
@@ -245,7 +243,6 @@ const TagCreator = () => {
       </Grid>
     )
   }
-
 
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
@@ -366,7 +363,7 @@ const TagCreator = () => {
           {renderCurrentState()}
         </Container>
       </Box>
-      {(displayState === 'CopyPasteTags')?<TagGeneratorInstructions/>:null}
+      {(displayState === 'CopyPasteTags')?<Instructions/>:null}
     </Box>
   )
 }

@@ -3,10 +3,18 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const ParentSelect = ({ org, orgList, onChange }) => {
+  const parseOptionLabel = (option) => {
+    if (typeof option === 'object' && option !== null) {
+      return option.name;
+    }
+    return option;
+  };
+
   return (
     <Autocomplete
-      autoComplete
-      getOptionLabel={(option) => option.name}
+      autoSelect
+      freeSolo
+      getOptionLabel={parseOptionLabel}
       getOptionSelected={(option, value) => option.name === value.name }
       onChange={(event, value) => onChange(value)}
       options={orgList}

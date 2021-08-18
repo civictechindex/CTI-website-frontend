@@ -75,20 +75,13 @@ export const Affiliated = (props) => {
     inputValue,
     classes,
     organizationData,
-    affiliatedSepOpen,
     searchCount,
     affiliatedCount,
     totalaffiliatedCount,
-    setAfflnSepOpen,
     checkboxValue,
   } = props;
   const classesLocal = useStyles();
-  const [gp, setGp] = useState(false);
-  const handleClickGrid = () => {
-    setGp(!gp);
-    setAfflnSepOpen(true);
-  };
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <Grid>
       <Grid style={{ padding: '40px' }}>
@@ -104,7 +97,7 @@ export const Affiliated = (props) => {
         xs={12}
         sm={10}
         className={clsx(classesLocal.gpGrid, {
-          [classesLocal.open]: gp === true,
+          [classesLocal.open]: dropdownOpen,
         })}
       >
         <Grid>
@@ -141,15 +134,14 @@ export const Affiliated = (props) => {
           item
           container
           className={classesLocal.flexGrid}
-          onClick={handleClickGrid}
+          onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <DropdownArrow open={gp} handleArrow={handleClickGrid} />
+          <DropdownArrow open={dropdownOpen} handleArrow={() => setDropdownOpen(!dropdownOpen)} />
         </Grid>
       </Grid>
       <Grid>
-        {affiliatedSepOpen &&
-          gp &&
-          (!organizations['Code for All'] ? (
+        {dropdownOpen && (
+          !organizations['Code for All'] ? (
             !inputValue ? (
               <h3 className={classes.loaders}>Loading...</h3>
             ) : (
@@ -164,7 +156,8 @@ export const Affiliated = (props) => {
                 checkboxValue={checkboxValue}
               />
             </Grid>
-          ))}
+          )
+        )}
       </Grid>
     </Grid>
   );

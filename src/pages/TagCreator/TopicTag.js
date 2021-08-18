@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import { useClipboard } from 'use-clipboard-copy';
 import ChipInput from "material-ui-chip-input";
 
-
 const useStyles = makeStyles((theme) => ({
   topicTag: {
     backgroundColor: theme.palette.background.default,
@@ -45,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export const GeneratedTopicTag = (props) => {
   const classes = useStyles();
   const topicArray = props.topicnames || []
@@ -60,7 +58,6 @@ export const GeneratedTopicTag = (props) => {
     );
   })
 }
-
 
 export const ClickableTopicTag = (props) => {
   return <Chip {...props} />;
@@ -99,6 +96,7 @@ export const CopyPasteTopicTag = (props) => {
   )
 
 };
+
 export const DeletableTopicTag = ({ userTags,handleDelete }) => {
   const classes = useStyles();
   const topicArray = userTags || []
@@ -117,7 +115,9 @@ export const DeletableTopicTag = ({ userTags,handleDelete }) => {
   })
 }
 
-export const ChipInputSection = ({ handleAdd,handleDelete,userTags }) =>{
+export const ChipInputSection = ({ handleAdd, handleDelete, userTags }) => {
+  const chipKeys = ['Enter', ' '];
+  const chipKeyCodes = [13, 32];
   const classes = useStyles();
   return (
     <ChipInput
@@ -126,8 +126,9 @@ export const ChipInputSection = ({ handleAdd,handleDelete,userTags }) =>{
       onAdd={(chip) => handleAdd(chip)}
       onDelete={(deletedChip) => handleDelete(deletedChip)}
       value={userTags}
-      className = {classes.addTag}
+      className={classes.addTag}
+      newChipKeys={chipKeys}
+      newChipKeyCodes={chipKeyCodes}
     />
-  )
-}
-
+  );
+};
