@@ -222,8 +222,7 @@ const MediaInfo = () => {
           <Box>
             <Typography
               variant='h4'
-              style={{ color: '#004364', marginBottom: '32px' }}
-            >
+              style={{ color: '#004364', marginBottom: '32px' }}>
               Use our Logo on your Project!
             </Typography>
             <Typography variant='h6' style={{ marginBottom: '16px' }}>
@@ -330,7 +329,14 @@ export default function ShareTheCti() {
 
   return (
     <Box>
-      <GenericHeaderSection mainTitle='Share the CTI' breadCrumbLinks={breadCrumbLinks} />
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
+          <GenericHeaderSection
+            mainTitle='Share the CTI'
+            breadCrumbLinks={breadCrumbLinks}
+          />
+        </Container>
+      </Box>
       <Container className={classes.containerStyle}>
         <Grid
           container

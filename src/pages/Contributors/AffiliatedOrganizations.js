@@ -69,7 +69,7 @@ export const AffiliatedOrganizations = ({
   organizations,
   inputValue,
   organizationData,
-  checkboxValue,
+  showIndexContrib,
 }) => {
   const classes = useStyles();
 
@@ -122,10 +122,10 @@ export const AffiliatedOrganizations = ({
         }
 
         if (parentChildobj) {
-          if (checkboxValue && org['cti_contributor']) {
+          if (showIndexContrib && org['cti_contributor']) {
             parentChildobj.childNodes.push(org);
           }
-          if (!checkboxValue) {
+          if (!showIndexContrib) {
             parentChildobj.childNodes.push(org);
           }
         } else {
@@ -144,7 +144,7 @@ export const AffiliatedOrganizations = ({
   useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, organizations, organizationData, checkboxValue]);
+  }, [inputValue, organizations, organizationData, showIndexContrib]);
 
   let childSort;
   let childNode;
@@ -159,7 +159,7 @@ export const AffiliatedOrganizations = ({
           childNode = org.isOpen ? childSort : childSort.slice(0, 8);
           return (
             <Dropdown
-              checkboxValue={checkboxValue}
+              checkboxValue={showIndexContrib}
               organization={org}
               key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
@@ -183,7 +183,7 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                            checkboxValue={checkboxValue}
+                            checkboxValue={showIndexContrib}
                           />
                         </Grid>
                       );
@@ -193,7 +193,7 @@ export const AffiliatedOrganizations = ({
                   <ContributorThumbnail
                     isChildThumbnail={isChildThumbnail}
                     organization={org}
-                    checkboxValue={checkboxValue}
+                    checkboxValue={showIndexContrib}
                   />
                 )}
                 {org.childNodes.length > 8 ? (

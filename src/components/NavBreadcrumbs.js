@@ -69,7 +69,7 @@ export default function NavBreadcrumbs(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Breadcrumbs aria-label="breadcrumb" maxItems={6}>
+      <Breadcrumbs aria-label="breadcrumb" maxItems={6} style={{ height: '65px' }}>
         {displayCrumbs}
       </Breadcrumbs>
     </ThemeProvider>

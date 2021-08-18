@@ -71,14 +71,14 @@ const useStyles = makeStyles((theme) => ({
 /* eslint complexity: [0, 0]*/
 export const Affiliated = (props) => {
   const {
-    organizations,
-    inputValue,
     classes,
+    inputValue,
+    organizations,
     organizationData,
-    searchCount,
+    filtersActive,
     affiliatedCount,
     totalaffiliatedCount,
-    checkboxValue,
+    showIndexContrib,
   } = props;
   const classesLocal = useStyles();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -87,7 +87,7 @@ export const Affiliated = (props) => {
       <Grid style={{ padding: '40px' }}>
         <Typography variant='h4' className={classesLocal.titleStyle}>
           Affiliated Organizations
-          {searchCount
+          {filtersActive
             ? `(${affiliatedCount}/${totalaffiliatedCount})`
             : `(${totalaffiliatedCount})`}
         </Typography>
@@ -106,19 +106,19 @@ export const Affiliated = (props) => {
         <Grid>
           <Typography variant='h4' noWrap>
             <Link
-              href='https://codeforall.org'
+              href='/organization/code-for-all'
               target='_blank'
               rel='noreferrer noopener'
             >
               Code for All
             </Link>
-            {searchCount
+            {filtersActive
               ? `(${affiliatedCount}/${totalaffiliatedCount})`
               : ` (${totalaffiliatedCount})`}
           </Typography>
         </Grid>
         <Grid>
-          {checkboxValue ? (
+          {showIndexContrib ? (
             <Typography>
               <img
                 className={classesLocal.contributorIcon}
@@ -153,7 +153,7 @@ export const Affiliated = (props) => {
                 organizations={organizations}
                 inputValue={inputValue}
                 organizationData={organizationData}
-                checkboxValue={checkboxValue}
+                showIndexContrib={showIndexContrib}
               />
             </Grid>
           )

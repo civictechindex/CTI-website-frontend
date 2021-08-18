@@ -1,6 +1,7 @@
 /* eslint-disable sort-keys */
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import deepmerge from '@material-ui/utils/deepmerge';
+import spectrum from './theme-spectrum';
 
 // Colors - Primary
 const DARK_BLUE = '#0F1D2F';
@@ -295,6 +296,7 @@ const themeSettings = {
     background: {
       default: WHITE,
     },
+    spectrum: { ...spectrum },
   },
   typography: {
     fontFamily: 'Work Sans, sans-serif',

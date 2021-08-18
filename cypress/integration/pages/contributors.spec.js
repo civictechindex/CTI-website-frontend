@@ -194,7 +194,9 @@ describe('Contributors Page', () => {
     cy.get('[class*=makeStyles-gpGrid]').within(() => {
       cy.get('[class*=contributorIcon]').should('exist');
     });
-    cy.get('[class*=makeStyles-gpGrid]').click();
+    cy.get('[class*=makeStyles-gpGrid]').within(() => {
+      cy.get('[class*=makeStyles-flexGrid]').click();
+    });
     cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
       cy.contains('Code for America').parent().parent().parent().within(() => {
         cy.get('[class*=makeStyles-grandparentIcon]').should('exist');
