@@ -7,12 +7,19 @@ import clsx from 'clsx';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 
+// eslint-disable-next-line max-lines-per-function
 const useStyles = makeStyles((theme) => ({
   titleStyle: {
     color: theme.palette.secondary.dark,
     textAlign: 'center',
-    [theme.breakpoints.between('xs','sm')]: {
-      fontSize: '14px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '16px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '28px',
     },
   },
   gpGrid: {
@@ -122,9 +129,11 @@ export const Affiliated = (props) => {
       <Grid style={{ padding: '40px' }}>
         <Typography variant='h4' className={classesLocal.titleStyle}>
           Affiliated Organizations
-          {filtersActive
-            ? `(${affiliatedCount}/${totalaffiliatedCount})`
-            : `(${totalaffiliatedCount})`}
+          <span style={{ paddingLeft: '9px' }}>
+            {filtersActive
+              ? `(${affiliatedCount}/${totalaffiliatedCount})`
+              : `(${totalaffiliatedCount})`}
+          </span>
         </Typography>
       </Grid>
       <Grid
@@ -147,9 +156,11 @@ export const Affiliated = (props) => {
             >
               Code for All
             </Link>
-            {filtersActive
-              ? `(${affiliatedCount}/${totalaffiliatedCount})`
-              : ` (${totalaffiliatedCount})`}
+            <span style={{ paddingLeft: '5px' }}>
+              {filtersActive
+                ? `(${affiliatedCount}/${totalaffiliatedCount})`
+                : ` (${totalaffiliatedCount})`}
+            </span>
           </Typography>
         </Grid>
         <Grid>

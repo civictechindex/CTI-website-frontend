@@ -12,8 +12,8 @@ export const DropdownArrow  = ({ open,handleOpen }) => {
       height: '45px',
       color: theme.palette.secondary.dark,
       [theme.breakpoints.down('xs')]: {
-        width: '20.9px',
-        height: '17.78px',
+        width: '20px',
+        height: '17px',
       },
     },
     clickDropDown: {
@@ -22,8 +22,8 @@ export const DropdownArrow  = ({ open,handleOpen }) => {
       height: '45px',
       color: theme.palette.background.default,
       [theme.breakpoints.down('xs')]: {
-        width: '20.9px',
-        height: '17.78px',
+        width: '20px',
+        height: '17px',
       },
     },
   }));

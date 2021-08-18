@@ -10,14 +10,14 @@ const useStyles = makeStyles((theme) => ({
   unAfflText: {
     color: theme.palette.secondary.dark,
     textAlign: 'center',
-    [theme.breakpoints.between('xs','sm')]: {
-      fontSize: '14px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '13px',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '18px',
+      fontSize: '16px',
     },
     [theme.breakpoints.up('lg')]: {
-      fontSize: '1.75rem',
+      fontSize: '28px',
     },
   },
   noargText: {
@@ -25,10 +25,19 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '38%',
     [theme.breakpoints.down('sm')]: {
       fontSize: '15px',
-      marginLeft: '22%',
+      marginLeft: '32%',
     },
     [theme.breakpoints.up('sm')]: {
-      marginLeft: '40%',
+      fontSize: '15px',
+      marginLeft: '38%',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '16px',
+      marginLeft: '39%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '20px',
+      marginLeft: '41%',
     },
   },
   unaffiliatedThumbnails: {
@@ -71,7 +80,7 @@ export const UnaffiliatedOrganizations = (props) => {
         </Typography>
       </Grid>
       {showIndexContrib ? (
-        <Box>
+        <Box item xs={12}>
           <Typography color='primary' className={classes.noargText}>
             {' '}
             No organization found{' '}

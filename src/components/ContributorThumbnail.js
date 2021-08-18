@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       padding: '0px',
       marginTop: '1px',
-      marginLeft: '1.5px',
+      marginLeft: '1px',
     },
   },
   thumbnailImage: {
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   grandparentIcon: {
-    marginTop: '9%',
+    marginTop: '22%',
     marginLeft: '13%',
     width: '42px',
     height: '42px',
