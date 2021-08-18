@@ -81,10 +81,7 @@ export const useStyle = makeStyles((theme) => ({
       textTransform: 'none',
     },
     '&$tabSelected': {
-      color: '#0D99C6',
-      borderStyle: 'none none solid none',
-      borderColor: '#0D99C6',
-      borderWidth: '5px',
+      color: '#006B95',
     },
   },
   tabSelected: {},
