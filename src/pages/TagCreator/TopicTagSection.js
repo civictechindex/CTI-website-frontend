@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexWrap: "nowrap",
   },
-   typoStyle: {
+  typoStyle: {
     fontWeight: '400',
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
@@ -144,7 +144,7 @@ export const NewTags = ({ resetForm, setDisplayState, tagsToAdd, setChangeValue,
     </>
   )
 }
-const TagGeneratorInstructions = ({copyPasteTopicTags,linkStyles,repositoryUrl}) =>{
+const TagGeneratorInstructions = ({ copyPasteTopicTags,linkStyles,repositoryUrl }) =>{
   const classes = useStyles();
   const clipboard = useClipboard({
     copiedTimeout: 600,
@@ -152,51 +152,50 @@ const TagGeneratorInstructions = ({copyPasteTopicTags,linkStyles,repositoryUrl})
   const handleQueryParamLink = () => {
     clipboard.copy(window.location.href)
   }
-return(
-  <>
-          <Grid container>
-          <Grid style={{ padding: '24px 0px' }}>
-        <Typography variant='h4'>How to add your tags to your project’s repository</Typography>
-      </Grid>
-            <Grid item xs={12} sm={10}>
-              <Typography variant='body1' className={classes.typoStyle}>
+  return (
+    <>
+      <Grid container>
+        <Grid style={{ padding: '24px 0px' }}>
+          <Typography variant='h4'>How to add your tags to your project’s repository</Typography>
+        </Grid>
+        <Grid item xs={12} sm={10}>
+          <Typography variant='body1' className={classes.typoStyle}>
                 1. Under your <Link target="_blank" href={repositoryUrl} >project’s repository,</Link> click <SettingsGearIcon /> to paste your tags.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={10} style={{padding:'24px 16px 0'}}>
-              <Typography variant='body1' className={classes.typoStyle}>If you don’t see the <SettingsGearIcon />  button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={10} style={{ padding:'24px 16px 0' }}>
+          <Typography variant='body1' className={classes.typoStyle}>If you don’t see the <SettingsGearIcon />  button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
               Please click <Link component="button" variant='body1' onClick={() => handleQueryParamLink()} underline='always' style={linkStyles}>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
+        </Grid>
+        <ImageComponent src='/images/instructions-step1.svg' alt='Step 1' />
+        <Grid>
+          <Typography variant='body1' className={classes.typoStyle} >2. Under <Box component="span" style={{ fontWeight: '700' }}>&quot;Topics&quot;</Box>, paste the topic you want to add to your repository. </Typography>
+        </Grid>
+        <Grid item xs={12} sm={10} style={{ padding: '20px' }}>
+          <Typography variant='body1' className={classes.typoStyle}>Click each individual generated topic tag to copy it one at a time. Paste selected tag into your repository.</Typography>
+        </Grid>
+        <Grid container style={{ paddingLeft: '20px' }}>
+          <Grid item>
+            <Grid container direction="row" alignItems="center" >
+              <CopyPasteTopicTag topicnames={copyPasteTopicTags} variant='outlined' />
             </Grid>
-            <ImageComponent src='/images/instructions-step1.svg' alt='Step 1' />
-            <Grid>
-              <Typography variant='body1' className={classes.typoStyle} >2. Under <Box component="span" style={{ fontWeight: '700' }}>"Topics"</Box>, paste the topic you want to add to your repository. </Typography>
-            </Grid>
-            <Grid item xs={12} sm={10} style={{ padding: '20px' }}>
-        <Typography variant='body1' className={classes.typoStyle}>Click each individual generated topic tag to copy it one at a time. Paste selected tag into your repository.</Typography>
-    
-      </Grid>
-      <Grid container style={{ paddingLeft: '20px' }}>
-    <Grid item>
-      <Grid container direction="row" alignItems="center" >
-        <CopyPasteTopicTag topicnames={copyPasteTopicTags} variant='outlined' />
-      </Grid>
-    </Grid>
-  </Grid>
-            <ImageComponent src='/images/instructions-step2.svg' alt='Step 2' />
-            <Grid>
-              <Typography variant='body1' className={classes.typoStyle} >3. After you have finished adding your tags, click <Box component="span" style={{ fontWeight: '700' }}>Save Changes</Box> </Typography>
-            </Grid>
-            <ImageComponent src='/images/instructions-step3.svg' alt='Step 3' />
           </Grid>
-  </>
-)
+        </Grid>
+        <ImageComponent src='/images/instructions-step2.svg' alt='Step 2' />
+        <Grid>
+          <Typography variant='body1' className={classes.typoStyle} >3. After you have finished adding your tags, click <Box component="span" style={{ fontWeight: '700' }}>Save Changes</Box> </Typography>
+        </Grid>
+        <ImageComponent src='/images/instructions-step3.svg' alt='Step 3' />
+      </Grid>
+    </>
+  )
 }
 export const CopyPasteTags = ({ tagsToAdd, userTags, setDisplayState, repositoryName, repositoryUrl, linkStyles }) => {
   const copyPasteTopicTags = [...tagsToAdd, ...userTags]
 
   return (
     <>
-   <Grid>
+      <Grid>
         <Grid style={{ padding: '20px 0px' }}>
           <Typography variant='h6'>Here are the Topic Tags to add to {repositoryName}:</Typography>
         </Grid>

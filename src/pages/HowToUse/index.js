@@ -10,8 +10,8 @@ import SettingsGearIcon from '../../icons/SettingsGearIcon';
 
 const useStyles = makeStyles((theme) => ({
   gridContainer:{
-  padding:'64px 32px 0 32px',
-  margin:'auto',
+    padding:'64px 32px 0 32px',
+    margin:'auto',
   },
   typoStyle: {
     fontWeight: '400',
@@ -45,13 +45,13 @@ const HowToUse = () => {
                 1. Under your project’s repository, click <SettingsGearIcon /> to paste your tags.
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={10} style={{padding:'24px 16px 0'}}>
-              <Typography variant='body1' className={classes.typoStyle}>If you don’t see the <SettingsGearIcon />  button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
-        </Typography>
+            <Grid item xs={12} sm={10} style={{ padding:'24px 16px 0' }}>
+              <Typography variant='body1' className={classes.typoStyle}>If you don’t see the <SettingsGearIcon />  button it means you don’t have &quot;edit repository settings&quot; privileges (and can’t perform the steps below).
+              </Typography>
             </Grid>
             <ImageComponent src='/images/instructions-step1.svg' alt='Step 1' />
             <Grid>
-              <Typography variant='body1' className={classes.typoStyle} >2. Under <Box component="span" style={{ fontWeight: '700' }}>"Topics"</Box>, paste the topic you want to add to your repository. </Typography>
+              <Typography variant='body1' className={classes.typoStyle} >2. Under <Box component="span" style={{ fontWeight: '700' }}>&quot;Topics&quot;</Box>, paste the topic you want to add to your repository. </Typography>
             </Grid>
             <ImageComponent src='/images/instructions-step2.svg' alt='Step 2' />
             <Grid>
