@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '14px',
     },
   },
+  lStyle:{
+    fontWeight: '700',
+    color: theme.palette.secondary.main,
+  }
 }))
 
 
@@ -106,7 +110,7 @@ export const AddTopicTagSection = ({ setDisplayState, setChangeValue, resetForm,
   )
 }
 
-export const NewTags = ({ resetForm, setDisplayState, tagsToAdd, setChangeValue, linkStyles, handleAdd, handleDelete, userTags }) => {
+export const NewTags = ({ resetForm, setDisplayState, tagsToAdd, setChangeValue, linkStyles, handleDelete, userTags }) => {
   const classes = useStyles();
   const handleResetForm = () => {
     resetForm()
@@ -160,12 +164,12 @@ const TagGeneratorInstructions = ({ copyPasteTopicTags,linkStyles,repositoryUrl 
         </Grid>
         <Grid item xs={12} sm={10}>
           <Typography variant='body1' className={classes.typoStyle}>
-                1. Under your <Link target="_blank" href={repositoryUrl} >project’s repository,</Link> click <SettingsGearIcon /> to paste your tags.
+                1. Under your <Link target="_blank" href={repositoryUrl} underline='always' className={classes.lStyle}  >project’s repository,</Link> click <SettingsGearIcon /> to paste your tags.
           </Typography>
         </Grid>
         <Grid item xs={12} sm={10} style={{ padding:'24px 16px 0' }}>
           <Typography variant='body1' className={classes.typoStyle}>If you don’t see the <SettingsGearIcon />  button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
-              Please click <Link component="button" variant='body1' onClick={() => handleQueryParamLink()} underline='always' style={linkStyles}>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
+              Please click <Link component="button" variant='body1' onClick={() => handleQueryParamLink()} underline='always' className={classes.lStyle} >{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
         </Grid>
         <ImageComponent src='/images/instructions-step1.svg' alt='Step 1' />
         <Grid>
