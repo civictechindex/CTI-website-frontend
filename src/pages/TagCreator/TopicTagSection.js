@@ -148,6 +148,7 @@ export const NewTags = ({ resetForm, setDisplayState, tagsToAdd, setChangeValue,
     </>
   )
 }
+
 const TagGeneratorInstructions = ({ copyPasteTopicTags,linkStyles,repositoryUrl }) =>{
   const classes = useStyles();
   const clipboard = useClipboard({
@@ -194,6 +195,7 @@ const TagGeneratorInstructions = ({ copyPasteTopicTags,linkStyles,repositoryUrl 
     </>
   )
 }
+
 export const CopyPasteTags = ({ tagsToAdd, userTags, setDisplayState, repositoryName, repositoryUrl, linkStyles }) => {
   const copyPasteTopicTags = [...tagsToAdd, ...userTags]
 
