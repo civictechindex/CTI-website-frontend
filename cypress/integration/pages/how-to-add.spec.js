@@ -8,6 +8,6 @@ describe('How To Add Page', () => {
   });
 
   it('middle section loads', () => {
-    cy.contains('Repeat until you have finished adding all of your tags');
+    cy.contains('After you have finished adding your tags, click Save Changes');
   });
 });

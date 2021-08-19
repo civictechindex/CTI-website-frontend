@@ -19,7 +19,7 @@ import { OrgNameSection, OrganizationSelectorSection, OrgChange } from './Organi
 import { ProjectRepositorySection, ProjectRepositoryInput } from './ProjectRepository'
 import { AddTopicTagSection, AddTagsQuestion, NewTags, CopyPasteTags, AddMoreTags, CurrentTopicTagSection } from './TopicTagSection'
 import useTheme from '@material-ui/core/styles/useTheme';
-import Instructions from './Instructions'
+import BottomSection from './BottomSection'
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
@@ -363,7 +363,7 @@ const TagCreator = () => {
           {renderCurrentState()}
         </Container>
       </Box>
-      {(displayState === 'CopyPasteTags') ? <Instructions /> : null}
+      {(displayState === 'CopyPasteTags') ? <BottomSection /> : null}
     </Box>
   )
 }
