@@ -2,7 +2,6 @@ import React from 'react';
 import { ContributorThumbnail } from '../../components/ContributorThumbnail';
 
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
@@ -22,22 +21,18 @@ const useStyles = makeStyles((theme) => ({
   },
   noargText: {
     fontSize: '24px',
-    marginLeft: '38%',
+    marginLeft: '18%',
     [theme.breakpoints.down('sm')]: {
       fontSize: '15px',
-      marginLeft: '32%',
-    },
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '15px',
-      marginLeft: '38%',
+      marginLeft: '0',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '16px',
-      marginLeft: '39%',
+      fontSize: '17px',
+      marginLeft: '0',
     },
     [theme.breakpoints.up('lg')]: {
-      fontSize: '20px',
-      marginLeft: '41%',
+      fontSize: '24px',
+      marginLeft: '0',
     },
   },
   unaffiliatedThumbnails: {
@@ -80,12 +75,12 @@ export const UnaffiliatedOrganizations = (props) => {
         </Typography>
       </Grid>
       {showIndexContrib ? (
-        <Box item xs={12}>
+        <Grid item xs={12}  sm={12} md={12} container direction="row" justify="center" alignItems="center">
           <Typography color='primary' className={classes.noargText}>
             {' '}
             No organization found{' '}
           </Typography>{' '}
-        </Box>
+        </Grid>
       ) : (
         <Grid>
           <Grid>

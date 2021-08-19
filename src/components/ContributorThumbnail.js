@@ -113,8 +113,8 @@ const useStyles = makeStyles((theme) => ({
     width: '24px',
     height: '24px',
     [theme.breakpoints.down('sm')]: {
-      width: '17.37px',
-      height: '17.6px',
+      width: '17px',
+      height: '17px',
     },
   },
   parentText: {
