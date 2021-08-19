@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import { useClipboard } from 'use-clipboard-copy';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
   tagGridStyle: {
@@ -20,18 +21,26 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'row',
     },
   },
-  typoStyle: {
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '14px',
-    },
-  },
   chipGrid: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: "center",
     flexWrap: "nowrap",
   },
-
+  imgStyle: {
+    width: '517px',
+    margin:'auto',
+    // padding: theme.spacing(1),
+    // [theme.breakpoints.down('md')]: {
+    //   width: '250px',
+    // },
+  },
+  typoStyle: {
+    fontWeight: '400',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '14px',
+    },
+  }
 }))
 
 
@@ -155,17 +164,7 @@ export const CopyPasteTags = ({ tagsToAdd, userTags, setDisplayState, repository
 
   return (
     <>
-      <Grid style={{ padding: '24px 0px' }}>
-        <Typography variant='h5'>How to add your tags to your project’s repository</Typography>
-      </Grid>
-      <Grid style={{ paddingBottom: '20px' }}>
-        <Typography variant='h6' style={{ fontWeight: '400' }} className={classes.typoStyle} >We recommend having your <Link target="_blank" href={repositoryUrl} >project’s repository</Link> open in another browser for ease of convenience. </Typography>
-      </Grid>
-      <Grid item xs={12} sm={10} style={{ paddingBottom: '20px' }}>
-        <Typography variant='h6' style={{ fontWeight: '400' }} className={classes.typoStyle}>If you don’t see the <SettingsGearIcon />  button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
-        Please click <Link component="button" variant='h6' onClick={() => handleQueryParamLink()} underline='always' style={linkStyles}>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
-      </Grid>
-      <Grid>
+   <Grid>
         <Grid style={{ padding: '20px 0px' }}>
           <Typography variant='h6'>Here are the Topic Tags to add to {repositoryName}:</Typography>
         </Grid>
@@ -180,9 +179,28 @@ export const CopyPasteTags = ({ tagsToAdd, userTags, setDisplayState, repository
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={10}>
-        <Typography variant='h6' style={{ fontWeight: '300', fontStyle: 'italic', paddingTop: '36px' }} className={classes.typoStyle}>Click each individual generated topic tag to copy it one at a time. Paste selected tag into your repository.</Typography>
+      <Grid style={{ padding: '24px 0px' }}>
+        <Typography variant='h4'>How to add your tags to your project’s repository</Typography>
       </Grid>
+      <Grid style={{ paddingBottom: '20px' }}>
+        <Typography variant='body1' className={classes.typoStyle} >1. Under your <Link target="_blank" href={repositoryUrl} >project’s repository,</Link> click <SettingsGearIcon /> to paste your tags. </Typography>
+      </Grid>
+      <Grid item xs={12} sm={10} style={{ paddingBottom: '20px' }}>
+        <Typography variant='body1' className={classes.typoStyle}>If you don’t see the <SettingsGearIcon />  button it means you don’t have “edit repository settings” privileges (and can’t perform the steps below).
+        Please click <Link component="button" variant='body1' onClick={() => handleQueryParamLink()} underline='always' style={linkStyles}>{clipboard.copied ? 'Copied' : 'here'}</Link> to copy this page link and send it to your repository admin.</Typography>
+      </Grid>
+      <Grid item xs={12} style={{ padding: '8px 0px',margin:'auto' }}>
+          <CardMedia
+            className={classes.imgStyle}
+            component='img'
+            alt='Step 1'
+            image='/images/instructions-step1.svg'
+            title='Step 1'
+          />
+        </Grid>
+      {/* <Grid item xs={12} sm={10}>
+        <Typography variant='h6' style={{ fontWeight: '300', fontStyle: 'italic', paddingTop: '36px' }} className={classes.typoStyle}>Click each individual generated topic tag to copy it one at a time. Paste selected tag into your repository.</Typography>
+      </Grid> */}
     </>
   )
 }
