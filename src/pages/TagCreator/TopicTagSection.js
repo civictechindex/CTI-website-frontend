@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
     },
-  }
+  },
 }))
 
 
@@ -198,6 +198,9 @@ export const CopyPasteTags = ({ tagsToAdd, userTags, setDisplayState, repository
             title='Step 1'
           />
         </Grid>
+        <Grid style={{ paddingBottom: '20px' }}>
+        <Typography variant='body1' className={classes.typoStyle} >2. Under <Typography style={{ fontWeight: '700' }}>"Topics"</Typography>, paste the topic you want to add to your repository. </Typography>
+      </Grid>
       {/* <Grid item xs={12} sm={10}>
         <Typography variant='h6' style={{ fontWeight: '300', fontStyle: 'italic', paddingTop: '36px' }} className={classes.typoStyle}>Click each individual generated topic tag to copy it one at a time. Paste selected tag into your repository.</Typography>
       </Grid> */}

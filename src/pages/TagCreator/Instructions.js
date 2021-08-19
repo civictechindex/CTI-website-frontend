@@ -96,7 +96,7 @@ const BottomSection = () => {
 const Instructions = () => {
   return (
     <Box className="pageContainer">
-      <TagGeneratorInstructions />
+      {/* <TagGeneratorInstructions /> */}
       <BottomSection />
     </Box>
   )
