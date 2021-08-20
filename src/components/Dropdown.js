@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '6px',
     height:'80px',
     padding:'12px 16px',
-    [theme.breakpoints.down('xs')]: {
-      height: '64px',
+    [theme.breakpoints.down('sm')]: {
+      height: '49px',
     },
   },
   open: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
     marginBottom: 0,
     [theme.breakpoints.down('sm')]: {
-      height: '64px',
+      height: '49px',
     },
   },
   flexGrid:{

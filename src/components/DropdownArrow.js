@@ -11,12 +11,20 @@ export const DropdownArrow  = ({ open,handleOpen }) => {
       width: '53px',
       height: '45px',
       color: theme.palette.secondary.dark,
+      [theme.breakpoints.down('xs')]: {
+        width: '20px',
+        height: '17px',
+      },
     },
     clickDropDown: {
       cursor: "pointer",
       width: '53px',
       height: '45px',
       color: theme.palette.background.default,
+      [theme.breakpoints.down('xs')]: {
+        width: '20px',
+        height: '17px',
+      },
     },
   }));
 
