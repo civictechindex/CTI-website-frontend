@@ -10,7 +10,7 @@ import SettingsGearIcon from '../../icons/SettingsGearIcon';
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
-    padding: '64px 32px 0 32px',
+    padding: '64px 32px',
     margin: 'auto',
   },
   typoStyle: {
@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
     },
+  },
+  gridPadding:{
+    padding: '24px 16px 0'
   },
 }));
 
@@ -46,7 +49,7 @@ const HowToUse = () => {
                 to paste your tags.
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={10} style={{ padding: '24px 16px 0' }}>
+            <Grid item xs={12} sm={10} className={classes.gridPadding}>
               <Typography variant='body1' className={classes.typoStyle}>
                 If you don’t see the <SettingsGearIcon /> button it means you
                 don’t have &quot;edit repository settings&quot; privileges (and
