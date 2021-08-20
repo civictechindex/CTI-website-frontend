@@ -1,5 +1,3 @@
-// eslint-disable-next-line max-lines-per-function
-
 describe('Contributors Page (using API)', () => {
   const grandparentOrg = 'Code for All';
   const parentOrg = 'Code for America';
@@ -75,6 +73,7 @@ describe('Contributors Page (using API)', () => {
   });
 });
 
+/* eslint-disable max-lines-per-function */
 describe('Contributors Page (using fixture)', () => {
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {

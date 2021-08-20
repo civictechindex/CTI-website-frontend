@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contributorItem: {
     display: 'grid',
-    position:'absolute',
+    position: 'absolute',
     marginLeft: '349px',
   },
   thumbnailWrapperContributor: {
@@ -176,10 +176,7 @@ const Thumbnail = ({
             loading='lazy'
           />
         </Grid>
-        <Grid
-          item
-          className={classes.affthumbnailText}
-        >
+        <Grid item className={classes.affthumbnailText}>
           <Typography
             variant={isChildThumbnail ? 'body1' : 'h6'}
             noWrap
