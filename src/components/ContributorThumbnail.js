@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 import React, { useEffect, useState } from 'react';
 import Box from '@material-ui/core/Box';
@@ -12,20 +13,26 @@ const useStyles = makeStyles((theme) => ({
   thumbnailWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
-    padding: '17px',
+    alignItems: 'flex-end',
+    padding: '13px',
     flexWrap: 'nowrap',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0px',
+      marginTop: '1px',
+      marginLeft: '1px',
+    },
   },
   thumbnailImage: {
     width: '48px',
     height: '48px',
     [theme.breakpoints.down('sm')]: {
-      width: '32px',
-      height: '32px',
+      width: '26px',
+      height: '26px',
     },
   },
   orgText: {
     paddingLeft: '9px',
+    paddingTop: '3px',
     color: theme.palette.secondary.dark,
     '& a:link': {
       color: theme.palette.secondary.dark,
@@ -33,8 +40,11 @@ const useStyles = makeStyles((theme) => ({
     '& a:visited': {
       color: theme.palette.secondary.dark,
     },
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: '8px',
+    [theme.breakpoints.between('xs','sm')]: {
+      fontSize: '12px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '18px',
     },
   },
   blueColorText: {
@@ -46,36 +56,69 @@ const useStyles = makeStyles((theme) => ({
     '& a:visited': {
       color: theme.palette.text.secondary,
     },
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: '8px',
+    [theme.breakpoints.between('xs','sm')]: {
+      fontSize: '12px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '18px',
     },
   },
   grandparentIcon: {
-    marginTop: '9%',
+    marginTop: '22%',
     marginLeft: '13%',
     width: '42px',
     height: '42px',
+    [theme.breakpoints.down('sm')]: {
+      width: '32px',
+      height: '32px',
+      marginTop: '23%',
+      marginLeft: '2%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '23px',
+      height: '23px',
+    },
   },
   contributorItem: {
     display: 'grid',
     position:'absolute',
-    marginLeft: '349px',
+    marginTop: '2px',
+    right: '0',
+    [theme.breakpoints.down('sm')]: {
+      right: 0,
+    },
   },
   thumbnailWrapperContributor: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
-    padding: '17px',
+    alignItems: 'flex-end',
+    padding: '13px',
     flexWrap: 'nowrap',
     position: 'relative',
+    [theme.breakpoints.down('sm')]: {
+      padding: '5px',
+    },
   },
   thumbnailChildImage: {
     width: '32px',
     height: '32px',
+    [theme.breakpoints.down('sm')]: {
+      width: '20px',
+      height: '20px',
+      marginTop: '5px',
+      marginLeft: '10px',
+    },
   },
   contributorIcon: {
     width: '24px',
     height: '24px',
+    [theme.breakpoints.down('sm')]: {
+      width: '17px',
+      height: '17px',
+    },
+  },
+  parentText: {
+    alignItems: 'center',
   },
 }));
 
@@ -95,7 +138,7 @@ export const ContributorThumbnail = ({
 
   return (
     <>
-      <Box>
+      <Box style={{ position: 'relative' }}>
         {thumbnailInfo.organizationUrl ? (
           <Thumbnail
             thumbnailInfo={thumbnailInfo}
@@ -137,7 +180,7 @@ const Thumbnail = ({
   if (organization.cti_contributor) {
     thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
   } else {
-    thumbnailWrapperStyle = classes.thumbnailWrapper;
+    thumbnailWrapperStyle = `${classes.thumbnailWrapper} ${classes.parentText}`;
   }
   if (organization.affiliated && organization.depth === 3) {
     thumbnailImageStyle = classes.thumbnailImage;
