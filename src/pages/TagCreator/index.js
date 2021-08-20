@@ -2,6 +2,7 @@
 /* eslint-disable complexity */
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from '@material-ui/core/Link';
 import {
   useQueryParam,
   StringParam,
@@ -333,7 +334,12 @@ const TagCreator = () => {
       return (
         <>
           <AffiliationQuestionSection value={value} handleChange={handleChange}
-            question={'Are you affiliated with an organization?'} />
+            question={
+              <>
+                Are you affiliated with an <Link href='/organizations/all'> organization</Link>?
+              </>  
+            } 
+          />;
           {(value === 'yes') ? <RadioYes value={value} setOrgName={setOrgName} /> : null}
           {(value === 'no') ? <OrgChange value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
             changeValue={changeValue} setDisplayState={setDisplayState} /> : null}
