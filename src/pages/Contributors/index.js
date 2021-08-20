@@ -194,8 +194,13 @@ export default function Contributors() {
             <FormGroup className={classes.checkBox}>
               <FormControlLabel
                 control={
-                  <Checkbox className={classes.chkBoxStyle}
-                    onChange={(e) => {setShowIndexContrib(e.target.checked)}} checked={showIndexContrib}
+                  <Checkbox
+                    checked={showIndexContrib}
+                    className={classes.chkBoxStyle}
+                    data-cy='index-contributors-checkbox'
+                    onChange={(e) => {
+                      setShowIndexContrib(e.target.checked);
+                    }}
                     style={{ backgroundColor: 'transparent' }}
                   />
                 }

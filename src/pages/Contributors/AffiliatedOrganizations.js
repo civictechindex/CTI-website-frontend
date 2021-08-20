@@ -19,30 +19,26 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    margin: 'auto',
+    marginTop: '10px',
+    justifyContent: 'center',
+    [theme.breakpoints.between('xs','sm')]: {
+      marginLeft: '0',
+      justifyContent: 'center',
+      alignItems: 'center',
+      display: 'flex',
+    },
   },
   afflnThumbnails: {
-    width: '375px',
     height: '64px',
     borderRadius: '6px',
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     margin: '8px',
-    [theme.breakpoints.down('md')]: {
-      width: '270px',
+    [theme.breakpoints.down('lg')]: {
       height: '60px',
-      '& p': {
-        fontSize: '20px',
-        fontWeight: '500',
-      },
     },
     [theme.breakpoints.down('sm')]: {
-      width: '220px',
-      height: '54px',
-      '& p': {
-        fontWeight: '500',
-        fontSize: '14px',
-      },
+      height: '36px',
     },
   },
   button: {
@@ -59,8 +55,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.default,
     },
     [theme.breakpoints.down('md')]: {
-      width: '118px',
-      height: '31px',
+      width: '74px',
+      height: '19px',
+      fontSize: '13px',
     },
   },
 }));
@@ -153,6 +150,7 @@ export const AffiliatedOrganizations = ({
       <Grid
         className={classes.thumbnailGrid}
         dropdownlength={currentThumbnails.length}
+        data-cy='affiliated-organizations'
       >
         {currentThumbnails.map((org, i) => {
           childSort = org.childNodes.sort(sortFn('name'));
@@ -165,7 +163,7 @@ export const AffiliatedOrganizations = ({
               dropdownLength={org.childNodes.length}
               isOpen={false}
             >
-              <Grid container alignItems='center'>
+              <Grid container style={ { justifyContent:"center" } } alignItems='center'>
                 {childNode.length > 0 ? (
                   <Grid
                     item
@@ -176,7 +174,7 @@ export const AffiliatedOrganizations = ({
                     {childNode.map((child, idx) => {
                       return (
                         <Grid
-                          item
+                          item xs={12} sm={5} md={5}
                           className={classes.afflnThumbnails}
                           key={`affiliatedThumbnail_child_${i}_${idx}`}
                         >
@@ -230,7 +228,7 @@ export const AffiliatedOrganizations = ({
     inputValue !== ''
   ) {
     return (
-      <Grid className={classes.thumbnailGrid}>
+      <Grid className={classes.thumbnailGrid} data-cy='affiliated-organizations'>
         {currentThumbnails.map((org, i) => {
           return (
             <Dropdown
@@ -254,7 +252,7 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                          ></ContributorThumbnail>
+                          />
                         </Typography>
                       );
                     })}

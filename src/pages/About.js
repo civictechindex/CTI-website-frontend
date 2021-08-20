@@ -3,7 +3,11 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { GetStartedCard, PictureCard, GenericHeaderSection } from '../components';
+import {
+  GetStartedCard,
+  PictureCard,
+  GenericHeaderSection,
+} from '../components';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
 
@@ -61,7 +65,8 @@ const About = () => {
     {
       src: '/images/groupCoding.png',
       alt: 'group coding',
-      children: 'Make your project more visible with GitHub’s open-source communities',
+      children:
+        'Make your project more visible with GitHub’s open-source communities',
     },
     {
       src: '/images/girlandguyCoding.png',
@@ -73,23 +78,23 @@ const About = () => {
   return (
     <Box className='containerDefault'>
       <Box className='boxBackround'>
-      <Container className='containerDefault'>
-        <GenericHeaderSection
-          mainTitle='A movement to index every open source civic tech project on GitHub'
-          breadCrumbLinks={breadCrumbLinks}
-        >
-          <VideoSection />
-          <Typography
-            variant='h5'
-            color='textSecondary'
-            className={classes.subHeaderStyle}
+        <Container className='containerDefault'>
+          <GenericHeaderSection
+            mainTitle='A movement to index every open source civic tech project on GitHub'
+            breadCrumbLinks={breadCrumbLinks}
           >
-            With your help, we can create a continuously updated repository for
-            all civic tech enthusiasts to find open source projects to model,
-            connect with, and learn from.
-          </Typography>
-        </GenericHeaderSection>
-      </Container>
+            <VideoSection />
+            <Typography
+              variant='h5'
+              color='textSecondary'
+              className={classes.subHeaderStyle}
+            >
+              With your help, we can create a continuously updated repository
+              for all civic tech enthusiasts to find open source projects to
+              model, connect with, and learn from.
+            </Typography>
+          </GenericHeaderSection>
+        </Container>
       </Box>
       <PictureCard
         items={pictureMarketingPoints}

@@ -12,9 +12,6 @@ export const useStyle = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     textAlign: 'center',
-    '& h1': {
-      fontSize: '3rem',
-    },
     [theme.breakpoints.up('md')]: {
       minHeight: '25vh',
     },
@@ -79,6 +76,12 @@ export const useStyle = makeStyles((theme) => ({
       color: DARK_GRAY,
       fontWeight: 'bold',
       textTransform: 'none',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '22px',
+      },
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '11px',
+      },
     },
     '&$tabSelected': {
       color: '#006B95',
@@ -91,13 +94,11 @@ export const useStyle = makeStyles((theme) => ({
       width: '24px',
       height: '24px',
       color: DARK_GRAY,
-    },
 
-    [theme.breakpoints.down('md')]: {
-      paddingLeft: '45rem',
-    },
-    [theme.breakpoints.down('sm')]: {
-      paddingLeft: '23rem',
+      [theme.breakpoints.down('sm')]: {
+        width: '13px',
+        height: '13px',
+      },
     },
   },
   checkBox: {
@@ -107,6 +108,8 @@ export const useStyle = makeStyles((theme) => ({
   formControlLabel: {
     color: theme.palette.secondary.dark,
     fontSize: '24px',
-    fontWeight: 700,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '13px',
+    },
   },
 }));
