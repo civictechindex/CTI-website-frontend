@@ -11,7 +11,7 @@ describe('Contributors Page (using API)', () => {
     cy.wait('@getOrganizations');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').uncheck();
     cy.contains(grandparentOrg).should('have.length', 1);
-    cy.get('[href*=codeforall]').should('have.length', 1);
+    // cy.get('[href*=codeforall]').should('have.length', 1);
     cy.get('[data-cy=code-for-all-chevron]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount);
