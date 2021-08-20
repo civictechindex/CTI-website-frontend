@@ -320,141 +320,141 @@ const TagCreator = () => {
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
     switch (displayState) {
-      case 'ProjectUrl':
-        return (
-          <>
-            <OrgNameSection
-              setDisplayState={setDisplayState}
-              orgName={orgName}
-              linkStyles={linkStyles}
-            />
-            <ProjectRepositoryInput
-              repositoryUrl={repositoryUrl}
-              handleEnter={handleEnter}
-              setRepositoryUrl={setRepositoryUrl}
-              topicSearchError={topicSearchError}
-              setTopicSearchError={setTopicSearchError}
-              handleSubmit={handleSubmit}
-            />
-          </>
-        );
-      case 'TopicTag':
-        return (
-          <>
-            <OrgProjSection />
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <AddTagsQuestion
-              setDisplayState={setDisplayState}
-              setChangeValue={setChangeValue}
-              resetForm={resetForm}
-              userTags={userTags}
-              handleAdd={handleAdd}
-              handleDelete={handleDelete}
-            />
-          </>
-        );
-      case 'AddTopicTags':
-        return (
-          <>
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <AddTopicTagSection
-              setDisplayState={setDisplayState}
-              setChangeValue={setChangeValue}
-              resetForm={resetForm}
-              userTags={userTags}
-              handleAdd={handleAdd}
-              handleDelete={handleDelete}
-            />
-          </>
-        );
-      case 'GenerateTags':
-        return (
-          <>
-            <OrgProjSection />
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <NewTags
-              tagsToAdd={tagsToAdd}
-              setDisplayState={setDisplayState}
-              setChangeValue={setChangeValue}
-              resetForm={resetForm}
-              linkStyles={linkStyles}
-              userTags={userTags}
-              setUserTags={setUserTags}
-              handleAdd={handleAdd}
-              handleDelete={handleDelete}
-            />
-          </>
-        );
-      case 'ChangeTags':
-        return (
-          <>
-            <OrgProjSection />
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <AddMoreTags
-              userTags={userTags}
-              setDisplayState={setDisplayState}
-              resetForm={resetForm}
-              changeValue={changeValue}
-              handleAdd={handleAdd}
-              handleDelete={handleDelete}
-              repoChangeAlert={repoChangeAlert}
-              setRepoChangeAlert={setRepoChangeAlert}
-            />
-          </>
-        );
-      case 'CopyPasteTags':
-        return (
-          <>
-            <OrgProjSection />
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <CopyPasteTags
-              tagsToAdd={tagsToAdd}
-              setDisplayState={setDisplayState}
-              userTags={userTags}
-              repositoryName={repositoryName}
-              repositoryUrl={repositoryUrl}
-              linkStyles={linkStyles}
-            />
-          </>
-        );
-      default:
-        return (
-          <>
-            <AffiliationQuestionSection
+    case 'ProjectUrl':
+      return (
+        <>
+          <OrgNameSection
+            setDisplayState={setDisplayState}
+            orgName={orgName}
+            linkStyles={linkStyles}
+          />
+          <ProjectRepositoryInput
+            repositoryUrl={repositoryUrl}
+            handleEnter={handleEnter}
+            setRepositoryUrl={setRepositoryUrl}
+            topicSearchError={topicSearchError}
+            setTopicSearchError={setTopicSearchError}
+            handleSubmit={handleSubmit}
+          />
+        </>
+      );
+    case 'TopicTag':
+      return (
+        <>
+          <OrgProjSection />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <AddTagsQuestion
+            setDisplayState={setDisplayState}
+            setChangeValue={setChangeValue}
+            resetForm={resetForm}
+            userTags={userTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+          />
+        </>
+      );
+    case 'AddTopicTags':
+      return (
+        <>
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <AddTopicTagSection
+            setDisplayState={setDisplayState}
+            setChangeValue={setChangeValue}
+            resetForm={resetForm}
+            userTags={userTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+          />
+        </>
+      );
+    case 'GenerateTags':
+      return (
+        <>
+          <OrgProjSection />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <NewTags
+            tagsToAdd={tagsToAdd}
+            setDisplayState={setDisplayState}
+            setChangeValue={setChangeValue}
+            resetForm={resetForm}
+            linkStyles={linkStyles}
+            userTags={userTags}
+            setUserTags={setUserTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+          />
+        </>
+      );
+    case 'ChangeTags':
+      return (
+        <>
+          <OrgProjSection />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <AddMoreTags
+            userTags={userTags}
+            setDisplayState={setDisplayState}
+            resetForm={resetForm}
+            changeValue={changeValue}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+            repoChangeAlert={repoChangeAlert}
+            setRepoChangeAlert={setRepoChangeAlert}
+          />
+        </>
+      );
+    case 'CopyPasteTags':
+      return (
+        <>
+          <OrgProjSection />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <CopyPasteTags
+            tagsToAdd={tagsToAdd}
+            setDisplayState={setDisplayState}
+            userTags={userTags}
+            repositoryName={repositoryName}
+            repositoryUrl={repositoryUrl}
+            linkStyles={linkStyles}
+          />
+        </>
+      );
+    default:
+      return (
+        <>
+          <AffiliationQuestionSection
+            value={value}
+            handleChange={handleChange}
+            question={'Are you affiliated with an organization?'}
+          />
+          {value === 'yes' ? (
+            <RadioYes value={value} setOrgName={setOrgName} />
+          ) : null}
+          {value === 'no' ? (
+            <OrgChange
               value={value}
-              handleChange={handleChange}
-              question={'Are you affiliated with an organization?'}
+              orgName={orgName}
+              setOrgName={setOrgName}
+              setOrgTags={setOrgTags}
+              changeValue={changeValue}
+              setDisplayState={setDisplayState}
             />
-            {value === 'yes' ? (
-              <RadioYes value={value} setOrgName={setOrgName} />
-            ) : null}
-            {value === 'no' ? (
-              <OrgChange
-                value={value}
-                orgName={orgName}
-                setOrgName={setOrgName}
-                setOrgTags={setOrgTags}
-                changeValue={changeValue}
-                setDisplayState={setDisplayState}
-              />
-            ) : null}
-          </>
-        );
+          ) : null}
+        </>
+      );
     }
   };
 
