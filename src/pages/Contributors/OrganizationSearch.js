@@ -82,6 +82,9 @@ const OrganizationSearch = ({
             fullWidth
             handleHomeEndKeys
             inputValue={inputValue}
+            ListboxProps={{
+              'data-cy': 'organization-search-list',
+            }}
             onChange={handleChange}
             onInputChange={handleInputChange}
             options={options}
@@ -89,6 +92,7 @@ const OrganizationSearch = ({
               <TextField
                 {...params}
                 className={classes.input}
+                data-cy='organization-search'
                 InputProps={{
                   ...params.InputProps,
                   type: 'search',

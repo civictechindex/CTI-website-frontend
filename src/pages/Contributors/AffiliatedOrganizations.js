@@ -150,6 +150,7 @@ export const AffiliatedOrganizations = ({
       <Grid
         className={classes.thumbnailGrid}
         dropdownlength={currentThumbnails.length}
+        data-cy='affiliated-organizations'
       >
         {currentThumbnails.map((org, i) => {
           childSort = org.childNodes.sort(sortFn('name'));
@@ -227,7 +228,7 @@ export const AffiliatedOrganizations = ({
     inputValue !== ''
   ) {
     return (
-      <Grid className={classes.thumbnailGrid}>
+      <Grid className={classes.thumbnailGrid} data-cy='affiliated-organizations'>
         {currentThumbnails.map((org, i) => {
           return (
             <Dropdown
@@ -251,7 +252,7 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                          ></ContributorThumbnail>
+                          />
                         </Typography>
                       );
                     })}

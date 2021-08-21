@@ -195,14 +195,13 @@ const Thumbnail = ({
         {organization.depth === 4 &&
         checkboxValue &&
         organization.cti_contributor ? (
-            <img
-              className={classes.contributorIcon}
-              src='/images/Child_contributed.svg'
-              alt='contributor-icon'
-            />
-          ) : (
-            null
-          )}
+          <img
+            alt='contributor-icon'
+            data-cy='contributor-icon'
+            className={classes.contributorIcon}
+            src='/images/Child_contributed.svg'
+          />
+        ) : null}
       </Box>
       <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
@@ -220,15 +219,11 @@ const Thumbnail = ({
             loading='lazy'
           />
         </Grid>
-        <Grid
-          item
-          data-cy='affthumbnailText'
-          className={classes.affthumbnailText}
-        >
+        <Grid item className={classes.affthumbnailText}>
           <Typography
             variant={isChildThumbnail ? 'body1' : 'h6'}
             noWrap
-            data-cy='thumbnailTextInfn'
+            data-cy='contributor-thumbnail-text'
             className={
               isOpen ? `${classes.blueColorText}` : `${classes.orgText}`
             }
@@ -247,9 +242,10 @@ const Thumbnail = ({
           <Typography>
             {organization.depth === 3 && checkboxValue ? (
               <img
+                alt='contributor-icon'
+                data-cy='contributor-icon'
                 className={classes.grandparentIcon}
                 src='/images/Gparent_contributed.svg'
-                alt='contributor-icon'
               />
             ) : (
               ' '

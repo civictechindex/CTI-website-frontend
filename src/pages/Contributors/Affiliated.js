@@ -167,9 +167,10 @@ export const Affiliated = (props) => {
           {showIndexContrib ? (
             <Typography>
               <img
+                alt='contributor-icon'
+                data-cy='contributor-icon'
                 className={classesLocal.contributorIcon}
                 src='/images/Gparent_contributed.svg'
-                alt='contributor-icon'
               />
             </Typography>
           ) : (
@@ -180,6 +181,7 @@ export const Affiliated = (props) => {
           item
           container
           className={classesLocal.flexGrid}
+          data-cy='code-for-all-chevron'
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
           <DropdownArrow open={dropdownOpen} handleArrow={() => setDropdownOpen(!dropdownOpen)} />
