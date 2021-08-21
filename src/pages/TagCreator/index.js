@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 
-import React, { useState,useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from '../../components/common/Link';
 import {
   useQueryParam,
@@ -16,9 +16,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { GenericHeaderSection } from '../../components/'
 import { AffiliationQuestionSection } from "./AffilationQuestionSection";
-import { OrgNameSection,OrganizationSelectorSection,OrgChange } from './Organization'
-import { ProjectRepositorySection,ProjectRepositoryInput } from './ProjectRepository'
-import { AddTopicTagSection,AddTagsQuestion,NewTags,CopyPasteTags,AddMoreTags,CurrentTopicTagSection } from './TopicTagSection'
+import { OrgNameSection, OrganizationSelectorSection,OrgChange } from './Organization'
+import { ProjectRepositorySection, ProjectRepositoryInput } from './ProjectRepository'
+import { AddTopicTagSection, AddTagsQuestion, NewTags,CopyPasteTags, AddMoreTags, CurrentTopicTagSection } from './TopicTagSection'
 import useTheme from '@material-ui/core/styles/useTheme';
 import Instructions from './Instructions'
 import { makeStyles } from '@material-ui/core/styles'
