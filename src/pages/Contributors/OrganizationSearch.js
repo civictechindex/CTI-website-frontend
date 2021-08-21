@@ -34,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
       borderTopLeftRadius: 4,
       borderTopRightRadius: 0,
       height: 64,
+      fontWeight: 400,
+      fontSize: '20px',
       [theme.breakpoints.down('sm')]: {
         height: 48,
         padding: 4,
@@ -43,16 +45,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /* Autocomplete `inputValue` is text displayed, `value` is selected option */
-const OrganizationSearch = (props) => {
-  const {
-    inputPlaceholder,
-    inputValue: topLevelInputValue,
-    options,
-    setInputValue: setTopLevelInputValue,
-  } = props;
+const OrganizationSearch = ({
+  inputValue,
+  options,
+  setInputValue,
+}) => {
   const classes = useStyles();
+  const placeholder = 'Search for an organization';
   const [value, setValue] = useState(null);
-  const [inputValue, setInputValue] = useState(topLevelInputValue);
 
   const handleClick = (event) => {
     // is there anything to do upon clicking the magnifying glass?
@@ -60,7 +60,6 @@ const OrganizationSearch = (props) => {
 
   const handleInputChange = (event, value, reason) => {
     setInputValue(value);
-    setTopLevelInputValue(value);
   };
 
   const handleChange = (event, value, reason) => {
@@ -83,6 +82,9 @@ const OrganizationSearch = (props) => {
             fullWidth
             handleHomeEndKeys
             inputValue={inputValue}
+            ListboxProps={{
+              'data-cy': 'organization-search-list',
+            }}
             onChange={handleChange}
             onInputChange={handleInputChange}
             options={options}
@@ -90,11 +92,12 @@ const OrganizationSearch = (props) => {
               <TextField
                 {...params}
                 className={classes.input}
+                data-cy='organization-search'
                 InputProps={{
                   ...params.InputProps,
                   type: 'search',
                 }}
-                placeholder={inputPlaceholder}
+                placeholder={placeholder}
               />
             )}
             selectOnFocus

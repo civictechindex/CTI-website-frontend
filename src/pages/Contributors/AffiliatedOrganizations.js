@@ -19,30 +19,26 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    margin: 'auto',
+    marginTop: '10px',
+    justifyContent: 'center',
+    [theme.breakpoints.between('xs','sm')]: {
+      marginLeft: '0',
+      justifyContent: 'center',
+      alignItems: 'center',
+      display: 'flex',
+    },
   },
   afflnThumbnails: {
-    width: '375px',
     height: '64px',
     borderRadius: '6px',
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     margin: '8px',
-    [theme.breakpoints.down('md')]: {
-      width: '270px',
+    [theme.breakpoints.down('lg')]: {
       height: '60px',
-      '& p': {
-        fontSize: '20px',
-        fontWeight: '500',
-      },
     },
     [theme.breakpoints.down('sm')]: {
-      width: '220px',
-      height: '54px',
-      '& p': {
-        fontWeight: '500',
-        fontSize: '14px',
-      },
+      height: '36px',
     },
   },
   button: {
@@ -59,8 +55,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.default,
     },
     [theme.breakpoints.down('md')]: {
-      width: '118px',
-      height: '31px',
+      width: '74px',
+      height: '19px',
+      fontSize: '13px',
     },
   },
 }));
@@ -69,7 +66,7 @@ export const AffiliatedOrganizations = ({
   organizations,
   inputValue,
   organizationData,
-  checkboxValue,
+  showIndexContrib,
 }) => {
   const classes = useStyles();
 
@@ -122,10 +119,10 @@ export const AffiliatedOrganizations = ({
         }
 
         if (parentChildobj) {
-          if (checkboxValue && org['cti_contributor']) {
+          if (showIndexContrib && org['cti_contributor']) {
             parentChildobj.childNodes.push(org);
           }
-          if (!checkboxValue) {
+          if (!showIndexContrib) {
             parentChildobj.childNodes.push(org);
           }
         } else {
@@ -144,7 +141,7 @@ export const AffiliatedOrganizations = ({
   useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, organizations, organizationData, checkboxValue]);
+  }, [inputValue, organizations, organizationData, showIndexContrib]);
 
   let childSort;
   let childNode;
@@ -153,19 +150,20 @@ export const AffiliatedOrganizations = ({
       <Grid
         className={classes.thumbnailGrid}
         dropdownlength={currentThumbnails.length}
+        data-cy='affiliated-organizations'
       >
         {currentThumbnails.map((org, i) => {
           childSort = org.childNodes.sort(sortFn('name'));
           childNode = org.isOpen ? childSort : childSort.slice(0, 8);
           return (
             <Dropdown
-              checkboxValue={checkboxValue}
+              checkboxValue={showIndexContrib}
               organization={org}
               key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
               isOpen={false}
             >
-              <Grid container alignItems='center'>
+              <Grid container style={ { justifyContent:"center" } } alignItems='center'>
                 {childNode.length > 0 ? (
                   <Grid
                     item
@@ -176,14 +174,14 @@ export const AffiliatedOrganizations = ({
                     {childNode.map((child, idx) => {
                       return (
                         <Grid
-                          item
+                          item xs={12} sm={5} md={5}
                           className={classes.afflnThumbnails}
                           key={`affiliatedThumbnail_child_${i}_${idx}`}
                         >
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                            checkboxValue={checkboxValue}
+                            checkboxValue={showIndexContrib}
                           />
                         </Grid>
                       );
@@ -193,7 +191,7 @@ export const AffiliatedOrganizations = ({
                   <ContributorThumbnail
                     isChildThumbnail={isChildThumbnail}
                     organization={org}
-                    checkboxValue={checkboxValue}
+                    checkboxValue={showIndexContrib}
                   />
                 )}
                 {org.childNodes.length > 8 ? (
@@ -230,7 +228,7 @@ export const AffiliatedOrganizations = ({
     inputValue !== ''
   ) {
     return (
-      <Grid className={classes.thumbnailGrid}>
+      <Grid className={classes.thumbnailGrid} data-cy='affiliated-organizations'>
         {currentThumbnails.map((org, i) => {
           return (
             <Dropdown
@@ -254,7 +252,7 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                          ></ContributorThumbnail>
+                          />
                         </Typography>
                       );
                     })}

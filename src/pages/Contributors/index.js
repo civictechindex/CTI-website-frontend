@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
-/* eslint-disable sort-keys */
 
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
@@ -45,34 +44,42 @@ function TabPanel(props) {
   );
 }
 
-
-
-export default function Contributors({ match }) {
-
+export default function Contributors() {
   const classes = useStyle();
   const location = useLocation();
-  const searchaffiliation = match.params.searchaffiliation;
-
-  const [affiliatedCount, getaffiliatedCount] = useState(0);
+  const [affiliatedCount, setAffiliatedCount] = useState(0);
   const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
-  const [showIndexContrib, setShowIndexContrib] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [organizations, setOrganizations] = useState([]);
-  const [organizationData, getOrganizationData] = useState([]);
-  const [organizationNamesList, setOrganizationNamesList] = useState([]);
-  const [searchCount, setsearchCount] = useState(false);
+  const [organizationNames, setOrganizationNames] = useState([]);
+  const [filtersActive, setFiltersActive] = useState(false);
+  const [showIndexContrib, setShowIndexContrib] = useState(false);
   const [tabValue, setTabValue] = useState(0);
-  const [unaffiliatedCount, getunaffiliatedCount] = useState(0);
-
-
-  let count1 =0, count2 =0,totalaffiliatedCount=0,totalunaffiliatedCount=0;
+  const [totalAffiliatedCount, setTotalAffiliatedCount] = useState(0);
+  const [totalUnaffiliatedCount, setTotalUnaffiliatedCount] = useState(0);
+  const [unaffiliatedCount, setUnaffiliatedCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-      const organization = result.data;
-      const sorted = organization.sort((a, b) => a.id - b.id);
-      setOrganizations(sorted);
+      const sortedOrgs = result.data.sort((a, b) => a.id - b.id);
+      const names = [];
+      let totalAfflCount = 0;
+      let totalUnafflCount = 0;
+      for (const org of sortedOrgs) {
+        names.push(org.name);
+        if (org.name.toLowerCase() !== 'code for all') {
+          if (org.affiliated) {
+            totalAfflCount++;
+          } else {
+            totalUnafflCount++;
+          }
+        }
+      }
+      setOrganizations(sortedOrgs);
+      setOrganizationNames(names.sort());
+      setTotalAffiliatedCount(totalAfflCount);
+      setTotalUnaffiliatedCount(totalUnafflCount);
     };
     fetchData();
   }, []);
@@ -89,23 +96,17 @@ export default function Contributors({ match }) {
   }, [location]);
 
   useEffect(() => {
-    const createAffiliatedOrganizations = () =>
-    {
+    let afflCount = 0, unafflCount = 0;
+    const createAffiliatedOrganizations = () => {
       const input = inputValue.toLowerCase().replace(/\s/g, "");
       const affiliated = Object.create(null);
-      // iterate through the json response
-      const names = [];
       const addToAffiliated = (organization) => {
         if (!affiliated["Code for All"]) {
           affiliated["Code for All"] = [];
         }
-        if (affiliated["Code for All"])
-        {
-          affiliated["Code for All"].push(organizations[organization.id - 2]);
-          affiliated[organization.name] = [organization];
-        }
+        affiliated["Code for All"].push(organization);
+        affiliated[organization.name] = [organization];
       };
-
       const addToUnaffiliated = (organization) => {
         if (affiliated["unaffiliated"]) {
           affiliated["unaffiliated"].push(organization);
@@ -115,61 +116,27 @@ export default function Contributors({ match }) {
         }
       };
 
-
-      for (const org of organizations)
-      {
-        names.push(org.name);
-        const orgName = org.name.toLowerCase().replace(/\s/g, "");
-        if (!inputValue || orgName.includes(input))
-        {
-          if (org.affiliated === false)
-          {
-            count1++;
-            addToUnaffiliated(org);
-          }
-          else if (org.affiliated === true)
-          {
-            count2++;
-            addToAffiliated(org);
+      for (const org of organizations) {
+        if ((showIndexContrib && org.cti_contributor) || !showIndexContrib) {
+          const orgName = org.name.toLowerCase().replace(/\s/g, "");
+          if ((!inputValue || orgName.includes(input)) && orgName.toLowerCase() !== 'code for all') {
+            if (org.affiliated) {
+              afflCount++;
+              addToAffiliated(org);
+            } else {
+              unafflCount++;
+              addToUnaffiliated(org);
+            }
           }
         }
-        getOrganizationData(organizations);
       }
-
-
-      if (count1 !== 0 || count2 !== 0)
-      {
-        if (inputValue !== '')
-        {
-          getunaffiliatedCount(count1);
-          getaffiliatedCount(count2);
-          setsearchCount(true);
-        }
-      }
+      setFiltersActive(!!input || showIndexContrib);
+      setUnaffiliatedCount(unafflCount);
+      setAffiliatedCount(afflCount);
       setAffiliatedOrganizationsObject(affiliated);
-      setOrganizationNamesList(names.sort());
     };
     createAffiliatedOrganizations();
-  }, [organizations, inputValue, count1,count2,searchaffiliation,organizationData,searchCount,unaffiliatedCount,affiliatedCount]);
-
-
-  if (organizationData.length >0)
-  {
-    for (const orgdata of organizationData)
-    {
-      if (orgdata.depth  === 3 || orgdata.depth === 4)
-      {
-        totalaffiliatedCount++;
-      }
-      if (orgdata.depth  === 2 && orgdata.name !== 'Code for All')
-      {
-        totalunaffiliatedCount++;
-      }
-    }
-  }
-
-  // Tab Code
-
+  }, [inputValue, organizations, showIndexContrib]);
   TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
@@ -194,16 +161,15 @@ export default function Contributors({ match }) {
             ]}
           />
           <Grid container>
-            <TitleSection>Organizations</TitleSection>
+            <TitleSection>Civic Tech Partners</TitleSection>
             <Grid item xs={12}>
               <Typography color='textSecondary' className={classes.textStyle} gutterBottom>Check out our partners who have contributed to the Civic Tech Index</Typography>
             </Grid>
             <Grid item xs={12}>
               <OrganizationSearch
-                options={organizationNamesList}
+                options={organizationNames}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
-                inputPlaceholder="Search for an organization"
               />
             </Grid>
           </Grid>
@@ -219,17 +185,22 @@ export default function Contributors({ match }) {
               className={classes.tabs}
               classes={{ indicator: classes.indicator }}
             >
-              <Tab label={<>({totalunaffiliatedCount + totalaffiliatedCount })</>} icon="All" {...a11yProps(0)} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
+              <Tab label={<>({totalUnaffiliatedCount + totalAffiliatedCount })</>} icon="All" {...a11yProps(0)} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
               <Tab  icon="Unaffiliated"  label={<>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(1)} />
-              <Tab  icon="Affiliated" label={<>({totalaffiliatedCount})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(2)} />
+              <Tab  icon="Affiliated" label={<>({totalAffiliatedCount})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(2)} />
             </Tabs>
           </AppBar>
           <Grid index={tabValue}>
             <FormGroup className={classes.checkBox}>
               <FormControlLabel
                 control={
-                  <Checkbox className={classes.chkBoxStyle}
-                    onChange={(e) => {setShowIndexContrib(e.target.checked)}} checked={showIndexContrib}
+                  <Checkbox
+                    checked={showIndexContrib}
+                    className={classes.chkBoxStyle}
+                    data-cy='index-contributors-checkbox'
+                    onChange={(e) => {
+                      setShowIndexContrib(e.target.checked);
+                    }}
                     style={{ backgroundColor: 'transparent' }}
                   />
                 }
@@ -239,30 +210,30 @@ export default function Contributors({ match }) {
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
-                searchCount={searchCount}
+                filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
-                totalunaffiliatedCount={totalunaffiliatedCount}
-                checkboxValue={showIndexContrib}
+                totalunaffiliatedCount={totalUnaffiliatedCount}
+                showIndexContrib={showIndexContrib}
               />
               <Affiliated
                 organizations={affiliatedOrganizationsObject}
                 inputValue={inputValue}
                 classes={classes}
                 affiliation="affiliated"
-                organizationData={organizationData}
-                searchCount={searchCount}
+                organizationData={organizations}
+                filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
-                totalaffiliatedCount={totalaffiliatedCount}
-                checkboxValue={showIndexContrib}
+                totalaffiliatedCount={totalAffiliatedCount}
+                showIndexContrib={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}
-                searchCount={searchCount}
+                filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
-                totalunaffiliatedCount={totalunaffiliatedCount}
-                checkboxValue={showIndexContrib}
+                totalunaffiliatedCount={totalUnaffiliatedCount}
+                showIndexContrib={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={2}>
@@ -271,18 +242,16 @@ export default function Contributors({ match }) {
                 inputValue={inputValue}
                 classes={classes}
                 affiliation="affiliated"
-                organizationData={organizationData}
-                searchCount={searchCount}
+                organizationData={organizations}
+                filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
-                totalaffiliatedCount={totalaffiliatedCount}
-                checkboxValue={showIndexContrib}
+                totalaffiliatedCount={totalAffiliatedCount}
+                showIndexContrib={showIndexContrib}
               />
             </TabPanel>
           </Grid>
         </Container>
-
       </Box>
-
       <Box className='containerWhite'>
         <Container>
           <GetStartedCard

@@ -27,6 +27,7 @@ const RadicalCollaboration = () => {
       dsktpTxtLn1: 'Your tax-deductible gift today will help make more',
       dsktpTxtLn2: 'open-source solutions easily available for the',
       dsktpTxtLn3: 'communities who need it the most.',
+      route: '/donate',
     },
     {
       src: '/images/group-smiling-working.png',
@@ -39,6 +40,7 @@ const RadicalCollaboration = () => {
       buttonText: 'Share the Civic Tech Index',
       dsktpTxtLn1: 'Help others and their communities discover, share, and',
       dsktpTxtLn2: 'benefit from contributed projects on the index.',
+      route: '/support/share',
     },
     {
       src: '/images/bulletin-board-postits.png',
@@ -52,6 +54,7 @@ const RadicalCollaboration = () => {
       dsktpTxtLn1: 'Please complete this application if you would like',
       dsktpTxtLn2: 'us to reach out to you directly or find us on our',
       dsktpTxtLn3: 'project team page.',
+      route: "https://www.hackforla.org/#about",
     },
     {
       src: '/images/man-and-woman-working.png',
@@ -65,12 +68,13 @@ const RadicalCollaboration = () => {
       dsktpTxtLn1: "We've shared some of our most frequently asked",
       dsktpTxtLn2: 'questions to help you out!',
       dsktpTxtLn3: 'View our FAQ to find answers or contact us.',
+      route: '/faq',
     },
   ];
   return (
     <Box className='pageContainer'>
-      <Box className='containerDefault'>
-        <Container>
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
           <GenericHeaderSection
             mainTitle='Your help goes a long way'
             breadCrumbLinks={breadCrumbLinks}
@@ -89,7 +93,10 @@ const RadicalCollaboration = () => {
       </Box>
       <Box className='containerWhite'>
         <Container>
-          <BottomCallToAction heading='Want to support in other ways?' buttonHref='/contact' />
+          <BottomCallToAction
+            heading='Want to support in other ways?'
+            buttonHref='/contact'
+          />
         </Container>
       </Box>
     </Box>

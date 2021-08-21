@@ -16,33 +16,33 @@ const PhotoCardMobile = (props) => {
 
   return (
     <>
-      {items.map((i) => {
+      {items.map((item) => {
         return (
           <Grid item xs={12} lg={4} className={classes.innerTextCardContainerMobile} align='center' >
             <Card className={classes.innerCardMobile} >
               <CardActionArea>
                 <CardMedia className={classes.cardMediaMobile}>
-                  <img className={classes.mobileImg} src={i.src} alt={i.alt} />
+                  <img className={classes.mobileImg} src={item.src} alt={item.alt} />
                 </CardMedia>
                 <CardContent>
                   <Typography className={classes.mobileCardHeading} gutterBottom variant="h4">
-                    {i.heading}
+                    {item.heading}
                   </Typography>
                   <Typography variant="h6" className={classes.mobileParaHeading}>
-                    {i.subHeading}
+                    {item.subHeading}
                   </Typography>
                   <br></br>
                   <Typography className={classes.mobileParaText}>
-                    {i.textBody}
+                    {item.textBody}
                   </Typography>
                   <Typography variant="h6" >
-                    {i.footerText}
+                    {item.footerText}
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions className={classes.mobileCardActions}>
-                <Button className={classes.mobileButton}>
-                  {i.buttonText}
+                <Button href={item.route} className={classes.mobileButton}>
+                  {item.buttonText}
                 </Button>
               </CardActions>
             </Card>

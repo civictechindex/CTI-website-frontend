@@ -1,27 +1,21 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { NavBreadcrumbs, TitleSection } from './index';
-import { makeStyles } from '@material-ui/core/styles';
 
 const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks }) => {
-  const useStyles = makeStyles((theme) => ({
-    headerContainerStyle: {
-      height: 'auto',
-    },
-  }));
-  const classes = useStyles();
-
   return (
-    <Box className='boxBackground' minHeight='300px'>
-      <Container className={classes.headerContainerStyle}>
-        <NavBreadcrumbs crumbs={breadCrumbLinks} />
-        <Grid container justify='center'>
+    <Box className='boxBackground' display='flex' alignContent='center'>
+      <Grid container>
+        <Grid item xs={12}>
+          <NavBreadcrumbs crumbs={breadCrumbLinks} />
+        </Grid>
+        <Grid item xs={12}>
           <TitleSection>{mainTitle}</TitleSection>
           {children}
         </Grid>
-      </Container>
+        <Grid item xs={12} />
+      </Grid>
     </Box>
   );
 };
