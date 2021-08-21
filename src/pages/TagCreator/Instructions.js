@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import spectrum from '../../theme-spectrum.js';
 
 const useStyles = makeStyles((theme) => ({
   btnStyle: {
@@ -42,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   ptextStyle: {
     fontWeight: 700,
     textAlign: 'center',
-    color: spectrum.darkBlue,
+    color: theme.palette.spectrum.darkBlue,
     paddingBottom: theme.spacing(2),
     [theme.breakpoints.up('md')]: {
       fontSize: '1.25rem',
@@ -57,15 +56,15 @@ const useStyles = makeStyles((theme) => ({
   routingBtnBeforeClick: {
     backgroundColor: theme.palette.background.default,
     border: '1px solid #6D6E74',
-    color: spectrum.darkBlue,
+    color: theme.palette.spectrum.darkBlue,
     '&:hover': {
       background: 'none',
     },
   },
   routingBtnAfterClick: {
-    backgroundColor: spectrum.lightBlue,
+    backgroundColor: theme.palette.spectrum.lightBlue,
     border: '1px solid #6D6E74',
-    color: spectrum.white,
+    color: theme.palette.spectrum.white,
   },
   containerAboveBtnStyle: {
     [theme.breakpoints.up('md')]: {
@@ -95,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   linksContainerStyle: {
-    color: spectrum.darkBlue,
+    color: theme.palette.spectrum.darkBlue,
     fontWeight: 400,
     [theme.breakpoints.up('md')]: {
       margin: '32px auto 30px auto',
