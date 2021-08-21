@@ -141,6 +141,10 @@ export const AddTopicTagSection = ({
         <Typography variant='body1'>
           What topic(s), cause(s), or civic issue(s) does your project address?
         </Typography>
+        <Typography variant='body1' style={{ lineHeight: '70px' }}>
+          Separate tags by spaces and dashes for hyphenation. You can edit your
+          tags later if you need too.
+        </Typography>
       </Grid>
       <Grid data-cy='add-topic-tags'>
         <ChipInputSection
@@ -412,7 +416,11 @@ export const AddMoreTags = ({
       </Grid>
       <Grid style={{ padding: '20px' }}>
         <Typography variant='body1'>
-          What topic(s), cause(s), or civic issue(s) does your project address?
+          What topic(s), cause(s), or civic issue(s) does your project address?{' '}
+        </Typography>
+        <Typography variant='body1' style={{ lineHeight: '70px' }}>
+          Separate tags by spaces and dashes for hyphenation. You can edit your
+          tags later if you need too.
         </Typography>
       </Grid>
       <Grid>
