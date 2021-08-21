@@ -92,6 +92,7 @@ export const AddTopicTagSection = ({ setDisplayState, setChangeValue, resetForm,
     <>
       <Grid style={{ padding: '20px' }}>
         <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
+        <Typography variant='body1' style={{ lineHeight: '70px' }}>Separate tags by spaces and dashes for hyphenation. You can edit your tags later if you need too.</Typography>
       </Grid>
       <Grid data-cy='add-topic-tags'>
         <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} />
@@ -206,7 +207,8 @@ export const AddMoreTags = ({ userTags, setDisplayState, resetForm, changeValue,
     <>
       <Grid style={{ paddingTop: '10px' }}><Typography variant='body1' color='error'>{repoChangeAlert}</Typography></Grid>
       <Grid style={{ padding: '20px' }}>
-        <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address?</Typography>
+        <Typography variant='body1'>What topic(s), cause(s), or civic issue(s) does your project address? </Typography>
+        <Typography variant='body1' style={{ lineHeight: '70px' }}>Separate tags by spaces and dashes for hyphenation. You can edit your tags later if you need too.</Typography>
       </Grid>
       <Grid>
         <ChipInputSection handleAdd={handleAdd} handleDelete={handleDelete} userTags={userTags} />
