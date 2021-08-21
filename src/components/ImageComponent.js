@@ -5,13 +5,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
-    padding: '8px 0px',
+    padding: '16px 0 32px 0',
     margin: 'auto',
   },
   imgStyle: {
     width: '517px',
     margin: 'auto',
-    padding: '58px 0px 94px 0px',
     [theme.breakpoints.down('xs')]: {
       width: '250px',
     },

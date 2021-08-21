@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gridPadding:{
-    padding: '24px 16px 0'
+    padding: '24px 16px 0',
   },
 }));
 
