@@ -1,0 +1,64 @@
+{
+  "results": [
+    {
+      "id": 15,
+      "question": "Can I add multiple projects?",
+      "answer": "Yes, Please follow the <a href=\"http://civictechindex.org/join-index?tagsToAdd=civictechindex\">link</a> to add multiple projects.",
+      "view_count": 268
+    },
+    {
+      "id": 19,
+      "question": "Our organization doesn't have a parent organization. What should I do?",
+      "answer": "You can still be a part of Civic tech index, even if your organization is <a href=\"http://civictechindex.org/organizations/all\">unaffiliated</a>",
+      "view_count": 258
+    },
+    {
+      "id": 5,
+      "question": "What is Civic Tech Index?",
+      "answer": "<a href=\"http://civictechindex.org/home\">Civic Tech Index</a> is a comprehensive, searchable index of all civic tech open-source software projects around the world. It helps to create large-scale engagement, overlapping technologies, and disciplines. People of all different skills and levels working to problem solve, projects that are legitimate and trustworthy.",
+      "view_count": 57
+    },
+    {
+      "id": 11,
+      "question": "How do I add my organization to Civic Tech Index?",
+      "answer": "To add an organization to Civic Tech Index, please click on this <a href=\"http://civictechindex.org/join-index?tagsToAdd=civictechindex\">link</a>.",
+      "view_count": 20
+    },
+    {
+      "id": 17,
+      "question": "What if I can't find my project's repository link on GitHub?",
+      "answer": "Occasionally, some projects are not listed. Please type the URL manually and submit the project repository <a href=\"http://civictechindex.org/join-index?tagsToAdd=civictechindex\">link</a>.",
+      "view_count": 9
+    },
+    {
+      "id": 9,
+      "question": "What is the difference between affiliated and unaffiliated contributors?",
+      "answer": "\"If the organization isn't affiliated with a larger umbrella organization like Code for All or Democracy Lab and is an independent entity, it is unaffiliated, otherwise it's affiliated (with a sponsoring organization).",
+      "view_count": 9
+    },
+    {
+      "id": 22,
+      "question": "How do I add tags to my project's repository?",
+      "answer": "To add your tags to your project’s repository. Follow the <a href=\"http://civictechindex.org/join-index?tagsToAdd=civictechindex\">link</a>.",
+      "view_count": 8
+    },
+    {
+      "id": 23,
+      "question": "What if I want to add additional tags?",
+      "answer": "Yes, you can add more tags to your project's repository using the <a href=\"http://civictechindex.org/join-index?tagsToAdd=civictechindex\">link</a>.",
+      "view_count": 7
+    },
+    {
+      "id": 4,
+      "question": "What is Civic Tech?",
+      "answer": "Civic technology, or civic tech, enhances the relationship between the people and government with software for communications, decision-making, service delivery, and political process. It includes information and communications technology supporting the government with software built by community-led teams of volunteers, nonprofits, consultants, private companies, and embedded tech teams working within the government.",
+      "view_count": 7
+    },
+    {
+      "id": 14,
+      "question": "What is the tag generator?",
+      "answer": "Tag generator is the Civic Tech Index's step-by-step tool for creating topic tags. Topic tags will help improve the discoverability of your projects, and using tags can lead to more traffic to your website from people interested in that topic.",
+      "view_count": 7
+    }
+  ]
+}
