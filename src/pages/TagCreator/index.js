@@ -9,7 +9,8 @@ import {
   withDefault,
 } from 'use-query-params';
 import axios from 'axios';
-import Box from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -78,51 +79,19 @@ const usePrevious = (refValue) => {
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
   const theme = useTheme();
-  const classes = useStyles();
-  const [displayState, setDisplayState] = useQueryParam(
-    'displayState',
-    withDefault(StringParam, '')
-  );
-  const [value, setValue] = useQueryParam(
-    'value',
-    withDefault(StringParam, '')
-  );
-  const [orgName, setOrgName] = useQueryParam(
-    'orgName',
-    withDefault(StringParam, '')
-  );
-  const [changeValue, setChangeValue] = useQueryParam(
-    'changeValue',
-    withDefault(StringParam, '')
-  );
-  const [repositoryUrl, setRepositoryUrl] = useQueryParam(
-    'repositoryUrl',
-    withDefault(StringParam, '')
-  );
-  const [repositoryName, setRepositoryName] = useQueryParam(
-    'repositoryName',
-    withDefault(StringParam, '')
-  );
-  const [topicSearchError, setTopicSearchError] = useQueryParam(
-    'topicSearchError',
-    withDefault(StringParam, '')
-  );
-  const [tagsToAdd, setTagsToAdd] = useQueryParam(
-    'tagsToAdd',
-    withDefault(ArrayParam, [])
-  );
-  const [currentTags, setCurrentTags] = useQueryParam(
-    'currentTags',
-    withDefault(ArrayParam, [])
-  );
-  const [userTags, setUserTags] = useQueryParam(
-    'userTags',
-    withDefault(ArrayParam, [])
-  );
-  const [orgTags, setOrgTags] = useQueryParam(
-    'orgTags',
-    withDefault(ArrayParam, [])
-  );
+  const classes = useStyles()
+  const [changeValue, setChangeValue] = useQueryParam('changeValue', withDefault(StringParam, ''));
+  const [currentTags, setCurrentTags] = useQueryParam('currentTags', withDefault(ArrayParam, []));
+  const [displayState, setDisplayState] = useQueryParam('displayState', withDefault(StringParam, ''));
+  const [orgName, setOrgName] = useQueryParam('orgName', withDefault(StringParam, ''));
+  const [orgTags, setOrgTags] = useQueryParam('orgTags', withDefault(ArrayParam, []));
+  const [repositoryName, setRepositoryName] = useQueryParam('repositoryName', withDefault(StringParam, ''));
+  const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl', withDefault(StringParam, ''));
+  const [tagsToAdd, setTagsToAdd] = useQueryParam('tagsToAdd', withDefault(ArrayParam, []));
+  const [topicSearchError, setTopicSearchError] = useQueryParam('topicSearchError', withDefault(StringParam, ''));
+  const [userTags, setUserTags] = useQueryParam('userTags', withDefault(ArrayParam, []));
+  const [value, setValue] = useQueryParam('value', withDefault(StringParam, ''));
+  const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
   const breadCrumbLinks = [
@@ -216,13 +185,14 @@ const TagCreator = () => {
     }
     // Fetches Tags from API only if URL is changed
     if (prevRefUrl !== repositoryUrl) {
+      setLoadingTags(true);
       axios
         .get('https://api.github.com/repos/' + urlPath + '/topics', {
           headers: { Accept: 'application/vnd.github.mercy-preview+json' },
         })
         .then((res) => {
-          setTopicSearchError('');
           setCurrentTags(res.data.names);
+          setTopicSearchError('');
         })
         .catch((e) => {
           /*
@@ -230,11 +200,15 @@ const TagCreator = () => {
            * Component should check for error state and resolve the correct response.
            */
           if (e) {
+            setCurrentTags([]);
             setTopicSearchError(
               'Cannot find repository. Please check the name and try again'
             );
             setDisplayState('ProjectUrl');
           }
+        })
+        .finally(() => {
+          setLoadingTags(false);
         });
       if (userTags.length !== 0) {
         setRepoChangeAlert(
@@ -342,18 +316,26 @@ const TagCreator = () => {
       return (
         <>
           <OrgProjSection />
-          <CurrentTopicTagSection
-            currentTags={currentTags}
-            repositoryName={repositoryName}
-          />
-          <AddTagsQuestion
-            setDisplayState={setDisplayState}
-            setChangeValue={setChangeValue}
-            resetForm={resetForm}
-            userTags={userTags}
-            handleAdd={handleAdd}
-            handleDelete={handleDelete}
-          />
+          {loadingTags ? (
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <>
+              <CurrentTopicTagSection
+                currentTags={currentTags}
+                repositoryName={repositoryName}
+              />
+              <AddTagsQuestion
+                setDisplayState={setDisplayState}
+                setChangeValue={setChangeValue}
+                resetForm={resetForm}
+                userTags={userTags}
+                handleAdd={handleAdd}
+                handleDelete={handleDelete}
+              />
+            </>
+          )}
         </>
       );
     case 'AddTopicTags':
