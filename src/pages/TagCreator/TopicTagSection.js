@@ -258,12 +258,12 @@ const TagGeneratorInstructions = ({
   return (
     <>
       <Grid container>
-        <Grid style={{ padding: '24px 0px' }}>
+        <Grid item xs={12} style={{ padding: '24px 0px' }}>
           <Typography variant='h4'>
             How to add your tags to your project’s repository
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={10}>
+        <Grid item xs={12}>
           <Typography variant='body1' className={classes.typoStyle}>
             1. Under your{' '}
             <Link
@@ -277,7 +277,7 @@ const TagGeneratorInstructions = ({
             click <SettingsGearIcon /> to paste your tags.
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={10} style={{ padding: '24px 16px 0' }}>
+        <Grid item xs={12} style={{ padding: '24px 16px 0' }}>
           <Typography variant='body1' className={classes.typoStyle}>
             If you don’t see the <SettingsGearIcon /> button it means you don’t
             have “edit repository settings” privileges (and can’t perform the
@@ -295,7 +295,7 @@ const TagGeneratorInstructions = ({
           </Typography>
         </Grid>
         <ImageComponent src='/images/instructions-step1.png' alt='Step 1' />
-        <Grid>
+        <Grid item xs={12}>
           <Typography variant='body1' className={classes.typoStyle}>
             2. Under{' '}
             <Box component='span' style={{ fontWeight: '700' }}>
@@ -304,14 +304,14 @@ const TagGeneratorInstructions = ({
             , paste the topic you want to add to your repository.{' '}
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={10} style={{ padding: '20px' }}>
+        <Grid item xs={12} style={{ padding: '20px' }}>
           <Typography variant='body1' className={classes.typoStyle}>
             Click each individual generated topic tag to copy it one at a time.
             Paste selected tag into your repository.
           </Typography>
         </Grid>
         <Grid container style={{ paddingLeft: '20px' }}>
-          <Grid item>
+          <Grid item xs={12}>
             <Grid container direction='row' alignItems='center'>
               <CopyPasteTopicTag
                 topicnames={copyPasteTopicTags}
@@ -321,7 +321,7 @@ const TagGeneratorInstructions = ({
           </Grid>
         </Grid>
         <ImageComponent src='/images/instructions-step2.png' alt='Step 2' />
-        <Grid>
+        <Grid item xs={12}>
           <Typography variant='body1' className={classes.typoStyle}>
             3. After you have finished adding your tags, click{' '}
             <Box component='span' style={{ fontWeight: '700' }}>
