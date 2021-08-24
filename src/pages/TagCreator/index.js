@@ -375,27 +375,6 @@ const TagCreator = () => {
           )}
         </>
       );
-    case 'AddTopicTags':
-      return (
-        <>
-          <CurrentTopicTagSection
-            currentTags={currentTags}
-            repositoryName={repositoryName}
-          />
-          <AddTopicTagSection
-            userTags={userTags}
-            displayState={displayState}
-            setDisplayState={setDisplayState}
-            changeValue={changeValue}
-            setChangeValue={setChangeValue}
-            resetForm={resetForm}
-            handleAdd={handleAdd}
-            handleDelete={handleDelete}
-            repoChangeAlert={repoChangeAlert}
-            setRepoChangeAlert={setRepoChangeAlert}
-          />
-        </>
-      );
     case 'GenerateTags':
       return (
         <>
