@@ -51,8 +51,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     color: theme.palette.secondary.main,
   },
+  repoChangeGrid: {
+    paddingTop: '10px',
+    paddingLeft:'10px',
+  },
   addTopicGridPadding: {
-    padding: '50px 10px 10px 10px',
+    padding: '20px 10px 10px',
   },
   newTopicGridPadding: {
     padding: '20px 20px 0px 0px',
@@ -138,28 +142,47 @@ export const AddTagsQuestion = ({
 };
 
 export const AddTopicTagSection = ({
-  setDisplayState,
-  setChangeValue,
-  resetForm,
   userTags,
+  displayState,
+  setDisplayState,
+  resetForm,
+  changeValue,
+  setChangeValue,
   handleAdd,
   handleDelete,
+  repoChangeAlert,
+  setRepoChangeAlert,
 }) => {
   const classes = useStyles();
   const handleGenerateTag = () => {
     setChangeValue('GenerateTags');
     setDisplayState('GenerateTags');
+    setRepoChangeAlert('');
+  };
+  const handleAddMoreTags = () => {
+    if (changeValue === 'CopyPasteTags') {
+      setDisplayState('CopyPasteTags');
+      setRepoChangeAlert('');
+    } else {
+      setDisplayState('GenerateTags');
+      setRepoChangeAlert('');
+    }
   };
   const handleResetForm = () => {
     resetForm();
   };
   return (
     <>
+      <Grid className={classes.repoChangeGrid}>
+        <Typography variant='body1' color='error'>
+          {repoChangeAlert}
+        </Typography>
+      </Grid>
       <Grid className={classes.addTopicGridPadding}>
         <Typography variant='body1'>
           What topic(s), cause(s), or civic issue(s) does your project address?
         </Typography>
-        <Typography variant='body1' style={{ paddingTop: '30px' }}>
+        <Typography variant='body1' style={{ padding: '30px 0px' }}>
           Separate tags by spaces and dashes for hyphenation. You can edit your
           tags later if you need too.
         </Typography>
@@ -180,7 +203,14 @@ export const AddTopicTagSection = ({
         style={{ padding: '10px' }}
       >
         <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleGenerateTag} id='addTagsButton'>
+          <Button
+            onClick={
+              displayState === 'ChangeTags'
+                ? handleAddMoreTags
+                : handleGenerateTag
+            }
+            id='addTagsButton'
+          >
             Add Tag(s)
           </Button>
         </Grid>
@@ -393,71 +423,6 @@ export const CopyPasteTags = ({
         linkStyles={linkStyles}
         repositoryUrl={repositoryUrl}
       />
-    </>
-  );
-};
-
-export const AddMoreTags = ({
-  userTags,
-  setDisplayState,
-  resetForm,
-  changeValue,
-  handleAdd,
-  handleDelete,
-  repoChangeAlert,
-  setRepoChangeAlert,
-}) => {
-  const handleAddMoreTags = () => {
-    if (changeValue === 'CopyPasteTags') {
-      setDisplayState('CopyPasteTags');
-      setRepoChangeAlert('');
-    } else {
-      setDisplayState('GenerateTags');
-      setRepoChangeAlert('');
-    }
-  };
-
-  const handleResetForm = () => {
-    resetForm();
-  };
-  return (
-    <>
-      <Grid style={{ paddingTop: '10px' }}>
-        <Typography variant='body1' color='error'>
-          {repoChangeAlert}
-        </Typography>
-      </Grid>
-      <Grid style={{ padding: '20px' }}>
-        <Typography variant='body1'>
-          What topic(s), cause(s), or civic issue(s) does your project address?{' '}
-        </Typography>
-        <Typography variant='body1' style={{ lineHeight: '70px' }}>
-          Separate tags by spaces and dashes for hyphenation. You can edit your
-          tags later if you need too.
-        </Typography>
-      </Grid>
-      <Grid>
-        <ChipInputSection
-          handleAdd={handleAdd}
-          handleDelete={handleDelete}
-          userTags={userTags}
-        />
-      </Grid>
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        alignItems='center'
-        spacing={3}
-        style={{ padding: '10px' }}
-      >
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleAddMoreTags}>Add Tag(s)</Button>
-        </Grid>
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleResetForm}>Reset Form</Button>
-        </Grid>
-      </Grid>
     </>
   );
 };

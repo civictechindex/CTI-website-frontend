@@ -30,7 +30,6 @@ import {
   AddTagsQuestion,
   NewTags,
   CopyPasteTags,
-  AddMoreTags,
   CurrentTopicTagSection,
 } from './TopicTagSection';
 import useTheme from '@material-ui/core/styles/useTheme';
@@ -380,12 +379,16 @@ const TagCreator = () => {
             repositoryName={repositoryName}
           />
           <AddTopicTagSection
+            userTags={userTags}
+            displayState={displayState}
             setDisplayState={setDisplayState}
+            changeValue={changeValue}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
-            userTags={userTags}
             handleAdd={handleAdd}
             handleDelete={handleDelete}
+            repoChangeAlert={repoChangeAlert}
+            setRepoChangeAlert={setRepoChangeAlert}
           />
         </>
       );
@@ -418,11 +421,12 @@ const TagCreator = () => {
             currentTags={currentTags}
             repositoryName={repositoryName}
           />
-          <AddMoreTags
+          <AddTopicTagSection
             userTags={userTags}
             setDisplayState={setDisplayState}
-            resetForm={resetForm}
             changeValue={changeValue}
+            setChangeValue={setChangeValue}
+            resetForm={resetForm}
             handleAdd={handleAdd}
             handleDelete={handleDelete}
             repoChangeAlert={repoChangeAlert}

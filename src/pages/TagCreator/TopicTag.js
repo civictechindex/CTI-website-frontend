@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   addTag: {
+    paddingBottom:'10px',
     '& .MuiChip-clickable': {
       backgroundColor: theme.palette.background.default,
       border: '1px solid',
