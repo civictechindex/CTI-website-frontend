@@ -360,12 +360,16 @@ const TagCreator = () => {
                 repositoryName={repositoryName}
               />
               <AddTagsQuestion
+                userTags={userTags}
+                displayState={displayState}
                 setDisplayState={setDisplayState}
+                changeValue={changeValue}
                 setChangeValue={setChangeValue}
                 resetForm={resetForm}
-                userTags={userTags}
                 handleAdd={handleAdd}
                 handleDelete={handleDelete}
+                repoChangeAlert={repoChangeAlert}
+                setRepoChangeAlert={setRepoChangeAlert}
               />
             </>
           )}
@@ -423,6 +427,7 @@ const TagCreator = () => {
           />
           <AddTopicTagSection
             userTags={userTags}
+            displayState={displayState}
             setDisplayState={setDisplayState}
             changeValue={changeValue}
             setChangeValue={setChangeValue}

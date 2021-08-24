@@ -101,12 +101,16 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
 };
 
 export const AddTagsQuestion = ({
-  resetForm,
-  setDisplayState,
-  setChangeValue,
   userTags,
+  displayState,
+  setDisplayState,
+  resetForm,
+  changeValue,
+  setChangeValue,
   handleAdd,
   handleDelete,
+  repoChangeAlert,
+  setRepoChangeAlert,
 }) => {
   const [addTagValue, setAddTagValue] = useState('');
   const handleChangeTag = (event) => {
@@ -128,12 +132,16 @@ export const AddTagsQuestion = ({
       />
       {addTagValue === 'yes' ? (
         <AddTopicTagSection
+          userTags={userTags}
+          displayState={displayState}
           setDisplayState={setDisplayState}
+          changeValue={changeValue}
           setChangeValue={setChangeValue}
           resetForm={resetForm}
-          userTags={userTags}
           handleAdd={handleAdd}
           handleDelete={handleDelete}
+          repoChangeAlert={repoChangeAlert}
+          setRepoChangeAlert={setRepoChangeAlert}
         />
       ) : null}
       {addTagValue === 'no' ? showAddTopicTag() : null}
@@ -157,15 +165,14 @@ export const AddTopicTagSection = ({
   const handleGenerateTag = () => {
     setChangeValue('GenerateTags');
     setDisplayState('GenerateTags');
-    setRepoChangeAlert('');
   };
   const handleAddMoreTags = () => {
     if (changeValue === 'CopyPasteTags') {
+      setRepoChangeAlert('');
       setDisplayState('CopyPasteTags');
-      setRepoChangeAlert('');
     } else {
-      setDisplayState('GenerateTags');
       setRepoChangeAlert('');
+      setDisplayState('GenerateTags');
     }
   };
   const handleResetForm = () => {
