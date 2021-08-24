@@ -38,23 +38,23 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '14px',
     },
   },
-  gridLinkStyle:{
+  gridLinkStyle: {
     '& a:link': {
       fontWeight: '700',
       color: theme.palette.secondary.main,
     },
     '& a:visited': {
       color: theme.palette.secondary.main,
-    }, 
+    },
   },
   lStyle: {
     fontWeight: '700',
     color: theme.palette.secondary.main,
-},
-  addTopicGridPadding:{
+  },
+  addTopicGridPadding: {
     padding: '50px 10px 10px 10px',
   },
-  newTopicGridPadding:{
+  newTopicGridPadding: {
     padding: '20px 20px 0px 0px',
   },
 }));
@@ -66,7 +66,10 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
         <Grid>
           <Grid style={{ padding: '24px 0px' }}>
             <Typography variant='body1'>
-              Current topic tags on <Box component='span' style={{ fontWeight: '700' }}>{repositoryName}:</Box>
+              Current topic tags on{' '}
+              <Box component='span' style={{ fontWeight: '700' }}>
+                {repositoryName}:
+              </Box>
             </Typography>
           </Grid>
           <Grid
@@ -156,12 +159,12 @@ export const AddTopicTagSection = ({
         <Typography variant='body1'>
           What topic(s), cause(s), or civic issue(s) does your project address?
         </Typography>
-        <Typography variant='body1' style={{paddingTop:'30px'}}>
+        <Typography variant='body1' style={{ paddingTop: '30px' }}>
           Separate tags by spaces and dashes for hyphenation. You can edit your
           tags later if you need too.
         </Typography>
       </Grid>
-      <Grid style={{paddingLeft:'10px'}} data-cy='add-topic-tags'>
+      <Grid style={{ paddingLeft: '10px' }} data-cy='add-topic-tags'>
         <ChipInputSection
           handleAdd={handleAdd}
           handleDelete={handleDelete}
@@ -281,11 +284,7 @@ const TagGeneratorInstructions = ({
         <Grid item xs={12} className={classes.gridLinkStyle}>
           <Typography variant='body1' className={classes.typoStyle}>
             1. Under your{' '}
-            <Link
-              target='_blank'
-              href={repositoryUrl}
-              underline='always'
-            >
+            <Link target='_blank' href={repositoryUrl} underline='always'>
               project’s repository,
             </Link>{' '}
             click <SettingsGearIcon /> to paste your tags.
