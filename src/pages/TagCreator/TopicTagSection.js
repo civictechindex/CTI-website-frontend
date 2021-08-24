@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   repoChangeGrid: {
     paddingTop: '10px',
-    paddingLeft:'10px',
+    paddingLeft: '10px',
   },
   addTopicGridPadding: {
     padding: '20px 10px 10px',
