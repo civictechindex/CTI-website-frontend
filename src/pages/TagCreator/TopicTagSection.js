@@ -61,6 +61,15 @@ const useStyles = makeStyles((theme) => ({
   newTopicGridPadding: {
     padding: '20px 20px 0px 0px',
   },
+  resetButton: {
+    backgroundColor: theme.palette.background.default,
+    border: '1px solid',
+    borderColor:theme.palette.background.darkGray,
+    color: theme.palette.spectrum.darkBlue,
+    '&:hover': {
+      background: 'none',
+    },
+  },
 }));
 
 export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
@@ -222,7 +231,7 @@ export const AddTopicTagSection = ({
           </Button>
         </Grid>
         <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleResetForm} id='reset-form-button'>
+          <Button className={classes.resetButton} onClick={handleResetForm} id='reset-form-button'>
             Reset Form
           </Button>
         </Grid>
@@ -289,7 +298,7 @@ export const NewTags = ({
           </Button>
         </Grid>
         <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleResetForm} id='reset-form-button'>
+          <Button className={classes.resetButton} onClick={handleResetForm} id='reset-form-button'>
             Reset Form
           </Button>
         </Grid>
