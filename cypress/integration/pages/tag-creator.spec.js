@@ -44,7 +44,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
-    cy.get('h6').contains(AFFILIATED_ORGANIZATION);
+    cy.get('p').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -84,7 +84,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
-    cy.get('h6').contains(AFFILIATED_ORGANIZATION);
+    cy.get('p').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -107,7 +107,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
-    cy.get('h3').contains(AFFILIATED_ORGANIZATION);
+    cy.get('p').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -128,7 +128,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('loads correct 7 tags and new tags for `civictechindex/CTI-website-frontend` - unaffiliated', () => {
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
-    cy.get('h6').contains('Unaffliated');
+    cy.get('p').contains('Unaffliated');
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -169,7 +169,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('change the org form unaffiliated for `civictechindex/CTI-website-frontend` to affiliated', () => {
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
-    cy.get('h6').contains('Unaffliated');
+    cy.get('p').contains('Unaffliated');
     cy.get('#change-org').click();
     cy.contains('Are you affiliated with an organization?');
     cy.get('[data-cy=radio-yes]');
@@ -182,6 +182,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
         .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
-    cy.get('h6').contains(CHANGE_AFFILIATED_ORGANIZATION);
+    cy.get('p').contains(CHANGE_AFFILIATED_ORGANIZATION);
   });
 });

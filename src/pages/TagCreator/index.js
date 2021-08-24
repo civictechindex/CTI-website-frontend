@@ -238,7 +238,8 @@ const TagCreator = () => {
       chip = chip.slice(0, -1);
     }
     if (chip.includes(',')) {
-      const inputChipArr = chip.split(',');
+      let inputChipArr = chip.split(',');
+      inputChipArr = inputChipArr.filter(i => i);
       setUserTags([...new Set([...userTags, ...inputChipArr])]);
     } else setUserTags([...new Set([...userTags, chip])]);
   };

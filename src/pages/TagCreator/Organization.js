@@ -27,16 +27,9 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'scroll',
   },
   typoStyle: {
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '1.5rem',
-    },
+    fontWeight:'700',
   },
-  tStyle: {
-    fontWeight:'500',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '0.875rem',
-    },
-  },
+
 }))
 
 export const OrganizationSelectorSection = ({ orgName, setOrgName, options, setOptions }) => {
@@ -118,13 +111,13 @@ export const OrgNameSection = ({ setDisplayState,orgName,linkStyles }) => {
   return (
     <Grid container direction="row" alignItems="center" style={{ padding: '48px 0px 32px 0px' }}>
       <Grid item xs={12} sm={3} className={classes.gridStyle} >
-        <Typography variant='h6' className={classes.tStyle} >Affliated Organization:</Typography>
+        <Typography variant='body1'>Affliated Organization:</Typography>
       </Grid>
       {orgName ?
         <Grid item xs={10} sm={7}>
-          <Typography variant='h6' className={classes.typoStyle}>{orgName}</Typography>
+          <Typography variant='body1' className={classes.typoStyle}>{orgName}</Typography>
         </Grid> : <Grid item xs={7} style={{ paddingRight: '50px' }}>
-          <Typography variant='h6'>Unaffliated</Typography>
+          <Typography variant='body1' className={classes.typoStyle}>Unaffliated</Typography>
         </Grid>}
       <Grid item xs={2} >
         <Link id="change-org" component="button" variant='body1' onClick={handleChangeOrg} underline='always' style={linkStyles} >change</Link>

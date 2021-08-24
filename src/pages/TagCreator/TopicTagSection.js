@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    flexWrap: 'nowrap',
   },
   typoStyle: {
     fontWeight: '400',
@@ -39,9 +38,24 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '14px',
     },
   },
+  gridLinkStyle:{
+    '& a:link': {
+      fontWeight: '700',
+      color: theme.palette.secondary.main,
+    },
+    '& a:visited': {
+      color: theme.palette.secondary.main,
+    }, 
+  },
   lStyle: {
     fontWeight: '700',
     color: theme.palette.secondary.main,
+},
+  addTopicGridPadding:{
+    padding: '50px 10px 10px 10px',
+  },
+  newTopicGridPadding:{
+    padding: '20px 20px 0px 0px',
   },
 }));
 
@@ -52,7 +66,7 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
         <Grid>
           <Grid style={{ padding: '24px 0px' }}>
             <Typography variant='body1'>
-              Current topic tags on {repositoryName}:
+              Current topic tags on <Box component='span' style={{ fontWeight: '700' }}>{repositoryName}:</Box>
             </Typography>
           </Grid>
           <Grid
@@ -128,6 +142,7 @@ export const AddTopicTagSection = ({
   handleAdd,
   handleDelete,
 }) => {
+  const classes = useStyles();
   const handleGenerateTag = () => {
     setChangeValue('GenerateTags');
     setDisplayState('GenerateTags');
@@ -137,16 +152,16 @@ export const AddTopicTagSection = ({
   };
   return (
     <>
-      <Grid style={{ padding: '20px' }}>
+      <Grid className={classes.addTopicGridPadding}>
         <Typography variant='body1'>
           What topic(s), cause(s), or civic issue(s) does your project address?
         </Typography>
-        <Typography variant='body1' style={{ lineHeight: '70px' }}>
+        <Typography variant='body1' style={{paddingTop:'30px'}}>
           Separate tags by spaces and dashes for hyphenation. You can edit your
           tags later if you need too.
         </Typography>
       </Grid>
-      <Grid data-cy='add-topic-tags'>
+      <Grid style={{paddingLeft:'10px'}} data-cy='add-topic-tags'>
         <ChipInputSection
           handleAdd={handleAdd}
           handleDelete={handleDelete}
@@ -196,7 +211,7 @@ export const NewTags = ({
   return (
     <>
       <Grid>
-        <Grid style={{ padding: '20px 20px 0px 20px' }}>
+        <Grid className={classes.addTopicGridPadding}>
           <Typography variant='body1'>
             New tags to add to your repository:
           </Typography>
@@ -263,14 +278,13 @@ const TagGeneratorInstructions = ({
             How to add your tags to your project’s repository
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.gridLinkStyle}>
           <Typography variant='body1' className={classes.typoStyle}>
             1. Under your{' '}
             <Link
               target='_blank'
               href={repositoryUrl}
               underline='always'
-              className={classes.lStyle}
             >
               project’s repository,
             </Link>{' '}
