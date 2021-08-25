@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   resetButton: {
     backgroundColor: theme.palette.background.default,
     border: '1px solid',
-    borderColor:theme.palette.background.darkGray,
+    borderColor: theme.palette.background.darkGray,
     color: theme.palette.spectrum.darkBlue,
     '&:hover': {
       background: 'none',
@@ -72,14 +72,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ResetButton = ({ buttonLabel,handleResetForm }) =>{
+const ButtonComponent = ({
+  id,
+  addTagsButtonLabel,
+  handleAddTagsButton,
+  resetButtonLabel,
+  handleResetForm,
+}) => {
   const classes = useStyles();
   return (
-    <Button className={classes.resetButton} onClick={handleResetForm} id='reset-form-button'>
-      {buttonLabel}
-    </Button>
-  )
-}
+    <Grid
+      container
+      direction='row'
+      justify='center'
+      alignItems='center'
+      spacing={3}
+      style={{ padding: '10px' }}
+    >
+      <Grid item style={{ padding: '10px' }}>
+        <Button onClick={handleAddTagsButton} id={id}>
+          {addTagsButtonLabel}
+        </Button>
+      </Grid>
+      <Grid item style={{ padding: '10px' }}>
+        <Button
+          className={classes.resetButton}
+          onClick={handleResetForm}
+          id='reset-form-button'
+        >
+          {resetButtonLabel}
+        </Button>
+      </Grid>
+    </Grid>
+  );
+};
 
 export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
   return (
@@ -219,30 +245,15 @@ export const AddTopicTagSection = ({
           userTags={userTags}
         />
       </Grid>
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        alignItems='center'
-        spacing={3}
-        style={{ padding: '10px' }}
-      >
-        <Grid item style={{ padding: '10px' }}>
-          <Button
-            onClick={
-              displayState === 'ChangeTags'
-                ? handleAddMoreTags
-                : handleGenerateTag
-            }
-            id='addTagsButton'
-          >
-            Add Tag(s)
-          </Button>
-        </Grid>
-        <Grid item style={{ padding: '10px' }}>
-          <ResetButton buttonLabel='Reset Form' handleResetForm={handleResetForm}/>
-        </Grid>
-      </Grid>
+      <ButtonComponent
+        id='addTagsButton'
+        addTagsButtonLabel='Add Tag(s)'
+        handleAddTagsButton={
+          displayState === 'ChangeTags' ? handleAddMoreTags : handleGenerateTag
+        }
+        resetButtonLabel='Reset Form'
+        handleResetForm={handleResetForm}
+      />
     </>
   );
 };
@@ -291,23 +302,13 @@ export const NewTags = ({
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        alignItems='center'
-        spacing={3}
-        style={{ padding: '10px' }}
-      >
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleAddTags} id='add-tags-button'>
-            Add Tag(s) to Repository
-          </Button>
-        </Grid>
-        <Grid item style={{ padding: '10px' }}>
-          <ResetButton buttonLabel='Reset Form' handleResetForm={handleResetForm}/>
-        </Grid>
-      </Grid>
+      <ButtonComponent
+        id='add-tags-button'
+        addTagsButtonLabel='Add Tag(s) to Repository'
+        handleAddTagsButton={handleAddTags}
+        resetButtonLabel='Reset Form'
+        handleResetForm={handleResetForm}
+      />
     </>
   );
 };
