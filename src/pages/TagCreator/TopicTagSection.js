@@ -72,6 +72,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ResetButton = ({ buttonLabel,handleResetForm }) =>{
+  const classes = useStyles();
+  return (
+    <Button className={classes.resetButton} onClick={handleResetForm} id='reset-form-button'>
+      {buttonLabel}
+    </Button>
+  )
+}
+
 export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
   return (
     <>
@@ -231,9 +240,7 @@ export const AddTopicTagSection = ({
           </Button>
         </Grid>
         <Grid item style={{ padding: '10px' }}>
-          <Button className={classes.resetButton} onClick={handleResetForm} id='reset-form-button'>
-            Reset Form
-          </Button>
+          <ResetButton buttonLabel='Reset Form' handleResetForm={handleResetForm}/>
         </Grid>
       </Grid>
     </>
@@ -298,9 +305,7 @@ export const NewTags = ({
           </Button>
         </Grid>
         <Grid item style={{ padding: '10px' }}>
-          <Button className={classes.resetButton} onClick={handleResetForm} id='reset-form-button'>
-            Reset Form
-          </Button>
+          <ResetButton buttonLabel='Reset Form' handleResetForm={handleResetForm}/>
         </Grid>
       </Grid>
     </>
