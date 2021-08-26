@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   routingBtnBeforeClick: {
     backgroundColor: theme.palette.background.default,
     border: '1px solid',
-    borderColor:theme.palette.background.darkGray,
+    borderColor: theme.palette.background.darkGray,
     color: theme.palette.spectrum.darkBlue,
     '&:hover': {
       background: 'none',
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   routingBtnAfterClick: {
     backgroundColor: theme.palette.spectrum.lightBlue,
     border: '1px solid',
-    borderColor:theme.palette.background.darkGray,
+    borderColor: theme.palette.background.darkGray,
     color: theme.palette.spectrum.white,
   },
   containerAboveBtnStyle: {

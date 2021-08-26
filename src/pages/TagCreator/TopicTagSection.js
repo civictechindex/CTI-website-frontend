@@ -70,6 +70,12 @@ const useStyles = makeStyles((theme) => ({
       background: 'none',
     },
   },
+  gridChipInput:{
+    paddingLeft: '10px',
+  },
+  typoPadding:{
+    padding: '30px 0px',
+  },
 }));
 
 const ButtonComponent = ({
@@ -233,12 +239,12 @@ export const AddTopicTagSection = ({
         <Typography variant='body1'>
           What topic(s), cause(s), or civic issue(s) does your project address?
         </Typography>
-        <Typography variant='body1' style={{ padding: '30px 0px' }}>
+        <Typography variant='body1' className={classes.typoPadding}>
           Separate tags by spaces and dashes for hyphenation. You can edit your
           tags later if you need too.
         </Typography>
       </Grid>
-      <Grid style={{ paddingLeft: '10px' }} data-cy='add-topic-tags'>
+      <Grid className={classes.gridChipInput} data-cy='add-topic-tags'>
         <ChipInputSection
           handleAdd={handleAdd}
           handleDelete={handleDelete}

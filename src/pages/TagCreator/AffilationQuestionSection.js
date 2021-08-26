@@ -2,16 +2,26 @@ import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  containerPadding:{
+    paddingTop: '30px' ,
+  },
+  gridPadding:{
+    padding: '10px' ,
+  },
+}));
 export const AffiliationQuestionSection = ({
   value,
   handleChange,
   question,
 }) => {
+  const classes = useStyles();
   return (
     <>
-      <Grid container style={{ paddingTop: '30px' }}>
-        <Grid item xs={12} style={{ padding: '10px' }}>
+      <Grid container className={classes.containerPadding}>
+        <Grid item xs={12} className={classes.gridPadding}>
           <Typography variant='body1'>{question}</Typography>
         </Grid>
         <Grid item xs={4} sm={8}>
