@@ -4,10 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
+import spectrum from './../theme-spectrum';
 
-const DARK_BLUE = '#0F1D2F';
-const WHITE = '#FEFEFE';
-const DARK_GRAY = '#6D6E74';
 const FULL_OPAQUE = '100%';
 const SEMI_OPAQUE = '80%';
 
@@ -22,25 +20,23 @@ const SEMI_OPAQUE = '80%';
 export default function NavBreadcrumbs(props) {
   const crumbs = props.crumbs;
 
-  let linkColor = WHITE;
-  let activeLinkColor = WHITE;
+  let linkColor = spectrum.white;
+  let activeLinkColor = spectrum.white;
   let opacity = SEMI_OPAQUE;
   if (props.color === 'secondary') {
-    linkColor = DARK_GRAY;
-    activeLinkColor = DARK_BLUE;
+    linkColor = spectrum.darkGray;
+    activeLinkColor = spectrum.darkBlue;
     opacity = FULL_OPAQUE;
   }
 
   const linkProps = {
     color: linkColor,
     opacity: opacity,
-    textDecoration: 'none',
   }
   const activeLinkProps = {
     color: activeLinkColor,
     opacity: FULL_OPAQUE,
   }
-
   const theme = createMuiTheme({
     overrides: {
       MuiBreadcrumbs: {
@@ -48,11 +44,18 @@ export default function NavBreadcrumbs(props) {
           fontFamily: 'Work Sans',
           padding: '32px',
           '& p': linkProps,
-          '& a:link': linkProps,
+          '& a:link':linkProps,
           '& a:visited': linkProps,
           '& a:hover': activeLinkProps,
           '& a:active': activeLinkProps,
           '& a:focus': activeLinkProps,
+          '& ol': {
+            '& li:last-child': {
+              '& a:link': {
+                textDecoration:'none',
+              },
+            },
+          },
         },
         separator: linkProps,
       },
