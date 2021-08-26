@@ -5,13 +5,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  containerPadding:{
-    paddingTop: '30px' ,
+  containerPadding: {
+    paddingTop: '30px',
   },
-  gridPadding:{
-    padding: '10px' ,
+  gridPadding: {
+    padding: '10px',
   },
 }));
+
 export const AffiliationQuestionSection = ({
   value,
   handleChange,
