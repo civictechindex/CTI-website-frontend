@@ -70,10 +70,10 @@ const useStyles = makeStyles((theme) => ({
       background: 'none',
     },
   },
-  gridChipInput:{
+  gridChipInput: {
     paddingLeft: '10px',
   },
-  typoPadding:{
+  typoPadding: {
     padding: '30px 0px',
   },
 }));
