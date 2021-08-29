@@ -6,6 +6,9 @@ describe('Projects Page (Search Projects)', () => {
     'hackforla/civic-opportunity',
     'hackforla/civic-tech-structure',
     'civictechindex/civictechindex-launch',
+    'cnk/civictechindexadmin',
+    'cnk/CivicTechIndex',
+    'cnk/civic-tech-index',
   ];
 
   beforeEach(() => {
