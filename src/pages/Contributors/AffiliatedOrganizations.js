@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     margin: '8px',
+    width: '392px',
     [theme.breakpoints.down('lg')]: {
       height: '60px',
     },
@@ -67,6 +68,7 @@ export const AffiliatedOrganizations = ({
   inputValue,
   organizationData,
   showIndexContrib,
+  checkboxValue,
 }) => {
   const classes = useStyles();
 
@@ -74,18 +76,8 @@ export const AffiliatedOrganizations = ({
   let organizationArray;
   let parentdata;
   let parentChildobj;
-  let mapsearchedChildParent;
+  let mapChildParent;
 
-  const sortFn = (sortKey) => {
-    return function (a, b) {
-      if (a[sortKey].toLowerCase() > b[sortKey].toLowerCase()) {
-        return 1;
-      } else if (a[sortKey].toLowerCase() < b[sortKey].toLowerCase()) {
-        return -1;
-      }
-      return 0;
-    };
-  };
 
   const getParentData = () => {
     organizationArray = organizations['Code for All'].filter((item) => item);
@@ -96,24 +88,29 @@ export const AffiliatedOrganizations = ({
       if (org.depth === 3) {
         org['childNodes'] = [];
         org['isOpen'] = false;
+        org['totalCount'] = 0;
         parentdata.push(org);
       }
       if (org.depth === 4) {
         parentChildobj = parentdata.find((d) => org.path.includes(d.path));
 
-        mapsearchedChildParent = organizationData.find(
+        mapChildParent = organizationData.filter((item) => item).find(
           (d) => org.path.includes(d.path) && d.depth === 3
         );
 
         const exist = parentdata.find(
-          (d) => mapsearchedChildParent.path === d.path
+          (d) => mapChildParent.path === d.path
         );
+        if (inputValue === '' && !showIndexContrib)
+        {
+          mapChildParent['totalCount'] += 1;
+        }
 
         if (!exist) {
-          mapsearchedChildParent['childNodes'] = [];
-          mapsearchedChildParent['isOpen'] = false;
-          parentChildobj = mapsearchedChildParent;
-          parentdata.push(mapsearchedChildParent);
+          mapChildParent['childNodes'] = [];
+          mapChildParent['isOpen'] = false;
+          parentChildobj = mapChildParent;
+          parentdata.push(parentChildobj);
         } else {
           parentChildobj = exist;
         }
@@ -132,7 +129,7 @@ export const AffiliatedOrganizations = ({
         }
       }
     });
-    parentdata.sort(sortFn('name'));
+
     return parentdata;
   };
 
@@ -141,7 +138,7 @@ export const AffiliatedOrganizations = ({
   useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, organizations, organizationData, showIndexContrib]);
+  }, [inputValue, organizations, organizationData, checkboxValue,mapChildParent]);
 
   let childSort;
   let childNode;
@@ -149,11 +146,10 @@ export const AffiliatedOrganizations = ({
     return (
       <Grid
         className={classes.thumbnailGrid}
-        dropdownlength={currentThumbnails.length}
         data-cy='affiliated-organizations'
       >
         {currentThumbnails.map((org, i) => {
-          childSort = org.childNodes.sort(sortFn('name'));
+          childSort = org.childNodes;
           childNode = org.isOpen ? childSort : childSort.slice(0, 8);
           return (
             <Dropdown
@@ -174,14 +170,14 @@ export const AffiliatedOrganizations = ({
                     {childNode.map((child, idx) => {
                       return (
                         <Grid
-                          item xs={12} sm={5} md={5}
+                          item xs={12} sm={5} lg={5}
                           className={classes.afflnThumbnails}
                           key={`affiliatedThumbnail_child_${i}_${idx}`}
                         >
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                            checkboxValue={showIndexContrib}
+                            checkboxValue={checkboxValue}
                           />
                         </Grid>
                       );
@@ -191,7 +187,7 @@ export const AffiliatedOrganizations = ({
                   <ContributorThumbnail
                     isChildThumbnail={isChildThumbnail}
                     organization={org}
-                    checkboxValue={showIndexContrib}
+                    checkboxValue={checkboxValue}
                   />
                 )}
                 {org.childNodes.length > 8 ? (
@@ -236,6 +232,7 @@ export const AffiliatedOrganizations = ({
               key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
               isOpen={org.childNodes.length <= 5 ? true : false}
+              inputValue={inputValue}
             >
               <Box className={classes.affiliatedThumbnailsWrapper}>
                 {org.childNodes.length === 0 ? (
@@ -252,6 +249,7 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
+                            inputValue={inputValue}
                           />
                         </Typography>
                       );
