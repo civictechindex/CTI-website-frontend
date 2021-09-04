@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
   },
   gridPadding: {
     padding: '10px',
+    '& a:visited': {
+      color: theme.palette.secondary.main,
+    },
   },
 }));
 

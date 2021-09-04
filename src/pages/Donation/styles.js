@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '4vw',
       padding: '0 48px 96px 48px',
     },
+    '& a:visited': {
+      color: theme.palette.secondary.main,
+    },
   },
 
   infoDescription: {

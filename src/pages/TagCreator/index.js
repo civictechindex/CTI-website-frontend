@@ -2,6 +2,7 @@
 /* eslint-disable complexity */
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from '../../components/common/Link';
 import {
   useQueryParam,
   StringParam,
@@ -448,7 +449,12 @@ const TagCreator = () => {
           <AffiliationQuestionSection
             value={value}
             handleChange={handleChange}
-            question={'Are you affiliated with an organization?'}
+            question={
+              <>
+                Are you affiliated with an{' '}
+                <Link to='/organizations/all'> organization</Link>?
+              </>
+            }
           />
           {value === 'yes' ? (
             <RadioYes value={value} setOrgName={setOrgName} />
