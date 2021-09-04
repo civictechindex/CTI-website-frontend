@@ -129,7 +129,6 @@ export const ContributorThumbnail = ({
   isChildThumbnail,
   checkboxValue,
   inputValue,
-  showIndexContrib,
 }) => {
   const classes = useStyles();
   const [thumbnailInfo, setThumbnailInfo] = useState({});
@@ -172,7 +171,6 @@ const Thumbnail = ({
   isChildThumbnail,
   checkboxValue,
   inputValue,
-  showIndexContrib,
 }) => {
   const classes = useStyles();
   let thumbnailImageStyle, thumbnailWrapperStyle;
@@ -195,20 +193,23 @@ const Thumbnail = ({
     thumbnailImageStyle = classes.thumbnailImage;
   }
 
-  const getafflChildCount = () => {
-    if ((checkboxValue && !isChildThumbnail && typeof checkboxValue !== 'undefined' && organization.totalCount !== 0 && organization.totalCount !== 'undefined') ||  (inputValue !== null && typeof inputValue !== 'undefined' &&  !isChildThumbnail && organization.totalCount !== 'undefined' && organization.totalCount !== 0))
+  const showtotalChildCount = () => {
+
+    if (organization.childNodes !== undefined && dropdownLength  !== undefined)
     {
-      dropdownLength = `${dropdownLength} / ${organization.totalCount}`
+
+      if ((checkboxValue && !isChildThumbnail) || (inputValue !== null && !isChildThumbnail && inputValue !== undefined))
+      {
+        dropdownLength =  `(${organization.childNodes.length} / ${dropdownLength})`;
+      }
+      else
+      {
+        dropdownLength = `(${dropdownLength})`;
+      }
     }
-
     return dropdownLength;
-  }
-
-  const [totalAffChildCount,settotalAffChildCount] = useState(getafflChildCount);
-  useEffect(() => {
-    settotalAffChildCount(dropdownLength);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [organization.totalCount]);
+  };
+  const [affiliatedchildCount] = useState(showtotalChildCount);
 
   return (
     <>
@@ -255,7 +256,7 @@ const Thumbnail = ({
             >
               {organization.name ? organization.name : organization}
             </Link>{' '}
-            {dropdownLength ?  totalAffChildCount  ?   `(${totalAffChildCount})`: `(${dropdownLength})`  : ``}
+            {affiliatedchildCount  ?   `${affiliatedchildCount}`  : ``}
           </Typography>
         </Grid>
         <Grid>

@@ -94,7 +94,7 @@ export const AffiliatedOrganizations = ({
       if (org.depth === 4) {
         parentChildobj = parentdata.find((d) => org.path.includes(d.path));
 
-        mapChildParent = organizationData.filter((item) => item).find(
+        mapChildParent = organizationData.find(
           (d) => org.path.includes(d.path) && d.depth === 3
         );
 
@@ -116,12 +116,7 @@ export const AffiliatedOrganizations = ({
         }
 
         if (parentChildobj) {
-          if (showIndexContrib && org['cti_contributor']) {
-            parentChildobj.childNodes.push(org);
-          }
-          if (!showIndexContrib) {
-            parentChildobj.childNodes.push(org);
-          }
+          parentChildobj.childNodes.push(org);
         } else {
           org['childNodes'] = [];
           org['isOpen'] = false;
@@ -156,7 +151,7 @@ export const AffiliatedOrganizations = ({
               checkboxValue={showIndexContrib}
               organization={org}
               key={`affiliatedThumbnailsWrapper_${i}`}
-              dropdownLength={org.childNodes.length}
+              dropdownLength= {org.totalCount}
               isOpen={false}
             >
               <Grid container style={ { justifyContent:"center" } } alignItems='center'>
@@ -177,7 +172,8 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
-                            checkboxValue={checkboxValue}
+                            checkboxValue={showIndexContrib}
+                            organizationData={organizationData}
                           />
                         </Grid>
                       );
@@ -187,7 +183,8 @@ export const AffiliatedOrganizations = ({
                   <ContributorThumbnail
                     isChildThumbnail={isChildThumbnail}
                     organization={org}
-                    checkboxValue={checkboxValue}
+                    checkboxValue={showIndexContrib}
+                    organizationData={organizationData}
                   />
                 )}
                 {org.childNodes.length > 8 ? (
@@ -230,7 +227,7 @@ export const AffiliatedOrganizations = ({
             <Dropdown
               organization={org}
               key={`affiliatedThumbnailsWrapper_${i}`}
-              dropdownLength={org.childNodes.length}
+              dropdownLength= {org.totalCount}
               isOpen={org.childNodes.length <= 5 ? true : false}
               inputValue={inputValue}
             >
