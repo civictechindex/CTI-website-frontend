@@ -2,16 +2,23 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { GenericHeaderSection } from '../../../components';
+import GitHubButton from 'react-github-btn';
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
     paddingBottom: theme.spacing(6),
   },
   imageStyle: {
+    border: '1px solid',
+    borderColor: theme.palette.background.darkGray,
     maxWidth: '100%',
     [theme.breakpoints.down('md')]: {
       fontSize: '36px',
@@ -31,25 +38,12 @@ const useStyles = makeStyles((theme) => ({
       height: '150px',
     },
   },
-  starMediaStyle: {
-    backgroundColor: theme.palette.background.default,
-    '& img': {
-      marginBottom: '36px',
-    },
-    [theme.breakpoints.down('md')]: {
-      marginBottom: '32px',
-    },
-  },
   starMediaSection: {
-    height: '252px',
-    marginBottom: '42px',
-    textAlign: 'center',
-    [theme.breakpoints.down('md')]: {
-      height: '272px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      height: '632px',
-      justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
     },
   },
   socialMediaSectionStyle: {
@@ -67,66 +61,83 @@ const useStyles = makeStyles((theme) => ({
       padding: '112px 0 96px 0 ',
     },
   },
+  card: {
+    backgroundColor: theme.palette.spectrum.white,
+    height: '186px',
+    border: '1px solid',
+    borderRadius:'4px',
+    borderColor: theme.palette.background.darkGray,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  cardTypo:{
+    textAlign:'center',
+    width:'218px',
+  },
+  media: {
+    height: '64px',
+    width: '64px',
+  },
+  tweetGrid:{
+    paddingTop:'96px',
+    paddingBottom:'32px',
+  },
+  tweetHeading:{
+    textAlign: 'center',
+    color: theme.palette.spectrum.teal,
+  },
 }));
 
 const StarMediaSection = () => {
   const classes = useStyles();
+
+  const CardSection = ({ image, title, cardContent }) => {
+    return (
+      <Card className={classes.card}>
+        <CardMedia className={classes.media} image={image} title={title} />
+        <CardContent>
+          <Typography variant='h6' className={classes.cardTypo}>{cardContent}</Typography>
+        </CardContent>
+      </Card>
+    );
+  };
   return (
-    <Grid
-      container
-      alignItems='center'
-      justify='space-between'
-      className={classes.starMediaSection}
-    >
-      <Grid
-        item
-        container
-        direction='column'
-        alignItems='center'
-        xs={12}
-        md={3}
-        className={classes.starMediaStyle}
-      >
-        <Grid item style={{ paddingBottom: ' 32px 0 32px' }}>
-          <img src='/images/image3.svg' alt='StarCount logo' />
-        </Grid>
-        <Typography variant='h6'>
-          Don’t forget to star our repository
-        </Typography>
+    <Grid container item xs={12} spacing={4} className={classes.starMediaSection}>
+      <Grid item sm={4}>
+        <Card variant='outlined' className={classes.card}>
+          <CardActions>
+            <GitHubButton
+              href='https://github.com/civictechindex/CTI-website-frontend'
+              data-icon='octicon-star'
+              data-size='large'
+              data-show-count='true'
+              aria-label='Star civictechindex/CTI-website-frontend on GitHub'
+            >
+                Star
+            </GitHubButton>
+          </CardActions>
+          <CardContent>
+            <Typography variant='h6' className={classes.cardTypo}>
+                Don’t forget to star our repository
+            </Typography>
+          </CardContent>
+        </Card>
       </Grid>
-      <Grid
-        item
-        container
-        direction='column'
-        alignItems='center'
-        justify='space-around'
-        xs={12}
-        md={3}
-        className={classes.starMediaStyle}
-      >
-        <Grid item>
-          <img src='/images/Medium_logo_Monogram.svg' alt='Medium logo' />
-        </Grid>
-        <Typography variant='h6'>
-          Mention or write about us on Medium
-        </Typography>
+      <Grid item sm={4}>
+        <CardSection
+          image='/images/medium.png'
+          title='Medium logo'
+          cardContent='Mention or write about us on Medium'
+        />
       </Grid>
-      <Grid
-        item
-        container
-        direction='column'
-        alignItems='center'
-        xs={12}
-        md={3}
-        className={classes.starMediaStyle}
-      >
-        <Grid item style={{ padding: ' 16px 0 32px' }}>
-          <img src='/images/mail.png' alt='Mail logo' />
-        </Grid>
-        <Typography variant='h6'>
-          Send an email to your project admin with suggested tags for your
-          repository
-        </Typography>
+      <Grid item sm={4}>
+        <CardSection
+          image='/images/mail.png'
+          title='Mail logo'
+          cardContent='Share new tags with your project admin'
+        />
       </Grid>
     </Grid>
   );
@@ -222,7 +233,8 @@ const MediaInfo = () => {
           <Box>
             <Typography
               variant='h4'
-              style={{ color: '#004364', marginBottom: '32px' }}>
+              style={{ color: '#004364', marginBottom: '32px' }}
+            >
               Use our Logo on your Project!
             </Typography>
             <Typography variant='h6' style={{ marginBottom: '16px' }}>
@@ -337,41 +349,45 @@ export default function ShareTheCti() {
           />
         </Container>
       </Box>
-      <Container className={classes.containerStyle}>
-        <Grid
-          container
-          alignItems='center'
-          justify='center'
-          direction='column'
-          style={{
-            padding: '64px 0 47px 0',
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant='h3' style={{ color: '#004364' }}>
-            Tell others about us!
-          </Typography>
-          <Typography
-            variant='h5'
+      <Box className='containerGray'>
+        <Container className={classes.containerStyle}>
+          <Grid
+            container
+            alignItems='center'
+            justify='center'
+            direction='column'
             style={{
-              fontWeight: '400',
-              fontSize: '20px',
-              marginTop: '8px',
+              padding: '64px 0 47px 0',
+              textAlign: 'center',
             }}
           >
-            Here are some suggested content to share with your networks.
-          </Typography>
-        </Grid>
-        <StarMediaSection />
-        <Typography
-          variant='h3'
-          style={{ textAlign: 'center', color: '#004364' }}
-        >
-          Latest Updates from the CTI
-        </Typography>
-        <SocialMediaPostSection />
-      </Container>
-      <SocialMediaSection />
+            <Typography variant='h3' style={{ color: '#004364' }}>
+              Tell others about us!
+            </Typography>
+            <Typography
+              variant='h5'
+              style={{
+                fontWeight: '400',
+                fontSize: '20px',
+                marginTop: '8px',
+              }}
+            >
+              Here are some suggested content to share with your networks.
+            </Typography>
+          </Grid>
+          <StarMediaSection />
+          <Grid className={classes.tweetGrid}>
+            <Typography
+              variant='h3'
+              className={classes.tweetHeading}
+            >
+            Latest Updates from the CTI
+            </Typography>
+          </Grid>
+          <SocialMediaPostSection />
+        </Container>
+        <SocialMediaSection />
+      </Box>
       <MediaInfo />
     </Box>
   );
