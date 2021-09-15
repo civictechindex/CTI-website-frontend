@@ -192,7 +192,22 @@ const Thumbnail = ({
   } else if (organization.depth === 2) {
     thumbnailImageStyle = classes.thumbnailImage;
   }
+  const showtotalChildCount = () => {
 
+    if ((checkboxValue && !isChildThumbnail) || (inputValue !== undefined && inputValue !== "" && !isChildThumbnail))
+    {
+      if (dropdownLength !== undefined)
+      {
+        dropdownLength = `(${dropdownLength} / ${organization.totalCount})`;
+      }
+    }
+    if (dropdownLength > 0 && dropdownLength !== undefined)
+    {
+      dropdownLength =  `(${dropdownLength})`;
+    }
+    return dropdownLength;
+  };
+  const [affiliatedchildCount] = useState(showtotalChildCount);
   return (
     <>
       <Box className={classes.contributorItem}>
@@ -238,7 +253,7 @@ const Thumbnail = ({
             >
               {organization.name ? organization.name : organization}
             </Link>{' '}
-            {dropdownLength ? checkboxValue || (inputValue !== undefined && inputValue !== "") ? `( ${dropdownLength} / ${organization.totalCount})` : `(${dropdownLength})` : ` `}
+            {dropdownLength ? affiliatedchildCount ? `${affiliatedchildCount}` : `(${dropdownLength})` : ` `}
           </Typography>
         </Grid>
         <Grid>
