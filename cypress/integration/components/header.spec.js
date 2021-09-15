@@ -24,7 +24,7 @@ describe('Header component', () => {
         cy.contains('Contact Us');
       });
 
-    cy.findLink('Support the Index')
+    cy.findLink('Radical Collaboration')
       .should('have.attr', 'href', '/home')
       .trigger('mouseover')
       .get('[data-cy=menuItem]')
@@ -52,6 +52,6 @@ describe('Header component', () => {
     cy.get('[class*=makeStyles-dropdownHeader]').first().should('have.text', 'Join the Index');
     cy.get('[class*=makeStyles-dropdownHeader]').eq(1).should('have.text', 'Overview');
     cy.get('[class*=makeStyles-dropdownHeader]').eq(2).should('have.text', 'Civic Tech Partners');
-    cy.get('[class*=makeStyles-dropdownHeader]').last().should('have.text', 'Support the Index');
+    cy.get('[class*=makeStyles-dropdownHeader]').last().should('have.text', 'Radical Collaboration');
   });
 });
