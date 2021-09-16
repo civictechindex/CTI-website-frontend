@@ -129,6 +129,7 @@ export const ContributorThumbnail = ({
   isChildThumbnail,
   checkboxValue,
   inputValue,
+  filtersActive,
 }) => {
   const classes = useStyles();
   const [thumbnailInfo, setThumbnailInfo] = useState({});
@@ -149,6 +150,7 @@ export const ContributorThumbnail = ({
             isChildThumbnail={isChildThumbnail}
             checkboxValue={checkboxValue}
             inputValue={inputValue}
+            filtersActive={filtersActive}
           />
         ) : (
           <Grid className={classes.textWrapperWithoutImage} component='span'>
@@ -171,6 +173,7 @@ const Thumbnail = ({
   isChildThumbnail,
   checkboxValue,
   inputValue,
+  filtersActive,
 }) => {
   const classes = useStyles();
   let thumbnailImageStyle, thumbnailWrapperStyle;
@@ -192,27 +195,31 @@ const Thumbnail = ({
   } else if (organization.depth === 2) {
     thumbnailImageStyle = classes.thumbnailImage;
   }
+
   const showtotalChildCount = () => {
 
-    if ((checkboxValue && !isChildThumbnail) || (inputValue !== undefined && inputValue !== "" && !isChildThumbnail))
+    let displayedCount = '';
+
+    if (dropdownLength)
     {
-      if (dropdownLength !== undefined)
+      if (filtersActive)
       {
-        dropdownLength = `(${dropdownLength} / ${organization.totalCount})`;
+        displayedCount = `(${dropdownLength} / ${organization.totalCount})`;
+      }
+      else
+      {
+        displayedCount = `(${dropdownLength})`;
       }
     }
-    if (dropdownLength > 0 && dropdownLength !== undefined)
-    {
-      dropdownLength =  `(${dropdownLength})`;
-    }
-    return dropdownLength;
+    return displayedCount;
   };
-  const [affiliatedchildCount] = useState(showtotalChildCount);
+
   return (
     <>
       <Box className={classes.contributorItem}>
         {organization.depth === 4 &&
-         checkboxValue && organization.cti_contributor ? (
+        checkboxValue &&
+        organization.cti_contributor ? (
             <img
               alt='contributor-icon'
               data-cy='contributor-icon'
@@ -253,7 +260,7 @@ const Thumbnail = ({
             >
               {organization.name ? organization.name : organization}
             </Link>{' '}
-            {dropdownLength ? affiliatedchildCount ? `${affiliatedchildCount}` : `(${dropdownLength})` : ` `}
+            {showtotalChildCount()}
           </Typography>
         </Grid>
         <Grid>

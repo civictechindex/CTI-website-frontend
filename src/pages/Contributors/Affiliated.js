@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { DropdownArrow } from '../../components/DropdownArrow.js';
@@ -202,6 +203,7 @@ export const Affiliated = (props) => {
                 inputValue={inputValue}
                 organizationData={organizationData}
                 showIndexContrib={showIndexContrib}
+                filtersActive={filtersActive}
               />
             </Grid>
           )

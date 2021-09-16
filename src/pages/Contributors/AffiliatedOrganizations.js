@@ -68,6 +68,7 @@ export const AffiliatedOrganizations = ({
   inputValue,
   organizationData,
   showIndexContrib,
+  filtersActive,
 }) => {
   const classes = useStyles();
 
@@ -130,11 +131,10 @@ export const AffiliatedOrganizations = ({
   useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, organizations, organizationData, showIndexContrib]);
+  }, [inputValue, organizations, organizationData, showIndexContrib,filtersActive]);
 
   let childSort;
   let childNode;
-
   if (currentThumbnails && inputValue.length === 0) {
     return (
       <Grid
@@ -153,6 +153,7 @@ export const AffiliatedOrganizations = ({
               dropdownLength={org.childNodes.length}
               isOpen={false}
               inputValue={inputValue}
+              filtersActive={filtersActive}
             >
               <Grid container style={ { justifyContent:"center" } } alignItems='center'>
                 {childNode.length > 0 ? (
@@ -174,6 +175,7 @@ export const AffiliatedOrganizations = ({
                             isChildThumbnail={isChildThumbnail}
                             checkboxValue={showIndexContrib}
                             inputValue={inputValue}
+                            filtersActive={filtersActive}
                           />
                         </Grid>
                       );
@@ -185,6 +187,7 @@ export const AffiliatedOrganizations = ({
                     organization={org}
                     checkboxValue={showIndexContrib}
                     inputValue={inputValue}
+                    filtersActive={filtersActive}
                   />
                 )}
                 {org.childNodes.length > 8 ? (
@@ -231,6 +234,7 @@ export const AffiliatedOrganizations = ({
               isOpen={org.childNodes.length <= 5 ? true : false}
               inputValue={inputValue}
               checkboxValue={showIndexContrib}
+              filtersActive={filtersActive}
             >
               <Box className={classes.affiliatedThumbnailsWrapper}>
                 {org.childNodes.length === 0 ? (
@@ -248,6 +252,7 @@ export const AffiliatedOrganizations = ({
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
                             inputValue={inputValue}
+                            filtersActive={filtersActive}
                           />
                         </Typography>
                       );
