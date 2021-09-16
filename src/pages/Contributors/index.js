@@ -62,7 +62,14 @@ export default function Contributors() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-      const sortedOrgs = result.data.sort((a, b) => a.id - b.id);
+      const sortedOrgs = result.data.sort((a, b) => a.name - b.name);
+      sortedOrgs.forEach((org) => {
+        if (org.depth === 3)
+        {
+          const childNodes = sortedOrgs.filter(((item) => item.depth === 4 && item.path.includes(org.path)));
+          org['totalCount'] = childNodes.length;
+        }
+      });
       const names = [];
       let totalAfflCount = 0;
       let totalUnafflCount = 0;
