@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 
 const WhatIsCTI = () => {
   const breadCrumbLinks = [
-    { name: 'Home', href: '/home' },
+    { name: 'Home', href: '/' },
     { name: 'What is CTI?', href: '/about/what-is-cti' },
   ];
 

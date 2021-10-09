@@ -6,8 +6,8 @@ describe('Footer', () => {
   const RANDOM_EMAIL = `test_${faker.internet.email()}`;
 
   before(() => {
-    cy.visit('/home');
-  });
+    cy.visit('/');
+  })
 
   it('footer loads', () => {
     cy.get('[class*=containerFooter]').within(() => {

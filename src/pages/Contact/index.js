@@ -8,7 +8,7 @@ import { GenericHeaderSection } from '../../components/';
 
 const Contact = () => {
   const breadCrumbLinks = [
-    { name: 'Home', href: '/home' },
+    { name: 'Home', href: '/' },
     { name: 'Contact', href: '/about/contact' },
   ];
   const handlePageHeight = () => {

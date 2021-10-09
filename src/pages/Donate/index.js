@@ -11,7 +11,7 @@ import { GenericHeaderSection } from '../../components';
 const Donate = () => {
   const classes = useStyles();
   const breadCrumbLinks = [
-    { href: '/home', name: 'Home' },
+    { href: '/', name: 'Home' },
     { href: '/radical-collaboration/donate', name: 'Donate' },
   ];
 

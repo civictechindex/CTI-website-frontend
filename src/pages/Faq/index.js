@@ -43,7 +43,7 @@ const Faq = () => {
   );
 
   const breadCrumbLinks = [
-    { name: 'Home', href: '/home' },
+    { name: 'Home', href: '/' },
     { name: 'FAQ', href: '/about/faq' },
   ];
 

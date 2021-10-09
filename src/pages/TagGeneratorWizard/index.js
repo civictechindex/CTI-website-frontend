@@ -143,7 +143,7 @@ const TagGeneratorWizard = () => {
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
   const [displayTypo, setDisplayTypo] = useState(true);
   const breadCrumbLinks = [
-    { href: '/home', name: 'Home' },
+    { href: '/', name: 'Home' },
     { href: '/join-index/tag-generator-wizard', name: 'Tag Generator Wizard' },
   ];
 

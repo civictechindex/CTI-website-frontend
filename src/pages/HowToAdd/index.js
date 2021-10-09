@@ -38,7 +38,7 @@ const HowToAdd = () => {
   const clipboard = useClipboard();
   const classes = useStyles();
   const breadCrumbLinks = [
-    { href: '/home', name: 'Home' },
+    { href: '/', name: 'Home' },
     { href: '/join-index/how-to-add', name: 'How to Add Your Project' },
   ];
   const copyText = (e, text) => {

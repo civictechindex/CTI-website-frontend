@@ -33,7 +33,7 @@ browser) Test Server](https://test-civictechindexadmin.herokuapp.com/swagger/)
 [Our Swagger (API
 browser) Stage Server](https://api-stage.civictechindex.org/swagger/)
 
-[Civic Tech Index dot org Live Site](http://civictechindex.org/home)
+[Civic Tech Index dot org Live Site](http://civictechindex.org)
 
 ## Documentation and 3rd Party Links
 

@@ -12,7 +12,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import themeMui from './theme-mui';
 
-const ga4react = new GA4React('G-5V7GWWCKF0'); // Google Analytics 4 measurement ID
+const ga4react = new GA4React('G-C68BN2R6GQ'); // Google Analytics 4 measurement ID
 const theme = createMuiTheme(themeMui);
 
 WebFont.load({

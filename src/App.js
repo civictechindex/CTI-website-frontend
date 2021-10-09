@@ -13,7 +13,6 @@ import Faq from './pages/Faq';
 import IndvOrgPage from './pages/IndvOrganization';
 import Home from './pages/Home';
 import HowToAdd from './pages/HowToAdd';
-import Landing from './pages/Landing';
 import SearchProjects from './pages/SearchProjects';
 import TagGeneratorWizard from './pages/TagGeneratorWizard';
 import Error404 from './pages/Error404';
@@ -51,7 +50,7 @@ const App = () => {
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Switch>
-            <Route exact path='/' component={Landing} />
+            <RouteTitled exact path='/' component={Home} title='Home' />
             <RouteTitled exact path='/about/what-is-cti' component={WhatIsCTI} title='What is CTI?' />
             <RouteTitled
               exact
@@ -141,8 +140,6 @@ const App = () => {
             <Redirect from='/taggenerator' to='/join-index/tag-generator-wizard' />
             {/* test and error page redirect begin */}
             <Redirect from='/guides' to='/guides/colors' />
-            <Redirect from='/placeholder' to='/blank' />
-            <Redirect from='/template' to='/blank' />
             <Redirect to='/404' />
             {/* test and error page redirect end */}
           </Switch>

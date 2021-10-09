@@ -17,14 +17,14 @@ describe('Header component', () => {
   };
 
   beforeEach(() => {
-    cy.visit('/home');
+    cy.visit('/');
   });
 
   it('loads nav links', () => {
     cy.viewport(1280, 800);
     for (const headerItem in menuItems) {
       cy.findLink(headerItem)
-        .should('have.attr', 'href', '/home')
+        .should('have.attr', 'href', '/')
         .trigger('mouseover')
         .get('[data-cy=menu-item]')
         .within(() => {

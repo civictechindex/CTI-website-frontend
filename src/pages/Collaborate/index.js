@@ -12,7 +12,7 @@ import { Typography } from '@material-ui/core';
 
 const Collaborate = () => {
   const breadCrumbLinks = [
-    { name: 'Home', href: '/home' },
+    { name: 'Home', href: '/' },
     { name: 'Collaborate with Us', href: '/radical-collaboration/collaborate' },
   ];
 

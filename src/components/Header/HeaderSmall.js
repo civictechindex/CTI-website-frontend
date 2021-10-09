@@ -19,7 +19,7 @@ const HeaderSmall = () => {
 
   return (
     <nav className={classes.nav}>
-      <Link to='/home'>
+      <Link to='/'>
         <img className={classes.logo} src='/images/cti-logo.svg' alt='civic logo' />
       </Link>
       <div

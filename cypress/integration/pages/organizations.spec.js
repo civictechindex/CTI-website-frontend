@@ -98,7 +98,7 @@ describe('Organizations Page (using API)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
       'getOrganizations'
     );
-    cy.visit('/home');
+    cy.visit('/');
     cy.contains('View contributors').click();
     cy.wait('@getOrganizations');
     cy.get('[class*=containerWhite]').should(
