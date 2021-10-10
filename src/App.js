@@ -125,6 +125,7 @@ const App = () => {
             <Redirect from='/donate' to='/radical-collaboration/donate' />
             <Redirect from='/donation' to='/radical-collaboration/donate' />
             <Redirect from='/faq' to='/about/faq' />
+            <Redirect from='/home' to='/' />
             <Redirect from='/how' to='/join-index/how-to-add' />
             <Redirect from='/how-to' to='/join-index/how-to-add' />
             <Redirect from='/how-to-use' to='/join-index/how-to-add' />
