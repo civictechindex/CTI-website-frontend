@@ -102,8 +102,8 @@ const IndvOrgPage = ({ match }) => {
             // Create the breadcrums on the Individual Organization Page
             const parentOrgs = [];
             const crumbs = [
-              { name: 'Home', href: '/' },
-              { name: 'View Organization', href: '/organizations/all' },
+              { href: '/', name: 'Home' },
+              { href: '/organizations/all', name: 'View Organization' },
               {
                 name: name,
                 href:

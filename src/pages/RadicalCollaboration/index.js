@@ -10,8 +10,8 @@ import PhotoCardMobile from './PhotoCardMobile';
 import { GenericHeaderSection } from '../../components/';
 const RadicalCollaboration = () => {
   const breadCrumbLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Collaborate with Us', href: '/support' },
+    { href: '/', name: 'Home' },
+    { href: '/support', name: 'Collaborate with Us' },
   ];
   const Images = [
     {

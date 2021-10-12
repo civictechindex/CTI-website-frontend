@@ -43,8 +43,8 @@ const Faq = () => {
   );
 
   const breadCrumbLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'FAQ', href: '/about/faq' },
+    { href: '/', name: 'Home' },
+    { href: '/about/faq', name: 'FAQ' },
   ];
 
   const getFaqData = async (currentQuery, resetState) => {
