@@ -87,7 +87,7 @@ const usePrevious = (refValue) => {
 };
 
 // eslint-disable-next-line max-lines-per-function
-const TagCreator = () => {
+const TagGenerator = () => {
   const theme = useTheme();
   const classes = useStyles();
   const [changeValue, setChangeValue] = useQueryParam(
@@ -535,4 +535,4 @@ const TagCreator = () => {
   );
 };
 
-export default TagCreator;
+export default TagGenerator;

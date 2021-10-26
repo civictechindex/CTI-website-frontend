@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-import { GeneratedTopicTag,CopyPasteTopicTag,ClickableTopicTag }  from '../pages/TagCreator/TopicTag'
+import { GeneratedTopicTag,CopyPasteTopicTag,ClickableTopicTag }  from '../pages/TagGenerator/TopicTag'
 
 const ShowTopicTags = () => {
   return (

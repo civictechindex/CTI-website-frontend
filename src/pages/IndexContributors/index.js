@@ -44,7 +44,7 @@ function TabPanel(props) {
   );
 }
 
-export default function Contributors() {
+export default function IndexContributors() {
   const classes = useStyle();
   const location = useLocation();
   const [affiliatedCount, setAffiliatedCount] = useState(0);

@@ -5,33 +5,26 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
+import NavButton from '../../components/NavButton';
 import Paper from '@material-ui/core/Paper';
-import NavButton from '../../../components/NavButton';
 
 const useStyles = makeStyles((theme) => ({
-  leftContainerStyle: {
+  rightContainerStyle: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'wrap',
     marginBottom: '40px',
-    [theme.breakpoints.down('xs')]: {
-      flexWrap: 'wrap-reverse',
-    },
   },
-
-  leftInnerTextCardContainer: {
+  rightInnerTextCardContainer: {
     background: 'none',
-    width: '50%',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '14px',
-    },
+    width: '45%',
     [theme.breakpoints.down('xs')]: {
-      marginLeft: '3px',
       width: '100%',
+      marginLeft: '3px',
     },
   },
-  leftCardHeading: {
+  rightCardHeading: {
     color: theme.palette.secondary.dark,
     fontSize: '42px',
     lineHeight: '48px',
@@ -42,36 +35,36 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '27px',
     },
   },
-  leftSubcardHeading: {
+  rightSubcardHeading: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '15px',
     },
   },
-  leftDescription: {
-    fontSize: '18px',
+  rightDescription: {
     marginBottom: '11px',
     marginTop: '7px',
+    fontSize: '18px',
     textAlign: 'justify',
     '& a:visited': {
       color: theme.palette.secondary.main,
     },
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
-      textAlign: 'justify',
     },
   },
-  leftButtonStyle: {
+  rightButtonStyle: {
+    backgroundColor: theme.palette.spectrum.lightBlue,
     padding: '8px 32px',
     top: '21px',
-    color: '#FEFEFE',
     [theme.breakpoints.down('sm')]: {
       top: '14px',
       padding: '16px 0px',
       width: '192px',
+      height: '42px',
       fontSize: '13px',
     },
   },
-  leftImgCard: {
+  rightImgCard: {
     background: 'none',
     width: '45%',
     marginTop: '30px',
@@ -79,14 +72,15 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  leftCardMedia: {
+  rightCardMedia: {
     borderRadius: '8px',
+
     [theme.breakpoints.down('xs')]: {
       width: '100%',
     },
   },
 }));
-const LeftTextRightImage = ({
+const RightImageLeftText = ({
   mainHeading,
   subHeading,
   description,
@@ -96,40 +90,39 @@ const LeftTextRightImage = ({
   hasExternalNav,
 }) => {
   const classes = useStyles();
-
   return (
-    <Grid container className={classes.leftContainerStyle}>
-      <Paper elevation={0} className={classes.leftInnerTextCardContainer}>
-        <Typography className={classes.leftCardHeading} variant='h4'>
+    <Grid container className={classes.rightContainerStyle}>
+      <Card className={classes.rightImgCard}>
+        <CardMedia
+          className={classes.rightCardMedia}
+          component='img'
+          image={imageSrc}
+        />
+      </Card>
+      <Paper elevation={0} className={classes.rightInnerTextCardContainer}>
+        <Typography className={classes.rightCardHeading} variant='h4'>
           {' '}
           {mainHeading}{' '}
         </Typography>
         <Typography
           variant='h6'
           color='primary'
-          className={classes.leftSubcardHeading}
+          className={classes.rightSubcardHeading}
         >
           {subHeading}
         </Typography>
-        <Typography className={classes.leftDescription}>
+        <Typography className={classes.rightDescription}>
           {description}
         </Typography>
         <NavButton
           href={buttonHref}
           isExternal={hasExternalNav}
-          className={classes.leftButtonStyle}
+          className={classes.rightButtonStyle}
         >
           {buttonText}
         </NavButton>
       </Paper>
-      <Card className={classes.leftImgCard}>
-        <CardMedia
-          className={classes.leftCardMedia}
-          component='img'
-          image={imageSrc}
-        />
-      </Card>
     </Grid>
   );
 };
-export default LeftTextRightImage;
+export default RightImageLeftText;

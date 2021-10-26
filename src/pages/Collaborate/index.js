@@ -3,9 +3,9 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import Link from '../../../components/common/Link';
-import BottomCallToAction from '../../../components/BottomCallToAction';
-import { GenericHeaderSection } from '../../../components/';
+import Link from '../../components/common/Link';
+import BottomCallToAction from '../../components/BottomCallToAction';
+import { GenericHeaderSection } from '../../components/';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import LeftTextRightImage from './LeftTextRightImage';
 import RightTextLeftImage from './RightTextLeftImage';
@@ -36,7 +36,7 @@ const Collaborate = () => {
       <Box className='boxBackground'>
         <Container className='containerDefault'>
           <GenericHeaderSection
-            mainTitle='Your help goes a long way'
+            mainTitle='Djenya, my beautiful wife, I love you; you&apos;re the best mom!'
             breadCrumbLinks={breadCrumbLinks}
           />
         </Container>
@@ -45,7 +45,7 @@ const Collaborate = () => {
         <Container>
           <Grid container item className={classes.LinkText} xs={12} spacing={4}>
             <LeftTextRightImage
-              mainHeading='Donate'
+              mainHeading='Hi-Five, Bitchnasziszch!!!!'
               subHeading='Every gift helps us continue our work.'
               description='Your tax-deductible gift today will help make more open-source solutions easily available for the
               communities who need it the most. Thank You'
