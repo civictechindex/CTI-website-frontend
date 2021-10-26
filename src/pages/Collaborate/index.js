@@ -36,7 +36,7 @@ const Collaborate = () => {
       <Box className='boxBackground'>
         <Container className='containerDefault'>
           <GenericHeaderSection
-            mainTitle='Djenya, my beautiful wife, I love you; you&apos;re the best mom!'
+            mainTitle='Your help goes a long way'
             breadCrumbLinks={breadCrumbLinks}
           />
         </Container>
@@ -45,7 +45,7 @@ const Collaborate = () => {
         <Container>
           <Grid container item className={classes.LinkText} xs={12} spacing={4}>
             <LeftTextRightImage
-              mainHeading='Hi-Five, Bitchnasziszch!!!!'
+              mainHeading='Donate'
               subHeading='Every gift helps us continue our work.'
               description='Your tax-deductible gift today will help make more open-source solutions easily available for the
               communities who need it the most. Thank You'
