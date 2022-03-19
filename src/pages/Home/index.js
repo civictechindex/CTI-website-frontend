@@ -96,12 +96,18 @@ const Home = () => {
         <div className='containerWorld'>
           <Container disableGutters>
             <Box component='div'>
-              <Grid container
+              <Grid
+                container
                 alignItems='center'
                 justify='center'
-                className={classes.localTitleSectionStyle}>
+                className={classes.localTitleSectionStyle}
+              >
                 <Grid item xs={11} md={8} lg={10}>
-                  <Typography variant='h2' aria-level='1' className={classes.localTitleStyle}>
+                  <Typography
+                    variant='h2'
+                    aria-level='1'
+                    className={classes.localTitleStyle}
+                  >
                     Join a worldwide movement to catalog every open-source civic
                     tech project.
                   </Typography>
@@ -116,7 +122,7 @@ const Home = () => {
         </div>
         <GetStartedCard
           headerTitle='Ready to get started?'
-          buttonText='Add Your Project'
+          buttonText='Add'
           buttonHref='/join-index'
         />
       </Box>

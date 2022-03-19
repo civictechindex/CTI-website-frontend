@@ -28,10 +28,9 @@ export default function GetStartedCard(props) {
             style={{
               backgroundColor: '#FFFFFF',
               padding: '30px 30px 60px 30px',
-            }}>
-            <TitleSection textVariant='black'>
-              {headerTitle}
-            </TitleSection>
+            }}
+          >
+            <TitleSection textVariant='black'>{headerTitle}</TitleSection>
             <NavButton href={buttonHref} color='primary'>
               {buttonText}
             </NavButton>
