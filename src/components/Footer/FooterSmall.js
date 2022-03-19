@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
 
 import DropdownList from './DropdownList';
-import SocialSection from './socialSection';
-import SubscribeSection from './subscribeSection';
+import SocialSection from './SocialSection';
+import SubscribeSection from './SubscribeSection';
 import Annotation from './Annotation';
 import { navigation } from '../../navigation';
 
