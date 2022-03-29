@@ -67,26 +67,27 @@ const useStyles = makeStyles((theme) => ({
 const PopUp = () => {
   const classes = useStyles();
   const date = new Date();
-  const setCookie = function (cookieEmail) {
-    let cookieValue, expDays;
-    date.setTime(date.getTime() + expDays);
+
+  const setCookie = (cookieEmail, cookieValue, expDays) => {
+    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
     const expires = 'expires=' + date.toUTCString();
-
-    document.cookie = `${cookieEmail}${cookieValue}';'${expires}';path=/'`;
-
-    return document.cookie;
+    const cookie = `${cookieEmail}=${cookieValue};${expires}`;
+    document.cookie = cookie;
+    return cookie;
   };
 
-  const deleteCookie = function (cookieEmail) {
+  const deleteCookie = (cookieEmail) => {
     date.setTime(date.getTime());
     const expires = 'expires=' + date.toUTCString();
-    document.cookie = `${cookieEmail}${expires}';path=/'`;
+    document.cookie = `${cookieEmail};${expires}`;
   };
+
   const acceptCookieConsent = () => {
     deleteCookie('civictechindex_cookie_consent');
-    setCookie('civictechindex_cookie_consent', 1, 30);
+    setCookie('civictechindex_cookie_consent', 1,30);
     document.getElementById('cookieNotice').style.display = 'none';
   };
+
 
   return (
     <Card className={classes.root} id='cookieNotice'>

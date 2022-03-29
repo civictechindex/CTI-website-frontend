@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
@@ -29,17 +29,25 @@ const RouteTitled = ({ title, ...rest }) => {
       document.title = `Civic Tech Index — ${title}`;
     }
   });
-
   return <Route {...rest} />;
 };
 
+
+// conditional render for cookie
+const checkCookie = () => {
+  const cookieIsSet = document.cookie.includes('civictechindex_cookie_consent');
+  if (cookieIsSet) {
+    return null;
+  }
+  return <PopUp />;
+}
+
 const App = () => {
-  const [showModal, setShowModal] = useState(false);
   useStyles();
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <PopUp showModal={showModal} setShowModal={setShowModal} />
+      {checkCookie()}
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Switch>
