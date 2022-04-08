@@ -187,14 +187,14 @@ const AddOrgForm = React.forwardRef(({ open, onClose }, ref) => {
       />
     );
     switch (step) {
-      case 0:
-        return stepOne;
-      case 1:
-        return stepTwo;
-      case 2:
-        return <Complete onClose={handleClose} />;
-      default:
-        return stepOne;
+    case 0:
+      return stepOne;
+    case 1:
+      return stepTwo;
+    case 2:
+      return <Complete onClose={handleClose} />;
+    default:
+      return stepOne;
     }
   };
 
