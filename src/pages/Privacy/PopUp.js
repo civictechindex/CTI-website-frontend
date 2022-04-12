@@ -7,15 +7,17 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { CardHeader } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import spectrum from '../../theme-spectrum';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '360px',
+    bottom: '2px',
+    border: `1px solid ${spectrum.darkGray}`,
     height: '206px',
-    zIndex: 50000,
     position: 'fixed',
     right: '2px',
-    bottom: '2px',
+    width: '360px',
+    zIndex: 50000,
   },
   title: {
     fontSize: '20px',
@@ -52,10 +54,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   buttonStyle: {
-    width: '150px',
-    height: '36px',
-    color: '#0F1D2F',
     fontWeight: '700',
+    height: '36px',
+    width: '150px',
   },
   linkText: {
     color: '#0F1D2F',
