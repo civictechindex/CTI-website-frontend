@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
+import { Dropdown } from '../../components/Dropdown';
 import { DropdownArrow } from '../../components/DropdownArrow.js';
 import Grid from '@material-ui/core/Grid';
 import { AffiliatedOrganizations } from './AffiliatedOrganizations';
@@ -130,14 +131,63 @@ export const Affiliated = ({
   showIndexContrib,
 }) => {
   const classesLocal = useStyles();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [orgTree, setOrgTree] = useState([]);
+
+  const buildOrgTree = () => {
+    const orgTree = [];
+    let grandparentObj;
+    let parentObj;
+
+    organizations.forEach((org) => {
+      if (org.depth === 2) {
+        org['childNodes'] = [];
+        orgTree.push(org);
+      }
+      if (org.depth === 3) {
+        grandparentObj = orgTree.find((d) => {
+          return org.path.includes(d.path) && d.depth === 2;
+        });
+        org['childNodes'] = [];
+        grandparentObj.childNodes.push(org);
+      }
+      if (org.depth === 4) {
+        grandparentObj = orgTree.find(
+          (d) => org.path.includes(d.path) && d.depth === 2
+        );
+
+        if (!grandparentObj) {
+          // find grandparent of depth 2 and add to orgTree
+          grandparentObj = organizationData.find(
+            (d) => org.path.includes(d.path) && d.depth === 2
+          );
+          grandparentObj['childNodes'] = [];
+          orgTree.push(grandparentObj);
+        }
+
+        // loop through grandparent to find parent
+        parentObj = grandparentObj['childNodes'].find((d) =>
+          org.path.includes(d.path)
+        );
+
+        if (!parentObj) {
+          // find parent of depth 3 and assign as child of grandparent
+          parentObj = organizationData.find(
+            (d) => org.path.includes(d.path) && d.depth === 3
+          );
+          parentObj['childNodes'] = [];
+          grandparentObj.childNodes.push(parentObj);
+        }
+
+        parentObj.childNodes.push(org);
+      }
+    });
+    return orgTree;
+  };
+
   useEffect(() => {
-    if ((filtersActive || expandedOrgs.length) && organizations.length) {
-      setDropdownOpen(true);
-    } else {
-      setDropdownOpen(false);
-    }
-  }, [expandedOrgs, filtersActive, organizations])
+    setOrgTree(buildOrgTree());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [organizations]);
 
   return (
     <Grid>
@@ -151,89 +201,43 @@ export const Affiliated = ({
           </span>
         </Typography>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        sm={10}
-        className={clsx(classesLocal.gpGrid, {
-          [classesLocal.open]: dropdownOpen,
-        })}
-      >
-        <Grid>
-          <img
-            src='/images/code_for_All.png'
-            alt='code for all logo'
-            className={classesLocal.codeforAllIcon}
-          />
-        </Grid>
-        <Grid>
-          <Typography
-            variant='h4'
-            noWrap
-            className={classesLocal.codeforallText}
+      {orgTree.map((org, i) => (
+        <div key={org.path}>
+          <Dropdown
+            checkboxValue={showIndexContrib}
+            dropdownLength={org.childNodes.reduce((count, item) => {
+              const nodeCount =
+                item.childNodes.length === 0 ? 1 : item.childNodes.length;
+              return count + nodeCount;
+            }, 0)}
+            filtersActive={filtersActive}
+            isOpen={filtersActive || expandedOrgs.includes(org.id.toString())}
+            key={`affiliatedThumbnailsWrapper_${i}`}
+            onClick={onOrgClick}
+            organization={org}
           >
-            <Link
-              href='/organization/code-for-all'
-              rel='noreferrer noopener'
-            >
-              Code for All
-            </Link>
-            <span style={{ paddingLeft: '5px' }}>
-              {filtersActive
-                ? `(${affiliatedCount}/${totalAffiliatedCount})`
-                : ` (${totalAffiliatedCount})`}
-            </span>
-          </Typography>
-        </Grid>
-        <Grid>
-          {showIndexContrib ? (
-            <Typography>
-              <img
-                alt='contributor-icon'
-                data-cy='contributor-icon'
-                className={classesLocal.contributorIcon}
-                src='/images/Gparent_contributed.svg'
-              />
-            </Typography>
-          ) : (
-            ' '
-          )}
-        </Grid>
-        <Grid
-          item
-          container
-          className={classesLocal.flexGrid}
-          data-cy='code-for-all-chevron'
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-        >
-          <DropdownArrow
-            open={dropdownOpen}
-            handleArrow={() => setDropdownOpen(!dropdownOpen)}
-          />
-        </Grid>
-      </Grid>
-      <Grid>
-        {dropdownOpen &&
-          (!organizations ? (
-            !inputValue ? (
-              <h3 className={classes.loaders}>Loading...</h3>
+            {!organizations ? (
+              !inputValue ? (
+                <h3 className={classes.loaders}>Loading...</h3>
+              ) : (
+                <h3 className={classes.loaders}>No Results</h3>
+              )
             ) : (
-              <h3 className={classes.loaders}>No Results</h3>
-            )
-          ) : (
-            <Grid item xs={12} sm={10} className={classesLocal.dropDownGrid}>
-              <AffiliatedOrganizations
-                expandedOrgs={expandedOrgs}
-                filtersActive={filtersActive}
-                inputValue={inputValue}
-                onOrgClick={onOrgClick}
-                organizationData={organizationData}
-                organizations={organizations}
-                showIndexContrib={showIndexContrib}
-              />
-            </Grid>
-          ))}
-      </Grid>
+              <Grid item xs={12} sm={10} className={classesLocal.dropDownGrid}>
+                <AffiliatedOrganizations
+                  expandedOrgs={expandedOrgs}
+                  filtersActive={filtersActive}
+                  inputValue={inputValue}
+                  onOrgClick={onOrgClick}
+                  orgTree={org.childNodes}
+                  setOrgTree={setOrgTree}
+                  showIndexContrib={showIndexContrib}
+                />
+              </Grid>
+            )}
+          </Dropdown>
+        </div>
+      ))}
     </Grid>
   );
 };

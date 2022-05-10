@@ -35,8 +35,19 @@ export const DropdownArrow  = ({ open,handleOpen }) => {
 
   return (
     <>
-      {open ? <ExpandLessRoundedIcon data-cy="dropdown-chevron" className={classes.clickDropDown} onClick={handleOpen} />
-        : <ExpandMoreRoundedIcon data-cy="dropdown-chevron"  className={classes.chevron}  onClick={()=>handleClick}/>}
+      {open ? (
+        <ExpandLessRoundedIcon
+          data-cy='dropdown-chevron-open'
+          className={classes.clickDropDown}
+          onClick={handleOpen}
+        />
+      ) : (
+        <ExpandMoreRoundedIcon
+          data-cy='dropdown-chevron-closed'
+          className={classes.chevron}
+          onClick={() => handleClick}
+        />
+      )}
     </>
   );
 

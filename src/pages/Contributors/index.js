@@ -63,7 +63,7 @@ export default function Contributors() {
   const [totalAffiliatedCount, setTotalAffiliatedCount] = useState(0);
   const [totalUnaffiliatedCount, setTotalUnaffiliatedCount] = useState(0);
   const [unaffiliatedCount, setUnaffiliatedCount] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
     []
   );
@@ -90,26 +90,33 @@ export default function Contributors() {
       );
       const sortedOrgs = result.data.sort((a, b) => a.name - b.name);
       sortedOrgs.forEach((org) => {
+        org.totalCount = 0;
+      });
+      sortedOrgs.forEach((org) => {
         if (org.depth === 3) {
-          const childNodes = sortedOrgs.filter(
-            (item) =>
-              item.depth === 4 &&
-              item.path.substring(0, 12).includes(org.path.substring(0, 12))
-          );
-          org['totalCount'] = childNodes.length;
+          org.totalCount += sortedOrgs.reduce((count, item) => {
+            const isChildren = item.depth === 4 && item.path.includes(org.path);
+            return (isChildren ? 1 : 0) + count;
+          }, 0);
+          if (org.totalCount === 0) org.totalCount = 1;
+        }
+      });
+      let totalAfflCount = 0;
+      sortedOrgs.forEach((org) => {
+        if (org.depth === 2) {
+          org.totalCount += sortedOrgs.reduce((count, item) => {
+            const isChildren = item.depth === 3 && item.path.includes(org.path);
+            return (isChildren ? item.totalCount : 0) + count;
+          }, 0);
+          totalAfflCount += org.totalCount;
         }
       });
       const names = [];
-      let totalAfflCount = 0;
       let totalUnafflCount = 0;
       for (const org of sortedOrgs) {
         names.push(org.name);
-        if (org.name.toLowerCase() !== 'code for all') {
-          if (org.affiliated) {
-            totalAfflCount++;
-          } else {
-            totalUnafflCount++;
-          }
+        if (!org.affiliated) {
+          totalUnafflCount++;
         }
       }
       setOrganizations(sortedOrgs);
@@ -160,8 +167,7 @@ export default function Contributors() {
   }, [location.search, setOrgStatus, setShowIndexContrib]);
 
   useEffect(() => {
-    let afflCount = 0,
-      unafflCount = 0;
+    setLoading(true);
     const affiliated = [];
     const unaffiliated = [];
     const input = searchQuery.toLowerCase().replace(/\s/g, '');
@@ -171,24 +177,20 @@ export default function Contributors() {
         ((showIndexContrib && org.cti_contributor) || !showIndexContrib) &&
         orgName.includes(input)
       ) {
-        if (org.affiliated && org.depth !== 2) {
-          afflCount++;
-          setLoading(true);
+        if (org.affiliated) {
           affiliated.push(org);
-        } else if (!org.affiliated) {
-          unafflCount++;
-          setLoading(true);
-          unaffiliated.push(org);
         } else {
-          setLoading(false);
+          unaffiliated.push(org);
         }
       }
     }
-    setFiltersActive(!!input || showIndexContrib);
-    setAffiliatedCount(afflCount);
-    setUnaffiliatedCount(unafflCount);
+    const hasFilter = !!input || showIndexContrib;
+    setFiltersActive(hasFilter);
+    setAffiliatedCount(affiliated.length);
+    setUnaffiliatedCount(unaffiliated.length);
     setAffiliatedOrganizations(affiliated);
     setUnaffiliatedOrganizations(unaffiliated);
+    setLoading(false);
   }, [searchQuery, organizations, showIndexContrib]);
 
   TabPanel.propTypes = {
@@ -285,7 +287,7 @@ export default function Contributors() {
         </Container>
       </Box>
       <Box className='containerGray'>
-        {!loading ? (
+        {loading ? (
           <Box my={12} display='flex' justifyContent='center'>
             <CircularProgress color='secondary' />
           </Box>

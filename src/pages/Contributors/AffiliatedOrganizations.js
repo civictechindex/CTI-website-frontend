@@ -2,6 +2,7 @@
 /* eslint-disable complexity */
 
 import React, { useState, useEffect } from 'react';
+import { ArrayParam, useQueryParam, withDefault } from 'use-query-params';
 import { Dropdown } from '../../components/Dropdown';
 import { ContributorThumbnail } from '../../components/ContributorThumbnail';
 import Button from '@material-ui/core/Button';
@@ -68,69 +69,25 @@ export const AffiliatedOrganizations = ({
   filtersActive,
   inputValue,
   onOrgClick,
-  organizationData,
-  organizations,
+  orgTree,
+  setOrgTree,
   showIndexContrib,
 }) => {
   const classes = useStyles();
 
   const isChildThumbnail = true;
-  let parentdata;
-  let parentChildobj;
-  let mapsearchedChildParent;
+  const [viewAllChildren, setViewAllChildren] = useState([]);
 
-  const getParentData = () => {
-    parentdata = [];
-
-    organizations.forEach((org) => {
-      if (org.depth === 3) {
-        org['childNodes'] = [];
-        org['allChildrenShown'] = false;
-        parentdata.push(org);
-      }
-      if (org.depth === 4) {
-        parentChildobj = parentdata.find((d) => org.path.includes(d.path));
-
-        mapsearchedChildParent = organizationData.find(
-          (d) => org.path.includes(d.path) && d.depth === 3
-        );
-
-        const exist = parentdata.find(
-          (d) => mapsearchedChildParent.path === d.path
-        );
-
-        if (!exist) {
-          mapsearchedChildParent['childNodes'] = [];
-          mapsearchedChildParent['allChildrenShown'] = false;
-          parentChildobj = mapsearchedChildParent;
-          parentdata.push(mapsearchedChildParent);
-        } else {
-          parentChildobj = exist;
-        }
-
-        if (parentChildobj) {
-          if (showIndexContrib && org['cti_contributor']) {
-            parentChildobj.childNodes.push(org);
-          }
-          if (!showIndexContrib) {
-            parentChildobj.childNodes.push(org);
-          }
-        } else {
-          org['childNodes'] = [];
-          org['allChildrenShown'] = false;
-          parentdata.push(org);
-        }
-      }
-    });
-    return parentdata;
+  const handleViewAllClick = (i) => {
+    const viewAll = [...viewAllChildren];
+    const idx = viewAll.indexOf(orgTree[i].id.toString());
+    if (idx > -1) {
+      viewAll.splice(idx, 1);
+    } else {
+      viewAll.push(orgTree[i].id.toString());
+    }
+    setViewAllChildren(viewAll);
   };
-
-  const [currentThumbnails, setCurrentThumbnails] = useState([]);
-
-  useEffect(() => {
-    setCurrentThumbnails(getParentData());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [organizations]);
 
   let childSort;
   let childNode;
@@ -138,12 +95,14 @@ export const AffiliatedOrganizations = ({
     return (
       <Grid
         className={classes.thumbnailGrid}
-        dropdownlength={currentThumbnails.length}
+        dropdownlength={orgTree.length}
         data-cy='affiliated-organizations'
       >
-        {currentThumbnails.map((org, i) => {
+        {orgTree.map((org, i) => {
           childSort = org.childNodes;
-          childNode = org.allChildrenShown ? childSort : childSort.slice(0, 6);
+          childNode = viewAllChildren.includes(org.id.toString())
+            ? childSort
+            : childSort.slice(0, 6);
           return (
             <Dropdown
               checkboxValue={showIndexContrib}
@@ -208,12 +167,12 @@ export const AffiliatedOrganizations = ({
                       id='viewAllButton'
                       className={classes.button}
                       onClick={() => {
-                        const data = [...currentThumbnails];
-                        data[i].allChildrenShown = !data[i].allChildrenShown;
-                        setCurrentThumbnails(data);
+                        handleViewAllClick(i);
                       }}
                     >
-                      {currentThumbnails[i].allChildrenShown ? 'View Less' : 'View All'}
+                      {viewAllChildren.includes(org.id.toString())
+                        ? 'View Less'
+                        : 'View All'}
                     </Button>
                   </Grid>
                 ) : null}
@@ -229,7 +188,7 @@ export const AffiliatedOrganizations = ({
         className={classes.thumbnailGrid}
         data-cy='affiliated-organizations'
       >
-        {currentThumbnails.map((org, i) => {
+        {orgTree.map((org, i) => {
           return (
             <Dropdown
               checkboxValue={showIndexContrib}

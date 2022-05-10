@@ -71,6 +71,11 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '18px',
     },
   },
+  grandparentText: {
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '24px',
+    },
+  },
   grandparentIcon: {
     marginTop: '22%',
     marginLeft: '13%',
@@ -136,7 +141,6 @@ export const ContributorThumbnail = ({
   dropdownLength,
   isChildThumbnail,
   checkboxValue,
-  inputValue,
   filtersActive,
 }) => {
   const classes = useStyles();
@@ -157,7 +161,6 @@ export const ContributorThumbnail = ({
             dropdownLength={dropdownLength}
             isChildThumbnail={isChildThumbnail}
             checkboxValue={checkboxValue}
-            inputValue={inputValue}
             filtersActive={filtersActive}
           />
         ) : (
@@ -211,6 +214,9 @@ const Thumbnail = ({
     return displayedCount;
   };
 
+  const showGrandparentText =
+    'childNodes' in organization && organization.depth === 2;
+
   return (
     <>
       <Box className={classes.contributorItem}>
@@ -247,9 +253,10 @@ const Thumbnail = ({
             aria-level={isChildThumbnail ? '4' : '3'}
             noWrap
             data-cy='contributor-thumbnail-text'
-            className={
-              isOpen ? `${classes.blueColorText}` : `${classes.orgText}`
-            }
+            className={`
+              ${isOpen ? classes.blueColorText : classes.orgText}
+              ${showGrandparentText ? classes.grandparentText : null}
+            `}
           >
             <Link
               href={`/organization/${organization.slug}`}
@@ -262,7 +269,7 @@ const Thumbnail = ({
         </Grid>
         <Grid>
           <Typography>
-            {organization.depth === 3 && checkboxValue ? (
+            {organization.childNodes?.length > 0 && checkboxValue ? (
               <img
                 alt='contributor-icon'
                 data-cy='contributor-icon'
