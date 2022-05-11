@@ -13,6 +13,7 @@ import { navigation } from '../../navigation';
 const useStyles = makeStyles({
   link: {
     fontWeight: 500,
+    'white-space': 'nowrap',
     '&:after': {
       display: 'block',
       content: 'attr(title)',
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
   },
   activeLink: {
     fontWeight: 700,
+    'text-align': 'center',
     '&:hover': {
       fontWeight: 700,
     },
