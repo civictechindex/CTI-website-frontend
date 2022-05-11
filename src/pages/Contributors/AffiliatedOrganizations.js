@@ -1,8 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 
-import React, { useState, useEffect } from 'react';
-import { ArrayParam, useQueryParam, withDefault } from 'use-query-params';
+import React, { useState } from 'react';
 import { Dropdown } from '../../components/Dropdown';
 import { ContributorThumbnail } from '../../components/ContributorThumbnail';
 import Button from '@material-ui/core/Button';

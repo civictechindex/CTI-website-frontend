@@ -2,11 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Dropdown } from '../../components/Dropdown';
-import { DropdownArrow } from '../../components/DropdownArrow.js';
 import Grid from '@material-ui/core/Grid';
 import { AffiliatedOrganizations } from './AffiliatedOrganizations';
-import clsx from 'clsx';
-import Link from '../../components/common/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import spectrum from '../../theme-spectrum';
 
