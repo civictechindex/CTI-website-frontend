@@ -144,6 +144,14 @@ export const Affiliated = ({
         grandparentObj = orgTree.find((d) => {
           return org.path.includes(d.path) && d.depth === 2;
         });
+        if (!grandparentObj) {
+          // find grandparent of depth 2 and add to orgTree
+          grandparentObj = organizationData.find(
+            (d) => org.path.includes(d.path) && d.depth === 2
+          );
+          grandparentObj['childNodes'] = [];
+          orgTree.push(grandparentObj);
+        }
         org['childNodes'] = [];
         grandparentObj.childNodes.push(org);
       }
