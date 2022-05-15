@@ -130,6 +130,21 @@ export const Affiliated = ({
   const classesLocal = useStyles();
   const [orgTree, setOrgTree] = useState([]);
 
+  const findGrandParent = (org, orgTree) => {
+    let grandparentObj = orgTree.find((d) => {
+      return org.path.includes(d.path) && d.depth === 2;
+    });
+    if (!grandparentObj) {
+      // find grandparent of depth 2 and add to orgTree
+      grandparentObj = organizationData.find(
+        (d) => org.path.includes(d.path) && d.depth === 2
+      );
+      grandparentObj['childNodes'] = [];
+      orgTree.push(grandparentObj);
+    }
+    return grandparentObj;
+  };
+
   const buildOrgTree = () => {
     const orgTree = [];
     let grandparentObj;
@@ -141,25 +156,12 @@ export const Affiliated = ({
         orgTree.push(org);
       }
       if (org.depth === 3) {
-        grandparentObj = orgTree.find((d) => {
-          return org.path.includes(d.path) && d.depth === 2;
-        });
+        grandparentObj = findGrandParent(org, orgTree, organizationData);
         org['childNodes'] = [];
         grandparentObj.childNodes.push(org);
       }
       if (org.depth === 4) {
-        grandparentObj = orgTree.find(
-          (d) => org.path.includes(d.path) && d.depth === 2
-        );
-
-        if (!grandparentObj) {
-          // find grandparent of depth 2 and add to orgTree
-          grandparentObj = organizationData.find(
-            (d) => org.path.includes(d.path) && d.depth === 2
-          );
-          grandparentObj['childNodes'] = [];
-          orgTree.push(grandparentObj);
-        }
+        grandparentObj = findGrandParent(org, orgTree, organizationData);
 
         // loop through grandparent to find parent
         parentObj = grandparentObj['childNodes'].find((d) =>
