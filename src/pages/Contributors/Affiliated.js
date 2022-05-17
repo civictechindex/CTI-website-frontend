@@ -151,16 +151,17 @@ export const Affiliated = ({
     let parentObj;
 
     organizations.forEach((org) => {
-      if (org.depth === 2) {
+      switch (org.depth) {
+      case 2:
         org['childNodes'] = [];
         orgTree.push(org);
-      }
-      if (org.depth === 3) {
+        break;
+      case 3:
         grandparentObj = findGrandParent(org, orgTree, organizationData);
         org['childNodes'] = [];
         grandparentObj.childNodes.push(org);
-      }
-      if (org.depth === 4) {
+        break;
+      case 4:
         grandparentObj = findGrandParent(org, orgTree, organizationData);
 
         // loop through grandparent to find parent
@@ -178,6 +179,8 @@ export const Affiliated = ({
         }
 
         parentObj.childNodes.push(org);
+        break;
+      default:
       }
     });
     return orgTree;
