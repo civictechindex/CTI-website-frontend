@@ -119,6 +119,7 @@ export const Affiliated = ({
   affiliatedCount,
   classes,
   expandedOrgs,
+  setExpandedOrgs,
   inputValue,
   onOrgClick,
   organizations,
@@ -176,6 +177,12 @@ export const Affiliated = ({
           );
           parentObj['childNodes'] = [];
           grandparentObj.childNodes.push(parentObj);
+        }
+
+        if (organizations.length === 1) {
+          const expanded = [];
+          expanded.push(parentObj.id.toString());
+          setExpandedOrgs(expanded);
         }
 
         parentObj.childNodes.push(org);

@@ -62,6 +62,19 @@ describe('Organizations Page (using API)', () => {
     cy.visit('/organizations', { qs: { contrib: false, status: 'affiliated' }});
     cy.wait('@getOrganizations');
     cy.get('[data-cy=organization-search]').type(affiliatedOrg).type('{enter}');
+    cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
+      cy.contains('Code for America')
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .within(() => {
+          cy.get('[data-cy=dropdown-chevron-open]').should('exist');
+        })
+    });
+
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
       cy.get('[data-cy=thumbnail-dropdown]').eq(0).within(() => {
