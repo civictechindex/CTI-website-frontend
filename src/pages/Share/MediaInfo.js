@@ -25,7 +25,7 @@ const CtiLogoSection = () => {
 
 const ButtonSection = () => {
   const assetsKitUrl =
-    'https://drive.google.com/drive/folders/1EORoPWmALLXJCfHyDXJemYpO5HvnMzPN';
+    'https://accounts.google.com/ServiceLogin/signinchooser?service=wise&passive=1209600&continue=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1fGURHEGwkBHHXMOQz5YPKx8T1ZgsKxyc%3Fusp%3Dsharing&followup=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1fGURHEGwkBHHXMOQz5YPKx8T1ZgsKxyc%3Fusp%3Dsharing&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
   return (
     <Grid
       container
