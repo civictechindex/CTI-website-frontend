@@ -360,6 +360,7 @@ export default function Contributors() {
                   affiliatedCount={affiliatedCount}
                   classes={classes}
                   expandedOrgs={expandedOrgs}
+                  setExpandedOrgs={setExpandedOrgs}
                   filtersActive={filtersActive}
                   inputValue={searchQuery}
                   onOrgClick={handleOrgClick}
@@ -382,6 +383,7 @@ export default function Contributors() {
                   affiliatedCount={affiliatedCount}
                   classes={classes}
                   expandedOrgs={expandedOrgs}
+                  setExpandedOrgs={setExpandedOrgs}
                   filtersActive={filtersActive}
                   inputValue={searchQuery}
                   onOrgClick={handleOrgClick}
