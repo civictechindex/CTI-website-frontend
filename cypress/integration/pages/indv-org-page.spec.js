@@ -7,7 +7,7 @@ describe('Individual Organization Page', () => {
     cy.wait(10000);
     cy.get('nav').contains('Home');
     cy.get('nav').contains('View Organization');
-    cy.get('nav').contains('Open Oakland');
+    cy.get('nav').contains('OpenOakland');
   });
 
   it('project dropdown loads', () => {
