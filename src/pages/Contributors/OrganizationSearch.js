@@ -56,6 +56,7 @@ const OrganizationSearch = ({
 
   const handleClick = (event) => {
     // is there anything to do upon clicking the magnifying glass?
+    console.log('handleClick function invoked');
   };
 
   const handleInputChange = (event, value, reason) => {
