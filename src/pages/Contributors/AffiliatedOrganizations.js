@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     margin: '8px',
-    width: '392px',
     [theme.breakpoints.down('lg')]: {
       height: '60px',
     },

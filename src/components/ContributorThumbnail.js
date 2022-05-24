@@ -11,6 +11,9 @@ import { getOrganizationLinks } from './getOrganizationLinks.js';
 import spectrum from '../theme-spectrum';
 
 const useStyles = makeStyles((theme) => ({
+  affThumbnailText: {
+    width: '90%',
+  },
   thumbnailWrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -217,13 +220,13 @@ const Thumbnail = ({
         {organization.depth === 4 &&
         checkboxValue &&
         organization.cti_contributor ? (
-            <img
-              alt='contributor-icon'
-              data-cy='contributor-icon'
-              className={classes.contributorIcon}
-              src='/images/Child_contributed.svg'
-            />
-          ) : null}
+          <img
+            alt='contributor-icon'
+            data-cy='contributor-icon'
+            className={classes.contributorIcon}
+            src='/images/Child_contributed.svg'
+          />
+        ) : null}
       </Box>
       <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
@@ -241,7 +244,7 @@ const Thumbnail = ({
             loading='lazy'
           />
         </Grid>
-        <Grid item className={classes.affthumbnailText}>
+        <Grid item className={classes.affThumbnailText}>
           <Typography
             variant={isChildThumbnail ? 'h6' : 'h5'}
             aria-level={isChildThumbnail ? '4' : '3'}
