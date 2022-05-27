@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 /* Autocomplete `inputValue` is text displayed, `value` is selected option */
 const OrganizationSearch = ({
   inputValue,
@@ -55,8 +54,10 @@ const OrganizationSearch = ({
   const [value, setValue] = useState(null);
 
   const handleClick = (event) => {
-    // is there anything to do upon clicking the magnifying glass?
-    console.log('handleClick function invoked');
+    /*
+     * is there anything to do upon clicking the magnifying glass?
+     * magnifying glass has no functionality
+     */
   };
 
   const handleInputChange = (event, value, reason) => {
@@ -91,7 +92,7 @@ const OrganizationSearch = ({
             options={options}
             renderInput={(params) => (
               <TextField
-                {...params}
+                {...params} 
                 className={classes.input}
                 data-cy='organization-search'
                 InputProps={{
