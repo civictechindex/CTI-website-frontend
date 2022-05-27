@@ -25,7 +25,7 @@ const CtiLogoSection = () => {
 
 const ButtonSection = () => {
   const assetsKitUrl =
-    'https://drive.google.com/drive/folders/1EORoPWmALLXJCfHyDXJemYpO5HvnMzPN';
+    'https://drive.google.com/drive/folders/1fGURHEGwkBHHXMOQz5YPKx8T1ZgsKxyc';
   return (
     <Grid
       container
