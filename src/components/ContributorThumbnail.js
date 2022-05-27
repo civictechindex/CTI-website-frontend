@@ -12,7 +12,7 @@ import spectrum from '../theme-spectrum';
 
 const useStyles = makeStyles((theme) => ({
   affThumbnailText: {
-    width: '90%',
+    width: '85%',
   },
   thumbnailWrapper: {
     display: 'flex',
@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   },
   orgText: {
     paddingLeft: '9px',
-    paddingTop: '3px',
     '& a:link': {
       color: `${spectrum.teal} !important`,
       textDecoration: 'none',
@@ -116,8 +115,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: '20px',
       height: '20px',
-      marginTop: '5px',
-      marginLeft: '10px',
     },
   },
   contributorIcon: {
@@ -151,7 +148,7 @@ export const ContributorThumbnail = ({
 
   return (
     <>
-      <Box style={{ position: 'relative' }}>
+      <Box style={{ position: 'relative', width: '100%' }}>
         {thumbnailInfo.organizationUrl ? (
           <Thumbnail
             thumbnailInfo={thumbnailInfo}
@@ -228,7 +225,7 @@ const Thumbnail = ({
           />
         ) : null}
       </Box>
-      <Grid className={thumbnailWrapperStyle}>
+      <Grid container className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
           <CardMedia
             component='img'

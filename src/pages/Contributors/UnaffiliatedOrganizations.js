@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.outline.gray,
     [theme.breakpoints.down('sm')]: {
       height: '47px',
+      padding: '5px 10px',
     },
   },
 }));

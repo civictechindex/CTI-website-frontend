@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   afflnThumbnails: {
+    display: 'flex',
+    alignItems: 'center',
     height: '64px',
     borderRadius: '6px',
     border: '1px solid',
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('sm')]: {
       height: '36px',
+      padding: '5px 10px',
     },
   },
   button: {
