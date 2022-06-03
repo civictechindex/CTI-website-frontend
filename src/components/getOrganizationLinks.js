@@ -17,13 +17,10 @@ const getImageFromOrg = (organization) => {
   if (githubId !== null) {
     return `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
   }
-  if (organization.image_url.includes('wp-content'))
-  {
+  if (organization.image_url.includes('wp-content')) {
     return organization.image_url;
   }
-  else {
-    return '/images/default-github-repo-image.png';
-  }
+  return '/images/default-github-repo-image.png';
 };
 
 const getLinksFromOrg = (organization) => {
