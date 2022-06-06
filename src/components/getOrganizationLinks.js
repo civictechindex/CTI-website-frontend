@@ -6,11 +6,6 @@ const getGithubInfo = (organization) => {
   if (links && links.length) {
     const githubLink = links.find((link) => link.link_type === 'GitHub');
     if (githubLink) {
-      const githubId = organization.github_id;
-
-      info.imageUrl = githubId
-        ? `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`
-        : organization.image_url;
       info.organizationUrl = githubLink.url;
     }
   }
@@ -18,11 +13,14 @@ const getGithubInfo = (organization) => {
 };
 
 const getImageFromOrg = (organization) => {
-  if (organization.image_url && !organization.image_url.includes('scontent')) {
-    return organization.image_url;
-  } else {
-    return '/images/default-github-repo-image.png';
+  const githubId = organization.github_id;
+  if (githubId !== null) {
+    return `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
   }
+  if (organization.image_url.includes('wp-content')) {
+    return organization.image_url;
+  }
+  return '/images/default-github-repo-image.png';
 };
 
 const getLinksFromOrg = (organization) => {
