@@ -173,9 +173,9 @@ export default function Contributors() {
     setLoading(true);
     const affiliated = [];
     const unaffiliated = [];
-    const input = searchQuery.toLowerCase().replace(/[%250\s]/g, '');
+    const input = searchQuery.toLowerCase().replace(/\s/g, '');
     for (const org of organizations) {
-      const orgName = org.name.toLowerCase().replace(/[%250\s]/g, '');
+      const orgName = org.name.toLowerCase().replace(/\s/g, '');
       if (
         ((showIndexContrib && org.cti_contributor) || !showIndexContrib) &&
         orgName.includes(input)
