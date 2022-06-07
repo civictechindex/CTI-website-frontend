@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -92,7 +92,7 @@ const OrganizationSearch = ({
             options={options}
             renderInput={(params) => (
               <TextField
-                {...params} 
+                {...params}
                 className={classes.input}
                 data-cy='organization-search'
                 InputProps={{
