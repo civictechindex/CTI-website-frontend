@@ -144,7 +144,7 @@ export default function Contributors() {
     } else if (fromLink) {
       const expanded = [];
       const queryParams = {};
-      location.search
+      decodeURIComponent(location.search)
         .replace('?', '')
         .split('&')
         .forEach((param) => {
@@ -266,7 +266,7 @@ export default function Contributors() {
     { name: 'Home', href: '/home' },
     { name: 'Civic Tech Organizations', href: '/organizations' },
   ];
-
+  
   return (
     <Box className='pageContainer'>
       <Box className='boxBackground'>
@@ -286,8 +286,8 @@ export default function Contributors() {
                 </Grid>
                 <Grid item xs={12}>
                   <OrganizationSearch
-                    options={organizationNames}
                     inputValue={searchQuery}
+                    options={organizationNames}
                     setInputValue={handleInputValueChange}
                   />
                 </Grid>
