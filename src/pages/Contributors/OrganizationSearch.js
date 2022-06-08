@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 /* Autocomplete `inputValue` is text displayed, `value` is selected option */
 const OrganizationSearch = ({
   inputValue,
@@ -55,7 +54,10 @@ const OrganizationSearch = ({
   const [value, setValue] = useState(null);
 
   const handleClick = (event) => {
-    // is there anything to do upon clicking the magnifying glass?
+    /*
+     * is there anything to do upon clicking the magnifying glass?
+     * magnifying glass has no functionality
+     */
   };
 
   const handleInputChange = (event, value, reason) => {
