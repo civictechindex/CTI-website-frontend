@@ -266,7 +266,7 @@ export default function Contributors() {
     { name: 'Home', href: '/home' },
     { name: 'Civic Tech Organizations', href: '/organizations' },
   ];
-  
+
   return (
     <Box className='pageContainer'>
       <Box className='boxBackground'>
