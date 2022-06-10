@@ -137,6 +137,7 @@ export default function Contributors() {
     if (!location.search) {
       // handle case of navigating from menu item
       if (location.query) {
+        setFromLink(true);
         setQOrgStatus(location.query.status);
         setQShowIndexContrib(location.query.contrib);
       }
@@ -167,7 +168,7 @@ export default function Contributors() {
       }
       setFromLink(false);
     }
-  }, [location.search]);
+  }, [location]);
 
   useEffect(() => {
     setLoading(true);
