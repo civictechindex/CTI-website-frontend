@@ -6,18 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
-  unAfflText: {
+  titleStyle: {
     color: theme.palette.secondary.dark,
+    fontSize: '28px',
     textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '13px',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '16px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '28px',
-    },
+    padding: '32px 0',
   },
   noargText: {
     fontSize: '24px',
@@ -39,13 +32,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     display: 'flex',
     alignItems: 'center',
-    margin: '16px auto',
+    margin: '0 auto 16px',
     height: '80px',
     borderRadius: '6px',
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     [theme.breakpoints.down('sm')]: {
       height: '47px',
+      padding: '5px 10px',
     },
   },
 }));
@@ -63,7 +57,7 @@ export const UnaffiliatedOrganizations = (props) => {
   return (
     <Grid>
       <Grid style={{ padding: '24px 0px 32px' }}>
-        <Typography variant='h4' aria-level='2' className={classes.unAfflText}>
+        <Typography variant='h4' aria-level='2' className={classes.titleStyle}>
           Unaffiliated Organizations
           <span style={{ paddingLeft: '1px' }}>
             {' '}
@@ -75,31 +69,26 @@ export const UnaffiliatedOrganizations = (props) => {
       </Grid>
       {organizations.length > 0 ? (
         <Grid>
-          <Grid>
-            {organizations &&
-              organizations.map((org, index) => (
-                <Grid
-                  item
-                  xs={12}
-                  sm={10}
-                  className={classes.unaffiliatedThumbnails}
-                  key={index}
-                >
-                  <ContributorThumbnail
-                    organization={org}
-                    isChildThumbnail={isChildThumbnail}
-                  ></ContributorThumbnail>
-                </Grid>
-              ))}
-          </Grid>
+          {organizations &&
+            organizations.map((org, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={10}
+                className={classes.unaffiliatedThumbnails}
+                key={index}
+              >
+                <ContributorThumbnail
+                  organization={org}
+                  isChildThumbnail={isChildThumbnail}
+                ></ContributorThumbnail>
+              </Grid>
+            ))}
         </Grid>
       ) : (
         <Grid
           item
           xs={12}
-          sm={12}
-          md={12}
-          container
           direction='row'
           justify='center'
           alignItems='center'

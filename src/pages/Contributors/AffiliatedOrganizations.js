@@ -8,38 +8,31 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box';
-import { Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  thumbnailGrid: {
-    paddingBottom: '24px',
-  },
   affiliatedThumbnailsWrapper: {
-    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
     marginTop: '10px',
-    justifyContent: 'center',
-    [theme.breakpoints.between('xs', 'sm')]: {
-      marginLeft: '0',
-      justifyContent: 'center',
-      alignItems: 'center',
-      display: 'flex',
-    },
   },
   afflnThumbnails: {
+    display: 'flex',
+    alignItems: 'center',
     height: '64px',
     borderRadius: '6px',
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     margin: '8px',
-    width: '392px',
     [theme.breakpoints.down('lg')]: {
       height: '60px',
     },
     [theme.breakpoints.down('sm')]: {
       height: '36px',
+      padding: '5px 10px',
     },
   },
   button: {
@@ -60,6 +53,12 @@ const useStyles = makeStyles((theme) => ({
       height: '19px',
       fontSize: '13px',
     },
+  },
+  buttonContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '16px',
   },
 }));
 
@@ -92,11 +91,7 @@ export const AffiliatedOrganizations = ({
   let childNode;
   if (!filtersActive) {
     return (
-      <Grid
-        className={classes.thumbnailGrid}
-        dropdownlength={orgTree.length}
-        data-cy='affiliated-organizations'
-      >
+      <Box dropdownlength={orgTree.length} data-cy='affiliated-organizations'>
         {orgTree.map((org, i) => {
           childSort = org.childNodes;
           childNode = viewAllChildren.includes(org.id.toString())
@@ -112,74 +107,61 @@ export const AffiliatedOrganizations = ({
               onClick={onOrgClick}
               organization={org}
             >
-              <Grid
-                container
-                style={{ justifyContent: 'center' }}
-                alignItems='center'
-              >
-                {childNode.length > 0 ? (
-                  <Grid
-                    item
-                    container
-                    xs={10}
-                    className={classes.affiliatedThumbnailsWrapper}
+              {childNode.length > 0 ? (
+                <Grid
+                  container
+                  className={classes.affiliatedThumbnailsWrapper}
+                >
+                  {childNode.map((child, idx) => {
+                    return (
+                      <Grid
+                        item
+                        xs={12}
+                        sm={5}
+                        lg={5}
+                        className={classes.afflnThumbnails}
+                        key={`affiliatedThumbnail_child_${i}_${idx}`}
+                      >
+                        <ContributorThumbnail
+                          organization={child}
+                          isChildThumbnail={isChildThumbnail}
+                          checkboxValue={showIndexContrib}
+                          inputValue={inputValue}
+                          filtersActive={filtersActive}
+                        />
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              ) : (
+                <ContributorThumbnail
+                  isChildThumbnail={isChildThumbnail}
+                  organization={org}
+                  checkboxValue={showIndexContrib}
+                  inputValue={inputValue}
+                  filtersActive={filtersActive}
+                />
+              )}
+              {org.childNodes.length > 6 ? (
+                <Container className={classes.buttonContainer}>
+                  <Button
+                    data-cy='viewBtnClick'
+                    id='viewAllButton'
+                    className={classes.button}
+                    onClick={() => {
+                      handleViewAllClick(i);
+                    }}
                   >
-                    {childNode.map((child, idx) => {
-                      return (
-                        <Grid
-                          item
-                          xs={12}
-                          sm={5}
-                          lg={5}
-                          className={classes.afflnThumbnails}
-                          key={`affiliatedThumbnail_child_${i}_${idx}`}
-                        >
-                          <ContributorThumbnail
-                            organization={child}
-                            isChildThumbnail={isChildThumbnail}
-                            checkboxValue={showIndexContrib}
-                            inputValue={inputValue}
-                            filtersActive={filtersActive}
-                          />
-                        </Grid>
-                      );
-                    })}
-                  </Grid>
-                ) : (
-                  <ContributorThumbnail
-                    isChildThumbnail={isChildThumbnail}
-                    organization={org}
-                    checkboxValue={showIndexContrib}
-                    inputValue={inputValue}
-                    filtersActive={filtersActive}
-                  />
-                )}
-                {org.childNodes.length > 6 ? (
-                  <Grid
-                    item
-                    container
-                    xs={10}
-                    style={{ margin: 'auto', paddingTop: '16px' }}
-                  >
-                    <Button
-                      data-cy='viewBtnClick'
-                      id='viewAllButton'
-                      className={classes.button}
-                      onClick={() => {
-                        handleViewAllClick(i);
-                      }}
-                    >
-                      {viewAllChildren.includes(org.id.toString())
-                        ? 'View Less'
-                        : 'View All'}
-                    </Button>
-                  </Grid>
-                ) : null}
-              </Grid>
+                    {viewAllChildren.includes(org.id.toString())
+                      ? 'View Less'
+                      : 'View All'}
+                  </Button>
+                </Container>
+              ) : null}
             </Dropdown>
           );
         })}
-      </Grid>
+      </Box>
     );
   } else {
     return (

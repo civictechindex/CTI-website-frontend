@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -14,15 +13,28 @@ const useStyles = makeStyles((theme) => ({
   thumbnailWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'flex-end',
-    padding: '13px',
+    alignItems: 'center',
     flexWrap: 'nowrap',
+    padding: '12px 16px',
+    [theme.breakpoints.down('md')]: {
+      padding: '8px 16px',
+    },
     [theme.breakpoints.down('sm')]: {
-      padding: '0px',
-      marginTop: '1px',
-      marginLeft: '1px',
+      padding: '8px 8px',
+      // marginTop: '1px',
+      // marginLeft: '1px',
     },
   },
+  // thumbnailWrapperContributor: {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   alignItems: 'flex-end',
+  //   padding: '13px',
+  //   flexWrap: 'nowrap',
+  //   [theme.breakpoints.down('sm')]: {
+  //     padding: '5px',
+  //   },
+  // },
   thumbnailImage: {
     width: '48px',
     height: '48px',
@@ -31,9 +43,19 @@ const useStyles = makeStyles((theme) => ({
       height: '26px',
     },
   },
+  thumbnailChildImage: {
+    width: '32px',
+    height: '32px',
+    [theme.breakpoints.down('sm')]: {
+      width: '20px',
+      height: '20px',
+    },
+  },
+  textElipsisLimiter: {
+    width: '97%',
+  },
   orgText: {
     paddingLeft: '9px',
-    paddingTop: '3px',
     '& a:link': {
       color: `${spectrum.teal} !important`,
       textDecoration: 'none',
@@ -101,37 +123,15 @@ const useStyles = makeStyles((theme) => ({
       right: 0,
     },
   },
-  thumbnailWrapperContributor: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    padding: '13px',
-    flexWrap: 'nowrap',
-    position: 'relative',
-    [theme.breakpoints.down('sm')]: {
-      padding: '5px',
-    },
-  },
-  thumbnailChildImage: {
-    width: '32px',
-    height: '32px',
-    [theme.breakpoints.down('sm')]: {
-      width: '20px',
-      height: '20px',
-      marginTop: '5px',
-      marginLeft: '10px',
-    },
-  },
   contributorIcon: {
+    margin: '24px',
     width: '24px',
     height: '24px',
     [theme.breakpoints.down('sm')]: {
+      margin: '17px',
       width: '17px',
       height: '17px',
     },
-  },
-  parentText: {
-    alignItems: 'center',
   },
 }));
 
@@ -143,7 +143,7 @@ export const ContributorThumbnail = ({
   checkboxValue,
   filtersActive,
 }) => {
-  const classes = useStyles();
+
   const [thumbnailInfo, setThumbnailInfo] = useState({});
 
   useEffect(() => {
@@ -152,26 +152,24 @@ export const ContributorThumbnail = ({
 
   return (
     <>
-      <Box style={{ position: 'relative' }}>
-        {thumbnailInfo.organizationUrl ? (
-          <Thumbnail
-            thumbnailInfo={thumbnailInfo}
-            organization={organization}
-            isOpen={isOpen}
-            dropdownLength={dropdownLength}
-            isChildThumbnail={isChildThumbnail}
-            checkboxValue={checkboxValue}
-            filtersActive={filtersActive}
-          />
-        ) : (
-          <Grid className={classes.textWrapperWithoutImage} component='span'>
-            <Typography component='span'>
-              {' '}
-              No URL Data for {organization.name}{' '}
-            </Typography>
-          </Grid>
-        )}
-      </Box>
+      {thumbnailInfo.organizationUrl ? (
+        <Thumbnail
+          thumbnailInfo={thumbnailInfo}
+          organization={organization}
+          isOpen={isOpen}
+          dropdownLength={dropdownLength}
+          isChildThumbnail={isChildThumbnail}
+          checkboxValue={checkboxValue}
+          filtersActive={filtersActive}
+        />
+      ) : (
+        <>
+          <Typography component='span'>
+            {' '}
+            No URL Data for {organization.name}{' '}
+          </Typography>
+        </>
+      )}
     </>
   );
 };
@@ -188,11 +186,11 @@ const Thumbnail = ({
   const classes = useStyles();
   let thumbnailImageStyle, thumbnailWrapperStyle;
 
-  if (organization.cti_contributor) {
-    thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
-  } else {
-    thumbnailWrapperStyle = `${classes.thumbnailWrapper} ${classes.parentText}`;
-  }
+  // if (organization.cti_contributor) {
+  //   thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
+  // } else {
+  //   thumbnailWrapperStyle = classes.thumbnailWrapper;
+  // }
   if (organization.affiliated && organization.depth === 3) {
     thumbnailImageStyle = classes.thumbnailImage;
   } else if (organization.depth === 4) {
@@ -218,21 +216,8 @@ const Thumbnail = ({
     'childNodes' in organization && organization.depth === 2;
 
   return (
-    <>
-      <Box className={classes.contributorItem}>
-        {organization.depth === 4 &&
-        checkboxValue &&
-        organization.cti_contributor ? (
-            <img
-              alt='contributor-icon'
-              data-cy='contributor-icon'
-              className={classes.contributorIcon}
-              src='/images/Child_contributed.svg'
-            />
-          ) : null}
-      </Box>
-      <Grid className={thumbnailWrapperStyle}>
-        <Grid item className={classes.imageWrapper}>
+      <Box className={classes.thumbnailWrapper}>
+        <Box className={classes.imageWrapper}>
           <CardMedia
             component='img'
             src={thumbnailInfo.imageUrl}
@@ -246,8 +231,8 @@ const Thumbnail = ({
             alt={`${organization.name} logo`}
             loading='lazy'
           />
-        </Grid>
-        <Grid item className={classes.affthumbnailText}>
+        </Box>
+        <Box className={classes.textElipsisLimiter}>
           <Typography
             variant={isChildThumbnail ? 'h6' : 'h5'}
             aria-level={isChildThumbnail ? '4' : '3'}
@@ -266,8 +251,9 @@ const Thumbnail = ({
             </Link>{' '}
             {showtotalChildCount()}
           </Typography>
-        </Grid>
-        <Grid>
+        </Box>
+        {/* what is gparenticon? */}
+        {/* <Box>
           <Typography>
             {organization.childNodes?.length > 0 && checkboxValue ? (
               <img
@@ -280,8 +266,7 @@ const Thumbnail = ({
               ' '
             )}
           </Typography>
-        </Grid>
-      </Grid>
-    </>
+        </Box> */}
+      </Box>
   );
 };
