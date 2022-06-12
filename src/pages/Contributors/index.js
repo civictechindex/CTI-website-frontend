@@ -57,9 +57,14 @@ export default function Contributors() {
   const location = useLocation();
   const [affiliatedCount, setAffiliatedCount] = useState(0);
   const [affiliatedOrganizations, setAffiliatedOrganizations] = useState([]);
+  const [expandedOrgs, setExpandedOrgs] = useState([]);
+  const [fromLink, setFromLink] = useState(true);
   const [organizations, setOrganizations] = useState([]);
   const [organizationNames, setOrganizationNames] = useState([]);
+  const [orgStatus, setOrgStatus] = useState('any');
   const [filtersActive, setFiltersActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showIndexContrib, setShowIndexContrib] = useState(false);
   const [totalAffiliatedCount, setTotalAffiliatedCount] = useState(0);
   const [totalUnaffiliatedCount, setTotalUnaffiliatedCount] = useState(0);
   const [unaffiliatedCount, setUnaffiliatedCount] = useState(0);
@@ -67,22 +72,23 @@ export default function Contributors() {
   const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
     []
   );
-  const [expandedOrgs, setExpandedOrgs] = useQueryParam(
+  const [, setQExpandedOrgs] = useQueryParam(
     'opened',
     withDefault(ArrayParam, [])
   );
-  const [orgStatus, setOrgStatus] = useQueryParam(
+  const [, setQOrgStatus] = useQueryParam(
     'status',
     withDefault(StringParam, 'any')
   );
-  const [searchQuery, setSearchQuery] = useQueryParam(
+  const [, setQSearchQuery] = useQueryParam(
     'query',
     withDefault(StringParam, '')
   );
-  const [showIndexContrib, setShowIndexContrib] = useQueryParam(
+  const [, setQShowIndexContrib] = useQueryParam(
     'contrib',
     withDefault(BooleanParam, false)
   );
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
@@ -131,18 +137,15 @@ export default function Contributors() {
     if (!location.search) {
       // handle case of navigating from menu item
       if (location.query) {
-        setOrgStatus(location.query.status);
-        setShowIndexContrib(location.query.contrib);
-        // handle case of user entering /organizations route directly
-      } else {
-        setOrgStatus('any');
-        setShowIndexContrib(false);
+        setFromLink(true);
+        setQOrgStatus(location.query.status);
+        setQShowIndexContrib(location.query.contrib);
       }
       // handle case of user entering bookmarked URL directly
-    } else if (!location.query) {
+    } else if (fromLink) {
       const expanded = [];
       const queryParams = {};
-      location.search
+      decodeURIComponent(location.search)
         .replace('?', '')
         .split('&')
         .forEach((param) => {
@@ -163,8 +166,9 @@ export default function Contributors() {
       if ('contrib' in queryParams) {
         setShowIndexContrib(!!Number(queryParams.contrib));
       }
+      setFromLink(false);
     }
-  }, [location.search, setOrgStatus, setShowIndexContrib]);
+  }, [location]);
 
   useEffect(() => {
     setLoading(true);
@@ -222,7 +226,9 @@ export default function Contributors() {
 
   const handleInputValueChange = (value) => {
     setSearchQuery(value);
+    setQSearchQuery(value);
     setExpandedOrgs([]);
+    setQExpandedOrgs([]);
   };
 
   const handleOrgClick = (org) => {
@@ -234,21 +240,26 @@ export default function Contributors() {
       expanded.push(org.id.toString());
     }
     setExpandedOrgs(expanded);
+    setQExpandedOrgs(expanded);
   };
 
   const handleTabValueChange = (value) => {
     switch (value) {
     case 0:
       setOrgStatus('any');
+      setQOrgStatus('any');
       break;
     case 1:
       setOrgStatus('unaffiliated');
+      setQOrgStatus('unaffiliated');
       break;
     case 2:
       setOrgStatus('affiliated');
+      setQOrgStatus('affiliated');
       break;
     default:
       setOrgStatus('any');
+      setQOrgStatus('any');
     }
   };
 
@@ -276,8 +287,8 @@ export default function Contributors() {
                 </Grid>
                 <Grid item xs={12}>
                   <OrganizationSearch
-                    options={organizationNames}
                     inputValue={searchQuery}
+                    options={organizationNames}
                     setInputValue={handleInputValueChange}
                   />
                 </Grid>
@@ -339,6 +350,7 @@ export default function Contributors() {
                       data-cy='index-contributors-checkbox'
                       onChange={(e) => {
                         setShowIndexContrib(e.target.checked);
+                        setQShowIndexContrib(e.target.checked);
                       }}
                     />
                   }
@@ -360,7 +372,10 @@ export default function Contributors() {
                   affiliatedCount={affiliatedCount}
                   classes={classes}
                   expandedOrgs={expandedOrgs}
-                  setExpandedOrgs={setExpandedOrgs}
+                  setExpandedOrgs={(expanded) => {
+                    setExpandedOrgs(expanded);
+                    setQExpandedOrgs(expanded);
+                  }}
                   filtersActive={filtersActive}
                   inputValue={searchQuery}
                   onOrgClick={handleOrgClick}
@@ -383,7 +398,10 @@ export default function Contributors() {
                   affiliatedCount={affiliatedCount}
                   classes={classes}
                   expandedOrgs={expandedOrgs}
-                  setExpandedOrgs={setExpandedOrgs}
+                  setExpandedOrgs={(expanded) => {
+                    setExpandedOrgs(expanded);
+                    setQExpandedOrgs(expanded);
+                  }}
                   filtersActive={filtersActive}
                   inputValue={searchQuery}
                   onOrgClick={handleOrgClick}
