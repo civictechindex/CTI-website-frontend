@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const breadCrumbLinks = [
-  { href: '/home', name: 'Home' },
+  { href: '/', name: 'Home' },
   { href: '/search-projects', name: 'Search Projects' },
 ];
 

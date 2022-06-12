@@ -1,10 +1,6 @@
 describe('Home Page', () => {
   before(() => {
-    cy.visit('/home')
-  })
-
-  beforeEach(() => {
-    // cy.visit('/home')
+    cy.visit('/')
   })
 
   it('header loads', () => {

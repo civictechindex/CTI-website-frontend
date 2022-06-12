@@ -6,7 +6,7 @@ import NavBreadcrumbs from '../../components/NavBreadcrumbs.js';
 import { TitleSection } from '../../components';
 
 const breadCrumbLinks = [
-  { href: '/home', name: 'Home' },
+  { href: '/', name: 'Home' },
   { href: '/addorganization', name: 'Add Organization' },
 ];
 
