@@ -82,7 +82,6 @@ const useStyles = makeStyles((theme) => ({
     },
     '.boxBackground': {
       backgroundColor: theme.palette.background.primary,
-      margin: '2em 0 0',
     },
     '.genSubheadTypo': {
       color: theme.palette.text.secondary,
